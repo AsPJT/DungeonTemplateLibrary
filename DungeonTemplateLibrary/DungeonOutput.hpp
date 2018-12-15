@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_OUTPUT
+Ôªø#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_OUTPUT
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_OUTPUT
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -12,7 +12,7 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//êîílèoóÕ
+	//Êï∞ÂÄ§Âá∫Âäõ
 	template<typename STL_>
 	constexpr void dungeonNumberOutput(const STL_& stl_) {
 		for (std::size_t i{}; i < stl_.size(); ++i) {
@@ -47,7 +47,7 @@ namespace dtl {
 			std::cout << std::endl;
 		}
 	}
-	//ï∂éöèoóÕ
+	//ÊñáÂ≠óÂá∫Âäõ
 	template<typename STL_>
 	constexpr void dungeonStringOutputBool(const STL_& stl_, const char* const true_, const char* const false_) {
 		if (true_ == nullptr || false_ == nullptr) return;

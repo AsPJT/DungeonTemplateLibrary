@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
+Ôªø#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -22,7 +22,7 @@ namespace dtl {
 			}
 	}
 
-	//ÉmÉCÉYÇî≠ê∂Ç≥ÇπÇÈ
+	//„Éé„Ç§„Ç∫„ÇíÁô∫Áîü„Åï„Åõ„Çã
 	template<typename STL_>
 	constexpr void noiseShoreBool(STL_& vec_, const double rbool_) {
 		for (std::size_t i{ 1 }; i < vec_.size(); ++i)

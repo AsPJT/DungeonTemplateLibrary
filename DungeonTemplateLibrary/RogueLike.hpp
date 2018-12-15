@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ROGUE_LIKE
+ï»¿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ROGUE_LIKE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ROGUE_LIKE
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -12,16 +12,16 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//lŠpŒ`‚ÌˆÊ’u‚Æ‘å‚«‚³
+	//å››è§’å½¢ã®ä½ç½®ã¨å¤§ãã•
 	template<typename Int_>
 	struct Rect {
 		Rect() = default;
-		//ˆÊ’u
+		//ä½ç½®
 		Int_ x{}, y{};
-		//‘å‚«‚³
+		//å¤§ãã•
 		Int_ w{}, h{};
 	};
-	//ƒ^ƒCƒ‹ID
+	//ã‚¿ã‚¤ãƒ«ID
 	enum TileType :std::size_t {
 		outside_wall_id,
 		inside_wall_id,
@@ -29,7 +29,7 @@ namespace dtl {
 		entrance_id,
 		way_id,
 	};
-	//•ûŠp
+	//æ–¹è§’
 	enum DirectionType :std::size_t {
 		direction_north,
 		direction_south,
@@ -37,41 +37,41 @@ namespace dtl {
 		direction_east,
 		direction_count,
 	};
-	//ƒ[ƒOƒ‰ƒCƒN¶¬ƒNƒ‰ƒX
+	//ãƒ­ãƒ¼ã‚°ãƒ©ã‚¤ã‚¯ç”Ÿæˆã‚¯ãƒ©ã‚¹
 	template<typename int_map_t>
 	class RogueLike {
 	public:
-		//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		RogueLike() = default;
 		template<typename vArray>
 		constexpr RogueLike(vArray& vec_, const std::size_t way_max_) {
 			create(vec_, way_max_);
 		}
-		//ƒ}ƒbƒv¶¬
+		//ãƒãƒƒãƒ—ç”Ÿæˆ
 		template<typename vArray>
 		constexpr void create(vArray& vec_, const std::size_t way_max_) {
 			room_rect.clear();
 			branch_point.clear();
-			//Å‰‚Ì•”‰®‚ğ¶¬
+			//æœ€åˆã®éƒ¨å±‹ã‚’ç”Ÿæˆ
 			if (!makeRoom(vec_, (std::int_fast32_t)((vec_.empty()) ? 0 : vec_.front().size()) / 2, (std::int_fast32_t)(vec_.size()) / 2, (DirectionType)rnd(4))) return;
-			//‹@”\”z’u
+			//æ©Ÿèƒ½é…ç½®
 			for (std::size_t i = 1; i < way_max_; ++i)
 				if (!createNext(vec_)) break;
 		}
 
 	private:
-		//•”‰®‚ÌˆÊ’uî•ñ
+		//éƒ¨å±‹ã®ä½ç½®æƒ…å ±
 		std::vector<Rect<std::int_fast32_t>> room_rect;
-		//•”‰®‚Ü‚½‚Í’Ê˜H‚Ì¶¬‰Â”\‚È–Ê‚ÌˆÊ’uî•ñ
+		//éƒ¨å±‹ã¾ãŸã¯é€šè·¯ã®ç”Ÿæˆå¯èƒ½ãªé¢ã®ä½ç½®æƒ…å ±
 		std::vector<Rect<std::int_fast32_t>> branch_point;
 
-		//ƒ^ƒCƒ‹‚ğæ“¾
+		//ã‚¿ã‚¤ãƒ«ã‚’å–å¾—
 		template<typename vArray>
 		constexpr int_map_t getTileType(const vArray& vec_, const std::int_fast32_t x_, const std::int_fast32_t y_) const {
 			if ((std::size_t)x_ >= ((vec_.empty()) ? (std::size_t)0 : vec_.front().size()) || (std::size_t)y_ >= (vec_.size())) return (int_map_t)outside_wall_id;
 			return vec_[y_][x_];
 		}
-		//ƒ^ƒCƒ‹‚ğ’u‚­
+		//ã‚¿ã‚¤ãƒ«ã‚’ç½®ã
 		template<typename vArray>
 		constexpr void setTileType(vArray& vec_, const std::size_t x_, const std::size_t y_, const int_map_t tile_) const {
 			vec_[y_][x_] = tile_;
@@ -81,12 +81,12 @@ namespace dtl {
 			for (std::size_t i{}, r{}; i < (std::size_t)0xffff; ++i) {
 				if (branch_point.empty()) break;
 
-				//•”‰®‚©’Ê˜H‚Ì—”–Ê‚ğ‘I‘ğ
+				//éƒ¨å±‹ã‹é€šè·¯ã®ä¹±æ•°é¢ã‚’é¸æŠ
 				r = (std::size_t)rnd((std::int_fast32_t)branch_point.size());
 				const auto& x{ rnd(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
 				const auto& y{ rnd(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
-				//•ûŠpƒJƒEƒ“ƒ^
+				//æ–¹è§’ã‚«ã‚¦ãƒ³ã‚¿
 				for (std::size_t j{}; j < direction_count; ++j) {
 					if (!createNext(vec_, x, y, j)) continue;
 					branch_point.erase(branch_point.begin() + r);
@@ -106,18 +106,18 @@ namespace dtl {
 			case direction_west:dx = 1; break;
 			case direction_east:dx = -1; break;
 			}
-			//ƒGƒ‰[
+			//ã‚¨ãƒ©ãƒ¼
 			if (getTileType(vec_, x + dx, y + dy) != room_id && getTileType(vec_, x + dx, y + dy) != way_id) return false;
 
-			//2•ª‚Ì1‚ÌŠm—¦
+			//2åˆ†ã®1ã®ç¢ºç‡
 			if (rnd.randBool()) {
-				//•”‰®‚ğ¶¬
+				//éƒ¨å±‹ã‚’ç”Ÿæˆ
 				if (!makeRoom(vec_, x, y, dir_)) return false;
 				setTileType(vec_, x, y, entrance_id);
 				return true;
 			}
 			else {
-				//’Ê˜H‚ğ¶¬
+				//é€šè·¯ã‚’ç”Ÿæˆ
 				if (!makeWay(vec_, x, y, dir_)) return false;
 				if (getTileType(vec_, x + dx, y + dy) == room_id) setTileType(vec_, x, y, entrance_id);
 				else setTileType(vec_, x, y, way_id);
@@ -155,13 +155,13 @@ namespace dtl {
 			}
 			if (placeRect(vec_, room, room_id)) {
 				room_rect.emplace_back(room);
-				if (dir_ != direction_south || firstRoom_) //ã
+				if (dir_ != direction_south || firstRoom_) //ä¸Š
 					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
-				if (dir_ != direction_north || firstRoom_) //‰º
+				if (dir_ != direction_north || firstRoom_) //ä¸‹
 					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
-				if (dir_ != direction_east || firstRoom_) //¶
+				if (dir_ != direction_east || firstRoom_) //å·¦
 					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
-				if (dir_ != direction_west || firstRoom_) //‰E
+				if (dir_ != direction_west || firstRoom_) //å³
 					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
 				return true;
 			}
@@ -176,7 +176,7 @@ namespace dtl {
 			way.x = x_;
 			way.y = y_;
 
-			//¶‰E
+			//å·¦å³
 			if (rnd.randBool()) {
 				way.w = rnd(minWayLength, maxWayLength);
 				way.h = 1;
@@ -198,7 +198,7 @@ namespace dtl {
 					break;
 				}
 			}
-			//ã‰º
+			//ä¸Šä¸‹
 			else {
 				way.w = 1;
 				way.h = rnd(minWayLength, maxWayLength);
@@ -218,13 +218,13 @@ namespace dtl {
 				}
 			}
 			if (!placeRect(vec_, way, way_id)) return false;
-			if (dir_ != direction_south && way.w != 1)//ã
+			if (dir_ != direction_south && way.w != 1)//ä¸Š
 				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x, way.y - 1, way.w, 1 });
-			if (dir_ != direction_north && way.w != 1)//‰º
+			if (dir_ != direction_north && way.w != 1)//ä¸‹
 				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x, way.y + way.h, way.w, 1 });
-			if (dir_ != direction_east && way.h != 1)//¶
+			if (dir_ != direction_east && way.h != 1)//å·¦
 				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x - 1, way.y, 1, way.h });
-			if (dir_ != direction_west && way.h != 1)//‰E
+			if (dir_ != direction_west && way.h != 1)//å³
 				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x + way.w, way.y, 1, way.h });
 			return true;
 		}

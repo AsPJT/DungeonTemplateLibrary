@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_VORONOI_ISLAND
+Ôªø#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_VORONOI_ISLAND
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_VORONOI_ISLAND
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -25,7 +25,7 @@ namespace dtl {
 	template<typename Int_>
 	class SimpleVoronoiIsland {
 	public:
-		//ÉRÉìÉXÉgÉâÉNÉ^
+		//„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 		SimpleVoronoiIsland() = default;
 		template<typename STL_>
 		constexpr SimpleVoronoiIsland(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
@@ -36,7 +36,7 @@ namespace dtl {
 			create(stl_, count_, rbool_, land_, sea_);
 		}
 
-		//É{ÉçÉmÉCê}ÇçÏÇÈ
+		//„Éú„É≠„Éé„Ç§Âõ≥„Çí‰Ωú„Çã
 		template<typename STL_>
 		constexpr void create(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
 			for (std::size_t i{}; i < count_; ++i) {
@@ -55,14 +55,14 @@ namespace dtl {
 		constexpr bool isMakeIsland(const std::size_t w_, const std::size_t h_, const std::size_t numerator_, const std::size_t denominator_) const {
 			return (point.back().first > (w_ * numerator_ / denominator_) && point.back().first < (w_ * (denominator_ - numerator_) / denominator_)) && (point.back().second > (h_ * numerator_ / denominator_) && point.back().second < (h_ * (denominator_ - numerator_) / denominator_));
 		}
-		//å¥ì_ÇÃèÍèäÇ∆ó§ínÇåàíËÇ∑ÇÈ
+		//ÂéüÁÇπ„ÅÆÂ†¥ÊâÄ„Å®Èô∏Âú∞„ÇíÊ±∫ÂÆö„Åô„Çã
 		constexpr void createPoint(const std::size_t w_, const std::size_t h_, const double rbool_, const Int_ land_, const Int_ sea_) {
 			point.emplace_back((std::size_t)rnd(static_cast<std::int_fast32_t>(w_)), (std::size_t)rnd(static_cast<std::int_fast32_t>(h_)));
 			if (isMakeIsland(w_, h_, 2, 5) || (rnd.randBool(rbool_) && isMakeIsland(w_, h_, 1, 5)))
 				color.emplace_back(land_);
 			else color.emplace_back(sea_);
 		}
-		//ê}å`Çê¸âÊ
+		//Âõ≥ÂΩ¢„ÇíÁ∑öÁîª
 		template<typename STL_>
 		constexpr void createSites(STL_& stl_, const std::size_t w_, const std::size_t h_)const {
 			std::int_fast32_t ds{}, dist{};
