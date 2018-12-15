@@ -130,9 +130,11 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DungeonBinarization.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />
     <ClInclude Include="DungeonRandom.hpp" />
+    <ClInclude Include="FractalIsland.hpp" />
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
   </ItemGroup>
