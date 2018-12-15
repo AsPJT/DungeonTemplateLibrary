@@ -14,7 +14,7 @@ DTL (Dungeon Template Library)
 
 ### C++14
 
-```
+```cpp
 #include <RogueLike.hpp>
 ```
 
@@ -30,7 +30,7 @@ DTL (Dungeon Template Library)
 
 ### C++14
 
-```
+```cpp
 #include <SimpleVoronoiIsland.hpp>
 ```
 
