@@ -5,6 +5,8 @@ DTL (Dungeon Template Library)
 
 # Overview
 
+## Version 0.1.0
+
 ### RogueLike
 
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
