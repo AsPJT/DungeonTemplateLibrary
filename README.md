@@ -14,6 +14,10 @@ DTL (Dungeon Template Library)
 
 ### C++14
 
+```
+#include <RogueLike.hpp>
+```
+
 |Compiler|Pass|Test|
 |:---|:---|:---|
 |MSVC|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|None|
@@ -25,6 +29,10 @@ DTL (Dungeon Template Library)
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
 ### C++14
+
+```
+#include <SimpleVoronoiIsland.hpp>
+```
 
 |Compiler|Pass|Test|
 |:---|:---|:---|
