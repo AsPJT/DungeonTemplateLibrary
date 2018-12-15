@@ -12,6 +12,8 @@ DTL (Dungeon Template Library)
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
 
+### C++14
+
 |Compiler|Pass|Test|
 |:---|:---|:---|
 |MSVC|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|None|
@@ -21,6 +23,8 @@ DTL (Dungeon Template Library)
 ### Simple Voronoi Island
 
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
+
+### C++14
 
 |Compiler|Pass|Test|
 |:---|:---|:---|
