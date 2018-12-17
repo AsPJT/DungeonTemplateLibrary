@@ -28,23 +28,23 @@ namespace dtl {
 		//コンストラクタ
 		SimpleVoronoiIsland() = default;
 		template<typename STL_>
-		constexpr SimpleVoronoiIsland(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
+		constexpr explicit SimpleVoronoiIsland(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
 			create(stl_, count_, rbool_, land_, sea_);
 		}
 		template<typename STL_>
-		constexpr void operator()(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) const {
+		constexpr void operator()(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) const noexcept {
 			create(stl_, count_, rbool_, land_, sea_);
 		}
 
 		//ボロノイ図を作る
 		template<typename STL_>
-		constexpr void create(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
+		constexpr void create(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) noexcept {
 			for (std::size_t i{}; i < count_; ++i) {
 				createPoint((stl_.empty()) ? 0 : stl_.front().size(), stl_.size(), rbool_, land_, sea_);
 			}
 			createSites(stl_, (stl_.empty()) ? 0 : stl_.front().size(), stl_.size());
 		}
-		constexpr void init() {
+		constexpr void init() noexcept {
 			point.clear();
 			color.clear();
 		}
@@ -52,11 +52,11 @@ namespace dtl {
 		std::vector<std::pair<std::size_t, std::size_t>> point;
 		std::vector<Int_> color;
 
-		constexpr bool isMakeIsland(const std::size_t w_, const std::size_t h_, const std::size_t numerator_, const std::size_t denominator_) const {
+		constexpr bool isMakeIsland(const std::size_t w_, const std::size_t h_, const std::size_t numerator_, const std::size_t denominator_) const noexcept {
 			return (point.back().first > (w_ * numerator_ / denominator_) && point.back().first < (w_ * (denominator_ - numerator_) / denominator_)) && (point.back().second > (h_ * numerator_ / denominator_) && point.back().second < (h_ * (denominator_ - numerator_) / denominator_));
 		}
 		//原点の場所と陸地を決定する
-		constexpr void createPoint(const std::size_t w_, const std::size_t h_, const double rbool_, const Int_ land_, const Int_ sea_) {
+		constexpr void createPoint(const std::size_t w_, const std::size_t h_, const double rbool_, const Int_ land_, const Int_ sea_) noexcept {
 			point.emplace_back((std::size_t)rnd(static_cast<std::int_fast32_t>(w_)), (std::size_t)rnd(static_cast<std::int_fast32_t>(h_)));
 			if (isMakeIsland(w_, h_, 2, 5) || (rnd.randBool(rbool_) && isMakeIsland(w_, h_, 1, 5)))
 				color.emplace_back(land_);
@@ -64,7 +64,7 @@ namespace dtl {
 		}
 		//図形を線画
 		template<typename STL_>
-		constexpr void createSites(STL_& stl_, const std::size_t w_, const std::size_t h_)const {
+		constexpr void createSites(STL_& stl_, const std::size_t w_, const std::size_t h_) const noexcept {
 			std::int_fast32_t ds{}, dist{};
 			for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 				for (std::size_t ww{}; ww < w_; ++ww) {
