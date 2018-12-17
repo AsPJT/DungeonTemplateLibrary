@@ -9,6 +9,7 @@
 #include <cstddef>
 #include <iostream>
 #include <string>
+#include <vector>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -78,7 +79,7 @@ namespace dtl {
 		dungeonStringOutput_String(string_vector_, args_...);
 	}
 	template<typename STL_, typename First_, typename ...Args_>
-	constexpr void dungeonStringOutput(const STL_& stl_, const First_& first_, const Args_&... args_) {
+	void dungeonStringOutput(const STL_& stl_, const First_& first_, const Args_&... args_) {
 		std::vector<std::string> string_vector;
 		string_vector.emplace_back(std::string(first_));
 		dungeonStringOutput_String(string_vector, args_...);
@@ -92,7 +93,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_, typename First_, typename ...Args_>
-	constexpr void dungeonStringOutput_RangeBasedFor(const STL_& stl_, const First_& first_, const Args_&... args_) {
+	void dungeonStringOutput_RangeBasedFor(const STL_& stl_, const First_& first_, const Args_&... args_) {
 		std::vector<std::string> string_vector;
 		string_vector.emplace_back(std::string(first_));
 		dungeonStringOutput_String(string_vector, args_...);

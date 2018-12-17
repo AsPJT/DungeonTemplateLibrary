@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Color.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DungeonBinarization.hpp" />
@@ -135,6 +135,7 @@
     <ClInclude Include="DungeonOutput.hpp" />
     <ClInclude Include="DungeonRandom.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
+    <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
   </ItemGroup>

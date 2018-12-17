@@ -9,6 +9,7 @@
 #include <cstddef>
 #include <iostream>
 #include <string>
+#include <vector>
 
 //Dungeon Template Library Namespace
 namespace dtl {
