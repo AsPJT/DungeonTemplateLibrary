@@ -13,7 +13,7 @@
 namespace dtl {
 
 	template<typename STL_, typename Int_>
-	constexpr void noiseBool(STL_& vec_, const double rbool_, const Int_ true_tile_ = 1, const Int_ false_tile_ = 0) {
+	constexpr void noiseBool(STL_& vec_, const double rbool_, const Int_ true_tile_ = 1, const Int_ false_tile_ = 0) noexcept {
 		for (auto&& i : vec_)
 			for (auto&& j : i) {
 				if (!rnd.randBool(rbool_)) continue;
@@ -24,7 +24,7 @@ namespace dtl {
 
 	//ノイズを発生させる
 	template<typename STL_>
-	constexpr void noiseShoreBool(STL_& vec_, const double rbool_) {
+	constexpr void noiseShoreBool(STL_& vec_, const double rbool_) noexcept {
 		for (std::size_t i{ 1 }; i < vec_.size(); ++i)
 			for (std::size_t j{ 1 }; j < vec_[i].size(); ++j) {
 				if (!rnd.randBool(rbool_) || (vec_[i][j] == vec_[i][j - 1] && vec_[i][j] == vec_[i - 1][j])) continue;
@@ -33,7 +33,7 @@ namespace dtl {
 			}
 	}
 	template<typename STL_, typename Int_>
-	constexpr void noiseShore(STL_& vec_, const double rbool_, const Int_ true_tile_ = 1, const Int_ false_tile_ = 0) {
+	constexpr void noiseShore(STL_& vec_, const double rbool_, const Int_ true_tile_ = 1, const Int_ false_tile_ = 0) noexcept {
 		for (std::size_t i{ 1 }; i < vec_.size(); ++i)
 			for (std::size_t j{ 1 }; j < vec_[i].size(); ++j) {
 				if (!rnd.randBool(rbool_) || (vec_[i][j] == vec_[i][j - 1] && vec_[i][j] == vec_[i - 1][j])) continue;
@@ -41,6 +41,7 @@ namespace dtl {
 				else vec_[i][j] = true_tile_;
 			}
 	}
+
 }
 
 #endif //Included Dungeon Template Library

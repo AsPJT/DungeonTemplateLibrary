@@ -16,7 +16,7 @@
 namespace dtl {
 
 	template<typename Point_>
-	constexpr std::int_fast32_t distanceSqrd(const Point_& point_, std::int_fast32_t x_, std::int_fast32_t y_) {
+	constexpr std::int_fast32_t distanceSqrd(const Point_& point_, std::int_fast32_t x_, std::int_fast32_t y_) noexcept {
 		x_ -= (std::int_fast32_t)point_.first;
 		y_ -= (std::int_fast32_t)point_.second;
 		return (x_ * x_) + (y_ * y_);

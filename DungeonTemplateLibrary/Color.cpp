@@ -13,14 +13,14 @@
 #include "MazeDig.hpp"
 
 template<typename STL_>
-constexpr void dungeonInit_RangeBasedFor(STL_& stl_) {
+constexpr void dungeonInit_RangeBasedFor(STL_& stl_) noexcept {
 	for (auto&& i : stl_)
 		for (auto&& j : i)
 			j = 0;
 }
 
 template<typename Int_, typename STL_>
-constexpr void dungeonInit_RangeBasedFor(STL_& stl_, const Int_ value_) {
+constexpr void dungeonInit_RangeBasedFor(STL_& stl_, const Int_ value_) noexcept {
 	for (auto&& i : stl_)
 		for (auto&& j : i)
 			j = value_;

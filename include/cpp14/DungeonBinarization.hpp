@@ -13,7 +13,7 @@ namespace dtl {
 
 	//2値化処理
 	template<typename STL_, typename Int_>
-	constexpr void dungeonBinarization(STL_& stl_, const Int_ value_) {
+	constexpr void dungeonBinarization(STL_& stl_, const Int_ value_) noexcept {
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
 				if (stl_[i][j] >= value_) stl_[i][j] = static_cast<Int_>(1);
@@ -22,7 +22,7 @@ namespace dtl {
 	}
 
 	template<typename STL_, typename Int_>
-	constexpr void dungeonBinarization_RangeBasedFor(STL_& stl_, const Int_ value_) {
+	constexpr void dungeonBinarization_RangeBasedFor(STL_& stl_, const Int_ value_) noexcept {
 		for (auto&& i : stl_)
 			for (auto&& j : i) {
 				if (j >= value_) j = static_cast<Int_>(1);
@@ -31,7 +31,7 @@ namespace dtl {
 	}
 
 	template<typename STL_>
-	constexpr void dungeonBinarization(STL_& stl_) {
+	constexpr void dungeonBinarization(STL_& stl_) noexcept {
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
 				if (stl_[i][j]) stl_[i][j] = 1;
@@ -40,7 +40,7 @@ namespace dtl {
 	}
 
 	template<typename STL_>
-	constexpr void dungeonBinarization_RangeBasedFor(STL_& stl_) {
+	constexpr void dungeonBinarization_RangeBasedFor(STL_& stl_) noexcept {
 		for (auto&& i : stl_)
 			for (auto&& j : i) {
 				if (j) j = 1;
@@ -49,7 +49,7 @@ namespace dtl {
 	}
 
 	template<typename STL_, typename STL2_>
-	constexpr void dungeonBinarizationBool(STL_& stl_, STL2_& stl2_) {
+	constexpr void dungeonBinarizationBool(STL_& stl_, STL2_& stl2_) noexcept {
 		if (stl_.size() != stl2_.size()) return;
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
@@ -60,7 +60,7 @@ namespace dtl {
 	}
 
 	template<typename STL_, typename STL2_, typename Int_>
-	constexpr void dungeonBinarizationBool(STL_& stl_, STL2_& stl2_, const Int_ value_) {
+	constexpr void dungeonBinarizationBool(STL_& stl_, STL2_& stl2_, const Int_ value_) noexcept {
 		if (stl_.size() != stl2_.size()) return;
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {

@@ -15,7 +15,7 @@
 namespace dtl {
 	//数値出力
 	template<typename STL_>
-	constexpr void dungeonNumberOutput(const STL_& stl_) {
+	constexpr void dungeonNumberOutput(const STL_& stl_) noexcept {
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
 				std::cout << stl_[i][j];
@@ -23,7 +23,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_>
-	constexpr void dungeonNumberOutput_RangeBasedFor(const STL_& stl_) {
+	constexpr void dungeonNumberOutput_RangeBasedFor(const STL_& stl_) noexcept {
 		for (const auto& i : stl_) {
 			for (const auto& j : i)
 				std::cout << j;
@@ -31,7 +31,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_>
-	constexpr void dungeonNumberOutput(const STL_& stl_, const char* const string_) {
+	constexpr void dungeonNumberOutput(const STL_& stl_, const char* const string_) noexcept {
 		if (string_ == nullptr) return;
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
@@ -40,7 +40,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_>
-	constexpr void dungeonNumberOutput_RangeBasedFor(const STL_& stl_, const char* const string_) {
+	constexpr void dungeonNumberOutput_RangeBasedFor(const STL_& stl_, const char* const string_) noexcept {
 		if (string_ == nullptr) return;
 		for (const auto& i : stl_) {
 			for (const auto& j : i)
@@ -50,7 +50,7 @@ namespace dtl {
 	}
 	//文字出力
 	template<typename STL_>
-	constexpr void dungeonStringOutputBool(const STL_& stl_, const char* const true_, const char* const false_) {
+	constexpr void dungeonStringOutputBool(const STL_& stl_, const char* const true_, const char* const false_) noexcept {
 		if (true_ == nullptr || false_ == nullptr) return;
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
@@ -61,7 +61,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_>
-	constexpr void dungeonStringOutputBool_RangeBasedFor(const STL_& stl_, const char* const true_, const char* const false_) {
+	constexpr void dungeonStringOutputBool_RangeBasedFor(const STL_& stl_, const char* const true_, const char* const false_) noexcept {
 		if (true_ == nullptr || false_ == nullptr) return;
 		for (const auto& i : stl_) {
 			for (const auto& j : i) {
@@ -72,14 +72,14 @@ namespace dtl {
 		}
 	}
 
-	bool dungeonStringOutput_String(std::vector<std::string>& string_) { return string_.empty(); }
+	bool dungeonStringOutput_String(std::vector<std::string>& string_) noexcept { return string_.empty(); }
 	template<typename First_, typename ...Args_>
-	constexpr void dungeonStringOutput_String(std::vector<std::string>& string_vector_, const First_& first_, const Args_&... args_) {
+	constexpr void dungeonStringOutput_String(std::vector<std::string>& string_vector_, const First_& first_, const Args_&... args_) noexcept {
 		string_vector_.emplace_back(std::string(first_));
 		dungeonStringOutput_String(string_vector_, args_...);
 	}
 	template<typename STL_, typename First_, typename ...Args_>
-	void dungeonStringOutput(const STL_& stl_, const First_& first_, const Args_&... args_) {
+	void dungeonStringOutput(const STL_& stl_, const First_& first_, const Args_&... args_) noexcept {
 		std::vector<std::string> string_vector;
 		string_vector.emplace_back(std::string(first_));
 		dungeonStringOutput_String(string_vector, args_...);
@@ -93,7 +93,7 @@ namespace dtl {
 		}
 	}
 	template<typename STL_, typename First_, typename ...Args_>
-	void dungeonStringOutput_RangeBasedFor(const STL_& stl_, const First_& first_, const Args_&... args_) {
+	void dungeonStringOutput_RangeBasedFor(const STL_& stl_, const First_& first_, const Args_&... args_) noexcept {
 		std::vector<std::string> string_vector;
 		string_vector.emplace_back(std::string(first_));
 		dungeonStringOutput_String(string_vector, args_...);
