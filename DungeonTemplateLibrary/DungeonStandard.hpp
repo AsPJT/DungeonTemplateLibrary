@@ -39,6 +39,16 @@ namespace dtl {
 				j = value_;
 	}
 
+	template<typename STL_>
+	constexpr bool dungeonArrayCheckBitset(const STL_& stl_) noexcept {
+		if (stl_.size() < 1 || stl_[0].size() < 1) return false;
+		const auto& stl_value{ stl_[0][0] };
+		for (std::size_t i{}; i < stl_.size(); ++i)
+			for (std::size_t j{}; j < stl_[i].size(); ++j)
+				if (stl_value != stl_[i][j]) return false;
+		return true;
+	}
+
 	//
 	template<typename STL_>
 	constexpr bool dungeonArrayCheck(const STL_& stl_) noexcept {

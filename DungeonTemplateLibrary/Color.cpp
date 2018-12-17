@@ -1,7 +1,8 @@
 ﻿//ダンジョン生成チェック
 
 #include <cstdint>
-#include <vector>
+#include <array>
+#include <bitset>
 
 #include "DungeonOutput.hpp"
 #include "DungeonNoise.hpp"
@@ -16,9 +17,17 @@
 int main() {
 
 	using int_map_t = std::uint_fast8_t;
-	std::vector<std::vector<int_map_t>> dungeon(96, std::vector<int_map_t>(128, 0));
+	constexpr std::size_t dungeon_size_x{ 128 };
+	constexpr std::size_t dungeon_size_y{ 96 };
+	
+	std::array<std::array<int_map_t, dungeon_size_x>, dungeon_size_y> dungeon{ {} };
+	std::array<std::bitset<dungeon_size_x>, dungeon_size_y> dungeon_bool{ {} };
+
+
+	//std::vector<std::vector<int_map_t>> dungeon(dungeon_size_y, std::vector<int_map_t>(dungeon_size_x, 0));
 
 	if(!dtl::dungeonArrayCheck(dungeon)) return 0;
+	if (!dtl::dungeonArrayCheckBitset(dungeon_bool)) return 0;
 
 	//ローグライク
 	dtl::RogueLike<int_map_t> rogue_like(dungeon, 50);
