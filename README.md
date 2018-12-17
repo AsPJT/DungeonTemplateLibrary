@@ -5,7 +5,16 @@ DTL (Dungeon Template Library)
 
 # Overview
 
+## Test
+
+[Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
+
 ## Version 0.1.0
+
+|View|Test Code|
+|:---|:---|
+|PC View|[Wandbox](https://wandbox.org/permlink/VC13TPmxcO49LRBD)|
+|SP View|[WandBox](https://wandbox.org/permlink/D3LFLXm4gum8Rg7N)|
 
 ### RogueLike
 
