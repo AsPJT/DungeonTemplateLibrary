@@ -49,6 +49,22 @@ DTL (Dungeon Template Library)
 |GCC|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/ptNcR2SIufjeWZJp)|
 |Clang|![clang](https://img.shields.io/badge/clang%203.5.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/oWqCZambD9Kx0H0g)|
 
+### Fractal Island
+
+### C++14
+
+```cpp
+#include <FractalIsland.hpp>
+```
+
+### Maze Dig
+
+### C++14
+
+```cpp
+#include <MazeDig.hpp>
+```
+
 ## License
 
 These codes are licensed under CC0.
