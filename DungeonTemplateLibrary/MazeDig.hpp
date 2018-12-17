@@ -15,8 +15,8 @@
 namespace dtl {
 
 	enum MazeDigType :std::size_t {
-		maze_dig_type_way,
 		maze_dig_type_wall,
+		maze_dig_type_way,
 	};
 
 	template<typename Int_>

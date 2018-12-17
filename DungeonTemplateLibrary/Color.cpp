@@ -41,12 +41,12 @@ int main() {
 	dtl::noiseShoreBool(dungeon, 0.5);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[42m　", "\x1b[44m　");
 
-	dtl::dungeonInit_RangeBasedFor<int_map_t>(dungeon, 1);
+	dtl::dungeonInit_RangeBasedFor(dungeon);
 	std::cout << "\n";
 
 	//迷路(穴掘り法)
 	dtl::MazeDig<int_map_t> maze_dig(dungeon);
-	dtl::dungeonStringOutputBool(dungeon, "\x1b[40m　", "\x1b[47m　");
+	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
 	//dtl::dungeonStringOutputBool(dungeon, " ", " ");
 
