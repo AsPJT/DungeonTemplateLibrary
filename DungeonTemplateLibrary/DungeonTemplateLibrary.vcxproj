@@ -134,6 +134,7 @@
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />
     <ClInclude Include="DungeonRandom.hpp" />
+    <ClInclude Include="DungeonStandard.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />

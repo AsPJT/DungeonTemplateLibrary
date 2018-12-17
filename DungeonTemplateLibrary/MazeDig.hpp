@@ -15,7 +15,7 @@
 namespace dtl {
 
 	enum MazeDigType :std::size_t {
-		maze_dig_type_empty,
+		maze_dig_type_way,
 		maze_dig_type_wall,
 	};
 
@@ -29,11 +29,11 @@ namespace dtl {
 		}
 		template<typename STL_>
 		constexpr explicit MazeDig(STL_& data, const Int_ v1_) {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
 		}
 		template<typename STL_>
 		constexpr explicit MazeDig(STL_& data) {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
 		}
 	private:
 
@@ -130,11 +130,11 @@ namespace dtl {
 		}
 		template<typename STL_>
 		constexpr void operator()(STL_& data, const Int_ v1_) const noexcept {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
 		}
 		template<typename STL_>
 		constexpr void operator()(STL_& data) const noexcept {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
 		}
 		template<typename STL_>
 		constexpr void create(STL_& data, const Int_ v1_, const Int_ v2_) const noexcept {
@@ -142,11 +142,11 @@ namespace dtl {
 		}
 		template<typename STL_>
 		constexpr void create(STL_& data, const Int_ v1_) const noexcept {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
 		}
 		template<typename STL_>
 		constexpr void create(STL_& data) const noexcept {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_empty));
+			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
 		}
 
 	};
