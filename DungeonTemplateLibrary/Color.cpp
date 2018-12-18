@@ -13,6 +13,7 @@
 #include "SimpleVoronoiIsland.hpp"
 #include "FractalIsland.hpp"
 #include "MazeDig.hpp"
+#include "SimpleRogueLike.hpp"
 
 int main() {
 
@@ -29,7 +30,7 @@ int main() {
 	if(!dtl::dungeonArrayCheck(dungeon)) return 0;
 	if (!dtl::dungeonArrayCheckBitset(dungeon_bool)) return 0;
 
-	//ローグライク
+	//ローグライク(穴掘り)
 	dtl::RogueLike<int_map_t> rogue_like(dungeon, 50);
 	dtl::dungeonStringOutput(dungeon, "\x1b[40m　", "\x1b[47m　", "\x1b[46m　", "\x1b[45m　", "\x1b[44m　");
 
@@ -58,6 +59,13 @@ int main() {
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
 	//dtl::dungeonStringOutputBool(dungeon, " ", " ");
+
+	dtl::dungeonInit_RangeBasedFor(dungeon);
+	std::cout << "\n";
+
+	//ローグライク(区域分割法)
+	dtl::SimpleRogueLike<int_map_t> simple_rogue_like(dungeon);
+	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
 	std::cout << std::endl;
 

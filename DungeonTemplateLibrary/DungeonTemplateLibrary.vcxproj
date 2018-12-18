@@ -138,6 +138,7 @@
     <ClInclude Include="FractalIsland.hpp" />
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />
+    <ClInclude Include="SimpleRogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

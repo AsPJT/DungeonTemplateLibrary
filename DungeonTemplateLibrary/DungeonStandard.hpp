@@ -52,7 +52,7 @@ namespace dtl {
 	//
 	template<typename STL_>
 	constexpr bool dungeonArrayCheck(const STL_& stl_) noexcept {
-		if (stl_.empty() || stl_.front().empty()) return false;
+		if (stl_.size()==0 || stl_.front().size()==0) return false;
 		const auto& stl_value{ stl_.front().front() };
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
@@ -62,7 +62,7 @@ namespace dtl {
 
 	template<typename STL_>
 	constexpr bool dungeonArrayCheck_RangeBasedFor(const STL_& stl_) noexcept {
-		if (stl_.empty() || stl_.front().empty()) return false;
+		if (stl_.size() == 0 || stl_.front().size() == 0) return false;
 		const auto& stl_value{ stl_.front().front() };
 		for (const auto& i : stl_)
 			for (const auto& j : i)
