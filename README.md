@@ -75,6 +75,8 @@ DTL (Dungeon Template Library)
 #include <SimpleRogueLike.hpp>
 ```
 
+![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
+
 ## License
 
 These codes are licensed under CC0.
