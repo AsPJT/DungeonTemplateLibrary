@@ -18,7 +18,7 @@ DTL (Dungeon Template Library)
 |PC View|[Wandbox](https://wandbox.org/permlink/VC13TPmxcO49LRBD)|
 |SP View|[WandBox](https://wandbox.org/permlink/D3LFLXm4gum8Rg7N)|
 
-### RogueLike
+### RogueLike ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg)
 
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
@@ -35,7 +35,7 @@ DTL (Dungeon Template Library)
 |GCC|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/zlwCfiuu0lE3zwM9)|
 |Clang|![clang](https://img.shields.io/badge/clang%203.5.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/r0PaawnBDMxH6RBa)|
 
-### Simple Voronoi Island
+### Simple Voronoi Island ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg)
 
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
@@ -51,7 +51,7 @@ DTL (Dungeon Template Library)
 |GCC|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/ptNcR2SIufjeWZJp)|
 |Clang|![clang](https://img.shields.io/badge/clang%203.5.0-passing-brightgreen.svg)|[Wandbox](https://wandbox.org/permlink/oWqCZambD9Kx0H0g)|
 
-### Fractal Island
+### Fractal Island ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg)
 
 ### C++14
 
@@ -59,7 +59,7 @@ DTL (Dungeon Template Library)
 #include <FractalIsland.hpp>
 ```
 
-### Maze Dig
+### Maze Dig ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg)
 
 ### C++14
 
@@ -67,7 +67,7 @@ DTL (Dungeon Template Library)
 #include <MazeDig.hpp>
 ```
 
-### Simple RogueLike
+### Simple RogueLike ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg)
 
 ### C++14
 
