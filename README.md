@@ -1,11 +1,9 @@
 ﻿# Dungeon Template Library
  <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.0-passing-brightgreen.svg"></a>
  
-DTL (Dungeon Template Library)
-
 [![DTL](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dtl150.png "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
 
- - 𝔇𝔲𝔫𝔤𝔢𝔬𝔫 𝔗𝔢𝔪𝔭𝔩𝔞𝔱𝔢 𝔏𝔦𝔟𝔯𝔞𝔯𝔶
+DTL (Dungeon Template Library)
 
 # Overview
 
