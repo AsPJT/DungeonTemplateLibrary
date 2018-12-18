@@ -11,7 +11,7 @@ DTL (Dungeon Template Library)
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.1.0
+## Version 0.1.0 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -23,8 +23,6 @@ DTL (Dungeon Template Library)
 
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
-
-### C++14
 
 ```cpp
 #include <RogueLike.hpp>
@@ -41,8 +39,6 @@ DTL (Dungeon Template Library)
 
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
-### C++14
-
 ```cpp
 #include <SimpleVoronoiIsland.hpp>
 ```
@@ -56,8 +52,6 @@ DTL (Dungeon Template Library)
 ### Fractal Island
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-### C++14
-
 ```cpp
 #include <FractalIsland.hpp>
 ```
@@ -65,16 +59,12 @@ DTL (Dungeon Template Library)
 ### Maze Dig
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-### C++14
-
 ```cpp
 #include <MazeDig.hpp>
 ```
 
 ### Simple RogueLike
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
-
-### C++14
 
 ```cpp
 #include <SimpleRogueLike.hpp>
