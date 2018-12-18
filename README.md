@@ -67,6 +67,14 @@ DTL (Dungeon Template Library)
 #include <MazeDig.hpp>
 ```
 
+### Simple RogueLike
+
+### C++14
+
+```cpp
+#include <SimpleRogueLike.hpp>
+```
+
 ## License
 
 These codes are licensed under CC0.
