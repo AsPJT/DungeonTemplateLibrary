@@ -5,6 +5,8 @@
 
 DTL (Dungeon Template Library)
 
+[>> Japanese](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki)
+
 # Overview
 
 ## 👾Test👾
