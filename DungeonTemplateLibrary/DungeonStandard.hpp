@@ -15,14 +15,14 @@ namespace dtl {
 	constexpr void dungeonInit(STL_& stl_) noexcept {
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
-				j = 0;
+				stl_[i][j] = 0;
 	}
 
 	template<typename Int_, typename STL_>
 	constexpr void dungeonInit(STL_& stl_, const Int_ value_) noexcept {
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
-				j = value_;
+				stl_[i][j] = value_;
 	}
 
 	template<typename STL_>
