@@ -62,6 +62,11 @@ DTL (Dungeon Template Library)
 
 ![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
 
+### Maze α
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+Underdevelopment...
+
 ## License
 
 These codes are licensed under CC0.
