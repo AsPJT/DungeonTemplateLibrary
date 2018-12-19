@@ -53,6 +53,8 @@ DTL (Dungeon Template Library)
 #include <MazeDig.hpp>
 ```
 
+![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
+
 ### Simple RogueLike
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
