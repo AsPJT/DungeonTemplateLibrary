@@ -11,7 +11,7 @@
 #include "DungeonRandom.h"
 
 //チャンク生成
-void worldMapMake_FractalIsland(const int x_, const int y_, const int size_, const int t1_, const int t2_, const int t3_, const int t4_, int map_[17][17], const int max_value_) {
+void worldMapMake_FractalIsland(const int x_, const int y_, const int size_, const int t1_, const int t2_, const int t3_, const int t4_, int** map_, const int max_value_) {
 	//再起の終了処理
 	if (size_ == 0) return;
 	//頂点の高さを決める
@@ -37,15 +37,21 @@ void worldMapMake_FractalIsland(const int x_, const int y_, const int size_, con
 	worldMapMake_FractalIsland(x_ + size, y_ + size, size, map_[x_][y_], s3, s4, t4_, map_, max_value_);
 }
 //チャンク生成の呼び出し・実行
-void worldMapSimple_FractalIsland(int map_[17][17], const int max_value_) {
+void worldMapSimple_FractalIsland(int** map_, const int max_value_) {
 	worldMapMake_FractalIsland(8, 8, 8, map_[0][0], map_[16][0], map_[0][16], map_[16][16], map_, max_value_);
 }
 
 //ワールドマップ生成
 void createFractalIsland3(int** world_map, const int x_, const int y_, unsigned int seed_, const int max_value_) {
 	if (seed_ == 0) seed_ = (unsigned int)dungeonRand1(0xffff);
-	int map_[17][17] = { 0 };
 
+	int **map_, *map_base_matrix;
+	const int y = 17, x = 17;
+	map_ = (int **)malloc(y * sizeof(int *));
+	map_base_matrix = (int *)calloc(y * x, sizeof(int));
+	for (int i = 0; i < y; ++i)
+		map_[i] = map_base_matrix + i * x;
+	
 	const unsigned int chunk_y = (unsigned int)(y_ / 16);
 	const unsigned int chunk_x = (unsigned int)(x_ / 16);
 
@@ -71,6 +77,8 @@ void createFractalIsland3(int** world_map, const int x_, const int y_, unsigned 
 				for (unsigned int j2 = 0; j2 < 16; ++j2)
 					world_map[i * 16 + i2][j * 16 + j2] = map_[i2][j2];
 		}
+	free(map_base_matrix);
+	free(map_);
 }
 void createFractalIsland(int** world_map, const int x_, const int y_) {
 	createFractalIsland3(world_map, x_, y_, 0, 255);
