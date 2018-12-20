@@ -1,5 +1,5 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_RANDOM
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_RANDOM
+﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_RANDOM
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_RANDOM
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
@@ -11,7 +11,7 @@
 #include <time.h>
 
 		//初期値
-void dungeonSeed0() {
+void dungeonSeed0(void) {
 	srand((unsigned int)time(NULL));
 }
 void dungeonSeed1(const unsigned int seed_) {
@@ -19,7 +19,7 @@ void dungeonSeed1(const unsigned int seed_) {
 }
 
 //通常の乱数
-int dungeonRand0() {
+int dungeonRand0(void) {
 	return (int)rand();
 }
 //0～最大値-1 (余りの範囲の一様分布乱数)
@@ -34,7 +34,7 @@ int dungeonRand2(const int min_, const int max_) {
 int dungeonRandBool1(const double probability_) {
 	return (((double)rand() / ((double)RAND_MAX + 1)) < probability_) ? 1 : 0;
 }
-int dungeonRandBool0() {
+int dungeonRandBool0(void) {
 	return ((dungeonRand1(2) == 1) ? 1 : 0);
 }
 

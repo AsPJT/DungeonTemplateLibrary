@@ -1,5 +1,5 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_FRACTAL_ISLAND
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_FRACTAL_ISLAND
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_FRACTAL_ISLAND
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_FRACTAL_ISLAND
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
@@ -11,7 +11,7 @@
 #include "DungeonRandom.h"
 
 //チャンク生成
-void worldMapMake(const int x_, const int y_, const int size_, const int t1_, const int t2_, const int t3_, const int t4_, int map_[17][17], const int max_value_) {
+void worldMapMake_FractalIsland(const int x_, const int y_, const int size_, const int t1_, const int t2_, const int t3_, const int t4_, int map_[17][17], const int max_value_) {
 	//再起の終了処理
 	if (size_ == 0) return;
 	//頂点の高さを決める
@@ -31,18 +31,18 @@ void worldMapMake(const int x_, const int y_, const int size_, const int t1_, co
 	//分割サイズを半分にする
 	const int size = size_ / 2;
 	//4つに分割
-	worldMapMake(x_ - size, y_ - size, size, t1_, s1, s2, map_[x_][y_], map_, max_value_);
-	worldMapMake(x_ + size, y_ - size, size, s1, t2_, map_[x_][y_], s3, map_, max_value_);
-	worldMapMake(x_ - size, y_ + size, size, s2, map_[x_][y_], t3_, s4, map_, max_value_);
-	worldMapMake(x_ + size, y_ + size, size, map_[x_][y_], s3, s4, t4_, map_, max_value_);
+	worldMapMake_FractalIsland(x_ - size, y_ - size, size, t1_, s1, s2, map_[x_][y_], map_, max_value_);
+	worldMapMake_FractalIsland(x_ + size, y_ - size, size, s1, t2_, map_[x_][y_], s3, map_, max_value_);
+	worldMapMake_FractalIsland(x_ - size, y_ + size, size, s2, map_[x_][y_], t3_, s4, map_, max_value_);
+	worldMapMake_FractalIsland(x_ + size, y_ + size, size, map_[x_][y_], s3, s4, t4_, map_, max_value_);
 }
 //チャンク生成の呼び出し・実行
-void worldMapSimple(int map_[17][17], const int max_value_) {
-	worldMapMake(8, 8, 8, map_[0][0], map_[16][0], map_[0][16], map_[16][16], map_, max_value_);
+void worldMapSimple_FractalIsland(int map_[17][17], const int max_value_) {
+	worldMapMake_FractalIsland(8, 8, 8, map_[0][0], map_[16][0], map_[0][16], map_[16][16], map_, max_value_);
 }
 
 //ワールドマップ生成
-void createFractalIsland2(int** world_map, const int x_, const int y_, unsigned int seed_, const int max_value_) {
+void createFractalIsland3(int** world_map, const int x_, const int y_, unsigned int seed_, const int max_value_) {
 	if (seed_ == 0) seed_ = (unsigned int)dungeonRand1(0xffff);
 	int map_[17][17] = { 0 };
 
@@ -65,7 +65,7 @@ void createFractalIsland2(int** world_map, const int x_, const int y_, unsigned 
 			map_[16][16] = dungeonRand1(max_value_);
 
 			//チャンク生成
-			worldMapSimple(map_, max_value_);
+			worldMapSimple_FractalIsland(map_, max_value_);
 			//生成したチャンクをワールドマップにコピペ
 			for (unsigned int i2 = 0; i2 < 16; ++i2)
 				for (unsigned int j2 = 0; j2 < 16; ++j2)
@@ -73,10 +73,10 @@ void createFractalIsland2(int** world_map, const int x_, const int y_, unsigned 
 		}
 }
 void createFractalIsland(int** world_map, const int x_, const int y_) {
-	createFractalIsland2(world_map, x_, y_, 0, 255);
+	createFractalIsland3(world_map, x_, y_, 0, 255);
 }
-void createFractalIsland1(int** world_map, const int x_, const int y_, unsigned int seed_) {
-	createFractalIsland2(world_map, x_, y_, seed_, 255);
+void createFractalIsland2(int** world_map, const int x_, const int y_, unsigned int seed_) {
+	createFractalIsland3(world_map, x_, y_, seed_, 255);
 }
 
 #endif //Included Dungeon Template Library

@@ -1,5 +1,5 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
+﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_NOISE
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_NOISE
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //

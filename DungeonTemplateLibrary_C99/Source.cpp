@@ -3,27 +3,32 @@
 #include "FractalIsland.h"
 #include "DungeonBinarization.h"
 #include "DungeonNoise.h"
+#include "DungeonStandard.h"
 #include <stdio.h>
 
 int main(void) {
 
-	int **matrix, *base_matrix;
-	int y = 128, x = 128;
+	int **dungeon, *dungeon_base_matrix;
+	const int y = 128, x = 256;
 
-	matrix = (int **)malloc(y * sizeof(int *));
-	base_matrix = (int *)calloc(y * x, sizeof(int));
+	dungeon = (int **)malloc(y * sizeof(int *));
+	dungeon_base_matrix = (int *)calloc(y * x, sizeof(int));
 	for (int i = 0; i < y; ++i) {
-		matrix[i] = base_matrix + i * x;
+		dungeon[i] = dungeon_base_matrix + i * x;
 	}
 
 	dungeonSeed0();
-	createFractalIsland(matrix, x, y);
-	dungeonBinarizationOver(matrix, x, y, 150);
-	noiseShoreBool(matrix, x, y, 0.5);
-	dungeonStringOutputBool(matrix, x, y, "■", "ー");
 
-	free(base_matrix);
-	free(matrix);
+	//島(フラクタル)
+	createFractalIsland3(dungeon, x, y, 0, 255);
+	dungeonBinarizationOver(dungeon, x, y, 150);
+	noiseShoreBool(dungeon, x, y, 0.5);
+	dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
+
+	dungeonInit(dungeon, x, y);
+
+	free(dungeon_base_matrix);
+	free(dungeon);
 
 	return 0;
 }

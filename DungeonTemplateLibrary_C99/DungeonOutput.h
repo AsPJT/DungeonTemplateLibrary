@@ -1,5 +1,5 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_OUTPUT
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_OUTPUT
+﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_OUTPUT
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_DUNGEON_OUTPUT
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
