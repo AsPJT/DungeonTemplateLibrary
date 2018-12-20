@@ -23,7 +23,7 @@ DTL (Dungeon Template Library)
 ### RogueLike
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_f](https://img.shields.io/badge/C99-failing-red.svg)
 
 ```cpp
 #include <RogueLike.hpp>
@@ -35,7 +35,7 @@ DTL (Dungeon Template Library)
 ### Simple Voronoi Island
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_f](https://img.shields.io/badge/C99-failing-red.svg)
 
 ```cpp
 #include <SimpleVoronoiIsland.hpp>
@@ -46,7 +46,7 @@ DTL (Dungeon Template Library)
 ### Fractal Island
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
 #include <FractalIsland.hpp>
@@ -57,7 +57,7 @@ DTL (Dungeon Template Library)
 ### Maze Dig
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_f](https://img.shields.io/badge/C99-failing-red.svg)
 
 ```cpp
 #include <MazeDig.hpp>
@@ -68,7 +68,7 @@ DTL (Dungeon Template Library)
 ### Simple RogueLike
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_f](https://img.shields.io/badge/C99-failing-red.svg)
 
 ```cpp
 #include <SimpleRogueLike.hpp>
@@ -79,7 +79,7 @@ DTL (Dungeon Template Library)
 ### Maze α
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_f](https://img.shields.io/badge/C99-failing-red.svg)
 
 Underdevelopment...
 
