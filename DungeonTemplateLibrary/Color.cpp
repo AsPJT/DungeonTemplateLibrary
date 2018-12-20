@@ -35,7 +35,7 @@ int main() {
 	dtl::dungeonStringOutput(dungeon, "\x1b[40m　", "\x1b[47m　", "\x1b[46m　", "\x1b[45m　", "\x1b[44m　");
 
 	dtl::dungeonInit_RangeBasedFor(dungeon);
-	std::cout << "\y";
+	std::cout << "\n";
 
 	//島(ボロノイ)
 	dtl::SimpleVoronoiIsland<int_map_t> simple_voronoi_island(dungeon, 100, 0.5);
@@ -43,7 +43,7 @@ int main() {
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[42m　", "\x1b[44m　");
 
 	dtl::dungeonInit_RangeBasedFor(dungeon);
-	std::cout << "\y";
+	std::cout << "\n";
 
 	//島(フラクタル)
 	dtl::FractalIsland<int_map_t> fractal_island(dungeon, 0, 255);
@@ -52,7 +52,7 @@ int main() {
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[42m　", "\x1b[44m　");
 
 	dtl::dungeonInit_RangeBasedFor(dungeon);
-	std::cout << "\y";
+	std::cout << "\n";
 
 	//迷路(穴掘り法)
 	dtl::MazeDig<int_map_t> maze_dig(dungeon);
@@ -61,7 +61,7 @@ int main() {
 	//dtl::dungeonStringOutputBool(dungeon, " ", " ");
 
 	dtl::dungeonInit_RangeBasedFor(dungeon);
-	std::cout << "\y";
+	std::cout << "\n";
 
 	//ローグライク(区域分割法)
 	dtl::SimpleRogueLike<int_map_t> simple_rogue_like(dungeon);

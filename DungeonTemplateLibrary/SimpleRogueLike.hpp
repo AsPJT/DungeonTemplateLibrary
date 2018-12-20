@@ -55,7 +55,7 @@ namespace dtl {
 		template <typename STL_>
 		void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
 			if (stl_.size() == 0 || stl_.front().size() == 0) return;
-			//マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+			//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 			dungeon_division.resize(mapDivCount);
@@ -150,11 +150,11 @@ namespace dtl {
 					dungeon_room[i][1] = dungeon_division[i][3] + 1;
 				}
 				std::size_t l{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][0] - dungeon_room[i][0] - 5)) + 2 };
-				std::size_t x{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
+				std::size_t n{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
 				dungeon_room[i][0] += l;
 				dungeon_room[i][2] += l;
-				dungeon_room[i][1] += x;
-				dungeon_room[i][3] += x;
+				dungeon_room[i][1] += n;
+				dungeon_room[i][3] += n;
 
 				for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 					for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
