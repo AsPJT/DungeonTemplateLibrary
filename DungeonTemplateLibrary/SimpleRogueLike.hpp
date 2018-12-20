@@ -149,8 +149,8 @@ namespace dtl {
 					dungeon_room[i][0] = dungeon_division[i][2] + 1;
 					dungeon_room[i][1] = dungeon_division[i][3] + 1;
 				}
-				std::size_t l{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][0] - dungeon_room[i][0] - 5)) + 2 };
-				std::size_t n{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
+				const std::size_t l{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][0] - dungeon_room[i][0] - 5)) + 2 };
+				const std::size_t n{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
 				dungeon_room[i][0] += l;
 				dungeon_room[i][2] += l;
 				dungeon_room[i][1] += n;

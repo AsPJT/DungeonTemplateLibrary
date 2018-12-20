@@ -4,12 +4,13 @@
 #include "DungeonBinarization.h"
 #include "DungeonNoise.h"
 #include "DungeonStandard.h"
+#include "SimpleRogueLike.h"
 #include <stdio.h>
 
 int main(void) {
 
 	int **dungeon, *dungeon_base_matrix;
-	const int y = 128, x = 256;
+	const int y = 32, x = 64;
 
 	dungeon = (int **)malloc(y * sizeof(int *));
 	dungeon_base_matrix = (int *)calloc(y * x, sizeof(int));
@@ -20,9 +21,15 @@ int main(void) {
 	dungeonSeed0();
 
 	//島(フラクタル)
-	createFractalIsland3(dungeon, x, y, 0, 255);
-	dungeonBinarizationOver(dungeon, x, y, 150);
-	noiseShoreBool(dungeon, x, y, 0.5);
+	//createFractalIsland(dungeon, x, y);
+	//dungeonBinarizationOver(dungeon, x, y, 150);
+	//noiseShoreBool(dungeon, x, y, 0.5);
+	//dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
+
+	//dungeonInit(dungeon, x, y);
+
+	//ローグライク(区域分割法)
+	createSimpleRogueLike(dungeon, x, y);
 	dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
 
 	dungeonInit(dungeon, x, y);
