@@ -46,6 +46,8 @@ DTL (Dungeon Template Library)
 #include <FractalIsland.hpp>
 ```
 
+![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
+
 ### Maze Dig
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
