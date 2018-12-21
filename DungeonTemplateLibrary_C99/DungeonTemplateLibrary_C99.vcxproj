@@ -133,6 +133,7 @@
     <ClInclude Include="DungeonStandard.h" />
     <ClInclude Include="FractalIsland.h" />
     <ClInclude Include="SimpleRogueLike.h" />
+    <ClInclude Include="SimpleVoronoiIsland.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

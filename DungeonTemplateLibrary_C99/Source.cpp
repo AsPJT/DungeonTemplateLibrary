@@ -5,12 +5,13 @@
 #include "DungeonNoise.h"
 #include "DungeonStandard.h"
 #include "SimpleRogueLike.h"
+#include "SimpleVoronoiIsland.h"
 #include <stdio.h>
 
 int main(void) {
 
 	int **dungeon, *dungeon_base_matrix;
-	const int y = 32, x = 64;
+	const int y = 128, x = 256;
 
 	dungeon = (int **)malloc(y * sizeof(int *));
 	dungeon_base_matrix = (int *)calloc(y * x, sizeof(int));
@@ -29,7 +30,9 @@ int main(void) {
 	//dungeonInit(dungeon, x, y);
 
 	//ローグライク(区域分割法)
-	createSimpleRogueLike(dungeon, x, y);
+	//createSimpleRogueLike(dungeon, x, y);
+	createSimpleVoronoiIsland(dungeon, x, y);
+	noiseShoreBool(dungeon, x, y, 0.5);
 	dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
 
 	dungeonInit(dungeon, x, y);
