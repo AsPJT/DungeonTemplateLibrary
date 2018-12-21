@@ -20,7 +20,7 @@ DTL (Dungeon Template Library)
 |PC View|[Wandbox](https://wandbox.org/permlink/VC13TPmxcO49LRBD)|
 |SP View|[WandBox](https://wandbox.org/permlink/D3LFLXm4gum8Rg7N)|
 
-## RogueLike
+## RogueLike (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -34,7 +34,7 @@ DTL (Dungeon Template Library)
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
 
-## Simple Voronoi Island
+## Simple Voronoi Island (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -47,7 +47,7 @@ DTL (Dungeon Template Library)
 ### Image
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
-## Fractal Island
+## Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
@@ -60,7 +60,7 @@ DTL (Dungeon Template Library)
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
 
-## Maze Dig
+## Maze Dig (v0.1.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -73,8 +73,8 @@ DTL (Dungeon Template Library)
 ### Image
 ![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
 
-## Simple RogueLike
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+## Simple RogueLike (v0.1.3~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
 #include <SimpleRogueLike.hpp>
