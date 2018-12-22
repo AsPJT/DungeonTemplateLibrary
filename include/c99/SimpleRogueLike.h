@@ -1,5 +1,5 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_ROGUE_LIKE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_ROGUE_LIKE
+﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_SIMPLE_ROGUE_LIKE
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_C99_SIMPLE_ROGUE_LIKE
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //

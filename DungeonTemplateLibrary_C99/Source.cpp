@@ -6,6 +6,7 @@
 #include "DungeonStandard.h"
 #include "SimpleRogueLike.h"
 #include "SimpleVoronoiIsland.h"
+#include "MazeDig.h"
 #include <stdio.h>
 
 int main(void) {
@@ -31,8 +32,9 @@ int main(void) {
 
 	//ローグライク(区域分割法)
 	//createSimpleRogueLike(dungeon, x, y);
-	createSimpleVoronoiIsland(dungeon, x, y);
-	noiseShoreBool(dungeon, x, y, 0.5);
+	//createSimpleVoronoiIsland(dungeon, x, y);
+	//noiseShoreBool(dungeon, x, y, 0.5);
+	createMazeDig(dungeon, x, y);
 	dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
 
 	dungeonInit(dungeon, x, y);

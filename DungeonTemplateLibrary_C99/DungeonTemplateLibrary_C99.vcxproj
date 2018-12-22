@@ -132,6 +132,7 @@
     <ClInclude Include="DungeonRandom.h" />
     <ClInclude Include="DungeonStandard.h" />
     <ClInclude Include="FractalIsland.h" />
+    <ClInclude Include="MazeDig.h" />
     <ClInclude Include="SimpleRogueLike.h" />
     <ClInclude Include="SimpleVoronoiIsland.h" />
   </ItemGroup>

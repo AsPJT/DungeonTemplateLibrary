@@ -6,8 +6,7 @@
 // This code is licensed under CC0.  //
 //:::::----------::::::::::----------::::://
 
-#include <stddef.h>
-#include <stdint.h>
+#include <stdlib.h>
 #include "DungeonRandom.h"
 
 //ƒ`ƒƒƒ“ƒN¶¬
