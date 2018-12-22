@@ -20,7 +20,7 @@ DTL (Dungeon Template Library)
 |PC View|[Wandbox](https://wandbox.org/permlink/VC13TPmxcO49LRBD)|
 |SP View|[WandBox](https://wandbox.org/permlink/D3LFLXm4gum8Rg7N)|
 
-|Compiler|Pass_C++14|Pass_C99|
+|Compiler|[Pass_C++14](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|[Pass_C99](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/c99)|
 |:---|:---|:---|
 |MSVC|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|
 |GCC|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|![gcc](https://img.shields.io/badge/gcc%204.4.7-passing-brightgreen.svg)|
