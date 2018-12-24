@@ -14,6 +14,7 @@
 #include "FractalIsland.hpp"
 #include "MazeDig.hpp"
 #include "SimpleRogueLike.hpp"
+#include "SimpleTerrain1.hpp"
 
 int main() {
 
@@ -65,6 +66,15 @@ int main() {
 
 	//ローグライク(区域分割法)
 	dtl::SimpleRogueLike<int_map_t> simple_rogue_like(dungeon);
+	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
+
+	std::cout << std::endl;
+
+	dtl::dungeonInit_RangeBasedFor(dungeon);
+	std::cout << "\n";
+
+	//ローグライク(区域分割法)
+	dtl::SimpleTerrain1<int_map_t> simple_terrain_1(dungeon, 1);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
 	std::cout << std::endl;
