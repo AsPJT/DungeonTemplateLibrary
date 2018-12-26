@@ -111,3 +111,5 @@ These codes are licensed under CC0.
 |E-mail:|wanotaitei@gmail.com|
 |:---|:---|
 |Twitter:|@wanotaitei|
+
+Japan Terrain Generation Research Institute (日本地形生成研究所)
