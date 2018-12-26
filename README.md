@@ -9,13 +9,13 @@ DTL (Dungeon Template Library)
 
 # Overview
 
-## Dungeon Generation
+## [Type] Dungeon Generation
  - RogueLike Generation
  RogueLike
  SimpleRogueLike
  - Maze Generation
  MazeDig
-## Terrain Generation
+## [Type] Terrain Generation
  - Terrain Generation
 SimpleVoronoiIsland
 FractalIsland
