@@ -47,13 +47,13 @@ namespace dtl {
 
 		SimpleRogueLike() = default;
 		template <typename STL_>
-		SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) {
+		constexpr explicit SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) {
 			create(stl_, division_min, division_rand_max, room_min_x, room_rand_max_x, room_min_y, room_rand_max_y);
 		}
 
 		//ローグライク生成関数
 		template <typename STL_>
-		void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
+		constexpr void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
 			if (stl_.size() == 0 || stl_.front().size() == 0) return;
 			//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
