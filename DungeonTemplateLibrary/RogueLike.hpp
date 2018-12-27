@@ -42,9 +42,9 @@ namespace dtl {
 	class RogueLike {
 	public:
 		//コンストラクタ
-		RogueLike() = default;
+		constexpr RogueLike() noexcept = default;
 		template<typename STL_>
-		constexpr explicit RogueLike(STL_& stl_, const std::size_t way_max_) {
+		constexpr explicit RogueLike(STL_& stl_, const std::size_t way_max_) noexcept {
 			create(stl_, way_max_);
 		}
 		//マップ生成

@@ -26,9 +26,9 @@ namespace dtl {
 	class SimpleVoronoiIsland {
 	public:
 		//コンストラクタ
-		SimpleVoronoiIsland() = default;
+		constexpr SimpleVoronoiIsland() noexcept = default;
 		template<typename STL_>
-		constexpr explicit SimpleVoronoiIsland(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) {
+		constexpr explicit SimpleVoronoiIsland(STL_& stl_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Int_ land_ = 1, const Int_ sea_ = 0) noexcept {
 			create(stl_, count_, rbool_, land_, sea_);
 		}
 		template<typename STL_>

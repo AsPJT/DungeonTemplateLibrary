@@ -44,10 +44,10 @@ namespace dtl {
 		//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
 		std::vector<std::array<std::size_t, 4>> dungeon_road{};
 	public:
-
-		SimpleRogueLike() = default;
+		//コンストラクタ
+		constexpr SimpleRogueLike() noexcept = default;
 		template <typename STL_>
-		constexpr explicit SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) {
+		constexpr explicit SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
 			create(stl_, division_min, division_rand_max, room_min_x, room_rand_max_x, room_min_y, room_rand_max_y);
 		}
 

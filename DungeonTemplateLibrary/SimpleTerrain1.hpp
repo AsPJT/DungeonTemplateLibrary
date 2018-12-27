@@ -15,9 +15,10 @@ namespace dtl {
 	template<typename Int_>
 	class SimpleTerrain1 {
 	public:
-		SimpleTerrain1() = default;
+		//コンストラクタ
+		constexpr SimpleTerrain1() noexcept = default;
 		template<typename STL_>
-		constexpr explicit SimpleTerrain1(STL_& stl_, const Int_ v1_, const std::size_t v2_ = 2) {
+		constexpr explicit SimpleTerrain1(STL_& stl_, const Int_ v1_, const std::size_t v2_ = 2) noexcept {
 			create(stl_, v1_, v2_);
 		}
 		template<typename STL_>

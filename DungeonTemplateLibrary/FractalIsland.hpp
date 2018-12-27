@@ -17,9 +17,10 @@ namespace dtl {
 	template<typename Int_>
 	class FractalIsland {
 	public:
-		FractalIsland() = default;
+		//コンストラクタ
+		constexpr FractalIsland() noexcept = default;
 		template<typename STL_>
-		constexpr explicit FractalIsland(STL_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) {
+		constexpr explicit FractalIsland(STL_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) noexcept {
 			create(world_map, seed_, max_value_);
 		}
 		//ワールドマップ生成
