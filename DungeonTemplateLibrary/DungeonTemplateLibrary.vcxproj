@@ -127,9 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="SampleColorCode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />

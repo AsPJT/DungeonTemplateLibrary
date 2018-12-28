@@ -4,17 +4,7 @@
 #include <array>
 #include <bitset>
 
-#include "DungeonOutput.hpp"
-#include "DungeonNoise.hpp"
-#include "DungeonBinarization.hpp"
-#include "DungeonStandard.hpp"
-
-#include "RogueLike.hpp"
-#include "SimpleVoronoiIsland.hpp"
-#include "FractalIsland.hpp"
-#include "MazeDig.hpp"
-#include "SimpleRogueLike.hpp"
-#include "SimpleTerrain1.hpp"
+#include "DTL.hpp"
 
 int main() {
 
@@ -32,6 +22,7 @@ int main() {
 	if (!dtl::dungeonArrayCheckBitset(dungeon_bool)) return 0;
 
 	//ローグライク(穴掘り)
+	//RogueLike
 	dtl::RogueLike<int_map_t> rogue_like(dungeon, 50);
 	dtl::dungeonStringOutput(dungeon, "\x1b[40m　", "\x1b[47m　", "\x1b[46m　", "\x1b[45m　", "\x1b[44m　");
 
@@ -39,6 +30,7 @@ int main() {
 	std::cout << "\n";
 
 	//島(ボロノイ)
+	//Simple Voronoi Island
 	dtl::SimpleVoronoiIsland<int_map_t> simple_voronoi_island(dungeon, 100, 0.5);
 	dtl::noiseShoreBool(dungeon, 0.5);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[42m　", "\x1b[44m　");
@@ -47,6 +39,7 @@ int main() {
 	std::cout << "\n";
 
 	//島(フラクタル)
+	//Fractal Island
 	dtl::FractalIsland<int_map_t> fractal_island(dungeon, 0, 255);
 	dtl::dungeonBinarization(dungeon, 150);
 	dtl::noiseShoreBool(dungeon, 0.5);
@@ -56,6 +49,7 @@ int main() {
 	std::cout << "\n";
 
 	//迷路(穴掘り法)
+	//Maze Dig
 	dtl::MazeDig<int_map_t> maze_dig(dungeon);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
@@ -65,6 +59,7 @@ int main() {
 	std::cout << "\n";
 
 	//ローグライク(区域分割法)
+	//Simple RogueLike
 	dtl::SimpleRogueLike<int_map_t> simple_rogue_like(dungeon);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
@@ -73,7 +68,7 @@ int main() {
 	dtl::dungeonInit_RangeBasedFor(dungeon);
 	std::cout << "\n";
 
-	//ローグライク(区域分割法)
+	//その他
 	dtl::SimpleTerrain1<int_map_t> simple_terrain_1(dungeon, 1);
 	dtl::dungeonStringOutputBool(dungeon, "\x1b[47m　", "\x1b[40m　");
 
