@@ -4,6 +4,7 @@
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
 // This code is licensed under CC0.  //
+//       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
 #include <cstddef>
@@ -22,17 +23,18 @@ namespace dtl {
 	template<typename Int_>
 	class MazeDig {
 	public:
-		MazeDig() = default;
+		//コンストラクタ
+		constexpr MazeDig() noexcept = default;
 		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data, const Int_ v1_, const Int_ v2_) {
+		constexpr explicit MazeDig(STL_& data, const Int_ v1_, const Int_ v2_) noexcept {
 			mazeDig_Create(data, v1_, v2_);
 		}
 		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data, const Int_ v1_) {
+		constexpr explicit MazeDig(STL_& data, const Int_ v1_) noexcept {
 			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
 		}
 		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data) {
+		constexpr explicit MazeDig(STL_& data) noexcept {
 			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
 		}
 	private:

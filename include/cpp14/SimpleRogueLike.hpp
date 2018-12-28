@@ -4,6 +4,7 @@
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
 // This code is licensed under CC0.  //
+//       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
 #include <cstdint>
@@ -44,19 +45,19 @@ namespace dtl {
 		//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
 		std::vector<std::array<std::size_t, 4>> dungeon_road{};
 	public:
-
-		SimpleRogueLike() = default;
+		//コンストラクタ
+		constexpr SimpleRogueLike() noexcept = default;
 		template <typename STL_>
-		SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) {
+		constexpr explicit SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
 			create(stl_, division_min, division_rand_max, room_min_x, room_rand_max_x, room_min_y, room_rand_max_y);
 		}
 
 		//ローグライク生成関数
 		template <typename STL_>
-		void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
+		constexpr void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
 			if (stl_.size() == 0 || stl_.front().size() == 0) return;
 			//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~nまでの部屋ID
+			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 			dungeon_division.resize(mapDivCount);
 			dungeon_room.resize(mapDivCount);
@@ -149,12 +150,12 @@ namespace dtl {
 					dungeon_room[i][0] = dungeon_division[i][2] + 1;
 					dungeon_room[i][1] = dungeon_division[i][3] + 1;
 				}
-				std::size_t l{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][0] - dungeon_room[i][0] - 5)) + 2 };
-				std::size_t m{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
+				const std::size_t l{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][0] - dungeon_room[i][0] - 5)) + 2 };
+				const std::size_t n{ (std::size_t)rnd(1,(std::int_fast32_t)(dungeon_division[i][1] - dungeon_room[i][1] - 5)) + 2 };
 				dungeon_room[i][0] += l;
 				dungeon_room[i][2] += l;
-				dungeon_room[i][1] += m;
-				dungeon_room[i][3] += m;
+				dungeon_room[i][1] += n;
+				dungeon_room[i][3] += n;
 
 				for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 					for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)

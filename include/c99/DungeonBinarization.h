@@ -4,6 +4,7 @@
 //     Dungeon Template Library     //
 //          Made by Gaccho.          //
 // This code is licensed under CC0.  //
+//       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
 //2値化処理
