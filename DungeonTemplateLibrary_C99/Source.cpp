@@ -1,12 +1,4 @@
-﻿#include "DungeonRandom.h"
-#include "DungeonOutput.h"
-#include "FractalIsland.h"
-#include "DungeonBinarization.h"
-#include "DungeonNoise.h"
-#include "DungeonStandard.h"
-#include "SimpleRogueLike.h"
-#include "SimpleVoronoiIsland.h"
-#include "MazeDig.h"
+﻿#include "DTL.h"
 #include <stdio.h>
 
 int main(void) {

@@ -126,6 +126,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DTL.h" />
     <ClInclude Include="DungeonBinarization.h" />
     <ClInclude Include="DungeonNoise.h" />
     <ClInclude Include="DungeonOutput.h" />
