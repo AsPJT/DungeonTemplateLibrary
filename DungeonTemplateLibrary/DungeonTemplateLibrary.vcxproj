@@ -134,6 +134,7 @@
     <ClInclude Include="DungeonBinarization.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />
+    <ClInclude Include="DungeonPaint.hpp" />
     <ClInclude Include="DungeonRandom.hpp" />
     <ClInclude Include="DungeonStandard.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
