@@ -129,5 +129,7 @@ These codes are licensed under CC0.
 |E-mail:|wanotaitei@gmail.com|
 |:---|:---|
 |Twitter:|@wanotaitei|
+|![svg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/as_logo.svg)|**As Project**|
 
 Japan Terrain Generation Research Institute (日本地形生成研究所)
+
