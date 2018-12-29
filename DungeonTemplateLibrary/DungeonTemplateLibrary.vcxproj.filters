@@ -56,7 +56,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SampleColorCode.cpp">
+    <ClCompile Include="Bucket.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

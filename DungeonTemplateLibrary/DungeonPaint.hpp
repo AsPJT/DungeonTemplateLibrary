@@ -21,6 +21,22 @@ namespace dtl {
 		std::int_fast32_t y{};
 	};
 
+	//
+	template<typename Int_>
+	class Pen {
+	public:
+		//コンストラクタ
+		constexpr Pen() noexcept = default;
+		template<typename STL_>
+		constexpr explicit Pen(STL_& stl_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Int_ paint_value_) noexcept {
+			paint(stl_, x_, y_, paint_value_);
+		}
+		template<typename STL_>
+		constexpr void paint(STL_& stl_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Int_ paint_value_) const noexcept {
+			stl_[y_][x_] = paint_value_;
+		}
+	};
+
 	//塗りツール
 	template<typename Int_>
 	class Bucket {

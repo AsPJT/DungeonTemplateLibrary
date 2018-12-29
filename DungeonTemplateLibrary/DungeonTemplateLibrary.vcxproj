@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SampleColorCode.cpp" />
+    <ClCompile Include="Bucket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DTL.hpp" />
