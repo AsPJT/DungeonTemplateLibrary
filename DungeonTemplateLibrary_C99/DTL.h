@@ -17,5 +17,6 @@
 #include "FractalIsland.h"
 #include "MazeDig.h"
 #include "SimpleRogueLike.h"
+#include "SimpleVoronoiIsland.h"
 
 #endif //Included Dungeon Template Library

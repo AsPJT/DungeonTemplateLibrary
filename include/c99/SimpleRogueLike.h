@@ -36,13 +36,19 @@ void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int 
 
 	//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
 	dungeon_division = (int **)malloc(y * sizeof(int *));
+	if (dungeon_division == NULL) return;
 	dungeon_division_base_matrix = (int *)calloc(y * x, sizeof(int));
+	if (dungeon_division_base_matrix == NULL) return;
 	//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
 	dungeon_room = (int **)malloc(y * sizeof(int *));
+	if (dungeon_room == NULL) return;
 	dungeon_room_base_matrix = (int *)calloc(y * x, sizeof(int));
+	if (dungeon_room_base_matrix == NULL) return;
 	//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
 	dungeon_road = (int **)malloc(y * sizeof(int *));
+	if (dungeon_road == NULL) return;
 	dungeon_road_base_matrix = (int *)calloc(y * x, sizeof(int));
+	if (dungeon_road_base_matrix == NULL) return;
 	for (int i = 0; i < y; ++i) {
 		dungeon_division[i] = dungeon_division_base_matrix + i * x;
 		dungeon_room[i] = dungeon_room_base_matrix + i * x;

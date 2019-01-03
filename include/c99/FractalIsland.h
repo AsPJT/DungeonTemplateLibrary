@@ -48,7 +48,9 @@ void createFractalIsland3(int** world_map, const int x_, const int y_, unsigned 
 	int **map_, *map_base_matrix;
 	const int y = 17, x = 17;
 	map_ = (int **)malloc(y * sizeof(int *));
+	if (map_ == NULL) return;
 	map_base_matrix = (int *)calloc(y * x, sizeof(int));
+	if (map_base_matrix == NULL) return;
 	for (int i = 0; i < y; ++i)
 		map_[i] = map_base_matrix + i * x;
 	
