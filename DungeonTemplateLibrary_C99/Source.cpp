@@ -7,7 +7,9 @@ int main(void) {
 	const int y = 128, x = 256;
 
 	dungeon = (int **)malloc(y * sizeof(int *));
+	if (dungeon == NULL) return -1;
 	dungeon_base_matrix = (int *)calloc(y * x, sizeof(int));
+	if (dungeon_base_matrix == NULL) return -1;
 	for (int i = 0; i < y; ++i) {
 		dungeon[i] = dungeon_base_matrix + i * x;
 	}

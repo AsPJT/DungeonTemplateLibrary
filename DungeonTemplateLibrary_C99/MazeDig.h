@@ -83,7 +83,9 @@ void mazeDig_Create_MazeDig(int** data, const int x_, const int y_, const int id
 
 	int select_id = 0;
 	int* select_x = (int*)malloc(sizeof(int) * y_*x_);
+	if (select_x == NULL) return;
 	int* select_y = (int*)malloc(sizeof(int) * y_*x_);
+	if (select_y == NULL) return;
 
 	//座標を選ぶ
 	while (1) {

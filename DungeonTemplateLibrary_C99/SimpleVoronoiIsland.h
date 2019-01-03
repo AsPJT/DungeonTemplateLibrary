@@ -30,8 +30,10 @@ int distanceSqrd_SimpleVoronoiIsland(const struct PairSimpleVoronoiIsland* point
 	//void createSimpleVoronoiIslandAll(int** stl_, const int x_, const int y_, const int count_ = 100, const double rbool_ = 0.4, const int land_ = 1, const int sea_ = 0) {
 	void createSimpleVoronoiIslandAll(int** stl_, const int x_, const int y_, const int count_, const double rbool_, const int land_, const int sea_) {
 		struct PairSimpleVoronoiIsland* point = (struct PairSimpleVoronoiIsland*)malloc(sizeof(struct PairSimpleVoronoiIsland) * count_);
+		if (point == NULL) return;
 		int point_count = 0;
 		int* color = (int*)malloc(sizeof(int) * count_);
+		if (color == NULL) return;
 		int color_count = 0;
 
 		for (int i = 0; i < count_; ++i) {
