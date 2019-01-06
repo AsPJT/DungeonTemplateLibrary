@@ -130,6 +130,7 @@
     <ClCompile Include="Bucket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoardGame.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />

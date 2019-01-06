@@ -16,13 +16,19 @@ int main() {
 
 	//dtl::dungeonStringOutput(stl_, "\x1b[46m　\x1b[49m", "\x1b[42m　\x1b[49m", "\x1b[44m　\x1b[49m");
 
-	std::array<std::array<std::uint_fast8_t, 40>, 40> stl_{};
+	std::array<std::array<std::uint_fast8_t, 4>, 4> stl_{};
 
-	dtl::DungeonInit<std::uint_fast8_t> di(stl_);
-	//dtl::DungeonBorder<std::uint_fast8_t> db(stl_);
+	dtl::Reversi<std::uint_fast8_t> re(stl_);
 
-	dtl::RogueLike<std::uint_fast8_t> sr(stl_,100);
+	//dtl::DungeonInit<std::uint_fast8_t> di(stl_);
+	////dtl::DungeonBorder<std::uint_fast8_t> db(stl_);
 
-	dtl::dungeonStringOutputBool(stl_, "■", "　");
+	//dtl::RogueLike<std::uint_fast8_t> sr(stl_);
+	//dtl::DungeonBorder<std::uint_fast8_t> db(stl_, 3);
+
+	//dtl::dungeonStringOutputBool(stl_, "■", "　");
 	//dtl::dungeonStringOutputBool(stl_, "　", "■");
+
+	dtl::dungeonStringOutput(stl_, "・", "○", "●","■");
+
 }

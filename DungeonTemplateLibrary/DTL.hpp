@@ -21,6 +21,7 @@
 #include "SimpleRogueLike.hpp"
 #include "SimpleTerrain1.hpp"
 #include "SimpleVoronoiIsland.hpp"
+#include "BoardGame.hpp"
 
 //•ÏXƒc[ƒ‹
 #include "DungeonPaint.hpp"
