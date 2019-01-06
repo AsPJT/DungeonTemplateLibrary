@@ -51,13 +51,13 @@ FractalIsland
 #include <RogueLike.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Outside Wall|
-|1|Inside Wall|
-|2|Room|
-|3|Entrance|
-|4|Way|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Outside Wall|Blue|
+|1|Inside Wall|White|
+|2|Room|Green|
+|3|Entrance|Black|
+|4|Way|Yellow|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -73,10 +73,10 @@ FractalIsland
 #include <SimpleVoronoiIsland.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Sea|
-|1|Land|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Sea|Pale Brown|
+|1|Land|Dark Olive|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -108,10 +108,10 @@ FractalIsland
 #include <MazeDig.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Wall|
-|1|Empty|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Wall|Blue|
+|1|Empty|White|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -126,10 +126,10 @@ FractalIsland
 #include <SimpleRogueLike.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Wall|
-|1|Empty|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Wall|Black|
+|1|Empty|White|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -145,9 +145,9 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Empty|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Empty|Black|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -162,10 +162,10 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
-|Default Value|Name|
-|:---:|:---|
-|0|Empty|
-|1|Wall|
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Empty|White|
+|1|Wall|Black|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
