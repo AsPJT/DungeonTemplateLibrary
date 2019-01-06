@@ -16,7 +16,7 @@ int main() {
 
 	//dtl::dungeonStringOutput(stl_, "\x1b[46m　\x1b[49m", "\x1b[42m　\x1b[49m", "\x1b[44m　\x1b[49m");
 
-	std::array<std::array<std::uint_fast8_t, 20>, 20> stl_{};
+	std::array<std::array<std::uint_fast8_t, 21>, 21> stl_{};
 
 	//dtl::Reversi<std::uint_fast8_t> re(stl_);
 
@@ -24,11 +24,11 @@ int main() {
 	////dtl::DungeonBorder<std::uint_fast8_t> db(stl_);
 
 	//dtl::RogueLike<std::uint_fast8_t> sr(stl_);
-	dtl::PointGridField<std::uint_fast8_t> pg(stl_, 3);
+	dtl::PointGrid<std::uint_fast8_t> pg(stl_, 3);
 
 	//dtl::dungeonStringOutputBool(stl_, "■", "　");
 	//dtl::dungeonStringOutputBool(stl_, "　", "■");
 
-	dtl::dungeonStringOutput(stl_, "・", "○", "●","■","４","５","６","７");
+	dtl::dungeonStringOutput(stl_, "\x1b[47m　", "○", "●","\x1b[40m　","４","５","６","７");
 
 }
