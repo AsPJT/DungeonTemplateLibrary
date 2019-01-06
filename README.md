@@ -255,7 +255,7 @@ Underdevelopment...
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
-# AI
+# Artificial Intelligence
 
 ## Reversi AI (v0.1.11~)
 
