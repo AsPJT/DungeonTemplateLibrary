@@ -51,6 +51,14 @@ FractalIsland
 #include <RogueLike.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Outside Wall|
+|1|Inside Wall|
+|2|Room|
+|3|Entrance|
+|4|Way|
+
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -65,6 +73,11 @@ FractalIsland
 #include <SimpleVoronoiIsland.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Sea|
+|1|Land|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -77,6 +90,10 @@ FractalIsland
 ```cpp
 #include <FractalIsland.hpp>
 ```
+
+|Default Value|Name|
+|:---:|:---|
+|0-255|Height|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -91,6 +108,11 @@ FractalIsland
 #include <MazeDig.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Wall|
+|1|Empty|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -104,11 +126,46 @@ FractalIsland
 #include <SimpleRogueLike.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Wall|
+|1|Empty|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
 ### Image
 ![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
+
+
+## DungeonInit (v0.1.10~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonStandard.hpp>
+```
+
+|Default Value|Name|
+|:---:|:---|
+|0|Empty|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+## DungeonBorder (v0.1.10~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonStandard.hpp>
+```
+
+|Default Value|Name|
+|:---:|:---|
+|0|Empty|
+|1|Wall|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
 ## Maze α
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -132,5 +189,5 @@ These codes are licensed under CC0.
 |![svg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/as_logo.svg)|**As Project**|
 |![gaccho](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/gaccho_icon.svg)|Made by Gaccho.|
 
-Japan Terrain Generation Research Institute (日本地形生成研究所)
+Japan Terrain Generation Research Institute
 
