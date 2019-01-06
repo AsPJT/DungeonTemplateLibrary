@@ -51,6 +51,14 @@ FractalIsland
 #include <RogueLike.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Outside Wall|
+|1|Inside Wall|
+|2|Room|
+|3|Entrance|
+|4|Way|
+
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -65,6 +73,11 @@ FractalIsland
 #include <SimpleVoronoiIsland.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Sea|
+|1|Land|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -77,6 +90,10 @@ FractalIsland
 ```cpp
 #include <FractalIsland.hpp>
 ```
+
+|Default Value|Name|
+|:---:|:---|
+|0-255|Height|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -91,6 +108,11 @@ FractalIsland
 #include <MazeDig.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Wall|
+|1|Empty|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -103,6 +125,11 @@ FractalIsland
 ```cpp
 #include <SimpleRogueLike.hpp>
 ```
+
+|Default Value|Name|
+|:---:|:---|
+|0|Wall|
+|1|Empty|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -135,7 +162,7 @@ FractalIsland
 |Default Value|Name|
 |:---:|:---|
 |0|Empty|
-|1|Border|
+|1|Wall|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
