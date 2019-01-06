@@ -155,7 +155,7 @@ FractalIsland
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
 
-## DungeonBorder (v0.1.10~)
+## Border (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -173,6 +173,50 @@ FractalIsland
 ### Image
 ![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border.png)
 
+## BorderOdd (v0.1.10~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonStandard.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Empty|White|
+|1|Wall|Black|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+## PointGrid (v0.1.10~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonStandard.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Empty|White|
+|1|Wall|Black|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+## PointGridField (v0.1.10~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonStandard.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Empty|White|
+|1|Wall|Black|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
 ## Reversi (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
