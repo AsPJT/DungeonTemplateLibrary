@@ -152,6 +152,9 @@ FractalIsland
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Image
+![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
+
 ## DungeonBorder (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
@@ -166,6 +169,9 @@ FractalIsland
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Image
+![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border.png)
 
 ## Maze α
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
