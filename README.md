@@ -255,6 +255,22 @@ Underdevelopment...
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+# AI
+
+## Reversi AI (v0.1.11~)
+
+### Winning percentage
+
+**Priority>Simple>Greed>Unselfishness**
+
+### reversiAI_Simple
+
+### reversiAI_Greed
+
+### reversiAI_Unselfishness
+
+### reversiAI_Priority
+
 ## License
 
 These codes are licensed under CC0.
