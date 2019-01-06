@@ -118,6 +118,10 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
+|Default Value|Name|
+|:---:|:---|
+|0|Empty|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -127,6 +131,11 @@ FractalIsland
 ```cpp
 #include <DungeonStandard.hpp>
 ```
+
+|Default Value|Name|
+|:---:|:---|
+|0|Empty|
+|1|Border|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -153,5 +162,5 @@ These codes are licensed under CC0.
 |![svg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/as_logo.svg)|**As Project**|
 |![gaccho](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/gaccho_icon.svg)|Made by Gaccho.|
 
-Japan Terrain Generation Research Institute (日本地形生成研究所)
+Japan Terrain Generation Research Institute
 
