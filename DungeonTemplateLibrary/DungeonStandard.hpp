@@ -12,6 +12,53 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
+	//Border
+	template<typename STL_>
+	constexpr void dungeonBorder(STL_& stl_) noexcept {
+		if (stl_.size() == 0) return;
+		for (std::size_t i{}; i < stl_.front().size(); ++i)
+			stl_.front()[i] = 1;
+		for (std::size_t i{}; i < stl_.back().size(); ++i)
+			stl_.back()[i] = 1;
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() == 0) continue;
+			stl_[i].front() = 1;
+			stl_[i].back() = 1;
+		}
+	}
+	template<typename Int_, typename STL_>
+	constexpr void dungeonBorder(STL_& stl_, const Int_ value_) noexcept {
+		if (stl_.size() == 0) return;
+		for (std::size_t i{}; i < stl_.front().size(); ++i)
+			stl_.front()[i] = value_;
+		for (std::size_t i{}; i < stl_.back().size(); ++i)
+			stl_.back()[i] = value_;
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() == 0) continue;
+			stl_[i].front() = value_;
+			stl_[i].back() = value_;
+		}
+	}
+	//クラス版
+	template<typename Int_>
+	class DungeonBorder {
+	public:
+		//コンストラクタ
+		constexpr DungeonBorder() noexcept = default;
+		template<typename STL_>
+		constexpr explicit DungeonBorder(STL_& stl_, const Int_ value_ = 1) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 1) noexcept {
+			dungeonBorder(stl_, value_);
+		}
+	};
+
+	//----------*----------*----------*----------*----------*
+	//初期化系
+	//----------*----------*----------*----------*----------*
+
 	//全てのマスを0で埋める
 	template<typename STL_>
 	constexpr void dungeonInit(STL_& stl_) noexcept {
@@ -26,6 +73,22 @@ namespace dtl {
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
 				stl_[i][j] = value_;
 	}
+	//クラス版
+	template<typename Int_>
+	class DungeonInit {
+	public:
+		//コンストラクタ
+		constexpr DungeonInit() noexcept = default;
+		template<typename STL_>
+		constexpr explicit DungeonInit(STL_& stl_, const Int_ value_ = 0) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 0) noexcept {
+			dungeonInit(stl_, value_);
+		}
+	};
+
 	//全てのマスを0で埋める
 	template<typename STL_>
 	constexpr void dungeonInit_RangeBasedFor(STL_& stl_) noexcept {
@@ -40,6 +103,10 @@ namespace dtl {
 			for (auto&& j : i)
 				j = value_;
 	}
+
+	//----------*----------*----------*----------*----------*
+	//初期化系
+	//----------*----------*----------*----------*----------*
 
 	template<typename STL_>
 	constexpr bool dungeonArrayCheckBitset(const STL_& stl_) noexcept {
