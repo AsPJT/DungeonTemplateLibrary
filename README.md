@@ -261,15 +261,79 @@ Underdevelopment...
 
 ###  🔱Winning percentage🔱
 
-**Priority>Simple>Greed>Unselfishness**
+**Priority > Simple ≈ Greed > Unselfishness**
+
+### reversiAI_Priority
+
+|Winner|Priority|Priority|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.0074|31.7925|31.9628|0.2447|60.1488|
+
+|Winner|Priority|Simple|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.7835|40.8016|22.229|0.9694|59.9489|
+
+|Winner|Priority|Greed|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.7053|39.5965|23.2626|1.1409|59.304|
+
+|Winner|Priority|Unselfishness|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.7996|42.5181|20.7563|0.7256|60.0602|
 
 ### reversiAI_Simple
 
+|Winner|Simple|Priority|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.5458|22.6688|41.2262|0.105|60.913|
+
+|Winner|Simple|Simple|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-1|19|45|0|64|
+
+|Winner|Simple|Greed|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.09|32.0689|29.3282|2.6029|60.1052|
+
+|Winner|Simple|Unselfishness|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.4185|37.246|26.5962|0.1578|60.8609|
+
 ### reversiAI_Greed
+
+|Winner|Greed|Priority|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.7032|23.237|39.6584|1.1046|59.3413|
+
+|Winner|Greed|Simple|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.1217|30.7936|32.1165|1.0899|61.4612|
+
+|Winner|Greed|Greed|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.0097|31.7787|32.1442|0.0771|60.3203|
+
+|Winner|Greed|Unselfishness|Empty|Count|
+|:---|:---|:---|:---|:---|
+|0.3536|35.073|24.5509|4.3761|57.4842|
 
 ### reversiAI_Unselfishness
 
-### reversiAI_Priority
+|Winner|Unselfishness|Priority|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.7935|20.9607|42.3865|0.6528|60.1339|
+
+|Winner|Unselfishness|Simple|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.4015|26.6318|37.2226|0.1456|60.9599|
+
+|Winner|Unselfishness|Greed|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.3935|23.6703|35.5719|4.7578|57.0582|
+
+|Winner|Unselfishness|Unselfishness|Empty|Count|
+|:---|:---|:---|:---|:---|
+|-0.0295|31.7327|32.2625|0.0048|60.7481|
 
 ## License
 
