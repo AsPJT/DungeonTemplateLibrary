@@ -259,7 +259,7 @@ Underdevelopment...
 
 ## Reversi AI (v0.1.11~)
 
-### Winning percentage
+###  🔱Winning percentage🔱
 
 **Priority>Simple>Greed>Unselfishness**
 
