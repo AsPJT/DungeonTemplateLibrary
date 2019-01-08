@@ -17,7 +17,7 @@ namespace dtl {
 
 	//指定した場所に駒を置く
 	template<typename Int_, typename STL_>
-	constexpr std::size_t putPieceReversi(STL_& stl_, const std::size_t  x_, const std::size_t y_, const Int_ turn_, const bool is_put_) noexcept {
+	std::size_t putPieceReversi(STL_& stl_, const std::size_t  x_, const std::size_t y_, const Int_ turn_, const bool is_put_) noexcept {
 		if (stl_.size() == 0) return 0;
 		std::size_t piece_turn_num{};
 		if (stl_[y_][x_] > 0) return 0;
@@ -36,7 +36,7 @@ namespace dtl {
 					if (stl_[turn_y][turn_x] == turn_) {
 						if (is_put_)
 							for (std::size_t i{}; i < turn_tmp_id; ++i)
-								stl_[stl_tmp_y[i]][stl_tmp_x[i]] = turn_;
+								stl_[static_cast<std::size_t>(stl_tmp_y[i])][static_cast<std::size_t>(stl_tmp_x[i])] = turn_;
 						piece_turn_num += turn_tmp_id;
 						break;
 					}
@@ -82,7 +82,7 @@ namespace dtl {
 	//最も少なく駒が取れる場所を選ぶ
 	template<typename Int_, typename STL_>
 	constexpr bool reversiAI_Unselfishness(STL_& stl_, const Int_ turn_) noexcept {
-		std::size_t piece_turn_min{ std::numeric_limits<std::size_t>::piece_turn_max() };
+		std::size_t piece_turn_min{ std::numeric_limits<std::size_t>::max() };
 		std::size_t put_piece_x{}, put_piece_y{};
 		for (std::size_t i{}; i < stl_.size(); ++i)
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
@@ -97,7 +97,7 @@ namespace dtl {
 		return true;
 	}
 	//優先順位
-	constexpr std::int_fast32_t checkPriority(std::int_fast32_t x_, std::int_fast32_t y_, const std::int_fast32_t x_max_, const std::int_fast32_t y_max_) noexcept {
+	constexpr std::int_fast32_t checkPriorityReversi(std::int_fast32_t x_, std::int_fast32_t y_, const std::int_fast32_t x_max_, const std::int_fast32_t y_max_) noexcept {
 		if (x_ == x_max_) x_ = 0;
 		else if (x_ == x_max_ - 1) x_ = 1;
 		else if (x_ == x_max_ - 2) x_ = 2;
@@ -148,7 +148,7 @@ namespace dtl {
 		for (std::uint_fast8_t piece_priority{}; piece_priority < 7 && piece_turn_max == 0; ++piece_priority)
 			for (std::size_t i{}; i < stl_.size(); ++i)
 				for (std::size_t j{}; j < stl_[i].size(); ++j) {
-					if (checkPriority(static_cast<std::int_fast32_t>(j), static_cast<std::int_fast32_t>(i), static_cast<std::int_fast32_t>(stl_[i].size()) - 1, static_cast<std::int_fast32_t>(stl_.size()) - 1) != piece_priority) continue;
+					if (checkPriorityReversi(static_cast<std::int_fast32_t>(j), static_cast<std::int_fast32_t>(i), static_cast<std::int_fast32_t>(stl_[i].size()) - 1, static_cast<std::int_fast32_t>(stl_.size()) - 1) != piece_priority) continue;
 					const auto& num{ putPieceReversi(stl_, j, i, turn_, false) };
 					if (piece_turn_max < num || (piece_turn_max == num && dtl::rnd.randBool())) {
 						piece_turn_max = num;
@@ -165,12 +165,27 @@ namespace dtl {
 		return (is_black_ai_) ? black_ai_(stl_, turn_) : white_ai_(stl_, turn_);
 	}
 
+	template<typename Int_, typename STL_>
+	constexpr std::int_fast32_t checkResultReversi(STL_& stl_) noexcept {
+		std::array<std::int_fast32_t, 2> piece_num{ {} };
+		std::int_fast32_t result{};
+		for (std::size_t i{}; i < stl_.size(); ++i)
+			for (std::size_t j{}; j < stl_[i].size(); ++j)
+				if (stl_[i][j] > 0) ++piece_num[stl_[i][j] - 1];
+		if (isPassReversi(stl_, (Int_)1) && isPassReversi(stl_, (Int_)2)) {
+			if (piece_num[0] > piece_num[1]) result = 1;
+			else if (piece_num[0] < piece_num[1]) result = 2;
+			else result = 3;
+		}
+		return result;
+	}
+
 	enum :std::size_t {
 		reversi_empty,
 		reversi_white,
 		reversi_black
 	};
-
+	//リバーシを初期化する
 	template<typename Int_, typename STL_>
 	constexpr void createReversi(STL_& stl_, const Int_ black_ = 2, const Int_ white_ = 1) noexcept {
 		if (stl_.size() < 2 || stl_[0].size() < 2) return;

@@ -59,7 +59,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bucket.cpp">
+    <ClCompile Include="SampleReversi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

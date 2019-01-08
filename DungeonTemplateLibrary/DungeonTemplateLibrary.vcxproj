@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bucket.cpp" />
+    <ClCompile Include="SampleReversi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />
