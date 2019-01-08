@@ -127,9 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SampleReversiWinningPercentage.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
@@ -142,7 +139,6 @@
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleRogueLike.hpp" />
-    <ClInclude Include="SimpleTerrain1.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

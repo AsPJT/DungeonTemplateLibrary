@@ -19,7 +19,6 @@
 #include "MazeDig.hpp"
 #include "RogueLike.hpp"
 #include "SimpleRogueLike.hpp"
-#include "SimpleTerrain1.hpp"
 #include "SimpleVoronoiIsland.hpp"
 #include "BoardGame.hpp"
 

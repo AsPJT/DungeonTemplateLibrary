@@ -45,9 +45,6 @@
     <ClInclude Include="SimpleRogueLike.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleTerrain1.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="DTL.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -57,10 +54,5 @@
     <ClInclude Include="BoardGame.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="SampleReversiWinningPercentage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

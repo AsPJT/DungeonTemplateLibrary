@@ -1,4 +1,10 @@
-﻿#include "DTL.hpp"
+﻿//:::::----------::::::::::----------::::://
+//     Dungeon Template Library     //
+//          Made by Gaccho.          //
+// This code is licensed under CC0.  //
+//       wanotaitei@gmail.com       //
+//:::::----------::::::::::----------::::://
+#include "DTL.hpp"
 
 #include <cstdint>
 #include <iostream>
