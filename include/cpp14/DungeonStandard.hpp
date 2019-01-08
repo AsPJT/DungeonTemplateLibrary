@@ -12,6 +12,156 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
+	//
+	template<typename STL_>
+	constexpr void createPointGrid(STL_& stl_) noexcept {
+		for (std::size_t i{}; i < stl_.size(); i += 2)
+			for (std::size_t j{}; j < stl_[i].size(); j += 2)
+				stl_[i][j] = 1;
+	}
+	template<typename Int_, typename STL_>
+	constexpr void createPointGrid(STL_& stl_, const Int_ value_) noexcept {
+		for (std::size_t i{}; i < stl_.size(); i += 2)
+			for (std::size_t j{}; j < stl_[i].size(); j += 2)
+				stl_[i][j] = value_;
+	}
+	//クラス版
+	template<typename Int_>
+	class PointGrid {
+	public:
+		//コンストラクタ
+		constexpr PointGrid() noexcept = default;
+		template<typename STL_>
+		constexpr explicit PointGrid(STL_& stl_, const Int_ value_ = 1) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 1) noexcept {
+			createPointGrid(stl_, value_);
+		}
+	};
+
+	//外枠(内部を奇数マスにする)
+	template<typename STL_>
+	constexpr void createBorderOdd(STL_& stl_) noexcept {
+		if (stl_.size() < 2) return;
+		for (std::size_t i{}; i < stl_[0].size(); ++i)
+			stl_[0][i] = 1;
+		if (stl_.size() % 2 == 1) {
+			for (std::size_t i{}; i < stl_[stl_.size() - 1].size(); ++i)
+				stl_[stl_.size() - 1][i] = 1;
+		}
+		else for (std::size_t i{}; i < stl_[stl_.size() - 1].size(); ++i) {
+			stl_[stl_.size() - 2][i] = 1;
+			stl_[stl_.size() - 1][i] = 1;
+		}
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() < 2) continue;
+			stl_[i][0] = 1;
+			if (stl_[i].size() % 2 == 0) stl_[i][stl_[i].size() - 2] = 1;
+			stl_[i][stl_[i].size() - 1] = 1;
+		}
+	}
+	template<typename Int_, typename STL_>
+	constexpr void createBorderOdd(STL_& stl_, const Int_ value_) noexcept {
+		if (stl_.size() < 2) return;
+		for (std::size_t i{}; i < stl_[0].size(); ++i)
+			stl_[0][i] = value_;
+		if (stl_.size() % 2 == 1) {
+			for (std::size_t i{}; i < stl_[stl_.size() - 1].size(); ++i)
+				stl_[stl_.size() - 1][i] = value_;
+		}
+		else for (std::size_t i{}; i < stl_[stl_.size() - 1].size(); ++i) {
+			stl_[stl_.size() - 2][i] = value_;
+			stl_[stl_.size() - 1][i] = value_;
+		}
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() < 2) continue;
+			stl_[i][0] = value_;
+			if (stl_[i].size() % 2 == 0) stl_[i][stl_[i].size() - 2] = value_;
+			stl_[i][stl_[i].size() - 1] = value_;
+		}
+	}
+	//クラス版
+	template<typename Int_>
+	class BorderOdd {
+	public:
+		//コンストラクタ
+		constexpr BorderOdd() noexcept = default;
+		template<typename STL_>
+		constexpr explicit BorderOdd(STL_& stl_, const Int_ value_ = 1) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 1) noexcept {
+			createBorderOdd(stl_, value_);
+		}
+	};
+
+	//クラス版
+	template<typename Int_>
+	class PointGridField {
+	public:
+		//コンストラクタ
+		constexpr PointGridField() noexcept = default;
+		template<typename STL_>
+		constexpr explicit PointGridField(STL_& stl_, const Int_ value_ = 1) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 1) noexcept {
+			createPointGrid(stl_, value_);
+			createBorderOdd(stl_, value_);
+		}
+	};
+
+	//Border
+	template<typename STL_>
+	constexpr void createBorder(STL_& stl_) noexcept {
+		if (stl_.size() == 0) return;
+		for (std::size_t i{}; i < stl_.front().size(); ++i)
+			stl_.front()[i] = 1;
+		for (std::size_t i{}; i < stl_.back().size(); ++i)
+			stl_.back()[i] = 1;
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() == 0) continue;
+			stl_[i].front() = 1;
+			stl_[i].back() = 1;
+		}
+	}
+	template<typename Int_, typename STL_>
+	constexpr void createBorder(STL_& stl_, const Int_ value_) noexcept {
+		if (stl_.size() == 0) return;
+		for (std::size_t i{}; i < stl_.front().size(); ++i)
+			stl_.front()[i] = value_;
+		for (std::size_t i{}; i < stl_.back().size(); ++i)
+			stl_.back()[i] = value_;
+		for (std::size_t i{}; i < stl_.size(); ++i) {
+			if (stl_[i].size() == 0) continue;
+			stl_[i].front() = value_;
+			stl_[i].back() = value_;
+		}
+	}
+	//クラス版
+	template<typename Int_>
+	class Border {
+	public:
+		//コンストラクタ
+		constexpr Border() noexcept = default;
+		template<typename STL_>
+		constexpr explicit Border(STL_& stl_, const Int_ value_ = 1) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 1) noexcept {
+			createBorder(stl_, value_);
+		}
+	};
+
+	//----------*----------*----------*----------*----------*
+	//初期化系
+	//----------*----------*----------*----------*----------*
+
 	//全てのマスを0で埋める
 	template<typename STL_>
 	constexpr void dungeonInit(STL_& stl_) noexcept {
@@ -26,6 +176,22 @@ namespace dtl {
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
 				stl_[i][j] = value_;
 	}
+	//クラス版
+	template<typename Int_>
+	class DungeonInit {
+	public:
+		//コンストラクタ
+		constexpr DungeonInit() noexcept = default;
+		template<typename STL_>
+		constexpr explicit DungeonInit(STL_& stl_, const Int_ value_ = 0) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 0) noexcept {
+			dungeonInit(stl_, value_);
+		}
+	};
+
 	//全てのマスを0で埋める
 	template<typename STL_>
 	constexpr void dungeonInit_RangeBasedFor(STL_& stl_) noexcept {
@@ -40,6 +206,10 @@ namespace dtl {
 			for (auto&& j : i)
 				j = value_;
 	}
+
+	//----------*----------*----------*----------*----------*
+	//初期化系
+	//----------*----------*----------*----------*----------*
 
 	template<typename STL_>
 	constexpr bool dungeonArrayCheckBitset(const STL_& stl_) noexcept {

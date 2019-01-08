@@ -15,8 +15,8 @@
 namespace dtl {
 	//四角形の位置と大きさ
 	template<typename Int_>
-	struct Rect {
-		Rect() = default;
+	struct RogueLikeRect {
+		RogueLikeRect() = default;
 		//位置
 		Int_ x{}, y{};
 		//大きさ
@@ -45,12 +45,12 @@ namespace dtl {
 		//コンストラクタ
 		constexpr RogueLike() noexcept = default;
 		template<typename STL_>
-		constexpr explicit RogueLike(STL_& stl_, const std::size_t way_max_) noexcept {
+		constexpr explicit RogueLike(STL_& stl_, const std::size_t way_max_ = 20) noexcept {
 			create(stl_, way_max_);
 		}
 		//マップ生成
 		template<typename STL_>
-		constexpr void create(STL_& stl_, const std::size_t way_max_) noexcept {
+		constexpr void create(STL_& stl_, const std::size_t way_max_ = 20) noexcept {
 			room_rect.clear();
 			branch_point.clear();
 			//最初の部屋を生成
@@ -62,9 +62,9 @@ namespace dtl {
 
 	private:
 		//部屋の位置情報
-		std::vector<Rect<std::int_fast32_t>> room_rect;
+		std::vector<RogueLikeRect<std::int_fast32_t>> room_rect;
 		//部屋または通路の生成可能な面の位置情報
-		std::vector<Rect<std::int_fast32_t>> branch_point;
+		std::vector<RogueLikeRect<std::int_fast32_t>> branch_point;
 
 		//タイルを取得
 		template<typename STL_>
@@ -131,7 +131,7 @@ namespace dtl {
 			constexpr std::int_fast32_t minRoomSize{ 3 };
 			constexpr std::int_fast32_t maxRoomSize{ 6 };
 
-			Rect<std::int_fast32_t> room;
+			RogueLikeRect<std::int_fast32_t> room;
 			room.w = rnd(minRoomSize, maxRoomSize);
 			room.h = rnd(minRoomSize, maxRoomSize);
 
@@ -157,13 +157,13 @@ namespace dtl {
 			if (placeRect(stl_, room, room_id)) {
 				room_rect.emplace_back(room);
 				if (dir_ != direction_south || firstRoom_) //上
-					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
+					branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
 				if (dir_ != direction_north || firstRoom_) //下
-					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
+					branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
 				if (dir_ != direction_east || firstRoom_) //左
-					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
+					branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
 				if (dir_ != direction_west || firstRoom_) //右
-					branch_point.emplace_back(Rect<std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
+					branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
 				return true;
 			}
 			return false;
@@ -173,7 +173,7 @@ namespace dtl {
 			constexpr std::int_fast32_t minWayLength{ 3 };
 			constexpr std::int_fast32_t maxWayLength{ 15 };
 
-			Rect<std::int_fast32_t> way;
+			RogueLikeRect<std::int_fast32_t> way;
 			way.x = x_;
 			way.y = y_;
 
@@ -220,17 +220,17 @@ namespace dtl {
 			}
 			if (!placeRect(stl_, way, way_id)) return false;
 			if (dir_ != direction_south && way.w != 1)//上
-				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x, way.y - 1, way.w, 1 });
+				branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ way.x, way.y - 1, way.w, 1 });
 			if (dir_ != direction_north && way.w != 1)//下
-				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x, way.y + way.h, way.w, 1 });
+				branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ way.x, way.y + way.h, way.w, 1 });
 			if (dir_ != direction_east && way.h != 1)//左
-				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x - 1, way.y, 1, way.h });
+				branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ way.x - 1, way.y, 1, way.h });
 			if (dir_ != direction_west && way.h != 1)//右
-				branch_point.emplace_back(Rect<std::int_fast32_t>{ way.x + way.w, way.y, 1, way.h });
+				branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ way.x + way.w, way.y, 1, way.h });
 			return true;
 		}
 		template<typename STL_>
-		constexpr bool placeRect(STL_& stl_, const Rect<std::int_fast32_t>& rect, const Int_ tile_) noexcept {
+		constexpr bool placeRect(STL_& stl_, const RogueLikeRect<std::int_fast32_t>& rect, const Int_ tile_) noexcept {
 			if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((stl_.empty()) ? 0 : stl_.front().size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(stl_.size()) - 1)
 				return false;
 			for (std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
