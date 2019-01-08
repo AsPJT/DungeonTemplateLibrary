@@ -7,6 +7,10 @@ DTL (Dungeon Template Library)
 
 [>> Japanese](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%5Bja%5D-Home)
 
+# [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+
+### [>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+
 # Overview
 
 ## [Type] Dungeon Generation
@@ -31,7 +35,7 @@ FractalIsland
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.1.9 [ C++14 ]
+## Version 0.1.11 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
