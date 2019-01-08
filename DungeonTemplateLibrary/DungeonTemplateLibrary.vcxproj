@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SampleReversi.cpp" />
+    <ClCompile Include="SampleReversiWinningPercentage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />
