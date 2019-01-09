@@ -251,6 +251,8 @@ FractalIsland
 ### Image
 ![re](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi.png)
 
+![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi_32.gif)
+
 ## Maze α
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
