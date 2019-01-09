@@ -130,6 +130,7 @@
     <ClInclude Include="BoardGame.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
+    <ClInclude Include="DungeonFile.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />
     <ClInclude Include="DungeonPaint.hpp" />
@@ -140,6 +141,9 @@
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleRogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NewSource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

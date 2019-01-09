@@ -13,6 +13,7 @@
 #include "DungeonOutput.hpp"
 #include "DungeonRandom.hpp"
 #include "DungeonStandard.hpp"
+#include "DungeonFile.hpp"
 
 //ê∂ê¨ån
 #include "FractalIsland.hpp"
