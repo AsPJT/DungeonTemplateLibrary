@@ -169,6 +169,27 @@ namespace dtl {
 		}
 	};
 
+	template<typename Int_, typename STL_>
+	constexpr void createPointGridField(STL_& stl_, const Int_ value_) noexcept {
+		createPointGrid(stl_, value_);
+		createBorderOdd(stl_, value_);
+	}
+	template<typename Int_, typename STL_>
+	constexpr void createPointGridField(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
+		createPointGrid(stl_, x_, y_, value_);
+		createBorderOdd(stl_, x_, y_, value_);
+	}
+	template<typename STL_>
+	constexpr void createPointGridField(STL_& stl_) noexcept {
+		createPointGrid(stl_);
+		createBorderOdd(stl_);
+	}
+	template<typename STL_>
+	constexpr void createPointGridField(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		createPointGrid(stl_, x_, y_);
+		createBorderOdd(stl_, x_, y_);
+	}
+
 	//クラス版
 	template<typename Int_>
 	class PointGridField {
@@ -289,6 +310,14 @@ namespace dtl {
 		template<typename STL_>
 		constexpr void create(STL_& stl_, const Int_ value_ = 0) noexcept {
 			dungeonInit(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr explicit DungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			create(stl_, x_, y_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			dungeonInit(stl_, x_, y_, value_);
 		}
 	};
 
