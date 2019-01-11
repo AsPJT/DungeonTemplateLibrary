@@ -4,15 +4,21 @@
 
 int main() {
 
-	using matrix_t = bool;
+	using matrix_t = std::uint_fast8_t;
 
-	std::array<std::bitset<64>, 64> matrix{ {} };
+	//constexpr std::size_t x{ 64 };
 
-	dtl::fileRead_CSV<matrix_t>(matrix, "svi.csv");
+	std::array<std::array<matrix_t, 64>, 64> matrix{ {} };
 
-	//dtl::SimpleVoronoiIsland<matrix_t> svi(matrix, 100, 0.5);
-	dtl::fileWrite<matrix_t>(matrix, "svi.txt");
-	dtl::fileWrite_CSV<matrix_t>(matrix, "svi.csv");
+	//dtl::fileRead_CSV<matrix_t>(matrix, "svi.csv");
+
+	////dtl::SimpleVoronoiIsland<matrix_t> svi(matrix, 100, 0.5);
+	//dtl::fileWrite<matrix_t>(matrix, "svi.txt");
+	//dtl::fileWrite_CSV<matrix_t>(matrix, "svi.csv");
+
+	dtl::createBorder(matrix);
+
+	dtl::dungeonStringOutputBool(matrix, "Å°", "Å@");
 
 	return 0;
 }
