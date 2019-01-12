@@ -345,6 +345,43 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 
 ![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi_32.gif)
 
+## Chess (v0.1.14~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <BoardGame.hpp>
+```
+
+```cpp
+dtl::Chess<dungeon_t> chess(dungeon);
+```
+
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|4|(Variable Max)|
+
+|Default Value|Name|
+|:---:|:---|
+|0|Empty|
+|1|White King|
+|2|Black King|
+|3|White Queen|
+|4|Black Queen|
+|5|White Bishop|
+|6|Black Bishop|
+|7|White Knight|
+|8|Black Knight|
+|9|White Rook|
+|10|Black Rook|
+|11|White Pawn|
+|12|Black Pawn|
+
+### Variable
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Image
+![chess](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chess.png)
+
 ## Maze α
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
