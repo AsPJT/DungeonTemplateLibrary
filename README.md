@@ -170,6 +170,9 @@ int main() {
 ```cpp
 dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 ```
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|0|(Variable Max)|
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -192,6 +195,10 @@ dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 dtl::Border<dungeon_t> border(dungeon);
 ```
 
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|1|(Variable Max)|
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
@@ -213,6 +220,10 @@ dtl::Border<dungeon_t> border(dungeon);
 ```cpp
 dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 ```
+
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|2|(Variable Max)|
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -237,6 +248,10 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ```
 
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|0|(Variable Max)|
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
@@ -258,6 +273,10 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ```cpp
 dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 ```
+
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|2|(Variable Max)|
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -281,6 +300,10 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ```
 
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|3|(Variable Max)|
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
@@ -291,7 +314,7 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
 ### Image
-![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.png)
+![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.gif)
 
 ## Reversi (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -303,6 +326,10 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ```cpp
 dtl::Reversi<dungeon_t> reversi(dungeon);
 ```
+
+|Matrix Size Min|Matrix Size Max|
+|:---:|:---|
+|2|(Variable Max)|
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
