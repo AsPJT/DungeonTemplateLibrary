@@ -8,6 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 #include <cstddef>
+#include "DungeonRandom.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -214,6 +215,56 @@ namespace dtl {
 			createPointGrid(stl_, x_, y_, value_);
 			createBorderOdd(stl_, x_, y_, value_);
 		}
+	};
+
+	template<typename STL_>
+	constexpr void createPointGridFieldPlayerSpace(STL_& stl_) noexcept {
+		if (stl_.size() < 3 || stl_[1].size() < 3) return;
+		const std::size_t y_end{ ((stl_.size() % 2 == 0) ? (stl_.size() - 2) : (stl_.size() - 1)) };
+		const std::size_t x_end{ ((stl_[1].size() % 2 == 0) ? (stl_[1].size() - 2) : (stl_[1].size() - 1)) };
+
+		stl_[1][1] = 0;
+		stl_[1][2] = 0;
+		stl_[2][1] = 0;
+		stl_[y_end - 1][1] = 0;
+		stl_[y_end - 1][2] = 0;
+		stl_[y_end - 2][1] = 0;
+		stl_[1][x_end - 1] = 0;
+		stl_[1][x_end - 2] = 0;
+		stl_[2][x_end - 1] = 0;
+		stl_[y_end - 1][x_end - 1] = 0;
+		stl_[y_end - 1][x_end - 2] = 0;
+		stl_[y_end - 2][x_end - 1] = 0;
+	}
+
+	template<typename Int_>
+	class PointGridFieldPutBlock {
+	public:
+		//コンストラクタ
+		constexpr PointGridFieldPutBlock() noexcept = default;
+		template<typename STL_>
+		constexpr explicit PointGridFieldPutBlock(STL_& stl_, const double probability_ = 0.8, const Int_ hard_value_ = 1, const Int_ soft_value_ = 2) noexcept {
+			create(stl_, probability_, hard_value_, soft_value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const double probability_ = 0.8, const Int_ hard_value_ = 1, const Int_ soft_value_ = 2) noexcept {
+			createPointGrid(stl_, hard_value_);
+			createBorderOdd(stl_, hard_value_);
+			for (std::size_t i{}; i < stl_.size(); ++i)
+				for (std::size_t j{}; j < stl_[i].size(); ++j) {
+					if (stl_[i][j] == 0 && rnd.randBool(probability_)) stl_[i][j] = soft_value_;
+				}
+			createPointGridFieldPlayerSpace(stl_);
+		}
+		//template<typename STL_>
+		//constexpr explicit PointGridFieldPutBlock(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 1) noexcept {
+		//	create(stl_, x_, y_, value_);
+		//}
+		//template<typename STL_>
+		//constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 1) noexcept {
+		//	createPointGrid(stl_, x_, y_, value_);
+		//	createBorderOdd(stl_, x_, y_, value_);
+		//}
 	};
 
 	//Border

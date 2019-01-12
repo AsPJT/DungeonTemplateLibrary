@@ -8,7 +8,7 @@ int main() {
 
 	//constexpr std::size_t x{ 64 };
 
-	std::array<std::array<matrix_t, 12>, 12> matrix{ {} };
+	std::array<std::array<matrix_t, 21>, 21> matrix{ {} };
 
 	//dtl::fileRead_CSV<matrix_t>(matrix, "svi.csv");
 
@@ -54,6 +54,11 @@ int main() {
 	dtl::dungeonInit(matrix);
 	dtl::PointGridField<matrix_t> pgf(matrix);
 	dtl::dungeonStringOutputBool(matrix, "Å°", "Å@");
+
+	std::cout << std::endl;
+	dtl::dungeonInit(matrix);
+	dtl::PointGridFieldPutBlock<matrix_t> pgfpb(matrix);
+	dtl::dungeonStringOutput(matrix, "Å@", "Å°", "Å†");
 
 	return 0;
 }
