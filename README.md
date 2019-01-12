@@ -31,6 +31,24 @@ SimpleVoronoiIsland
 
 FractalIsland
 
+### SampleCode
+
+```cpp
+#include <DTL.hpp>
+#include <array>
+
+int main() {
+
+	using dungeon_t = std::uint_fast8_t;
+	std::array<std::array<dungeon_t, 21>, 21> dungeon{ {} };
+
+	dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
+	dtl::dungeonStringOutputBool(dungeon, "#", " ");
+
+	return 0;
+}
+```
+
 ## 👾Test👾
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
@@ -149,6 +167,10 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
+```cpp
+dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
+```
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|Black|
@@ -164,6 +186,10 @@ FractalIsland
 
 ```cpp
 #include <DungeonStandard.hpp>
+```
+
+```cpp
+dtl::Border<dungeon_t> border(dungeon);
 ```
 
 |Default Value|Name|Image Color|
@@ -182,6 +208,10 @@ FractalIsland
 
 ```cpp
 #include <DungeonStandard.hpp>
+```
+
+```cpp
+dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 ```
 
 |Default Value|Name|Image Color|
@@ -203,6 +233,10 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
+```cpp
+dtl::PointGrid<dungeon_t> point_grid(dungeon);
+```
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
@@ -219,6 +253,10 @@ FractalIsland
 
 ```cpp
 #include <DungeonStandard.hpp>
+```
+
+```cpp
+dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 ```
 
 |Default Value|Name|Image Color|
@@ -239,6 +277,10 @@ FractalIsland
 #include <DungeonStandard.hpp>
 ```
 
+```cpp
+dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
+```
+
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
@@ -256,6 +298,10 @@ FractalIsland
 
 ```cpp
 #include <BoardGame.hpp>
+```
+
+```cpp
+dtl::Reversi<dungeon_t> reversi(dungeon);
 ```
 
 |Default Value|Name|Image Color|
