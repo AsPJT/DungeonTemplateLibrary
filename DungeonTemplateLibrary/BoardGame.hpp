@@ -265,6 +265,103 @@ namespace dtl {
 		return false;
 	}
 
+	enum :std::size_t {
+		chess_empty,
+		chess_king1,
+		chess_king2,
+		chess_queen1,
+		chess_queen2,
+		chess_rook1,
+		chess_rook2,
+		chess_bishop1,
+		chess_bishop2,
+		chess_knight1,
+		chess_knight2,
+		chess_pawn1,
+		chess_pawn2,
+		chess_next_place1,
+		chess_next_place2
+	};
+
+	template<typename STL_>
+	constexpr void createChess(STL_& stl_) noexcept {
+		if (stl_.size() < 2) return;
+
+		for (std::size_t i{}; i < stl_[1].size(); ++i)
+			stl_[1][i] = chess_pawn2;
+		for (std::size_t i{}; i < stl_[stl_.size() - 2].size(); ++i)
+			stl_[stl_.size() - 2][i] = chess_pawn1;
+
+		if (stl_[0].size() < 4) return;
+		stl_[0][0] = chess_rook2;
+		stl_[0][stl_[0].size() - 1] = chess_rook2;
+		stl_[0][1] = chess_knight2;
+		stl_[0][stl_[0].size() - 2] = chess_knight2;
+		stl_[0][2] = chess_bishop2;
+		stl_[0][stl_[0].size() - 3] = chess_bishop2;
+		stl_[0][3] = chess_queen2;
+		stl_[0][stl_[0].size() - 4] = chess_king2;
+		if (stl_[stl_.size() - 1].size() < 4) return;
+		stl_[stl_.size() - 1][0] = chess_rook1;
+		stl_[stl_.size() - 1][stl_[stl_.size() - 1].size() - 1] = chess_rook1;
+		stl_[stl_.size() - 1][1] = chess_knight1;
+		stl_[stl_.size() - 1][stl_[stl_.size() - 1].size() - 2] = chess_knight1;
+		stl_[stl_.size() - 1][2] = chess_bishop1;
+		stl_[stl_.size() - 1][stl_[stl_.size() - 1].size() - 3] = chess_bishop1;
+		stl_[stl_.size() - 1][3] = chess_queen1;
+		stl_[stl_.size() - 1][stl_[stl_.size() - 1].size() - 4] = chess_king1;
+	}
+	template<typename STL_>
+	constexpr void createChess(STL_& stl_, const std::size_t  x_, const std::size_t y_) noexcept {
+		if (y_ < 2) return;
+
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[1][i] = chess_pawn2;
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[y_ - 2][i] = chess_pawn1;
+
+		if (x_ < 4) return;
+		stl_[0][0] = chess_rook2;
+		stl_[0][x_ - 1] = chess_rook2;
+		stl_[0][1] = chess_knight2;
+		stl_[0][x_ - 2] = chess_knight2;
+		stl_[0][2] = chess_bishop2;
+		stl_[0][x_ - 3] = chess_bishop2;
+		stl_[0][3] = chess_queen2;
+		stl_[0][x_ - 4] = chess_king2;
+		stl_[y_ - 1][0] = chess_rook1;
+		stl_[y_ - 1][x_ - 1] = chess_rook1;
+		stl_[y_ - 1][1] = chess_knight1;
+		stl_[y_ - 1][x_ - 2] = chess_knight1;
+		stl_[y_ - 1][2] = chess_bishop1;
+		stl_[y_ - 1][x_ - 3] = chess_bishop1;
+		stl_[y_ - 1][3] = chess_queen1;
+		stl_[y_ - 1][x_ - 4] = chess_king1;
+	}
+
+	template<typename Int_>
+	class Chess {
+	public:
+		//コンストラクタ
+		constexpr Chess() noexcept = default;
+		template<typename STL_>
+		constexpr explicit Chess(STL_& stl_) noexcept {
+			create(stl_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_) noexcept {
+			createChess(stl_);
+		}
+		template<typename STL_>
+		constexpr explicit Chess(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+			create(stl_, x_, y_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+			createChess(stl_, x_, y_);
+		}
+	};
+
 }
 
 #endif //Included Dungeon Template Library
