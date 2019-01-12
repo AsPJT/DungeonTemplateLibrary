@@ -294,6 +294,32 @@ namespace dtl {
 			stl_[i][stl_[i].size() - 1] = value_;
 		}
 	}
+	template<typename STL_>
+	constexpr void createBorder(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		if (y_ == 0) return;
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[0][i] = 1;
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[y_ - 1][i] = 1;
+		if (x_ == 0) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			stl_[i][0] = 1;
+			stl_[i][x_ - 1] = 1;
+		}
+	}
+	template<typename Int_, typename STL_>
+	constexpr void createBorder(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
+		if (y_ == 0) return;
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[0][i] = value_;
+		for (std::size_t i{}; i < x_; ++i)
+			stl_[y_ - 1][i] = value_;
+		if (x_ == 0) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			stl_[i][0] = value_;
+			stl_[i][x_ - 1] = value_;
+		}
+	}
 	//クラス版
 	template<typename Int_>
 	class Border {
