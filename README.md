@@ -49,6 +49,34 @@ int main() {
 }
 ```
 
+## Matrix Type
+
+### Main Code
+
+```cpp
+using dungeon_t = std::uint_fast8_t;
+constexpr std::size_t x_size{ 12 };
+constexpr std::size_t y_size{ 8 };
+```
+
+### STL Matrix ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg)
+
+```cpp
+std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
+```
+
+### Default Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
+
+```cpp
+dungeon_t dungeon_default_matrix[y_size][x_size]{};
+```
+
+### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
+```cpp
+dungeon_t dungeon_array_matrix[x_size*y_size]{};
+```
+
 ## 👾Test👾
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
@@ -181,6 +209,9 @@ dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
 
@@ -210,6 +241,9 @@ dtl::Border<dungeon_t> border(dungeon);
 ### Image
 ![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border.png)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ## BorderOdd (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
@@ -232,6 +266,9 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ### Image
 ![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border_odd.png)
@@ -260,6 +297,9 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ### Image
 ![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid.png)
 
@@ -285,6 +325,9 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ### Image
 ![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field.png)
@@ -312,6 +355,9 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ### Image
 ![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.gif)
