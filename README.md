@@ -350,6 +350,9 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ### Image
 ![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.gif)
 
