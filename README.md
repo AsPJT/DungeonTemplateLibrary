@@ -63,6 +63,9 @@ constexpr std::size_t y_size{ 8 };
 
 ![no_default_array](https://img.shields.io/badge/default%20array-nothing-lightgrey.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![no_std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-nothing-lightgrey.svg)
 
+|Required Class Function:|operator[]|size|
+|:---|:---|:---|
+
 ```cpp
 std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
 ```
@@ -71,6 +74,9 @@ std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
 
 ![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
 
+|Required Class Function:|operator[]|
+|:---|:---|
+
 ```cpp
 dungeon_t dungeon_default_matrix[y_size][x_size]{};
 ```
@@ -78,6 +84,9 @@ dungeon_t dungeon_default_matrix[y_size][x_size]{};
 ### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
+
+|Required Class Function:|operator[]|
+|:---|:---|
 
 ```cpp
 dungeon_t dungeon_array_matrix[x_size*y_size]{};
