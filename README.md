@@ -59,19 +59,19 @@ constexpr std::size_t x_size{ 12 };
 constexpr std::size_t y_size{ 8 };
 ```
 
-### Default Matrix
+### Default Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
 
 ```cpp
 dungeon_t dungeon_default_matrix[y_size][x_size]{};
 ```
 
-### STL Matrix
+### STL Matrix ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg)
 
 ```cpp
 std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
 ```
 
-### Array Matrix
+### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ```cpp
 dungeon_t dungeon_array_matrix[x_size*y_size]{};
