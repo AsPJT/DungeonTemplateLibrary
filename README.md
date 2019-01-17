@@ -49,6 +49,34 @@ int main() {
 }
 ```
 
+## Matrix Type
+
+### Main Code
+
+```cpp
+using dungeon_t = std::uint_fast8_t;
+constexpr std::size_t x_size{ 12 };
+constexpr std::size_t y_size{ 8 };
+```
+
+### Default Matrix
+
+```cpp
+dungeon_t dungeon_default_matrix[y_size][x_size]{};
+```
+
+### STL Matrix
+
+```cpp
+std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
+```
+
+### Array Matrix
+
+```cpp
+dungeon_t dungeon_array_matrix[x_size*y_size]{};
+```
+
 ## 👾Test👾
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
