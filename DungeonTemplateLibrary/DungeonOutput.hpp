@@ -164,6 +164,13 @@ namespace dtl {
 		}
 	}
 
+	void dungeonEndl() noexcept {
+		std::cout << std::endl;
+	}
+	void dungeonPuts(const char* const str_) noexcept {
+		if (str_ == nullptr) return;
+		std::cout << str_ << std::endl;
+	}
 
 
 }
