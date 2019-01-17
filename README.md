@@ -59,16 +59,16 @@ constexpr std::size_t x_size{ 12 };
 constexpr std::size_t y_size{ 8 };
 ```
 
-### Default Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
-
-```cpp
-dungeon_t dungeon_default_matrix[y_size][x_size]{};
-```
-
 ### STL Matrix ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg)
 
 ```cpp
 std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
+```
+
+### Default Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
+
+```cpp
+dungeon_t dungeon_default_matrix[y_size][x_size]{};
 ```
 
 ### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
@@ -261,6 +261,9 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ### Image
 ![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border_odd.png)
 
@@ -288,6 +291,9 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
 ### Image
 ![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid.png)
 
@@ -313,6 +319,9 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
 ### Image
 ![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field.png)
