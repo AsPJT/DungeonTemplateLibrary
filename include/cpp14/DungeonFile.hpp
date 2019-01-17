@@ -12,6 +12,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <typeinfo>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -79,12 +80,15 @@ namespace dtl {
 	bool fileWrite_CSV(const STL_& stl_, const std::string& str_) noexcept {
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
+		const bool is_char{ (typeid(Int_) == typeid(unsigned char) || typeid(Int_) == typeid(signed char)) };
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			if (stl_[i].size() == 0) continue;
-			ofs << stl_[i][0];
+			if(is_char) ofs << static_cast<int>(stl_[i][0]);
+			else ofs << stl_[i][0];;
 			for (std::size_t j{ 1 }; j < stl_[i].size(); ++j) {
 				ofs << ',';
-				ofs << stl_[i][j];
+				if (is_char) ofs << static_cast<int>(stl_[i][j]);
+				else ofs << stl_[i][j];
 			}
 			ofs << std::endl;
 		}

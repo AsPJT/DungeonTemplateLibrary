@@ -24,6 +24,22 @@ namespace dtl {
 		}
 	}
 	template<typename STL_>
+	constexpr void dungeonNumberOutput(const STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j)
+				std::cout << stl_[i][j];
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
+	constexpr void dungeonNumberOutput_Array(const STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j)
+				std::cout << stl_[i * x_ + j];
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
 	constexpr void dungeonNumberOutput_RangeBasedFor(const STL_& stl_) noexcept {
 		for (const auto& i : stl_) {
 			for (const auto& j : i)
@@ -37,6 +53,24 @@ namespace dtl {
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			for (std::size_t j{}; j < stl_[i].size(); ++j)
 				std::cout << stl_[i][j] << string_;
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
+	constexpr void dungeonNumberOutput(const STL_& stl_, const std::size_t x_, const std::size_t y_, const char* const string_) noexcept {
+		if (string_ == nullptr) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j)
+				std::cout << stl_[i][j] << string_;
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
+	constexpr void dungeonNumberOutput_Array(const STL_& stl_, const std::size_t x_, const std::size_t y_, const char* const string_) noexcept {
+		if (string_ == nullptr) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j)
+				std::cout << stl_[i * x_ + j] << string_;
 			std::cout << std::endl;
 		}
 	}
@@ -56,6 +90,28 @@ namespace dtl {
 		for (std::size_t i{}; i < stl_.size(); ++i) {
 			for (std::size_t j{}; j < stl_[i].size(); ++j) {
 				if (stl_[i][j]) std::cout << true_;
+				else std::cout << false_;
+			}
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
+	constexpr void dungeonStringOutputBool(const STL_& stl_, const std::size_t x_, const std::size_t y_, const char* const true_, const char* const false_) noexcept {
+		if (true_ == nullptr || false_ == nullptr) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j) {
+				if (stl_[i][j]) std::cout << true_;
+				else std::cout << false_;
+			}
+			std::cout << std::endl;
+		}
+	}
+	template<typename STL_>
+	constexpr void dungeonStringOutputBool_Array(const STL_& stl_, const std::size_t x_, const std::size_t y_, const char* const true_, const char* const false_) noexcept {
+		if (true_ == nullptr || false_ == nullptr) return;
+		for (std::size_t i{}; i < y_; ++i) {
+			for (std::size_t j{}; j < x_; ++j) {
+				if (stl_[i * x_ + j]) std::cout << true_;
 				else std::cout << false_;
 			}
 			std::cout << std::endl;
