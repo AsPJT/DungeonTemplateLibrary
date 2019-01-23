@@ -23,8 +23,8 @@ int absTemplateSimpleRogueLike(const int value_) {
 //部屋のX座標のサイズ加算
 //部屋のY座標の最小サイズ
 //部屋のY座標のサイズ加算
-void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int division_min, const int division_rand_max, const int room_min_x, const int room_rand_max_x, const int room_min_y, const int room_rand_max_y) {
-	//void createSimpleRogueLike2(int** stl_, const int x_, const int y_, const int division_min = 3, const int division_rand_max = 4, const int room_min_x = 5, const int room_rand_max_x = 2, const int room_min_y = 5, const int room_rand_max_y = 2) {
+void createSimpleRogueLikeAll(int** matrix_, const int x_, const int y_, const int division_min, const int division_rand_max, const int room_min_x, const int room_rand_max_x, const int room_min_y, const int room_rand_max_y) {
+	//void createSimpleRogueLike2(int** matrix_, const int x_, const int y_, const int division_min = 3, const int division_rand_max = 4, const int room_min_x = 5, const int room_rand_max_x = 2, const int room_min_y = 5, const int room_rand_max_y = 2) {
 	if (y_ == 0 || x_ == 0) return;
 	//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 	const int mapDivCount = division_min + (int)dungeonRand2(1, (int)division_rand_max); //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -145,7 +145,7 @@ void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int 
 
 		for (int j = dungeon_room[i][2]; j < dungeon_room[i][0]; ++j)
 			for (int k = dungeon_room[i][3]; k < dungeon_room[i][1]; ++k)
-				stl_[j][k] = 1;
+				matrix_[j][k] = 1;
 	}
 	//通路を生成する処理
 	//通路は２部屋間の細い道のことを指す。
@@ -163,17 +163,17 @@ void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int 
 			dungeon_road[roomBefore][3] = (int)dungeonRand1((int)(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1)); //後側の通路の位置
 																																	 //前の通路
 			for (int j = dungeon_room[roomBefore][0]; j < dungeon_division[roomBefore][0]; ++j)
-				stl_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = 1; //通路をマップチップに線画
+				matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = 1; //通路をマップチップに線画
 
 			//後の通路
 			for (int j = dungeon_division[roomAfter][2]; j < dungeon_room[roomAfter][2]; ++j)
-				stl_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = 1; //通路をマップチップに線画
+				matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = 1; //通路をマップチップに線画
 
 			//通路をつなぐ
 			for (int j = dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; ++j)
-				stl_[dungeon_division[roomBefore][0]][j] = 1; //通路をマップチップに線画 2から5(上から下)
+				matrix_[dungeon_division[roomBefore][0]][j] = 1; //通路をマップチップに線画 2から5(上から下)
 			for (int j = dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; ++j)
-				stl_[dungeon_division[roomBefore][0]][j] = 1; //通路をマップチップに線画 5から2(下から上)
+				matrix_[dungeon_division[roomBefore][0]][j] = 1; //通路をマップチップに線画 5から2(下から上)
 			break;
 
 		case 1:
@@ -181,17 +181,17 @@ void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int 
 			dungeon_road[roomBefore][3] = (int)dungeonRand1((int)(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1)); //後側の通路の位置
 																																	 //前の通路
 			for (int j = dungeon_room[roomBefore][1]; j < dungeon_division[roomBefore][1]; ++j)
-				stl_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = 1; //通路をマップチップに線画
+				matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = 1; //通路をマップチップに線画
 
 			//後の通路
 			for (int j = dungeon_division[roomAfter][3]; j < dungeon_room[roomAfter][3]; ++j)
-				stl_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = 1; //通路をマップチップに線画
+				matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = 1; //通路をマップチップに線画
 
 			//通路をつなぐ
 			for (int j = dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; ++j)
-				stl_[j][dungeon_division[roomBefore][1]] = 1; //通路をマップチップに線画
+				matrix_[j][dungeon_division[roomBefore][1]] = 1; //通路をマップチップに線画
 			for (int j = dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; ++j)
-				stl_[j][dungeon_division[roomBefore][1]] = 1; //通路をマップチップに線画
+				matrix_[j][dungeon_division[roomBefore][1]] = 1; //通路をマップチップに線画
 			break;
 		}
 	}
@@ -203,8 +203,8 @@ void createSimpleRogueLikeAll(int** stl_, const int x_, const int y_, const int 
 	free(dungeon_road);
 	return;
 }
-void createSimpleRogueLike(int** stl_, const int x_, const int y_) {
-	createSimpleRogueLikeAll(stl_, x_, y_, 3, 4, 5, 2, 5, 2);
+void createSimpleRogueLike(int** matrix_, const int x_, const int y_) {
+	createSimpleRogueLikeAll(matrix_, x_, y_, 3, 4, 5, 2, 5, 2);
 }
 
 #endif //Included Dungeon Template Library

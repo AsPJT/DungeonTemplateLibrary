@@ -20,36 +20,36 @@ namespace dtl {
 		maze_dig_type_way,
 	};
 
-	template<typename Int_>
+	template<typename Matrix_Int_>
 	class MazeDig {
 	public:
 		//コンストラクタ
 		constexpr MazeDig() noexcept = default;
-		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data, const Int_ v1_, const Int_ v2_) noexcept {
+		template<typename Matrix_>
+		constexpr explicit MazeDig(Matrix_& data, const Matrix_Int_ v1_, const Matrix_Int_ v2_) noexcept {
 			mazeDig_Create(data, v1_, v2_);
 		}
-		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data, const Int_ v1_) noexcept {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr explicit MazeDig(Matrix_& data, const Matrix_Int_ v1_) noexcept {
+			mazeDig_Create(data, v1_, static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
-		template<typename STL_>
-		constexpr explicit MazeDig(STL_& data) noexcept {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr explicit MazeDig(Matrix_& data) noexcept {
+			mazeDig_Create(data, static_cast<Matrix_Int_>(maze_dig_type_wall), static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
 	private:
 
 		//生成チェック
-		template<typename STL_>
-		constexpr bool mazeDig_Check(const STL_& data) const noexcept {
+		template<typename Matrix_>
+		constexpr bool mazeDig_Check(const Matrix_& data) const noexcept {
 			if (data.size() <= 2) return false;
 			if (data.empty()) return false;
 			if (data[1].size() <= 2) return false;
 			return true;
 		}
 		//穴掘り
-		template<typename STL_>
-		constexpr void mazeDig_Dig(STL_& data, std::size_t x_, std::size_t y_, const Int_ id_wall_, const Int_ id_empty_) const noexcept {
+		template<typename Matrix_>
+		constexpr void mazeDig_Dig(Matrix_& data, std::size_t x_, std::size_t y_, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
 			if (!mazeDig_Check(data)) return;
 			std::int_fast32_t dx{}, dy{};
 			std::size_t random = std::size_t(rnd()), counter = 0;
@@ -81,8 +81,8 @@ namespace dtl {
 			return;
 		}
 		//迷路生成
-		template<typename STL_>
-		constexpr std::size_t mazeDig_CreateLoop(const STL_& data, const Int_ id_wall_, const Int_ id_empty_, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
+		template<typename Matrix_>
+		constexpr std::size_t mazeDig_CreateLoop(const Matrix_& data, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 			std::size_t select_id{};
 			const std::size_t i_max{ ((data.size() % 2) == 0) ? data.size() - 2 : data.size() - 1 };
 			const std::size_t j_max{ ((data.front().size() % 2) == 0) ? data.front().size() - 2 : data.front().size() - 1 };
@@ -105,8 +105,8 @@ namespace dtl {
 			return select_id;
 		}
 		//穴掘り法の迷路を生成する
-		template<typename STL_>
-		void mazeDig_Create(STL_& data, const Int_ id_wall_, const Int_ id_empty_) const noexcept {
+		template<typename Matrix_>
+		void mazeDig_Create(Matrix_& data, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
 			if (!mazeDig_Check(data)) return;
 			data[1][1] = id_empty_;
 
@@ -126,29 +126,29 @@ namespace dtl {
 		}
 
 	public:
-		template<typename STL_>
-		constexpr void operator()(STL_& data, const Int_ v1_, const Int_ v2_) const noexcept {
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& data, const Matrix_Int_ v1_, const Matrix_Int_ v2_) const noexcept {
 			mazeDig_Create(data, v1_, v2_);
 		}
-		template<typename STL_>
-		constexpr void operator()(STL_& data, const Int_ v1_) const noexcept {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& data, const Matrix_Int_ v1_) const noexcept {
+			mazeDig_Create(data, v1_, static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
-		template<typename STL_>
-		constexpr void operator()(STL_& data) const noexcept {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& data) const noexcept {
+			mazeDig_Create(data, static_cast<Matrix_Int_>(maze_dig_type_wall), static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
-		template<typename STL_>
-		constexpr void create(STL_& data, const Int_ v1_, const Int_ v2_) const noexcept {
+		template<typename Matrix_>
+		constexpr void create(Matrix_& data, const Matrix_Int_ v1_, const Matrix_Int_ v2_) const noexcept {
 			mazeDig_Create(data, v1_, v2_);
 		}
-		template<typename STL_>
-		constexpr void create(STL_& data, const Int_ v1_) const noexcept {
-			mazeDig_Create(data, v1_, static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr void create(Matrix_& data, const Matrix_Int_ v1_) const noexcept {
+			mazeDig_Create(data, v1_, static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
-		template<typename STL_>
-		constexpr void create(STL_& data) const noexcept {
-			mazeDig_Create(data, static_cast<Int_>(maze_dig_type_wall), static_cast<Int_>(maze_dig_type_way));
+		template<typename Matrix_>
+		constexpr void create(Matrix_& data) const noexcept {
+			mazeDig_Create(data, static_cast<Matrix_Int_>(maze_dig_type_wall), static_cast<Matrix_Int_>(maze_dig_type_way));
 		}
 
 	};

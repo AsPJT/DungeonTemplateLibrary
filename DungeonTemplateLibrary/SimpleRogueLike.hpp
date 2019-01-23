@@ -17,8 +17,8 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
-	template<typename Int_>
-	constexpr Int_ absTemplate(const Int_& value_) noexcept {
+	template<typename Matrix_Int_>
+	constexpr Matrix_Int_ absTemplate(const Matrix_Int_& value_) noexcept {
 		return (value_ < 0) ? (value_ * -1) : value_;
 	}
 	enum :std::int_fast32_t {
@@ -26,7 +26,7 @@ namespace dtl {
 		RL_COUNT_Y
 	};
 
-	template<typename Int_>
+	template<typename Matrix_Int_>
 	class SimpleRogueLike {
 	private:
 		//生成される部屋の数 (正確に言うと生成される区域の数)---
@@ -47,15 +47,15 @@ namespace dtl {
 	public:
 		//コンストラクタ
 		constexpr SimpleRogueLike() noexcept = default;
-		template <typename STL_>
-		constexpr explicit SimpleRogueLike(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
-			create(stl_, division_min, division_rand_max, room_min_x, room_rand_max_x, room_min_y, room_rand_max_y);
+		template <typename Matrix_>
+		constexpr explicit SimpleRogueLike(Matrix_& matrix_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
+			create(matrix_, division_min, division_rand_max, room_min_x, room_rand_max_x, room_min_y, room_rand_max_y);
 		}
 
 		//ローグライク生成関数
-		template <typename STL_>
-		constexpr void create(STL_& stl_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
-			if (stl_.size() == 0 || stl_.front().size() == 0) return;
+		template <typename Matrix_>
+		constexpr void create(Matrix_& matrix_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
+			if (matrix_.size() == 0 || matrix_.front().size() == 0) return;
 			//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
@@ -69,8 +69,8 @@ namespace dtl {
 					dungeon_road[i][j] = 0;
 				}
 
-			dungeon_division[0][0] = (stl_.size() - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
-			dungeon_division[0][1] = (stl_.front().size() - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
+			dungeon_division[0][0] = (matrix_.size() - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
+			dungeon_division[0][1] = (matrix_.front().size() - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
 			dungeon_division[0][2] = 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 			dungeon_division[0][3] = 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
@@ -159,7 +159,7 @@ namespace dtl {
 
 				for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 					for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
-						stl_[j][k] = static_cast<Int_>(1);
+						matrix_[j][k] = static_cast<Matrix_Int_>(1);
 			}
 
 
@@ -179,17 +179,17 @@ namespace dtl {
 					dungeon_road[roomBefore][3] = (std::size_t)rnd((std::int_fast32_t)(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1)); //後側の通路の位置
 																																			 //前の通路
 					for (std::size_t j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
-						stl_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 
 					//後の通路
 					for (std::size_t j{ dungeon_division[roomAfter][2] }; j < dungeon_room[roomAfter][2]; ++j)
-						stl_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 
 					//通路をつなぐ
 					for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; ++j)
-						stl_[dungeon_division[roomBefore][0]][j] = static_cast<Int_>(1); //通路をマップチップに線画 2から5(上から下)
+						matrix_[dungeon_division[roomBefore][0]][j] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画 2から5(上から下)
 					for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; ++j)
-						stl_[dungeon_division[roomBefore][0]][j] = static_cast<Int_>(1); //通路をマップチップに線画 5から2(下から上)
+						matrix_[dungeon_division[roomBefore][0]][j] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画 5から2(下から上)
 					break;
 
 				case RL_COUNT_Y:
@@ -197,17 +197,17 @@ namespace dtl {
 					dungeon_road[roomBefore][3] = (std::size_t)rnd((std::int_fast32_t)(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1)); //後側の通路の位置
 																																			 //前の通路
 					for (std::size_t j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
-						stl_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 
 					//後の通路
 					for (std::size_t j{ dungeon_division[roomAfter][3] }; j < dungeon_room[roomAfter][3]; ++j)
-						stl_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 
 					//通路をつなぐ
 					for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; ++j)
-						stl_[j][dungeon_division[roomBefore][1]] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[j][dungeon_division[roomBefore][1]] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 					for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; ++j)
-						stl_[j][dungeon_division[roomBefore][1]] = static_cast<Int_>(1); //通路をマップチップに線画
+						matrix_[j][dungeon_division[roomBefore][1]] = static_cast<Matrix_Int_>(1); //通路をマップチップに線画
 					break;
 				}
 			}

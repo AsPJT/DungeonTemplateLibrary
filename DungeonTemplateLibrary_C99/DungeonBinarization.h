@@ -8,34 +8,34 @@
 //:::::----------::::::::::----------::::://
 
 //2値化処理
-void dungeonBinarizationOver(int** stl_, const int x_, const int y_, const int value_) {
+void dungeonBinarizationOver(int** matrix_, const int x_, const int y_, const int value_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
-			if (stl_[i][j] >= value_) stl_[i][j] = 1;
-			else stl_[i][j] = 0;
+			if (matrix_[i][j] >= value_) matrix_[i][j] = 1;
+			else matrix_[i][j] = 0;
 		}
 }
 
-void dungeonBinarization(int** stl_, const int x_, const int y_) {
+void dungeonBinarization(int** matrix_, const int x_, const int y_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
-			if (stl_[i][j]) stl_[i][j] = 1;
-			else stl_[i][j] = 0;
+			if (matrix_[i][j]) matrix_[i][j] = 1;
+			else matrix_[i][j] = 0;
 		}
 }
 
-void dungeonBinarizationBool(int** stl_, int** stl2_, const int x_, const int y_) {
+void dungeonBinarizationBool(int** matrix_, int** stl2_, const int x_, const int y_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
-			if (stl_[i][j]) stl2_[i][j] = 1;
+			if (matrix_[i][j]) stl2_[i][j] = 1;
 			else stl2_[i][j] = 0;
 		}
 }
 
-void dungeonBinarizationBoolOver(int** stl_, int** stl2_, const int x_, const int y_, const int value_) {
+void dungeonBinarizationBoolOver(int** matrix_, int** stl2_, const int x_, const int y_, const int value_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
-			if (stl_[i][j] >= value_) stl2_[i][j] = 1;
+			if (matrix_[i][j] >= value_) stl2_[i][j] = 1;
 			else stl2_[i][j] = 0;
 		}
 }

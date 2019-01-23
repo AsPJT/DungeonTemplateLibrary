@@ -27,8 +27,8 @@ int distanceSqrd_SimpleVoronoiIsland(const struct PairSimpleVoronoiIsland* point
 	}
 
 	//コンストラクタ
-	//void createSimpleVoronoiIslandAll(int** stl_, const int x_, const int y_, const int count_ = 100, const double rbool_ = 0.4, const int land_ = 1, const int sea_ = 0) {
-	void createSimpleVoronoiIslandAll(int** stl_, const int x_, const int y_, const int count_, const double rbool_, const int land_, const int sea_) {
+	//void createSimpleVoronoiIslandAll(int** matrix_, const int x_, const int y_, const int count_ = 100, const double rbool_ = 0.4, const int land_ = 1, const int sea_ = 0) {
+	void createSimpleVoronoiIslandAll(int** matrix_, const int x_, const int y_, const int count_, const double rbool_, const int land_, const int sea_) {
 		struct PairSimpleVoronoiIsland* point = (struct PairSimpleVoronoiIsland*)malloc(sizeof(struct PairSimpleVoronoiIsland) * count_);
 		if (point == NULL) return;
 		int point_count = 0;
@@ -59,13 +59,13 @@ int distanceSqrd_SimpleVoronoiIsland(const struct PairSimpleVoronoiIsland* point
 					dist = ds;
 					ind = it;
 				}
-				if (ind != INT_MAX) stl_[hh][ww] = color[ind];
+				if (ind != INT_MAX) matrix_[hh][ww] = color[ind];
 			}
 		free(point);
 		free(color);
 	}
-	void createSimpleVoronoiIsland(int** stl_, const int x_, const int y_) {
-		createSimpleVoronoiIslandAll(stl_, x_, y_, 100, 0.4, 1, 0);
+	void createSimpleVoronoiIsland(int** matrix_, const int x_, const int y_) {
+		createSimpleVoronoiIslandAll(matrix_, x_, y_, 100, 0.4, 1, 0);
 	}
 
 #endif //Included Dungeon Template Library

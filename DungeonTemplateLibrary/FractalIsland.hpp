@@ -15,20 +15,20 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
-	template<typename Int_>
+	template<typename Matrix_Int_>
 	class FractalIsland {
 	public:
 		//コンストラクタ
 		constexpr FractalIsland() noexcept = default;
-		template<typename STL_>
-		constexpr explicit FractalIsland(STL_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) noexcept {
+		template<typename Matrix_>
+		constexpr explicit FractalIsland(Matrix_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) noexcept {
 			create(world_map, seed_, max_value_);
 		}
 		//ワールドマップ生成
-		template<typename STL_>
-		constexpr void create(STL_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+		template<typename Matrix_>
+		constexpr void create(Matrix_& world_map, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
 			if (seed_ == 0) seed_ = static_cast<std::size_t>(rnd(0xffff));
-			std::array<std::array<Int_, 17>, 17> map_{ {} };
+			std::array<std::array<Matrix_Int_, 17>, 17> map_{ {} };
 
 			//横画面サイズ
 			const std::size_t map_x{ world_map.size() };
@@ -45,13 +45,13 @@ namespace dtl {
 				for (std::size_t j{}; j < chunk_y; ++j) {
 					//四角形の4点の高さを決定
 					rnd.seed(static_cast<std::uint_fast32_t>(seed_ + i + (j * aslib_world_make_seed1) + ((i^j) * aslib_world_make_seed2)));
-					map_[0][0] = static_cast<Int_>(rnd(max_value_));
+					map_[0][0] = static_cast<Matrix_Int_>(rnd(max_value_));
 					rnd.seed(static_cast<std::uint_fast32_t>(seed_ + ((i + 1) % chunk_x) + (j * aslib_world_make_seed1) + ((((i + 1) % chunk_x) ^ j) * aslib_world_make_seed2)));
-					map_[16][0] = static_cast<Int_>(rnd(max_value_));
+					map_[16][0] = static_cast<Matrix_Int_>(rnd(max_value_));
 					rnd.seed(static_cast<std::uint_fast32_t>(seed_ + i + (((j + 1) % chunk_y) * aslib_world_make_seed1) + ((i ^ ((j + 1) % chunk_y)) * aslib_world_make_seed2)));
-					map_[0][16] = static_cast<Int_>(rnd(max_value_));
+					map_[0][16] = static_cast<Matrix_Int_>(rnd(max_value_));
 					rnd.seed(static_cast<std::uint_fast32_t>(seed_ + ((i + 1) % chunk_x) + (((j + 1) % chunk_y) * aslib_world_make_seed1) + ((((i + 1) % chunk_x) ^ ((j + 1) % chunk_y)) * aslib_world_make_seed2)));
-					map_[16][16] = static_cast<Int_>(rnd(max_value_));
+					map_[16][16] = static_cast<Matrix_Int_>(rnd(max_value_));
 
 					//チャンク生成
 					worldMapSimple(map_, max_value_);
@@ -63,22 +63,22 @@ namespace dtl {
 		}
 	private:
 		//チャンク生成
-		constexpr void worldMapMake(const std::size_t x_, const std::size_t y_, const std::size_t size_, const std::size_t t1_, const std::size_t t2_, const std::size_t t3_, const std::size_t t4_, std::array<std::array<Int_, 17>, 17>& map_, const std::size_t max_value_) const noexcept {
+		constexpr void worldMapMake(const std::size_t x_, const std::size_t y_, const std::size_t size_, const std::size_t t1_, const std::size_t t2_, const std::size_t t3_, const std::size_t t4_, std::array<std::array<Matrix_Int_, 17>, 17>& map_, const std::size_t max_value_) const noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
 			//頂点の高さを決める
 			const std::size_t vertex_height{ ((t1_ + t2_ + t3_ + t4_) / 4) + static_cast<std::size_t>(rnd(static_cast<std::int_fast32_t>(size_))) };
-			map_[x_][y_] = ((vertex_height >= max_value_) ? static_cast<Int_>(max_value_) : static_cast<Int_>(vertex_height));
+			map_[x_][y_] = ((vertex_height >= max_value_) ? static_cast<Matrix_Int_>(max_value_) : static_cast<Matrix_Int_>(vertex_height));
 			//四角形の2点同士の中点の高さを決定
 			const std::size_t s1{ ((t1_ + t2_) / 2) };
 			const std::size_t s2{ ((t1_ + t3_) / 2) };
 			const std::size_t s3{ ((t2_ + t4_) / 2) };
 			const std::size_t s4{ ((t3_ + t4_) / 2) };
 			//4つの地点の座標を決める
-			map_[x_ + size_][y_] = static_cast<Int_>(s3);
-			map_[x_ - size_][y_] = static_cast<Int_>(s2);
-			map_[x_][y_ + size_] = static_cast<Int_>(s4);
-			map_[x_][y_ - size_] = static_cast<Int_>(s1);
+			map_[x_ + size_][y_] = static_cast<Matrix_Int_>(s3);
+			map_[x_ - size_][y_] = static_cast<Matrix_Int_>(s2);
+			map_[x_][y_ + size_] = static_cast<Matrix_Int_>(s4);
+			map_[x_][y_ - size_] = static_cast<Matrix_Int_>(s1);
 
 			//分割サイズを半分にする
 			const std::size_t& size{ size_ / static_cast<std::size_t>(2) };
@@ -89,7 +89,7 @@ namespace dtl {
 			worldMapMake(x_ + size, y_ + size, size, map_[x_][y_], s3, s4, t4_, map_, max_value_);
 		}
 		//チャンク生成の呼び出し・実行
-		constexpr void worldMapSimple(std::array<std::array<Int_, 17>, 17>& map_, const std::size_t max_value_) const noexcept {
+		constexpr void worldMapSimple(std::array<std::array<Matrix_Int_, 17>, 17>& map_, const std::size_t max_value_) const noexcept {
 			worldMapMake(8, 8, 8, map_[0][0], map_[16][0], map_[0][16], map_[16][16], map_, max_value_);
 		}
 	};
