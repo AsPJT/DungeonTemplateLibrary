@@ -13,7 +13,105 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
+	//----------   DungeonInit   ----------
+	//1.全てのマスを0で埋める
+	//2.全てのマスを指定した数値で埋める
+
+	//STL版
+	template<typename STL_>
+	constexpr void dungeonInit(STL_& stl_) noexcept {
+		for (std::size_t i{}; i < stl_.size(); ++i)
+			for (std::size_t j{}; j < stl_[i].size(); ++j)
+				stl_[i][j] = 0;
+	}
+	template<typename Int_, typename STL_>
+	constexpr void dungeonInit(STL_& stl_, const Int_ value_) noexcept {
+		for (std::size_t i{}; i < stl_.size(); ++i)
+			for (std::size_t j{}; j < stl_[i].size(); ++j)
+				stl_[i][j] = value_;
+	}
+	//Default版
+	template<typename STL_>
+	constexpr void dungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		for (std::size_t i{}; i < y_; ++i)
+			for (std::size_t j{}; j < x_; ++j)
+				stl_[i][j] = 0;
+	}
+	template<typename Int_, typename STL_>
+	constexpr void dungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
+		for (std::size_t i{}; i < y_; ++i)
+			for (std::size_t j{}; j < x_; ++j)
+				stl_[i][j] = value_;
+	}
+	//Array版
+	template<typename STL_>
+	constexpr void dungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
+		for (std::size_t i{}; i < y_; ++i)
+			for (std::size_t j{}; j < x_; ++j)
+				stl_[i * x_ + j] = 0;
+	}
+	template<typename Int_, typename STL_>
+	constexpr void dungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
+		for (std::size_t i{}; i < y_; ++i)
+			for (std::size_t j{}; j < x_; ++j)
+				stl_[i * x_ + j] = value_;
+	}
+	//RangeBasedFor版
+	template<typename STL_>
+	constexpr void dungeonInit_RangeBasedFor(STL_& stl_) noexcept {
+		for (auto&& i : stl_)
+			for (auto&& j : i)
+				j = 0;
+	}
+	template<typename Int_, typename STL_>
+	constexpr void dungeonInit_RangeBasedFor(STL_& stl_, const Int_ value_) noexcept {
+		for (auto&& i : stl_)
+			for (auto&& j : i)
+				j = value_;
+	}
+	//クラス版
+	template<typename Int_>
+	class DungeonInit {
+	public:
+		//コンストラクタ
+		constexpr DungeonInit() noexcept = default;
+		template<typename STL_>
+		constexpr explicit DungeonInit(STL_& stl_, const Int_ value_ = 0) noexcept {
+			create(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const Int_ value_ = 0) noexcept {
+			dungeonInit(stl_, value_);
+		}
+		template<typename STL_>
+		constexpr explicit DungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			create(stl_, x_, y_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			dungeonInit(stl_, x_, y_, value_);
+		}
+	};
+	template<typename Int_>
+	class DungeonInit_Array {
+	public:
+		//コンストラクタ
+		constexpr DungeonInit_Array() noexcept = default;
+		template<typename STL_>
+		constexpr explicit DungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			create(stl_, x_, y_, value_);
+		}
+		template<typename STL_>
+		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
+			dungeonInit_Array(stl_, x_, y_, value_);
+		}
+	};
+
+
+
 	//----------   PointGrid   ----------
+	//1.偶数マスを1で埋める
+	//2.偶数マスを指定した数値で埋める
 
 	//Array版
 	template<typename STL_>
@@ -94,8 +192,11 @@ namespace dtl {
 		}
 	};
 	
+
+
 	//----------   BorderOdd   ----------
-	//外枠(内部を奇数マスにする)
+	//1.マップの外枠を1で埋める(枠の内部を奇数マスにする)
+	//2.マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 
 	//Array版
 	template<typename STL_>
@@ -260,7 +361,10 @@ namespace dtl {
 		}
 	};
 
+
+
 	//----------   PointGridField   ----------
+	//PointGrid + BorderOdd
 
 	//Array版
 	template<typename STL_>
@@ -339,7 +443,10 @@ namespace dtl {
 		}
 	};
 
+
+
 	//----------   PointGridFieldPutBlock   ----------
+	//PointGrid + BorderOdd + 枠の内部の空マスを指定した確率で埋める
 
 	//STL版
 	template<typename STL_>
@@ -457,7 +564,11 @@ namespace dtl {
 		}
 	};
 
+
+
 	//----------   Border   ----------
+	//1.マップの外枠を1で埋める
+	//2.マップの外枠を指定した数値で埋める
 
 	//STL版
 	template<typename STL_>
@@ -578,98 +689,7 @@ namespace dtl {
 		}
 	};
 
-	//----------   DungeonInit   ----------
 
-	//全てのマスを0で埋める
-	template<typename STL_>
-	constexpr void dungeonInit(STL_& stl_) noexcept {
-		for (std::size_t i{}; i < stl_.size(); ++i)
-			for (std::size_t j{}; j < stl_[i].size(); ++j)
-				stl_[i][j] = 0;
-	}
-	template<typename STL_>
-	constexpr void dungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				stl_[i][j] = 0;
-	}
-	template<typename STL_>
-	constexpr void dungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				stl_[i * x_ + j] = 0;
-	}
-	//全てのマスを指定した数値で埋める
-	template<typename Int_, typename STL_>
-	constexpr void dungeonInit(STL_& stl_, const Int_ value_) noexcept {
-		for (std::size_t i{}; i < stl_.size(); ++i)
-			for (std::size_t j{}; j < stl_[i].size(); ++j)
-				stl_[i][j] = value_;
-	}
-	template<typename Int_, typename STL_>
-	constexpr void dungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				stl_[i][j] = value_;
-	}
-	template<typename Int_, typename STL_>
-	constexpr void dungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				stl_[i * x_ + j] = value_;
-	}
-	//クラス版
-	template<typename Int_>
-	class DungeonInit {
-	public:
-		//コンストラクタ
-		constexpr DungeonInit() noexcept = default;
-		template<typename STL_>
-		constexpr explicit DungeonInit(STL_& stl_, const Int_ value_ = 0) noexcept {
-			create(stl_, value_);
-		}
-		template<typename STL_>
-		constexpr void create(STL_& stl_, const Int_ value_ = 0) noexcept {
-			dungeonInit(stl_, value_);
-		}
-		template<typename STL_>
-		constexpr explicit DungeonInit(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
-			create(stl_, x_, y_, value_);
-		}
-		template<typename STL_>
-		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
-			dungeonInit(stl_, x_, y_, value_);
-		}
-	};
-	template<typename Int_>
-	class DungeonInit_Array {
-	public:
-		//コンストラクタ
-		constexpr DungeonInit_Array() noexcept = default;
-		template<typename STL_>
-		constexpr explicit DungeonInit_Array(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
-			create(stl_, x_, y_, value_);
-		}
-		template<typename STL_>
-		constexpr void create(STL_& stl_, const std::size_t x_, const std::size_t y_, const Int_ value_ = 0) noexcept {
-			dungeonInit_Array(stl_, x_, y_, value_);
-		}
-	};
-
-	//全てのマスを0で埋める
-	template<typename STL_>
-	constexpr void dungeonInit_RangeBasedFor(STL_& stl_) noexcept {
-		for (auto&& i : stl_)
-			for (auto&& j : i)
-				j = 0;
-	}
-	//全てのマスを指定した数値で埋める
-	template<typename Int_, typename STL_>
-	constexpr void dungeonInit_RangeBasedFor(STL_& stl_, const Int_ value_) noexcept {
-		for (auto&& i : stl_)
-			for (auto&& j : i)
-				j = value_;
-	}
 
 	//----------*----------*----------*----------*----------*
 	//初期化系
