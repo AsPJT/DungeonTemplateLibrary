@@ -33,7 +33,7 @@ namespace dtl {
 			//横画面サイズ
 			const std::size_t map_x{ world_map.size() };
 			//縦画面サイズ
-			const std::size_t map_y{ ((world_map.empty()) ? 0 : world_map.front().size()) };
+			const std::size_t map_y{ ((world_map.empty()) ? 0 : world_map[0].size()) };
 
 			const std::size_t chunk_x{ (map_x / 16) };
 			const std::size_t chunk_y{ (map_y / 16) };

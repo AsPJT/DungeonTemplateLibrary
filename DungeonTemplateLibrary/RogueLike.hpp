@@ -54,7 +54,7 @@ namespace dtl {
 			room_rect.clear();
 			branch_point.clear();
 			//最初の部屋を生成
-			if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.empty()) ? 0 : matrix_.front().size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)rnd(4))) return;
+			if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.empty()) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)rnd(4))) return;
 			//機能配置
 			for (std::size_t i = 1; i < way_max_; ++i)
 				if (!createNext(matrix_)) break;
@@ -69,7 +69,7 @@ namespace dtl {
 		//タイルを取得
 		template<typename Matrix_>
 		constexpr Matrix_Int_ getTileType(const Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
-			if ((std::size_t)x_ >= ((matrix_.empty()) ? (std::size_t)0 : matrix_.front().size()) || (std::size_t)y_ >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
+			if ((std::size_t)x_ >= ((matrix_.empty()) ? (std::size_t)0 : matrix_[0].size()) || (std::size_t)y_ >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
 			return matrix_[y_][x_];
 		}
 		//タイルを置く
@@ -231,7 +231,7 @@ namespace dtl {
 		}
 		template<typename Matrix_>
 		constexpr bool placeRect(Matrix_& matrix_, const RogueLikeRect<std::int_fast32_t>& rect, const Matrix_Int_ tile_) noexcept {
-			if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((matrix_.empty()) ? 0 : matrix_.front().size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(matrix_.size()) - 1)
+			if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((matrix_.empty()) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(matrix_.size()) - 1)
 				return false;
 			for (std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
 				for (std::int_fast32_t x = rect.x; x < rect.x + rect.w; ++x)

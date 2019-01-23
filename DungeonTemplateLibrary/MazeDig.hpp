@@ -55,7 +55,7 @@ namespace dtl {
 			std::size_t random = std::size_t(rnd()), counter = 0;
 
 			const std::size_t i_max{ ((data.size() % 2) == 0) ? data.size() - 2 : data.size() - 1 };
-			const std::size_t j_max{ ((data.front().size() % 2) == 0) ? data.front().size() - 2 : data.front().size() - 1 };
+			const std::size_t j_max{ ((data[0].size() % 2) == 0) ? data[0].size() - 2 : data[0].size() - 1 };
 
 			while (counter < 4) {
 				switch ((random + counter) & 3)
@@ -85,7 +85,7 @@ namespace dtl {
 		constexpr std::size_t mazeDig_CreateLoop(const Matrix_& data, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 			std::size_t select_id{};
 			const std::size_t i_max{ ((data.size() % 2) == 0) ? data.size() - 2 : data.size() - 1 };
-			const std::size_t j_max{ ((data.front().size() % 2) == 0) ? data.front().size() - 2 : data.front().size() - 1 };
+			const std::size_t j_max{ ((data[0].size() % 2) == 0) ? data[0].size() - 2 : data[0].size() - 1 };
 
 			for (std::size_t i{ 1 }; i < i_max; i += 2)
 				for (std::size_t j{ 1 }; j < j_max; j += 2) {
@@ -111,8 +111,8 @@ namespace dtl {
 			data[1][1] = id_empty_;
 
 			std::size_t select_id{};
-			std::unique_ptr<std::size_t[]> select_x(new std::size_t[data.size()*data.front().size()]);
-			std::unique_ptr<std::size_t[]> select_y(new std::size_t[data.size()*data.front().size()]);
+			std::unique_ptr<std::size_t[]> select_x(new std::size_t[data.size()*data[0].size()]);
+			std::unique_ptr<std::size_t[]> select_y(new std::size_t[data.size()*data[0].size()]);
 
 			//座標を選ぶ
 			while (true) {

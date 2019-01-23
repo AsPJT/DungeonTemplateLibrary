@@ -44,6 +44,18 @@ namespace dtl {
 			for (std::size_t j{}; j < x_; ++j)
 				matrix_[i][j] = value_;
 	}
+	template<typename Matrix_>
+	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
+			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
+				matrix_[i][j] = 0;
+	}
+	template<typename Matrix_Int_, typename Matrix_>
+	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
+			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
+				matrix_[i][j] = value_;
+	}
 	//Array版
 	template<typename Matrix_>
 	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
@@ -56,6 +68,18 @@ namespace dtl {
 		for (std::size_t i{}; i < y_; ++i)
 			for (std::size_t j{}; j < x_; ++j)
 				matrix_[i * x_ + j] = value_;
+	}
+	template<typename Matrix_>
+	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
+			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
+				matrix_[i * end_x_ + j] = 0;
+	}
+	template<typename Matrix_Int_, typename Matrix_>
+	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
+			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
+				matrix_[i * end_x_ + j] = value_;
 	}
 	//RangeBasedFor版
 	template<typename Matrix_>
@@ -713,8 +737,8 @@ namespace dtl {
 	//値が全て一致しているか確認する
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_.front().size() == 0) return false;
-		const auto& stl_value{ matrix_.front().front() };
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		const auto& stl_value{ matrix_[0][0] };
 		for (std::size_t i{}; i < matrix_.size(); ++i)
 			for (std::size_t j{}; j < matrix_[i].size(); ++j)
 				if (stl_value != matrix_[i][j]) return false;
@@ -723,8 +747,8 @@ namespace dtl {
 
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_.front().size() == 0) return false;
-		const auto& stl_value{ matrix_.front().front() };
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		const auto& stl_value{ matrix_[0][0] };
 		for (const auto& i : matrix_)
 			for (const auto& j : i)
 				if (stl_value != j) return false;

@@ -55,7 +55,7 @@ namespace dtl {
 		//ローグライク生成関数
 		template <typename Matrix_>
 		constexpr void create(Matrix_& matrix_, const std::size_t division_min = 3, const std::size_t division_rand_max = 4, const std::size_t room_min_x = 5, const std::size_t room_rand_max_x = 2, const std::size_t room_min_y = 5, const std::size_t room_rand_max_y = 2) noexcept {
-			if (matrix_.size() == 0 || matrix_.front().size() == 0) return;
+			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 			//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 			const std::size_t mapDivCount{ division_min + (std::size_t)rnd(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
@@ -70,7 +70,7 @@ namespace dtl {
 				}
 
 			dungeon_division[0][0] = (matrix_.size() - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
-			dungeon_division[0][1] = (matrix_.front().size() - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
+			dungeon_division[0][1] = (matrix_[0].size() - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
 			dungeon_division[0][2] = 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 			dungeon_division[0][3] = 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
