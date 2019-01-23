@@ -61,7 +61,10 @@ constexpr std::size_t y_size{ 8 };
 
 ### STL Matrix ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg)
 
-![no_default_array](https://img.shields.io/badge/default%20array-nothing-lightgrey.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg)
+![no_default_array](https://img.shields.io/badge/default%20array-nothing-lightgrey.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![no_std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-nothing-lightgrey.svg)
+
+|Required Class Function:|operator[]|size|
+|:---|:---|:---|
 
 ```cpp
 std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
@@ -69,7 +72,10 @@ std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
 
 ### Default Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
 
-![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg)
+![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
+
+|Required Class Function:|operator[]|
+|:---|:---|
 
 ```cpp
 dungeon_t dungeon_default_matrix[y_size][x_size]{};
@@ -77,7 +83,10 @@ dungeon_t dungeon_default_matrix[y_size][x_size]{};
 
 ### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
-![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg)
+![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
+
+|Required Class Function:|operator[]|
+|:---|:---|
 
 ```cpp
 dungeon_t dungeon_array_matrix[x_size*y_size]{};
@@ -87,7 +96,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.1.12 [ C++14 ]
+## Version 0.1.15 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -99,6 +108,8 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |MSVC|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|
 |GCC|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|![gcc](https://img.shields.io/badge/gcc%204.4.7-passing-brightgreen.svg)|
 |Clang|![clang](https://img.shields.io/badge/clang%203.8.1-passing-brightgreen.svg)|![clang](https://img.shields.io/badge/clang%203.1-passing-brightgreen.svg)|
+|Zapcc|![zapcc](https://img.shields.io/badge/zapcc%201.0.1-passing-brightgreen.svg)|![zapcc](https://img.shields.io/badge/zapcc%201.0.1-unknown-lightgrey.svg)||
+|ICC|![icc](https://img.shields.io/badge/icc-unknown-lightgrey.svg)|![icc](https://img.shields.io/badge/icc-unknown-lightgrey.svg)|
 
 ## RogueLike (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
