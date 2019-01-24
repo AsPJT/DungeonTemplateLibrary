@@ -17,6 +17,12 @@ namespace dtl {
 	//1.全てのマスを0で埋める
 	//2.全てのマスを指定した数値で埋める
 
+	enum eDungeonInit {
+		dungeon_init_empty_id,
+		dungeon_init_enum_num
+	};
+	constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
+
 	//STL版(1)
 	template<typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_) noexcept {
@@ -138,6 +144,13 @@ namespace dtl {
 	//1.偶数マスを1で埋める
 	//2.偶数マスを指定した数値で埋める
 
+	enum ePointGrid {
+		point_grid_empty_id,
+		point_grid_wall_id,
+		point_grid_enum_num
+	};
+	constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
+
 	//Array版
 	template<typename Matrix_>
 	constexpr void createPointGrid_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
@@ -223,6 +236,13 @@ namespace dtl {
 	//----------   BorderOdd   ----------
 	//1.マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	//2.マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
+
+	enum eBorderOdd {
+		border_odd_empty_id,
+		border_odd_wall_id,
+		border_odd_enum_num
+	};
+	constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
 
 	//Array版
 	template<typename Matrix_>
@@ -393,6 +413,13 @@ namespace dtl {
 	//----------   PointGridField   ----------
 	//PointGrid + BorderOdd
 
+	enum ePointGridField {
+		point_grid_field_empty_id,
+		point_grid_field_wall_id,
+		point_grid_field_enum_num
+	};
+	constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
+
 	//Array版
 	template<typename Matrix_>
 	constexpr void createPointGridField_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
@@ -475,6 +502,14 @@ namespace dtl {
 
 	//----------   PointGridFieldPutBlock   ----------
 	//PointGrid + BorderOdd + 枠の内部の空マスを指定した確率で埋める
+
+	enum ePointGridFieldPutBlock {
+		point_grid_field_put_block_empty_id,
+		point_grid_field_put_block_wall_id,
+		point_grid_field_put_block_block_id,
+		point_grid_field_put_block_enum_num
+	};
+	constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
 
 	//STL版
 	template<typename Matrix_>
@@ -597,6 +632,13 @@ namespace dtl {
 	//----------   Border   ----------
 	//1.マップの外枠を1で埋める
 	//2.マップの外枠を指定した数値で埋める
+
+	enum eBorder {
+		border_empty_id,
+		border_wall_id,
+		border_enum_num
+	};
+	constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
 
 	//STL版(1)
 	template<typename Matrix_>
