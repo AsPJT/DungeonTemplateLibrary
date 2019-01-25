@@ -178,7 +178,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
 
 ## Chunk Island (v0.1.X~)
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
 #include <FractalIsland.hpp>
@@ -195,6 +195,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
 ### Image
+![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chunk_island.gif)
 
 ## Maze Dig (v0.1.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
