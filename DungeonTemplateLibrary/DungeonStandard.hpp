@@ -26,79 +26,79 @@ namespace dtl {
 	//STL版(1)
 	template<typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				matrix_[i][j] = 0;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				matrix_[row][col] = 0;
 	}
 	//STL版(2)
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				matrix_[i][j] = value_;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				matrix_[row][col] = value_;
 	}
 	//Default版
 	template<typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				matrix_[i][j] = 0;
+		for (std::size_t row{}; row < y_; ++row)
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[row][col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				matrix_[i][j] = value_;
+		for (std::size_t row{}; row < y_; ++row)
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[row][col] = value_;
 	}
 	template<typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
-		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
-			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
-				matrix_[i][j] = 0;
+		for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+				matrix_[row][col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
-			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
-				matrix_[i][j] = value_;
+		for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+				matrix_[row][col] = value_;
 	}
 	//Array版
 	template<typename Matrix_>
 	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				matrix_[i * x_ + j] = 0;
+		for (std::size_t row{}; row < y_; ++row)
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[row * x_ + col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; ++i)
-			for (std::size_t j{}; j < x_; ++j)
-				matrix_[i * x_ + j] = value_;
+		for (std::size_t row{}; row < y_; ++row)
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[row * x_ + col] = value_;
 	}
 	template<typename Matrix_>
 	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
-		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
-			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
-				matrix_[i * end_x_ + j] = 0;
+		for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+				matrix_[row * end_x_ + col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit_Array(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{ start_y_ }; i < end_y_; ++i)
-			for (std::size_t j{ start_x_ }; j < end_x_; ++j)
-				matrix_[i * end_x_ + j] = value_;
+		for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+				matrix_[row * end_x_ + col] = value_;
 	}
 	//RangeBasedFor版
 	template<typename Matrix_>
 	constexpr void dungeonInit_RangeBasedFor(Matrix_& matrix_) noexcept {
-		for (auto&& i : matrix_)
-			for (auto&& j : i)
-				j = 0;
+		for (auto&& row : matrix_)
+			for (auto&& col : row)
+				col = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void dungeonInit_RangeBasedFor(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-		for (auto&& i : matrix_)
-			for (auto&& j : i)
-				j = value_;
+		for (auto&& row : matrix_)
+			for (auto&& col : row)
+				col = value_;
 	}
 	//クラス版
 	template<typename Matrix_Int_>
@@ -154,44 +154,44 @@ namespace dtl {
 	//Array版
 	template<typename Matrix_>
 	constexpr void createPointGrid_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; i += 2)
-			for (std::size_t j{}; j < x_; j += 2)
-				matrix_[i * x_ + j] = 1;
+		for (std::size_t row{}; row < y_; row += 2)
+			for (std::size_t col{}; col < x_; col += 2)
+				matrix_[row * x_ + col] = 1;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createPointGrid_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; i += 2)
-			for (std::size_t j{}; j < x_; j += 2)
-				matrix_[i * x_ + j] = value_;
+		for (std::size_t row{}; row < y_; row += 2)
+			for (std::size_t col{}; col < x_; col += 2)
+				matrix_[row * x_ + col] = value_;
 	}
 
 	//Default版
 	template<typename Matrix_>
 	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t i{}; i < y_; i += 2)
-			for (std::size_t j{}; j < x_; j += 2)
-				matrix_[i][j] = 1;
+		for (std::size_t row{}; row < y_; row += 2)
+			for (std::size_t col{}; col < x_; col += 2)
+				matrix_[row][col] = 1;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < y_; i += 2)
-			for (std::size_t j{}; j < x_; j += 2)
-				matrix_[i][j] = value_;
+		for (std::size_t row{}; row < y_; row += 2)
+			for (std::size_t col{}; col < x_; col += 2)
+				matrix_[row][col] = value_;
 	}
 
 	//STL版(1)
 	template<typename Matrix_>
 	constexpr void createPointGrid(Matrix_& matrix_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); i += 2)
-			for (std::size_t j{}; j < matrix_[i].size(); j += 2)
-				matrix_[i][j] = 1;
+		for (std::size_t row{}; row < matrix_.size(); row += 2)
+			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
+				matrix_[row][col] = 1;
 	}
 	//STL版(2)
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createPointGrid(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); i += 2)
-			for (std::size_t j{}; j < matrix_[i].size(); j += 2)
-				matrix_[i][j] = value_;
+		for (std::size_t row{}; row < matrix_.size(); row += 2)
+			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
+				matrix_[row][col] = value_;
 	}
 	//クラス版
 	template<typename Matrix_Int_>
@@ -248,41 +248,41 @@ namespace dtl {
 	template<typename Matrix_>
 	constexpr void createBorderOdd_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ < 2) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[i] = 1;
+		for (std::size_t row{}; row < x_; ++row)
+			matrix_[row] = 1;
 		if (y_ % 2 == 1) {
-			for (std::size_t i{}; i < x_; ++i)
-				matrix_[(y_ - 1) * x_ + i] = 1;
+			for (std::size_t row{}; row < x_; ++row)
+				matrix_[(y_ - 1) * x_ + row] = 1;
 		}
-		else for (std::size_t i{}; i < x_; ++i) {
-			matrix_[(y_ - 2) * x_ + i] = 1;
-			matrix_[(y_ - 1) * x_ + i] = 1;
+		else for (std::size_t row{}; row < x_; ++row) {
+			matrix_[(y_ - 2) * x_ + row] = 1;
+			matrix_[(y_ - 1) * x_ + row] = 1;
 		}
 		if (x_ < 2) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i*x_] = 1;
-			if (x_ % 2 == 0) matrix_[i*x_ + x_ - 2] = 1;
-			matrix_[i*x_ + x_ - 1] = 1;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row*x_] = 1;
+			if (x_ % 2 == 0) matrix_[row*x_ + x_ - 2] = 1;
+			matrix_[row*x_ + x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorderOdd_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ < 2) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[i] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[col] = value_;
 		if (y_ % 2 == 1) {
-			for (std::size_t i{}; i < x_; ++i)
-				matrix_[(y_ - 1) * x_ + i] = value_;
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[(y_ - 1) * x_ + col] = value_;
 		}
-		else for (std::size_t i{}; i < x_; ++i) {
-			matrix_[(y_ - 2) * x_ + i] = value_;
-			matrix_[(y_ - 1) * x_ + i] = value_;
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[(y_ - 2) * x_ + col] = value_;
+			matrix_[(y_ - 1) * x_ + col] = value_;
 		}
 		if (x_ < 2) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i*x_] = value_;
-			if (x_ % 2 == 0) matrix_[i*x_ + x_ - 2] = value_;
-			matrix_[i*x_ + x_ - 1] = value_;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row*x_] = value_;
+			if (x_ % 2 == 0) matrix_[row*x_ + x_ - 2] = value_;
+			matrix_[row*x_ + x_ - 1] = value_;
 		}
 	}
 
@@ -290,41 +290,41 @@ namespace dtl {
 	template<typename Matrix_>
 	constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ < 2) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[0][i] = 1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[0][col] = 1;
 		if (y_ % 2 == 1) {
-			for (std::size_t i{}; i < x_; ++i)
-				matrix_[y_ - 1][i] = 1;
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col] = 1;
 		}
-		else for (std::size_t i{}; i < x_; ++i) {
-			matrix_[y_ - 2][i] = 1;
-			matrix_[y_ - 1][i] = 1;
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col] = 1;
+			matrix_[y_ - 1][col] = 1;
 		}
 		if (x_ < 2) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i][0] = 1;
-			if (x_ % 2 == 0) matrix_[i][x_ - 2] = 1;
-			matrix_[i][x_ - 1] = 1;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row][0] = 1;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2] = 1;
+			matrix_[row][x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ < 2) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[0][i] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[0][col] = value_;
 		if (y_ % 2 == 1) {
-			for (std::size_t i{}; i < x_; ++i)
-				matrix_[y_ - 1][i] = value_;
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col] = value_;
 		}
-		else for (std::size_t i{}; i < x_; ++i) {
-			matrix_[y_ - 2][i] = value_;
-			matrix_[y_ - 1][i] = value_;
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col] = value_;
+			matrix_[y_ - 1][col] = value_;
 		}
 		if (x_ < 2) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i][0] = value_;
-			if (x_ % 2 == 0) matrix_[i][x_ - 2] = value_;
-			matrix_[i][x_ - 1] = value_;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row][0] = value_;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2] = value_;
+			matrix_[row][x_ - 1] = value_;
 		}
 	}
 
@@ -332,42 +332,42 @@ namespace dtl {
 	template<typename Matrix_>
 	constexpr void createBorderOdd(Matrix_& matrix_) noexcept {
 		if (matrix_.size() < 2) return;
-		for (std::size_t i{}; i < matrix_[0].size(); ++i)
-			matrix_[0][i] = 1;
+		for (std::size_t col{}; col < matrix_[0].size(); ++col)
+			matrix_[0][col] = 1;
 		if (matrix_.size() % 2 == 1) {
-			for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i)
-				matrix_[matrix_.size() - 1][i] = 1;
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col] = 1;
 		}
-		else for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i) {
-			matrix_[matrix_.size() - 2][i] = 1;
-			matrix_[matrix_.size() - 1][i] = 1;
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col] = 1;
+			matrix_[matrix_.size() - 1][col] = 1;
 		}
-		for (std::size_t i{}; i < matrix_.size(); ++i) {
-			if (matrix_[i].size() < 2) continue;
-			matrix_[i][0] = 1;
-			if (matrix_[i].size() % 2 == 0) matrix_[i][matrix_[i].size() - 2] = 1;
-			matrix_[i][matrix_[i].size() - 1] = 1;
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() < 2) continue;
+			matrix_[row][0] = 1;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2] = 1;
+			matrix_[row][matrix_[row].size() - 1] = 1;
 		}
 	}
 	//STL版(2)
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorderOdd(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() < 2) return;
-		for (std::size_t i{}; i < matrix_[0].size(); ++i)
-			matrix_[0][i] = value_;
+		for (std::size_t col{}; col < matrix_[0].size(); ++col)
+			matrix_[0][col] = value_;
 		if (matrix_.size() % 2 == 1) {
-			for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i)
-				matrix_[matrix_.size() - 1][i] = value_;
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col] = value_;
 		}
-		else for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i) {
-			matrix_[matrix_.size() - 2][i] = value_;
-			matrix_[matrix_.size() - 1][i] = value_;
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col] = value_;
+			matrix_[matrix_.size() - 1][col] = value_;
 		}
-		for (std::size_t i{}; i < matrix_.size(); ++i) {
-			if (matrix_[i].size() < 2) continue;
-			matrix_[i][0] = value_;
-			if (matrix_[i].size() % 2 == 0) matrix_[i][matrix_[i].size() - 2] = value_;
-			matrix_[i][matrix_[i].size() - 1] = value_;
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() < 2) continue;
+			matrix_[row][0] = value_;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2] = value_;
+			matrix_[row][matrix_[row].size() - 1] = value_;
 		}
 	}
 	//クラス版
@@ -587,9 +587,9 @@ namespace dtl {
 		constexpr void create(Matrix_& matrix_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
 			createPointGrid(matrix_, hard_value_);
 			createBorderOdd(matrix_, hard_value_);
-			for (std::size_t i{}; i < matrix_.size(); ++i)
-				for (std::size_t j{}; j < matrix_[i].size(); ++j)
-					if (matrix_[i][j] == 0 && rnd.randBool(probability_)) matrix_[i][j] = soft_value_;
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					if (matrix_[row][col] == 0 && rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
 			createPointGridFieldPlayerSpace(matrix_);
 		}
 
@@ -601,9 +601,9 @@ namespace dtl {
 		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
 			createPointGrid(matrix_, x_, y_, hard_value_);
 			createBorderOdd(matrix_, x_, y_, hard_value_);
-			for (std::size_t i{}; i < y_; ++i)
-				for (std::size_t j{}; j < x_; ++j)
-					if (matrix_[i][j] == 0 && rnd.randBool(probability_)) matrix_[i][j] = soft_value_;
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					if (matrix_[row][col] == 0 && rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
 			createPointGridFieldPlayerSpace(matrix_, x_, y_);
 		}
 	};
@@ -620,9 +620,9 @@ namespace dtl {
 		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
 			createPointGrid_Array(matrix_, x_, y_, hard_value_);
 			createBorderOdd_Array(matrix_, x_, y_, hard_value_);
-			for (std::size_t i{}; i < y_; ++i)
-				for (std::size_t j{}; j < x_; ++j)
-					if (matrix_[i * x_ + j] == 0 && rnd.randBool(probability_)) matrix_[i * x_ + j] = soft_value_;
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					if (matrix_[row * x_ + col] == 0 && rnd.randBool(probability_)) matrix_[row * x_ + col] = soft_value_;
 			createPointGridFieldPlayerSpace_Array(matrix_, x_, y_);
 		}
 	};
@@ -644,82 +644,82 @@ namespace dtl {
 	template<typename Matrix_>
 	constexpr void createBorder(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
-		for (std::size_t i{}; i < matrix_[0].size(); ++i)
-			matrix_[0][i] = 1;
-		for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i)
-			matrix_[matrix_.size() - 1][i] = 1;
-		for (std::size_t i{}; i < matrix_.size(); ++i) {
-			if (matrix_[i].size() == 0) continue;
-			matrix_[i][0] = 1;
-			matrix_[i][matrix_[i].size() - 1] = 1;
+		for (std::size_t col{}; col < matrix_[0].size(); ++col)
+			matrix_[0][col] = 1;
+		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+			matrix_[matrix_.size() - 1][col] = 1;
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			matrix_[row][0] = 1;
+			matrix_[row][matrix_[row].size() - 1] = 1;
 		}
 	}
 	//STL版(2)
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorder(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
-		for (std::size_t i{}; i < matrix_[0].size(); ++i)
-			matrix_[0][i] = value_;
-		for (std::size_t i{}; i < matrix_[matrix_.size() - 1].size(); ++i)
-			matrix_[matrix_.size() - 1][i] = value_;
-		for (std::size_t i{}; i < matrix_.size(); ++i) {
-			if (matrix_[i].size() == 0) continue;
-			matrix_[i][0] = value_;
-			matrix_[i][matrix_[i].size() - 1] = value_;
+		for (std::size_t col{}; col < matrix_[0].size(); ++col)
+			matrix_[0][col] = value_;
+		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+			matrix_[matrix_.size() - 1][col] = value_;
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			matrix_[row][0] = value_;
+			matrix_[row][matrix_[row].size() - 1] = value_;
 		}
 	}
 	//Default版
 	template<typename Matrix_>
 	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[0][i] = 1;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[y_ - 1][i] = 1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[0][col] = 1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[y_ - 1][col] = 1;
 		if (x_ == 0) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i][0] = 1;
-			matrix_[i][x_ - 1] = 1;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row][0] = 1;
+			matrix_[row][x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[0][i] = value_;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[y_ - 1][i] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[0][col] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[y_ - 1][col] = value_;
 		if (x_ == 0) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i][0] = value_;
-			matrix_[i][x_ - 1] = value_;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row][0] = value_;
+			matrix_[row][x_ - 1] = value_;
 		}
 	}
 	//Array版
 	template<typename Matrix_>
 	constexpr void createBorder_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[i] = 1;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[(y_ - 1) * x_ + i] = 1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[col] = 1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[(y_ - 1) * x_ + col] = 1;
 		if (x_ == 0) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i * x_] = 1;
-			matrix_[i * x_ + x_ - 1] = 1;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row * x_] = 1;
+			matrix_[row * x_ + x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createBorder_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[i] = value_;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[(y_ - 1) * x_ + i] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[col] = value_;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[(y_ - 1) * x_ + col] = value_;
 		if (x_ == 0) return;
-		for (std::size_t i{}; i < y_; ++i) {
-			matrix_[i * x_] = value_;
-			matrix_[i * x_ + x_ - 1] = value_;
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row * x_] = value_;
+			matrix_[row * x_ + x_ - 1] = value_;
 		}
 	}
 	//クラス版
@@ -770,9 +770,9 @@ namespace dtl {
 	constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
 		if (matrix_.size() < 1 || matrix_[0].size() < 1) return false;
 		const auto& stl_value{ matrix_[0][0] };
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				if (stl_value != matrix_[i][j]) return false;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				if (stl_value != matrix_[row][col]) return false;
 		return true;
 	}
 
@@ -781,9 +781,9 @@ namespace dtl {
 	constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		const auto& stl_value{ matrix_[0][0] };
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				if (stl_value != matrix_[i][j]) return false;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				if (stl_value != matrix_[row][col]) return false;
 		return true;
 	}
 
@@ -791,9 +791,9 @@ namespace dtl {
 	constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		const auto& stl_value{ matrix_[0][0] };
-		for (const auto& i : matrix_)
-			for (const auto& j : i)
-				if (stl_value != j) return false;
+		for (const auto& row : matrix_)
+			for (const auto& col : row)
+				if (stl_value != col) return false;
 		return true;
 	}
 

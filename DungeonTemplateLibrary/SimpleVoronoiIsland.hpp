@@ -41,9 +41,9 @@ namespace dtl {
 		template<typename Matrix_>
 		constexpr void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
 			for (std::size_t i{}; i < count_; ++i) {
-				createPoint((matrix_.empty()) ? 0 : matrix_[0].size(), matrix_.size(), rbool_, land_, sea_);
+				createPoint((matrix_.size()==0) ? 0 : matrix_[0].size(), matrix_.size(), rbool_, land_, sea_);
 			}
-			createSites(matrix_, (matrix_.empty()) ? 0 : matrix_[0].size(), matrix_.size());
+			createSites(matrix_, (matrix_.size()==0) ? 0 : matrix_[0].size(), matrix_.size());
 		}
 		constexpr void init() noexcept {
 			point.clear();

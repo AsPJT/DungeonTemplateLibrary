@@ -43,7 +43,6 @@ namespace dtl {
 		template<typename Matrix_>
 		constexpr bool mazeDig_Check(const Matrix_& data) const noexcept {
 			if (data.size() <= 2) return false;
-			if (data.empty()) return false;
 			if (data[1].size() <= 2) return false;
 			return true;
 		}

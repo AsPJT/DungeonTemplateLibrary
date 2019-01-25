@@ -21,7 +21,7 @@ namespace dtl {
 		std::int_fast32_t y{};
 	};
 
-	//
+	//指定したマス(1マス)に値を格納する
 	template<typename Matrix_Int_>
 	class Pen {
 	public:
@@ -37,6 +37,7 @@ namespace dtl {
 		}
 	};
 
+	//Flood Fill Algorithm
 	//塗りツール
 	template<typename Matrix_Int_>
 	class Bucket {
@@ -121,7 +122,8 @@ namespace dtl {
 					--left_x;
 				}
 
-				for (std::int_fast32_t i{ left_x }; i <= right_x; ++i) setPoint(matrix_, i, paint_y, paint_value_);
+				for (std::int_fast32_t i{ left_x }; i <= right_x; ++i)
+					setPoint(matrix_, i, paint_y, paint_value_);
 
 				if (paint_y - 1 >= 0) {
 					if (paint_y - 1 == old_y) {
