@@ -9,6 +9,7 @@
 
 #include <cstdint>
 #include <random>
+#include <limits>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -57,6 +58,36 @@ namespace dtl {
 		}
 	};
 	static thread_local Rand rnd;
+
+	class RandXor128
+	{
+	private:
+		std::uint_fast32_t x{ 123456789 }, y{ 362436069 }, z{ 521288629 }, w{ 88675123 };
+	public:
+		//通常の乱数
+		constexpr std::uint_fast32_t operator()() noexcept {
+			const std::uint_fast32_t t{ (x ^ (x << 11)) };
+			x = y; y = z; z = w;
+			return (w = (w ^ (w >> 19)) ^ (t ^ (t >> 8)));
+		}
+		//0～最大値-1 (余りの範囲の一様分布乱数)
+		constexpr std::uint_fast32_t operator()(const std::uint_fast32_t max_) noexcept {
+			return ((std::uint_fast32_t)(((double)operator()() / ((double)std::numeric_limits<std::uint_fast32_t>::max() + 1)) * max_));
+		}
+		//最小値～最大値
+		constexpr std::uint_fast32_t operator()(const std::uint_fast32_t min_, const std::uint_fast32_t max_) noexcept {
+			return ((std::uint_fast32_t)(((double)operator()() / ((double)std::numeric_limits<std::uint_fast32_t>::max() + 1)) * (max_ - min_ + 1)) + min_);
+		}
+
+		constexpr void setSeed(const std::uint_fast32_t x_, const std::uint_fast32_t y_, const std::uint_fast32_t z_, const std::uint_fast32_t w_) noexcept {
+			x = x_;
+			y = y_;
+			z = z_;
+			w = w_;
+		}
+
+	};
+	static thread_local RandXor128 rnd_xor_128;
 
 }
 

@@ -29,10 +29,18 @@ int main() {
 	dtl::dungeonPuts("-- Fractal Island STL Class --");
 	dtl::dungeonInit(big_dungeon_stl_matrix);
 	dtl::FractalIsland<dungeon_t> fractal_island_stl(big_dungeon_stl_matrix);
-	dtl::dungeonBinarization(big_dungeon_stl_matrix, 20);
-	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.4);
+	dtl::dungeonBinarization(big_dungeon_stl_matrix, 160);
+	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.3);
 	dtl::dungeonStringOutputBool(big_dungeon_stl_matrix, "##", "..");
+	
+	//---------- ChunkIsland ----------
 
+	dtl::dungeonPuts("-- Chunk Island STL Class --");
+	dtl::dungeonInit(big_dungeon_stl_matrix);
+	dtl::ChunkIsland<dungeon_t> chunk_island_stl(big_dungeon_stl_matrix);
+	dtl::dungeonBinarization(big_dungeon_stl_matrix, 160);
+	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.3);
+	dtl::dungeonStringOutputBool(big_dungeon_stl_matrix, "##", "..");
 
 	constexpr std::size_t ds_x_size{ 33 };
 	constexpr std::size_t ds_y_size{ 33 };
@@ -43,7 +51,7 @@ int main() {
 	dtl::dungeonPuts("-- Simple Diamond Square Average Island STL Class --");
 	dtl::dungeonInit(ds_dungeon_stl_matrix);
 	dtl::SimpleDiamondSquareAverageIsland<dungeon_t> simple_diamond_square_average_island(ds_dungeon_stl_matrix);
-	dtl::dungeonBinarization(ds_dungeon_stl_matrix, 20);
+	dtl::dungeonBinarization(ds_dungeon_stl_matrix, 160);
 	dtl::noiseShoreBothBool(ds_dungeon_stl_matrix, 0.4);
 	dtl::dungeonStringOutputBool(ds_dungeon_stl_matrix, "##", "..");
 
