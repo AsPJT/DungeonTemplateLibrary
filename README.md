@@ -78,7 +78,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.1.15 [ C++14 ]
+## Version 0.1.20 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -136,7 +136,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
 
-## Chunk Island (v0.1.X~)
+## Chunk Island (v0.1.20~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
