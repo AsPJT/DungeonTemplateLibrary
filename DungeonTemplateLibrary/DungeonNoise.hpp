@@ -15,41 +15,41 @@ namespace dtl {
 
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void noiseBool(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j) {
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 				if (!rnd.randBool(rbool_)) continue;
-				if (matrix_[i][j]) matrix_[i][j] = false_tile_;
-				else matrix_[i][j] = true_tile_;
+				if (matrix_[row][col]) matrix_[row][col] = false_tile_;
+				else matrix_[row][col] = true_tile_;
 			}
 	}
 
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void noiseBool_RangeBasedFor(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (auto&& i : matrix_)
-			for (auto&& j : i) {
+		for (auto&& row : matrix_)
+			for (auto&& col : row) {
 				if (!rnd.randBool(rbool_)) continue;
-				if (j) j = false_tile_;
-				else j = true_tile_;
+				if (col) col = false_tile_;
+				else col = true_tile_;
 			}
 	}
 
 	//ノイズを発生させる
 	template<typename Matrix_>
 	constexpr void noiseShoreBool(Matrix_& matrix_, const double rbool_) noexcept {
-		for (std::size_t i{ 1 }; i < matrix_.size(); ++i)
-			for (std::size_t j{ 1 }; j < matrix_[i].size(); ++j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i][j] == matrix_[i][j - 1] && matrix_[i][j] == matrix_[i - 1][j])) continue;
-				if (matrix_[i][j]) matrix_[i][j] = false;
-				else matrix_[i][j] = true;
+		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if (matrix_[row][col]) matrix_[row][col] = false;
+				else matrix_[row][col] = true;
 			}
 	}
 	template<typename Matrix_>
 	constexpr void rnoiseShoreBool(Matrix_& matrix_, const double rbool_) noexcept {
-		for (std::size_t i{ matrix_.size() - 1 }; i >= 1; --i)
-			for (std::size_t j{ matrix_[i].size() - 1 }; j >= 1; --j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i - 1][j - 1] == matrix_[i][j - 1] && matrix_[i - 1][j - 1] == matrix_[i - 1][j])) continue;
-				if (matrix_[i - 1][j - 1]) matrix_[i - 1][j - 1] = false;
-				else matrix_[i - 1][j - 1] = true;
+		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if (matrix_[row - 1][col - 1]) matrix_[row - 1][col - 1] = false;
+				else matrix_[row - 1][col - 1] = true;
 			}
 	}
 
@@ -76,39 +76,39 @@ namespace dtl {
 
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (std::size_t i{ 1 }; i < matrix_.size(); ++i)
-			for (std::size_t j{ 1 }; j < matrix_[i].size(); ++j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i][j] == matrix_[i][j - 1] && matrix_[i][j] == matrix_[i - 1][j])) continue;
-				if (matrix_[i][j]) matrix_[i][j] = false_tile_;
-				else matrix_[i][j] = true_tile_;
+		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if (matrix_[row][col]) matrix_[row][col] = false_tile_;
+				else matrix_[row][col] = true_tile_;
 			}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void rnoiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (std::size_t i{ matrix_.size() - 1 }; i >= 1; --i)
-			for (std::size_t j{ matrix_[i].size() - 1 }; j >= 1; --j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i - 1][j - 1] == matrix_[i][j - 1] && matrix_[i - 1][j - 1] == matrix_[i - 1][j])) continue;
-				if (matrix_[i - 1][j - 1]) matrix_[i - 1][j - 1] = false_tile_;
-				else matrix_[i - 1][j - 1] = true_tile_;
+		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if (matrix_[row - 1][col - 1]) matrix_[row - 1][col - 1] = false_tile_;
+				else matrix_[row - 1][col - 1] = true_tile_;
 			}
 	}
 
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void noiseShoreOver(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (std::size_t i{ 1 }; i < matrix_.size(); ++i)
-			for (std::size_t j{ 1 }; j < matrix_[i].size(); ++j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i][j] == matrix_[i][j - 1] && matrix_[i][j] == matrix_[i - 1][j])) continue;
-				if (matrix_[i][j] >= true_tile_) matrix_[i][j] = false_tile_;
-				else matrix_[i][j] = true_tile_;
+		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if (matrix_[row][col] >= true_tile_) matrix_[row][col] = false_tile_;
+				else matrix_[row][col] = true_tile_;
 			}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void rnoiseShoreOver(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
-		for (std::size_t i{ matrix_.size() - 1 }; i >= 1; --i)
-			for (std::size_t j{ matrix_[i].size() - 1 }; j >= 1; --j) {
-				if (!rnd.randBool(rbool_) || (matrix_[i - 1][j - 1] == matrix_[i][j - 1] && matrix_[i - 1][j - 1] == matrix_[i - 1][j])) continue;
-				if (matrix_[i - 1][j - 1] >= true_tile_) matrix_[i - 1][j - 1] = false_tile_;
-				else matrix_[i - 1][j - 1] = true_tile_;
+		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if (matrix_[row - 1][col - 1] >= true_tile_) matrix_[row - 1][col - 1] = false_tile_;
+				else matrix_[row - 1][col - 1] = true_tile_;
 			}
 	}
 

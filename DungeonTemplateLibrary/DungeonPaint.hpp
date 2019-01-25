@@ -45,17 +45,17 @@ namespace dtl {
 		//コンストラクタ
 		constexpr Bucket() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Bucket(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) noexcept {
-			paint(matrix_, x_, y_, paint_value_);
+		constexpr explicit Bucket(Matrix_& matrix_, const std::int_fast32_t col_, const std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
+			paint(matrix_, col_, row_, paint_value_);
 		}
 	private:
 		template<typename Matrix_>
-		constexpr void setPoint(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) const noexcept {
-			matrix_[y_][x_] = value_;
+		constexpr void setPoint(Matrix_& matrix_, const std::size_t col_, const std::size_t row_, const Matrix_Int_ value_) const noexcept {
+			matrix_[row_][col_] = value_;
 		}
 		template<typename Matrix_>
-		constexpr Matrix_Int_ getPoint(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-			return matrix_[y_][x_];
+		constexpr Matrix_Int_ getPoint(const Matrix_& matrix_, const std::size_t col_, const std::size_t row_) const noexcept {
+			return matrix_[row_][col_];
 		}
 
 		template<typename Matrix_>

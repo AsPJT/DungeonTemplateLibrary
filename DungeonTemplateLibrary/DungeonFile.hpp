@@ -16,6 +16,8 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
+
+	//文字として保存された数字を数値に変換する
 	template<typename Matrix_Int_>
 	Matrix_Int_ fileReadSplitReturnValue_CSV(const std::string& field_) noexcept {
 		return static_cast<Matrix_Int_>(std::stoi(field_));
@@ -49,6 +51,7 @@ namespace dtl {
 		return std::stold(field_);
 	}
 
+	//csvファイルの読み込み時の分割
 	template<typename Matrix_Int_, typename Matrix_>
 	void fileReadSplit_CSV(Matrix_& matrix_, const std::size_t y_id_, std::string& input_line_, const char delimiter_) noexcept {
 		if (matrix_.size() <= y_id_) return;
@@ -62,7 +65,7 @@ namespace dtl {
 		}
 		return;
 	}
-
+	//csvファイルの読み込み
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileRead_CSV(Matrix_& matrix_, const std::string& str_, const char delimiter_ = ',') noexcept {
 		std::ifstream ifs(str_);
@@ -75,26 +78,26 @@ namespace dtl {
 		}
 		return true;
 	}
-
+	//csvファイルの書き込み
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileWrite_CSV(const Matrix_& matrix_, const std::string& str_) noexcept {
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
 		const bool is_char{ (typeid(Matrix_Int_) == typeid(unsigned char) || typeid(Matrix_Int_) == typeid(signed char)) };
-		for (std::size_t i{}; i < matrix_.size(); ++i) {
-			if (matrix_[i].size() == 0) continue;
-			if(is_char) ofs << static_cast<int>(matrix_[i][0]);
-			else ofs << matrix_[i][0];;
-			for (std::size_t j{ 1 }; j < matrix_[i].size(); ++j) {
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			if(is_char) ofs << static_cast<int>(matrix_[row][0]);
+			else ofs << matrix_[row][0];
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
 				ofs << ',';
-				if (is_char) ofs << static_cast<int>(matrix_[i][j]);
-				else ofs << matrix_[i][j];
+				if (is_char) ofs << static_cast<int>(matrix_[row][col]);
+				else ofs << matrix_[row][col];
 			}
 			ofs << std::endl;
 		}
 		return true;
 	}
-
+	//バイナリファイルの書き込み
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileWrite(const Matrix_& matrix_, const std::string& str_) noexcept {
 		std::ofstream ofs(str_, std::ios::binary);
@@ -106,13 +109,14 @@ namespace dtl {
 		ofs.write(reinterpret_cast<char *>(&y_max), sizeof(std::uint64_t));
 
 		Matrix_Int_ write_value{};
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j) {
-				write_value = matrix_[i][j];
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				write_value = matrix_[row][col];
 				ofs.write(reinterpret_cast<const char *>(&write_value), sizeof(Matrix_Int_));
 			}
 		return true;
 	}
+	//バイナリファイルの読み込み
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileRead(Matrix_& matrix_, const std::string& str_) noexcept {
 		std::ifstream ifs(str_, std::ios::binary);

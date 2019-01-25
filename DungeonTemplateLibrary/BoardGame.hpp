@@ -17,10 +17,10 @@ namespace dtl {
 
 	//指定した場所に駒を置く
 	template<typename Matrix_Int_, typename Matrix_>
-	std::size_t putPieceReversi(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_, const Matrix_Int_ turn_, const bool is_put_) noexcept {
+	std::size_t putPieceReversi(Matrix_& matrix_, const std::size_t  col_, const std::size_t row_, const Matrix_Int_ turn_, const bool is_put_) noexcept {
 		if (matrix_.size() == 0) return 0;
 		std::size_t piece_turn_num{};
-		if (matrix_[y_][x_] > 0) return 0;
+		if (matrix_[row_][col_] > 0) return 0;
 
 		std::unique_ptr<std::int_fast32_t[]> stl_tmp_x(new std::int_fast32_t[matrix_[0].size()]);
 		std::unique_ptr<std::int_fast32_t[]> stl_tmp_y(new std::int_fast32_t[matrix_.size()]);
@@ -30,8 +30,8 @@ namespace dtl {
 				for (std::size_t i{}; i < matrix_[0].size(); ++i) stl_tmp_x[i] = 0;
 				for (std::size_t i{}; i < matrix_.size(); ++i) stl_tmp_y[i] = 0;
 				for (std::size_t turn_tmp_id{};; ++turn_tmp_id) {
-					std::int_fast32_t turn_x{ static_cast<std::int_fast32_t>(x_) + x * (static_cast<std::int_fast32_t>(turn_tmp_id) + 1) };
-					std::int_fast32_t turn_y{ static_cast<std::int_fast32_t>(y_) + y * (static_cast<std::int_fast32_t>(turn_tmp_id) + 1) };
+					std::int_fast32_t turn_x{ static_cast<std::int_fast32_t>(col_) + x * (static_cast<std::int_fast32_t>(turn_tmp_id) + 1) };
+					std::int_fast32_t turn_y{ static_cast<std::int_fast32_t>(row_) + y * (static_cast<std::int_fast32_t>(turn_tmp_id) + 1) };
 					if (turn_x < 0 || turn_x >= matrix_[0].size() || turn_y < 0 || turn_y >= matrix_.size() || matrix_[turn_y][turn_x] == 0) break;
 					if (matrix_[turn_y][turn_x] == turn_) {
 						if (is_put_)
@@ -43,23 +43,23 @@ namespace dtl {
 					stl_tmp_x[turn_tmp_id] = turn_x; stl_tmp_y[turn_tmp_id] = turn_y;
 				}
 			}
-		if (piece_turn_num > 0 && is_put_) matrix_[y_][x_] = turn_;
+		if (piece_turn_num > 0 && is_put_) matrix_[row_][col_] = turn_;
 		return piece_turn_num;
 	}
 	//パスの有無
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr bool isPassReversi(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				if (putPieceReversi(matrix_, j, i, turn_, false)) return false;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				if (putPieceReversi(matrix_, col, row, turn_, false)) return false;
 		return true;
 	}
 	//最初に見つけた置ける場所を選ぶ
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr bool reversiAI_Simple(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				if (putPieceReversi(matrix_, j, i, turn_, true)) return true;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				if (putPieceReversi(matrix_, col, row, turn_, true)) return true;
 		return true;
 	}
 	//最も多くの駒が取れる場所を選ぶ
@@ -67,13 +67,13 @@ namespace dtl {
 	constexpr bool reversiAI_Greed(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
 		std::size_t piece_turn_max{};
 		std::size_t put_piece_x{}, put_piece_y{};
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j) {
-				const auto& num{ putPieceReversi(matrix_, j,i, turn_, false) };
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				const auto& num{ putPieceReversi(matrix_, col,row, turn_, false) };
 				if (piece_turn_max < num || (piece_turn_max == num && dtl::rnd.randBool())) {
 					piece_turn_max = num;
-					put_piece_x = j;
-					put_piece_y = i;
+					put_piece_x = col;
+					put_piece_y = row;
 				}
 			}
 		putPieceReversi(matrix_, put_piece_x, put_piece_y, turn_, true);
@@ -84,13 +84,13 @@ namespace dtl {
 	constexpr bool reversiAI_Unselfishness(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
 		std::size_t piece_turn_min{ std::numeric_limits<std::size_t>::max() };
 		std::size_t put_piece_x{}, put_piece_y{};
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j) {
-				const auto& num{ putPieceReversi(matrix_, j,i, turn_, false) };
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				const auto& num{ putPieceReversi(matrix_, col,row, turn_, false) };
 				if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::rnd.randBool()))) {
 					piece_turn_min = num;
-					put_piece_x = j;
-					put_piece_y = i;
+					put_piece_x = col;
+					put_piece_y = row;
 				}
 			}
 		putPieceReversi(matrix_, put_piece_x, put_piece_y, turn_, true);
@@ -146,14 +146,14 @@ namespace dtl {
 		std::size_t piece_turn_max{};
 		std::size_t put_piece_x{}, put_piece_y{};
 		for (std::uint_fast8_t piece_priority{}; piece_priority < 7 && piece_turn_max == 0; ++piece_priority)
-			for (std::size_t i{}; i < matrix_.size(); ++i)
-				for (std::size_t j{}; j < matrix_[i].size(); ++j) {
-					if (checkPriorityReversi(static_cast<std::int_fast32_t>(j), static_cast<std::int_fast32_t>(i), static_cast<std::int_fast32_t>(matrix_[i].size()) - 1, static_cast<std::int_fast32_t>(matrix_.size()) - 1) != piece_priority) continue;
-					const auto& num{ putPieceReversi(matrix_, j, i, turn_, false) };
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+					if (checkPriorityReversi(static_cast<std::int_fast32_t>(col), static_cast<std::int_fast32_t>(row), static_cast<std::int_fast32_t>(matrix_[row].size()) - 1, static_cast<std::int_fast32_t>(matrix_.size()) - 1) != piece_priority) continue;
+					const auto& num{ putPieceReversi(matrix_, col, row, turn_, false) };
 					if (piece_turn_max < num || (piece_turn_max == num && dtl::rnd.randBool())) {
 						piece_turn_max = num;
-						put_piece_x = j;
-						put_piece_y = i;
+						put_piece_x = col;
+						put_piece_y = row;
 					}
 				}
 		putPieceReversi(matrix_, put_piece_x, put_piece_y, turn_, true);
@@ -169,9 +169,9 @@ namespace dtl {
 	constexpr std::int_fast32_t checkResultReversi(Matrix_& matrix_) noexcept {
 		std::array<std::int_fast32_t, 2> piece_num{ {} };
 		std::int_fast32_t result{};
-		for (std::size_t i{}; i < matrix_.size(); ++i)
-			for (std::size_t j{}; j < matrix_[i].size(); ++j)
-				if (matrix_[i][j] > 0) ++piece_num[matrix_[i][j] - 1];
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				if (matrix_[row][col] > 0) ++piece_num[matrix_[row][col] - 1];
 		if (isPassReversi(matrix_, (Matrix_Int_)1) && isPassReversi(matrix_, (Matrix_Int_)2)) {
 			if (piece_num[0] > piece_num[1]) result = 1;
 			else if (piece_num[0] < piece_num[1]) result = 2;
@@ -315,10 +315,10 @@ namespace dtl {
 	constexpr void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
 		if (y_ < 2) return;
 
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[1][i] = chess_pawn2;
-		for (std::size_t i{}; i < x_; ++i)
-			matrix_[y_ - 2][i] = chess_pawn1;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[1][col] = chess_pawn2;
+		for (std::size_t col{}; col < x_; ++col)
+			matrix_[y_ - 2][col] = chess_pawn1;
 
 		if (x_ < 4) return;
 		matrix_[0][0] = chess_rook2;
