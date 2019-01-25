@@ -103,9 +103,9 @@ namespace dtl {
 			const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 			const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
 
-			std::unique_ptr<std::int_fast32_t[]> rand_up(new std::int_fast32_t[chunk_x + 1]);
-			std::unique_ptr<std::int_fast32_t[]> rand_down(new std::int_fast32_t[chunk_x + 1]);
-			std::unique_ptr<std::int_fast32_t[]> rand_first_row(new std::int_fast32_t[chunk_x + 1]);
+			std::unique_ptr<std::int_fast32_t[]> rand_up{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
+			std::unique_ptr<std::int_fast32_t[]> rand_down{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
+			std::unique_ptr<std::int_fast32_t[]> rand_first_row{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
 
 			for (std::size_t col{}; col < chunk_x; ++col) {
 				rand_up[col] = rnd(max_value_);
@@ -164,8 +164,8 @@ namespace dtl {
 			const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 			const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
 
-			std::unique_ptr<std::int_fast32_t[]> rand_up(new std::int_fast32_t[chunk_x + 1]);
-			std::unique_ptr<std::int_fast32_t[]> rand_down(new std::int_fast32_t[chunk_x + 1]);
+			std::unique_ptr<std::int_fast32_t[]> rand_up{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
+			std::unique_ptr<std::int_fast32_t[]> rand_down{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
 
 			for (std::size_t col{}; col <= chunk_x; ++col)
 				rand_up[col] = 0;

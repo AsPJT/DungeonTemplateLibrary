@@ -93,7 +93,7 @@ namespace dtl {
 
 			const std::int_fast32_t size_max_x{ static_cast<std::int_fast32_t>(matrix_[0].size() - 1) };
 			const std::int_fast32_t size_max_y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
-			std::unique_ptr<BucketBuffer[]> buffer(new BucketBuffer[matrix_[0].size()]);
+			std::unique_ptr<BucketBuffer[]> buffer{ std::make_unique<BucketBuffer[]>(matrix_[0].size()) };
 			std::size_t start_n{};
 			std::size_t end_n{ 1 };
 			std::int_fast32_t left_x_sub_1{};
