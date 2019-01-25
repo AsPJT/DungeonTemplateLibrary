@@ -3,7 +3,7 @@
 
 int main() {
 
-	using dungeon_t = std::uint_fast8_t;
+	using dungeon_t = std::uint_fast16_t;
 	constexpr std::size_t big_x_size{ 128 };
 	constexpr std::size_t big_y_size{ 128 };
 	std::array<std::array<dungeon_t, big_x_size>, big_y_size> big_dungeon_stl_matrix{ {} };
@@ -46,14 +46,26 @@ int main() {
 	constexpr std::size_t ds_y_size{ 33 };
 	std::array<std::array<dungeon_t, ds_x_size>, ds_y_size> ds_dungeon_stl_matrix{ {} };
 
+	//---------- SimpleDiamondSquareAverageIslandCorner ----------
+
+	dtl::dungeonPuts("-- Simple Diamond Square Average Island Corner STL Class --");
+	dtl::dungeonInit(ds_dungeon_stl_matrix);
+	dtl::SimpleDiamondSquareAverageIslandCorner<dungeon_t> simple_diamond_square_average_island_corner(ds_dungeon_stl_matrix);
+	dtl::dungeonBinarization<dungeon_t>(ds_dungeon_stl_matrix, 160);
+	dtl::noiseShoreBothBool(ds_dungeon_stl_matrix, 0.4);
+	dtl::dungeonStringOutputBool(ds_dungeon_stl_matrix, "##", "..");
+
 	//---------- SimpleDiamondSquareAverageIsland ----------
 
 	dtl::dungeonPuts("-- Simple Diamond Square Average Island STL Class --");
 	dtl::dungeonInit(ds_dungeon_stl_matrix);
 	dtl::SimpleDiamondSquareAverageIsland<dungeon_t> simple_diamond_square_average_island(ds_dungeon_stl_matrix);
-	dtl::dungeonBinarization(ds_dungeon_stl_matrix, 160);
-	dtl::noiseShoreBothBool(ds_dungeon_stl_matrix, 0.4);
+	dtl::dungeonNumberOutput(ds_dungeon_stl_matrix, ",");
+	dtl::dungeonBinarization<dungeon_t>(ds_dungeon_stl_matrix, 160);
+	dtl::noiseShoreBothBool(ds_dungeon_stl_matrix, 0.3);
 	dtl::dungeonStringOutputBool(ds_dungeon_stl_matrix, "##", "..");
+
+	
 
 	return 0;
 	//---------- Border ----------

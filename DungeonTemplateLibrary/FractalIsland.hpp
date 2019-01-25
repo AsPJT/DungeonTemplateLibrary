@@ -72,6 +72,35 @@ namespace dtl {
 
 			const std::size_t map_size{ getDiamondSquareMatrixSize((matrix_.size() > matrix_[0].size()) ? matrix_[0].size() : matrix_.size()) };
 
+			matrix_[0][0] = matrix_[map_size/2][0] = static_cast<Matrix_Int_>(rnd(max_value_/2));
+			matrix_[0][map_size] = matrix_[0][map_size/2] = static_cast<Matrix_Int_>(rnd(max_value_/2));
+			matrix_[map_size][0] = matrix_[map_size][map_size/2] = static_cast<Matrix_Int_>(rnd(max_value_/2));
+			matrix_[map_size][map_size] = matrix_[map_size][map_size/2] = static_cast<Matrix_Int_>(rnd(max_value_/2));
+			matrix_[map_size / 2][map_size / 2] = max_value_;
+			createDiamondSquareAverage_Map<Matrix_Int_>(map_size / 4, map_size / 4, map_size / 4, matrix_[0][0], matrix_[map_size / 2][0], matrix_[0][map_size / 2], matrix_[map_size / 2][map_size / 2], matrix_, max_value_);
+			createDiamondSquareAverage_Map<Matrix_Int_>(map_size / 4, map_size*3 / 4, map_size / 4, matrix_[map_size / 2][0], matrix_[map_size][0], matrix_[map_size / 2][map_size / 2], matrix_[map_size][map_size / 2], matrix_, max_value_);
+			createDiamondSquareAverage_Map<Matrix_Int_>(map_size*3 / 4, map_size / 4, map_size / 4, matrix_[0][map_size / 2], matrix_[map_size / 2][map_size / 2], matrix_[0][map_size], matrix_[map_size / 2][map_size], matrix_, max_value_);
+			createDiamondSquareAverage_Map<Matrix_Int_>(map_size*3 / 4, map_size*3 / 4, map_size / 4, matrix_[map_size / 2][map_size / 2], matrix_[map_size][map_size / 2], matrix_[map_size / 2][map_size], matrix_[map_size][map_size], matrix_, max_value_);
+		}
+	};
+
+	//ダイヤモンド・スクエア法(平均値)
+	template<typename Matrix_Int_>
+	class SimpleDiamondSquareAverageIslandCorner {
+	public:
+		//コンストラクタ
+		constexpr SimpleDiamondSquareAverageIslandCorner() noexcept = default;
+		template<typename Matrix_>
+		constexpr explicit SimpleDiamondSquareAverageIslandCorner(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) noexcept {
+			create(matrix_, max_value_);
+		}
+		//ワールドマップ生成
+		template<typename Matrix_>
+		constexpr void create(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) const noexcept {
+			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
+
+			const std::size_t map_size{ getDiamondSquareMatrixSize((matrix_.size() > matrix_[0].size()) ? matrix_[0].size() : matrix_.size()) };
+
 			matrix_[0][0] = static_cast<Matrix_Int_>(max_value_);
 			matrix_[0][map_size] = static_cast<Matrix_Int_>(rnd(max_value_));
 			matrix_[map_size][0] = static_cast<Matrix_Int_>(rnd(max_value_));
