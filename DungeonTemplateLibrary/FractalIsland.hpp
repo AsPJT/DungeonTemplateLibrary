@@ -95,7 +95,7 @@ namespace dtl {
 		}
 		//ワールドマップ生成
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+		void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
 			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
 			if (seed_ == 0) seed_ = static_cast<std::size_t>(rnd(1, 0x7fffffff));
@@ -156,7 +156,7 @@ namespace dtl {
 		}
 		//ワールドマップ生成
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+		void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
 			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
 			if (seed_ == 0) seed_ = static_cast<std::size_t>(rnd(1, 0x7fffffff));
