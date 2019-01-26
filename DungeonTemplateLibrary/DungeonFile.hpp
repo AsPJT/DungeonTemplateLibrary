@@ -13,74 +13,75 @@
 #include <string>
 #include <sstream>
 #include <typeinfo>
+#include <iomanip>
 
 //Dungeon Template Library Namespace
 namespace dtl {
 
 	//文字として保存された数字を数値に変換する
 	template<typename Matrix_Int_>
-	Matrix_Int_ fileReadSplitReturnValue_CSV(const std::string& field_) noexcept {
+	Matrix_Int_ fileReadSplitReturnValue_csv(const std::string& field_) noexcept {
 		return static_cast<Matrix_Int_>(std::stoi(field_));
 	}
 	template<>
-	long fileReadSplitReturnValue_CSV<long>(const std::string& field_) noexcept {
+	long fileReadSplitReturnValue_csv<long>(const std::string& field_) noexcept {
 		return std::stol(field_);
 	}
 	template<>
-	long long fileReadSplitReturnValue_CSV<long long>(const std::string& field_) noexcept {
+	long long fileReadSplitReturnValue_csv<long long>(const std::string& field_) noexcept {
 		return std::stoll(field_);
 	}
 	template<>
-	unsigned long fileReadSplitReturnValue_CSV<unsigned long>(const std::string& field_) noexcept {
+	unsigned long fileReadSplitReturnValue_csv<unsigned long>(const std::string& field_) noexcept {
 		return std::stoul(field_);
 	}
 	template<>
-	unsigned long long fileReadSplitReturnValue_CSV<unsigned long long>(const std::string& field_) noexcept {
+	unsigned long long fileReadSplitReturnValue_csv<unsigned long long>(const std::string& field_) noexcept {
 		return std::stoull(field_);
 	}
 	template<>
-	float fileReadSplitReturnValue_CSV<float>(const std::string& field_) noexcept {
+	float fileReadSplitReturnValue_csv<float>(const std::string& field_) noexcept {
 		return std::stof(field_);
 	}
 	template<>
-	double fileReadSplitReturnValue_CSV<double>(const std::string& field_) noexcept {
+	double fileReadSplitReturnValue_csv<double>(const std::string& field_) noexcept {
 		return std::stod(field_);
 	}
 	template<>
-	long double fileReadSplitReturnValue_CSV<long double>(const std::string& field_) noexcept {
+	long double fileReadSplitReturnValue_csv<long double>(const std::string& field_) noexcept {
 		return std::stold(field_);
 	}
 
 	//csvファイルの読み込み時の分割
 	template<typename Matrix_Int_, typename Matrix_>
-	void fileReadSplit_CSV(Matrix_& matrix_, const std::size_t y_id_, std::string& input_line_, const char delimiter_) noexcept {
+	void fileReadSplit_csv(Matrix_& matrix_, const std::size_t y_id_, std::string& input_line_, const char delimiter_) noexcept {
 		if (matrix_.size() <= y_id_) return;
 		std::istringstream stream(input_line_);
 		std::string field{};
 		std::size_t x_id{};
 		while (std::getline(stream, field, delimiter_)) {
 			if (matrix_[y_id_].size() <= x_id) return;
-			matrix_[y_id_][x_id] = fileReadSplitReturnValue_CSV<Matrix_Int_>(field);
+			matrix_[y_id_][x_id] = fileReadSplitReturnValue_csv<Matrix_Int_>(field);
 			++x_id;
 		}
 		return;
 	}
 	//csvファイルの読み込み
 	template<typename Matrix_Int_, typename Matrix_>
-	bool fileRead_CSV(Matrix_& matrix_, const std::string& str_, const char delimiter_ = ',') noexcept {
+	bool fileRead_csv(Matrix_& matrix_, const std::string& str_, const char delimiter_ = ',') noexcept {
 		std::ifstream ifs(str_);
 		if (ifs.fail()) return false;
 		std::size_t y_id{};
 		std::string line{};
 		while (std::getline(ifs, line)) {
-			fileReadSplit_CSV<Matrix_Int_>(matrix_, y_id, line, delimiter_);
+			fileReadSplit_csv<Matrix_Int_>(matrix_, y_id, line, delimiter_);
 			++y_id;
 		}
 		return true;
 	}
 	//csvファイルの書き込み
 	template<typename Matrix_Int_, typename Matrix_>
-	bool fileWrite_CSV(const Matrix_& matrix_, const std::string& str_) noexcept {
+	bool fileWrite_csv(const Matrix_& matrix_, const std::string& str_) noexcept {
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
 		const bool is_char{ (typeid(Matrix_Int_) == typeid(unsigned char) || typeid(Matrix_Int_) == typeid(signed char)) };
@@ -95,6 +96,92 @@ namespace dtl {
 			}
 			ofs << std::endl;
 		}
+		return true;
+	}
+	//pbmファイルの書き込み
+	template<typename Matrix_Int_, typename Matrix_>
+	bool fileWrite_pbm(const Matrix_& matrix_, const std::string& str_) noexcept {
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+
+		ofs << "P1" << std::endl;
+		ofs << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
+		ofs << matrix_.size() << std::endl;
+
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row][0]) ofs << 1;
+			else ofs << 0;
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				ofs << " ";
+				if (matrix_[row][col]) ofs << 1;
+				else ofs << 0;
+			}
+			ofs << std::endl;
+		}
+		return true;
+	}
+
+	template<typename Matrix_>
+	constexpr void fileWriteStringTemplate_svg(const Matrix_& matrix_, std::ofstream& ofs_) noexcept {
+		ofs_ << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << std::endl;
+		ofs_ << "<svg version=\"1.1\" id=\"layer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 ";
+		ofs_ << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
+		ofs_ << matrix_.size() << "\"";
+		ofs_ << " style=\"enable-background:new 0 0 ";
+		ofs_ << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
+		ofs_ << matrix_.size();
+		ofs_ << ";\" xml:space=\"preserve\">" << std::endl;
+	}
+	void fileWriteRectTemplate_svg(std::ofstream& ofs_, const std::size_t col_, const std::size_t row_) noexcept {
+		ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" width=\"1\" height=\"1\"/>" << std::endl;
+	}
+	void fileWriteRectTemplateColor_svg(std::ofstream& ofs_, const std::size_t col_, const std::size_t row_) noexcept {
+		ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" class=\"st1\" width=\"1\" height=\"1\"/>" << std::endl;
+	}
+
+	//svgファイルの書き込み(色付き)
+	template<typename Matrix_>
+	bool fileWriteColor_svg(const Matrix_& matrix_, const std::string& str_, const std::size_t color_true_ = 0, const std::size_t color_false_ = 0xffffff) noexcept {
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+
+		fileWriteStringTemplate_svg(matrix_, ofs);
+		ofs << "<style type=\"text/css\">.st0{fill:#";
+		ofs << std::hex << std::setw(6) << std::setfill('0') << color_false_ << std::dec;
+		ofs << ";}.st1{fill:#";
+		ofs << std::hex << std::setw(6) << std::setfill('0') << color_true_ << std::dec;
+		ofs << ";}" << std::endl;
+
+		ofs << "</style>" << std::endl;
+		ofs << "<rect class=\"st0\" width=\"" << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << "\" height=\"" << matrix_.size() << "\"/>" << std::endl;
+
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row][0]) fileWriteRectTemplateColor_svg(ofs, 0, row);
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				if (matrix_[row][col]) fileWriteRectTemplateColor_svg(ofs, col, row);
+			}
+		}
+		ofs << "</svg>";
+		return true;
+	}
+	//svgファイルの書き込み
+	template<typename Matrix_>
+	bool fileWrite_svg(const Matrix_& matrix_, const std::string& str_) noexcept {
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+
+		fileWriteStringTemplate_svg(matrix_, ofs);
+
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row][0]) fileWriteRectTemplate_svg(ofs, 0, row);
+			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+				if (matrix_[row][col]) fileWriteRectTemplate_svg(ofs, col, row);
+			}
+		}
+		ofs << "</svg>";
 		return true;
 	}
 	//バイナリファイルの書き込み
@@ -145,6 +232,18 @@ namespace dtl {
 		}
 		return true;
 	}
+
+	//dtlmファイルの読み込み
+	template<typename Matrix_Int_, typename Matrix_>
+	bool fileRead_dtlm(Matrix_& matrix_, const std::string& str_) noexcept {
+		return fileRead(matrix_, str_);
+	}
+	//dtlmファイルの書き込み
+	template<typename Matrix_Int_, typename Matrix_>
+	bool fileWrite_dtlm(Matrix_& matrix_, const std::string& str_) noexcept {
+		return fileWrite(matrix_, str_);
+	}
+
 }
 
 #endif //Included Dungeon Template Library

@@ -24,6 +24,10 @@ int main() {
 	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.4);
 	dtl::dungeonStringOutputBool(big_dungeon_stl_matrix, "##", "..");
 
+	dtl::fileWrite_pbm<dungeon_t>(big_dungeon_stl_matrix, "Save/test.pbm");
+	dtl::fileWrite_svg(big_dungeon_stl_matrix, "Save/test.svg");
+	dtl::fileWriteColor_svg(big_dungeon_stl_matrix, "Save/test_color.svg",0xdab870,0x756228);
+
 	//---------- FractalIsland ----------
 
 	dtl::dungeonPuts("-- Fractal Island STL Class --");
@@ -60,7 +64,6 @@ int main() {
 	dtl::dungeonPuts("-- Simple Diamond Square Average Island STL Class --");
 	dtl::dungeonInit(ds_dungeon_stl_matrix);
 	dtl::SimpleDiamondSquareAverageIsland<dungeon_t> simple_diamond_square_average_island(ds_dungeon_stl_matrix);
-	dtl::dungeonNumberOutput(ds_dungeon_stl_matrix, ",");
 	dtl::dungeonBinarization<dungeon_t>(ds_dungeon_stl_matrix, 160);
 	dtl::noiseShoreBothBool(ds_dungeon_stl_matrix, 0.3);
 	dtl::dungeonStringOutputBool(ds_dungeon_stl_matrix, "##", "..");
