@@ -605,6 +605,8 @@ Underdevelopment...
 |.pbm|fileWrite_pbm|v0.1.22~|
 |.svg|fileWrite_svg|v0.1.22~|
 |.bmp|fileWrite_bmp|v0.1.23~|
+|.md|fileWrite_md|v0.1.24~|
+|.txt|fileWrite_0_9|v0.1.24~|
 
 
 # Artificial Intelligence
