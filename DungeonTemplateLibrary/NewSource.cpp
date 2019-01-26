@@ -24,7 +24,9 @@ int main() {
 	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.4);
 	dtl::dungeonStringOutputBool(big_dungeon_stl_matrix, "##", "..");
 
-	dtl::fileWrite_pbm<dungeon_t>(big_dungeon_stl_matrix, "Save/test.pbm");
+	dtl::fileWrite_bmp(big_dungeon_stl_matrix, "Save/test.bmp");
+
+	dtl::fileWrite_pbm(big_dungeon_stl_matrix, "Save/test.pbm");
 	dtl::fileWrite_svg(big_dungeon_stl_matrix, "Save/test.svg");
 	dtl::fileWriteColor_svg(big_dungeon_stl_matrix, "Save/test_color.svg",0xdab870,0x756228);
 

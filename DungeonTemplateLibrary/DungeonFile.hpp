@@ -14,6 +14,7 @@
 #include <sstream>
 #include <typeinfo>
 #include <iomanip>
+#include <array>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -99,7 +100,7 @@ namespace dtl {
 		return true;
 	}
 	//pbmファイルの書き込み
-	template<typename Matrix_Int_, typename Matrix_>
+	template<typename Matrix_>
 	bool fileWrite_pbm(const Matrix_& matrix_, const std::string& str_) noexcept {
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
@@ -184,6 +185,18 @@ namespace dtl {
 		ofs << "</svg>";
 		return true;
 	}
+	////bmpファイルの書き込み
+	//template<typename Matrix_>
+	//bool fileWrite_bmp(const Matrix_& matrix_, const std::string& str_) noexcept {
+	//	std::ofstream ofs(str_, std::ios::binary);
+	//	if (ofs.fail()) return false;
+
+	//	std::string a({ 0x42,0x4d });
+	//	a.push_back(0x42);
+	//	a.push_back(0x4d);
+	//	a.push_back(0);
+
+	//}
 	//バイナリファイルの書き込み
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileWrite(const Matrix_& matrix_, const std::string& str_) noexcept {
@@ -242,6 +255,104 @@ namespace dtl {
 	template<typename Matrix_Int_, typename Matrix_>
 	bool fileWrite_dtlm(Matrix_& matrix_, const std::string& str_) noexcept {
 		return fileWrite(matrix_, str_);
+	}
+
+
+	constexpr std::size_t file_write_bmp_format_1bit_size{ 62 };
+	constexpr std::array<std::uint8_t, file_write_bmp_format_1bit_size> file_write_bmp_format_1bit{ {
+			//ファイルヘッダ(14)----------
+			0x42,0x4d,
+			0,0,0,0,//point
+			0,0,
+			0,0,
+			0x3e,0,0,0,//point
+			//情報ヘッダ(40)----------
+			0x28,0,0,0,
+			0,0,0,0,//画像x
+			0,0,0,0,//画像y
+			0x1,0,
+			0x1,0,
+			0,0,0,0,
+			0,0,0,0,//point
+			0,0,0,0,//画像x
+			0,0,0,0,//画像y
+			0,0,0,0,
+			0,0,0,0,
+			//パレットデータ(8)----------
+			0xff,0xff,0xff,0,
+			0,0,0,0
+	} };
+
+	void fileWriteMatrixSize_bmp(std::array<std::uint_fast8_t, file_write_bmp_format_1bit_size>& bmp_file_, std::uint32_t x_, std::uint32_t y_) noexcept {
+		bmp_file_[38] = bmp_file_[18] = x_ & 0xff;
+		bmp_file_[39] = bmp_file_[19] = (x_ >>= 8) & 0xff;
+		bmp_file_[40] = bmp_file_[20] = (x_ >>= 8) & 0xff;
+		bmp_file_[41] = bmp_file_[21] = (x_ >>= 8) & 0xff;
+		bmp_file_[42] = bmp_file_[22] = y_ & 0xff;
+		bmp_file_[43] = bmp_file_[23] = (y_ >>= 8) & 0xff;
+		bmp_file_[44] = bmp_file_[24] = (y_ >>= 8) & 0xff;
+		bmp_file_[45] = bmp_file_[25] = (y_ >>= 8) & 0xff;
+	}
+
+	template<typename Matrix_>
+	bool fileWrite_bmp(const Matrix_& matrix_, const std::string& str_, const std::uint32_t x_, const std::uint32_t y_) noexcept {
+		std::ofstream ofs(str_, std::ios::binary);
+		if (ofs.fail()) return false;
+
+		std::array<std::uint_fast8_t, file_write_bmp_format_1bit_size> format_1bit(file_write_bmp_format_1bit);
+
+		fileWriteMatrixSize_bmp(format_1bit, x_, y_);
+
+		std::uint32_t size_x{ x_ / 8 + ((x_ % 8 != 0) ? 1 : 0) };
+		if (size_x % 4 != 0) size_x += 4 - (size_x % 4);
+		const std::size_t size{ size_x };
+
+		std::uint32_t picture_size{ size_x*y_ };
+		std::uint32_t total_size{ file_write_bmp_format_1bit_size + picture_size };
+		format_1bit[2] = total_size & 0xff;
+		format_1bit[3] = (total_size >>= 8) & 0xff;
+		format_1bit[4] = (total_size >>= 8) & 0xff;
+		format_1bit[5] = (total_size >>= 8) & 0xff;
+
+		format_1bit[34] = picture_size & 0xff;
+		format_1bit[35] = (picture_size >>= 8) & 0xff;
+		format_1bit[36] = (picture_size >>= 8) & 0xff;
+		format_1bit[37] = (picture_size >>= 8) & 0xff;
+
+		ofs.write(reinterpret_cast<const char *>(format_1bit.data()), format_1bit.size());
+
+		std::uint8_t str{};
+		for (std::size_t yy{ y_ - 1 }, i{};; --yy) {
+			i = 0;
+			for (std::size_t xx{}; xx < (x_ / 8); ++xx) {
+				str = 0;
+				for (std::size_t count{}; count < 8; ++i, ++count)
+					str += (((matrix_[yy][i]) ? 1 : 0) << (7 - count));
+				ofs.write(reinterpret_cast<const char *>(&str), sizeof(std::uint8_t));
+			}
+			str = 0;
+			if (x_ % 8 != 0)
+				for (std::size_t count{}; count < 8; ++i, ++count) {
+					str += (((matrix_[yy][i]) ? 1 : 0) << (7 - count));
+				}
+			else if (x_ / 8 == size_x) {
+				if (yy == 0) break;
+				continue;
+			}
+			ofs.write(reinterpret_cast<const char *>(&str), sizeof(std::uint8_t));
+			str = 0;
+			for (std::size_t xx{ (x_ / 8) + 1 }; xx < size_x; ++xx) {
+				ofs.write(reinterpret_cast<const char *>(&str), sizeof(std::uint8_t));
+			}
+			std::cout << std::endl;
+			if (yy == 0) break;
+		}
+		return true;
+	}
+
+	template<typename Matrix_>
+	bool fileWrite_bmp(const Matrix_& matrix_, const std::string& str_) noexcept {
+		return fileWrite_bmp(matrix_, str_, (matrix_.size() == 0) ? 0 : static_cast<std::uint32_t>(matrix_[0].size()), static_cast<std::uint32_t>(matrix_.size()));
 	}
 
 }
