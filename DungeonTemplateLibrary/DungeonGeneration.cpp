@@ -35,8 +35,8 @@ int main() {
 	//std::cout << b.data();
 
 	using dungeon_t = std::uint_fast8_t;
-	constexpr std::size_t big_x_size{ 512 };
-	constexpr std::size_t big_y_size{ 512 };
+	constexpr std::size_t big_x_size{ 128 };
+	constexpr std::size_t big_y_size{ 128 };
 	std::array<std::array<dungeon_t, big_x_size>, big_y_size> big_dungeon_stl_matrix{ {} };
 
 
@@ -47,10 +47,8 @@ int main() {
 	dungeon_t dungeon_default_matrix[y_size][x_size]{};
 	dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
-	dtl::FractalIsland<dungeon_t> fractal_island_stl2(big_dungeon_stl_matrix);
-	dtl::dungeonBinarization(big_dungeon_stl_matrix, 100);
-	dtl::noiseShoreBothBool(big_dungeon_stl_matrix, 0.3);
-	dtl::fileWrite_bmp(big_dungeon_stl_matrix, "Save/test.bmp");
+	dtl::RogueLikeCave<dungeon_t> rogue_like_cave(big_dungeon_stl_matrix, 0x5f);
+	dtl::fileWrite_bmp(big_dungeon_stl_matrix, "Save/test_rl.bmp");
 
 	return 0;
 	//---------- SimpleVoronoiIsland ----------
