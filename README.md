@@ -602,7 +602,7 @@ Underdevelopment...
 |:---:|:---|
 |.csv|fileWrite_csv|
 |.dtlm|fileWrite_dtlm|
-|.pgm|fileWrite_pgm|
+|.pbm|fileWrite_pbm|
 |.svg|fileWrite_svg|
 
 
