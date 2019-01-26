@@ -99,6 +99,50 @@ namespace dtl {
 		}
 		return true;
 	}
+	//mdファイルの書き込み
+	template<typename Matrix_>
+	bool fileWrite_md(const Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+
+		const bool is_char{ (typeid(matrix_[0][0]) == typeid(unsigned char) || typeid(matrix_[0][0]) == typeid(signed char)) };
+		ofs << '|';
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			ofs << row << '|';
+		ofs << std::endl << '|';
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			ofs << ":---|";
+		ofs << std::endl;
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			if (matrix_[row].size() == 0) continue;
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				ofs << '|';
+				if (is_char) ofs << static_cast<int>(matrix_[row][col]);
+				else ofs << matrix_[row][col];
+			}
+			ofs << '|';
+			ofs << std::endl;
+		}
+		return true;
+	}
+	//0~9ファイルの書き込み
+	template<typename Matrix_>
+	bool fileWrite_0_9(const Matrix_& matrix_, const std::string& str_) noexcept {
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+		const bool is_char{ (typeid(matrix_[0][0]) == typeid(unsigned char) || typeid(matrix_[0][0]) == typeid(signed char)) };
+		for (std::size_t row{}; row < matrix_.size(); ++row) {
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				if (matrix_[row][col] <= 0) ofs << 0;
+				else if (matrix_[row][col] >= 9) ofs << 9;
+				else if (is_char) ofs << static_cast<int>(matrix_[row][col]);
+				else ofs << matrix_[row][col];
+			}
+			ofs << std::endl;
+		}
+		return true;
+	}
 	//pbmファイルの書き込み
 	template<typename Matrix_>
 	bool fileWrite_pbm(const Matrix_& matrix_, const std::string& str_) noexcept {

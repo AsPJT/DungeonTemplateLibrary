@@ -147,7 +147,7 @@
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NewSource.cpp" />
+    <ClCompile Include="DungeonGeneration.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
