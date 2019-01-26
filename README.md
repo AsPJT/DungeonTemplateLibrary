@@ -107,6 +107,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |0|Sea|Pale Brown|
 |1|Land|Dark Olive|
 
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -126,6 +130,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |Default Value|Name|
 |:---:|:---|
 |0-255|Height|
+
+|Capacity Requirement|
+|:---:|
+|8 bit|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -147,6 +155,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |:---:|:---|
 |0-255|Height|
 
+|Capacity Requirement|
+|:---:|
+|8 bit|
+
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -156,7 +168,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chunk_island.gif)
 
-## Simple Diamond Square Average Corner Island (v0.1.19~)
+## Simple Diamond Square Average Island (v0.1.21~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -166,6 +178,34 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |Default Value|Name|
 |:---:|:---|
 |0-255|Height|
+
+|Capacity Requirement|
+|:---:|
+|8 bit|
+
+### Variable
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Image
+![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island.gif)
+
+## Simple Diamond Square Average Island Corner (v0.1.19~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <FractalIsland.hpp>
+```
+
+|Default Value|Name|
+|:---:|:---|
+|0-255|Height|
+
+|Capacity Requirement|
+|:---:|
+|8 bit|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -193,6 +233,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |3|Entrance|Black|
 |4|Way|Yellow|
 
+|Capacity Requirement|
+|:---:|
+|3 bit|
+
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -215,6 +259,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |0|Wall|Black|
 |1|Empty|White|
 
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -235,6 +283,10 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 |:---:|:---|:---|
 |0|Wall|Blue|
 |1|Empty|White|
+
+|Capacity Requirement|
+|:---:|
+|1 bit|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -265,6 +317,10 @@ dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 |:---:|:---|:---|
 |0|Empty|Black|
 
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -294,6 +350,10 @@ dtl::Border<dungeon_t> border(dungeon);
 |0|Empty|White|
 |1|Wall|Black|
 
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -322,6 +382,10 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 |:---:|:---|:---|
 |0|Empty|White|
 |1|Wall|Black|
+
+|Capacity Requirement|
+|:---:|
+|1 bit|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -353,6 +417,10 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 |0|Empty|White|
 |1|Wall|Black|
 
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -381,6 +449,10 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 |:---:|:---|:---|
 |0|Empty|White|
 |1|Wall|Black|
+
+|Capacity Requirement|
+|:---:|
+|1 bit|
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -411,6 +483,10 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 |0|Empty|White|
 |1|Wall|Black|
 |2|Block|Red|
+
+|Capacity Requirement|
+|:---:|
+|2 bit|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -443,6 +519,10 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 |0|Empty|Green|
 |1|White|White|
 |2|Black|Black|
+
+|Capacity Requirement|
+|:---:|
+|2 bit|
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
@@ -486,6 +566,10 @@ dtl::Chess<dungeon_t> chess(dungeon);
 |11|White Pawn|
 |12|Black Pawn|
 
+|Capacity Requirement|
+|:---:|
+|4 bit|
+
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -502,6 +586,25 @@ Underdevelopment...
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+# File
+
+## File Read
+
+|Name|Function|
+|:---:|:---|
+|.csv|fileRead_csv|
+|.dtlm|fileRead_dtlm|
+
+## File Write
+
+|Name|Function|
+|:---:|:---|
+|.csv|fileWrite_csv|
+|.dtlm|fileWrite_dtlm|
+|.pgm|fileWrite_pgm|
+|.svg|fileWrite_svg|
+
 
 # Artificial Intelligence
 
