@@ -596,18 +596,22 @@ Underdevelopment...
 |.csv|fileRead_csv|v0.1.12~|
 |.dtlm|fileRead_dtlm|v0.1.12~|
 
-## File Write
+## File Write (Text)
 
 |Name|Function|Version|
 |:---:|:---|:---|
 |.csv|fileWrite_csv|v0.1.12~|
 |.dtlm|fileWrite_dtlm|v0.1.22~|
-|.pbm|fileWrite_pbm|v0.1.22~|
-|.svg|fileWrite_svg|v0.1.22~|
-|.bmp|fileWrite_bmp|v0.1.23~|
 |.md|fileWrite_md|v0.1.24~|
 |.txt|fileWrite_0_9|v0.1.24~|
 
+## File Write (Picture)
+
+|Name|Function|Version|
+|:---:|:---|:---|
+|.pbm|fileWrite_pbm|v0.1.22~|
+|.svg|fileWrite_svg|v0.1.22~|
+|.bmp|fileWrite_bmp|v0.1.23~|
 
 # Artificial Intelligence
 
