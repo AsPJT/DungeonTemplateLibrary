@@ -591,19 +591,20 @@ Underdevelopment...
 
 ## File Read
 
-|Name|Function|
-|:---:|:---|
-|.csv|fileRead_csv|
-|.dtlm|fileRead_dtlm|
+|Name|Function|Version|
+|:---:|:---|:---|
+|.csv|fileRead_csv|v0.1.12~|
+|.dtlm|fileRead_dtlm|v0.1.12~|
 
 ## File Write
 
-|Name|Function|
-|:---:|:---|
-|.csv|fileWrite_csv|
-|.dtlm|fileWrite_dtlm|
-|.pgm|fileWrite_pgm|
-|.svg|fileWrite_svg|
+|Name|Function|Version|
+|:---:|:---|:---|
+|.csv|fileWrite_csv|v0.1.12~|
+|.dtlm|fileWrite_dtlm|v0.1.22~|
+|.pbm|fileWrite_pbm|v0.1.22~|
+|.svg|fileWrite_svg|v0.1.22~|
+|.bmp|fileWrite_bmp|v0.1.23~|
 
 
 # Artificial Intelligence
