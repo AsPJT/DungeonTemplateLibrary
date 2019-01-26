@@ -587,6 +587,25 @@ Underdevelopment...
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
+# File
+
+## File Read
+
+|Name|Function|
+|:---:|:---|
+|.csv|fileRead_csv|
+|.dtlm|fileRead_dtlm|
+
+## File Write
+
+|Name|Function|
+|:---:|:---|
+|.csv|fileWrite_csv|
+|.dtlm|fileWrite_dtlm|
+|.pgm|fileWrite_pgm|
+|.svg|fileWrite_svg|
+
+
 # Artificial Intelligence
 
 ## Reversi AI (v0.1.11~)
