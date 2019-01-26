@@ -1,7 +1,7 @@
 ﻿# Dungeon Template Library
  <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.0-passing-brightgreen.svg"></a>
  
-[![DTL](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/DTL_logo.svg "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
+[![DTL](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/logo.svg "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
 
 DTL (Dungeon Template Library)
 
