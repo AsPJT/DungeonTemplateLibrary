@@ -69,15 +69,15 @@ namespace dtl {
 			std::int_fast32_t ds{}, dist{};
 			for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 				for (std::size_t ww{}; ww < w_; ++ww) {
-					ind = std::numeric_limits<std::size_t>::max();
-					dist = std::numeric_limits<std::int_fast32_t>::max();
+					ind = (std::numeric_limits<std::size_t>::max)();
+					dist = (std::numeric_limits<std::int_fast32_t>::max)();
 					for (std::size_t it{}; it < point.size(); ++it) {
 						const std::pair<std::size_t, std::size_t>& p{ point[it] };
 						if ((ds = distanceSqrd(p, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh))) >= dist) continue;
 						dist = ds;
 						ind = it;
 					}
-					if (ind != std::numeric_limits<std::size_t>::max()) matrix_[hh][ww] = color[ind];
+					if (ind != (std::numeric_limits<std::size_t>::max)()) matrix_[hh][ww] = color[ind];
 				}
 		}
 	};

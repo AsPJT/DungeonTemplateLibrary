@@ -15,7 +15,7 @@
 #include "DungeonStandard.hpp"
 #include "DungeonFile.hpp"
 
-//生成系
+//ダンジョン
 #include "FractalIsland.hpp"
 #include "MazeDig.hpp"
 #include "RogueLike.hpp"
@@ -23,7 +23,7 @@
 #include "SimpleVoronoiIsland.hpp"
 #include "BoardGame.hpp"
 
-//変更ツール
+//ペイント
 #include "DungeonPaint.hpp"
 
 #endif //Included Dungeon Template Library

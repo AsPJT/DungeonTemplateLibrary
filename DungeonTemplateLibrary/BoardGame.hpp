@@ -82,7 +82,7 @@ namespace dtl {
 	//最も少なく駒が取れる場所を選ぶ
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr bool reversiAI_Unselfishness(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-		std::size_t piece_turn_min{ std::numeric_limits<std::size_t>::max() };
+		std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
 		std::size_t put_piece_x{}, put_piece_y{};
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
