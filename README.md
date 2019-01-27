@@ -634,6 +634,9 @@ dtl::Pen<dungeon_t> pen(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Image
+![pen](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/Paint/pen.gif)
+
 ## Bucket (v0.1.9~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
@@ -652,7 +655,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon);
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
 ### Image
-
+![bucket](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/Paint/bucket.gif)
 
 # File
 
