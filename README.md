@@ -297,6 +297,34 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
 
+## 17. RogueLike Cave (v0.1.25~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <RogueLike.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Wall|Black|
+|1|Room|Brown|
+|2|Unknown||
+|3|Unknown||
+|4|Unknown||
+
+|Capacity Requirement|
+|:---:|
+|3 bit|
+
+### Variable
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Image
+![rl1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/rogue_like_cave.gif)
+
 # [Type] Normal Generation
 
 ## 7. DungeonInit (v0.1.10~)
@@ -586,6 +614,45 @@ Underdevelopment...
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+# Paint Tool
+
+## Pen (v0.1.9~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonPaint.hpp>
+```
+
+```cpp
+dtl::Pen<dungeon_t> pen(dungeon);
+```
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+## Bucket (v0.1.9~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <DungeonPaint.hpp>
+```
+
+```cpp
+dtl::Bucket<dungeon_t> bucket(dungeon);
+```
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Image
+
 
 # File
 
