@@ -340,7 +340,11 @@ Underdevelopment...
 ```
 
 ```cpp
+//class
 dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
+
+//function
+dtl::dungeonInit(dungeon);
 ```
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
@@ -371,7 +375,11 @@ dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 ```
 
 ```cpp
+//class
 dtl::Border<dungeon_t> border(dungeon);
+
+//function
+dtl::createBorder(dungeon);
 ```
 
 |Matrix Size Min|Matrix Size Max|
@@ -404,7 +412,11 @@ dtl::Border<dungeon_t> border(dungeon);
 ```
 
 ```cpp
+//class
 dtl::BorderOdd<dungeon_t> border_odd(dungeon);
+
+//function
+dtl::createBorderOdd(dungeon);
 ```
 
 |Matrix Size Min|Matrix Size Max|
@@ -438,7 +450,11 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 ```
 
 ```cpp
+//class
 dtl::PointGrid<dungeon_t> point_grid(dungeon);
+
+//function
+dtl::createPointGrid(dungeon);
 ```
 
 |Matrix Size Min|Matrix Size Max|
@@ -471,7 +487,11 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ```
 
 ```cpp
+//class
 dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
+
+//function
+dtl::createPointGridField(dungeon);
 ```
 
 |Matrix Size Min|Matrix Size Max|
@@ -504,6 +524,7 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 ```
 
 ```cpp
+//class
 dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ```
 
@@ -540,6 +561,7 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ```
 
 ```cpp
+//class
 dtl::Reversi<dungeon_t> reversi(dungeon);
 ```
 
@@ -576,6 +598,7 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 ```
 
 ```cpp
+//class
 dtl::Chess<dungeon_t> chess(dungeon);
 ```
 
