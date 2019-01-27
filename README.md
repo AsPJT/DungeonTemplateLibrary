@@ -325,6 +325,11 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![rl1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/rogue_like_cave.gif)
 
+## Maze α
+![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+Underdevelopment...
+
 # [Type] Normal Generation
 
 ## [6] DungeonInit (v0.1.10~)
@@ -607,13 +612,32 @@ dtl::Chess<dungeon_t> chess(dungeon);
 ### Image
 ![chess](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chess.png)
 
-## Maze α
-![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-Underdevelopment...
-
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+# [Type] Horizontal Scroll Generation
+
+## [18?] Mountain (v0.1.26~)
+
+```cpp
+//#include <???.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|1|Mountain||
+
+|Capacity Requirement|
+|:---:|
+|1 bit|
+
+### Variable
+![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Image
 
 # Paint Tool
 
