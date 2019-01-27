@@ -95,7 +95,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 # [Type] Terrain Generation
 
-## 2. Simple Voronoi Island (v0.1.0~)
+## [1] Simple Voronoi Island (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
@@ -120,7 +120,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
-## 4. Fractal Island (v0.1.1~)
+## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
@@ -144,7 +144,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
 
-## 16. Chunk Island (v0.1.20~)
+## [15] Chunk Island (v0.1.20~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -168,7 +168,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chunk_island.gif)
 
-## 17. Simple Diamond Square Average Island (v0.1.21~)
+## [16] Simple Diamond Square Average Island (v0.1.21~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -192,7 +192,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island.gif)
 
-## 15. Simple Diamond Square Average Island Corner (v0.1.19~)
+## [14] Simple Diamond Square Average Island Corner (v0.1.19~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -218,7 +218,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 # [Type] Dungeon Generation
 
-## 3. RogueLike (v0.1.0~)
+## [2] RogueLike (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -247,7 +247,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
 
-## 6. Simple RogueLike (v0.1.3~)
+## [5] Simple RogueLike (v0.1.3~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
@@ -272,7 +272,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
 
-## 5. Maze Dig (v0.1.2~)
+## [4] Maze Dig (v0.1.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 ```cpp
@@ -297,7 +297,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
 
-## 17. RogueLike Cave (v0.1.25~)
+## [17] RogueLike Cave (v0.1.25~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -327,7 +327,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 # [Type] Normal Generation
 
-## 7. DungeonInit (v0.1.10~)
+## [6] DungeonInit (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -358,7 +358,7 @@ dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
 
-## 8. Border (v0.1.10~)
+## [7] Border (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -391,7 +391,7 @@ dtl::Border<dungeon_t> border(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
-## 9. BorderOdd (v0.1.10~)
+## [8] BorderOdd (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -425,7 +425,7 @@ dtl::BorderOdd<dungeon_t> border_odd(dungeon);
 ![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border_odd.png)
 
 
-## 10. PointGrid (v0.1.10~)
+## [9] PointGrid (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -458,7 +458,7 @@ dtl::PointGrid<dungeon_t> point_grid(dungeon);
 ### Image
 ![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid.png)
 
-## 11. PointGridField (v0.1.10~)
+## [10] PointGridField (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -491,7 +491,7 @@ dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
 ### Image
 ![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field.png)
 
-## 13. PointGridFieldPutBlock (v0.1.13~)
+## [12] PointGridFieldPutBlock (v0.1.13~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -527,7 +527,7 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 
 # [Type] BoardGame Generation
 
-## 12. Reversi (v0.1.10~)
+## [11] Reversi (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
@@ -563,7 +563,7 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 
 ![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi_32.gif)
 
-## 14. Chess (v0.1.14~)
+## [13] Chess (v0.1.14~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
