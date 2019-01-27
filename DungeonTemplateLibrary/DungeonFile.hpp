@@ -81,11 +81,12 @@ namespace dtl {
 		return true;
 	}
 	//csvファイルの書き込み
-	template<typename Matrix_Int_, typename Matrix_>
+	template<typename Matrix_>
 	bool fileWrite_csv(const Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
-		const bool is_char{ (typeid(Matrix_Int_) == typeid(unsigned char) || typeid(Matrix_Int_) == typeid(signed char)) };
+		const bool is_char{ (typeid(matrix_[0][0]) == typeid(unsigned char) || typeid(matrix_[0][0]) == typeid(signed char)) };
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
 			if(is_char) ofs << static_cast<int>(matrix_[row][0]);
@@ -242,8 +243,9 @@ namespace dtl {
 
 	//}
 	//バイナリファイルの書き込み
-	template<typename Matrix_Int_, typename Matrix_>
+	template<typename Matrix_>
 	bool fileWrite(const Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		std::ofstream ofs(str_, std::ios::binary);
 		if (ofs.fail()) return false;
 
@@ -252,17 +254,18 @@ namespace dtl {
 		ofs.write(reinterpret_cast<char *>(&x_max), sizeof(std::uint64_t));
 		ofs.write(reinterpret_cast<char *>(&y_max), sizeof(std::uint64_t));
 
-		Matrix_Int_ write_value{};
+		auto write_value{matrix_[0][0]};
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 				write_value = matrix_[row][col];
-				ofs.write(reinterpret_cast<const char *>(&write_value), sizeof(Matrix_Int_));
+				ofs.write(reinterpret_cast<const char *>(&write_value), sizeof(write_value));
 			}
 		return true;
 	}
 	//バイナリファイルの読み込み
-	template<typename Matrix_Int_, typename Matrix_>
+	template<typename Matrix_>
 	bool fileRead(Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		std::ifstream ifs(str_, std::ios::binary);
 		if (ifs.fail()) return false;
 		if (ifs.eof()) return false;
@@ -272,11 +275,11 @@ namespace dtl {
 		if (ifs.eof()) return false;
 		ifs.read(reinterpret_cast<char *>(&y_max), sizeof(std::uint64_t));
 
-		Matrix_Int_ read_value{};
+		auto read_value{ matrix_[0][0] };
 		std::size_t x_count{};
 		std::size_t y_count{};
 		while (!ifs.eof()) {
-			ifs.read(reinterpret_cast<char *>(&read_value), sizeof(Matrix_Int_));
+			ifs.read(reinterpret_cast<char *>(&read_value), sizeof(matrix_[0][0]));
 			if (x_count >= static_cast<std::size_t>(x_max)) {
 				x_count = static_cast<std::size_t>(0);
 				++y_count;
@@ -296,7 +299,7 @@ namespace dtl {
 		return fileRead(matrix_, str_);
 	}
 	//dtlmファイルの書き込み
-	template<typename Matrix_Int_, typename Matrix_>
+	template<typename Matrix_>
 	bool fileWrite_dtlm(Matrix_& matrix_, const std::string& str_) noexcept {
 		return fileWrite(matrix_, str_);
 	}
@@ -306,10 +309,10 @@ namespace dtl {
 	constexpr std::array<std::uint8_t, file_write_bmp_format_1bit_size> file_write_bmp_format_1bit{ {
 			//ファイルヘッダ(14)----------
 			0x42,0x4d,
-			0,0,0,0,//point
+			0,0,0,0,//データ数
 			0,0,
 			0,0,
-			0x3e,0,0,0,//point
+			0x3e,0,0,0,//データ数
 			//情報ヘッダ(40)----------
 			0x28,0,0,0,
 			0,0,0,0,//画像x
@@ -317,7 +320,7 @@ namespace dtl {
 			0x1,0,
 			0x1,0,
 			0,0,0,0,
-			0,0,0,0,//point
+			0,0,0,0,//データ数
 			0,0,0,0,//画像x
 			0,0,0,0,//画像y
 			0,0,0,0,
@@ -397,6 +400,33 @@ namespace dtl {
 	template<typename Matrix_>
 	bool fileWrite_bmp(const Matrix_& matrix_, const std::string& str_) noexcept {
 		return fileWrite_bmp(matrix_, str_, (matrix_.size() == 0) ? 0 : static_cast<std::uint32_t>(matrix_[0].size()), static_cast<std::uint32_t>(matrix_.size()));
+	}
+
+	template<typename Matrix_>
+	bool fileWrite_All(const Matrix_& matrix_, const std::string& str_) noexcept {
+		//Text
+		fileWrite_dtlm(matrix_, str_ + ".dtlm");
+		fileWrite_csv(matrix_, str_ + ".csv");
+		fileWrite_md(matrix_, str_ + ".md");
+		fileWrite_0_9(matrix_, str_ + "_0_9.txt");
+		//Picture
+		fileWrite_pbm(matrix_, str_ + ".pbm");
+		fileWrite_svg(matrix_, str_ + ".svg");
+		fileWrite_bmp(matrix_, str_ + ".bmp");
+		return true;
+	}
+	template<typename Matrix_>
+	bool fileWriteFolder_All(const Matrix_& matrix_, const std::string& str_1, const std::string& str_2) noexcept {
+		//Text
+		fileWrite_dtlm(matrix_, str_1 + "dtlm\\" + str_2 + ".dtlm");
+		fileWrite_csv(matrix_, str_1 + "csv\\" + str_2 + ".csv");
+		fileWrite_md(matrix_, str_1 + "md\\" + str_2 + ".md");
+		fileWrite_0_9(matrix_, str_1 + "txt\\" + str_2 + "_0_9.txt");
+		//Picture
+		fileWrite_pbm(matrix_, str_1 + "pbm\\" + str_2 + ".pbm");
+		fileWrite_svg(matrix_, str_1 + "svg\\" + str_2 + ".svg");
+		fileWrite_bmp(matrix_, str_1 + "bmp\\" + str_2 + ".bmp");
+		return true;
 	}
 
 }
