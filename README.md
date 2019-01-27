@@ -787,6 +787,10 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |:---|:---|:---|:---|:---|
 |-0.0295|31.7327|32.2625|0.0048|60.7481|
 
+## Matrix
+
+![matrix](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/matrix.svg)
+
 ## License
 
 These codes are licensed under CC0.
