@@ -625,7 +625,7 @@ Underdevelopment...
 ```
 
 ```cpp
-dtl::Pen<dungeon_t> pen(dungeon);
+dtl::Pen<dungeon_t> pen(dungeon, x, y, paint_value);
 ```
 
 ### Variable
@@ -645,7 +645,7 @@ dtl::Pen<dungeon_t> pen(dungeon);
 ```
 
 ```cpp
-dtl::Bucket<dungeon_t> bucket(dungeon);
+dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 ```
 
 ### Variable
