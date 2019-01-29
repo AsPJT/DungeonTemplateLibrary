@@ -143,6 +143,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
+![fi3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/fractal_island_3d.gif)
 
 ## [15] Chunk Island (v0.1.20~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
