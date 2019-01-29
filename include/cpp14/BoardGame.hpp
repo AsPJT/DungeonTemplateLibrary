@@ -22,8 +22,8 @@ namespace dtl {
 		std::size_t piece_turn_num{};
 		if (matrix_[row_][col_] > 0) return 0;
 
-		std::unique_ptr<std::int_fast32_t[]> stl_tmp_x(new std::int_fast32_t[matrix_[0].size()]);
-		std::unique_ptr<std::int_fast32_t[]> stl_tmp_y(new std::int_fast32_t[matrix_.size()]);
+		std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ std::make_unique<std::int_fast32_t[]>(matrix_[0].size()) };
+		std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ std::make_unique<std::int_fast32_t[]>(matrix_.size()) };
 
 		for (std::int_fast32_t y{ -1 }; y <= 1; ++y)
 			for (std::int_fast32_t x{ -1 }; x <= 1; ++x) {
@@ -82,7 +82,7 @@ namespace dtl {
 	//最も少なく駒が取れる場所を選ぶ
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr bool reversiAI_Unselfishness(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-		std::size_t piece_turn_min{ std::numeric_limits<std::size_t>::max() };
+		std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
 		std::size_t put_piece_x{}, put_piece_y{};
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {

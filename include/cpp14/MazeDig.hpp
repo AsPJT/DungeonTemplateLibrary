@@ -110,8 +110,8 @@ namespace dtl {
 			data[1][1] = id_empty_;
 
 			std::size_t select_id{};
-			std::unique_ptr<std::size_t[]> select_x(new std::size_t[data.size()*data[0].size()]);
-			std::unique_ptr<std::size_t[]> select_y(new std::size_t[data.size()*data[0].size()]);
+			std::unique_ptr<std::size_t[]> select_x{ std::make_unique<std::size_t[]>(data.size()*data[0].size()) };
+			std::unique_ptr<std::size_t[]> select_y{ std::make_unique<std::size_t[]>(data.size()*data[0].size()) };
 
 			//座標を選ぶ
 			while (true) {

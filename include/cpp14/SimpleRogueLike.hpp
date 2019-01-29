@@ -74,8 +74,8 @@ namespace dtl {
 			dungeon_division[0][2] = 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 			dungeon_division[0][3] = 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
-			dungeon_road[0][0] = std::numeric_limits<std::size_t>::max();
-			dungeon_road[0][1] = std::numeric_limits<std::size_t>::max();
+			dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
+			dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
 
 			//マップを区分けしていく処理(区域を分割する処理)
 			std::size_t division_After{};

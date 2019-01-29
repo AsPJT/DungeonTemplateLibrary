@@ -352,10 +352,9 @@ namespace dtl {
 
 		std::uint32_t size_x{ x_ / 8 + ((x_ % 8 != 0) ? 1 : 0) };
 		if (size_x % 4 != 0) size_x += 4 - (size_x % 4);
-		const std::size_t size{ size_x };
 
 		std::uint32_t picture_size{ size_x*y_ };
-		std::uint32_t total_size{ file_write_bmp_format_1bit_size + picture_size };
+		std::uint32_t total_size{ static_cast<std::uint32_t>(file_write_bmp_format_1bit_size) + picture_size };
 		format_1bit[2] = total_size & 0xff;
 		format_1bit[3] = (total_size >>= 8) & 0xff;
 		format_1bit[4] = (total_size >>= 8) & 0xff;

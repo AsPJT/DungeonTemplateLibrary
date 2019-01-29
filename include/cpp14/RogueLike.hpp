@@ -10,6 +10,8 @@
 #include <cstddef>
 #include <cstdint>
 #include "DungeonRandom.hpp"
+#include "DungeonBinarization.hpp"
+#include "DungeonNoise.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -246,6 +248,26 @@ namespace dtl {
 		}
 
 	};
+
+	//ローグライク洞窟
+	template<typename Matrix_Int_>
+	class RogueLikeCave {
+	public:
+		//コンストラクタ
+		constexpr RogueLikeCave() noexcept = default;
+		template<typename Matrix_>
+		constexpr explicit RogueLikeCave(Matrix_& matrix_, const std::size_t way_max_ = 20) noexcept {
+			create(matrix_, way_max_);
+		}
+		//ワールドマップ生成
+		template<typename Matrix_>
+		constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
+			dtl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
+			dtl::dungeonBinarization(matrix_, 1);
+			dtl::noiseShoreBothBool(matrix_, 0.1);
+		}
+	};
+
 }
 
 #endif //Included Dungeon Template Library

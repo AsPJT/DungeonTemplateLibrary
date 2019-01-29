@@ -72,11 +72,11 @@ namespace dtl {
 		}
 		//0～最大値-1 (余りの範囲の一様分布乱数)
 		constexpr std::uint_fast32_t operator()(const std::uint_fast32_t max_) noexcept {
-			return ((std::uint_fast32_t)(((double)operator()() / ((double)std::numeric_limits<std::uint_fast32_t>::max() + 1)) * max_));
+			return ((std::uint_fast32_t)(((double)operator()() / ((double)(std::numeric_limits<std::uint_fast32_t>::max)() + 1)) * max_));
 		}
 		//最小値～最大値
 		constexpr std::uint_fast32_t operator()(const std::uint_fast32_t min_, const std::uint_fast32_t max_) noexcept {
-			return ((std::uint_fast32_t)(((double)operator()() / ((double)std::numeric_limits<std::uint_fast32_t>::max() + 1)) * (max_ - min_ + 1)) + min_);
+			return ((std::uint_fast32_t)(((double)operator()() / ((double)(std::numeric_limits<std::uint_fast32_t>::max)() + 1)) * (max_ - min_ + 1)) + min_);
 		}
 
 		constexpr void setSeed(const std::uint_fast32_t x_, const std::uint_fast32_t y_, const std::uint_fast32_t z_, const std::uint_fast32_t w_) noexcept {
