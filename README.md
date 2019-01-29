@@ -143,6 +143,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
+![fi3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/fractal_island_3d.gif)
 
 ## [15] Chunk Island (v0.1.20~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -732,6 +733,12 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |.pbm|fileWrite_pbm|v0.1.22~|
 |.svg|fileWrite_svg|v0.1.22~|
 |.bmp|fileWrite_bmp|v0.1.23~|
+
+## File Write (3D)
+
+|Name|Function|Version|
+|:---:|:---|:---|
+|.obj|fileWrite_obj|v0.1.27~|
 
 # Artificial Intelligence
 
