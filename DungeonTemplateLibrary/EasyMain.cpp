@@ -3,7 +3,24 @@
 #include <bitset>
 
 namespace dtl {
+	//ダンジョン内の値を操作
 	namespace mat {
+
+		//指定位置に値を代入する
+		template<typename Matrix_Int_, typename Matrix_>
+		void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			matrix_[y_][x_] = value_;
+		}
+		//指定位置の値を取得する
+		template<typename Matrix_Int_, typename Matrix_>
+		void get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
+			value_ = matrix_[y_][x_];
+		}
+		template<typename Matrix_>
+		auto get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			return matrix_[y_][x_];
+		}
+
 		//上下反転
 		template<typename Matrix_>
 		void flip(Matrix_& matrix_) noexcept {
