@@ -734,6 +734,12 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |.svg|fileWrite_svg|v0.1.22~|
 |.bmp|fileWrite_bmp|v0.1.23~|
 
+## File Write (3D)
+
+|Name|Function|Version|
+|:---:|:---|:---|
+|.obj|fileWrite_obj|v0.1.27~|
+
 # Artificial Intelligence
 
 ## Reversi AI (v0.1.11~)
