@@ -142,6 +142,7 @@
     <ClInclude Include="DungeonStandard.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
     <ClInclude Include="DungeonMatrix.hpp" />
+    <ClInclude Include="HorizontalScroll.hpp" />
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleRogueLike.hpp" />

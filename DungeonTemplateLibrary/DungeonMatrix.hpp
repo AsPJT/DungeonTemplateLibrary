@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_MATRIX
+ï»¿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_MATRIX
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_MATRIX
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -12,21 +12,21 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
-	//ƒ_ƒ“ƒWƒ‡ƒ““à‚Ì’l‚ğ‘€ì
+	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å†…ã®å€¤ã‚’æ“ä½œ
 	namespace matrix {
 
-		//w’èˆÊ’u‚É’l‚ğ‘ã“ü‚·‚é
+		//æŒ‡å®šä½ç½®ã«å€¤ã‚’ä»£å…¥ã™ã‚‹
 		template<typename Matrix_Int_, typename Matrix_>
-		void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		constexpr void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 			matrix_[y_][x_] = value_;
 		}
 		template<typename Matrix_>
-		void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		constexpr void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 			matrix_[y_][x_] = 0;
 		}
-		//w’èˆÊ’u‚Ì’l‚ğæ“¾‚·‚é
+		//æŒ‡å®šä½ç½®ã®å€¤ã‚’å–å¾—ã™ã‚‹
 		template<typename Matrix_Int_, typename Matrix_>
-		void get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
+		constexpr void get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
 			value_ = matrix_[y_][x_];
 		}
 		template<typename Matrix_>
@@ -34,15 +34,15 @@ namespace dtl {
 			return matrix_[y_][x_];
 		}
 
-		//ƒTƒCƒY•ÏX(std::vector, std::deque“™)
+		//ã‚µã‚¤ã‚ºå¤‰æ›´(std::vector, std::dequeç­‰)
 		template<typename Matrix_>
-		void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 			matrix_.resize(y_);
 			for (std::size_t row{}; row < y_; ++row)
 				matrix_[row].resize(x_);
 		}
 		template<typename Matrix_Int_, typename Matrix_>
-		void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 			matrix_.resize(y_);
 			for (std::size_t row{}; row < y_; ++row) {
 				matrix_[row].resize(x_);
@@ -51,9 +51,9 @@ namespace dtl {
 			}
 		}
 
-		//ã‰º”½“]
+		//ä¸Šä¸‹åè»¢
 		template<typename Matrix_>
-		void flip(Matrix_& matrix_) noexcept {
+		constexpr void flip(Matrix_& matrix_) noexcept {
 			for (std::size_t row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
 				if (row >= row2) break;
 				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -63,9 +63,9 @@ namespace dtl {
 				}
 			}
 		}
-		//¶‰E”½“]
+		//å·¦å³åè»¢
 		template<typename Matrix_>
-		void mirror(Matrix_& matrix_) noexcept {
+		constexpr void mirror(Matrix_& matrix_) noexcept {
 			for (std::size_t row{}; row < matrix_.size(); ++row)
 				for (std::size_t col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
 					if (col >= col2) break;

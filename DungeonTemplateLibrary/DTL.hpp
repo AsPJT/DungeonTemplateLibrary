@@ -23,6 +23,7 @@
 #include "SimpleRogueLike.hpp"
 #include "SimpleVoronoiIsland.hpp"
 #include "BoardGame.hpp"
+#include "HorizontalScroll.hpp"
 
 //ƒyƒCƒ“ƒg
 #include "DungeonPaint.hpp"
