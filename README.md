@@ -643,12 +643,13 @@ dtl::Chess<dungeon_t> chess(dungeon);
 ## [18?] Mountain (v0.1.26~)
 
 ```cpp
-//#include <???.hpp>
+#include <HorizontalScroll.hpp>
 ```
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
-|1|Mountain||
+|0|Empty|Blue|
+|1|Mountain|Green|
 
 |Capacity Requirement|
 |:---:|
@@ -661,6 +662,8 @@ dtl::Chess<dungeon_t> chess(dungeon);
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
 ### Image
+
+![mountain](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/mountain.gif)
 
 # Paint Tool
 
