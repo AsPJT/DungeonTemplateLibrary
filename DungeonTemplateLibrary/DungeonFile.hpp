@@ -230,18 +230,31 @@ namespace dtl {
 		ofs << "</svg>";
 		return true;
 	}
-	////bmpファイルの書き込み
-	//template<typename Matrix_>
-	//bool fileWrite_bmp(const Matrix_& matrix_, const std::string& str_) noexcept {
-	//	std::ofstream ofs(str_, std::ios::binary);
-	//	if (ofs.fail()) return false;
+	//objファイルの書き込み
+	template<typename Matrix_>
+	bool fileWrite_obj(const Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
 
-	//	std::string a({ 0x42,0x4d });
-	//	a.push_back(0x42);
-	//	a.push_back(0x4d);
-	//	a.push_back(0);
+		const bool is_char{ (typeid(matrix_[0][0]) == typeid(unsigned char) || typeid(matrix_[0][0]) == typeid(signed char)) };
+		if (is_char)
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					ofs << "v " << col << " " << static_cast<int>(matrix_[row][col]) << " " << row << std::endl;
+		else
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					ofs << "v " << col << " " << matrix_[row][col] << " " << row << std::endl;
+		const std::size_t max_size{ matrix_.size()*matrix_[0].size() };
 
-	//}
+		std::size_t x_size{ matrix_[0].size() };
+		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+			for (std::size_t col{ 2 }; col <= matrix_[row].size(); ++col) {
+				ofs << "f " << (row*x_size + col) << " " << ((row - 1)*x_size + col) << " " << ((row - 1)*x_size + (col - 1)) << std::endl;
+				ofs << "f " << (row*x_size + col) << " " << (row*x_size + (col - 1)) << " " << ((row - 1)*x_size + (col - 1)) << std::endl;
+			}
+	}
 	//バイナリファイルの書き込み
 	template<typename Matrix_>
 	bool fileWrite(const Matrix_& matrix_, const std::string& str_) noexcept {

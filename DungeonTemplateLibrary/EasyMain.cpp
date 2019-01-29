@@ -6,7 +6,7 @@
 
 int main() {
 
-	std::array<std::bitset<128>, 64> matrix{ {} };
+	//std::array<std::bitset<128>, 64> matrix{ {} };
 
 	//std::vector<std::vector<bool>> matrix;
 	//dtl::matrix::resize(matrix, 128, 64);
@@ -14,17 +14,28 @@ int main() {
 	//dtl::SimpleVoronoiIsland<bool> generation(matrix);
 	//dtl::noiseShoreBothBool(matrix, 0.3);
 
-	dtl::createMountain<bool>(matrix);
+	//dtl::PaintTrajectory<bool> pt(10);
 
-	dtl::matrix::set(matrix, 0, 0, 1);
+	//dtl::createMountain<bool>(matrix);
 
-	dtl::dungeonStringOutputBool(matrix, "##", "  ");
+	//dtl::matrix::set(matrix, 0, 0, 1);
 
-	std::cout << std::endl;
+	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
 
-	dtl::matrix::flip(matrix);
-	dtl::matrix::mirror(matrix);
-	dtl::dungeonStringOutputBool(matrix, "##", "  ");
+	//std::cout << std::endl;
+
+	//dtl::matrix::flip(matrix);
+	//dtl::matrix::mirror(matrix);
+	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
+
+	std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
+	dtl::FractalIsland<std::uint_fast8_t> fi(matrix, 0,60);
+	dtl::fileWrite_obj(matrix, "test.obj");
+
+	//dtl::dungeonNumberOutput(matrix, ",");
+
+	//dtl::dungeonBinarization(matrix, 40);
+	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
 
 	return 0;
 }

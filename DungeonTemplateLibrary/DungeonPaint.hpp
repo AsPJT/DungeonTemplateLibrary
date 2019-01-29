@@ -14,6 +14,34 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
+	//beta
+	template<typename Matrix_Int_>
+	class PaintTrajectory
+	{
+	public:
+		constexpr PaintTrajectory(const std::size_t size_) :
+			type(std::make_unique<std::uint_fast8_t[]>(size_)),
+			value(std::make_unique<Matrix_Int_[]>(size_)), 
+			x(std::make_unique<std::size_t[]>(size_)),
+			y(std::make_unique<std::size_t[]>(size_)),
+			size(size_) {}
+
+		void add(const std::uint_fast8_t type_, const Matrix_Int_ value_) noexcept {
+
+		}
+	private:
+		std::unique_ptr<std::uint_fast8_t[]> type;
+		std::unique_ptr<Matrix_Int_[]> value;
+		std::unique_ptr<std::size_t[]> x;
+		std::unique_ptr<std::size_t[]> y;
+
+		std::size_t start{};
+		std::size_t end{};
+		std::size_t now{};
+		std::size_t size{};
+	};
+
+
 	struct BucketBuffer {
 		std::int_fast32_t left_x{};
 		std::int_fast32_t right_x{};
