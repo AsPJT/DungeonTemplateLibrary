@@ -8,6 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 #include <cstddef>
+#include <array>
 #include "DungeonRandom.hpp"
 
 //Dungeon Template Library Namespace
@@ -22,6 +23,7 @@ namespace dtl {
 		dungeon_init_enum_num
 	};
 	constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 12> dungeon_init_name{ { "DungeonInit" } };
 
 	//STL版(1)
 	template<typename Matrix_>
@@ -150,6 +152,7 @@ namespace dtl {
 		point_grid_enum_num
 	};
 	constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 10> point_grid_name{ { "PointGrid" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -243,6 +246,7 @@ namespace dtl {
 		border_odd_enum_num
 	};
 	constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 10> border_odd_name{ { "BorderOdd" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -419,6 +423,7 @@ namespace dtl {
 		point_grid_field_enum_num
 	};
 	constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 15> point_grid_field_name{ { "PointGridField" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -510,6 +515,7 @@ namespace dtl {
 		point_grid_field_put_block_enum_num
 	};
 	constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 23> point_grid_field_put_block_name{ { "PointGridFieldPutBlock" } };
 
 	//STL版
 	template<typename Matrix_>
@@ -985,6 +991,7 @@ namespace dtl {
 		border_enum_num
 	};
 	constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 7> border_name{ { "Border" } };
 
 	//STL版(1)
 	template<typename Matrix_>

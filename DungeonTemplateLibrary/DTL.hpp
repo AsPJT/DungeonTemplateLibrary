@@ -14,6 +14,7 @@
 #include "DungeonRandom.hpp"
 #include "DungeonStandard.hpp"
 #include "DungeonFile.hpp"
+#include "DungeonMatrix.hpp"
 
 //ƒ_ƒ“ƒWƒ‡ƒ“
 #include "FractalIsland.hpp"
