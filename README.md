@@ -640,7 +640,7 @@ dtl::Chess<dungeon_t> chess(dungeon);
 
 # [Type] Horizontal Scroll Generation
 
-## [18?] Mountain (v0.1.26~)
+## [18] Mountain (v0.1.26~)
 
 ```cpp
 #include <HorizontalScroll.hpp>
