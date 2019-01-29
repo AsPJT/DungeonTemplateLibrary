@@ -29,8 +29,8 @@ int main() {
 	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
 
 	std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
-	dtl::FractalIsland<std::uint_fast8_t> fi(matrix, 0,60);
-	dtl::fileWrite_obj(matrix, "test.obj");
+	dtl::ChunkIsland<std::uint_fast8_t> fi(matrix, 0,60);
+	dtl::fileWriteTerrain_obj(matrix, "test.obj");
 
 	//dtl::dungeonNumberOutput(matrix, ",");
 

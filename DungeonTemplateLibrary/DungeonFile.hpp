@@ -232,7 +232,7 @@ namespace dtl {
 	}
 	//objファイルの書き込み
 	template<typename Matrix_>
-	bool fileWrite_obj(const Matrix_& matrix_, const std::string& str_) noexcept {
+	bool fileWriteTerrain_obj(const Matrix_& matrix_, const std::string& str_) noexcept {
 		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
