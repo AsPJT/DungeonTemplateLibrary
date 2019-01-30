@@ -10,6 +10,7 @@ DTL (Dungeon Template Library)
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 ### [>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+### [>> Web Trial (Wandbox)](https://wandbox.org/permlink/gUpHgebVyqi7D3F4)
 
 # Overview
 
