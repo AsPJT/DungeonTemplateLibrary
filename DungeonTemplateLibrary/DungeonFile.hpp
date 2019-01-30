@@ -256,7 +256,7 @@ namespace dtl {
 			}
 	}
 
-	void objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) noexcept {
+	void fileWrite_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) noexcept {
 		ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << std::endl;
 		ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << std::endl;
 		ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << std::endl;
@@ -264,7 +264,7 @@ namespace dtl {
 		ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << std::endl;
 		ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << std::endl;
 	}
-	void objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) noexcept {
+	void fileWrite_objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) noexcept {
 		ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << std::endl;
 		ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << std::endl;
 		ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << std::endl;
@@ -273,25 +273,24 @@ namespace dtl {
 		ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z + size_z << " " << std::endl;
 		ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z + size_z << " " << std::endl;
 		ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z + size_z << " " << std::endl;
-		objOutputId(ofs_, id_);
+		fileWrite_objOutputId(ofs_, id_);
 	}
 
-	template<typename Matrix_>
-	bool fileWriteBoard_obj(const Matrix_& matrix_, const std::string& str_) noexcept {
+	template<typename Matrix_Int_, typename Matrix_>
+	bool fileWriteBoard_obj(const Matrix_& matrix_, const std::string& str_, const std::int_fast32_t block_size_ = 1, const Matrix_Int_ output_id_ = 1) noexcept {
 		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 		std::ofstream ofs(str_);
 		if (ofs.fail()) return false;
 
-		objOutputCube(ofs, 0, -1, 0, (std::int_fast32_t)matrix_[0].size(), 1, (std::int_fast32_t)matrix_.size());
+		fileWrite_objOutputCube(ofs, 0, -1, 0, (std::int_fast32_t)matrix_[0].size(), 1, (std::int_fast32_t)matrix_.size());
 
 		std::size_t square_count{ 1 };
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
-				if (matrix_[row][col]) {
-					objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, 1, 1, square_count);
+				if (matrix_[row][col] == output_id_) {
+					fileWrite_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, block_size_, 1, square_count);
 					++square_count;
 				}
-
 		return true;
 	}
 	//バイナリファイルの書き込み
