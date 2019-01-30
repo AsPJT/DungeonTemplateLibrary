@@ -739,6 +739,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |Name|Function|Version|
 |:---:|:---|:---|
 |.obj|fileWriteTerrain_obj|v0.1.27~|
+|.obj|fileWriteBoard_obj|v0.1.28~|
 
 # Artificial Intelligence
 
