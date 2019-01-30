@@ -28,9 +28,17 @@ int main() {
 	//dtl::matrix::mirror(matrix);
 	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
 
-	std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
-	dtl::ChunkIsland<std::uint_fast8_t> fi(matrix, 0,60);
-	dtl::fileWriteTerrain_obj(matrix, "test.obj");
+	//std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
+	std::array<std::array<std::uint_fast16_t, 17>, 17> matrix{};
+
+	//dtl::SimpleVoronoiIsland<std::uint_fast8_t> svi(matrix);
+	//dtl::noiseShoreBothBool(matrix, 0.4);
+	//dtl::FractalIsland<std::uint_fast8_t> fi(matrix,0,60);
+	//dtl::fileWriteTerrain_obj(matrix, "test.obj");
+
+
+	dtl::createPointGridField(matrix);
+	dtl::fileWriteBoard_obj(matrix, "test_board.obj");
 
 	//dtl::dungeonNumberOutput(matrix, ",");
 
