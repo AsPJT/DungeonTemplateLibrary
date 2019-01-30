@@ -78,7 +78,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.1.2 [ C++14 ]
+## Version 0.1.25 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -739,6 +739,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |Name|Function|Version|
 |:---:|:---|:---|
 |.obj|fileWriteTerrain_obj|v0.1.27~|
+|.obj|fileWriteBoard_obj|v0.1.28~|
 
 # Artificial Intelligence
 
