@@ -297,6 +297,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
+![maze_dig_3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/maze_dig.gif)
 
 ## [17] RogueLike Cave (v0.1.25~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
