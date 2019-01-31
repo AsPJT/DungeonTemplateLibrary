@@ -1,5 +1,5 @@
 ﻿# Dungeon Template Library
- <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.X-passing-brightgreen.svg"></a>
+ <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.X-passing-brightgreen.svg"></a> [![slack](https://img.shields.io/badge/slack-online-red.svg)](https://join.slack.com/t/dungeon-generation/shared_invite/enQtNTM4MzQwMDU5MTIyLWEwNjAwMTQyZjk4MDQyNDU0Y2NlMTU2OTE5YTcwOTM5MzJmZWJlMWY3ZWRkZWU4ZDY1MjJlNDU4M2Y4ZDZmOWI)
  
 [![DTL](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/logo.svg "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
 
@@ -10,6 +10,7 @@ DTL (Dungeon Template Library)
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 ### [>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+### [>> Web Trial (Wandbox)](https://wandbox.org/permlink/gUpHgebVyqi7D3F4)
 
 # Overview
 
@@ -117,6 +118,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
 
@@ -140,6 +144,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
@@ -166,6 +173,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chunk_island.gif)
 
@@ -190,6 +200,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island.gif)
 
@@ -213,6 +226,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island_corner.gif)
@@ -244,6 +260,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
 ![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
@@ -270,8 +289,12 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
+![srl3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/simple_roguelike.gif)
 
 ## [4] Maze Dig (v0.1.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
@@ -294,6 +317,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
@@ -323,6 +349,9 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![rl1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/rogue_like_cave.gif)
@@ -367,6 +396,9 @@ dtl::dungeonInit(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
 
@@ -400,6 +432,9 @@ dtl::createBorder(dungeon);
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border.png)
@@ -442,6 +477,9 @@ dtl::createBorderOdd(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border_odd.png)
 
@@ -480,6 +518,9 @@ dtl::createPointGrid(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid.png)
 
@@ -517,6 +558,9 @@ dtl::createPointGridField(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field.png)
 
@@ -551,6 +595,9 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.gif)
@@ -588,6 +635,9 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 ![re](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi.png)
@@ -636,6 +686,9 @@ dtl::Chess<dungeon_t> chess(dungeon);
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
+### Generation Type
+[![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
 ### Image
 ![chess](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chess.png)
 
@@ -664,6 +717,9 @@ dtl::Chess<dungeon_t> chess(dungeon);
 
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
 
@@ -833,6 +889,8 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 These codes are licensed under CC0.
 
 [![CC0](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.ja)
+
+Created by Gaccho on December 15th, 2018.
 
 ## Contact
 
