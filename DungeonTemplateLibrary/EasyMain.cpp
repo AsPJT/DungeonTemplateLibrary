@@ -31,7 +31,7 @@ int main() {
 	//std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
 	//std::array<std::array<std::uint_fast8_t, 17>, 17> matrix{};
 
-	std::array<std::array<std::uint_fast8_t, 64>, 64> matrix{};
+	std::array<std::array<std::uint_fast8_t, 512>, 512> matrix{};
 
 	//dtl::SimpleVoronoiIsland<std::uint_fast8_t> svi(matrix);
 	//dtl::noiseShoreBothBool(matrix, 0.4);
@@ -41,10 +41,12 @@ int main() {
 	//dtl::RogueLikeCave<std::uint_fast8_t> rc(matrix, 0x50);
 	//dtl::createBorder(matrix);
 	//dtl::MazeDig<std::uint_fast8_t> md(matrix);
-	dtl::SimpleRogueLike<std::uint_fast8_t> srl(matrix, 7, 0);
+	//dtl::SimpleRogueLike<std::uint_fast8_t> srl(matrix, 7, 0);
+	dtl::FractalIsland<std::uint_fast8_t> fi(matrix, 0, 40);
 
 	//dtl::createPointGridField(matrix);
-	dtl::fileWriteBoard_obj<std::uint_fast8_t>(matrix, "test_board.obj", 3, 0);
+	//dtl::fileWriteBoard_obj<std::uint_fast8_t>(matrix, "test_board.obj", 3, 0);
+	dtl::fileWriteTerrain_obj(matrix, "test_fi.obj");
 
 	//dtl::dungeonNumberOutput(matrix, ",");
 
