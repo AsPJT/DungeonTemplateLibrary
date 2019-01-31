@@ -150,6 +150,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/FI_1.gif)
+![3D](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/fractal_island_3d_2.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/fractal_island_3d.gif)
 
 ## [15] Chunk Island (v0.1.20~)
