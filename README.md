@@ -401,7 +401,7 @@ dtl::dungeonInit(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_init.png)
+![di](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/dungeon_init.png)
 
 ## [7] Border (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -438,7 +438,7 @@ dtl::createBorder(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border.png)
+![db](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/dungeon_border.png)
 ![border](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/border.gif)
 
 ### Matrix Type
@@ -482,7 +482,7 @@ dtl::createBorderOdd(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/dungeon_border_odd.png)
+![bo](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
 
 ## [9] PointGrid (v0.1.10~)
@@ -523,7 +523,7 @@ dtl::createPointGrid(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid.png)
+![pg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/point_grid.png)
 
 ## [10] PointGridField (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -563,7 +563,7 @@ dtl::createPointGridField(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field.png)
+![pgf](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/point_grid_field.png)
 
 ## [12] PointGridFieldPutBlock (v0.1.13~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -641,7 +641,7 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![re](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi.png)
+![re](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/reversi.png)
 
 ![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/reversi_32.gif)
 
@@ -691,7 +691,7 @@ dtl::Chess<dungeon_t> chess(dungeon);
 [![gt_f](https://img.shields.io/badge/generation%20type-fixed-lightgrey.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![chess](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chess.png)
+![chess](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/fixed/chess.png)
 
 ### Variable
 ![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
