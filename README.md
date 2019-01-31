@@ -149,7 +149,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/FI_1.gif)
+![FI1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/FI_1.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/fractal_island_3d.gif)
 
 ## [15] Chunk Island (v0.1.20~)
@@ -177,7 +177,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/chunk_island.gif)
+![chunk](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/chunk_island.gif)
 
 ## [16] Simple Diamond Square Average Island (v0.1.21~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -204,7 +204,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island.gif)
+![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/simple_diamond_square_average_island.gif)
 
 ## [14] Simple Diamond Square Average Island Corner (v0.1.19~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -231,7 +231,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/simple_diamond_square_average_island_corner.gif)
+![sdsai](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/simple_diamond_square_average_island_corner.gif)
 
 # [Type] Dungeon Generation
 
@@ -293,7 +293,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/SRL_1.gif)
+![STL1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/SRL_1.gif)
 ![srl3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/simple_roguelike.gif)
 
 ## [4] Maze Dig (v0.1.2~)
@@ -322,7 +322,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/MD_1.gif)
+![maze_dig](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/MD_1.gif)
 ![maze_dig_3d](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/maze_dig.gif)
 
 ## [17] RogueLike Cave (v0.1.25~)
@@ -354,7 +354,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![rl1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/rogue_like_cave.gif)
+![rl1](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/rogue_like_cave.gif)
 ![rlc](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/3D/roguelike_cave.gif)
 
 ## Maze α
@@ -600,7 +600,7 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/point_grid_field_put_block.gif)
+![pgfpb](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/point_grid_field_put_block.gif)
 
 # [Type] BoardGame Generation
 
@@ -642,7 +642,7 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 ### Image
 ![re](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi.png)
 
-![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/reversi_32.gif)
+![re32](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/reversi_32.gif)
 
 ## [13] Chess (v0.1.14~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
@@ -723,7 +723,7 @@ dtl::Chess<dungeon_t> chess(dungeon);
 
 ### Image
 
-![mountain](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/mountain.gif)
+![mountain](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/2D/random/mountain.gif)
 
 # Paint Tool
 
