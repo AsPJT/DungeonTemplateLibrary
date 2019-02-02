@@ -1,4 +1,4 @@
-﻿# Dungeon Template Library
+﻿# Dungeon Template Library (DTL)
  <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.X-passing-brightgreen.svg"></a> [![slack](https://img.shields.io/badge/slack-online-red.svg)](https://join.slack.com/t/dungeon-generation/shared_invite/enQtNTM4MzQwMDU5MTIyLWEwNjAwMTQyZjk4MDQyNDU0Y2NlMTU2OTE5YTcwOTM5MzJmZWJlMWY3ZWRkZWU4ZDY1MjJlNDU4M2Y4ZDZmOWI)
  
 [![DTL](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/logo.svg "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
@@ -14,23 +14,7 @@ DTL (Dungeon Template Library)
 
 # Overview
 
-### SampleCode
-
-```cpp
-#include <DTL.hpp>
-#include <array>
-
-int main() {
-
-	using dungeon_t = std::uint_fast8_t;
-	std::array<std::array<dungeon_t, 21>, 21> dungeon{ {} };
-
-	dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
-	dtl::dungeonStringOutputBool(dungeon, "#", " ");
-
-	return 0;
-}
-```
+### [>> SampleCode](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/SampleCode)
 
 ## Matrix Type
 
