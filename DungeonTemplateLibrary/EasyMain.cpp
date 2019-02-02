@@ -31,7 +31,7 @@ int main() {
 	//std::array<std::array<std::uint_fast16_t, 257>, 257> matrix{};
 	//std::array<std::array<std::uint_fast8_t, 17>, 17> matrix{};
 
-	std::array<std::array<std::uint_fast8_t, 512>, 512> matrix{};
+	std::array<std::array<std::uint_fast8_t, 64>, 64> matrix{};
 
 	//dtl::SimpleVoronoiIsland<std::uint_fast8_t> svi(matrix);
 	//dtl::noiseShoreBothBool(matrix, 0.4);
@@ -46,12 +46,12 @@ int main() {
 
 	//dtl::createPointGridField(matrix);
 	//dtl::fileWriteBoard_obj<std::uint_fast8_t>(matrix, "test_board.obj", 3, 0);
-	dtl::fileWriteTerrain_obj(matrix, "test_fi.obj");
+	//dtl::fileWriteTerrain_obj(matrix, "test_fi.obj");
 
 	//dtl::dungeonNumberOutput(matrix, ",");
 
-	//dtl::dungeonBinarization(matrix, 40);
-	//dtl::dungeonStringOutputBool(matrix, "##", "  ");
+	dtl::dungeonBinarization(matrix, 20);
+	dtl::dungeonStringOutputBool(matrix, "##", "  ");
 
 	return 0;
 }

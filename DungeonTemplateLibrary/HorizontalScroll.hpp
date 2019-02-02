@@ -10,22 +10,15 @@
 #include <cstddef>
 #include <cstdint>
 #include "DungeonRandom.hpp"
+#include "DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
 
-	template<typename Matrix_>
-	constexpr bool isMatrixEmpty(const Matrix_& matrix_) noexcept {
-		return (matrix_.size() == 0 || matrix_[0].size() == 0);
-	}
-	template<typename Matrix_>
-	constexpr bool isMatrixEmpty(const Matrix_& matrix_, const std::size_t num_) noexcept {
-		return (matrix_.size() < num_ || matrix_[0].size() < num_);
-	}
-
 	template<typename Matrix_Int_, typename Matrix_>
 	void createMountain(Matrix_& matrix_, const Matrix_Int_ value_ = 1, const std::int_fast32_t rand_value_ = 1) noexcept {
-		if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
+		if (matrix::isEmpty(matrix_)) return;
+
 		std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 
 		std::int_fast32_t matrix_height_value{};

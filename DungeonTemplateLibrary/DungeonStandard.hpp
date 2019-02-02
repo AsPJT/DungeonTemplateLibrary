@@ -10,6 +10,7 @@
 #include <cstddef>
 #include <array>
 #include "DungeonRandom.hpp"
+#include "DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -741,14 +742,14 @@ namespace dtl {
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = 1;
 		}
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = 1;
 		}
@@ -767,14 +768,14 @@ namespace dtl {
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = value_;
 		}
@@ -794,14 +795,14 @@ namespace dtl {
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = 1;
 		}
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_+x_ - 1] = 1;
 		}
@@ -820,14 +821,14 @@ namespace dtl {
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_ + x_ - 1] = value_;
 		}
@@ -1121,7 +1122,7 @@ namespace dtl {
 
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() < 1 || matrix_[0].size() < 1) return false;
+		if (matrix::isLessThan(matrix_, 1)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -1132,7 +1133,7 @@ namespace dtl {
 	//値が全て一致しているか確認する
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		if (matrix::isEmpty(matrix_)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -1142,7 +1143,7 @@ namespace dtl {
 
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		if (matrix::isEmpty(matrix_)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (const auto& row : matrix_)
 			for (const auto& col : row)

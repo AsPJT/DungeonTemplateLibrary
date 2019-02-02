@@ -15,22 +15,48 @@ namespace dtl {
 	//ダンジョン内の値を操作
 	namespace matrix {
 
+		//配列数を取得
+		template<typename Matrix_>
+		constexpr std::size_t getSize(const Matrix_& matrix_) noexcept {
+			return ((matrix_.size() == 0) ? 0 : (matrix_.size()*matrix_[0].size()));
+		}
+		template<typename Matrix_>
+		constexpr std::size_t getSizeX(const Matrix_& matrix_) noexcept {
+			return ((matrix_.size() == 0) ? 0 : matrix_[0].size());
+		}
+		template<typename Matrix_>
+		constexpr std::size_t getSizeY(const Matrix_& matrix_) noexcept {
+			return matrix_.size();
+		}
+
+		constexpr bool isEmpty(const std::size_t x_, const std::size_t y_) noexcept {
+			return (y_ == 0 || x_ == 0);
+		}
+		template<typename Matrix_>
+		constexpr bool isEmpty(const Matrix_& matrix_) noexcept {
+			return (matrix_.size() == 0 || matrix_[0].size() == 0);
+		}
+		template<typename Matrix_>
+		constexpr bool isLessThan(const Matrix_& matrix_, const std::size_t num_) noexcept {
+			return (matrix_.size() < num_ || matrix_[0].size() < num_);
+		}
+
 		//指定位置に値を代入する
 		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		constexpr void setValue(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 			matrix_[y_][x_] = value_;
 		}
 		template<typename Matrix_>
-		constexpr void set(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		constexpr void setValue(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 			matrix_[y_][x_] = 0;
 		}
 		//指定位置の値を取得する
 		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
+		constexpr void getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
 			value_ = matrix_[y_][x_];
 		}
 		template<typename Matrix_>
-		auto get(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		constexpr auto getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 			return matrix_[y_][x_];
 		}
 
@@ -49,6 +75,32 @@ namespace dtl {
 				for (std::size_t col{}; col < x_; ++col)
 					matrix_[row][col] = value_;
 			}
+		}
+
+		//ダンジョン内の値を初期化する
+		template<typename Matrix_>
+		constexpr void init(Matrix_& matrix_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col] = value_;
+		}
+		template<typename Matrix_>
+		constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col] = value_;
 		}
 
 		//上下反転
