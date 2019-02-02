@@ -1,35 +1,37 @@
-#include "DungeonOutput.hpp"
-#include "DungeonNoise.hpp"
-#include "DungeonBinarization.hpp"
-#include "DungeonStandard.hpp"
-
-#include "RogueLike.hpp"
-#include "SimpleVoronoiIsland.hpp"
-#include "FractalIsland.hpp"
-#include "MazeDig.hpp"
-#include "SimpleRogueLike.hpp"
-#include "SimpleTerrain1.hpp"
-
+#include "DTL.hpp"
 #include <cstdint>
 #include <iostream>
 #include <chrono>
 #include <array>
 #include <bitset>
 
+template<typename Matrix_,typename Dungeon_Generation_>
+constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, const std::size_t n_) noexcept {
+	for (std::size_t i{}; i < n_; ++i) {
+		dtl::dungeonInit(matrix_);
+		dungeon_generation_.create(matrix_);
+		dtl::noiseShoreBothBool(matrix_, 0.4);
+	}
+}
+
 int main() {
 
 	std::array<std::bitset<256>, 256> dungeon{ {} };
-	dtl::SimpleVoronoiIsland<bool> simple_voronoi_island;
+	//std::array<std::array<std::uint_fast8_t,256>, 256> dungeon{ {} };
+
+	dtl::SimpleVoronoiIsland<bool> dungeon_generation;
+	//dtl::Border<bool> dungeon_generation;
+	//dtl::FractalIsland<std::uint_fast8_t> dungeon_generation;
+	//dtl::SimpleRogueLike<bool> dungeon_generation;
+	
 
 	const std::chrono::system_clock::time_point& start{ std::chrono::system_clock::now() };
 
-	dtl::dungeonInit(dungeon);
-	simple_voronoi_island.create(dungeon, 3000, 0.5);
-	dtl::noiseShoreBothBool(dungeon, 0.4);
+	loop(dungeon, dungeon_generation, 10);
 
 	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << std::endl;
 
-	dtl::dungeonStringOutputBool(dungeon, "\x1b[42m@", "\x1b[44m@");
+	dtl::dungeonStringOutputBool(dungeon, "#", ".");
 
 	return 0;
 }

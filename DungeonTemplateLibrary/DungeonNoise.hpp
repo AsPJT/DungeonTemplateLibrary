@@ -38,7 +38,7 @@ namespace dtl {
 	constexpr void noiseShoreBool(Matrix_& matrix_, const double rbool_) noexcept {
 		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row][col]) matrix_[row][col] = false;
 				else matrix_[row][col] = true;
 			}
@@ -47,7 +47,7 @@ namespace dtl {
 	constexpr void rnoiseShoreBool(Matrix_& matrix_, const double rbool_) noexcept {
 		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
 			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row - 1][col - 1]) matrix_[row - 1][col - 1] = false;
 				else matrix_[row - 1][col - 1] = true;
 			}
@@ -78,7 +78,7 @@ namespace dtl {
 	constexpr void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row][col]) matrix_[row][col] = false_tile_;
 				else matrix_[row][col] = true_tile_;
 			}
@@ -87,7 +87,7 @@ namespace dtl {
 	constexpr void rnoiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
 			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row - 1][col - 1]) matrix_[row - 1][col - 1] = false_tile_;
 				else matrix_[row - 1][col - 1] = true_tile_;
 			}
@@ -97,7 +97,7 @@ namespace dtl {
 	constexpr void noiseShoreOver(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 			for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row][col] >= true_tile_) matrix_[row][col] = false_tile_;
 				else matrix_[row][col] = true_tile_;
 			}
@@ -106,7 +106,7 @@ namespace dtl {
 	constexpr void rnoiseShoreOver(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 		for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
 			for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-				if (!rnd.randBool(rbool_) || (matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col])) continue;
+				if ((matrix_[row - 1][col - 1] == matrix_[row][col - 1] && matrix_[row - 1][col - 1] == matrix_[row - 1][col]) || !rnd.randBool(rbool_)) continue;
 				if (matrix_[row - 1][col - 1] >= true_tile_) matrix_[row - 1][col - 1] = false_tile_;
 				else matrix_[row - 1][col - 1] = true_tile_;
 			}
