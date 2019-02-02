@@ -23,13 +23,27 @@ DTL (Dungeon Template Library)
 int main() {
 
 	using dungeon_t = std::uint_fast8_t;
-	std::array<std::array<dungeon_t, 21>, 21> dungeon{ {} };
+	std::array<std::array<dungeon_t, 11>, 11> dungeon{ {} };
 
 	dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
-	dtl::dungeonStringOutputBool(dungeon, "#", " ");
+	dtl::dungeonStringOutputBool(dungeon, "##", "  ");
 
 	return 0;
 }
+```
+
+```
+######################
+##                  ##
+##  ##  ##  ##  ##  ##
+##                  ##
+##  ##  ##  ##  ##  ##
+##                  ##
+##  ##  ##  ##  ##  ##
+##                  ##
+##  ##  ##  ##  ##  ##
+##                  ##
+######################
 ```
 
 ## Matrix Type
