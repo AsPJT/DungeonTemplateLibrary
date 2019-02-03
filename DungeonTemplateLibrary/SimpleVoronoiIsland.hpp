@@ -17,6 +17,24 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 
+	//ボロノイ図のデータを管理する
+	template<typename Matrix_Int_>
+	class VoronoiData {
+	private:
+		using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+		const std::size_t array_size{};
+	public:
+
+		constexpr explicit VoronoiData(const std::size_t Num_ = 100) noexcept
+			:point(std::make_unique<Point_Pair_[]>(Num_)), color(std::make_unique<Matrix_Int_[]>(Num_)), array_size(Num_) {}
+
+		std::unique_ptr<Point_Pair_[]> point;
+		std::unique_ptr<Matrix_Int_[]> color;
+		constexpr std::size_t size() const noexcept {
+			return array_size;
+		}
+	};
+
 	template<typename Matrix_Int_>
 	class SimpleVoronoiIsland {
 	public:
@@ -30,6 +48,14 @@ namespace dtl {
 		constexpr void operator()(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 			create(matrix_, count_, rbool_, land_, sea_);
 		}
+		template<typename Matrix_>
+		constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
+			create(matrix_, svid_, rbool_, land_, sea_);
+		}
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			create(matrix_, svid_, rbool_, land_, sea_);
+		}
 
 		//ボロノイ図を作る
 		template<typename Matrix_>
@@ -40,6 +66,12 @@ namespace dtl {
 
 			createPoint(point, color, count_, static_cast<std::int_fast32_t>(matrix::getSizeX(matrix_)), static_cast<std::int_fast32_t>(matrix::getSizeY(matrix_)), rbool_, land_, sea_);
 			createSites(point, color, count_, matrix_, matrix::getSizeX(matrix_), matrix::getSizeY(matrix_));
+		}
+		//ボロノイ図を作る
+		template<typename Matrix_>
+		constexpr void create(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(matrix::getSizeX(matrix_)), static_cast<std::int_fast32_t>(matrix::getSizeY(matrix_)), rbool_, land_, sea_);
+			createSites(svid_.point, svid_.color, svid_.size(), matrix_, matrix::getSizeX(matrix_), matrix::getSizeY(matrix_));
 		}
 	private:
 
