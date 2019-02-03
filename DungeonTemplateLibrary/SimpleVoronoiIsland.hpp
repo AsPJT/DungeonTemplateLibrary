@@ -25,13 +25,19 @@ namespace dtl {
 		const std::size_t array_size{};
 	public:
 
-		constexpr explicit VoronoiData(const std::size_t Num_ = 100) noexcept
-			:point(std::make_unique<Point_Pair_[]>(Num_)), color(std::make_unique<Matrix_Int_[]>(Num_)), array_size(Num_) {}
+		constexpr explicit VoronoiData(const std::size_t array_size_ = 100) noexcept
+			:point(std::make_unique<Point_Pair_[]>(array_size_)), color(std::make_unique<Matrix_Int_[]>(array_size_)), array_size(array_size_) {}
 
 		std::unique_ptr<Point_Pair_[]> point;
 		std::unique_ptr<Matrix_Int_[]> color;
 		constexpr std::size_t size() const noexcept {
 			return array_size;
+		}
+		constexpr void clear() noexcept {
+			for (std::size_t i{}; i < array_size; ++i) {
+				point[i] = Point_Pair_(0, 0);
+				color[i] = 0;
+			}
 		}
 	};
 
