@@ -1,0 +1,26 @@
+﻿/*
+
+namespace表
+
+ーdtl //基本空間
+ーーconsole //コンソールに関するもの
+ーーfile //ファイルに関するもの
+ーーmatrix //マップの地形編集に関するもの
+ーーgeneration //地形生成に関するもの
+ーーai //AIに関するもの
+
+
+ーstl //
+ーnormal //
+ーarray
+ーlayer
+ーrangeBasedFor
+
+
+
+
+
+
+
+
+*/
