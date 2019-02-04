@@ -11,7 +11,7 @@ constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, 
 
 
 	for (std::size_t i{}; i < n_; ++i) {
-		dtl::dungeonInit(matrix_);
+		dtl::generation::stl::dungeonInit(matrix_);
 		dungeon_generation_.create(matrix_);
 		dtl::noiseShoreBothBool(matrix_, 0.4);
 	}
@@ -20,14 +20,15 @@ constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, 
 int main() {
 
 	std::array<std::array<std::bitset<2>, 64>, 64> dungeon_layer{ {} };
-	dtl::layer::dungeonInit(dungeon_layer, 0);
+	dtl::generation::layer::stl::dungeonInit(dungeon_layer, 0);
 
 
-	std::array<std::bitset<256>, 256> dungeon{ {} };
+	std::array<std::bitset<64>, 64> dungeon{ {} };
 	//std::array<std::array<std::uint_fast8_t,256>, 256> dungeon{ {} };
 
-	dtl::SimpleVoronoiIsland<bool> dungeon_generation;
-	dtl::VoronoiData<bool> d;
+	dtl::generation::stl::SimpleVoronoiIsland<bool> dungeon_generation;
+	//dtl::generation::VoronoiData<bool> d;
+
 	//dtl::Border<bool> dungeon_generation;
 	//dtl::FractalIsland<std::uint_fast8_t> dungeon_generation;
 	//dtl::SimpleRogueLike<bool> dungeon_generation;
@@ -37,14 +38,14 @@ int main() {
 
 	//loop(dungeon, dungeon_generation, 10);
 	for (std::size_t i{}; i < 10; ++i) {
-		dtl::dungeonInit(dungeon);
-		dungeon_generation.create(dungeon, d);
+		dtl::generation::stl::dungeonInit(dungeon);
+		dungeon_generation.create(dungeon);
 		dtl::noiseShoreBothBool(dungeon, 0.4);
 	}
 
 	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << std::endl;
 
-	dtl::dungeonStringOutputBool(dungeon, "#", ".");
+	dtl::output::stl::stringBool(dungeon, "#", ".");
 
 	return 0;
 }

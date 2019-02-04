@@ -180,187 +180,192 @@ namespace dtl {
 		return result;
 	}
 
-	enum :std::size_t {
-		reversi_empty,
-		reversi_white,
-		reversi_black
-	};
-	//リバーシを初期化する
-	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createReversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
-		if (matrix_.size() < 2 || matrix_[0].size() < 2) return;
-		const std::size_t& set_y{ matrix_.size() / 2 };
-		const std::size_t& set_x{ matrix_[0].size() / 2 };
-		matrix_[set_y - 1][set_x - 1] = white_;
-		matrix_[set_y - 1][set_x] = black_;
-		matrix_[set_y][set_x - 1] = black_;
-		matrix_[set_y][set_x] = white_;
+	//地形生成
+	namespace generation {
+
+		enum :std::size_t {
+			reversi_empty,
+			reversi_white,
+			reversi_black
+		};
+		//リバーシを初期化する
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void createReversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
+			if (matrix_.size() < 2 || matrix_[0].size() < 2) return;
+			const std::size_t& set_y{ matrix_.size() / 2 };
+			const std::size_t& set_x{ matrix_[0].size() / 2 };
+			matrix_[set_y - 1][set_x - 1] = white_;
+			matrix_[set_y - 1][set_x] = black_;
+			matrix_[set_y][set_x - 1] = black_;
+			matrix_[set_y][set_x] = white_;
+		}
+		template<typename Matrix_Int_>
+		class Reversi {
+		public:
+			//コンストラクタ
+			constexpr Reversi() noexcept = default;
+			template<typename Matrix_>
+			constexpr explicit Reversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
+				create(matrix_, black_, white_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
+				createReversi(matrix_, black_, white_);
+			}
+		};
+
+		enum :std::size_t {
+			shogi_empty,
+			shogi_next_place1,
+			shogi_next_place2,
+			//王将&玉将
+			shogi_osho,
+			shogi_gyokusho,
+			//金将
+			shogi_kinsho1,
+			shogi_kinsho2,
+
+			//ここより先は成る。----------------------------------------
+
+			//飛車
+			shogi_hisha1,
+			shogi_ryuo1,
+			shogi_hisha2,
+			shogi_ryuo2,
+			//角行
+			shogi_kakugyo1,
+			shogi_ryuma1,
+			shogi_kakugyo2,
+			shogi_ryuma2,
+
+			//ここより先は成ると金と同じ動きになる。--------------------
+
+			//銀将
+			shogi_ginsho1,
+			shogi_narigin1,
+			shogi_ginsho2,
+			shogi_narigin2,
+			//桂馬
+			shogi_keima1,
+			shogi_narikei1,
+			shogi_keima2,
+			shogi_narikei2,
+			//香車
+			shogi_kyosha1,
+			shogi_narikyo1,
+			shogi_kyosha2,
+			shogi_narikyo2,
+			//歩兵
+			shogi_fuhyo1,
+			shogi_tokin1,
+			shogi_fuhyo2,
+			shogi_tokin2
+		};
+
+		template<typename Matrix_Int_>
+		constexpr bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
+			if (koma_ >= shogi_ginsho1 && shogi_narigin1 % 2 == koma_ % 2) return true;
+			return false;
+		}
+
+		enum :std::size_t {
+			chess_empty,
+			chess_king1,
+			chess_king2,
+			chess_queen1,
+			chess_queen2,
+			chess_rook1,
+			chess_rook2,
+			chess_bishop1,
+			chess_bishop2,
+			chess_knight1,
+			chess_knight2,
+			chess_pawn1,
+			chess_pawn2,
+			chess_next_place1,
+			chess_next_place2
+		};
+
+		template<typename Matrix_>
+		constexpr void createChess(Matrix_& matrix_) noexcept {
+			if (matrix_.size() < 2) return;
+
+			for (std::size_t i{}; i < matrix_[1].size(); ++i)
+				matrix_[1][i] = chess_pawn2;
+			for (std::size_t i{}; i < matrix_[matrix_.size() - 2].size(); ++i)
+				matrix_[matrix_.size() - 2][i] = chess_pawn1;
+
+			if (matrix_[0].size() < 4) return;
+			matrix_[0][0] = chess_rook2;
+			matrix_[0][matrix_[0].size() - 1] = chess_rook2;
+			matrix_[0][1] = chess_knight2;
+			matrix_[0][matrix_[0].size() - 2] = chess_knight2;
+			matrix_[0][2] = chess_bishop2;
+			matrix_[0][matrix_[0].size() - 3] = chess_bishop2;
+			matrix_[0][3] = chess_queen2;
+			matrix_[0][matrix_[0].size() - 4] = chess_king2;
+			if (matrix_[matrix_.size() - 1].size() < 4) return;
+			matrix_[matrix_.size() - 1][0] = chess_rook1;
+			matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 1] = chess_rook1;
+			matrix_[matrix_.size() - 1][1] = chess_knight1;
+			matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 2] = chess_knight1;
+			matrix_[matrix_.size() - 1][2] = chess_bishop1;
+			matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 3] = chess_bishop1;
+			matrix_[matrix_.size() - 1][3] = chess_queen1;
+			matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 4] = chess_king1;
+		}
+		template<typename Matrix_>
+		constexpr void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
+			if (y_ < 2) return;
+
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[1][col] = chess_pawn2;
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 2][col] = chess_pawn1;
+
+			if (x_ < 4) return;
+			matrix_[0][0] = chess_rook2;
+			matrix_[0][x_ - 1] = chess_rook2;
+			matrix_[0][1] = chess_knight2;
+			matrix_[0][x_ - 2] = chess_knight2;
+			matrix_[0][2] = chess_bishop2;
+			matrix_[0][x_ - 3] = chess_bishop2;
+			matrix_[0][3] = chess_queen2;
+			matrix_[0][x_ - 4] = chess_king2;
+			matrix_[y_ - 1][0] = chess_rook1;
+			matrix_[y_ - 1][x_ - 1] = chess_rook1;
+			matrix_[y_ - 1][1] = chess_knight1;
+			matrix_[y_ - 1][x_ - 2] = chess_knight1;
+			matrix_[y_ - 1][2] = chess_bishop1;
+			matrix_[y_ - 1][x_ - 3] = chess_bishop1;
+			matrix_[y_ - 1][3] = chess_queen1;
+			matrix_[y_ - 1][x_ - 4] = chess_king1;
+		}
+
+		template<typename Matrix_Int_>
+		class Chess {
+		public:
+			//コンストラクタ
+			constexpr Chess() noexcept = default;
+			template<typename Matrix_>
+			constexpr explicit Chess(Matrix_& matrix_) noexcept {
+				create(matrix_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_) noexcept {
+				createChess(matrix_);
+			}
+			template<typename Matrix_>
+			constexpr explicit Chess(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				create(matrix_, x_, y_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				createChess(matrix_, x_, y_);
+			}
+		};
+
 	}
-	template<typename Matrix_Int_>
-	class Reversi {
-	public:
-		//コンストラクタ
-		constexpr Reversi() noexcept = default;
-		template<typename Matrix_>
-		constexpr explicit Reversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
-			create(matrix_, black_, white_);
-		}
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
-			createReversi(matrix_, black_, white_);
-		}
-	};
-
-	enum :std::size_t {
-		shogi_empty,
-		shogi_next_place1,
-		shogi_next_place2,
-		//王将&玉将
-		shogi_osho,
-		shogi_gyokusho,
-		//金将
-		shogi_kinsho1,
-		shogi_kinsho2,
-
-		//ここより先は成る。----------------------------------------
-
-		//飛車
-		shogi_hisha1,
-		shogi_ryuo1,
-		shogi_hisha2,
-		shogi_ryuo2,
-		//角行
-		shogi_kakugyo1,
-		shogi_ryuma1,
-		shogi_kakugyo2,
-		shogi_ryuma2,
-
-		//ここより先は成ると金と同じ動きになる。--------------------
-
-		//銀将
-		shogi_ginsho1,
-		shogi_narigin1,
-		shogi_ginsho2,
-		shogi_narigin2,
-		//桂馬
-		shogi_keima1,
-		shogi_narikei1,
-		shogi_keima2,
-		shogi_narikei2,
-		//香車
-		shogi_kyosha1,
-		shogi_narikyo1,
-		shogi_kyosha2,
-		shogi_narikyo2,
-		//歩兵
-		shogi_fuhyo1,
-		shogi_tokin1,
-		shogi_fuhyo2,
-		shogi_tokin2
-	};
-
-	template<typename Matrix_Int_>
-	constexpr bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
-		if (koma_ >= shogi_ginsho1 && shogi_narigin1 % 2 == koma_ % 2) return true;
-		return false;
-	}
-
-	enum :std::size_t {
-		chess_empty,
-		chess_king1,
-		chess_king2,
-		chess_queen1,
-		chess_queen2,
-		chess_rook1,
-		chess_rook2,
-		chess_bishop1,
-		chess_bishop2,
-		chess_knight1,
-		chess_knight2,
-		chess_pawn1,
-		chess_pawn2,
-		chess_next_place1,
-		chess_next_place2
-	};
-
-	template<typename Matrix_>
-	constexpr void createChess(Matrix_& matrix_) noexcept {
-		if (matrix_.size() < 2) return;
-
-		for (std::size_t i{}; i < matrix_[1].size(); ++i)
-			matrix_[1][i] = chess_pawn2;
-		for (std::size_t i{}; i < matrix_[matrix_.size() - 2].size(); ++i)
-			matrix_[matrix_.size() - 2][i] = chess_pawn1;
-
-		if (matrix_[0].size() < 4) return;
-		matrix_[0][0] = chess_rook2;
-		matrix_[0][matrix_[0].size() - 1] = chess_rook2;
-		matrix_[0][1] = chess_knight2;
-		matrix_[0][matrix_[0].size() - 2] = chess_knight2;
-		matrix_[0][2] = chess_bishop2;
-		matrix_[0][matrix_[0].size() - 3] = chess_bishop2;
-		matrix_[0][3] = chess_queen2;
-		matrix_[0][matrix_[0].size() - 4] = chess_king2;
-		if (matrix_[matrix_.size() - 1].size() < 4) return;
-		matrix_[matrix_.size() - 1][0] = chess_rook1;
-		matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 1] = chess_rook1;
-		matrix_[matrix_.size() - 1][1] = chess_knight1;
-		matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 2] = chess_knight1;
-		matrix_[matrix_.size() - 1][2] = chess_bishop1;
-		matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 3] = chess_bishop1;
-		matrix_[matrix_.size() - 1][3] = chess_queen1;
-		matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 4] = chess_king1;
-	}
-	template<typename Matrix_>
-	constexpr void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
-		if (y_ < 2) return;
-
-		for (std::size_t col{}; col < x_; ++col)
-			matrix_[1][col] = chess_pawn2;
-		for (std::size_t col{}; col < x_; ++col)
-			matrix_[y_ - 2][col] = chess_pawn1;
-
-		if (x_ < 4) return;
-		matrix_[0][0] = chess_rook2;
-		matrix_[0][x_ - 1] = chess_rook2;
-		matrix_[0][1] = chess_knight2;
-		matrix_[0][x_ - 2] = chess_knight2;
-		matrix_[0][2] = chess_bishop2;
-		matrix_[0][x_ - 3] = chess_bishop2;
-		matrix_[0][3] = chess_queen2;
-		matrix_[0][x_ - 4] = chess_king2;
-		matrix_[y_ - 1][0] = chess_rook1;
-		matrix_[y_ - 1][x_ - 1] = chess_rook1;
-		matrix_[y_ - 1][1] = chess_knight1;
-		matrix_[y_ - 1][x_ - 2] = chess_knight1;
-		matrix_[y_ - 1][2] = chess_bishop1;
-		matrix_[y_ - 1][x_ - 3] = chess_bishop1;
-		matrix_[y_ - 1][3] = chess_queen1;
-		matrix_[y_ - 1][x_ - 4] = chess_king1;
-	}
-
-	template<typename Matrix_Int_>
-	class Chess {
-	public:
-		//コンストラクタ
-		constexpr Chess() noexcept = default;
-		template<typename Matrix_>
-		constexpr explicit Chess(Matrix_& matrix_) noexcept {
-			create(matrix_);
-		}
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_) noexcept {
-			createChess(matrix_);
-		}
-		template<typename Matrix_>
-		constexpr explicit Chess(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			create(matrix_, x_, y_);
-		}
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			createChess(matrix_, x_, y_);
-		}
-	};
 
 }
 
