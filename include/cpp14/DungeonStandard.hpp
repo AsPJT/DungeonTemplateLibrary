@@ -8,7 +8,9 @@
 //:::::----------::::::::::----------::::://
 
 #include <cstddef>
+#include <array>
 #include "DungeonRandom.hpp"
+#include "DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -22,6 +24,7 @@ namespace dtl {
 		dungeon_init_enum_num
 	};
 	constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 12> dungeon_init_name{ { "DungeonInit" } };
 
 	//STL版(1)
 	template<typename Matrix_>
@@ -87,6 +90,35 @@ namespace dtl {
 			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 				matrix_[row * end_x_ + col] = value_;
 	}
+
+	namespace array {
+		//Array版
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row * x_ + col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row * x_ + col] = value_;
+		}
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row * end_x_ + col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row * end_x_ + col] = value_;
+		}
+	}
+
 	//RangeBasedFor版
 	template<typename Matrix_>
 	constexpr void dungeonInit_RangeBasedFor(Matrix_& matrix_) noexcept {
@@ -100,6 +132,73 @@ namespace dtl {
 			for (auto&& col : row)
 				col = value_;
 	}
+
+	//Layer----------
+	namespace layer {
+		//STL版(1)
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		//STL版(2)
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		//Default版
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		//クラス版
+		template<typename Matrix_Int_>
+		class DungeonInit {
+		public:
+			//コンストラクタ
+			constexpr DungeonInit() noexcept = default;
+			template<typename Matrix_>
+			constexpr explicit DungeonInit(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
+				create(matrix_, layer_, value_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
+				dungeonInit(matrix_, layer_, value_);
+			}
+			template<typename Matrix_>
+			constexpr explicit DungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
+				create(matrix_, layer_, x_, y_, value_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
+				dungeonInit(matrix_, layer_, x_, y_, value_);
+			}
+		};
+	}
+
 	//クラス版
 	template<typename Matrix_Int_>
 	class DungeonInit {
@@ -150,6 +249,7 @@ namespace dtl {
 		point_grid_enum_num
 	};
 	constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 10> point_grid_name{ { "PointGrid" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -243,6 +343,7 @@ namespace dtl {
 		border_odd_enum_num
 	};
 	constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 10> border_odd_name{ { "BorderOdd" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -419,6 +520,7 @@ namespace dtl {
 		point_grid_field_enum_num
 	};
 	constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 15> point_grid_field_name{ { "PointGridField" } };
 
 	//Array版
 	template<typename Matrix_>
@@ -510,6 +612,7 @@ namespace dtl {
 		point_grid_field_put_block_enum_num
 	};
 	constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 23> point_grid_field_put_block_name{ { "PointGridFieldPutBlock" } };
 
 	//STL版
 	template<typename Matrix_>
@@ -735,14 +838,14 @@ namespace dtl {
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = 1;
 		}
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = 1;
 		}
@@ -761,14 +864,14 @@ namespace dtl {
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = value_;
 		}
@@ -788,14 +891,14 @@ namespace dtl {
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = 1;
 		}
 	}
 	template<typename Matrix_>
 	constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_+x_ - 1] = 1;
 		}
@@ -814,14 +917,14 @@ namespace dtl {
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0 || x_ == 0) return;
+		if (matrix::isEmpty(x_,y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_ + x_ - 1] = value_;
 		}
@@ -985,6 +1088,7 @@ namespace dtl {
 		border_enum_num
 	};
 	constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
+	constexpr std::array<char, 7> border_name{ { "Border" } };
 
 	//STL版(1)
 	template<typename Matrix_>
@@ -1114,7 +1218,7 @@ namespace dtl {
 
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() < 1 || matrix_[0].size() < 1) return false;
+		if (matrix::isLessThan(matrix_, 1)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -1125,7 +1229,7 @@ namespace dtl {
 	//値が全て一致しているか確認する
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		if (matrix::isEmpty(matrix_)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -1135,7 +1239,7 @@ namespace dtl {
 
 	template<typename Matrix_>
 	constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		if (matrix::isEmpty(matrix_)) return false;
 		const auto& stl_value{ matrix_[0][0] };
 		for (const auto& row : matrix_)
 			for (const auto& col : row)

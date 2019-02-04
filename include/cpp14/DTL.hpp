@@ -14,6 +14,7 @@
 #include "DungeonRandom.hpp"
 #include "DungeonStandard.hpp"
 #include "DungeonFile.hpp"
+#include "DungeonMatrix.hpp"
 
 //ダンジョン
 #include "FractalIsland.hpp"
@@ -22,6 +23,7 @@
 #include "SimpleRogueLike.hpp"
 #include "SimpleVoronoiIsland.hpp"
 #include "BoardGame.hpp"
+#include "HorizontalScroll.hpp"
 
 //ペイント
 #include "DungeonPaint.hpp"

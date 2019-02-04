@@ -9,19 +9,37 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <vector>
 #include <utility>
+#include <memory>
 #include "DungeonRandom.hpp"
+#include "DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
 
-	template<typename Point_>
-	constexpr std::int_fast32_t distanceSqrd(const Point_& point_, std::int_fast32_t x_, std::int_fast32_t y_) noexcept {
-		x_ -= (std::int_fast32_t)point_.first;
-		y_ -= (std::int_fast32_t)point_.second;
-		return (x_ * x_) + (y_ * y_);
-	}
+	//ボロノイ図のデータを管理する
+	template<typename Matrix_Int_>
+	class VoronoiData {
+	private:
+		using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+		const std::size_t array_size{};
+	public:
+
+		constexpr explicit VoronoiData(const std::size_t array_size_ = 100) noexcept
+			:point(std::make_unique<Point_Pair_[]>(array_size_)), color(std::make_unique<Matrix_Int_[]>(array_size_)), array_size(array_size_) {}
+
+		std::unique_ptr<Point_Pair_[]> point;
+		std::unique_ptr<Matrix_Int_[]> color;
+		constexpr std::size_t size() const noexcept {
+			return array_size;
+		}
+		constexpr void clear() noexcept {
+			for (std::size_t i{}; i < array_size; ++i) {
+				point[i] = Point_Pair_(0, 0);
+				color[i] = 0;
+			}
+		}
+	};
 
 	template<typename Matrix_Int_>
 	class SimpleVoronoiIsland {
@@ -36,48 +54,71 @@ namespace dtl {
 		constexpr void operator()(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 			create(matrix_, count_, rbool_, land_, sea_);
 		}
+		template<typename Matrix_>
+		constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
+			create(matrix_, svid_, rbool_, land_, sea_);
+		}
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			create(matrix_, svid_, rbool_, land_, sea_);
+		}
 
 		//ボロノイ図を作る
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
-			for (std::size_t i{}; i < count_; ++i) {
-				createPoint((matrix_.size()==0) ? 0 : matrix_[0].size(), matrix_.size(), rbool_, land_, sea_);
-			}
-			createSites(matrix_, (matrix_.size()==0) ? 0 : matrix_[0].size(), matrix_.size());
+		void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			//原点の座標と各面の色(もしくは地形データ)を記録する変数
+			std::unique_ptr<Point_Pair_[]> point{ std::make_unique<Point_Pair_[]>(count_) };
+			std::unique_ptr<Matrix_Int_[]> color{ std::make_unique<Matrix_Int_[]>(count_) };
+
+			createPoint(point, color, count_, static_cast<std::int_fast32_t>(matrix::getSizeX(matrix_)), static_cast<std::int_fast32_t>(matrix::getSizeY(matrix_)), rbool_, land_, sea_);
+			createSites(point, color, count_, matrix_, matrix::getSizeX(matrix_), matrix::getSizeY(matrix_));
 		}
-		constexpr void init() noexcept {
-			point.clear();
-			color.clear();
+		//ボロノイ図を作る
+		template<typename Matrix_>
+		constexpr void create(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(matrix::getSizeX(matrix_)), static_cast<std::int_fast32_t>(matrix::getSizeY(matrix_)), rbool_, land_, sea_);
+			createSites(svid_.point, svid_.color, svid_.size(), matrix_, matrix::getSizeX(matrix_), matrix::getSizeY(matrix_));
 		}
 	private:
-		std::vector<std::pair<std::size_t, std::size_t>> point;
-		std::vector<Matrix_Int_> color;
 
-		constexpr bool isMakeIsland(const std::size_t w_, const std::size_t h_, const std::size_t numerator_, const std::size_t denominator_) const noexcept {
-			return (point.back().first > (w_ * numerator_ / denominator_) && point.back().first < (w_ * (denominator_ - numerator_) / denominator_)) && (point.back().second > (h_ * numerator_ / denominator_) && point.back().second < (h_ * (denominator_ - numerator_) / denominator_));
+		using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+
+		//陸地であるか陸地でないか判別する
+		constexpr bool isIsland(const std::unique_ptr<Point_Pair_[]>& point_, const std::size_t point_num_, const std::int_fast32_t w_, const std::int_fast32_t h_, const std::int_fast32_t numerator_, const std::int_fast32_t denominator_) const noexcept {
+			return (point_[point_num_].first > (w_ * numerator_ / denominator_) && point_[point_num_].first < (w_ * (denominator_ - numerator_) / denominator_)) && (point_[point_num_].second > (h_ * numerator_ / denominator_) && point_[point_num_].second < (h_ * (denominator_ - numerator_) / denominator_));
 		}
 		//原点の場所と陸地を決定する
-		constexpr void createPoint(const std::size_t w_, const std::size_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) noexcept {
-			point.emplace_back((std::size_t)rnd(static_cast<std::int_fast32_t>(w_)), (std::size_t)rnd(static_cast<std::int_fast32_t>(h_)));
-			if (isMakeIsland(w_, h_, 2, 5) || (rnd.randBool(rbool_) && isMakeIsland(w_, h_, 1, 5)))
-				color.emplace_back(land_);
-			else color.emplace_back(sea_);
+		constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
+			for (std::size_t i{}, array_num{}; i < count_; ++i) {
+				point_[array_num] = Point_Pair_(rnd(w_), rnd(h_));
+				if (isIsland(point_, array_num, w_, h_, 2, 5) || (isIsland(point_, array_num, w_, h_, 1, 5) && rnd.randBool(rbool_)))
+					color_[array_num] = land_;
+				else color_[array_num] = sea_;
+				++array_num;
+			}
 		}
-		//図形を線画
+
+		//2点間の距離を返す
+		constexpr std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+			x_ -= point_.first;
+			y_ -= point_.second;
+			return x_* x_ + y_* y_;
+		}
+
+		//図形を描画
 		template<typename Matrix_>
-		constexpr void createSites(Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+		constexpr void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
 			std::int_fast32_t ds{}, dist{};
 			for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 				for (std::size_t ww{}; ww < w_; ++ww) {
 					ind = (std::numeric_limits<std::size_t>::max)();
 					dist = (std::numeric_limits<std::int_fast32_t>::max)();
-					for (std::size_t it{}; it < point.size(); ++it) {
-						const std::pair<std::size_t, std::size_t>& p{ point[it] };
-						if ((ds = distanceSqrd(p, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh))) >= dist) continue;
+					for (std::size_t it{}; it < count_; ++it) {
+						if ((ds = distanceSqrd(point_[it], static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh))) >= dist) continue;
 						dist = ds;
 						ind = it;
 					}
-					if (ind != (std::numeric_limits<std::size_t>::max)()) matrix_[hh][ww] = color[ind];
+					if (ind != (std::numeric_limits<std::size_t>::max)()) matrix_[hh][ww] = color_[ind];
 				}
 		}
 	};

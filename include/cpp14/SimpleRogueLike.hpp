@@ -19,7 +19,7 @@ namespace dtl {
 
 	template<typename Matrix_Int_>
 	constexpr Matrix_Int_ absTemplate(const Matrix_Int_& value_) noexcept {
-		return (value_ < 0) ? (value_ * -1) : value_;
+		return (value_ < 0) ? (-value_) : value_;
 	}
 	enum :std::int_fast32_t {
 		RL_COUNT_X,
