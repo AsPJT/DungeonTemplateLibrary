@@ -887,6 +887,3 @@ Created by Gaccho on December 15th, 2018.
 
 Japan Terrain Generation Research Institute
 
-# Output SVG
-
-![svg](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/Picture/Save/test_color.svg)
