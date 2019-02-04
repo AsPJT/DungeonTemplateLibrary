@@ -19,6 +19,10 @@ constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, 
 
 int main() {
 
+	std::array<std::array<std::bitset<2>, 64>, 64> dungeon_layer{ {} };
+	dtl::layer::dungeonInit(dungeon_layer, 0);
+
+
 	std::array<std::bitset<256>, 256> dungeon{ {} };
 	//std::array<std::array<std::uint_fast8_t,256>, 256> dungeon{ {} };
 

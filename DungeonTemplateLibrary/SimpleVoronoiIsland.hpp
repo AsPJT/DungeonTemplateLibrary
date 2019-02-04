@@ -65,7 +65,7 @@ namespace dtl {
 
 		//ボロノイ図を作る
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+		void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 			//原点の座標と各面の色(もしくは地形データ)を記録する変数
 			std::unique_ptr<Point_Pair_[]> point{ std::make_unique<Point_Pair_[]>(count_) };
 			std::unique_ptr<Matrix_Int_[]> color{ std::make_unique<Matrix_Int_[]>(count_) };
@@ -100,7 +100,9 @@ namespace dtl {
 
 		//2点間の距離を返す
 		constexpr std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
-			return (x_ -= point_.first) * x_ + (y_ -= point_.second) * y_;
+			x_ -= point_.first;
+			y_ -= point_.second;
+			return x_* x_ + y_* y_;
 		}
 
 		//図形を描画

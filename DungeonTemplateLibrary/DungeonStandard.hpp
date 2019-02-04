@@ -90,6 +90,35 @@ namespace dtl {
 			for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 				matrix_[row * end_x_ + col] = value_;
 	}
+
+	namespace array {
+		//Array版
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row * x_ + col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row * x_ + col] = value_;
+		}
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row * end_x_ + col] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row * end_x_ + col] = value_;
+		}
+	}
+
 	//RangeBasedFor版
 	template<typename Matrix_>
 	constexpr void dungeonInit_RangeBasedFor(Matrix_& matrix_) noexcept {
@@ -103,6 +132,73 @@ namespace dtl {
 			for (auto&& col : row)
 				col = value_;
 	}
+
+	//Layer----------
+	namespace layer {
+		//STL版(1)
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		//STL版(2)
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		//Default版
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{}; row < y_; ++row)
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		template<typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row][col][layer_] = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+			for (std::size_t row{ start_y_ }; row < end_y_; ++row)
+				for (std::size_t col{ start_x_ }; col < end_x_; ++col)
+					matrix_[row][col][layer_] = value_;
+		}
+		//クラス版
+		template<typename Matrix_Int_>
+		class DungeonInit {
+		public:
+			//コンストラクタ
+			constexpr DungeonInit() noexcept = default;
+			template<typename Matrix_>
+			constexpr explicit DungeonInit(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
+				create(matrix_, layer_, value_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
+				dungeonInit(matrix_, layer_, value_);
+			}
+			template<typename Matrix_>
+			constexpr explicit DungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
+				create(matrix_, layer_, x_, y_, value_);
+			}
+			template<typename Matrix_>
+			constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
+				dungeonInit(matrix_, layer_, x_, y_, value_);
+			}
+		};
+	}
+
 	//クラス版
 	template<typename Matrix_Int_>
 	class DungeonInit {

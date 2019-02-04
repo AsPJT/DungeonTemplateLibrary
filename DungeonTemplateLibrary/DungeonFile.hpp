@@ -246,7 +246,6 @@ namespace dtl {
 			for (std::size_t row{}; row < matrix_.size(); ++row)
 				for (std::size_t col{}; col < matrix_[row].size(); ++col)
 					ofs << "v " << col << " " << matrix_[row][col] << " " << row << std::endl;
-		const std::size_t max_size{ matrix_.size()*matrix_[0].size() };
 
 		std::size_t x_size{ matrix_[0].size() };
 		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)

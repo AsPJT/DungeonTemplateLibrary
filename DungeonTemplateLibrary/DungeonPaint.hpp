@@ -26,9 +26,9 @@ namespace dtl {
 			y(std::make_unique<std::size_t[]>(size_)),
 			size(size_) {}
 
-		void add(const std::uint_fast8_t type_, const Matrix_Int_ value_) noexcept {
+		//void add(const std::uint_fast8_t type_, const Matrix_Int_ value_) noexcept {
 
-		}
+		//}
 	private:
 		std::unique_ptr<std::uint_fast8_t[]> type;
 		std::unique_ptr<Matrix_Int_[]> value;

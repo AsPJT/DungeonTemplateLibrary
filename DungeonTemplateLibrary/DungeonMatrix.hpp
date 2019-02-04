@@ -77,6 +77,47 @@ namespace dtl {
 			}
 		}
 
+		namespace layer {
+
+			template<typename Matrix_>
+			constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
+				matrix_.resize(y_);
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row].resize(x_);
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[row][col].resize(layer_);
+				}
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+				matrix_.resize(y_);
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row].resize(x_);
+					for (std::size_t col{}; col < x_; ++col) {
+						matrix_[row][col].resize(layer_);
+						for (std::size_t layer{}; layer < layer_; ++layer)
+							matrix_[row][col][layer_] = value_;
+					}
+				}
+			}
+			template<typename Matrix_>
+			constexpr void resize(Matrix_& matrix_, const std::size_t layer_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row)
+					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+						matrix_[row][col].resize(layer_);
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void resize(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row)
+					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+						matrix_[row][col].resize(layer_);
+						for (std::size_t layer{}; layer < layer_; ++layer)
+							matrix_[row][col][layer_] = value_;
+					}
+			}
+
+		}
+
 		//ダンジョン内の値を初期化する
 		template<typename Matrix_>
 		constexpr void init(Matrix_& matrix_) noexcept {
@@ -126,6 +167,41 @@ namespace dtl {
 					matrix_[row][col2] = std::move(tmp);
 				}
 		}
+
+		template<typename Matrix_>
+		constexpr void copy(Matrix_& matrix_, const Matrix_& matrix2_) noexcept {
+			matrix_ = matrix2_;
+		}
+		template<typename Matrix_, typename Matrix2_>
+		constexpr void copy(Matrix_& matrix_, const Matrix2_& matrix2_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col] = matrix2_[row][col];
+		}
+
+		template<typename Matrix_, typename Matrix2_>
+		constexpr void convertSTL_intoDefault(Matrix_& matrix_, std::size_t& x_, std::size_t& y_, const Matrix2_& matrix2_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col] = matrix2_[row][col];
+			((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
+		}
+		template<typename Matrix_, typename Matrix2_>
+		constexpr void convertSTL_intoArray(Matrix_& matrix_, std::size_t& x_, std::size_t& y_, const Matrix2_& matrix2_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row*x_ + col] = matrix2_[row][col];
+			((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
+		}
+		template<typename Matrix_, typename Matrix2_>
+		constexpr void convertSTL_intoLayer(Matrix_& matrix_, std::size_t& layer_, const Matrix2_& matrix2_) noexcept {
+			for (std::size_t row{}; row < matrix_.size(); ++row)
+				for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					matrix_[row][col][layer_] = matrix2_[row][col];
+		}
+
+
+
 	}
 
 }
