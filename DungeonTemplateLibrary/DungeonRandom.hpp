@@ -89,6 +89,8 @@ namespace dtl {
 	};
 	static thread_local RandXor128 rnd_xor_128;
 
-}
+
+
+} //namespace
 
 #endif //Included Dungeon Template Library

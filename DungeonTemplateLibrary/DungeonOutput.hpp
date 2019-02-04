@@ -218,7 +218,9 @@ namespace dtl {
 				std::cout << str_ << std::endl;
 			}
 
-		}
+
+
+		} //namespace
 	}
 }
 

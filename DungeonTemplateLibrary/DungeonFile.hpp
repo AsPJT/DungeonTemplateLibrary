@@ -474,9 +474,9 @@ namespace dtl {
 				return true;
 			}
 
-		}
 
 
+		} //namespace
 	}
 }
 

@@ -131,28 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SampleMatrixTypeAll.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
     <ClInclude Include="DungeonFile.hpp" />
+    <ClInclude Include="DungeonMatrix.hpp" />
     <ClInclude Include="DungeonNoise.hpp" />
     <ClInclude Include="DungeonOutput.hpp" />
     <ClInclude Include="DungeonPaint.hpp" />
     <ClInclude Include="DungeonRandom.hpp" />
     <ClInclude Include="DungeonStandard.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
-    <ClInclude Include="DungeonMatrix.hpp" />
     <ClInclude Include="HorizontalScroll.hpp" />
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleRogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="SampleMatrixTypeAll.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="namespace.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

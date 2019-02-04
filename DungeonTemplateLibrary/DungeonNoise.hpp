@@ -56,23 +56,23 @@ namespace dtl {
 
 		template<typename Matrix_>
 		constexpr void shoreBothBool(Matrix_& matrix_, const double rbool_) noexcept {
-			dtl::noise::noiseShoreBool(matrix_, rbool_);
-			dtl::noise::rnoiseShoreBool(matrix_, rbool_);
+			dtl::noise::shoreBool(matrix_, rbool_);
+			dtl::noise::rshoreBool(matrix_, rbool_);
 		}
 		template<typename Matrix_>
 		constexpr void shoreBothBool(Matrix_& matrix_, const double rbool1_, const double rbool2_) noexcept {
-			dtl::noise::noiseShoreBool(matrix_, rbool1_);
-			dtl::noise::rnoiseShoreBool(matrix_, rbool2_);
+			dtl::noise::shoreBool(matrix_, rbool1_);
+			dtl::noise::rshoreBool(matrix_, rbool2_);
 		}
 		template<typename Matrix_>
 		constexpr void rshoreBothBool(Matrix_& matrix_, const double rbool_) noexcept {
-			dtl::noise::rnoiseShoreBool(matrix_, rbool_);
-			dtl::noise::noiseShoreBool(matrix_, rbool_);
+			dtl::noise::rshoreBool(matrix_, rbool_);
+			dtl::noise::shoreBool(matrix_, rbool_);
 		}
 		template<typename Matrix_>
 		constexpr void rshoreBothBool(Matrix_& matrix_, const double rbool1_, const double rbool2_) noexcept {
-			dtl::noise::rnoiseShoreBool(matrix_, rbool1_);
-			dtl::noise::noiseShoreBool(matrix_, rbool2_);
+			dtl::noise::rshoreBool(matrix_, rbool1_);
+			dtl::noise::shoreBool(matrix_, rbool2_);
 		}
 
 		template<typename Matrix_Int_, typename Matrix_>
@@ -112,8 +112,10 @@ namespace dtl {
 					else matrix_[row - 1][col - 1] = true_tile_;
 				}
 		}
-	}
 
+
+
+	} //namespace
 }
 
 #endif //Included Dungeon Template Library

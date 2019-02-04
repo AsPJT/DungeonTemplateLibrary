@@ -271,7 +271,10 @@ namespace dtl {
 					dtl::noiseShoreBothBool(matrix_, 0.1);
 				}
 			};
-		}
+
+
+
+		} //namespace
 	}
 }
 

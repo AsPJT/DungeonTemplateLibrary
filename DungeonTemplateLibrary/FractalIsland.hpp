@@ -236,7 +236,10 @@ namespace dtl {
 					createDiamondSquareAverage_Map<Matrix_Int_>(chunk_array_max_half, chunk_array_max_half, chunk_array_max_half, matrix_[0][0], matrix_[chunk_array_max][0], matrix_[0][chunk_array_max], matrix_[chunk_array_max][chunk_array_max], matrix_, max_value_);
 				}
 			};
-		}
+
+
+
+		} //namespace
 	}
 }
 

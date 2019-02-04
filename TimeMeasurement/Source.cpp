@@ -1,4 +1,4 @@
-#include "DTL.hpp"
+#include <DTL.hpp>
 #include <cstdint>
 #include <iostream>
 #include <chrono>
@@ -19,9 +19,31 @@ constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, 
 
 int main() {
 
-	std::array<std::array<std::bitset<2>, 64>, 64> dungeon_layer{ {} };
+	constexpr std::size_t size_x{ 64 };
+	constexpr std::size_t size_y{ 64 };
+	constexpr std::size_t layer_num{ 2 };
+	std::array<std::array<std::bitset<layer_num>, size_x>, size_y> dungeon_layer{ {} };
 	dtl::generation::layer::stl::dungeonInit(dungeon_layer, 0);
+	dtl::generation::layer::stl::createBorder(dungeon_layer, 0);
+	dtl::generation::layer::stl::createBorderOdd(dungeon_layer, 0);
+	dtl::generation::layer::stl::createPointGrid(dungeon_layer, 0);
+	dtl::generation::layer::stl::createPointGridField(dungeon_layer, 0);
+	dtl::generation::layer::stl::DungeonInit<bool>(dungeon_layer, 0);
+	dtl::generation::layer::stl::Border<bool>(dungeon_layer, 0);
+	dtl::generation::layer::stl::BorderOdd<bool>(dungeon_layer, 0);
+	dtl::generation::layer::stl::PointGrid<bool>(dungeon_layer, 0);
+	dtl::generation::layer::stl::PointGridField<bool>(dungeon_layer, 0);
 
+	dtl::generation::layer::normal::dungeonInit(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::createBorder(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::createBorderOdd(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::createPointGrid(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::createPointGridField(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::DungeonInit<bool>(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::Border<bool>(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::BorderOdd<bool>(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::PointGrid<bool>(dungeon_layer, 0, size_x, size_y);
+	dtl::generation::layer::normal::PointGridField<bool>(dungeon_layer, 0, size_x, size_y);
 
 	std::array<std::bitset<64>, 64> dungeon{ {} };
 	//std::array<std::array<std::uint_fast8_t,256>, 256> dungeon{ {} };
@@ -40,12 +62,12 @@ int main() {
 	for (std::size_t i{}; i < 10; ++i) {
 		dtl::generation::stl::dungeonInit(dungeon);
 		dungeon_generation.create(dungeon);
-		dtl::noiseShoreBothBool(dungeon, 0.4);
+		dtl::noise::shoreBothBool(dungeon, 0.4);
 	}
 
 	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << std::endl;
 
-	dtl::output::stl::stringBool(dungeon, "#", ".");
+	dtl::console::output::stl::stringBool(dungeon, "#", ".");
 
 	return 0;
 }

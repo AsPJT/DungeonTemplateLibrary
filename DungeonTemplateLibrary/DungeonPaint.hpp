@@ -175,6 +175,8 @@ namespace dtl {
 
 	};
 
-}
+
+
+} //namespace
 
 #endif //Included Dungeon Template Library

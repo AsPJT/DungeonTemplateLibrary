@@ -25,9 +25,13 @@ int main() {
 
 	//---------- std::array STL ----------
 	dtl::console::output::puts("-- std::array STL --");
+
+
 	dtl::generation::stl::dungeonInit(dungeon_stl_matrix_array);
 	dtl::generation::stl::DungeonInit<dungeon_t> a(dungeon_stl_matrix_array);
 	dtl::console::output::stl::stringBool(dungeon_stl_matrix_array, "■", "　");
+	
+	
 	//---------- default array Default ----------
 	dtl::console::output::puts("-- default array Default --");
 	dtl::generation::normal::dungeonInit(dungeon_default_matrix_default_array, x_size, y_size);

@@ -353,7 +353,71 @@ namespace dtl {
 		}
 
 
+		namespace layer {
+			namespace normal {
+				//Default版
+				template<typename Matrix_>
+				constexpr void createPointGrid(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					for (std::size_t row{}; row < y_; row += 2)
+						for (std::size_t col{}; col < x_; col += 2)
+							matrix_[row][col][layer_] = 1;
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPointGrid(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+					for (std::size_t row{}; row < y_; row += 2)
+						for (std::size_t col{}; col < x_; col += 2)
+							matrix_[row][col][layer_] = value_;
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class PointGrid {
+				public:
+					//コンストラクタ
+					constexpr PointGrid() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit PointGrid(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, x_, y_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						createPointGrid(matrix_, layer_, x_, y_, value_);
+					}
+				};
+			}
 
+			namespace stl {
+				//STL版(1)
+				template<typename Matrix_>
+				constexpr void createPointGrid(Matrix_& matrix_, std::size_t layer_) noexcept {
+					for (std::size_t row{}; row < matrix_.size(); row += 2)
+						for (std::size_t col{}; col < matrix_[row].size(); col += 2)
+							matrix_[row][col][layer_] = 1;
+				}
+				//STL版(2)
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPointGrid(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					for (std::size_t row{}; row < matrix_.size(); row += 2)
+						for (std::size_t col{}; col < matrix_[row].size(); col += 2)
+							matrix_[row][col][layer_] = value_;
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class PointGrid {
+				public:
+					//コンストラクタ
+					constexpr PointGrid() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit PointGrid(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						createPointGrid(matrix_, layer_, value_);
+					}
+				};
+			}
+
+		}
 
 
 		//----------   BorderOdd   ----------
@@ -544,7 +608,125 @@ namespace dtl {
 			};
 		}
 
-
+		namespace layer {
+			namespace normal {
+				//Default版
+				template<typename Matrix_>
+				constexpr void createBorderOdd(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					if (y_ < 2) return;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[0][col][layer_] = 1;
+					if (y_ % 2 == 1) {
+						for (std::size_t col{}; col < x_; ++col)
+							matrix_[y_ - 1][col][layer_] = 1;
+					}
+					else for (std::size_t col{}; col < x_; ++col) {
+						matrix_[y_ - 2][col][layer_] = 1;
+						matrix_[y_ - 1][col][layer_] = 1;
+					}
+					if (x_ < 2) return;
+					for (std::size_t row{}; row < y_; ++row) {
+						matrix_[row][0][layer_] = 1;
+						if (x_ % 2 == 0) matrix_[row][x_ - 2][layer_] = 1;
+						matrix_[row][x_ - 1][layer_] = 1;
+					}
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createBorderOdd(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+					if (y_ < 2) return;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[0][col][layer_] = value_;
+					if (y_ % 2 == 1) {
+						for (std::size_t col{}; col < x_; ++col)
+							matrix_[y_ - 1][col][layer_] = value_;
+					}
+					else for (std::size_t col{}; col < x_; ++col) {
+						matrix_[y_ - 2][col][layer_] = value_;
+						matrix_[y_ - 1][col][layer_] = value_;
+					}
+					if (x_ < 2) return;
+					for (std::size_t row{}; row < y_; ++row) {
+						matrix_[row][0][layer_] = value_;
+						if (x_ % 2 == 0) matrix_[row][x_ - 2][layer_] = value_;
+						matrix_[row][x_ - 1][layer_] = value_;
+					}
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class BorderOdd {
+				public:
+					//コンストラクタ
+					constexpr BorderOdd() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit BorderOdd(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, x_, y_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+					}
+				};
+			}
+			namespace stl {
+				//STL版(1)
+				template<typename Matrix_>
+				constexpr void createBorderOdd(Matrix_& matrix_, std::size_t layer_) noexcept {
+					if (matrix_.size() < 2) return;
+					for (std::size_t col{}; col < matrix_[0].size(); ++col)
+						matrix_[0][col][layer_] = 1;
+					if (matrix_.size() % 2 == 1) {
+						for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+							matrix_[matrix_.size() - 1][col][layer_] = 1;
+					}
+					else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+						matrix_[matrix_.size() - 2][col][layer_] = 1;
+						matrix_[matrix_.size() - 1][col][layer_] = 1;
+					}
+					for (std::size_t row{}; row < matrix_.size(); ++row) {
+						if (matrix_[row].size() < 2) continue;
+						matrix_[row][0][layer_] = 1;
+						if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2][layer_] = 1;
+						matrix_[row][matrix_[row].size() - 1][layer_] = 1;
+					}
+				}
+				//STL版(2)
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createBorderOdd(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					if (matrix_.size() < 2) return;
+					for (std::size_t col{}; col < matrix_[0].size(); ++col)
+						matrix_[0][col][layer_] = value_;
+					if (matrix_.size() % 2 == 1) {
+						for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+							matrix_[matrix_.size() - 1][col][layer_] = value_;
+					}
+					else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+						matrix_[matrix_.size() - 2][col][layer_] = value_;
+						matrix_[matrix_.size() - 1][col][layer_] = value_;
+					}
+					for (std::size_t row{}; row < matrix_.size(); ++row) {
+						if (matrix_[row].size() < 2) continue;
+						matrix_[row][0][layer_] = value_;
+						if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2][layer_] = value_;
+						matrix_[row][matrix_[row].size() - 1][layer_] = value_;
+					}
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class BorderOdd {
+				public:
+					//コンストラクタ
+					constexpr BorderOdd() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit BorderOdd(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+					}
+				};
+			}
+		}
 
 
 
@@ -648,7 +830,67 @@ namespace dtl {
 			};
 		}
 
-
+		namespace layer {
+			namespace normal {
+				//Default版
+				template<typename Matrix_>
+				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_);
+					dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_);
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+					dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
+					dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class PointGridField {
+				public:
+					//コンストラクタ
+					constexpr PointGridField() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit PointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, x_, y_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
+						dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+					}
+				};
+			}
+			namespace stl {
+				//STL版(1)
+				template<typename Matrix_>
+				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_) noexcept {
+					dtl::generation::layer::stl::createPointGrid(matrix_, layer_);
+					dtl::generation::layer::stl::createBorderOdd(matrix_, layer_);
+				}
+				//STL版(2)
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					dtl::generation::layer::stl::createPointGrid(matrix_, layer_, value_);
+					dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class PointGridField {
+				public:
+					//コンストラクタ
+					constexpr PointGridField() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit PointGridField(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::stl::createPointGrid(matrix_, layer_, value_);
+						dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+					}
+				};
+			}
+		}
 
 
 		//----------   PointGridFieldPutBlock   ----------
@@ -1237,6 +1479,97 @@ namespace dtl {
 				}
 			};
 		}
+		namespace layer {
+			namespace stl {
+				//STL版(1)
+				template<typename Matrix_>
+				constexpr void createBorder(Matrix_& matrix_, std::size_t layer_) noexcept {
+					if (matrix_.size() == 0) return;
+					for (std::size_t col{}; col < matrix_[0].size(); ++col)
+						matrix_[0][col][layer_] = 1;
+					for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+						matrix_[matrix_.size() - 1][col][layer_] = 1;
+					for (std::size_t row{}; row < matrix_.size(); ++row) {
+						if (matrix_[row].size() == 0) continue;
+						matrix_[row][0][layer_] = 1;
+						matrix_[row][matrix_[row].size() - 1][layer_] = 1;
+					}
+				}
+				//STL版(2)
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createBorder(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					if (matrix_.size() == 0) return;
+					for (std::size_t col{}; col < matrix_[0].size(); ++col)
+						matrix_[0][col][layer_] = value_;
+					for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+						matrix_[matrix_.size() - 1][col][layer_] = value_;
+					for (std::size_t row{}; row < matrix_.size(); ++row) {
+						if (matrix_[row].size() == 0) continue;
+						matrix_[row][0][layer_] = value_;
+						matrix_[row][matrix_[row].size() - 1][layer_] = value_;
+					}
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class Border {
+				public:
+					//コンストラクタ
+					constexpr Border() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit Border(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::stl::createBorder(matrix_, layer_, value_);
+					}
+				};
+			}
+			namespace normal {
+				//Default版
+				template<typename Matrix_>
+				constexpr void createBorder(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					if (y_ == 0) return;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[0][col][layer_] = 1;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[y_ - 1][col][layer_] = 1;
+					if (x_ == 0) return;
+					for (std::size_t row{}; row < y_; ++row) {
+						matrix_[row][0][layer_] = 1;
+						matrix_[row][x_ - 1][layer_] = 1;
+					}
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createBorder(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+					if (y_ == 0) return;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[0][col][layer_] = value_;
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[y_ - 1][col][layer_] = value_;
+					if (x_ == 0) return;
+					for (std::size_t row{}; row < y_; ++row) {
+						matrix_[row][0][layer_] = value_;
+						matrix_[row][x_ - 1][layer_] = value_;
+					}
+				}
+				//クラス版
+				template<typename Matrix_Int_>
+				class Border {
+				public:
+					//コンストラクタ
+					constexpr Border() noexcept = default;
+					template<typename Matrix_>
+					constexpr explicit Border(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						create(matrix_, layer_, x_, y_, value_);
+					}
+					template<typename Matrix_>
+					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+						dtl::generation::layer::normal::createBorder(matrix_, layer_, x_, y_, value_);
+					}
+				};
+			}
+		}
 		namespace array {
 			//Array版
 			template<typename Matrix_>
@@ -1316,8 +1649,9 @@ namespace dtl {
 			return true;
 		}
 
-	}
 
+
+	} //namespace
 }
 
 #endif //Included Dungeon Template Library

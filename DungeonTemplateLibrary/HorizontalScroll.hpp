@@ -41,7 +41,10 @@ namespace dtl {
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
 						if (matrix_[row - 1][col] == value_) matrix_[row][col] = value_;
 			}
-		}
+
+
+
+		} //namespace
 	}
 
 }
