@@ -16,7 +16,7 @@ void dungeonBinarizationOver(int** matrix_, const int x_, const int y_, const in
 		}
 }
 
-void dungeonBinarization(int** matrix_, const int x_, const int y_) {
+void binarizationOver(int** matrix_, const int x_, const int y_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
 			if (matrix_[i][j]) matrix_[i][j] = 1;
@@ -24,7 +24,7 @@ void dungeonBinarization(int** matrix_, const int x_, const int y_) {
 		}
 }
 
-void dungeonBinarizationBool(int** matrix_, int** stl2_, const int x_, const int y_) {
+void binarizationBool(int** matrix_, int** stl2_, const int x_, const int y_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j) {
 			if (matrix_[i][j]) stl2_[i][j] = 1;

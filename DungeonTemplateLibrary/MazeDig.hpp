@@ -15,7 +15,7 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	//地形生成
-	namespace generation {
+	namespace generator {
 
 		namespace stl {
 			enum MazeDigType :std::size_t {
@@ -54,7 +54,7 @@ namespace dtl {
 				constexpr void mazeDig_Dig(Matrix_& data, std::size_t x_, std::size_t y_, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
 					if (!mazeDig_Check(data)) return;
 					std::int_fast32_t dx{}, dy{};
-					std::size_t random = std::size_t(rnd()), counter = 0;
+					std::size_t random = std::size_t(dtl::random::rnd()), counter = 0;
 
 					const std::size_t i_max{ ((data.size() % 2) == 0) ? data.size() - 2 : data.size() - 1 };
 					const std::size_t j_max{ ((data[0].size() % 2) == 0) ? data[0].size() - 2 : data[0].size() - 1 };
@@ -77,7 +77,7 @@ namespace dtl {
 							x_ += dx;
 							y_ += dy;
 							counter = 0;
-							random = std::size_t(rnd());
+							random = std::size_t(dtl::random::rnd());
 						}
 					}
 					return;
@@ -121,7 +121,7 @@ namespace dtl {
 						select_id = mazeDig_CreateLoop(data, id_wall_, id_empty_, select_x, select_y);
 						if (select_id == static_cast<std::size_t>(0)) break;
 
-						select_id = static_cast<std::size_t>(rnd(static_cast<std::int_fast32_t>(select_id)));
+						select_id = static_cast<std::size_t>(dtl::random::rnd(static_cast<std::int_fast32_t>(select_id)));
 						mazeDig_Dig(data, (std::size_t)select_x[select_id], (std::size_t)select_y[select_id], id_wall_, id_empty_);
 					}
 					return;

@@ -16,7 +16,7 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	//地形生成
-	namespace generation {
+	namespace generator {
 
 		namespace stl {
 			//四角形の位置と大きさ
@@ -60,7 +60,7 @@ namespace dtl {
 					room_rect.clear();
 					branch_point.clear();
 					//最初の部屋を生成
-					if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)rnd(4))) return;
+					if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)dtl::random::rnd(4))) return;
 					//機能配置
 					for (std::size_t i = 1; i < way_max_; ++i)
 						if (!createNext(matrix_)) break;
@@ -89,9 +89,9 @@ namespace dtl {
 						if (branch_point.empty()) break;
 
 						//部屋か通路の乱数面を選択
-						r = (std::size_t)rnd((std::int_fast32_t)branch_point.size());
-						const auto& x{ rnd(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
-						const auto& y{ rnd(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
+						r = (std::size_t)dtl::random::rnd((std::int_fast32_t)branch_point.size());
+						const auto& x{ dtl::random::rnd(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
+						const auto& y{ dtl::random::rnd(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
 						//方角カウンタ
 						for (std::size_t j{}; j < direction_count; ++j) {
@@ -117,7 +117,7 @@ namespace dtl {
 					if (getTileType(matrix_, x + dx, y + dy) != room_id && getTileType(matrix_, x + dx, y + dy) != way_id) return false;
 
 					//2分の1の確率
-					if (rnd.randBool()) {
+					if (dtl::random::rnd.randBool()) {
 						//部屋を生成
 						if (!makeRoom(matrix_, x, y, dir_)) return false;
 						setTileType(matrix_, x, y, entrance_id);
@@ -138,8 +138,8 @@ namespace dtl {
 					constexpr std::int_fast32_t maxRoomSize{ 6 };
 
 					RogueLikeRect<std::int_fast32_t> room;
-					room.w = rnd(minRoomSize, maxRoomSize);
-					room.h = rnd(minRoomSize, maxRoomSize);
+					room.w = dtl::random::rnd(minRoomSize, maxRoomSize);
+					room.h = dtl::random::rnd(minRoomSize, maxRoomSize);
 
 					switch (dir_)
 					{
@@ -184,18 +184,18 @@ namespace dtl {
 					way.y = y_;
 
 					//左右
-					if (rnd.randBool()) {
-						way.w = rnd(minWayLength, maxWayLength);
+					if (dtl::random::rnd.randBool()) {
+						way.w = dtl::random::rnd(minWayLength, maxWayLength);
 						way.h = 1;
 						switch (dir_)
 						{
 						case direction_north:
 							way.y = y_ - 1;
-							if (rnd.randBool()) way.x = x_ - way.w + 1;
+							if (dtl::random::rnd.randBool()) way.x = x_ - way.w + 1;
 							break;
 						case direction_south:
 							way.y = y_ + 1;
-							if (rnd.randBool()) way.x = x_ - way.w + 1;
+							if (dtl::random::rnd.randBool()) way.x = x_ - way.w + 1;
 							break;
 						case direction_west:
 							way.x = x_ - way.w;
@@ -208,19 +208,19 @@ namespace dtl {
 					//上下
 					else {
 						way.w = 1;
-						way.h = rnd(minWayLength, maxWayLength);
+						way.h = dtl::random::rnd(minWayLength, maxWayLength);
 						if (dir_ == direction_north)
 							way.y = y_ - way.h;
 						else if (dir_ == direction_south)
 							way.y = y_ + 1;
 						else if (dir_ == direction_west) {
 							way.x = x_ - 1;
-							if (rnd.randBool())
+							if (dtl::random::rnd.randBool())
 								way.y = y_ - way.h + 1;
 						}
 						else if (dir_ == direction_east) {
 							way.x = x_ + 1;
-							if (rnd.randBool())
+							if (dtl::random::rnd.randBool())
 								way.y = y_ - way.h + 1;
 						}
 					}
@@ -266,9 +266,9 @@ namespace dtl {
 				//ワールドマップ生成
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
-					dtl::generation::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
-					dtl::dungeonBinarization(matrix_, 1);
-					dtl::noiseShoreBothBool(matrix_, 0.1);
+					dtl::generator::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
+					dtl::utility::binarizationOver(matrix_, 1);
+					dtl::utility::noiseShoreBothBool(matrix_, 0.1);
 				}
 			};
 

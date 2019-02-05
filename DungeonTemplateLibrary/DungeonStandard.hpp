@@ -15,7 +15,7 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	//地形生成
-	namespace generation {
+	namespace generator {
 
 		//----------   DungeonInit   ----------
 		//1.全てのマスを0で埋める
@@ -31,14 +31,14 @@ namespace dtl {
 		namespace stl {
 			//(1)
 			template<typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
 						matrix_[row][col] = 0;
 			}
 			//(2)
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
 						matrix_[row][col] = value_;
@@ -55,7 +55,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 0) noexcept {
-					dtl::generation::stl::dungeonInit(matrix_, value_);
+					dtl::generator::stl::initDungeon(matrix_, value_);
 				}
 			};
 		}
@@ -63,26 +63,26 @@ namespace dtl {
 		namespace normal {
 			//(1)
 			template<typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				for (std::size_t row{}; row < y_; ++row)
 					for (std::size_t col{}; col < x_; ++col)
 						matrix_[row][col] = 0;
 			}
 			//(2)
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 				for (std::size_t row{}; row < y_; ++row)
 					for (std::size_t col{}; col < x_; ++col)
 						matrix_[row][col] = value_;
 			}
 			template<typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
 				for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 					for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 						matrix_[row][col] = 0;
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
 				for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 					for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 						matrix_[row][col] = value_;
@@ -99,7 +99,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
-					dtl::generation::normal::dungeonInit(matrix_, x_, y_, value_);
+					dtl::generator::normal::initDungeon(matrix_, x_, y_, value_);
 				}
 			};
 		}
@@ -108,26 +108,26 @@ namespace dtl {
 		namespace array {
 				//(1)
 				template<typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
 							matrix_[row * x_ + col] = 0;
 				}
 				//(2)
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
 							matrix_[row * x_ + col] = value_;
 				}
 				template<typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
 					for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 						for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 							matrix_[row * end_x_ + col] = 0;
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 						for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 							matrix_[row * end_x_ + col] = value_;
@@ -144,21 +144,21 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
-						dtl::generation::array::dungeonInit(matrix_, x_, y_, value_);
+						dtl::generator::array::initDungeon(matrix_, x_, y_, value_);
 					}
 				};
 		}
 		namespace rangeBasedFor {
 			//(1)
 			template<typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_) noexcept {
 				for (auto&& row : matrix_)
 					for (auto&& col : row)
 						col = 0;
 			}
 			//(2)
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void dungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+			constexpr void initDungeon(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 				for (auto&& row : matrix_)
 					for (auto&& col : row)
 						col = value_;
@@ -171,14 +171,14 @@ namespace dtl {
 			namespace stl {
 				//(1)
 				template<typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col][layer_] = 0;
 				}
 				//(2)
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col][layer_] = value_;
@@ -195,7 +195,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
-						dtl::generation::layer::stl::dungeonInit(matrix_, layer_, value_);
+						dtl::generator::layer::stl::initDungeon(matrix_, layer_, value_);
 					}
 				};
 			}
@@ -203,26 +203,26 @@ namespace dtl {
 			namespace normal {
 				//(1)
 				template<typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
 							matrix_[row][col][layer_] = 0;
 				}
 				//(2)
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
 							matrix_[row][col][layer_] = value_;
 				}
 				template<typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_) noexcept {
 					for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 						for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 							matrix_[row][col][layer_] = 0;
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void dungeonInit(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
+				constexpr void initDungeon(Matrix_& matrix_, std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t end_x_, const std::size_t end_y_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{ start_y_ }; row < end_y_; ++row)
 						for (std::size_t col{ start_x_ }; col < end_x_; ++col)
 							matrix_[row][col][layer_] = value_;
@@ -239,7 +239,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
-						dtl::generation::layer::normal::dungeonInit(matrix_, layer_, x_, y_, value_);
+						dtl::generator::layer::normal::initDungeon(matrix_, layer_, x_, y_, value_);
 					}
 				};
 
@@ -485,7 +485,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::array::createBorderOdd(matrix_, x_, y_, value_);
+					dtl::generator::array::createBorderOdd(matrix_, x_, y_, value_);
 				}
 			};
 
@@ -544,7 +544,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::normal::createBorderOdd(matrix_, x_, y_, value_);
+					dtl::generator::normal::createBorderOdd(matrix_, x_, y_, value_);
 				}
 			};
 		}
@@ -603,7 +603,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::stl::createBorderOdd(matrix_, value_);
+					dtl::generator::stl::createBorderOdd(matrix_, value_);
 				}
 			};
 		}
@@ -663,7 +663,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+						dtl::generator::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 					}
 				};
 			}
@@ -722,7 +722,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+						dtl::generator::layer::stl::createBorderOdd(matrix_, layer_, value_);
 					}
 				};
 			}
@@ -745,13 +745,13 @@ namespace dtl {
 			//Array版
 			template<typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::generation::array::createPointGrid(matrix_, x_, y_);
-				dtl::generation::array::createBorderOdd(matrix_, x_, y_);
+				dtl::generator::array::createPointGrid(matrix_, x_, y_);
+				dtl::generator::array::createBorderOdd(matrix_, x_, y_);
 			}
 			template<typename Matrix_Int_, typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-				dtl::generation::array::createPointGrid(matrix_, x_, y_, value_);
-				dtl::generation::array::createBorderOdd(matrix_, x_, y_, value_);
+				dtl::generator::array::createPointGrid(matrix_, x_, y_, value_);
+				dtl::generator::array::createBorderOdd(matrix_, x_, y_, value_);
 			}
 			template<typename Matrix_Int_>
 			class PointGridField {
@@ -764,8 +764,8 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::array::createPointGrid(matrix_, x_, y_, value_);
-					dtl::generation::array::createBorderOdd(matrix_, x_, y_, value_);
+					dtl::generator::array::createPointGrid(matrix_, x_, y_, value_);
+					dtl::generator::array::createBorderOdd(matrix_, x_, y_, value_);
 				}
 			};
 		}
@@ -774,13 +774,13 @@ namespace dtl {
 			//Default版
 			template<typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::generation::normal::createPointGrid(matrix_, x_, y_);
-				dtl::generation::normal::createBorderOdd(matrix_, x_, y_);
+				dtl::generator::normal::createPointGrid(matrix_, x_, y_);
+				dtl::generator::normal::createBorderOdd(matrix_, x_, y_);
 			}
 			template<typename Matrix_Int_, typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-				dtl::generation::normal::createPointGrid(matrix_, x_, y_, value_);
-				dtl::generation::normal::createBorderOdd(matrix_, x_, y_, value_);
+				dtl::generator::normal::createPointGrid(matrix_, x_, y_, value_);
+				dtl::generator::normal::createBorderOdd(matrix_, x_, y_, value_);
 			}
 			//クラス版
 			template<typename Matrix_Int_>
@@ -794,8 +794,8 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::normal::createPointGrid(matrix_, x_, y_, value_);
-					dtl::generation::normal::createBorderOdd(matrix_, x_, y_, value_);
+					dtl::generator::normal::createPointGrid(matrix_, x_, y_, value_);
+					dtl::generator::normal::createBorderOdd(matrix_, x_, y_, value_);
 				}
 			};
 		}
@@ -803,14 +803,14 @@ namespace dtl {
 			//STL版(1)
 			template<typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_) noexcept {
-				dtl::generation::stl::createPointGrid(matrix_);
-				dtl::generation::stl::createBorderOdd(matrix_);
+				dtl::generator::stl::createPointGrid(matrix_);
+				dtl::generator::stl::createBorderOdd(matrix_);
 			}
 			//STL版(2)
 			template<typename Matrix_Int_, typename Matrix_>
 			constexpr void createPointGridField(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-				dtl::generation::stl::createPointGrid(matrix_, value_);
-				dtl::generation::stl::createBorderOdd(matrix_, value_);
+				dtl::generator::stl::createPointGrid(matrix_, value_);
+				dtl::generator::stl::createBorderOdd(matrix_, value_);
 			}
 			//クラス版
 			template<typename Matrix_Int_>
@@ -824,8 +824,8 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::stl::createPointGrid(matrix_, value_);
-					dtl::generation::stl::createBorderOdd(matrix_, value_);
+					dtl::generator::stl::createPointGrid(matrix_, value_);
+					dtl::generator::stl::createBorderOdd(matrix_, value_);
 				}
 			};
 		}
@@ -835,13 +835,13 @@ namespace dtl {
 				//Default版
 				template<typename Matrix_>
 				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-					dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_);
-					dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_);
+					dtl::generator::layer::normal::createPointGrid(matrix_, layer_, x_, y_);
+					dtl::generator::layer::normal::createBorderOdd(matrix_, layer_, x_, y_);
 				}
 				template<typename Matrix_Int_, typename Matrix_>
 				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-					dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
-					dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+					dtl::generator::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
+					dtl::generator::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 				}
 				//クラス版
 				template<typename Matrix_Int_>
@@ -855,8 +855,8 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
-						dtl::generation::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
+						dtl::generator::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
+						dtl::generator::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 					}
 				};
 			}
@@ -864,14 +864,14 @@ namespace dtl {
 				//STL版(1)
 				template<typename Matrix_>
 				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_) noexcept {
-					dtl::generation::layer::stl::createPointGrid(matrix_, layer_);
-					dtl::generation::layer::stl::createBorderOdd(matrix_, layer_);
+					dtl::generator::layer::stl::createPointGrid(matrix_, layer_);
+					dtl::generator::layer::stl::createBorderOdd(matrix_, layer_);
 				}
 				//STL版(2)
 				template<typename Matrix_Int_, typename Matrix_>
 				constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
-					dtl::generation::layer::stl::createPointGrid(matrix_, layer_, value_);
-					dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+					dtl::generator::layer::stl::createPointGrid(matrix_, layer_, value_);
+					dtl::generator::layer::stl::createBorderOdd(matrix_, layer_, value_);
 				}
 				//クラス版
 				template<typename Matrix_Int_>
@@ -885,8 +885,8 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::stl::createPointGrid(matrix_, layer_, value_);
-						dtl::generation::layer::stl::createBorderOdd(matrix_, layer_, value_);
+						dtl::generator::layer::stl::createPointGrid(matrix_, layer_, value_);
+						dtl::generator::layer::stl::createBorderOdd(matrix_, layer_, value_);
 					}
 				};
 			}
@@ -937,12 +937,12 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
-					dtl::generation::stl::createPointGrid(matrix_, hard_value_);
-					dtl::generation::stl::createBorderOdd(matrix_, hard_value_);
+					dtl::generator::stl::createPointGrid(matrix_, hard_value_);
+					dtl::generator::stl::createBorderOdd(matrix_, hard_value_);
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							if (matrix_[row][col] == 0 && rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
-					dtl::generation::stl::createPointGridFieldPlayerSpace(matrix_);
+							if (matrix_[row][col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
+					dtl::generator::stl::createPointGridFieldPlayerSpace(matrix_);
 				}
 			};
 		}
@@ -978,12 +978,12 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
-					dtl::generation::normal::createPointGrid(matrix_, x_, y_, hard_value_);
-					dtl::generation::normal::createBorderOdd(matrix_, x_, y_, hard_value_);
+					dtl::generator::normal::createPointGrid(matrix_, x_, y_, hard_value_);
+					dtl::generator::normal::createBorderOdd(matrix_, x_, y_, hard_value_);
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
-							if (matrix_[row][col] == 0 && rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
-					dtl::generation::normal::createPointGridFieldPlayerSpace(matrix_, x_, y_);
+							if (matrix_[row][col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
+					dtl::generator::normal::createPointGridFieldPlayerSpace(matrix_, x_, y_);
 				}
 			};
 		}
@@ -1019,12 +1019,12 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
-					dtl::generation::array::createPointGrid(matrix_, x_, y_, hard_value_);
-					dtl::generation::array::createBorderOdd(matrix_, x_, y_, hard_value_);
+					dtl::generator::array::createPointGrid(matrix_, x_, y_, hard_value_);
+					dtl::generator::array::createBorderOdd(matrix_, x_, y_, hard_value_);
 					for (std::size_t row{}; row < y_; ++row)
 						for (std::size_t col{}; col < x_; ++col)
-							if (matrix_[row * x_ + col] == 0 && rnd.randBool(probability_)) matrix_[row * x_ + col] = soft_value_;
-					dtl::generation::array::createPointGridFieldPlayerSpace(matrix_, x_, y_);
+							if (matrix_[row * x_ + col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row * x_ + col] = soft_value_;
+					dtl::generator::array::createPointGridFieldPlayerSpace(matrix_, x_, y_);
 				}
 			};
 		}
@@ -1431,7 +1431,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::stl::createBorder(matrix_, value_);
+					dtl::generator::stl::createBorder(matrix_, value_);
 				}
 			};
 		}
@@ -1475,7 +1475,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::normal::createBorder(matrix_, x_, y_, value_);
+					dtl::generator::normal::createBorder(matrix_, x_, y_, value_);
 				}
 			};
 		}
@@ -1521,7 +1521,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::stl::createBorder(matrix_, layer_, value_);
+						dtl::generator::layer::stl::createBorder(matrix_, layer_, value_);
 					}
 				};
 			}
@@ -1565,7 +1565,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-						dtl::generation::layer::normal::createBorder(matrix_, layer_, x_, y_, value_);
+						dtl::generator::layer::normal::createBorder(matrix_, layer_, x_, y_, value_);
 					}
 				};
 			}
@@ -1609,7 +1609,7 @@ namespace dtl {
 				}
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-					dtl::generation::array::createBorder(matrix_, x_, y_, value_);
+					dtl::generator::array::createBorder(matrix_, x_, y_, value_);
 				}
 			};
 		}

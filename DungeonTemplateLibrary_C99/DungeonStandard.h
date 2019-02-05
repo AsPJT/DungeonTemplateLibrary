@@ -8,7 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 //全てのマスを0で埋める
-void dungeonInit(int** matrix_, const int x_, const int y_) {
+void initDungeon(int** matrix_, const int x_, const int y_) {
 	for (int i = 0; i < y_; ++i)
 		for (int j = 0; j < x_; ++j)
 			matrix_[i][j] = 0;

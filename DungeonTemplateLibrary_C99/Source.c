@@ -22,7 +22,7 @@ int main(void) {
 	//noiseShoreBool(dungeon, x, y, 0.5);
 	//dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
 
-	//dungeonInit(dungeon, x, y);
+	//initDungeon(dungeon, x, y);
 
 	//ローグライク(区域分割法)
 	//createSimpleRogueLike(dungeon, x, y);
@@ -31,7 +31,7 @@ int main(void) {
 	createMazeDig(dungeon, x, y);
 	dungeonStringOutputBool(dungeon, x, y, "\x1b[42m　", "\x1b[44m　");
 
-	dungeonInit(dungeon, x, y);
+	initDungeon(dungeon, x, y);
 
 	free(dungeon_base_matrix);
 	free(dungeon);
