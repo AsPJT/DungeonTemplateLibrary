@@ -16,32 +16,35 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
 
-		//ボロノイ図のデータを管理する
-		template<typename Matrix_Int_>
-		class VoronoiData {
-		private:
-			using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
-			const std::size_t array_size{};
-		public:
+		namespace data {
 
-			constexpr explicit VoronoiData(const std::size_t array_size_ = 100) noexcept
-				:point(std::make_unique<Point_Pair_[]>(array_size_)), color(std::make_unique<Matrix_Int_[]>(array_size_)), array_size(array_size_) {}
+			//ボロノイ図のデータを管理する
+			template<typename Matrix_Int_>
+			class VoronoiData {
+			private:
+				using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+				const std::size_t array_size{};
+			public:
 
-			std::unique_ptr<Point_Pair_[]> point;
-			std::unique_ptr<Matrix_Int_[]> color;
-			constexpr std::size_t size() const noexcept {
-				return array_size;
-			}
-			constexpr void clear() noexcept {
-				for (std::size_t i{}; i < array_size; ++i) {
-					point[i] = Point_Pair_(0, 0);
-					color[i] = 0;
+				constexpr explicit VoronoiData(const std::size_t array_size_ = 100) noexcept
+					:point(std::make_unique<Point_Pair_[]>(array_size_)), color(std::make_unique<Matrix_Int_[]>(array_size_)), array_size(array_size_) {}
+
+				std::unique_ptr<Point_Pair_[]> point;
+				std::unique_ptr<Matrix_Int_[]> color;
+				constexpr std::size_t size() const noexcept {
+					return array_size;
 				}
-			}
-		};
+				constexpr void clear() noexcept {
+					for (std::size_t i{}; i < array_size; ++i) {
+						point[i] = Point_Pair_(0, 0);
+						color[i] = 0;
+					}
+				}
+			};
+
+		}
 
 		namespace stl {
 
@@ -60,11 +63,11 @@ namespace dtl {
 					create(matrix_, count_, rbool_, land_, sea_);
 				}
 				template<typename Matrix_>
-				constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
+				constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, dtl::generator::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
 					create(matrix_, svid_, rbool_, land_, sea_);
 				}
 				template<typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+				constexpr void operator()(Matrix_& matrix_, dtl::generator::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 					create(matrix_, svid_, rbool_, land_, sea_);
 				}
 
@@ -80,7 +83,7 @@ namespace dtl {
 				}
 				//ボロノイ図を作る
 				template<typename Matrix_>
-				constexpr void create(Matrix_& matrix_, VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+				constexpr void create(Matrix_& matrix_, dtl::generator::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 					createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(matrix::getSizeX(matrix_)), static_cast<std::int_fast32_t>(matrix::getSizeY(matrix_)), rbool_, land_, sea_);
 					createSites(svid_.point, svid_.color, svid_.size(), matrix_, matrix::getSizeX(matrix_), matrix::getSizeY(matrix_));
 				}

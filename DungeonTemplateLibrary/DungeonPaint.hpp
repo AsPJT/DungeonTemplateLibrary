@@ -13,7 +13,6 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-
 	namespace artist {
 
 		//beta

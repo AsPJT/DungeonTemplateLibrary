@@ -14,19 +14,23 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
+
 
 		//----------   DungeonInit   ----------
 		//1.全てのマスを0で埋める
 		//2.全てのマスを指定した数値で埋める
 
-		enum eDungeonInit {
-			dungeon_init_empty_id,
-			dungeon_init_enum_num
-		};
-		constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 12> dungeon_init_name{ { "DungeonInit" } };
+		namespace data {
+
+			enum eDungeonInit {
+				dungeon_init_empty_id,
+				dungeon_init_enum_num
+			};
+			constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 12> dungeon_init_name{ { "DungeonInit" } };
+
+		}
 
 		namespace stl {
 			//(1)
@@ -251,13 +255,17 @@ namespace dtl {
 		//1.偶数マスを1で埋める
 		//2.偶数マスを指定した数値で埋める
 
-		enum ePointGrid {
-			point_grid_empty_id,
-			point_grid_wall_id,
-			point_grid_enum_num
-		};
-		constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 10> point_grid_name{ { "PointGrid" } };
+		namespace data {
+
+			enum ePointGrid {
+				point_grid_empty_id,
+				point_grid_wall_id,
+				point_grid_enum_num
+			};
+			constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 10> point_grid_name{ { "PointGrid" } };
+
+		}
 
 		namespace array {
 			//Array版
@@ -424,13 +432,17 @@ namespace dtl {
 		//1.マップの外枠を1で埋める(枠の内部を奇数マスにする)
 		//2.マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 
-		enum eBorderOdd {
-			border_odd_empty_id,
-			border_odd_wall_id,
-			border_odd_enum_num
-		};
-		constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 10> border_odd_name{ { "BorderOdd" } };
+		namespace data {
+
+			enum eBorderOdd {
+				border_odd_empty_id,
+				border_odd_wall_id,
+				border_odd_enum_num
+			};
+			constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 10> border_odd_name{ { "BorderOdd" } };
+
+		}
 
 		namespace array {
 			//Array版
@@ -733,13 +745,17 @@ namespace dtl {
 		//----------   PointGridField   ----------
 		//PointGrid + BorderOdd
 
-		enum ePointGridField {
-			point_grid_field_empty_id,
-			point_grid_field_wall_id,
-			point_grid_field_enum_num
-		};
-		constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 15> point_grid_field_name{ { "PointGridField" } };
+		namespace data {
+
+			enum ePointGridField {
+				point_grid_field_empty_id,
+				point_grid_field_wall_id,
+				point_grid_field_enum_num
+			};
+			constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 15> point_grid_field_name{ { "PointGridField" } };
+
+		}
 
 		namespace array {
 			//Array版
@@ -896,14 +912,18 @@ namespace dtl {
 		//----------   PointGridFieldPutBlock   ----------
 		//PointGrid + BorderOdd + 枠の内部の空マスを指定した確率で埋める
 
-		enum ePointGridFieldPutBlock {
-			point_grid_field_put_block_empty_id,
-			point_grid_field_put_block_wall_id,
-			point_grid_field_put_block_block_id,
-			point_grid_field_put_block_enum_num
-		};
-		constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 23> point_grid_field_put_block_name{ { "PointGridFieldPutBlock" } };
+		namespace data {
+
+			enum ePointGridFieldPutBlock {
+				point_grid_field_put_block_empty_id,
+				point_grid_field_put_block_wall_id,
+				point_grid_field_put_block_block_id,
+				point_grid_field_put_block_enum_num
+			};
+			constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 23> point_grid_field_put_block_name{ { "PointGridFieldPutBlock" } };
+
+		}
 
 		//STL版
 		namespace stl {
@@ -1033,362 +1053,370 @@ namespace dtl {
 		//----------   Line   ----------
 		//beta
 
-		//STL版(1)
-		template<typename Matrix_>
-		constexpr void createLineDown(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[0].size(); ++col)
-				matrix_[0][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createLineUp(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
-				matrix_[matrix_.size() - 1][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createLineLeft(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][0] = 1;
-			}
-		}
-		template<typename Matrix_>
-		constexpr void createLineRight(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][matrix_[row].size() - 1] = 1;
-			}
-		}
+		namespace stl {
 
-		//----------   OneLine   ----------
+			//STL版(1)
+			template<typename Matrix_>
+			constexpr void createLineDown(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[0].size(); ++col)
+					matrix_[0][col] = 1;
+			}
+			template<typename Matrix_>
+			constexpr void createLineUp(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+					matrix_[matrix_.size() - 1][col] = 1;
+			}
+			template<typename Matrix_>
+			constexpr void createLineLeft(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][0] = 1;
+				}
+			}
+			template<typename Matrix_>
+			constexpr void createLineRight(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][matrix_[row].size() - 1] = 1;
+				}
+			}
 
-		//STL版(1)
-		template<typename Matrix_>
-		constexpr void createOneLineDown(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[0].size(); ++col)
-				matrix_[0][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineUp(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
-				matrix_[matrix_.size() - 1][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineLeft(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][0] = 1;
-			}
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineRight(Matrix_& matrix_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][matrix_[row].size() - 1] = 1;
-			}
-		}
-		//STL版(2)
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineDown(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[0].size(); ++col)
-				matrix_[0][col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineUp(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
-				matrix_[matrix_.size() - 1][col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][0] = value_;
-			}
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineRight(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			if (matrix_.size() == 0) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row) {
-				if (matrix_[row].size() == 0) continue;
-				matrix_[row][matrix_[row].size() - 1] = value_;
-			}
-		}
-		//Default版
-		template<typename Matrix_>
-		constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[0][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[y_ - 1][col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row][0] = 1;
-			}
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row][x_ - 1] = 1;
-			}
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[0][col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[y_ - 1][col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row][0] = value_;
-			}
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row][x_ - 1] = value_;
-			}
-		}
-		//Array版
-		template<typename Matrix_>
-		constexpr void createOneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[(y_ - 1)*x_ + col] = 1;
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row*x_] = 1;
-			}
-		}
-		template<typename Matrix_>
-		constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row*x_ + x_ - 1] = 1;
-			}
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (y_ == 0) return;
-			for (std::size_t col{}; col < x_; ++col)
-				matrix_[(y_ - 1)*x_ + col] = value_;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row*x_] = value_;
-			}
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			if (matrix::isEmpty(x_, y_)) return;
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row*x_ + x_ - 1] = value_;
-			}
-		}
-		//クラス版
-		template<typename Matrix_Int_>
-		class OneLineUp {
-		public:
-			//コンストラクタ
-			constexpr OneLineUp() noexcept = default;
+			//----------   OneLine   ----------
+
+			//STL版(1)
 			template<typename Matrix_>
-			constexpr explicit OneLineUp(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, value_);
+			constexpr void createOneLineDown(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[0].size(); ++col)
+					matrix_[0][col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineUp(matrix_, value_);
+			constexpr void createOneLineUp(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+					matrix_[matrix_.size() - 1][col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			constexpr void createOneLineLeft(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][0] = 1;
+				}
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineUp(matrix_, x_, y_, value_);
+			constexpr void createOneLineRight(Matrix_& matrix_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][matrix_[row].size() - 1] = 1;
+				}
 			}
-		};
-		template<typename Matrix_Int_>
-		class OneLineUp_Array {
-		public:
-			//コンストラクタ
-			constexpr OneLineUp_Array() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			//STL版(2)
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineDown(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[0].size(); ++col)
+					matrix_[0][col] = value_;
 			}
-			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineUp_Array(matrix_, x_, y_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineUp(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+					matrix_[matrix_.size() - 1][col] = value_;
 			}
-		};
-		//クラス版
-		template<typename Matrix_Int_>
-		class OneLineDown {
-		public:
-			//コンストラクタ
-			constexpr OneLineDown() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineDown(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][0] = value_;
+				}
 			}
-			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineDown(matrix_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineRight(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				if (matrix_.size() == 0) return;
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					if (matrix_[row].size() == 0) continue;
+					matrix_[row][matrix_[row].size() - 1] = value_;
+				}
 			}
+			//Default版
 			template<typename Matrix_>
-			constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
-			}
-			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineDown(matrix_, x_, y_, value_);
-			}
-		};
-		template<typename Matrix_Int_>
-		class OneLineDown_Array {
-		public:
-			//コンストラクタ
-			constexpr OneLineDown_Array() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[0][col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineDown_Array(matrix_, x_, y_, value_);
-			}
-		};
-		//クラス版
-		template<typename Matrix_Int_>
-		class OneLineLeft {
-		public:
-			//コンストラクタ
-			constexpr OneLineLeft() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, value_);
+			constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[y_ - 1][col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineLeft(matrix_, value_);
+			constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row][0] = 1;
+				}
 			}
 			template<typename Matrix_>
-			constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row][x_ - 1] = 1;
+				}
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[0][col] = value_;
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[y_ - 1][col] = value_;
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row][0] = value_;
+				}
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row][x_ - 1] = value_;
+				}
+			}
+			//Array版
+			template<typename Matrix_>
+			constexpr void createOneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineLeft(matrix_, x_, y_, value_);
-			}
-		};
-		template<typename Matrix_Int_>
-		class OneLineLeft_Array {
-		public:
-			//コンストラクタ
-			constexpr OneLineLeft_Array() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			constexpr void createOneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[(y_ - 1)*x_ + col] = 1;
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineLeft_Array(matrix_, x_, y_, value_);
-			}
-		};
-		//クラス版
-		template<typename Matrix_Int_>
-		class OneLineRight {
-		public:
-			//コンストラクタ
-			constexpr OneLineRight() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineRight(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, value_);
+			constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row*x_] = 1;
+				}
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineRight(matrix_, value_);
+			constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row*x_ + x_ - 1] = 1;
+				}
 			}
-			template<typename Matrix_>
-			constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[col] = value_;
 			}
-			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineRight(matrix_, x_, y_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (y_ == 0) return;
+				for (std::size_t col{}; col < x_; ++col)
+					matrix_[(y_ - 1)*x_ + col] = value_;
 			}
-		};
-		template<typename Matrix_Int_>
-		class OneLineRight_Array {
-		public:
-			//コンストラクタ
-			constexpr OneLineRight_Array() noexcept = default;
-			template<typename Matrix_>
-			constexpr explicit OneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				create(matrix_, x_, y_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row*x_] = value_;
+				}
 			}
-			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
-				createOneLineRight_Array(matrix_, x_, y_, value_);
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void createOneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				if (matrix::isEmpty(x_, y_)) return;
+				for (std::size_t row{}; row < y_; ++row) {
+					matrix_[row*x_ + x_ - 1] = value_;
+				}
 			}
-		};
+			//クラス版
+			template<typename Matrix_Int_>
+			class OneLineUp {
+			public:
+				//コンストラクタ
+				constexpr OneLineUp() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineUp(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineUp(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineUp(matrix_, x_, y_, value_);
+				}
+			};
+			template<typename Matrix_Int_>
+			class OneLineUp_Array {
+			public:
+				//コンストラクタ
+				constexpr OneLineUp_Array() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineUp_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineUp_Array(matrix_, x_, y_, value_);
+				}
+			};
+			//クラス版
+			template<typename Matrix_Int_>
+			class OneLineDown {
+			public:
+				//コンストラクタ
+				constexpr OneLineDown() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineDown(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineDown(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineDown(matrix_, x_, y_, value_);
+				}
+			};
+			template<typename Matrix_Int_>
+			class OneLineDown_Array {
+			public:
+				//コンストラクタ
+				constexpr OneLineDown_Array() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineDown_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineDown_Array(matrix_, x_, y_, value_);
+				}
+			};
+			//クラス版
+			template<typename Matrix_Int_>
+			class OneLineLeft {
+			public:
+				//コンストラクタ
+				constexpr OneLineLeft() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineLeft(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineLeft(matrix_, x_, y_, value_);
+				}
+			};
+			template<typename Matrix_Int_>
+			class OneLineLeft_Array {
+			public:
+				//コンストラクタ
+				constexpr OneLineLeft_Array() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineLeft_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineLeft_Array(matrix_, x_, y_, value_);
+				}
+			};
+			//クラス版
+			template<typename Matrix_Int_>
+			class OneLineRight {
+			public:
+				//コンストラクタ
+				constexpr OneLineRight() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineRight(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineRight(matrix_, value_);
+				}
+				template<typename Matrix_>
+				constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineRight(matrix_, x_, y_, value_);
+				}
+			};
+			template<typename Matrix_Int_>
+			class OneLineRight_Array {
+			public:
+				//コンストラクタ
+				constexpr OneLineRight_Array() noexcept = default;
+				template<typename Matrix_>
+				constexpr explicit OneLineRight_Array(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					create(matrix_, x_, y_, value_);
+				}
+				template<typename Matrix_>
+				constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+					createOneLineRight_Array(matrix_, x_, y_, value_);
+				}
+			};
+
+		}
 
 		//----------   Border   ----------
 		//1.マップの外枠を1で埋める
 		//2.マップの外枠を指定した数値で埋める
 
-		enum eBorder {
-			border_empty_id,
-			border_wall_id,
-			border_enum_num
-		};
-		constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
-		constexpr std::array<char, 7> border_name{ { "Border" } };
+		namespace data {
+
+			enum eBorder {
+				border_empty_id,
+				border_wall_id,
+				border_enum_num
+			};
+			constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
+			constexpr std::array<char, 7> border_name{ { "Border" } };
+
+		}
 
 		namespace stl {
 			//STL版(1)
@@ -1618,36 +1646,36 @@ namespace dtl {
 		//初期化系
 		//----------*----------*----------*----------*----------*
 
-		template<typename Matrix_>
-		constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
-			if (matrix::isEmpty(matrix_)) return false;
-			const auto& stl_value{ matrix_[0][0] };
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					if (stl_value != matrix_[row][col]) return false;
-			return true;
-		}
+		//template<typename Matrix_>
+		//constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
+		//	if (matrix::isEmpty(matrix_)) return false;
+		//	const auto& stl_value{ matrix_[0][0] };
+		//	for (std::size_t row{}; row < matrix_.size(); ++row)
+		//		for (std::size_t col{}; col < matrix_[row].size(); ++col)
+		//			if (stl_value != matrix_[row][col]) return false;
+		//	return true;
+		//}
 
-		//値が全て一致しているか確認する
-		template<typename Matrix_>
-		constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
-			if (matrix::isEmpty(matrix_)) return false;
-			const auto& stl_value{ matrix_[0][0] };
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					if (stl_value != matrix_[row][col]) return false;
-			return true;
-		}
+		////値が全て一致しているか確認する
+		//template<typename Matrix_>
+		//constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
+		//	if (matrix::isEmpty(matrix_)) return false;
+		//	const auto& stl_value{ matrix_[0][0] };
+		//	for (std::size_t row{}; row < matrix_.size(); ++row)
+		//		for (std::size_t col{}; col < matrix_[row].size(); ++col)
+		//			if (stl_value != matrix_[row][col]) return false;
+		//	return true;
+		//}
 
-		template<typename Matrix_>
-		constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
-			if (matrix::isEmpty(matrix_)) return false;
-			const auto& stl_value{ matrix_[0][0] };
-			for (const auto& row : matrix_)
-				for (const auto& col : row)
-					if (stl_value != col) return false;
-			return true;
-		}
+		//template<typename Matrix_>
+		//constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
+		//	if (matrix::isEmpty(matrix_)) return false;
+		//	const auto& stl_value{ matrix_[0][0] };
+		//	for (const auto& row : matrix_)
+		//		for (const auto& col : row)
+		//			if (stl_value != col) return false;
+		//	return true;
+		//}
 
 
 

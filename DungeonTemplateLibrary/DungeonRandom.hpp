@@ -15,10 +15,11 @@
 namespace dtl {
 	namespace random {
 
+
 		class Rand {
 		public:
 			//コンストラクタ(初期化)
-			explicit Rand() { mt.seed(rd()); }
+			explicit Rand() noexcept { mt.seed(rd()); }
 		private:
 			//32ビット版メルセンヌ・ツイスタ
 			std::mt19937 mt;

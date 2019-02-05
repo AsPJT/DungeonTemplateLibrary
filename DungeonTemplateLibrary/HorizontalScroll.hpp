@@ -14,12 +14,12 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
+
 
 		namespace stl {
 			template<typename Matrix_Int_, typename Matrix_>
-			void createMountain(Matrix_& matrix_, const Matrix_Int_ value_ = 1, const std::int_fast32_t rand_value_ = 1) noexcept {
+			void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const std::int_fast32_t rand_value_) noexcept {
 				if (matrix::isEmpty(matrix_)) return;
 
 				std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };

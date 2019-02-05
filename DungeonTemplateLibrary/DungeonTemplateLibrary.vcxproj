@@ -131,7 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SampleMatrixTypeAll.cpp" />
+    <ClCompile Include="TestCode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />

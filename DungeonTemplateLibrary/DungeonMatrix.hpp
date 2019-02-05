@@ -11,8 +11,6 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-
-	//ダンジョン内の値を操作
 	namespace matrix {
 
 		//配列数を取得
@@ -118,54 +116,117 @@ namespace dtl {
 
 		}
 
-		//ダンジョン内の値を初期化する
-		template<typename Matrix_>
-		constexpr void init(Matrix_& matrix_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					matrix_[row][col] = 0;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					matrix_[row][col] = value_;
-		}
-		template<typename Matrix_>
-		constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-			for (std::size_t row{}; row < y_; ++row)
-				for (std::size_t col{}; col < x_; ++col)
-					matrix_[row][col] = 0;
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-			for (std::size_t row{}; row < y_; ++row)
-				for (std::size_t col{}; col < x_; ++col)
-					matrix_[row][col] = value_;
-		}
+		namespace stl {
 
-		//上下反転
-		template<typename Matrix_>
-		constexpr void flip(Matrix_& matrix_) noexcept {
-			for (std::size_t row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
-				if (row >= row2) break;
-				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-					const auto&& tmp{ (matrix_[row][col] + 0) };
-					matrix_[row][col] = matrix_[row2][col];
-					matrix_[row2][col] = std::move(tmp);
+			//ダンジョン内の値を初期化する
+			template<typename Matrix_>
+			constexpr void init(Matrix_& matrix_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row)
+					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+						matrix_[row][col] = 0;
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row)
+					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+						matrix_[row][col] = value_;
+			}
+
+		}
+		namespace normal {
+
+			template<typename Matrix_>
+			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				for (std::size_t row{}; row < y_; ++row)
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[row][col] = 0;
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				for (std::size_t row{}; row < y_; ++row)
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[row][col] = value_;
+			}
+
+		}
+		namespace array {
+
+			template<typename Matrix_>
+			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				for (std::size_t row{}; row < y_; ++row)
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[row*x_+col] = 0;
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				for (std::size_t row{}; row < y_; ++row)
+					for (std::size_t col{}; col < x_; ++col)
+						matrix_[row*x_+col] = value_;
+			}
+
+		}
+		namespace layer {
+			namespace stl {
+
+				//ダンジョン内の値を初期化する
+				template<typename Matrix_>
+				constexpr void init(Matrix_& matrix_, std::size_t layer_) noexcept {
+					for (std::size_t row{}; row < matrix_.size(); ++row)
+						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+							matrix_[row][col][layer_] = 0;
 				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void init(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					for (std::size_t row{}; row < matrix_.size(); ++row)
+						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+							matrix_[row][col][layer_] = value_;
+				}
+
+			}
+			namespace normal {
+
+				template<typename Matrix_>
+				constexpr void init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					for (std::size_t row{}; row < y_; ++row)
+						for (std::size_t col{}; col < x_; ++col)
+							matrix_[row][col][layer_] = 0;
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+					for (std::size_t row{}; row < y_; ++row)
+						for (std::size_t col{}; col < x_; ++col)
+							matrix_[row][col][layer_] = value_;
+				}
+
 			}
 		}
-		//左右反転
-		template<typename Matrix_>
-		constexpr void mirror(Matrix_& matrix_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
-					if (col >= col2) break;
-					const auto&& tmp{ (matrix_[row][col] + 0) };
-					matrix_[row][col] = matrix_[row][col2];
-					matrix_[row][col2] = std::move(tmp);
+
+		namespace stl {
+
+			//上下反転
+			template<typename Matrix_>
+			constexpr void flip(Matrix_& matrix_) noexcept {
+				for (std::size_t row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
+					if (row >= row2) break;
+					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+						const auto&& tmp{ (matrix_[row][col] + 0) };
+						matrix_[row][col] = matrix_[row2][col];
+						matrix_[row2][col] = std::move(tmp);
+					}
 				}
+			}
+			//左右反転
+			template<typename Matrix_>
+			constexpr void mirror(Matrix_& matrix_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row)
+					for (std::size_t col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
+						if (col >= col2) break;
+						const auto&& tmp{ (matrix_[row][col] + 0) };
+						matrix_[row][col] = matrix_[row][col2];
+						matrix_[row][col2] = std::move(tmp);
+					}
+			}
+
 		}
 
 		template<typename Matrix_>

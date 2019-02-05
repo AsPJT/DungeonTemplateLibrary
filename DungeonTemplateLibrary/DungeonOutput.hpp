@@ -15,6 +15,8 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	namespace console {
+
+
 		namespace output {
 
 			//数値出力
@@ -182,7 +184,7 @@ namespace dtl {
 				void string(const Matrix_& matrix_, const First_& first_, const Args_&... args_) noexcept {
 					std::vector<std::string> string_vector;
 					string_vector.emplace_back(std::string(first_));
-					dtl::output::string_String(string_vector, args_...);
+					dtl::console::output::string_String(string_vector, args_...);
 
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {

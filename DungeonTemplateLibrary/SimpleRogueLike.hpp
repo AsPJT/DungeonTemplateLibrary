@@ -16,8 +16,8 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
+
 
 		namespace stl {
 			template<typename Matrix_Int_>

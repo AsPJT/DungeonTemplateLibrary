@@ -14,8 +14,8 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
+
 
 		namespace stl {
 			enum MazeDigType :std::size_t {

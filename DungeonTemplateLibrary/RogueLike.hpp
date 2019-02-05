@@ -15,8 +15,8 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	//地形生成
 	namespace generator {
+
 
 		namespace stl {
 			//四角形の位置と大きさ
@@ -267,8 +267,8 @@ namespace dtl {
 				template<typename Matrix_>
 				constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
 					dtl::generator::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
-					dtl::utility::binarizationOver(matrix_, 1);
-					dtl::utility::noiseShoreBothBool(matrix_, 0.1);
+					dtl::utility::stl::binarizationOver(matrix_, 1);
+					dtl::utility::stl::noiseShoreBothBool(matrix_, 0.1);
 				}
 			};
 
