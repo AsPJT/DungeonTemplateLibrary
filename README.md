@@ -1,8 +1,6 @@
-﻿# Dungeon Template Library (DTL)
+[![DTL](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Logo/logo_color800.gif "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
  <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-CC0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/0.1.X-passing-brightgreen.svg"></a> [![slack](https://img.shields.io/badge/slack-online-red.svg)](https://join.slack.com/t/dungeon-generation/shared_invite/enQtNTM4MzQwMDU5MTIyLWEwNjAwMTQyZjk4MDQyNDU0Y2NlMTU2OTE5YTcwOTM5MzJmZWJlMWY3ZWRkZWU4ZDY1MjJlNDU4M2Y4ZDZmOWI)
  
-[![DTL](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Logo/logo_color800.gif "DTL")](https://github.com/Kasugaccho/DungeonTemplateLibrary)
-
 DTL (Dungeon Template Library)
 
 [>> Japanese](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%5Bja%5D-Home)
