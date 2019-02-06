@@ -113,7 +113,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![voronoi](https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland/blob/master/picture/voronoi.gif)
+![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/svi.gif)
 
 ## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
@@ -256,8 +256,8 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
 
 ### Image
-![rl1](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl.gif)
-![rl4](https://github.com/Kasugaccho/DTL_RogueLike/blob/master/picture/rl4.gif)
+![rl1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rl1.gif)
+![rl4](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rl2.gif)
 
 ## [5] Simple RogueLike (v0.1.3~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
