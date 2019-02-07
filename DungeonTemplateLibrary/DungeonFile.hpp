@@ -105,16 +105,49 @@ namespace dtl {
 						}
 						return;
 					}
+					//csvファイルの読み込み時の分割
+					template<typename Matrix_Int_, typename Matrix_>
+					void splitPush_csv(Matrix_& matrix_, const std::size_t y_id_, std::string& input_line_, const char delimiter_) noexcept {
+						matrix_.emplace_back(0);
+						if (matrix_.size() <= y_id_) return;
+						std::istringstream stream(input_line_);
+						std::string field{};
+						std::size_t x_id{};
+						while (std::getline(stream, field, delimiter_)) {
+							matrix_[y_id_].emplace_back(0);
+							if (matrix_[y_id_].size() <= x_id) return;
+							matrix_[y_id_][x_id] = (Matrix_Int_)dtl::file::read::stl::hiding::splitReturnValue_csv<Matrix_Int_>(field);
+							++x_id;
+						}
+						return;
+					}
 
 				}
 
+				//beta
+				//template<typename Matrix_Int_, typename Matrix_>
+				//auto make_csv(const std::string& str_, const char delimiter_ = ',') noexcept {
 
+				//	Matrix_ matrix_;
+
+				//	std::ifstream ifs(str_);
+				//	if (ifs.fail()) return std::move(matrix_);
+
+				//	std::size_t y_id{};
+				//	std::string line{};
+				//	while (std::getline(ifs, line)) {
+				//		dtl::file::read::stl::hiding::splitPush_csv<Matrix_Int_, Matrix_>(matrix_, y_id, line, delimiter_);
+				//		++y_id;
+				//	}
+				//	return std::move(matrix_);
+				//}
 
 				//csvファイルの読み込み
 				template<typename Matrix_Int_, typename Matrix_>
 				bool csv(Matrix_& matrix_, const std::string& str_, const char delimiter_ = ',') noexcept {
 					std::ifstream ifs(str_);
 					if (ifs.fail()) return false;
+
 					std::size_t y_id{};
 					std::string line{};
 					while (std::getline(ifs, line)) {
@@ -125,7 +158,6 @@ namespace dtl {
 				}
 
 			}
-
 		}
 
 

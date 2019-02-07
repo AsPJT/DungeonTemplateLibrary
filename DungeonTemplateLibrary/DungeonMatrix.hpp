@@ -11,7 +11,7 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	namespace matrix {
+	namespace utility {
 
 		//配列数を取得
 		template<typename Matrix_>
