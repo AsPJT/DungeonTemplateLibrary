@@ -124,24 +124,6 @@ namespace dtl {
 
 				}
 
-				//beta
-				//template<typename Matrix_Int_, typename Matrix_>
-				//auto make_csv(const std::string& str_, const char delimiter_ = ',') noexcept {
-
-				//	Matrix_ matrix_;
-
-				//	std::ifstream ifs(str_);
-				//	if (ifs.fail()) return std::move(matrix_);
-
-				//	std::size_t y_id{};
-				//	std::string line{};
-				//	while (std::getline(ifs, line)) {
-				//		dtl::file::read::stl::hiding::splitPush_csv<Matrix_Int_, Matrix_>(matrix_, y_id, line, delimiter_);
-				//		++y_id;
-				//	}
-				//	return std::move(matrix_);
-				//}
-
 				//csvファイルの読み込み
 				template<typename Matrix_Int_, typename Matrix_>
 				bool csv(Matrix_& matrix_, const std::string& str_, const char delimiter_ = ',') noexcept {

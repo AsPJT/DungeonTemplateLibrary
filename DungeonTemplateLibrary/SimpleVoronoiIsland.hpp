@@ -98,9 +98,12 @@ namespace dtl {
 					}
 					//原点の場所と陸地を決定する
 					constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						for (std::size_t i{}, array_num{}; i < count_; ++i) {
-							point_[array_num] = Point_Pair_(dtl::random::rnd(w_), dtl::random::rnd(h_));
-							if (isIsland(point_, array_num, w_, h_, 2, 5) || (isIsland(point_, array_num, w_, h_, 1, 5) && dtl::random::rnd.randBool(rbool_)))
+							point_[array_num] = Point_Pair_(mersenne_twister_32bit(w_), mersenne_twister_32bit(h_));
+							if (isIsland(point_, array_num, w_, h_, 2, 5) || (isIsland(point_, array_num, w_, h_, 1, 5) && mersenne_twister_32bit.probability(rbool_)))
 								color_[array_num] = land_;
 							else color_[array_num] = sea_;
 							++array_num;

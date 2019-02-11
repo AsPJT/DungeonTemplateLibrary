@@ -20,17 +20,20 @@ namespace dtl {
 			namespace stl {
 				template<typename Matrix_Int_, typename Matrix_>
 				void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const std::int_fast32_t rand_value_) noexcept {
+
+					using dtl::random::mersenne_twister_32bit;
+
 					if (dtl::utility::isEmpty(matrix_)) return;
 
 					std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 
 					std::int_fast32_t matrix_height_value{};
-					matrix_[static_cast<std::size_t>(matrix_height_value = dtl::random::rnd(1, y))][0] = value_;
+					matrix_[static_cast<std::size_t>(matrix_height_value = mersenne_twister_32bit(1, y))][0] = value_;
 
 					for (std::size_t i{ 1 }; i < matrix_[0].size(); ++i) {
-						if (matrix_height_value <= 1) matrix_height_value += dtl::random::rnd(0, rand_value_);
-						else if (matrix_height_value >= y) matrix_height_value += dtl::random::rnd(-rand_value_, 0);
-						else matrix_height_value += dtl::random::rnd(-rand_value_, rand_value_);
+						if (matrix_height_value <= 1) matrix_height_value += mersenne_twister_32bit(0, rand_value_);
+						else if (matrix_height_value >= y) matrix_height_value += mersenne_twister_32bit(-rand_value_, 0);
+						else matrix_height_value += mersenne_twister_32bit(-rand_value_, rand_value_);
 
 						if (matrix_height_value <= 0) matrix_height_value = 1;
 						else if (matrix_height_value >= y + 1) matrix_height_value = y;

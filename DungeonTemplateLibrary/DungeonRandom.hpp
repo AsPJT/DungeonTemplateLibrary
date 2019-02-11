@@ -16,10 +16,10 @@ namespace dtl {
 	namespace random {
 
 
-		class Rand {
+		class MersenneTwister32bit {
 		public:
 			//コンストラクタ(初期化)
-			explicit Rand() noexcept { mt.seed(rd()); }
+			explicit MersenneTwister32bit() noexcept { mt.seed(rd()); }
 		private:
 			//32ビット版メルセンヌ・ツイスタ
 			std::mt19937 mt;
@@ -41,7 +41,8 @@ namespace dtl {
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
 			std::int_fast32_t operator()(const std::int_fast32_t max_) noexcept {
-				std::uniform_int_distribution<> uid(0, ((max_ > 0) ? max_ - 1 : 0));
+				if (max_ <= 1) return 0;
+				std::uniform_int_distribution<> uid(0, max_ - 1);
 				return uid(mt);
 			}
 			//最小値～最大値
@@ -50,18 +51,18 @@ namespace dtl {
 				return uid(mt);
 			}
 			//確率
-			bool randBool(const double probability_) noexcept {
+			bool probability(const double probability_) noexcept {
 				std::bernoulli_distribution uid(probability_);
 				return uid(mt);
 			}
-			bool randBool() noexcept {
+			bool probability() noexcept {
 				std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(mt)) ? true : false);
 			}
 		};
-		static thread_local dtl::random::Rand rnd;
+		static thread_local dtl::random::MersenneTwister32bit mersenne_twister_32bit;
 
-		class RandXor128
+		class Xor128
 		{
 		private:
 			std::uint_fast32_t x{ 123456789 }, y{ 362436069 }, z{ 521288629 }, w{ 88675123 };
@@ -89,7 +90,7 @@ namespace dtl {
 			}
 
 		};
-		static thread_local dtl::random::RandXor128 rnd_xor_128;
+		static thread_local dtl::random::Xor128 xor_128;
 
 
 

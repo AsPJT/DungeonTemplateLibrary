@@ -22,10 +22,13 @@ namespace dtl {
 				//ダイヤモンド・スクエア法(平均値)
 				template<typename Matrix_Int_, typename Matrix_>
 				constexpr void createDiamondSquareAverage_Map(const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_& matrix_, const Matrix_Int_ max_value_) noexcept {
+					
+					using dtl::random::mersenne_twister_32bit;
+					
 					//再起の終了処理
 					if (size_ == static_cast<std::size_t>(0)) return;
 
-					const Matrix_Int_ vertex_rand{ static_cast<Matrix_Int_>(dtl::random::rnd(static_cast<std::int_fast32_t>(size_))) };
+					const Matrix_Int_ vertex_rand{ static_cast<Matrix_Int_>(mersenne_twister_32bit(static_cast<std::int_fast32_t>(size_))) };
 					//頂点の高さを決める
 					const Matrix_Int_ vertex_height{ static_cast<Matrix_Int_>((t1_ / 4 + t2_ / 4 + t3_ / 4 + t4_ / 4)) };
 					matrix_[y_][x_] = ((vertex_height > max_value_ - vertex_rand) ? max_value_ : (vertex_height + vertex_rand));
@@ -71,14 +74,17 @@ namespace dtl {
 					//ワールドマップ生成
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) const noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
 						const std::size_t map_size{ getDiamondSquareMatrixSize((matrix_.size() > matrix_[0].size()) ? matrix_[0].size() : matrix_.size()) };
 
-						matrix_[0][0] = matrix_[map_size / 2][0] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_ / 2));
-						matrix_[0][map_size] = matrix_[0][map_size / 2] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_ / 2));
-						matrix_[map_size][0] = matrix_[map_size][map_size / 2] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_ / 2));
-						matrix_[map_size][map_size] = matrix_[map_size][map_size / 2] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_ / 2));
+						matrix_[0][0] = matrix_[map_size / 2][0] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_ / 2));
+						matrix_[0][map_size] = matrix_[0][map_size / 2] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_ / 2));
+						matrix_[map_size][0] = matrix_[map_size][map_size / 2] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_ / 2));
+						matrix_[map_size][map_size] = matrix_[map_size][map_size / 2] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_ / 2));
 						matrix_[map_size / 2][map_size / 2] = max_value_;
 						createDiamondSquareAverage_Map<Matrix_Int_>(map_size / 4, map_size / 4, map_size / 4, matrix_[0][0], matrix_[map_size / 2][0], matrix_[0][map_size / 2], matrix_[map_size / 2][map_size / 2], matrix_, max_value_);
 						createDiamondSquareAverage_Map<Matrix_Int_>(map_size / 4, map_size * 3 / 4, map_size / 4, matrix_[map_size / 2][0], matrix_[map_size][0], matrix_[map_size / 2][map_size / 2], matrix_[map_size][map_size / 2], matrix_, max_value_);
@@ -100,14 +106,17 @@ namespace dtl {
 					//ワールドマップ生成
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) const noexcept {
+
+						using dtl::random::mersenne_twister_32bit;
+
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
 						const std::size_t map_size{ getDiamondSquareMatrixSize((matrix_.size() > matrix_[0].size()) ? matrix_[0].size() : matrix_.size()) };
 
 						matrix_[0][0] = static_cast<Matrix_Int_>(max_value_);
-						matrix_[0][map_size] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_));
-						matrix_[map_size][0] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_));
-						matrix_[map_size][map_size] = static_cast<Matrix_Int_>(dtl::random::rnd(max_value_));
+						matrix_[0][map_size] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_));
+						matrix_[map_size][0] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_));
+						matrix_[map_size][map_size] = static_cast<Matrix_Int_>(mersenne_twister_32bit(max_value_));
 						createDiamondSquareAverage_Map<Matrix_Int_>(map_size / 2, map_size / 2, map_size / 2, matrix_[0][0], matrix_[map_size][0], matrix_[0][map_size], matrix_[map_size][map_size], matrix_, max_value_);
 					}
 				};
@@ -128,9 +137,12 @@ namespace dtl {
 					//ワールドマップ生成
 					template<typename Matrix_>
 					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+
+						using dtl::random::mersenne_twister_32bit;
+
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
-						if (seed_ == 0) seed_ = static_cast<std::size_t>(dtl::random::rnd(1, 0x7fffffff));
+						if (seed_ == 0) seed_ = static_cast<std::size_t>(mersenne_twister_32bit(1, 0x7fffffff));
 						std::array<std::array<Matrix_Int_, chunk_size>, chunk_size> chunk_matrix{ {} };
 						const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 						const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
@@ -140,7 +152,7 @@ namespace dtl {
 						std::unique_ptr<std::int_fast32_t[]> rand_first_row{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
 
 						for (std::size_t col{}; col < chunk_x; ++col) {
-							rand_up[col] = dtl::random::rnd(max_value_);
+							rand_up[col] = mersenne_twister_32bit(max_value_);
 							rand_first_row[col] = rand_up[col];
 						}
 						rand_first_row[chunk_x] = rand_up[chunk_x] = rand_up[0];
@@ -150,7 +162,7 @@ namespace dtl {
 							if ((row + 1) == chunk_y) rand_down = std::move(rand_first_row);
 							else {
 								for (std::size_t col{}; col < chunk_x; ++col)
-									rand_down[col] = dtl::random::rnd(max_value_);
+									rand_down[col] = mersenne_twister_32bit(max_value_);
 								rand_down[chunk_x] = rand_down[0];
 							}
 							for (std::size_t col{}; col < chunk_x; ++col) {
@@ -189,9 +201,12 @@ namespace dtl {
 					//ワールドマップ生成
 					template<typename Matrix_>
 					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+
+						using dtl::random::mersenne_twister_32bit;
+
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
-						if (seed_ == 0) seed_ = static_cast<std::size_t>(dtl::random::rnd(1, 0x7fffffff));
+						if (seed_ == 0) seed_ = static_cast<std::size_t>(mersenne_twister_32bit(1, 0x7fffffff));
 						std::array<std::array<Matrix_Int_, chunk_size>, chunk_size> chunk_matrix{ {} };
 						const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 						const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
@@ -209,7 +224,7 @@ namespace dtl {
 									rand_down[col] = 0;
 							else {
 								for (std::size_t col{ 1 }; col < chunk_x; ++col)
-									rand_down[col] = dtl::random::rnd(max_value_);
+									rand_down[col] = mersenne_twister_32bit(max_value_);
 								rand_down[0] = 0;
 								rand_down[chunk_x] = 0;
 							}

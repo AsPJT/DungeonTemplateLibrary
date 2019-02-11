@@ -958,11 +958,14 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						dtl::generator::common::stl::createPointGrid(matrix_, hard_value_);
 						dtl::generator::common::stl::createBorderOdd(matrix_, hard_value_);
 						for (std::size_t row{}; row < matrix_.size(); ++row)
 							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								if (matrix_[row][col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
+								if (matrix_[row][col] == 0 && mersenne_twister_32bit.probability(probability_)) matrix_[row][col] = soft_value_;
 						dtl::generator::common::stl::createPointGridFieldPlayerSpace(matrix_);
 					}
 				};
@@ -999,11 +1002,14 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						dtl::generator::common::normal::createPointGrid(matrix_, x_, y_, hard_value_);
 						dtl::generator::common::normal::createBorderOdd(matrix_, x_, y_, hard_value_);
 						for (std::size_t row{}; row < y_; ++row)
 							for (std::size_t col{}; col < x_; ++col)
-								if (matrix_[row][col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row][col] = soft_value_;
+								if (matrix_[row][col] == 0 && mersenne_twister_32bit.probability(probability_)) matrix_[row][col] = soft_value_;
 						dtl::generator::common::normal::createPointGridFieldPlayerSpace(matrix_, x_, y_);
 					}
 				};
@@ -1040,11 +1046,14 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double probability_ = 0.8, const Matrix_Int_ hard_value_ = 1, const Matrix_Int_ soft_value_ = 2) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						dtl::generator::common::array::createPointGrid(matrix_, x_, y_, hard_value_);
 						dtl::generator::common::array::createBorderOdd(matrix_, x_, y_, hard_value_);
 						for (std::size_t row{}; row < y_; ++row)
 							for (std::size_t col{}; col < x_; ++col)
-								if (matrix_[row * x_ + col] == 0 && dtl::random::rnd.randBool(probability_)) matrix_[row * x_ + col] = soft_value_;
+								if (matrix_[row * x_ + col] == 0 && mersenne_twister_32bit.probability(probability_)) matrix_[row * x_ + col] = soft_value_;
 						dtl::generator::common::array::createPointGridFieldPlayerSpace(matrix_, x_, y_);
 					}
 				};

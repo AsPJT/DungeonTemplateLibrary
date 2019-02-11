@@ -69,18 +69,22 @@ namespace dtl {
 			//最も多くの駒が取れる場所を選ぶ
 			template<typename Matrix_Int_, typename Matrix_>
 			constexpr bool greed(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
+
+				using dtl::random::mersenne_twister_32bit;
+				using dtl::ai::reversi::putPiece;
+
 				std::size_t piece_turn_max{};
 				std::size_t put_piece_x{}, put_piece_y{};
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-						const auto& num{ dtl::ai::reversi::putPiece(matrix_, col,row, turn_, false) };
-						if (piece_turn_max < num || (piece_turn_max == num && dtl::random::rnd.randBool())) {
+						const auto& num{ putPiece(matrix_, col,row, turn_, false) };
+						if (piece_turn_max < num || (piece_turn_max == num && mersenne_twister_32bit.probability())) {
 							piece_turn_max = num;
 							put_piece_x = col;
 							put_piece_y = row;
 						}
 					}
-				dtl::ai::reversi::putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
+				putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
 				return true;
 			}
 			//最も少なく駒が取れる場所を選ぶ
@@ -91,7 +95,7 @@ namespace dtl {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 						const auto& num{ dtl::ai::reversi::putPiece(matrix_, col,row, turn_, false) };
-						if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::random::rnd.randBool()))) {
+						if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::random::mersenne_twister_32bit.probability()))) {
 							piece_turn_min = num;
 							put_piece_x = col;
 							put_piece_y = row;
@@ -151,6 +155,9 @@ namespace dtl {
 			//優先順位の高い場所を選ぶ
 			template<typename Matrix_Int_, typename Matrix_>
 			constexpr bool priority(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
+
+				using dtl::random::mersenne_twister_32bit;
+
 				std::size_t piece_turn_max{};
 				std::size_t put_piece_x{}, put_piece_y{};
 				for (std::uint_fast8_t piece_priority{}; piece_priority < 7 && piece_turn_max == 0; ++piece_priority)
@@ -158,7 +165,7 @@ namespace dtl {
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 							if (dtl::ai::reversi::checkPriority(static_cast<std::int_fast32_t>(col), static_cast<std::int_fast32_t>(row), static_cast<std::int_fast32_t>(matrix_[row].size()) - 1, static_cast<std::int_fast32_t>(matrix_.size()) - 1) != piece_priority) continue;
 							const auto& num{ dtl::ai::reversi::putPiece(matrix_, col, row, turn_, false) };
-							if (piece_turn_max < num || (piece_turn_max == num && dtl::random::rnd.randBool())) {
+							if (piece_turn_max < num || (piece_turn_max == num && mersenne_twister_32bit.probability())) {
 								piece_turn_max = num;
 								put_piece_x = col;
 								put_piece_y = row;

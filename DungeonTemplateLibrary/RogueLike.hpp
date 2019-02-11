@@ -58,10 +58,13 @@ namespace dtl {
 					//マップ生成
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) noexcept {
+
+						using dtl::random::mersenne_twister_32bit;
+
 						room_rect.clear();
 						branch_point.clear();
 						//最初の部屋を生成
-						if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)dtl::random::rnd(4))) return;
+						if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (DirectionType)mersenne_twister_32bit(4))) return;
 						//機能配置
 						for (std::size_t i = 1; i < way_max_; ++i)
 							if (!createNext(matrix_)) break;
@@ -86,13 +89,16 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr bool createNext(Matrix_& matrix_) noexcept {
+
+						using dtl::random::mersenne_twister_32bit;
+
 						for (std::size_t i{}, r{}; i < (std::size_t)0xffff; ++i) {
 							if (branch_point.empty()) break;
 
 							//部屋か通路の乱数面を選択
-							r = (std::size_t)dtl::random::rnd((std::int_fast32_t)branch_point.size());
-							const auto& x{ dtl::random::rnd(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
-							const auto& y{ dtl::random::rnd(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
+							r = (std::size_t)mersenne_twister_32bit((std::int_fast32_t)branch_point.size());
+							const auto& x{ mersenne_twister_32bit(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
+							const auto& y{ mersenne_twister_32bit(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
 							//方角カウンタ
 							for (std::size_t j{}; j < direction_count; ++j) {
@@ -105,6 +111,9 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr bool createNext(Matrix_& matrix_, const std::int_fast32_t x, const std::int_fast32_t y, const std::size_t dir_) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+
 						std::int_fast32_t dx{};
 						std::int_fast32_t dy{};
 						switch (dir_)
@@ -118,7 +127,7 @@ namespace dtl {
 						if (getTileType(matrix_, x + dx, y + dy) != room_id && getTileType(matrix_, x + dx, y + dy) != way_id) return false;
 
 						//2分の1の確率
-						if (dtl::random::rnd.randBool()) {
+						if (mersenne_twister_32bit.probability()) {
 							//部屋を生成
 							if (!makeRoom(matrix_, x, y, dir_)) return false;
 							setTileType(matrix_, x, y, entrance_id);
@@ -135,12 +144,15 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr bool makeRoom(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_, const bool firstRoom_ = false) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+						
 						constexpr std::int_fast32_t minRoomSize{ 3 };
 						constexpr std::int_fast32_t maxRoomSize{ 6 };
 
 						RogueLikeRect<std::int_fast32_t> room;
-						room.w = dtl::random::rnd(minRoomSize, maxRoomSize);
-						room.h = dtl::random::rnd(minRoomSize, maxRoomSize);
+						room.w = mersenne_twister_32bit(minRoomSize, maxRoomSize);
+						room.h = mersenne_twister_32bit(minRoomSize, maxRoomSize);
 
 						switch (dir_)
 						{
@@ -177,6 +189,9 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					constexpr bool makeWay(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_) noexcept {
+						
+						using dtl::random::mersenne_twister_32bit;
+
 						constexpr std::int_fast32_t minWayLength{ 3 };
 						constexpr std::int_fast32_t maxWayLength{ 15 };
 
@@ -185,18 +200,18 @@ namespace dtl {
 						way.y = y_;
 
 						//左右
-						if (dtl::random::rnd.randBool()) {
-							way.w = dtl::random::rnd(minWayLength, maxWayLength);
+						if (mersenne_twister_32bit.probability()) {
+							way.w = mersenne_twister_32bit(minWayLength, maxWayLength);
 							way.h = 1;
 							switch (dir_)
 							{
 							case direction_north:
 								way.y = y_ - 1;
-								if (dtl::random::rnd.randBool()) way.x = x_ - way.w + 1;
+								if (mersenne_twister_32bit.probability()) way.x = x_ - way.w + 1;
 								break;
 							case direction_south:
 								way.y = y_ + 1;
-								if (dtl::random::rnd.randBool()) way.x = x_ - way.w + 1;
+								if (mersenne_twister_32bit.probability()) way.x = x_ - way.w + 1;
 								break;
 							case direction_west:
 								way.x = x_ - way.w;
@@ -209,19 +224,19 @@ namespace dtl {
 						//上下
 						else {
 							way.w = 1;
-							way.h = dtl::random::rnd(minWayLength, maxWayLength);
+							way.h = mersenne_twister_32bit(minWayLength, maxWayLength);
 							if (dir_ == direction_north)
 								way.y = y_ - way.h;
 							else if (dir_ == direction_south)
 								way.y = y_ + 1;
 							else if (dir_ == direction_west) {
 								way.x = x_ - 1;
-								if (dtl::random::rnd.randBool())
+								if (mersenne_twister_32bit.probability())
 									way.y = y_ - way.h + 1;
 							}
 							else if (dir_ == direction_east) {
 								way.x = x_ + 1;
-								if (dtl::random::rnd.randBool())
+								if (mersenne_twister_32bit.probability())
 									way.y = y_ - way.h + 1;
 							}
 						}
