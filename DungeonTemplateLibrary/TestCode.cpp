@@ -433,7 +433,7 @@ int main() {
 	dtl::console::output::endl();
 	dtl::console::output::stl::number(stl_matrix, ",");
 	dtl::console::output::endl();
-	dtl::console::output::stl::string(stl_matrix, ".", "#");
+	dtl::console::output::stl::string(stl_matrix, ".", "#","9");
 	dtl::console::output::endl();
 	dtl::console::output::stl::stringBool(stl_matrix, "#", ".");
 	dtl::console::output::endl();

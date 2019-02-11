@@ -70,7 +70,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestCode.cpp">
+    <ClCompile Include="Wand.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
