@@ -95,7 +95,7 @@ namespace dtl {
 		class Xor8
 		{
 		private:
-			uint_fast8_t x{1};
+			uint_fast8_t x{ 1 };
 			uint_fast8_t a{ 1 };
 			uint_fast8_t b{ 1 };
 			uint_fast8_t c{ 2 };
@@ -103,22 +103,22 @@ namespace dtl {
 			explicit Xor8() noexcept :x(mersenne_twister_32bit(1, 255)) {}
 
 			//通常の乱数
-			constexpr std::uint_fast8_t operator()() noexcept {
+			std::uint_fast8_t operator()() noexcept {
 				x ^= x >> a;
 				x ^= x << b;
 				x ^= x >> c;
 				return x;
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
-			constexpr std::uint_fast8_t operator()(const std::uint_fast8_t max_) noexcept {
+			std::uint_fast8_t operator()(const std::uint_fast8_t max_) noexcept {
 				return ((std::uint_fast8_t)(((double)operator()() / ((double)(std::numeric_limits<std::uint_fast8_t>::max)() + 1)) * max_));
 			}
 			//最小値～最大値
-			constexpr std::uint_fast8_t operator()(const std::uint_fast8_t min_, const std::uint_fast8_t max_) noexcept {
+			std::uint_fast8_t operator()(const std::uint_fast8_t min_, const std::uint_fast8_t max_) noexcept {
 				return ((std::uint_fast8_t)(((double)operator()() / ((double)(std::numeric_limits<std::uint_fast8_t>::max)() + 1)) * (max_ - min_ + 1)) + min_);
 			}
 
-			constexpr void seed(const std::uint_fast8_t x_) noexcept {
+			void seed(const std::uint_fast8_t x_) noexcept {
 				x = x_;
 			}
 

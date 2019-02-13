@@ -20,6 +20,7 @@ namespace dtl {
 		namespace dungeon {
 
 			namespace stl {
+
 				template<typename Matrix_Int_>
 				constexpr Matrix_Int_ absTemplate(const Matrix_Int_& value_) noexcept {
 					return (value_ < 0) ? (-value_) : value_;
@@ -28,6 +29,8 @@ namespace dtl {
 					RL_COUNT_X,
 					RL_COUNT_Y
 				};
+
+
 
 				template<typename Matrix_Int_>
 				class SimpleRogueLike {
