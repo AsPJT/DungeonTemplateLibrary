@@ -115,7 +115,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/svi.gif)
 
-## [19] Random Island (v0.2.1~)
+## [19] Simple Cellular Automaton Island (v0.2.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 ```cpp
