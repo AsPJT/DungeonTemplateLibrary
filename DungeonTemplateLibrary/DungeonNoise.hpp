@@ -55,7 +55,7 @@ namespace dtl {
 
 				for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 					for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-						if ((matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col]) || mersenne_twister_32bit.probability(rbool_)) continue;
+						if ((matrix_[row][col] == matrix_[row][col - 1] && matrix_[row][col] == matrix_[row - 1][col]) || !mersenne_twister_32bit.probability(rbool_)) continue;
 						if (matrix_[row][col]) matrix_[row][col] = false;
 						else matrix_[row][col] = true;
 					}
