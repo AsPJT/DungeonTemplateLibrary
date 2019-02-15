@@ -17,7 +17,7 @@
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 ### [>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
-### [>> Web Trial (Wandbox)](https://wandbox.org/permlink/gUpHgebVyqi7D3F4)
+### [>> Web Trial (Wandbox)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 # Overview
 
