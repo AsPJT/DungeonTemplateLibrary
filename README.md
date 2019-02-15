@@ -70,7 +70,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.2.0 [ C++14 ]
+## Version 0.2.1 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
