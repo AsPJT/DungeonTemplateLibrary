@@ -12,12 +12,12 @@
 
 
 
-[>> Japanese](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%5Bja%5D-Home)
+[>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%5Bja%5D-Home)
 
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 ### [>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
-### [>> Web Trial (Wandbox)](https://wandbox.org/permlink/gUpHgebVyqi7D3F4)
+### [>> Web Trial (Wandbox)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 # Overview
 
@@ -70,7 +70,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.2.0 [ C++14 ]
+## Version 0.2.1 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -142,6 +142,64 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/ri.gif)
+
+## [19] Simple Biome Island (v0.2.2~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+```cpp
+#include <FractalIsland.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Sea|Blue|
+|n|(Biome)|
+
+|Capacity Requirement|
+|:---:|
+|1~ bit|
+
+### Variable
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
+### Image
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
+
+## [X] Biome Island (v0.2.X~)
+![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
+
+Underdevelopment...
+
+```cpp
+#include <FractalIsland.hpp>
+```
+
+|Default Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Sea|Blue|
+|n|(Biome)|
+
+|Capacity Requirement|
+|:---:|
+|X bit|
+
+### Variable
+![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
+
+### Matrix Type
+![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
+
+### Generation Type
+[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
+
+### Image
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/do.gif)
 
 ## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
