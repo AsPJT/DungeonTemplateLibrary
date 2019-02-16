@@ -66,7 +66,7 @@ namespace dtl {
 						
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 						//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-						const std::size_t mapDivCount{ division_min + (std::size_t)mersenne_twister_32bit(1,(std::int_fast32_t)division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+						const std::size_t mapDivCount{ division_min + (std::size_t)mersenne_twister_32bit(1,static_cast<std::int_fast32_t>(division_rand_max)) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 						dungeon_division.resize(mapDivCount);
 						dungeon_room.resize(mapDivCount);

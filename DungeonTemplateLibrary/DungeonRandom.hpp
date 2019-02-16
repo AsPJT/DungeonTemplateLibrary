@@ -16,10 +16,13 @@ namespace dtl {
 	namespace random {
 
 
+		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister32bit {
+
 		public:
 			//コンストラクタ(初期化)
 			explicit MersenneTwister32bit() noexcept { mt.seed(rd()); }
+
 		private:
 			//32ビット版メルセンヌ・ツイスタ
 			std::mt19937 mt;
@@ -55,17 +58,24 @@ namespace dtl {
 				std::bernoulli_distribution uid(probability_);
 				return uid(mt);
 			}
+			//1/2の確率
 			bool probability() noexcept {
 				std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(mt)) ? true : false);
 			}
+
 		};
 		static thread_local dtl::random::MersenneTwister32bit mersenne_twister_32bit;
 
+		//乱数(Xorshift128)
 		class Xor128
 		{
 		private:
-			std::uint_fast32_t x{ 123456789 }, y{ 362436069 }, z{ 521288629 }, w{ 88675123 };
+			std::uint_fast32_t x{ 123456789 };
+			std::uint_fast32_t y{ 362436069 };
+			std::uint_fast32_t z{ 521288629 };
+			std::uint_fast32_t w{ 88675123 };
+
 		public:
 			//通常の乱数
 			constexpr std::uint_fast32_t operator()() noexcept {
@@ -92,6 +102,7 @@ namespace dtl {
 		};
 		static thread_local dtl::random::Xor128 xor_128;
 
+		//乱数(Xorshift8)
 		class Xor8
 		{
 		private:
@@ -99,6 +110,7 @@ namespace dtl {
 			uint_fast8_t a{ 1 };
 			uint_fast8_t b{ 1 };
 			uint_fast8_t c{ 2 };
+
 		public:
 			explicit Xor8() noexcept :x(mersenne_twister_32bit(1, 255)) {}
 
@@ -124,7 +136,6 @@ namespace dtl {
 
 		};
 		static thread_local dtl::random::Xor8 xor_8;
-
 
 
 	} //namespace
