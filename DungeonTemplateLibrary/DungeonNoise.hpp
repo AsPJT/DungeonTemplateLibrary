@@ -282,6 +282,13 @@ namespace dtl {
 		namespace stl {
 
 
+			//1/2の確率で岸(地形)にノイズを発生させる
+			template<typename Matrix_>
+			constexpr void noiseShoreBothBool(Matrix_& matrix_) noexcept {
+				dtl::utility::stl::noiseShoreBool(matrix_);
+				dtl::utility::stl::rnoiseShoreBool(matrix_);
+			}
+			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_& matrix_, const double rbool_) noexcept {
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool_);
@@ -292,6 +299,13 @@ namespace dtl {
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool1_);
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool2_);
 			}
+			//1/2の確率で岸(地形)にノイズを発生させる
+			template<typename Matrix_>
+			constexpr void rnoiseShoreBothBool(Matrix_& matrix_) noexcept {
+				dtl::utility::stl::rnoiseShoreBool(matrix_);
+				dtl::utility::stl::noiseShoreBool(matrix_);
+			}
+			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_& matrix_, const double rbool_) noexcept {
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool_);

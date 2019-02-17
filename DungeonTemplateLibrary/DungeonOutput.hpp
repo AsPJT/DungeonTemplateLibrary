@@ -15,13 +15,11 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	namespace console {
-
-
 		namespace output {
-
-			//数値出力
-
 			namespace stl {
+
+
+				//数値出力
 				template<typename Matrix_>
 				constexpr void number(const Matrix_& matrix_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
@@ -31,17 +29,26 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				constexpr void number(const Matrix_& matrix_, const char* const string_) noexcept {
-					if (string_ == nullptr) return;
+				constexpr void number(const Matrix_& matrix_, const std::string& string_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
 							std::cout << matrix_[row][col] << string_;
 						std::cout << std::endl;
 					}
 				}
-			}
 
+
+			} //namespace
+		}
+	}
+}
+
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace normal {
+
+
 				template<typename Matrix_>
 				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
@@ -51,17 +58,55 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const char* const string_) noexcept {
-					if (string_ == nullptr) return;
+				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::string& string_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
 						for (std::size_t col{}; col < x_; ++col)
 							std::cout << matrix_[row][col] << string_;
 						std::cout << std::endl;
 					}
 				}
-			}
 
+
+			} //namespace
+		}
+	}
+}
+
+namespace dtl {
+	namespace console {
+		namespace output {
+			namespace layer {
+
+
+				template<typename Matrix_>
+				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
+					for (std::size_t row{}; row < y_; ++row) {
+						for (std::size_t col{}; col < x_; ++col)
+							std::cout << matrix_[row][col][layer_];
+						std::cout << std::endl;
+					}
+				}
+				template<typename Matrix_>
+				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const std::string& string_) noexcept {
+					for (std::size_t row{}; row < y_; ++row) {
+						for (std::size_t col{}; col < x_; ++col)
+							std::cout << matrix_[row][col][layer_] << string_;
+						std::cout << std::endl;
+					}
+				}
+
+
+			} //namespace
+		}
+	}
+}
+
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace array {
+
+
 				template<typename Matrix_>
 				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
@@ -71,17 +116,26 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const char* const string_) noexcept {
-					if (string_ == nullptr) return;
+				constexpr void number(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::string& string_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
 						for (std::size_t col{}; col < x_; ++col)
 							std::cout << matrix_[row * x_ + col] << string_;
 						std::cout << std::endl;
 					}
 				}
-			}
 
+
+			} //namespace
+		}
+	}
+}
+
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace rangeBasedFor {
+
+
 				template<typename Matrix_>
 				constexpr void number(const Matrix_& matrix_) noexcept {
 					for (const auto& row : matrix_) {
@@ -91,22 +145,29 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				constexpr void number(const Matrix_& matrix_, const char* const string_) noexcept {
-					if (string_ == nullptr) return;
+				constexpr void number(const Matrix_& matrix_, const std::string& string_) noexcept {
 					for (const auto& row : matrix_) {
 						for (const auto& col : row)
 							std::cout << col << string_;
 						std::cout << std::endl;
 					}
 				}
-			}
 
-			//文字出力
 
+			} //namespace
+		}
+	}
+}
+
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace stl {
+
+
+				//文字出力
 				template<typename Matrix_>
-				constexpr void stringMirrorBool(const Matrix_& matrix_, const char* const true_, const char* const false_) noexcept {
-					if (true_ == nullptr || false_ == nullptr) return;
+				constexpr void stringMirrorBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						for (std::size_t col{ matrix_[row].size() / 2 }; col < matrix_[row].size(); ++col) {
 							if (matrix_[row][col]) std::cout << true_;
@@ -120,8 +181,7 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				constexpr void stringBool(const Matrix_& matrix_, const char* const true_, const char* const false_) noexcept {
-					if (true_ == nullptr || false_ == nullptr) return;
+				constexpr void stringBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 							if (matrix_[row][col]) std::cout << true_;
@@ -130,11 +190,20 @@ namespace dtl {
 						std::cout << std::endl;
 					}
 				}
-			}
+
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace normal {
+
+
 				template<typename Matrix_>
-				constexpr void stringBool(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const char* const true_, const char* const false_) noexcept {
-					if (true_ == nullptr || false_ == nullptr) return;
+				constexpr void stringBool(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::string& true_, const std::string& false_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
 						for (std::size_t col{}; col < x_; ++col) {
 							if (matrix_[row][col]) std::cout << true_;
@@ -143,11 +212,20 @@ namespace dtl {
 						std::cout << std::endl;
 					}
 				}
-			}
+
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace array {
+
+
 				template<typename Matrix_>
-				constexpr void stringBool(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const char* const true_, const char* const false_) noexcept {
-					if (true_ == nullptr || false_ == nullptr) return;
+				constexpr void stringBool(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::string& true_, const std::string& false_) noexcept {
 					for (std::size_t row{}; row < y_; ++row) {
 						for (std::size_t col{}; col < x_; ++col) {
 							if (matrix_[row * x_ + col]) std::cout << true_;
@@ -159,8 +237,7 @@ namespace dtl {
 			}
 			namespace rangeBasedFor {
 				template<typename Matrix_>
-				constexpr void stringBool(const Matrix_& matrix_, const char* const true_, const char* const false_) noexcept {
-					if (true_ == nullptr || false_ == nullptr) return;
+				constexpr void stringBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_) noexcept {
 					for (const auto& row : matrix_) {
 						for (const auto& col : row) {
 							if (col) std::cout << true_;
@@ -169,18 +246,35 @@ namespace dtl {
 						std::cout << std::endl;
 					}
 				}
-			}
 
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace hiding {
+
+				//C++17_todo
 				bool string_String(std::vector<std::string>& string_) noexcept { return string_.empty(); }
 				template<typename First_, typename ...Args_>
 				constexpr void string_String(std::vector<std::string>& string_vector_, const First_& first_, const Args_&... args_) noexcept {
 					string_vector_.emplace_back(std::string(first_));
 					string_String(string_vector_, args_...);
 				}
-			}
 
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace stl {
+
 
 				template<typename Matrix_, typename First_, typename ...Args_>
 				void string(const Matrix_& matrix_, const First_& first_, const Args_&... args_) noexcept {
@@ -199,8 +293,18 @@ namespace dtl {
 						std::cout << std::endl;
 					}
 				}
-			}
+
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
 			namespace rangeBasedFor {
+
+
 				template<typename Matrix_, typename First_, typename ...Args_>
 				void string(const Matrix_& matrix_, const First_& first_, const Args_&... args_) noexcept {
 
@@ -218,19 +322,26 @@ namespace dtl {
 						std::cout << std::endl;
 					}
 				}
-			}
-
-			void endl() noexcept {
-				std::cout << std::endl;
-			}
-			void puts(const char* const str_) noexcept {
-				if (str_ == nullptr) return;
-				std::cout << str_ << std::endl;
-			}
-
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace console {
+		namespace output {
+			namespace tool {
 
 
-		} //namespace
+				void endl() noexcept {
+					std::cout << std::endl;
+				}
+				void puts(const std::string& str_) noexcept {
+					std::cout << str_ << std::endl;
+				}
+
+
+			} //namespace
+		}
 	}
 }
 

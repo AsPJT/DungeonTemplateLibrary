@@ -28,7 +28,7 @@ namespace dtl {
 			constexpr void binarizationOver(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-						if (static_cast<Matrix_Int_>(matrix_[row][col]) >= value_) matrix_[row][col] = static_cast<Matrix_Int_>(1);
+						if (matrix_[row][col] >= value_) matrix_[row][col] = static_cast<Matrix_Int_>(1);
 						else matrix_[row][col] = static_cast<Matrix_Int_>(0);
 					}
 			}
@@ -58,20 +58,21 @@ namespace dtl {
 
 		namespace rangeBasedFor {
 
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void binarization(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-				for (auto&& row : matrix_)
-					for (auto&& col : row) {
-						if (col >= value_) col = static_cast<Matrix_Int_>(1);
-						else col = static_cast<Matrix_Int_>(0);
-					}
-			}
+
 			template<typename Matrix_>
 			constexpr void binarization(Matrix_& matrix_) noexcept {
 				for (auto&& row : matrix_)
 					for (auto&& col : row) {
 						if (col) col = 1;
 						else col = 0;
+					}
+			}
+			template<typename Matrix_Int_, typename Matrix_>
+			constexpr void binarizationOver(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+				for (auto&& row : matrix_)
+					for (auto&& col : row) {
+						if (col >= value_) col = static_cast<Matrix_Int_>(1);
+						else col = static_cast<Matrix_Int_>(0);
 					}
 			}
 

@@ -112,7 +112,7 @@ namespace dtl {
 			uint_fast8_t c{ 2 };
 
 		public:
-			explicit Xor8() noexcept :x(mersenne_twister_32bit(1, 255)) {}
+			explicit Xor8() noexcept :x(static_cast<std::uint_fast8_t>(mersenne_twister_32bit(1, 255))) {}
 
 			//通常の乱数
 			std::uint_fast8_t operator()() noexcept {

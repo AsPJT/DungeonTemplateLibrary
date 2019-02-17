@@ -79,7 +79,7 @@ namespace dtl {
 					//タイルを取得
 					template<typename Matrix_>
 					constexpr Matrix_Int_ getTileType(const Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
-						if ((std::size_t)x_ >= ((matrix_.size() == 0) ? (std::size_t)0 : matrix_[0].size()) || (std::size_t)y_ >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
+						if (static_cast<std::size_t>(x_) >= ((matrix_.size() == 0) ? static_cast<std::size_t>(0) : matrix_[0].size()) || static_cast<std::size_t>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
 						return matrix_[y_][x_];
 					}
 					//タイルを置く
