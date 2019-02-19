@@ -19,10 +19,9 @@
 //Dungeon Template Library Namespace
 namespace dtl {
 	namespace file {
-
 		namespace read {
-
 			namespace stl {
+
 
 				//バイナリファイルの読み込み
 				template<typename Matrix_>
@@ -116,7 +115,7 @@ namespace dtl {
 						while (std::getline(stream, field, delimiter_)) {
 							matrix_[y_id_].emplace_back(0);
 							if (matrix_[y_id_].size() <= x_id) return;
-							matrix_[y_id_][x_id] = (Matrix_Int_)dtl::file::read::stl::hiding::splitReturnValue_csv<Matrix_Int_>(field);
+							matrix_[y_id_][x_id] = dtl::file::read::stl::hiding::splitReturnValue_csv<Matrix_Int_>(field);
 							++x_id;
 						}
 						return;
