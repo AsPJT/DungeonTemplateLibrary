@@ -874,7 +874,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 # MapChip File
 
 |Name|Version|
-|:---:|:---|:---|
+|:---:|:---|
 |wolf_auto_tile|v0.2.X~|
 
 ## File Write (3D)
