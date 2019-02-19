@@ -871,6 +871,12 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |.svg|fileWrite_svg|v0.1.22~|
 |.bmp|fileWrite_bmp|v0.1.23~|
 
+# MapChip File
+
+|Name|Version|
+|:---:|:---|:---|
+|wolf_auto_tile|v0.2.X~|
+
 ## File Write (3D)
 
 |Name|Function|Version|
