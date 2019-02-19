@@ -111,7 +111,7 @@ namespace dtl {
 					}
 					//穴掘り法の迷路を生成する
 					template<typename Matrix_>
-					void mazeDig_Create(Matrix_& data, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
+					void mazeDig_Create(Matrix_& data, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const {
 
 						using dtl::random::mersenne_twister_32bit;
 
@@ -119,8 +119,19 @@ namespace dtl {
 						data[1][1] = id_empty_;
 
 						std::size_t select_id{};
-						std::unique_ptr<std::size_t[]> select_x{ std::make_unique<std::size_t[]>(data.size()*data[0].size()) };
-						std::unique_ptr<std::size_t[]> select_y{ std::make_unique<std::size_t[]>(data.size()*data[0].size()) };
+
+						std::unique_ptr<std::size_t[]> select_x;
+						std::unique_ptr<std::size_t[]> select_y;
+						try {
+							select_x = std::make_unique<std::size_t[]>(data.size()*data[0].size());
+							select_y = std::make_unique<std::size_t[]>(data.size()*data[0].size());
+						}
+						catch (const std::bad_alloc&) {
+							//メモリ確保に失敗
+							return;
+						}
+
+
 
 						//座標を選ぶ
 						while (true) {

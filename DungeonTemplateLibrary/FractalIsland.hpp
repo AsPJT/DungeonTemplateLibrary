@@ -408,7 +408,7 @@ namespace dtl {
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
-					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const {
 
 						using dtl::random::mersenne_twister_32bit;
 
@@ -419,9 +419,19 @@ namespace dtl {
 						const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 						const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
 
-						std::unique_ptr<std::int_fast32_t[]> rand_up{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
-						std::unique_ptr<std::int_fast32_t[]> rand_down{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
-						std::unique_ptr<std::int_fast32_t[]> rand_first_row{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
+						std::unique_ptr<std::int_fast32_t[]> rand_up;
+						std::unique_ptr<std::int_fast32_t[]> rand_down;
+						std::unique_ptr<std::int_fast32_t[]> rand_first_row;
+						try {
+							rand_up = std::make_unique<std::int_fast32_t[]>(chunk_x + 1);
+							rand_down = std::make_unique<std::int_fast32_t[]>(chunk_x + 1);
+							rand_first_row = std::make_unique<std::int_fast32_t[]>(chunk_x + 1);
+						}
+						catch (const std::bad_alloc&) {
+							//メモリ確保に失敗
+							return;
+						}
+
 
 						for (std::size_t col{}; col < chunk_x; ++col) {
 							rand_up[col] = mersenne_twister_32bit(max_value_);
@@ -472,7 +482,7 @@ namespace dtl {
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
-					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const noexcept {
+					void create(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) const {
 
 						using dtl::random::mersenne_twister_32bit;
 
@@ -483,8 +493,16 @@ namespace dtl {
 						const std::size_t chunk_x{ (matrix_[0].size() / chunk_array_max) };
 						const std::size_t chunk_y{ (matrix_.size() / chunk_array_max) };
 
-						std::unique_ptr<std::int_fast32_t[]> rand_up{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
-						std::unique_ptr<std::int_fast32_t[]> rand_down{ std::make_unique<std::int_fast32_t[]>(chunk_x + 1) };
+						std::unique_ptr<std::int_fast32_t[]> rand_up;
+						std::unique_ptr<std::int_fast32_t[]> rand_down;
+						try {
+							rand_up = std::make_unique<std::int_fast32_t[]>(chunk_x + 1);
+							rand_down = std::make_unique<std::int_fast32_t[]>(chunk_x + 1);
+						}
+						catch (const std::bad_alloc&) {
+							//メモリ確保に失敗
+							return;
+						}
 
 						for (std::size_t col{}; col <= chunk_x; ++col)
 							rand_up[col] = 0;

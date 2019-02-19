@@ -20,13 +20,21 @@ namespace dtl {
 
 			//指定した場所に駒を置く
 			template<typename Matrix_Int_, typename Matrix_>
-			std::size_t putPiece(Matrix_& matrix_, const std::size_t  col_, const std::size_t row_, const Matrix_Int_ turn_, const bool is_put_) noexcept {
+			std::size_t putPiece(Matrix_& matrix_, const std::size_t  col_, const std::size_t row_, const Matrix_Int_ turn_, const bool is_put_) {
 				if (matrix_.size() == 0) return 0;
 				std::size_t piece_turn_num{};
 				if (matrix_[row_][col_] > 0) return 0;
 
-				std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ std::make_unique<std::int_fast32_t[]>(matrix_[0].size()) };
-				std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ std::make_unique<std::int_fast32_t[]>(matrix_.size()) };
+				std::unique_ptr<std::int_fast32_t[]> stl_tmp_x;
+				std::unique_ptr<std::int_fast32_t[]> stl_tmp_y;
+				try {
+					stl_tmp_x = std::make_unique<std::int_fast32_t[]>(matrix_[0].size());
+					stl_tmp_y = std::make_unique<std::int_fast32_t[]>(matrix_.size());
+				}
+				catch (const std::bad_alloc&) {
+					//メモリ確保に失敗
+					return 0;
+				}
 
 				for (std::int_fast32_t y{ -1 }; y <= 1; ++y)
 					for (std::int_fast32_t x{ -1 }; x <= 1; ++x) {
