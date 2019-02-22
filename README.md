@@ -70,7 +70,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 [Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
 
-## Version 0.2.1 [ C++14 ]
+## Version 0.2.2 [ C++14 ]
 
 |View|Test Code|
 |:---|:---|
@@ -870,6 +870,12 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 |.pbm|fileWrite_pbm|v0.1.22~|
 |.svg|fileWrite_svg|v0.1.22~|
 |.bmp|fileWrite_bmp|v0.1.23~|
+
+# MapChip File
+
+|Name|Version|
+|:---:|:---|
+|wolf_auto_tile|v0.2.X~|
 
 ## File Write (3D)
 
