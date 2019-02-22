@@ -8,7 +8,6 @@
 //:::::----------::::::::::----------::::://
 
 #include <cstddef>
-#include <array>
 #include "DungeonRandom.hpp"
 #include "DungeonMatrix.hpp"
 
@@ -16,24 +15,30 @@
 namespace dtl {
 	namespace generator {
 		namespace common {
-
-
-			//----------   DungeonInit   ----------
-			//1.全てのマスを0で埋める
-			//2.全てのマスを指定した数値で埋める
-
 			namespace data {
+
+
+				//----------   DungeonInit   ----------
+				//1.全てのマスを0で埋める
+				//2.全てのマスを指定した数値で埋める
 
 				enum eDungeonInit {
 					dungeon_init_empty_id,
 					dungeon_init_enum_num
 				};
 				constexpr bool dungeon_init_bool{ (dungeon_init_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 12> dungeon_init_name{ { "DungeonInit" } };
 
-			}
 
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace generator {
+		namespace common {
 			namespace stl {
+
+
 				//(1)
 				template<typename Matrix_>
 				constexpr void initDungeon(Matrix_& matrix_) noexcept {
@@ -63,9 +68,18 @@ namespace dtl {
 						dtl::generator::common::stl::initDungeon(matrix_, value_);
 					}
 				};
-			}
 
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace generator {
+		namespace common {
 			namespace normal {
+
+
 				//(1)
 				template<typename Matrix_>
 				constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
@@ -107,10 +121,18 @@ namespace dtl {
 						dtl::generator::common::normal::initDungeon(matrix_, x_, y_, value_);
 					}
 				};
-			}
 
 
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace generator {
+		namespace common {
 			namespace array {
+
+
 				//(1)
 				template<typename Matrix_>
 				constexpr void initDungeon(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
@@ -152,8 +174,18 @@ namespace dtl {
 						dtl::generator::common::array::initDungeon(matrix_, x_, y_, value_);
 					}
 				};
-			}
+
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace generator {
+		namespace common {
 			namespace rangeBasedFor {
+
+
 				//(1)
 				template<typename Matrix_>
 				constexpr void initDungeon(Matrix_& matrix_) noexcept {
@@ -168,10 +200,19 @@ namespace dtl {
 						for (auto&& col : row)
 							col = value_;
 				}
-			}
 
-			//Layer----------
+
+			} //namespace
+		}
+	}
+}
+namespace dtl {
+	namespace generator {
+		namespace common {
 			namespace layer {
+
+
+				//Layer----------
 
 				namespace stl {
 					//(1)
@@ -264,7 +305,6 @@ namespace dtl {
 					point_grid_enum_num
 				};
 				constexpr bool point_grid_bool{ (point_grid_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 10> point_grid_name{ { "PointGrid" } };
 
 			}
 
@@ -441,7 +481,6 @@ namespace dtl {
 					border_odd_enum_num
 				};
 				constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 10> border_odd_name{ { "BorderOdd" } };
 
 			}
 
@@ -754,7 +793,6 @@ namespace dtl {
 					point_grid_field_enum_num
 				};
 				constexpr bool point_grid_field_bool{ (point_grid_field_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 15> point_grid_field_name{ { "PointGridField" } };
 
 			}
 
@@ -922,7 +960,6 @@ namespace dtl {
 					point_grid_field_put_block_enum_num
 				};
 				constexpr bool point_grid_field_put_block_bool{ (point_grid_field_put_block_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 23> point_grid_field_put_block_name{ { "PointGridFieldPutBlock" } };
 
 			}
 
@@ -1424,7 +1461,6 @@ namespace dtl {
 					border_enum_num
 				};
 				constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
-				constexpr std::array<char, 7> border_name{ { "Border" } };
 
 			}
 
@@ -1651,43 +1687,6 @@ namespace dtl {
 					}
 				};
 			}
-
-			//----------*----------*----------*----------*----------*
-			//初期化系
-			//----------*----------*----------*----------*----------*
-
-			//template<typename Matrix_>
-			//constexpr bool dungeonArrayCheckBitset(const Matrix_& matrix_) noexcept {
-			//	if (dtl::utility::isEmpty(matrix_)) return false;
-			//	const auto& stl_value{ matrix_[0][0] };
-			//	for (std::size_t row{}; row < matrix_.size(); ++row)
-			//		for (std::size_t col{}; col < matrix_[row].size(); ++col)
-			//			if (stl_value != matrix_[row][col]) return false;
-			//	return true;
-			//}
-
-			////値が全て一致しているか確認する
-			//template<typename Matrix_>
-			//constexpr bool dungeonArrayCheck(const Matrix_& matrix_) noexcept {
-			//	if (dtl::utility::isEmpty(matrix_)) return false;
-			//	const auto& stl_value{ matrix_[0][0] };
-			//	for (std::size_t row{}; row < matrix_.size(); ++row)
-			//		for (std::size_t col{}; col < matrix_[row].size(); ++col)
-			//			if (stl_value != matrix_[row][col]) return false;
-			//	return true;
-			//}
-
-			//template<typename Matrix_>
-			//constexpr bool dungeonArrayCheck_RangeBasedFor(const Matrix_& matrix_) noexcept {
-			//	if (dtl::utility::isEmpty(matrix_)) return false;
-			//	const auto& stl_value{ matrix_[0][0] };
-			//	for (const auto& row : matrix_)
-			//		for (const auto& col : row)
-			//			if (stl_value != col) return false;
-			//	return true;
-			//}
-
-
 
 		} //namespace
 	}
