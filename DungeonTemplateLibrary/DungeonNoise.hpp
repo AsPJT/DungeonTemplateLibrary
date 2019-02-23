@@ -387,6 +387,7 @@ namespace dtl {
 }
 
 #include <array>
+#include <iostream>
 
 //タイル
 
@@ -488,13 +489,13 @@ namespace dtl {
 			return tile_array_[getWolfAutoTileID_LowerRight(matrix_, x_, y_, max_x_, max_y_, anime_num_, anime_max_)];
 		}
 
-		constexpr std::array<char[3], 20> wolf_auto_tile_string{
+		constexpr std::array<char[3], 20> wolf_auto_tile_string{ {
 "|-","-|","|_","_|",
 "| "," |","| "," |",
 "--","--","__","__",
 "` "," `",", "," ,",
 "  ","  ","  ","  "
-		};
+		}};
 
 		//Wolfオートタイル形式の左上の配列値を返す
 		template<typename Matrix_>
