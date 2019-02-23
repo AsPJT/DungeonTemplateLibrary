@@ -866,7 +866,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 
 |Name|Version|
 |:---:|:---|
-|wolf_auto_tile|v0.2.X~|
+|wolf_auto_tile|v0.2.3~|
 
 ## File Write (3D)
 
