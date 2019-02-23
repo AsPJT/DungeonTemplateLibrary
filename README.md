@@ -66,16 +66,7 @@ dungeon_t dungeon_default_matrix[y_size][x_size]{};
 dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ```
 
-## 👾Test👾
-
-[Wandbox(1-4)](https://wandbox.org/permlink/VDWP5m3EZQeB3zVT)
-
-## Version 0.2.2 [ C++14 ]
-
-|View|Test Code|
-|:---|:---|
-|PC View|[Wandbox](https://wandbox.org/permlink/VC13TPmxcO49LRBD)|
-|SP View|[WandBox](https://wandbox.org/permlink/D3LFLXm4gum8Rg7N)|
+## Version 0.2.3 [ C++14 ]
 
 |Compiler|[Pass_C++14](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|[Pass_C99](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/c99)|
 |:---|:---|:---|
@@ -875,7 +866,7 @@ dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
 
 |Name|Version|
 |:---:|:---|
-|wolf_auto_tile|v0.2.X~|
+|wolf_auto_tile|v0.2.3~|
 
 ## File Write (3D)
 
