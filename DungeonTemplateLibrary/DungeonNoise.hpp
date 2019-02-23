@@ -394,9 +394,12 @@ namespace dtl {
 namespace dtl {
 	namespace tile {
 
+		//タイル形式
 		enum :std::size_t {
 			tile_type_empty,
-			tile_type_wolf_auto_tile
+			tile_type_wolf_auto_tile,
+			tile_type_one_tile,
+			tile_type_default_tile
 		};
 
 		//Wolfオートタイル形式の地形タイプ
@@ -489,6 +492,7 @@ namespace dtl {
 			return tile_array_[getWolfAutoTileID_LowerRight(matrix_, x_, y_, max_x_, max_y_, anime_num_, anime_max_)];
 		}
 
+		//WolfオートタイルのConsole出力用文字
 		constexpr std::array<char[3], 20> wolf_auto_tile_string{ {
 "|-","-|","|_","_|",
 "| "," |","| "," |",

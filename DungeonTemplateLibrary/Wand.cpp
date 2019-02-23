@@ -18,7 +18,7 @@ int main() {
 	noiseShoreBothBool(stl_, 0.4);
 
 	dtl::tile::stl::outputWolfAutoTile(stl_);
-	dtl::console::output::stl::stringBool(stl_,"##", "  ");
+	dtl::console::output::stl::stringBool(stl_, "##", "  ", 2);
 
 	//std::array<std::array<std::uint_fast8_t, 150>, 100> stl_{};
 
