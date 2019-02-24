@@ -12,7 +12,7 @@
 
 
 
-[>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%5Bja%5D-Home)
+[>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
