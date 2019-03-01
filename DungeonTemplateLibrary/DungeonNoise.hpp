@@ -524,7 +524,7 @@ namespace dtl {
 
 		namespace stl {
 			template<typename Matrix_>
-			void outputWolfAutoTile(const Matrix_& matrix_) noexcept {
+			void outputWolfAutoTile(const Matrix_& matrix_, const char space_char_ = ' ') noexcept {
 				for (size_t y{}; y < matrix_.size(); ++y) {
 					//上方向のオートタイルを描画
 					for (size_t x{}; x < matrix_[y].size(); ++x) {
@@ -532,7 +532,7 @@ namespace dtl {
 							std::cout << dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
 							std::cout << dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, matrix_[y].size() - 1, 0);
 						}
-						else std::cout << "    ";
+						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
 					std::cout << std::endl;
 					//下方向のオートタイルを描画
@@ -541,10 +541,45 @@ namespace dtl {
 							std::cout << dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, matrix_.size() - 1);
 							std::cout << dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, matrix_[y].size() - 1, matrix_.size() - 1);
 						}
-						else std::cout << "    ";
+						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
 					std::cout << std::endl;
 				}
+			}
+
+			template<typename Matrix_>
+			void outputTileCUI(const Matrix_& matrix_, const char space_char_ = ' ') noexcept {
+				dtl::tile::stl::outputWolfAutoTile(matrix_, space_char_);
+			}
+		}
+		namespace normal {
+			template<typename Matrix_>
+			void outputWolfAutoTile(const Matrix_& matrix_, const std::size_t x_, std::size_t y_, const char space_char_ = ' ') noexcept {
+				for (size_t y{}; y < y_; ++y) {
+					//上方向のオートタイルを描画
+					for (size_t x{}; x < x_; ++x) {
+						if (matrix_[y][x]) {
+							std::cout << dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
+							std::cout << dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, x_ - 1, 0);
+						}
+						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+					}
+					std::cout << std::endl;
+					//下方向のオートタイルを描画
+					for (size_t x{}; x < x_; ++x) {
+						if (matrix_[y][x]) {
+							std::cout << dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, y_ - 1);
+							std::cout << dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, x_ - 1, y_ - 1);
+						}
+						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+					}
+					std::cout << std::endl;
+				}
+			}
+
+			template<typename Matrix_>
+			void outputTileCUI(const Matrix_& matrix_, const std::size_t x_, std::size_t y_, const char space_char_ = ' ') noexcept {
+				dtl::tile::normal::outputWolfAutoTile(matrix_, x_, y_, space_char_);
 			}
 		}
 

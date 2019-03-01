@@ -17,8 +17,10 @@ int main() {
 	SimpleVoronoiIsland<std::uint_fast8_t> svi(stl_, 150, 0.5);
 	noiseShoreBothBool(stl_, 0.4);
 
-	dtl::tile::stl::outputWolfAutoTile(stl_);
-	dtl::console::output::stl::stringBool(stl_, "##", "  ", 2);
+	dtl::tile::normal::outputTileCUI(stl_, 64, 64);
+
+	//dtl::tile::stl::outputTileCUI(stl_);
+	//dtl::console::output::stl::stringBool(stl_, "##", "  ", 2);
 
 	//std::array<std::array<std::uint_fast8_t, 150>, 100> stl_{};
 
