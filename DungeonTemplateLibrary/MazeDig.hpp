@@ -10,7 +10,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <memory>
-#include "DungeonRandom.hpp"
+#include "Random_MersenneTwister32bit.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {

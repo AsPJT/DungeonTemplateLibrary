@@ -9,7 +9,7 @@
 
 #include <cstddef>
 #include <cstdint>
-#include "DungeonRandom.hpp"
+#include "Random_MersenneTwister32bit.hpp"
 #include "DungeonBinarization.hpp"
 #include "DungeonNoise.hpp"
 

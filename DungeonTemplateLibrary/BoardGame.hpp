@@ -134,6 +134,7 @@ namespace dtl {
 					case 2:return 2;
 					default:return 1;
 					}
+					[[fallthrough]];
 				case 1:
 					switch (y_)
 					{
@@ -142,6 +143,7 @@ namespace dtl {
 					case 2:return 6;
 					default:return 4;
 					}
+					[[fallthrough]];
 				case 2:
 					switch (y_)
 					{

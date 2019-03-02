@@ -63,6 +63,27 @@
     <ClInclude Include="SimpleVoronoiIsland.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Utility_NoiseBool.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility_NoiseShoreBool.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator_Common_DungeonInit.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Random_MersenneTwister32bit.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility_Init.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_Output_Number.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_Output_StringBool.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt">
@@ -70,7 +91,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Wand.cpp">
+    <ClCompile Include="Test_030.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

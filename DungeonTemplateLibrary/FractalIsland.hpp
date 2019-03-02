@@ -10,7 +10,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <array>
-#include "DungeonRandom.hpp"
+#include "Random_MersenneTwister32bit.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -324,7 +324,7 @@ namespace dtl {
 					createDiamondSquareAverage_Map(x_ + size_, y_ + size_, size_, matrix_[y_][x_], s3, s4, t4_, matrix_, max_value_);
 				}
 
-				constexpr std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
+				[[nodiscard]] constexpr std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
 					std::size_t map_size{ 2 };
 					while (true) {
 						if ((map_size + 1) > matrix_size) return (map_size >>= 1);

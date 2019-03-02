@@ -6,6 +6,8 @@
 
 int main() {
 
+	
+
 	std::array<std::array<std::uint_fast8_t, 64>, 64> stl_{};
 	//dtl::generator::dungeon::stl::MazeDig<std::uint_fast8_t> dig(stl_);
 	//dtl::generator::dungeon::stl::SimpleRogueLike<std::uint_fast8_t> dig(stl_);

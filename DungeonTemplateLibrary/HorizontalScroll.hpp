@@ -9,7 +9,7 @@
 
 #include <cstddef>
 #include <cstdint>
-#include "DungeonRandom.hpp"
+#include "Random_MersenneTwister32bit.hpp"
 #include "DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace

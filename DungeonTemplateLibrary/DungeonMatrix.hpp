@@ -15,27 +15,27 @@ namespace dtl {
 
 		//配列数を取得
 		template<typename Matrix_>
-		constexpr std::size_t getSize(const Matrix_& matrix_) noexcept {
+		[[nodiscard]] constexpr std::size_t getSize(const Matrix_& matrix_) noexcept {
 			return ((matrix_.size() == 0) ? 0 : (matrix_.size()*matrix_[0].size()));
 		}
 		template<typename Matrix_>
-		constexpr std::size_t getSizeX(const Matrix_& matrix_) noexcept {
+		[[nodiscard]] constexpr std::size_t getSizeX(const Matrix_& matrix_) noexcept {
 			return ((matrix_.size() == 0) ? 0 : matrix_[0].size());
 		}
 		template<typename Matrix_>
-		constexpr std::size_t getSizeY(const Matrix_& matrix_) noexcept {
+		[[nodiscard]] constexpr std::size_t getSizeY(const Matrix_& matrix_) noexcept {
 			return matrix_.size();
 		}
 
-		constexpr bool isEmpty(const std::size_t x_, const std::size_t y_) noexcept {
+		[[nodiscard]] constexpr bool isEmpty(const std::size_t x_, const std::size_t y_) noexcept {
 			return (y_ == 0 || x_ == 0);
 		}
 		template<typename Matrix_>
-		constexpr bool isEmpty(const Matrix_& matrix_) noexcept {
+		[[nodiscard]] constexpr bool isEmpty(const Matrix_& matrix_) noexcept {
 			return (matrix_.size() == 0 || matrix_[0].size() == 0);
 		}
 		template<typename Matrix_>
-		constexpr bool isLessThan(const Matrix_& matrix_, const std::size_t num_) noexcept {
+		[[nodiscard]] constexpr bool isLessThan(const Matrix_& matrix_, const std::size_t num_) noexcept {
 			return (matrix_.size() < num_ || matrix_[0].size() < num_);
 		}
 
@@ -50,11 +50,11 @@ namespace dtl {
 		}
 		//指定位置の値を取得する
 		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
+		[[nodiscard]] constexpr void getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_& value_) noexcept {
 			value_ = matrix_[y_][x_];
 		}
 		template<typename Matrix_>
-		constexpr auto getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		[[nodiscard]] constexpr auto getValue(const Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 			return matrix_[y_][x_];
 		}
 
@@ -119,238 +119,6 @@ namespace dtl {
 
 		namespace stl {
 
-			//ダンジョン内の値を初期化する
-			template<typename Matrix_>
-			constexpr void init(Matrix_& matrix_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
-						matrix_[row][col] = 0;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
-						matrix_[row][col] = value_;
-			}
-			//クラス版
-			class Init {
-			public:
-				template<typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col] = value_;
-				}
-				template<typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_) const noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, const Matrix_Int_ value_) const noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col] = value_;
-				}
-			};
-
-
-		}
-		namespace normal {
-
-			template<typename Matrix_>
-			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						matrix_[row][col] = 0;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						matrix_[row][col] = value_;
-			}
-
-			//クラス版
-			class Init {
-			public:
-				template<typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col] = value_;
-				}
-				template<typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) const noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col] = value_;
-				}
-			};
-
-
-		}
-		namespace array {
-
-			template<typename Matrix_>
-			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						matrix_[row*x_+col] = 0;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						matrix_[row*x_+col] = value_;
-			}
-
-			//クラス版
-			class Init {
-			public:
-				template<typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row*x_ + col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr explicit Init(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row*x_ + col] = value_;
-				}
-				template<typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row*x_ + col] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void operator()(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) const noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row*x_ + col] = value_;
-				}
-			};
-
-
-		}
-		namespace layer {
-			namespace stl {
-
-				//ダンジョン内の値を初期化する
-				template<typename Matrix_>
-				constexpr void init(Matrix_& matrix_, std::size_t layer_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col][layer_] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void init(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							matrix_[row][col][layer_] = value_;
-				}
-				//クラス版
-				class Init {
-				public:
-					template<typename Matrix_>
-					constexpr explicit Init(Matrix_& matrix_, std::size_t layer_) noexcept {
-						for (std::size_t row{}; row < matrix_.size(); ++row)
-							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								matrix_[row][col][layer_] = 0;
-					}
-					template<typename Matrix_Int_, typename Matrix_>
-					constexpr explicit Init(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
-						for (std::size_t row{}; row < matrix_.size(); ++row)
-							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								matrix_[row][col][layer_] = value_;
-					}
-					template<typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, std::size_t layer_) const noexcept {
-						for (std::size_t row{}; row < matrix_.size(); ++row)
-							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								matrix_[row][col][layer_] = 0;
-					}
-					template<typename Matrix_Int_, typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) const noexcept {
-						for (std::size_t row{}; row < matrix_.size(); ++row)
-							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								matrix_[row][col][layer_] = value_;
-					}
-				};
-
-
-			}
-			namespace normal {
-
-				template<typename Matrix_>
-				constexpr void init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col][layer_] = 0;
-				}
-				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							matrix_[row][col][layer_] = value_;
-				}
-				//クラス版
-				class Init {
-				public:
-					template<typename Matrix_>
-					constexpr explicit Init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-						for (std::size_t row{}; row < y_; ++row)
-							for (std::size_t col{}; col < x_; ++col)
-								matrix_[row][col][layer_] = 0;
-					}
-					template<typename Matrix_Int_, typename Matrix_>
-					constexpr explicit Init(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-						for (std::size_t row{}; row < y_; ++row)
-							for (std::size_t col{}; col < x_; ++col)
-								matrix_[row][col][layer_] = value_;
-					}
-					template<typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) const noexcept {
-						for (std::size_t row{}; row < y_; ++row)
-							for (std::size_t col{}; col < x_; ++col)
-								matrix_[row][col][layer_] = 0;
-					}
-					template<typename Matrix_Int_, typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) const noexcept {
-						for (std::size_t row{}; row < y_; ++row)
-							for (std::size_t col{}; col < x_; ++col)
-								matrix_[row][col][layer_] = value_;
-					}
-				};
-
-
-			}
-		}
-
-		namespace stl {
-
 			//上下反転
 			template<typename Matrix_>
 			constexpr void flip(Matrix_& matrix_) noexcept {
@@ -409,9 +177,7 @@ namespace dtl {
 					matrix_[row][col][layer_] = matrix2_[row][col];
 		}
 
-
-
-	} //namespace
+	}
 }
 
 #endif //Included Dungeon Template Library
