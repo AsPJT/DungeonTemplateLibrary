@@ -81,10 +81,6 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ## [1] Simple Voronoi Island (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
-```cpp
-#include <SimpleVoronoiIsland.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Pale Brown|
@@ -109,10 +105,6 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ## [19] Simple Cellular Automaton Island (v0.2.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <FractalIsland.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Pale Brown|
@@ -136,10 +128,6 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ## [19] Simple Biome Island (v0.2.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <FractalIsland.hpp>
-```
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -167,10 +155,6 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 Underdevelopment...
 
-```cpp
-#include <FractalIsland.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Blue|
@@ -194,10 +178,6 @@ Underdevelopment...
 
 ## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
-
-```cpp
-#include <FractalIsland.hpp>
-```
 
 |Default Value|Name|
 |:---:|:---|
@@ -224,10 +204,6 @@ Underdevelopment...
 ## [15] Chunk Island (v0.1.20~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <FractalIsland.hpp>
-```
-
 |Default Value|Name|
 |:---:|:---|
 |0-255|Height|
@@ -251,10 +227,6 @@ Underdevelopment...
 ## [16] Simple Diamond Square Average Island (v0.1.21~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <FractalIsland.hpp>
-```
-
 |Default Value|Name|
 |:---:|:---|
 |0-255|Height|
@@ -277,10 +249,6 @@ Underdevelopment...
 
 ## [14] Simple Diamond Square Average Island Corner (v0.1.19~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <FractalIsland.hpp>
-```
 
 |Default Value|Name|
 |:---:|:---|
@@ -306,10 +274,6 @@ Underdevelopment...
 
 ## [2] RogueLike (v0.1.0~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <RogueLike.hpp>
-```
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -339,10 +303,6 @@ Underdevelopment...
 ## [5] Simple RogueLike (v0.1.3~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
-```cpp
-#include <SimpleRogueLike.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Wall|Black|
@@ -368,10 +328,6 @@ Underdevelopment...
 ## [4] Maze Dig (v0.1.2~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
-```cpp
-#include <MazeDig.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Wall|Blue|
@@ -396,10 +352,6 @@ Underdevelopment...
 
 ## [17] RogueLike Cave (v0.1.25~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <RogueLike.hpp>
-```
 
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
@@ -436,17 +388,6 @@ Underdevelopment...
 ## [6] DungeonInit (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::DungeonInit<dungeon_t> dungeon_init(dungeon);
-
-//function
-dtl::dungeonInit(dungeon);
-```
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
 |0|(Variable Max)|
@@ -473,18 +414,6 @@ dtl::dungeonInit(dungeon);
 
 ## [7] Border (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::Border<dungeon_t> border(dungeon);
-
-//function
-dtl::createBorder(dungeon);
-```
 
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
@@ -515,18 +444,6 @@ dtl::createBorder(dungeon);
 ## [8] BorderOdd (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::BorderOdd<dungeon_t> border_odd(dungeon);
-
-//function
-dtl::createBorderOdd(dungeon);
-```
-
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
 |2|(Variable Max)|
@@ -556,18 +473,6 @@ dtl::createBorderOdd(dungeon);
 ## [9] PointGrid (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::PointGrid<dungeon_t> point_grid(dungeon);
-
-//function
-dtl::createPointGrid(dungeon);
-```
-
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
 |0|(Variable Max)|
@@ -596,18 +501,6 @@ dtl::createPointGrid(dungeon);
 ## [10] PointGridField (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::PointGridField<dungeon_t> point_grid_field(dungeon);
-
-//function
-dtl::createPointGridField(dungeon);
-```
-
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
 |2|(Variable Max)|
@@ -635,15 +528,6 @@ dtl::createPointGridField(dungeon);
 
 ## [12] PointGridFieldPutBlock (v0.1.13~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <DungeonStandard.hpp>
-```
-
-```cpp
-//class
-dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
-```
 
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
@@ -676,15 +560,6 @@ dtl::PointGridFieldPutBlock<dungeon_t> point_grid_field_put_block(dungeon);
 ## [11] Reversi (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <BoardGame.hpp>
-```
-
-```cpp
-//class
-dtl::Reversi<dungeon_t> reversi(dungeon);
-```
-
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
 |2|(Variable Max)|
@@ -715,15 +590,6 @@ dtl::Reversi<dungeon_t> reversi(dungeon);
 
 ## [13] Chess (v0.1.14~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <BoardGame.hpp>
-```
-
-```cpp
-//class
-dtl::Chess<dungeon_t> chess(dungeon);
-```
 
 |Matrix Size Min|Matrix Size Max|
 |:---:|:---|
@@ -768,10 +634,6 @@ dtl::Chess<dungeon_t> chess(dungeon);
 
 ## [18] Mountain (v0.1.26~)
 
-```cpp
-#include <HorizontalScroll.hpp>
-```
-
 |Default Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|Blue|
@@ -799,14 +661,6 @@ dtl::Chess<dungeon_t> chess(dungeon);
 ## Pen (v0.1.9~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
-```cpp
-#include <DungeonPaint.hpp>
-```
-
-```cpp
-dtl::Pen<dungeon_t> pen(dungeon, x, y, paint_value);
-```
-
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
 
@@ -818,14 +672,6 @@ dtl::Pen<dungeon_t> pen(dungeon, x, y, paint_value);
 
 ## Bucket (v0.1.9~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-```cpp
-#include <DungeonPaint.hpp>
-```
-
-```cpp
-dtl::Bucket<dungeon_t> bucket(dungeon, x, y, paint_value);
-```
 
 ### Variable
 ![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
