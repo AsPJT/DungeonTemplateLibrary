@@ -191,6 +191,18 @@ namespace dtl {
 					}
 				}
 
+				template<typename Matrix_>
+				constexpr void stringBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_, const std::size_t loop_num_) noexcept {
+					if (loop_num_ == 0) return;
+					for (std::size_t row{}; row < (matrix_.size()*loop_num_); ++row) {
+						for (std::size_t col{}; col < (matrix_[row].size()*loop_num_); ++col) {
+							if (matrix_[row / loop_num_][col / loop_num_]) std::cout << true_;
+							else std::cout << false_;
+						}
+						std::cout << std::endl;
+					}
+				}
+
 
 			} //namespace
 		}

@@ -447,34 +447,34 @@ namespace dtl {
 				struct KnightTourNode {
 					std::int_fast32_t row{}, col{};
 					bool visited{};
-					std::vector<KnightTourNode*> next{};
+					std::vector<std::shared_ptr<KnightTourNode>> next{};
 
 					KnightTourNode(const std::int_fast32_t row_, const std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
 				};
 
 				class KnightTourIsUnvisited {
 				public:
-					bool operator()(const KnightTourNode* const node_) const noexcept { return !node_->visited; }
+					bool operator()(const std::shared_ptr<KnightTourNode>& node_) const noexcept { return !node_->visited; }
 				};
 
 				class KnightTourIsVisited {
 				public:
-					bool operator()(const KnightTourNode* const node_) const noexcept { return node_->visited; }
+					bool operator()(const std::shared_ptr<KnightTourNode>& node_) const noexcept { return node_->visited; }
 				};
 				//等しくない時
 				class KnightTourNotEqualUnvisited {
 				private:
 					std::size_t counter{};
 				public:
-					KnightTourNotEqualUnvisited(const KnightTourNode* const node_) noexcept : counter(static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited()))) { }
-					bool operator()(const KnightTourNode* const node_) const noexcept {
+					KnightTourNotEqualUnvisited(const std::shared_ptr<KnightTourNode>& node_) noexcept : counter(static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited()))) { }
+					bool operator()(const std::shared_ptr<KnightTourNode>& node_) const noexcept {
 						return static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited())) != counter;
 					}
 				};
 				//動かない時
 				class KnightTourLessMovable {
 				public:
-					bool operator()(const KnightTourNode* const node1_, const KnightTourNode* const node2_) const noexcept {
+					bool operator()(const std::shared_ptr<KnightTourNode>& node1_, const std::shared_ptr<KnightTourNode>& node2_) const noexcept {
 						return std::count_if(node1_->next.begin(), node1_->next.end(), KnightTourIsUnvisited()) < std::count_if(node2_->next.begin(), node2_->next.end(), KnightTourIsUnvisited());
 					}
 				};
