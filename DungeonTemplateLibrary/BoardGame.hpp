@@ -452,11 +452,13 @@ namespace dtl {
 					KnightTourNode(const std::int_fast32_t row_, const std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
 				};
 
-				struct KnightTourIsUnvisited {
+				class KnightTourIsUnvisited {
+				public:
 					bool operator()(const KnightTourNode* const node_) const noexcept { return !node_->visited; }
 				};
 
-				struct KnightTourIsVisited {
+				class KnightTourIsVisited {
+				public:
 					bool operator()(const KnightTourNode* const node_) const noexcept { return node_->visited; }
 				};
 				//等しくない時
@@ -470,7 +472,8 @@ namespace dtl {
 					}
 				};
 				//動かない時
-				struct KnightTourLessMovable {
+				class KnightTourLessMovable {
+				public:
 					bool operator()(const KnightTourNode* const node1_, const KnightTourNode* const node2_) const noexcept {
 						return std::count_if(node1_->next.begin(), node1_->next.end(), KnightTourIsUnvisited()) < std::count_if(node2_->next.begin(), node2_->next.end(), KnightTourIsUnvisited());
 					}
@@ -480,7 +483,7 @@ namespace dtl {
 				class KnightTour {
 				private:
 
-					void search(const std::int_fast32_t x_, const std::int_fast32_t y_, const bool is_closed_, KnightTourNode* const node_, std::vector<KnightTourNode*>& best_tour_, std::vector<KnightTourNode*>& tour_) const noexcept {
+					void search(const std::int_fast32_t x_, const std::int_fast32_t y_, const bool is_closed_, std::shared_ptr<KnightTourNode>& node_, std::vector<std::shared_ptr<KnightTourNode>>& best_tour_, std::vector<std::shared_ptr<KnightTourNode>>& tour_) const noexcept {
 						if (node_->visited) return;
 						if (best_tour_.size() == static_cast<std::size_t>(y_ * x_)) {
 							if (!is_closed_) return;
@@ -506,7 +509,7 @@ namespace dtl {
 						if (node_ == nullptr) return;
 
 						//
-						std::vector<KnightTourNode*> next(node_->next);
+						std::vector<std::shared_ptr<KnightTourNode>> next(node_->next);
 						next.erase(std::remove_if(next.begin(), next.end(), KnightTourIsVisited()), next.end());
 						if (!next.empty())
 							next.erase(std::remove_if(next.begin(), next.end(), KnightTourNotEqualUnvisited(next.front())), next.end());
@@ -516,7 +519,7 @@ namespace dtl {
 						tour_.pop_back();
 					}
 
-					std::size_t tour(const std::int_fast32_t x_, const std::int_fast32_t y_, const bool is_closed_, const std::size_t start_pos_, std::vector<std::unique_ptr<KnightTourNode>>& nodes_, std::vector<KnightTourNode*>& best_tour_) const noexcept {
+					std::size_t tour(const std::int_fast32_t x_, const std::int_fast32_t y_, const bool is_closed_, const std::size_t start_pos_, std::vector<std::shared_ptr<KnightTourNode>>& nodes_, std::vector<std::shared_ptr<KnightTourNode>>& best_tour_) const noexcept {
 						//桂馬飛びの位置を格納する
 						constexpr std::array<std::pair<std::int_fast32_t, std::int_fast32_t>, 8> moves{ {
 									std::make_pair(2, 1),std::make_pair(1, 2),std::make_pair(2, -1),std::make_pair(1, -2),
@@ -526,7 +529,7 @@ namespace dtl {
 						//ノードの初期化
 						for (std::int_fast32_t i{}; i < y_; ++i)
 							for (std::int_fast32_t j{}; j < x_; ++j)
-								nodes_.emplace_back(std::make_unique<KnightTourNode>(i, j));
+								nodes_.emplace_back(std::make_shared<KnightTourNode>(i, j));
 
 						nodes_.shrink_to_fit();
 
@@ -534,7 +537,7 @@ namespace dtl {
 							for (auto&& q : moves) {
 								std::int_fast32_t r{ p->row + q.first };
 								std::int_fast32_t c{ p->col + q.second };
-								if (r >= 0 && r < y_ && c >= 0 && c < x_) p->next.emplace_back(nodes_[r*x_ + c].get());
+								if (r >= 0 && r < y_ && c >= 0 && c < x_) p->next.emplace_back(nodes_[r*x_ + c]);
 							}
 						//Schwenkの定理
 						if (is_closed_ && (y_ * x_ % 2 == 1 || ((std::min)(y_, x_) == 2 || (std::min)(y_, x_) == 4)
@@ -542,13 +545,13 @@ namespace dtl {
 						if (!is_closed_ && y_ * x_ % 2 == 1 && start_pos_ % 2 == 1) return 0;
 
 						//探索
-						std::vector<KnightTourNode*> tour_;
-						search(x_, y_, is_closed_, nodes_[start_pos_].get(), best_tour_, tour_);
+						std::vector<std::shared_ptr<KnightTourNode>> tour_;
+						search(x_, y_, is_closed_, nodes_[start_pos_], best_tour_, tour_);
 						return best_tour_.size();
 					}
 					//巡歴をマップ上に記録する
 					template<typename Matrix_>
-					void setTour(Matrix_& matrix_, std::vector<KnightTourNode*>& best_tour_, const Matrix_Int_ mod_value_ = 0) const noexcept {
+					void setTour(Matrix_& matrix_, std::vector<std::shared_ptr<KnightTourNode>>& best_tour_, const Matrix_Int_ mod_value_ = 0) const noexcept {
 						Matrix_Int_ counter{};
 						if (mod_value_ < 2)
 							for (const auto& i : best_tour_) {
@@ -568,8 +571,8 @@ namespace dtl {
 					//生成
 					template<typename Matrix_>
 					bool create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t start_x_ = 0, const std::size_t start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) const noexcept {
-						std::vector<std::unique_ptr<KnightTourNode>> nodes;
-						std::vector<KnightTourNode*> best_tour;
+						std::vector<std::shared_ptr<KnightTourNode>> nodes;
+						std::vector<std::shared_ptr<KnightTourNode>> best_tour;
 
 						if (tour(static_cast<std::int_fast32_t>(x_), static_cast<std::int_fast32_t>(y_), is_closed_, start_y_*x_ + start_x_, nodes, best_tour) < y_ * x_) return false;
 						setTour(matrix_, best_tour, mod_value_);
