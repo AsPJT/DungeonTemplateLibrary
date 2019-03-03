@@ -144,7 +144,11 @@
     <ClInclude Include="DungeonRandom.hpp" />
     <ClInclude Include="DungeonStandard.hpp" />
     <ClInclude Include="FractalIsland.hpp" />
+    <ClInclude Include="Generator_Common_Border.hpp" />
+    <ClInclude Include="Generator_Common_BorderOdd.hpp" />
     <ClInclude Include="Generator_Common_DungeonInit.hpp" />
+    <ClInclude Include="Generator_Common_PointGrid.hpp" />
+    <ClInclude Include="Generator_Common_PointGridField.hpp" />
     <ClInclude Include="HorizontalScroll.hpp" />
     <ClInclude Include="MazeDig.hpp" />
     <ClInclude Include="Random_MersenneTwister32bit.hpp" />

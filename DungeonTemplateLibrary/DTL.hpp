@@ -19,7 +19,7 @@
 #include "DungeonMatrix.hpp"
 
 
-#include "Generator_Common_DungeonInit.hpp"
+
 
 //ƒ_ƒ“ƒWƒ‡ƒ“
 #include "FractalIsland.hpp"
@@ -41,5 +41,12 @@
 #include "Utility_NoiseShoreBool.hpp"
 
 #include "Random_MersenneTwister32bit.hpp"
+
+
+#include "Generator_Common_Border.hpp"
+#include "Generator_Common_BorderOdd.hpp"
+#include "Generator_Common_DungeonInit.hpp"
+#include "Generator_Common_PointGrid.hpp"
+#include "Generator_Common_PointGridField.hpp"
 
 #endif //Included Dungeon Template Library
