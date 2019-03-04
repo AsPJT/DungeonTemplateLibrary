@@ -212,7 +212,7 @@ namespace dtl {
 						}
 						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << std::endl;
+					std::cout << '\n';
 					//下方向のオートタイルを描画
 					for (size_t x{}; x < matrix_[y].size(); ++x) {
 						if (matrix_[y][x]) {
@@ -221,7 +221,7 @@ namespace dtl {
 						}
 						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << std::endl;
+					std::cout << '\n';
 				}
 			}
 
@@ -242,7 +242,7 @@ namespace dtl {
 						}
 						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << std::endl;
+					std::cout << '\n';
 					//下方向のオートタイルを描画
 					for (size_t x{}; x < x_; ++x) {
 						if (matrix_[y][x]) {
@@ -251,7 +251,7 @@ namespace dtl {
 						}
 						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << std::endl;
+					std::cout << '\n';
 				}
 			}
 

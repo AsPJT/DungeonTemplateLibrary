@@ -43,7 +43,7 @@ int main() {
 //void createDungeon(Matrix_& matrix_, Generator_& generator_) noexcept {
 //	const std::chrono::system_clock::time_point& start{ std::chrono::system_clock::now() };
 //	generator_.create(matrix_, 10, 20);
-//	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << std::endl;
+//	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << '\n';
 //	//dtl::console::output::stl::stringBool(matrix_, "##", "//");
 //	dtl::console::output::stl::string(matrix_, "//", "##", "AA", "BB", "CC", "DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR");
 //}
@@ -59,7 +59,7 @@ int main() {
 //		rn[dtl::random::xor_8()]+=1;
 //
 //	for (std::size_t i{}; i < 256; ++i)
-//		std::cout << rn[i] << std::endl;
+//		std::cout << rn[i] << '\n';
 //
 //	//createDungeon(matrix, a);
 //	//dtl::utility::stl::noiseShoreBool(matrix, 0.5);

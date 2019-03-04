@@ -65,7 +65,7 @@ int main() {
 		dtl::utility::noiseShoreBothBool(dungeon, 0.4);
 	}
 
-	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << std::endl;
+	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start).count() << '\n';
 
 	dtl::console::output::stl::stringBool(dungeon, "#", ".");
 

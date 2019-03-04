@@ -9,7 +9,7 @@
 
 #include <cstddef>
 #include "Random_MersenneTwister32bit.hpp"
-#include "DungeonMatrix.hpp"
+#include "Beta_DungeonMatrix.hpp"
 #include "Generator_Common_PointGrid.hpp"
 #include "Generator_Common_BorderOdd.hpp"
 

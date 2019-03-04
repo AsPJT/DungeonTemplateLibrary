@@ -131,31 +131,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BoardGame.hpp" />
+    <ClInclude Include="Beta_BoardGame.hpp" />
     <ClInclude Include="Console_Output_Number.hpp" />
     <ClInclude Include="Console_Output_String.hpp" />
     <ClInclude Include="Console_Output_StringBool.hpp" />
     <ClInclude Include="DTL.hpp" />
-    <ClInclude Include="DungeonBinarization.hpp" />
-    <ClInclude Include="DungeonFile.hpp" />
-    <ClInclude Include="DungeonMatrix.hpp" />
-    <ClInclude Include="DungeonNoise.hpp" />
-    <ClInclude Include="DungeonOutput.hpp" />
-    <ClInclude Include="DungeonPaint.hpp" />
-    <ClInclude Include="DungeonRandom.hpp" />
-    <ClInclude Include="DungeonStandard.hpp" />
-    <ClInclude Include="FractalIsland.hpp" />
+    <ClInclude Include="Beta_DungeonBinarization.hpp" />
+    <ClInclude Include="Beta_DungeonFile.hpp" />
+    <ClInclude Include="Beta_DungeonMatrix.hpp" />
+    <ClInclude Include="Beta_DungeonNoise.hpp" />
+    <ClInclude Include="Beta_DungeonOutput.hpp" />
+    <ClInclude Include="Beta_DungeonPaint.hpp" />
+    <ClInclude Include="Beta_DungeonRandom.hpp" />
+    <ClInclude Include="Beta_DungeonStandard.hpp" />
+    <ClInclude Include="Beta_FractalIsland.hpp" />
     <ClInclude Include="Generator_Common_Border.hpp" />
     <ClInclude Include="Generator_Common_BorderOdd.hpp" />
     <ClInclude Include="Generator_Common_DungeonInit.hpp" />
     <ClInclude Include="Generator_Common_PointGrid.hpp" />
     <ClInclude Include="Generator_Common_PointGridField.hpp" />
-    <ClInclude Include="HorizontalScroll.hpp" />
-    <ClInclude Include="MazeDig.hpp" />
+    <ClInclude Include="Beta_HorizontalScroll.hpp" />
+    <ClInclude Include="Beta_MazeDig.hpp" />
     <ClInclude Include="Random_MersenneTwister32bit.hpp" />
-    <ClInclude Include="RogueLike.hpp" />
-    <ClInclude Include="SimpleRogueLike.hpp" />
-    <ClInclude Include="SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="Beta_RogueLike.hpp" />
+    <ClInclude Include="Beta_SimpleRogueLike.hpp" />
+    <ClInclude Include="Beta_SimpleVoronoiIsland.hpp" />
     <ClInclude Include="Utility_Binarization.hpp" />
     <ClInclude Include="Utility_Copy.hpp" />
     <ClInclude Include="Utility_Init.hpp" />

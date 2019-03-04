@@ -25,7 +25,7 @@ namespace dtl::console::output::stl {
 				if (matrix_[row][col]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -34,10 +34,10 @@ namespace dtl::console::output::stl {
 namespace dtl::console::output::tool {
 
 	void endl() noexcept {
-		std::cout << std::endl;
+		std::cout << '\n';
 	}
 	void puts(const std::string& str_) noexcept {
-		std::cout << str_ << std::endl;
+		std::cout << str_ << '\n';
 	}
 
 } //namespace

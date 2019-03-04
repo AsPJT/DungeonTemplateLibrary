@@ -45,7 +45,7 @@ namespace dtl::console::output::stl {
 				if (static_cast<std::size_t>(matrix_[row][col]) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(matrix_[row][col])];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -67,7 +67,7 @@ namespace dtl::console::output::normal {
 				if (static_cast<std::size_t>(matrix_[row][col]) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(matrix_[row][col])];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -89,7 +89,7 @@ namespace dtl::console::output::array {
 				if (static_cast<std::size_t>(matrix_[row*x_ + col]) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(matrix_[row*x_ + col])];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -111,7 +111,7 @@ namespace dtl::console::output::rangeBasedFor {
 				if (static_cast<std::size_t>(col) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(col)];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -133,7 +133,7 @@ namespace dtl::console::output::layer::stl {
 				if (static_cast<std::size_t>(matrix_[row][col][layer_]) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(matrix_[row][col][layer_])];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -155,7 +155,7 @@ namespace dtl::console::output::layer::normal {
 				if (static_cast<std::size_t>(matrix_[row][col][layer_]) >= string_vector.size()) continue;
 				std::cout << string_vector[static_cast<std::size_t>(matrix_[row][col][layer_])];
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 

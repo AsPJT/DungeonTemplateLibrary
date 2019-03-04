@@ -163,7 +163,7 @@ namespace dtl {
 							if (is_char) ofs << static_cast<int>(matrix_[row][col]);
 							else ofs << matrix_[row][col];
 						}
-						ofs << std::endl;
+						ofs << '\n';
 					}
 					return true;
 				}
@@ -178,10 +178,10 @@ namespace dtl {
 					ofs << '|';
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						ofs << row << '|';
-					ofs << std::endl << '|';
+					ofs << '\n' << '|';
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						ofs << ":---|";
-					ofs << std::endl;
+					ofs << '\n';
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						if (matrix_[row].size() == 0) continue;
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -190,7 +190,7 @@ namespace dtl {
 							else ofs << matrix_[row][col];
 						}
 						ofs << '|';
-						ofs << std::endl;
+						ofs << '\n';
 					}
 					return true;
 				}
@@ -207,7 +207,7 @@ namespace dtl {
 							else if (is_char) ofs << static_cast<int>(matrix_[row][col]);
 							else ofs << matrix_[row][col];
 						}
-						ofs << std::endl;
+						ofs << '\n';
 					}
 					return true;
 				}
@@ -217,9 +217,9 @@ namespace dtl {
 					std::ofstream ofs(str_);
 					if (ofs.fail()) return false;
 
-					ofs << "P1" << std::endl;
+					ofs << "P1" << '\n';
 					ofs << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
-					ofs << matrix_.size() << std::endl;
+					ofs << matrix_.size() << '\n';
 
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						if (matrix_[row].size() == 0) continue;
@@ -230,7 +230,7 @@ namespace dtl {
 							if (matrix_[row][col]) ofs << 1;
 							else ofs << 0;
 						}
-						ofs << std::endl;
+						ofs << '\n';
 					}
 					return true;
 				}
@@ -239,20 +239,20 @@ namespace dtl {
 
 					template<typename Matrix_>
 					constexpr void stringTemplate_svg(const Matrix_& matrix_, std::ofstream& ofs_) noexcept {
-						ofs_ << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << std::endl;
+						ofs_ << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << '\n';
 						ofs_ << "<svg version=\"1.1\" id=\"layer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 ";
 						ofs_ << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
 						ofs_ << matrix_.size() << "\"";
 						ofs_ << " style=\"enable-background:new 0 0 ";
 						ofs_ << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
 						ofs_ << matrix_.size();
-						ofs_ << ";\" xml:space=\"preserve\">" << std::endl;
+						ofs_ << ";\" xml:space=\"preserve\">" << '\n';
 					}
 					void rectTemplate_svg(std::ofstream& ofs_, const std::size_t col_, const std::size_t row_) noexcept {
-						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" width=\"1\" height=\"1\"/>" << std::endl;
+						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" width=\"1\" height=\"1\"/>" << '\n';
 					}
 					void rectTemplateColor_svg(std::ofstream& ofs_, const std::size_t col_, const std::size_t row_) noexcept {
-						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" class=\"st1\" width=\"1\" height=\"1\"/>" << std::endl;
+						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" class=\"st1\" width=\"1\" height=\"1\"/>" << '\n';
 					}
 
 				}
@@ -268,10 +268,10 @@ namespace dtl {
 					ofs << std::hex << std::setw(6) << std::setfill('0') << color_false_ << std::dec;
 					ofs << ";}.st1{fill:#";
 					ofs << std::hex << std::setw(6) << std::setfill('0') << color_true_ << std::dec;
-					ofs << ";}" << std::endl;
+					ofs << ";}" << '\n';
 
-					ofs << "</style>" << std::endl;
-					ofs << "<rect class=\"st0\" width=\"" << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << "\" height=\"" << matrix_.size() << "\"/>" << std::endl;
+					ofs << "</style>" << '\n';
+					ofs << "<rect class=\"st0\" width=\"" << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << "\" height=\"" << matrix_.size() << "\"/>" << '\n';
 
 					for (std::size_t row{}; row < matrix_.size(); ++row) {
 						if (matrix_[row].size() == 0) continue;
@@ -312,17 +312,17 @@ namespace dtl {
 					if (is_char)
 						for (std::size_t row{}; row < matrix_.size(); ++row)
 							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								ofs << "v " << col << " " << static_cast<int>(matrix_[row][col]) << " " << row << std::endl;
+								ofs << "v " << col << " " << static_cast<int>(matrix_[row][col]) << " " << row << '\n';
 					else
 						for (std::size_t row{}; row < matrix_.size(); ++row)
 							for (std::size_t col{}; col < matrix_[row].size(); ++col)
-								ofs << "v " << col << " " << matrix_[row][col] << " " << row << std::endl;
+								ofs << "v " << col << " " << matrix_[row][col] << " " << row << '\n';
 
 					std::size_t x_size{ matrix_[0].size() };
 					for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 						for (std::size_t col{ 2 }; col <= matrix_[row].size(); ++col) {
-							ofs << "f " << (row*x_size + col) << " " << ((row - 1)*x_size + col) << " " << ((row - 1)*x_size + (col - 1)) << std::endl;
-							ofs << "f " << (row*x_size + col) << " " << (row*x_size + (col - 1)) << " " << ((row - 1)*x_size + (col - 1)) << std::endl;
+							ofs << "f " << (row*x_size + col) << " " << ((row - 1)*x_size + col) << " " << ((row - 1)*x_size + (col - 1)) << '\n';
+							ofs << "f " << (row*x_size + col) << " " << (row*x_size + (col - 1)) << " " << ((row - 1)*x_size + (col - 1)) << '\n';
 						}
 					return true;
 				}
@@ -330,22 +330,22 @@ namespace dtl {
 				namespace hiding {
 
 					void write_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) noexcept {
-						ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << std::endl;
-						ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << std::endl;
-						ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << std::endl;
-						ofs_ << "f " << (1 + id_ * 8) << " " << (2 + id_ * 8) << " " << (6 + id_ * 8) << " " << (5 + id_ * 8) << std::endl;
-						ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << std::endl;
-						ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << std::endl;
+						ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << '\n';
+						ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << '\n';
+						ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << '\n';
+						ofs_ << "f " << (1 + id_ * 8) << " " << (2 + id_ * 8) << " " << (6 + id_ * 8) << " " << (5 + id_ * 8) << '\n';
+						ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << '\n';
+						ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << '\n';
 					}
 					void write_objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) noexcept {
-						ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << std::endl;
-						ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << std::endl;
-						ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << std::endl;
-						ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z << " " << std::endl;
-						ofs_ << "v " << start_x << " " << start_y << " " << start_z + size_z << " " << std::endl;
-						ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z + size_z << " " << std::endl;
-						ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z + size_z << " " << std::endl;
-						ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z + size_z << " " << std::endl;
+						ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << '\n';
+						ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << '\n';
+						ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << '\n';
+						ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z << " " << '\n';
+						ofs_ << "v " << start_x << " " << start_y << " " << start_z + size_z << " " << '\n';
+						ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z + size_z << " " << '\n';
+						ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z + size_z << " " << '\n';
+						ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z + size_z << " " << '\n';
 						dtl::file::write::stl::hiding::write_objOutputId(ofs_, id_);
 					}
 

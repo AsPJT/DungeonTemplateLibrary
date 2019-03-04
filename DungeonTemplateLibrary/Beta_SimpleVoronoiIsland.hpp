@@ -12,7 +12,7 @@
 #include <utility>
 #include <memory>
 #include "Random_MersenneTwister32bit.hpp"
-#include "DungeonMatrix.hpp"
+#include "Beta_DungeonMatrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {

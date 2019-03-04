@@ -21,7 +21,7 @@ namespace dtl::console::output::stl {
 				if (matrix_[row][col]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -33,7 +33,7 @@ namespace dtl::console::output::stl {
 				if (matrix_[row / loop_num_][col / loop_num_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -49,7 +49,7 @@ namespace dtl::console::output::normal {
 				if (matrix_[row][col]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -61,7 +61,7 @@ namespace dtl::console::output::normal {
 				if (matrix_[row / loop_num_][col / loop_num_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -77,7 +77,7 @@ namespace dtl::console::output::array {
 				if (matrix_[row * x_ + col]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -89,7 +89,7 @@ namespace dtl::console::output::array {
 				if (matrix_[row / loop_num_ * x_ + col / loop_num_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -105,7 +105,7 @@ namespace dtl::console::output::rangeBasedFor {
 				if (col) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -121,7 +121,7 @@ namespace dtl::console::output::layer::stl {
 				if (matrix_[row][col]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -133,7 +133,7 @@ namespace dtl::console::output::layer::stl {
 				if (matrix_[row / loop_num_][col / loop_num_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -149,7 +149,7 @@ namespace dtl::console::output::layer::normal {
 				if (matrix_[row][col][layer_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
@@ -161,7 +161,7 @@ namespace dtl::console::output::layer::normal {
 				if (matrix_[row / loop_num_][col / loop_num_][layer_]) std::cout << true_;
 				else std::cout << false_;
 			}
-			std::cout << std::endl;
+			std::cout << '\n';
 		}
 	}
 
