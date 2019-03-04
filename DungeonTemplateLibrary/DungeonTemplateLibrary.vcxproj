@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="BoardGame.hpp" />
     <ClInclude Include="Console_Output_Number.hpp" />
+    <ClInclude Include="Console_Output_String.hpp" />
     <ClInclude Include="Console_Output_StringBool.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DungeonBinarization.hpp" />
@@ -155,6 +156,8 @@
     <ClInclude Include="RogueLike.hpp" />
     <ClInclude Include="SimpleRogueLike.hpp" />
     <ClInclude Include="SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="Utility_Binarization.hpp" />
+    <ClInclude Include="Utility_Copy.hpp" />
     <ClInclude Include="Utility_Init.hpp" />
     <ClInclude Include="Utility_NoiseBool.hpp" />
     <ClInclude Include="Utility_NoiseShoreBool.hpp" />

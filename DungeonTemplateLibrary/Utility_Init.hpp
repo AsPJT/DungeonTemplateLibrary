@@ -9,6 +9,7 @@
 
 #include <cstddef>
 
+//STLデータ
 namespace dtl::utility::stl {
 
 	//ダンジョン内の値を初期化する
@@ -55,6 +56,7 @@ namespace dtl::utility::stl {
 
 } //namespace
 
+//通常データ
 namespace dtl::utility::normal {
 
 	template<typename Matrix_>
@@ -101,6 +103,7 @@ namespace dtl::utility::normal {
 
 } //namespace
 
+//配列データ
 namespace dtl::utility::array {
 
 	template<typename Matrix_>
@@ -147,6 +150,54 @@ namespace dtl::utility::array {
 
 } //namespace
 
+//範囲forデータ
+namespace dtl::utility::rangeBasedFor {
+
+	//2値化処理
+	template<typename Matrix_>
+	constexpr void init(Matrix_& matrix_) noexcept {
+		for (auto&& row : matrix_)
+			for (auto&& col : row)
+				col = 0;
+	}
+	template<typename Matrix_Int_, typename Matrix_>
+	constexpr void init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+		for (auto&& row : matrix_)
+			for (auto&& col : row)
+				col = value_;
+	}
+	//クラス版
+	class Init {
+	public:
+		template<typename Matrix_>
+		constexpr explicit Init(Matrix_& matrix_) noexcept {
+			for (auto&& row : matrix_)
+				for (auto&& col : row)
+					col = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr explicit Init(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+			for (auto&& row : matrix_)
+				for (auto&& col : row)
+					col = value_;
+		}
+		template<typename Matrix_>
+		constexpr void operator()(Matrix_& matrix_) const noexcept {
+			for (auto&& row : matrix_)
+				for (auto&& col : row)
+					col = 0;
+		}
+		template<typename Matrix_Int_, typename Matrix_>
+		constexpr void operator()(Matrix_& matrix_, const Matrix_Int_ value_) const noexcept {
+			for (auto&& row : matrix_)
+				for (auto&& col : row)
+					col = value_;
+		}
+	};
+
+} //namespace
+
+//レイヤーSTLデータ
 namespace dtl::utility::layer::stl {
 
 	//ダンジョン内の値を初期化する
@@ -194,6 +245,7 @@ namespace dtl::utility::layer::stl {
 
 } //namespace
 
+//レイヤー通常データ
 namespace dtl::utility::layer::normal {
 
 	template<typename Matrix_>

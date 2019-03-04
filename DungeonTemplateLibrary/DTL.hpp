@@ -34,6 +34,7 @@
 #include "DungeonPaint.hpp"
 
 #include "Console_Output_Number.hpp"
+#include "Console_Output_String.hpp"
 #include "Console_Output_StringBool.hpp"
 
 #include "Utility_Init.hpp"

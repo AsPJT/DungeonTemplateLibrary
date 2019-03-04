@@ -145,17 +145,6 @@ namespace dtl {
 
 		}
 
-		template<typename Matrix_>
-		constexpr void copy(Matrix_& matrix_, const Matrix_& matrix2_) noexcept {
-			matrix_ = matrix2_;
-		}
-		template<typename Matrix_, typename Matrix2_>
-		constexpr void copy(Matrix_& matrix_, const Matrix2_& matrix2_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					matrix_[row][col] = matrix2_[row][col];
-		}
-
 		template<typename Matrix_, typename Matrix2_>
 		constexpr void convertSTL_intoDefault(Matrix_& matrix_, std::size_t& x_, std::size_t& y_, const Matrix2_& matrix2_) noexcept {
 			for (std::size_t row{}; row < matrix_.size(); ++row)

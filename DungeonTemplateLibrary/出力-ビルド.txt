@@ -1,7 +1,7 @@
 ﻿1>------ ビルド開始: プロジェクト: DungeonTemplateLibrary, 構成: Release x64 ------
-1>Wand.cpp
+1>Test_030.cpp
 1>コード生成しています。
-1>0 of 142 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+1>0 of 193 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
 1>  0 functions were new in current compilation
 1>  0 functions had inline decision re-evaluated but remain unchanged
 1>コード生成が終了しました。
