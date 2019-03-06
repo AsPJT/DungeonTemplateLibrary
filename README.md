@@ -149,6 +149,7 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 
 ### Image
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.png)
 
 ## [X] Biome Island (v0.2.X~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
