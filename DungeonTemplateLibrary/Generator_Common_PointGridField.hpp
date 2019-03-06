@@ -7,6 +7,8 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Bug Check : not checked */
+
 #include <cstddef>
 #include "Generator_Common_PointGrid.hpp"
 #include "Generator_Common_BorderOdd.hpp"

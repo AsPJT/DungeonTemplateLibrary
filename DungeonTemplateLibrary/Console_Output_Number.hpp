@@ -7,6 +7,8 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Bug Check : already checked */
+
 #include <cstddef>
 #include <iostream>
 #include <string>
@@ -15,19 +17,19 @@
 namespace dtl::console::output::tool {
 
 	template<typename Matrix_Int_>
-	constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
+	[[nodiscard]] constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
 		return value_;
 	}
 	template<>
-	constexpr auto getOutputNumber<char>(const char value_) noexcept {
+	[[nodiscard]] constexpr auto getOutputNumber<char>(const char value_) noexcept {
 		return static_cast<int>(value_);
 	}
 	template<>
-	constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
+	[[nodiscard]] constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
 		return static_cast<int>(value_);
 	}
 	template<>
-	constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
+	[[nodiscard]] constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
 		return static_cast<int>(value_);
 	}
 

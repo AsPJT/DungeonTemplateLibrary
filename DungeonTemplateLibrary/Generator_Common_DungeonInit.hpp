@@ -7,6 +7,8 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Bug Check : not checked */
+
 #include <cstddef>
 
 //総合データ

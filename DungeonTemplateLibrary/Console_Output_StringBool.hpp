@@ -7,6 +7,8 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Bug Check : already checked */
+
 #include <cstddef>
 #include <iostream>
 #include <string>
@@ -118,7 +120,7 @@ namespace dtl::console::output::layer::stl {
 	constexpr void stringBool(const Matrix_& matrix_, const std::size_t layer_, const std::string& true_, const std::string& false_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-				if (matrix_[row][col]) std::cout << true_;
+				if (matrix_[row][col][layer_]) std::cout << true_;
 				else std::cout << false_;
 			}
 			std::cout << '\n';
@@ -130,7 +132,7 @@ namespace dtl::console::output::layer::stl {
 		if (loop_num_ == 0) return;
 		for (std::size_t row{}; row < (matrix_.size()*loop_num_); ++row) {
 			for (std::size_t col{}; col < (matrix_[row].size()*loop_num_); ++col) {
-				if (matrix_[row / loop_num_][col / loop_num_]) std::cout << true_;
+				if (matrix_[row / loop_num_][col / loop_num_][layer_]) std::cout << true_;
 				else std::cout << false_;
 			}
 			std::cout << '\n';
