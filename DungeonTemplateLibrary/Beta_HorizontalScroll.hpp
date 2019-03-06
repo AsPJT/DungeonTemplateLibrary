@@ -10,7 +10,7 @@
 #include <cstddef>
 #include <cstdint>
 #include "Random_MersenneTwister32bit.hpp"
-#include "Beta_DungeonMatrix.hpp"
+#include "Utility_Matrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl::generator::horizontalScroll::stl {
@@ -20,7 +20,7 @@ namespace dtl::generator::horizontalScroll::stl {
 
 		using dtl::random::mersenne_twister_32bit;
 
-		if (dtl::utility::isEmpty(matrix_)) return;
+		if (dtl::utility::tool::isMatrixEmpty(matrix_)) return;
 
 		std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 

@@ -13,15 +13,16 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <utility>
 
 //隠ぺいデータ
 namespace dtl::console::output::hiding {
 
 	constexpr void string_String([[maybe_unused]] const std::vector<std::string>& string_) noexcept {}
 
-	template<typename First_, typename ...Args_>
-	constexpr void string_String(std::vector<std::string>& string_vector_, const First_& first_, const Args_&... args_) noexcept {
-		string_vector_.emplace_back(std::string(first_));
+	template<typename ...Args_>
+	constexpr void string_String(std::vector<std::string>& string_vector_, const std::string& first_, const Args_&... args_) noexcept {
+		string_vector_.emplace_back(std::move(first_));
 		string_String(string_vector_, args_...);
 	}
 	template<typename ...Args_>

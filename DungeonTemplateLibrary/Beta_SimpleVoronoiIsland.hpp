@@ -12,7 +12,7 @@
 #include <utility>
 #include <memory>
 #include "Random_MersenneTwister32bit.hpp"
-#include "Beta_DungeonMatrix.hpp"
+#include "Utility_Matrix.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -88,14 +88,14 @@ namespace dtl {
 							return;
 						}
 
-						createPoint(point, color, count_, static_cast<std::int_fast32_t>(dtl::utility::getSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::getSizeY(matrix_)), rbool_, land_, sea_);
-						createSites(point, color, count_, matrix_, dtl::utility::getSizeX(matrix_), dtl::utility::getSizeY(matrix_));
+						createPoint(point, color, count_, static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
+						createSites(point, color, count_, matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));
 					}
 					//ボロノイ図を作る
 					template<typename Matrix_>
 					constexpr void create(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
-						createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(dtl::utility::getSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::getSizeY(matrix_)), rbool_, land_, sea_);
-						createSites(svid_.point, svid_.color, svid_.size(), matrix_, dtl::utility::getSizeX(matrix_), dtl::utility::getSizeY(matrix_));
+						createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
+						createSites(svid_.point, svid_.color, svid_.size(), matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));
 					}
 				private:
 

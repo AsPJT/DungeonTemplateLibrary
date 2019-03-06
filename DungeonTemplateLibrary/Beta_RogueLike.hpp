@@ -10,7 +10,7 @@
 #include <cstddef>
 #include <cstdint>
 #include "Random_MersenneTwister32bit.hpp"
-#include "Beta_DungeonBinarization.hpp"
+#include "Utility_Binarization_Over.hpp"
 #include "Utility_NoiseShoreBool.hpp"
 
 //Dungeon Template Library Namespace

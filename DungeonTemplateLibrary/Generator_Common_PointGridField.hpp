@@ -7,7 +7,7 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
-/* Bug Check : not checked */
+/* Bug Check : already checked */
 
 #include <cstddef>
 #include "Generator_Common_PointGrid.hpp"
@@ -128,13 +128,13 @@ namespace dtl::generator::common::layer::stl {
 
 	//STL版(1)
 	template<typename Matrix_>
-	constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_) noexcept {
+	constexpr void createPointGridField(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		dtl::generator::common::layer::stl::createPointGrid(matrix_, layer_);
 		dtl::generator::common::layer::stl::createBorderOdd(matrix_, layer_);
 	}
 	//STL版(2)
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	constexpr void createPointGridField(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		dtl::generator::common::layer::stl::createPointGrid(matrix_, layer_, value_);
 		dtl::generator::common::layer::stl::createBorderOdd(matrix_, layer_, value_);
 	}
@@ -145,11 +145,11 @@ namespace dtl::generator::common::layer::stl {
 		//コンストラクタ
 		constexpr PointGridField() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit PointGridField(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit PointGridField(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::layer::stl::createPointGrid(matrix_, layer_, value_);
 			dtl::generator::common::layer::stl::createBorderOdd(matrix_, layer_, value_);
 		}
@@ -162,12 +162,12 @@ namespace dtl::generator::common::layer::normal {
 
 	//Default版
 	template<typename Matrix_>
-	constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	constexpr void createPointGridField(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		dtl::generator::common::layer::normal::createPointGrid(matrix_, layer_, x_, y_);
 		dtl::generator::common::layer::normal::createBorderOdd(matrix_, layer_, x_, y_);
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	constexpr void createPointGridField(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		dtl::generator::common::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
 		dtl::generator::common::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 	}
@@ -178,11 +178,11 @@ namespace dtl::generator::common::layer::normal {
 		//コンストラクタ
 		constexpr PointGridField() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit PointGridField(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit PointGridField(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::layer::normal::createPointGrid(matrix_, layer_, x_, y_, value_);
 			dtl::generator::common::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 		}

@@ -11,57 +11,29 @@
 
 //Dungeon Template Library Namespace
 
-namespace dtl::utility {
+namespace dtl::utility::stl {
 
-	namespace stl {
-
-
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void binarizationOver(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-					if (matrix_[row][col] >= value_) matrix_[row][col] = static_cast<Matrix_Int_>(1);
-					else matrix_[row][col] = static_cast<Matrix_Int_>(0);
-				}
-		}
-		template<typename Matrix_, typename STL2_>
-		constexpr void binarizationBool(Matrix_& matrix_, STL2_& stl2_) noexcept {
-			if (matrix_.size() != stl2_.size()) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-					if (matrix_[row].size() != stl2_[row].size()) continue;
-					if (matrix_[row][col]) stl2_[row][col] = true;
-					else stl2_[row][col] = false;
-				}
-		}
-
-		template<typename Matrix_, typename STL2_, typename Matrix_Int_>
-		constexpr void binarizationBool(Matrix_& matrix_, STL2_& stl2_, const Matrix_Int_ value_) noexcept {
-			if (matrix_.size() != stl2_.size()) return;
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-					if (matrix_[row].size() != stl2_[row].size()) continue;
-					if (matrix_[row][col] >= value_) stl2_[row][col] = true;
-					else stl2_[row][col] = false;
-				}
-		}
-
+	template<typename Matrix_, typename STL2_>
+	constexpr void binarizationBool(Matrix_& matrix_, STL2_& stl2_) noexcept {
+		if (matrix_.size() != stl2_.size()) return;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				if (matrix_[row].size() != stl2_[row].size()) continue;
+				if (matrix_[row][col]) stl2_[row][col] = true;
+				else stl2_[row][col] = false;
+			}
 	}
 
-	namespace rangeBasedFor {
-
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void binarizationOver(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-			for (auto&& row : matrix_)
-				for (auto&& col : row) {
-					if (col >= value_) col = static_cast<Matrix_Int_>(1);
-					else col = static_cast<Matrix_Int_>(0);
-				}
-		}
-
+	template<typename Matrix_, typename STL2_, typename Matrix_Int_>
+	constexpr void binarizationBool(Matrix_& matrix_, STL2_& stl2_, const Matrix_Int_ value_) noexcept {
+		if (matrix_.size() != stl2_.size()) return;
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				if (matrix_[row].size() != stl2_[row].size()) continue;
+				if (matrix_[row][col] >= value_) stl2_[row][col] = true;
+				else stl2_[row][col] = false;
+			}
 	}
-
-
 
 } //namespace
 
