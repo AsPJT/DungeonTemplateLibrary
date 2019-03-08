@@ -153,17 +153,22 @@
     <ClInclude Include="Beta_HorizontalScroll.hpp" />
     <ClInclude Include="Beta_MazeDig.hpp" />
     <ClInclude Include="Generator_Common_PointGridFieldPutBlock.hpp" />
+    <ClInclude Include="Generator_Terrain_SimpleCellularAutomatonIsland.hpp" />
     <ClInclude Include="Random_MersenneTwister32bit.hpp" />
     <ClInclude Include="Beta_RogueLike.hpp" />
     <ClInclude Include="Beta_SimpleRogueLike.hpp" />
     <ClInclude Include="Beta_SimpleVoronoiIsland.hpp" />
     <ClInclude Include="Utility_Binarization.hpp" />
     <ClInclude Include="Utility_Binarization_Over.hpp" />
+    <ClInclude Include="Utility_CellularAutomatonInner.hpp" />
     <ClInclude Include="Utility_Copy.hpp" />
+    <ClInclude Include="Utility_GetOutputNumber.hpp" />
     <ClInclude Include="Utility_Init.hpp" />
     <ClInclude Include="Utility_Matrix.hpp" />
     <ClInclude Include="Utility_NoiseBool.hpp" />
     <ClInclude Include="Utility_NoiseShoreBool.hpp" />
+    <ClInclude Include="Utility_RandomBool.hpp" />
+    <ClInclude Include="Utility_RandomInnerBool.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt" />

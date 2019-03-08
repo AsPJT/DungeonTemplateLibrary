@@ -7,10 +7,13 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
+
 #include <cstddef>
 #include <cstdint>
 #include <array>
 #include <limits>
+#include <memory>
 
 //Dungeon Template Library Namespace
 namespace dtl {

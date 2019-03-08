@@ -19,7 +19,7 @@
 //隠ぺいデータ
 namespace dtl::console::output::hiding {
 
-	constexpr void string_String([[maybe_unused]] const std::vector<std::string>& string_) noexcept {}
+	constexpr void string_String([[maybe_unused]] const std::vector<std::string>&) noexcept {}
 
 	template<typename ...Args_>
 	constexpr void string_String(std::vector<std::string>& string_vector_, const std::string& first_, const Args_&... args_) noexcept {

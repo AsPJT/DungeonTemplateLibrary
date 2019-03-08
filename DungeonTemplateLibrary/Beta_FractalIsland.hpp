@@ -7,53 +7,16 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
+
 #include <cstddef>
 #include <cstdint>
 #include <array>
+#include <memory>
 #include "Random_MersenneTwister32bit.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl::generator::terrain::stl {
-
-	//OpenMP(並列処理)
-#ifdef _OPENMP
-				//ランダム法
-	template<typename Matrix_Int_>
-	class SimpleCellularAutomatonIsland_OpenMP {
-	public:
-		//コンストラクタ
-		constexpr SimpleCellularAutomatonIsland_OpenMP() noexcept = default;
-		template<typename Matrix_>
-		constexpr explicit SimpleCellularAutomatonIsland_OpenMP(Matrix_& matrix_, const std::size_t max_value_ = 2) noexcept {
-			create(matrix_, max_value_);
-		}
-		//ワールドマップ生成
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t max_value_ = 2) const noexcept {
-#pragma omp parallel
-			{
-				using dtl::random::mersenne_twister_32bit;
-#pragma omp for
-				for (std::int_fast32_t row{ 1 }; row < matrix_.size() - 1; ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col)
-						if (mersenne_twister_32bit.probability()) matrix_[row][col] = 1;
-#pragma omp for
-				for (std::int_fast32_t i{}; i < max_value_; ++i)
-					for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-						for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
-							if (matrix_[row][col - 1] && matrix_[row][col + 1] && matrix_[row - 1][col] && matrix_[row + 1][col]) matrix_[row][col] = matrix_[row][col + 1];
-							else switch (mersenne_twister_32bit(4))
-							{
-							case 0:matrix_[row][col] = matrix_[row][col - 1]; break;
-							case 1:matrix_[row][col] = matrix_[row][col + 1]; break;
-							case 2:matrix_[row][col] = matrix_[row - 1][col]; break;
-							case 3:matrix_[row][col] = matrix_[row + 1][col]; break;
-							}
-						}
-			}
-		}
-	};
-#endif
 
 	enum {
 		biome_ocean,//海洋
@@ -239,8 +202,7 @@ namespace dtl::generator::terrain::stl {
 					for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
 						if (matrix_[row][col - 1] == matrix_[row][col + 1] && matrix_[row][col + 1] == matrix_[row - 1][col] && matrix_[row - 1][col] == matrix_[row + 1][col])
 							matrix_[row][col] = matrix_[row][col + 1];
-						else switch (mersenne_twister_32bit(4))
-						{
+						else switch (mersenne_twister_32bit(4)) {
 						case 0:matrix_[row][col] = matrix_[row][col - 1]; break;
 						case 1:matrix_[row][col] = matrix_[row][col + 1]; break;
 						case 2:matrix_[row][col] = matrix_[row - 1][col]; break;
@@ -251,42 +213,7 @@ namespace dtl::generator::terrain::stl {
 		}
 	};
 
-	//ランダム法
-	template<typename Matrix_Int_>
-	class SimpleCellularAutomatonIsland {
-	public:
-		//コンストラクタ
-		constexpr SimpleCellularAutomatonIsland() noexcept = default;
-		template<typename Matrix_>
-		constexpr explicit SimpleCellularAutomatonIsland(Matrix_& matrix_, const std::size_t max_value_ = 2) noexcept {
-			create(matrix_, max_value_);
-		}
-		//ワールドマップ生成
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t max_value_ = 2) const noexcept {
 
-			using dtl::random::mersenne_twister_32bit;
-
-			for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-				for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col)
-					if (mersenne_twister_32bit.probability()) matrix_[row][col] = 1;
-
-			for (std::size_t i{}; i < max_value_; ++i)
-				for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
-						if (matrix_[row][col - 1] == matrix_[row][col + 1] && matrix_[row][col + 1] == matrix_[row - 1][col] && matrix_[row - 1][col] == matrix_[row + 1][col])
-							matrix_[row][col] = matrix_[row][col + 1];
-						else switch (mersenne_twister_32bit(4))
-						{
-						case 0:matrix_[row][col] = matrix_[row][col - 1]; break;
-						case 1:matrix_[row][col] = matrix_[row][col + 1]; break;
-						case 2:matrix_[row][col] = matrix_[row - 1][col]; break;
-						case 3:matrix_[row][col] = matrix_[row + 1][col]; break;
-						}
-					}
-
-		}
-	};
 
 	//Diamond Square (Average)
 	//ダイヤモンド・スクエア法(平均値)
