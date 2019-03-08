@@ -160,7 +160,7 @@
     <ClInclude Include="Beta_SimpleVoronoiIsland.hpp" />
     <ClInclude Include="Utility_Binarization.hpp" />
     <ClInclude Include="Utility_Binarization_Over.hpp" />
-    <ClInclude Include="Utility_CellularAutomatonInner.hpp" />
+    <ClInclude Include="Utility_CellularAutomaton.hpp" />
     <ClInclude Include="Utility_Copy.hpp" />
     <ClInclude Include="Utility_GetOutputNumber.hpp" />
     <ClInclude Include="Utility_Init.hpp" />
@@ -169,6 +169,7 @@
     <ClInclude Include="Utility_NoiseShoreBool.hpp" />
     <ClInclude Include="Utility_RandomBool.hpp" />
     <ClInclude Include="Utility_RandomInnerBool.hpp" />
+    <ClInclude Include="Utility_SetItem.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt" />

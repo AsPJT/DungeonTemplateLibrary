@@ -11,7 +11,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>
-#include "Utility_CellularAutomatonInner.hpp"
+#include "Utility_CellularAutomaton.hpp"
 #include "Utility_RandomInnerBool.hpp"
 
 namespace dtl::generator::terrain::stl {
@@ -31,7 +31,7 @@ namespace dtl::generator::terrain::stl {
 		constexpr void create(Matrix_& matrix_, const std::size_t max_value_ = 2) const noexcept {
 			dtl::utility::stl::randomInnerBool(matrix_);
 			for (std::size_t i{}; i < max_value_; ++i)
-				dtl::utility::stl::cellularAutomationInner(matrix_);
+				dtl::utility::stl::cellularAutomation(matrix_);
 		}
 	};
 
@@ -54,7 +54,7 @@ namespace dtl::generator::terrain::normal {
 		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_value_ = 2) const noexcept {
 			dtl::utility::normal::randomInnerBool(matrix_, x_, y_);
 			for (std::size_t i{}; i < max_value_; ++i)
-				dtl::utility::normal::cellularAutomationInner(matrix_, x_, y_);
+				dtl::utility::normal::cellularAutomation(matrix_, x_, y_);
 		}
 	};
 
@@ -77,7 +77,7 @@ namespace dtl::generator::terrain::array {
 		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_value_ = 2) const noexcept {
 			dtl::utility::array::randomInnerBool(matrix_, x_, y_);
 			for (std::size_t i{}; i < max_value_; ++i)
-				dtl::utility::array::cellularAutomationInner(matrix_, x_, y_);
+				dtl::utility::array::cellularAutomation(matrix_, x_, y_);
 		}
 	};
 
@@ -100,7 +100,7 @@ namespace dtl::generator::terrain::layer::stl {
 		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t max_value_ = 2) const noexcept {
 			dtl::utility::layer::stl::randomInnerBool(matrix_, layer_);
 			for (std::size_t i{}; i < max_value_; ++i)
-				dtl::utility::layer::stl::cellularAutomationInner(matrix_, layer_);
+				dtl::utility::layer::stl::cellularAutomation(matrix_, layer_);
 		}
 	};
 
@@ -123,7 +123,7 @@ namespace dtl::generator::terrain::layer::normal {
 		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t max_value_ = 2) const noexcept {
 			dtl::utility::layer::normal::randomInnerBool(matrix_, layer_, x_, y_);
 			for (std::size_t i{}; i < max_value_; ++i)
-				dtl::utility::layer::normal::cellularAutomationInner(matrix_, layer_, x_, y_);
+				dtl::utility::layer::normal::cellularAutomation(matrix_, layer_, x_, y_);
 		}
 	};
 
