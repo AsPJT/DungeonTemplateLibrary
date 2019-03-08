@@ -8,6 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 /* Bug Check : already checked */
+/* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
 #include "Utility_Matrix.hpp"

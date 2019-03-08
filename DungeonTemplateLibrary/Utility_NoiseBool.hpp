@@ -8,6 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 /* Bug Check : not checked */
+/* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
 #include "Random_MersenneTwister32bit.hpp"

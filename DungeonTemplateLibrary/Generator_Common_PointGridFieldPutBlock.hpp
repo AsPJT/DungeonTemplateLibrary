@@ -8,6 +8,7 @@
 //:::::----------::::::::::----------::::://
 
 /* Bug Check : not checked */
+/* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
 #include "Generator_Common_PointGrid.hpp"

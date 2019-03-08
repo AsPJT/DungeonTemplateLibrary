@@ -17,18 +17,18 @@
 #include "Beta_DungeonNoise.hpp"
 #include "Beta_DungeonOutput.hpp"
 #include "Beta_DungeonRandom.hpp"
-#include "Beta_DungeonFile.hpp"
+//#include "Beta_DungeonFile.hpp"
 #include "Beta_DungeonMatrix.hpp"
 //ダンジョン
-#include "Beta_FractalIsland.hpp"
-#include "Beta_MazeDig.hpp"
-#include "Beta_RogueLike.hpp"
-#include "Beta_SimpleRogueLike.hpp"
-#include "Beta_SimpleVoronoiIsland.hpp"
-#include "Beta_BoardGame.hpp"
-#include "Beta_HorizontalScroll.hpp"
-//ペイント
-#include "Beta_DungeonPaint.hpp"
+//#include "Beta_FractalIsland.hpp"
+//#include "Beta_MazeDig.hpp"
+//#include "Beta_RogueLike.hpp"
+//#include "Beta_SimpleRogueLike.hpp"
+//#include "Beta_SimpleVoronoiIsland.hpp"
+//#include "Beta_BoardGame.hpp"
+//#include "Beta_HorizontalScroll.hpp"
+////ペイント
+//#include "Beta_DungeonPaint.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 
 
@@ -51,7 +51,7 @@
 #include "Utility_Copy.hpp"
 #include "Utility_Init.hpp"
 #include "Utility_NoiseBool.hpp"
-#include "Utility_NoiseShoreBool.hpp"
+//#include "Utility_NoiseShoreBool.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
 

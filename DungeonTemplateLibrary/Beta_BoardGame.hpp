@@ -20,7 +20,7 @@ namespace dtl {
 
 			//指定した場所に駒を置く
 			template<typename Matrix_Int_, typename Matrix_>
-			std::size_t putPiece(Matrix_& matrix_, const std::size_t  col_, const std::size_t row_, const Matrix_Int_ turn_, const bool is_put_) {
+			std::size_t putPiece(Matrix_& matrix_, const std::size_t  col_, const std::size_t row_, const Matrix_Int_ turn_, const bool is_put_ = true) {
 				if (matrix_.size() == 0) return 0;
 				std::size_t piece_turn_num{};
 				if (matrix_[row_][col_] > 0) return 0;
@@ -67,126 +67,104 @@ namespace dtl {
 				return true;
 			}
 			//最初に見つけた置ける場所を選ぶ
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool simple(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
-						if (dtl::ai::reversi::putPiece(matrix_, col, row, turn_, true)) return true;
-				return true;
-			}
+			class Simple {
+			public:
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+					for (std::size_t row{}; row < matrix_.size(); ++row)
+						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+							if (dtl::ai::reversi::putPiece(matrix_, col, row, turn_, true)) return true;
+					return true;
+				}
+			};
 			//最も多くの駒が取れる場所を選ぶ
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool greed(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
+			class Greed {
+			public:
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::ai::reversi::putPiece;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::ai::reversi::putPiece;
 
-				std::size_t piece_turn_max{};
-				std::size_t put_piece_x{}, put_piece_y{};
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-						const auto& num{ putPiece(matrix_, col,row, turn_, false) };
-						if (piece_turn_max < num || (piece_turn_max == num && mersenne_twister_32bit.probability())) {
-							piece_turn_max = num;
-							put_piece_x = col;
-							put_piece_y = row;
-						}
-					}
-				putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
-				return true;
-			}
-			//最も少なく駒が取れる場所を選ぶ
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool unselfishness(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-				std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
-				std::size_t put_piece_x{}, put_piece_y{};
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-						const auto& num{ dtl::ai::reversi::putPiece(matrix_, col,row, turn_, false) };
-						if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::random::mersenne_twister_32bit.probability()))) {
-							piece_turn_min = num;
-							put_piece_x = col;
-							put_piece_y = row;
-						}
-					}
-				dtl::ai::reversi::putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
-				return true;
-			}
-			//優先順位
-			constexpr std::int_fast32_t checkPriority(std::int_fast32_t x_, std::int_fast32_t y_, const std::int_fast32_t x_max_, const std::int_fast32_t y_max_) noexcept {
-				if (x_ == x_max_) x_ = 0;
-				else if (x_ == x_max_ - 1) x_ = 1;
-				else if (x_ == x_max_ - 2) x_ = 2;
-				else if (x_ >= 4) x_ = 3;
-
-				if (y_ == y_max_) y_ = 0;
-				else if (y_ == y_max_ - 1) y_ = 1;
-				else if (y_ == y_max_ - 2) y_ = 2;
-				else if (y_ >= 4) x_ = 3;
-
-				switch (x_)
-				{
-				case 0:
-					switch (y_)
-					{
-					case 0:return 0;
-					case 1:return 6;
-					case 2:return 2;
-					default:return 1;
-					}
-					[[fallthrough]];
-				case 1:
-					switch (y_)
-					{
-					case 0:return 6;
-					case 1:return 6;
-					case 2:return 6;
-					default:return 4;
-					}
-					[[fallthrough]];
-				case 2:
-					switch (y_)
-					{
-					case 0:return 2;
-					case 1:return 5;
-					case 2:return 2;
-					default:return 3;
-					}
-				}
-				switch (y_)
-				{
-				case 0:return 1;
-				case 1:return 4;
-				case 2:return 3;
-				default:return 3;
-				}
-				return 0;
-			}
-			//優先順位の高い場所を選ぶ
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool priority(Matrix_& matrix_, const Matrix_Int_ turn_) noexcept {
-
-				using dtl::random::mersenne_twister_32bit;
-
-				std::size_t piece_turn_max{};
-				std::size_t put_piece_x{}, put_piece_y{};
-				for (std::uint_fast8_t piece_priority{}; piece_priority < 7 && piece_turn_max == 0; ++piece_priority)
+					std::size_t piece_turn_max{};
+					std::size_t put_piece_x{}, put_piece_y{};
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-							if (dtl::ai::reversi::checkPriority(static_cast<std::int_fast32_t>(col), static_cast<std::int_fast32_t>(row), static_cast<std::int_fast32_t>(matrix_[row].size()) - 1, static_cast<std::int_fast32_t>(matrix_.size()) - 1) != piece_priority) continue;
-							const auto& num{ dtl::ai::reversi::putPiece(matrix_, col, row, turn_, false) };
+							const auto& num{ putPiece(matrix_, col,row, turn_, false) };
 							if (piece_turn_max < num || (piece_turn_max == num && mersenne_twister_32bit.probability())) {
 								piece_turn_max = num;
 								put_piece_x = col;
 								put_piece_y = row;
 							}
 						}
-				dtl::ai::reversi::putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
-				return true;
-			}
+					putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
+					return true;
+				}
+			};
+			//最も少なく駒が取れる場所を選ぶ
+			class Unselfishness {
+			public:
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+					std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
+					std::size_t put_piece_x{}, put_piece_y{};
+					for (std::size_t row{}; row < matrix_.size(); ++row)
+						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+							const auto& num{ dtl::ai::reversi::putPiece(matrix_, col,row, turn_, false) };
+							if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::random::mersenne_twister_32bit.probability()))) {
+								piece_turn_min = num;
+								put_piece_x = col;
+								put_piece_y = row;
+							}
+						}
+					dtl::ai::reversi::putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
+					return true;
+				}
+			};
+
+			//優先順位の高い場所を選ぶ
+			class Priority {
+			public:
+				//優先順位
+				constexpr std::uint_fast8_t checkPriority(std::size_t x_, std::size_t y_, const std::size_t x_max_, const std::size_t y_max_) const noexcept {
+					if (x_ == x_max_) x_ = 0;
+					else if (x_ == x_max_ - 1) x_ = 1;
+					else if (x_ == x_max_ - 2) x_ = 2;
+					else if (x_ >= 4) x_ = 3;
+
+					if (y_ == y_max_) y_ = 0;
+					else if (y_ == y_max_ - 1) y_ = 1;
+					else if (y_ == y_max_ - 2) y_ = 2;
+					else if (y_ >= 4) y_ = 3;
+
+					constexpr std::array<uint_fast8_t, 16> check_point{ { 0,6,2,1,6,6,5,4,2,6,2,3,1,4,3,3 } };
+					return check_point[y_ * 4 + x_];
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+
+					using dtl::random::mersenne_twister_32bit;
+
+					std::size_t piece_turn_max{};
+					std::size_t put_piece_x{}, put_piece_y{};
+					for (std::uint_fast8_t piece_priority{}; piece_priority < 7 && piece_turn_max == 0; ++piece_priority)
+						for (std::size_t row{}; row < matrix_.size(); ++row)
+							for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+								if (this->checkPriority(col, row, matrix_[row].size() - 1, matrix_.size() - 1) != piece_priority) continue;
+								const auto& num{ dtl::ai::reversi::putPiece(matrix_, col, row, turn_, false) };
+								if (piece_turn_max < num || (piece_turn_max == num && mersenne_twister_32bit.probability())) {
+									piece_turn_max = num;
+									put_piece_x = col;
+									put_piece_y = row;
+								}
+							}
+					dtl::ai::reversi::putPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
+					return true;
+				}
+			};
 			//AI同士をまとめる関数
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool reversiAI(Matrix_& matrix_, const Matrix_Int_ turn_, bool(*black_ai_)(Matrix_&, const Matrix_Int_), bool(*white_ai_)(Matrix_&, const Matrix_Int_), const bool is_black_ai_) noexcept {
+			template<typename Matrix_Int_, typename Matrix_,typename Black_,typename White_>
+			constexpr bool reversiAI(Matrix_& matrix_, const Matrix_Int_ turn_, Black_&& black_ai_, White_&& white_ai_, const bool is_black_ai_) noexcept {
 				return (is_black_ai_) ? black_ai_(matrix_, turn_) : white_ai_(matrix_, turn_);
 			}
 
