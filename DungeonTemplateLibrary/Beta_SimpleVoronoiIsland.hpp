@@ -75,18 +75,10 @@ namespace dtl {
 
 					//ボロノイ図を作る
 					template<typename Matrix_>
-					void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const {
+					void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 						//原点の座標と各面の色(もしくは地形データ)を記録する変数
-						std::unique_ptr<Point_Pair_[]> point;
-						std::unique_ptr<Matrix_Int_[]> color;
-						try {
-							point = std::make_unique<Point_Pair_[]>(count_);
-							color = std::make_unique<Matrix_Int_[]>(count_);
-						}
-						catch (const std::bad_alloc&) {
-							//メモリ確保に失敗
-							return;
-						}
+						std::unique_ptr<Point_Pair_[]> point{ std::make_unique<Point_Pair_[]>(count_) };
+						std::unique_ptr<Matrix_Int_[]> color{ std::make_unique<Matrix_Int_[]>(count_) };
 
 						createPoint(point, color, count_, static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
 						createSites(point, color, count_, matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));

@@ -81,7 +81,7 @@ namespace dtl::artist {
 
 	public:
 		template<typename Matrix_>
-		void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const {
+		void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
 			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 			std::int_fast32_t left_x{};
 			std::int_fast32_t right_x{};
@@ -94,15 +94,7 @@ namespace dtl::artist {
 			const std::int_fast32_t size_max_x{ static_cast<std::int_fast32_t>(matrix_[0].size() - 1) };
 			const std::int_fast32_t size_max_y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 
-			std::unique_ptr<BucketBuffer[]> buffer;
-			try {
-				buffer = std::make_unique<BucketBuffer[]>(matrix_[0].size());
-			}
-			catch (const std::bad_alloc&) {
-				//メモリ確保に失敗
-				return;
-			}
-
+			std::unique_ptr<BucketBuffer[]> buffer{ std::make_unique<BucketBuffer[]>(matrix_[0].size()) };
 
 			std::size_t start_n{};
 			std::size_t end_n{ 1 };

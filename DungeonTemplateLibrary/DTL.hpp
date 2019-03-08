@@ -51,7 +51,7 @@
 #include "Utility_Copy.hpp"
 #include "Utility_Init.hpp"
 #include "Utility_NoiseBool.hpp"
-//#include "Utility_NoiseShoreBool.hpp"
+#include "Utility_NoiseShoreBool.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
 
