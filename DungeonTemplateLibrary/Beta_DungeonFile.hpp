@@ -21,7 +21,7 @@
 
 //Dungeon Template Library Namespace
 namespace dtl::file::read::stl {
-
+	
 
 	//バイナリファイルの読み込み
 	template<typename Matrix_>

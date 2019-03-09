@@ -153,6 +153,7 @@
     <ClInclude Include="Beta_HorizontalScroll.hpp" />
     <ClInclude Include="Beta_MazeDig.hpp" />
     <ClInclude Include="Generator_Common_PointGridFieldPutBlock.hpp" />
+    <ClInclude Include="Generator_Terrain_SimpleBiomeIsland.hpp" />
     <ClInclude Include="Generator_Terrain_SimpleCellularAutomatonIsland.hpp" />
     <ClInclude Include="Random_MersenneTwister32bit.hpp" />
     <ClInclude Include="Beta_RogueLike.hpp" />
@@ -169,6 +170,8 @@
     <ClInclude Include="Utility_NoiseShoreBool.hpp" />
     <ClInclude Include="Utility_RandomBool.hpp" />
     <ClInclude Include="Utility_RandomInnerBool.hpp" />
+    <ClInclude Include="Utility_RandomInnerRandomValue.hpp" />
+    <ClInclude Include="Utility_Replace.hpp" />
     <ClInclude Include="Utility_SetItem.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -178,41 +178,6 @@ namespace dtl::generator::terrain::stl {
 				}
 	}
 
-	template<typename Matrix_Int_>
-	class SimpleBiomeIsland {
-	public:
-		//コンストラクタ
-		constexpr SimpleBiomeIsland() noexcept = default;
-		template<typename Matrix_>
-		constexpr explicit SimpleBiomeIsland(Matrix_& matrix_, const std::size_t max_value_ = 2, const std::int_fast32_t type_ = 4) noexcept {
-			create(matrix_, max_value_, type_);
-		}
-		//ワールドマップ生成
-		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t max_value_ = 2, const std::int_fast32_t type_ = 4) const noexcept {
-
-			using dtl::random::mersenne_twister_32bit;
-
-			for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-				for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col)
-					if (mersenne_twister_32bit.probability()) matrix_[row][col] = mersenne_twister_32bit(type_);
-
-			for (std::size_t i{}; i < max_value_; ++i)
-				for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
-						if (matrix_[row][col - 1] == matrix_[row][col + 1] && matrix_[row][col + 1] == matrix_[row - 1][col] && matrix_[row - 1][col] == matrix_[row + 1][col])
-							matrix_[row][col] = matrix_[row][col + 1];
-						else switch (mersenne_twister_32bit(4)) {
-						case 0:matrix_[row][col] = matrix_[row][col - 1]; break;
-						case 1:matrix_[row][col] = matrix_[row][col + 1]; break;
-						case 2:matrix_[row][col] = matrix_[row - 1][col]; break;
-						case 3:matrix_[row][col] = matrix_[row + 1][col]; break;
-						}
-					}
-
-		}
-	};
-
 
 
 	//Diamond Square (Average)

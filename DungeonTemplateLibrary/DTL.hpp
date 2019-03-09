@@ -52,6 +52,7 @@
 #include "Utility_Init.hpp"
 #include "Utility_NoiseBool.hpp"
 #include "Utility_NoiseShoreBool.hpp"
+#include "Utility_Replace.hpp"
 #include "Utility_SetItem.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
@@ -77,6 +78,7 @@
 #include "Generator_Common_PointGridFieldPutBlock.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 
+#include "Generator_Terrain_SimpleBiomeIsland.hpp"
 #include "Generator_Terrain_SimpleCellularAutomatonIsland.hpp"
 
 #endif //Included Dungeon Template Library

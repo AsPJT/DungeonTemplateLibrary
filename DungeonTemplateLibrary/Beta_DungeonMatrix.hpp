@@ -12,7 +12,7 @@
 #include <cstddef>
 
 //Dungeon Template Library Namespace
-namespace dtl::utility {
+namespace dtl::utility::stl {
 
 	//サイズ変更(std::vector, std::deque等)
 	template<typename Matrix_>
@@ -31,46 +31,44 @@ namespace dtl::utility {
 		}
 	}
 
-	namespace layer {
+}
+namespace dtl::utility::layer::stl {
 
-		template<typename Matrix_>
-		constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
-			matrix_.resize(y_);
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row].resize(x_);
-				for (std::size_t col{}; col < x_; ++col)
-					matrix_[row][col].resize(layer_);
+	template<typename Matrix_>
+	constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
+		matrix_.resize(y_);
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row].resize(x_);
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[row][col].resize(layer_);
+		}
+	}
+	template<typename Matrix_Int_, typename Matrix_>
+	constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+		matrix_.resize(y_);
+		for (std::size_t row{}; row < y_; ++row) {
+			matrix_[row].resize(x_);
+			for (std::size_t col{}; col < x_; ++col) {
+				matrix_[row][col].resize(layer_);
+				for (std::size_t layer{}; layer < layer_; ++layer)
+					matrix_[row][col][layer_] = value_;
 			}
 		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
-			matrix_.resize(y_);
-			for (std::size_t row{}; row < y_; ++row) {
-				matrix_[row].resize(x_);
-				for (std::size_t col{}; col < x_; ++col) {
-					matrix_[row][col].resize(layer_);
-					for (std::size_t layer{}; layer < layer_; ++layer)
-						matrix_[row][col][layer_] = value_;
-				}
+	}
+	template<typename Matrix_>
+	constexpr void resize(Matrix_& matrix_, const std::size_t layer_) noexcept {
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				matrix_[row][col].resize(layer_);
+	}
+	template<typename Matrix_Int_, typename Matrix_>
+	constexpr void resize(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+		for (std::size_t row{}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				matrix_[row][col].resize(layer_);
+				for (std::size_t layer{}; layer < layer_; ++layer)
+					matrix_[row][col][layer_] = value_;
 			}
-		}
-		template<typename Matrix_>
-		constexpr void resize(Matrix_& matrix_, const std::size_t layer_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col)
-					matrix_[row][col].resize(layer_);
-		}
-		template<typename Matrix_Int_, typename Matrix_>
-		constexpr void resize(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
-			for (std::size_t row{}; row < matrix_.size(); ++row)
-				for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-					matrix_[row][col].resize(layer_);
-					for (std::size_t layer{}; layer < layer_; ++layer)
-						matrix_[row][col][layer_] = value_;
-				}
-		}
-
-
 	}
 
 }
