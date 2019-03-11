@@ -15,7 +15,7 @@ int main() {
 
 	dtl::utility::stl::init(matrix);
 	dtl::generator::terrain::stl::SimpleBiomeIsland<dungeon_t>().create(matrix, 10, 4);
-	dtl::utility::stl::setItem<dungeon_t>(matrix, 10, 4);
+	dtl::utility::stl::setItem(matrix, 10, 4);
 	dtl::utility::stl::replace(matrix, 0, 1);
 	dtl::utility::stl::replace(matrix, 0, 2);
 	dtl::utility::stl::replace(matrix, 0, 3);
@@ -23,7 +23,7 @@ int main() {
 
 	dtl::utility::normal::init(matrix, x, y);
 	dtl::generator::terrain::normal::SimpleBiomeIsland<dungeon_t>().create(matrix, x, y, 10, 4);
-	dtl::utility::normal::setItem<dungeon_t>(matrix, x, y, 10, 4);
+	dtl::utility::normal::setItem(matrix, x, y, 10, 4);
 	dtl::utility::normal::replace(matrix, x, y, 0, 1);
 	dtl::utility::normal::replace(matrix, x, y, 0, 2);
 	dtl::utility::normal::replace(matrix, x, y, 0, 3);
@@ -31,7 +31,7 @@ int main() {
 
 	dtl::utility::array::init(matrix_array, x, y);
 	dtl::generator::terrain::array::SimpleBiomeIsland<dungeon_t>().create(matrix_array, x, y, 10, 4);
-	dtl::utility::array::setItem<dungeon_t>(matrix_array, x, y, 10, 4);
+	dtl::utility::array::setItem(matrix_array, x, y, 10, 4);
 	dtl::utility::array::replace(matrix_array, x, y, 0, 1);
 	dtl::utility::array::replace(matrix_array, x, y, 0, 2);
 	dtl::utility::array::replace(matrix_array, x, y, 0, 3);
@@ -39,7 +39,7 @@ int main() {
 
 	dtl::utility::layer::stl::init(matrix_layer, 0);
 	dtl::generator::terrain::layer::stl::SimpleBiomeIsland<dungeon_t>().create(matrix_layer, 0, 10, 4);
-	dtl::utility::layer::stl::setItem<dungeon_t>(matrix_layer, 0, 10, 4);
+	dtl::utility::layer::stl::setItem(matrix_layer, 0, 10, 4);
 	dtl::utility::layer::stl::replace(matrix_layer, 0, 0, 1);
 	dtl::utility::layer::stl::replace(matrix_layer, 0, 0, 2);
 	dtl::utility::layer::stl::replace(matrix_layer, 0, 0, 3);
@@ -47,7 +47,7 @@ int main() {
 
 	dtl::utility::layer::normal::init(matrix_layer, 0, x, y);
 	dtl::generator::terrain::layer::normal::SimpleBiomeIsland<dungeon_t>().create(matrix_layer, 0, x, y, 10, 4);
-	dtl::utility::layer::normal::setItem<dungeon_t>(matrix_layer, 0, x, y, 10, 4);
+	dtl::utility::layer::normal::setItem(matrix_layer, 0, x, y, 10, 4);
 	dtl::utility::layer::normal::replace(matrix_layer, 0, x, y, 0, 1);
 	dtl::utility::layer::normal::replace(matrix_layer, 0, x, y, 0, 2);
 	dtl::utility::layer::normal::replace(matrix_layer, 0, x, y, 0, 3);
