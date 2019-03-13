@@ -17,10 +17,12 @@ namespace dtl::shape::stl {
 
 	template<typename Matrix_>
 	constexpr void createPoint(Matrix_& matrix_, const std::size_t set_x_, const std::size_t set_y_) noexcept {
+		if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
 		matrix_[set_y_][set_x_] = 1;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createPoint(Matrix_& matrix_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
+		if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
 		matrix_[set_y_][set_x_] = value_;
 	}
 
@@ -68,10 +70,12 @@ namespace dtl::shape::layer::stl {
 
 	template<typename Matrix_>
 	constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, std::size_t set_x_, const std::size_t set_y_) noexcept {
+		if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
 		matrix_[set_y_][set_x_][layer_] = 1;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
 	constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
+		if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
 		matrix_[set_y_][set_x_][layer_] = value_;
 	}
 
