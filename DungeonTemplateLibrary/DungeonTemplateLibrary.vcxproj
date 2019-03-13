@@ -159,6 +159,7 @@
     <ClInclude Include="Beta_RogueLike.hpp" />
     <ClInclude Include="Beta_SimpleRogueLike.hpp" />
     <ClInclude Include="Beta_SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="Shape_Point.hpp" />
     <ClInclude Include="Utility_Binarization.hpp" />
     <ClInclude Include="Utility_Binarization_Over.hpp" />
     <ClInclude Include="Utility_CellularAutomaton.hpp" />

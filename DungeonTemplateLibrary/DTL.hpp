@@ -81,4 +81,7 @@
 #include "Generator_Terrain_SimpleBiomeIsland.hpp"
 #include "Generator_Terrain_SimpleCellularAutomatonIsland.hpp"
 
+
+#include "Shape_Point.hpp"
+
 #endif //Included Dungeon Template Library

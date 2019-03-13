@@ -55,25 +55,23 @@ namespace dtl::generator::dungeon::stl {
 		}
 		//マップ生成
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
-			room_rect.clear();
-			branch_point.clear();
+			//部屋の位置情報
+			std::vector<RogueLikeRect<std::int_fast32_t>> room_rect;
+			//部屋または通路の生成可能な面の位置情報
+			std::vector<RogueLikeRect<std::int_fast32_t>> branch_point;
 			//最初の部屋を生成
-			if (!makeRoom(matrix_, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (std::size_t)mersenne_twister_32bit(4))) return;
+			if (!makeRoom(matrix_, room_rect, branch_point, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (std::size_t)mersenne_twister_32bit(4))) return;
 			//機能配置
-			for (std::size_t i = 1; i < way_max_; ++i)
-				if (!createNext(matrix_)) break;
+			for (std::size_t i{ 1 }; i < way_max_; ++i)
+				if (!createNext(matrix_, room_rect, branch_point)) break;
+
 		}
 
 	private:
-		//部屋の位置情報
-		std::vector<RogueLikeRect<std::int_fast32_t>> room_rect;
-		//部屋または通路の生成可能な面の位置情報
-		std::vector<RogueLikeRect<std::int_fast32_t>> branch_point;
-
 		//タイルを取得
 		template<typename Matrix_>
 		constexpr Matrix_Int_ getTileType(const Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
@@ -86,7 +84,7 @@ namespace dtl::generator::dungeon::stl {
 			matrix_[y_][x_] = tile_;
 		}
 		template<typename Matrix_>
-		constexpr bool createNext(Matrix_& matrix_) noexcept {
+		constexpr bool createNext(Matrix_& matrix_, std::vector<RogueLikeRect<std::int_fast32_t>>& room_rect_, std::vector<RogueLikeRect<std::int_fast32_t>>& branch_point) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
@@ -100,7 +98,7 @@ namespace dtl::generator::dungeon::stl {
 
 				//方角カウンタ
 				for (std::size_t j{}; j < direction_count; ++j) {
-					if (!createNext(matrix_, x, y, j)) continue;
+					if (!createNext(matrix_, room_rect_, branch_point,x, y, j)) continue;
 					branch_point.erase(branch_point.begin() + r);
 					return true;
 				}
@@ -108,7 +106,7 @@ namespace dtl::generator::dungeon::stl {
 			return false;
 		}
 		template<typename Matrix_>
-		constexpr bool createNext(Matrix_& matrix_, const std::int_fast32_t x, const std::int_fast32_t y, const std::size_t dir_) noexcept {
+		constexpr bool createNext(Matrix_& matrix_, std::vector<RogueLikeRect<std::int_fast32_t>>& room_rect_, std::vector<RogueLikeRect<std::int_fast32_t>>& branch_point,const std::int_fast32_t x, const std::int_fast32_t y, const std::size_t dir_) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
@@ -127,13 +125,13 @@ namespace dtl::generator::dungeon::stl {
 			//2分の1の確率
 			if (mersenne_twister_32bit.probability()) {
 				//部屋を生成
-				if (!makeRoom(matrix_, x, y, dir_)) return false;
+				if (!makeRoom(matrix_, room_rect_, branch_point,x, y, dir_)) return false;
 				setTileType(matrix_, x, y, entrance_id);
 				return true;
 			}
 			else {
 				//通路を生成
-				if (!makeWay(matrix_, x, y, dir_)) return false;
+				if (!makeWay(matrix_, branch_point, x, y, dir_)) return false;
 				if (getTileType(matrix_, x + dx, y + dy) == room_id) setTileType(matrix_, x, y, entrance_id);
 				else setTileType(matrix_, x, y, way_id);
 				return true;
@@ -141,7 +139,7 @@ namespace dtl::generator::dungeon::stl {
 			return false;
 		}
 		template<typename Matrix_>
-		constexpr bool makeRoom(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_, const bool firstRoom_ = false) noexcept {
+		constexpr bool makeRoom(Matrix_& matrix_, std::vector<RogueLikeRect<std::int_fast32_t>>& room_rect_, std::vector<RogueLikeRect<std::int_fast32_t>>& branch_point,const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_, const bool firstRoom_ = false) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
@@ -172,7 +170,7 @@ namespace dtl::generator::dungeon::stl {
 				break;
 			}
 			if (placeRect(matrix_, room, room_id)) {
-				room_rect.emplace_back(room);
+				room_rect_.emplace_back(room);
 				if (dir_ != direction_south || firstRoom_) //上
 					branch_point.emplace_back(RogueLikeRect<std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
 				if (dir_ != direction_north || firstRoom_) //下
@@ -186,7 +184,7 @@ namespace dtl::generator::dungeon::stl {
 			return false;
 		}
 		template<typename Matrix_>
-		constexpr bool makeWay(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_) noexcept {
+		constexpr bool makeWay(Matrix_& matrix_, std::vector<RogueLikeRect<std::int_fast32_t>>& branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const std::size_t dir_) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
@@ -250,7 +248,7 @@ namespace dtl::generator::dungeon::stl {
 			return true;
 		}
 		template<typename Matrix_>
-		constexpr bool placeRect(Matrix_& matrix_, const RogueLikeRect<std::int_fast32_t>& rect, const Matrix_Int_ tile_) noexcept {
+		constexpr bool placeRect(Matrix_& matrix_, const RogueLikeRect<std::int_fast32_t>& rect, const Matrix_Int_ tile_) const noexcept {
 			if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(matrix_.size()) - 1)
 				return false;
 			for (std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
