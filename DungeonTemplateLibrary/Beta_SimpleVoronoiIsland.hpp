@@ -27,7 +27,7 @@ namespace dtl::generator::terrain::data {
 		const std::size_t array_size{};
 	public:
 		constexpr explicit VoronoiData(const std::size_t array_size_ = 100) noexcept
-			:point(std::make_unique<Point_Pair_[]>(array_size_)), color(std::make_unique<Matrix_Int_[]>(array_size_)), array_size(array_size_) {}
+			:point(new(std::nothrow) Point_Pair_[array_size_]), color(new(std::nothrow) Matrix_Int_[array_size_]), array_size(array_size_) {}
 
 		std::unique_ptr<Point_Pair_[]> point;
 		std::unique_ptr<Matrix_Int_[]> color;
@@ -73,8 +73,10 @@ namespace dtl::generator::terrain::stl {
 		template<typename Matrix_>
 		void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 			//原点の座標と各面の色(もしくは地形データ)を記録する変数
-			std::unique_ptr<Point_Pair_[]> point{ std::make_unique<Point_Pair_[]>(count_) };
-			std::unique_ptr<Matrix_Int_[]> color{ std::make_unique<Matrix_Int_[]>(count_) };
+			std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[count_] };
+			if (!point) return;
+			std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[count_] };
+			if (!color) return;
 
 			createPoint(point, color, count_, static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
 			createSites(point, color, count_, matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));

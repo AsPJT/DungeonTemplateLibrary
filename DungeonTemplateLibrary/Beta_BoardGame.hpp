@@ -25,8 +25,10 @@ namespace dtl::ai::reversi {
 		std::size_t piece_turn_num{};
 		if (matrix_[row_][col_] > 0) return 0;
 
-		std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ std::make_unique<std::int_fast32_t[]>(matrix_[0].size()) };
-		std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ std::make_unique<std::int_fast32_t[]>(matrix_.size()) };
+		std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ new(std::nothrow) std::int_fast32_t[matrix_[0].size()] };
+		if (!stl_tmp_x) return 0;
+		std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ new(std::nothrow) std::int_fast32_t[matrix_.size()] };
+		if (!stl_tmp_y) return 0;
 
 		for (std::int_fast32_t y{ -1 }; y <= 1; ++y)
 			for (std::int_fast32_t x{ -1 }; x <= 1; ++x) {

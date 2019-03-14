@@ -118,8 +118,10 @@ namespace dtl::generator::dungeon::stl {
 
 			std::size_t select_id{};
 
-			std::unique_ptr<std::size_t[]> select_x{ std::make_unique<std::size_t[]>(matrix_.size()*matrix_[0].size()) };
-			std::unique_ptr<std::size_t[]> select_y{ std::make_unique<std::size_t[]>(matrix_.size()*matrix_[0].size()) };
+			std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[matrix_.size()*matrix_[0].size()] };
+			if (!select_x) return;
+			std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[matrix_.size()*matrix_[0].size()] };
+			if (!select_y) return;
 
 			//座標を選ぶ
 			while (true) {
