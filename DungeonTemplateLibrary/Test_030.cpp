@@ -29,25 +29,28 @@ int main() {
 	//dtl::shape::layer::normal::createPoint(matrix_layer, layer, x, y, 3, 1);
 	//dtl::shape::layer::normal::createPoint<dungeon_t>(matrix_layer, layer, x, y, 3, 3, 2);
 
-	dtl::shape::stl::PointUnique<dungeon_t>(1, 1).draw(matrix);
-	dtl::shape::stl::PointUnique<dungeon_t>(1, 3, 2).draw(matrix);
-	dtl::shape::normal::PointUnique<dungeon_t>(2, 1).draw(matrix, x, y);
-	dtl::shape::normal::PointUnique<dungeon_t>(2, 3, 2).draw(matrix, x, y);
-	dtl::shape::normal::PointUnique<dungeon_t>(3, 1).draw(matrix);
-	dtl::shape::normal::PointUnique<dungeon_t>(3, 3, 2).draw(matrix);
-	dtl::shape::array::PointUnique<dungeon_t>(4, 1).draw(matrix_array, x, y);
-	dtl::shape::array::PointUnique<dungeon_t>(4, 3, 2).draw(matrix_array, x, y);
-
-	dtl::shape::layer::stl::PointUnique<dungeon_t>(1, 1).draw(matrix_layer, layer);
-	dtl::shape::layer::stl::PointUnique<dungeon_t>(1, 3, 2).draw(matrix_layer, layer);
-	dtl::shape::layer::normal::PointUnique<dungeon_t>(2, 1).draw(matrix_layer, layer, x, y);
-	dtl::shape::layer::normal::PointUnique<dungeon_t>(2, 3, 2).draw(matrix_layer, layer, x, y);
-	dtl::shape::layer::normal::PointUnique<dungeon_t>(3, 1).draw(matrix_layer, layer);
-	dtl::shape::layer::normal::PointUnique<dungeon_t>(3, 3, 2).draw(matrix_layer, layer);
-
+	dtl::generator::puzzle::array::KnightTour<dungeon_t> a(matrix, x, y, 0, 0, false, 4);
 	dtl::console::output::stl::string(matrix, "・", "□", "○", "△", "▲");
-	dtl::console::output::array::string(matrix_array, x, y, "・", "□", "○", "△", "▲");
-	dtl::console::output::layer::stl::string(matrix_layer, layer, "・", "□", "○", "△", "▲");
+
+	//dtl::shape::stl::PointUnique<dungeon_t>(1, 1).draw(matrix);
+	//dtl::shape::stl::PointUnique<dungeon_t>(1, 3, 2).draw(matrix);
+	//dtl::shape::normal::PointUnique<dungeon_t>(2, 1).draw(matrix, x, y);
+	//dtl::shape::normal::PointUnique<dungeon_t>(2, 3, 2).draw(matrix, x, y);
+	//dtl::shape::normal::PointUnique<dungeon_t>(3, 1).draw(matrix);
+	//dtl::shape::normal::PointUnique<dungeon_t>(3, 3, 2).draw(matrix);
+	//dtl::shape::array::PointUnique<dungeon_t>(4, 1).draw(matrix_array, x, y);
+	//dtl::shape::array::PointUnique<dungeon_t>(4, 3, 2).draw(matrix_array, x, y);
+
+	//dtl::shape::layer::stl::PointUnique<dungeon_t>(1, 1).draw(matrix_layer, layer);
+	//dtl::shape::layer::stl::PointUnique<dungeon_t>(1, 3, 2).draw(matrix_layer, layer);
+	//dtl::shape::layer::normal::PointUnique<dungeon_t>(2, 1).draw(matrix_layer, layer, x, y);
+	//dtl::shape::layer::normal::PointUnique<dungeon_t>(2, 3, 2).draw(matrix_layer, layer, x, y);
+	//dtl::shape::layer::normal::PointUnique<dungeon_t>(3, 1).draw(matrix_layer, layer);
+	//dtl::shape::layer::normal::PointUnique<dungeon_t>(3, 3, 2).draw(matrix_layer, layer);
+
+	//dtl::console::output::stl::string(matrix, "・", "□", "○", "△", "▲");
+	//dtl::console::output::array::string(matrix_array, x, y, "・", "□", "○", "△", "▲");
+	//dtl::console::output::layer::stl::string(matrix_layer, layer, "・", "□", "○", "△", "▲");
 
 	//dtl::utility::stl::init(matrix);
 	//const dtl::generator::dungeon::stl::RogueLike<dungeon_t> create(matrix);

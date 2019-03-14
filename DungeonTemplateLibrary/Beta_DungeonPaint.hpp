@@ -9,9 +9,10 @@
 
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
-#include <memory>
 #include <cstdint>
 #include <cstddef>
+#include <memory>
+#include <new>
 
 //Dungeon Template Library Namespace
 namespace dtl::artist {

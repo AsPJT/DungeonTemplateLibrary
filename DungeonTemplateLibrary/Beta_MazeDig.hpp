@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <new>
 #include "Random_MersenneTwister32bit.hpp"
 
 //Dungeon Template Library Namespace

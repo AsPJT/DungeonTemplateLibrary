@@ -14,6 +14,7 @@
 #include <array>
 #include <limits>
 #include <memory>
+#include <new>
 
 //Dungeon Template Library Namespace
 namespace dtl::ai::reversi {
@@ -409,6 +410,7 @@ namespace dtl::generator::boardGame {
 #include <algorithm>
 #include <utility>
 #include <memory>
+#include <new>
 
 namespace dtl::generator::puzzle::tool {
 
@@ -502,8 +504,10 @@ namespace dtl::generator::puzzle::array {
 
 			//ノードの初期化
 			for (std::int_fast32_t i{}; i < y_; ++i)
-				for (std::int_fast32_t j{}; j < x_; ++j)
-					nodes_.emplace_back(std::make_shared<dtl::generator::puzzle::tool::KnightTourNode>(i, j));
+				for (std::int_fast32_t j{}; j < x_; ++j) {
+					nodes_.emplace_back(new(std::nothrow) dtl::generator::puzzle::tool::KnightTourNode(i, j));
+					if (!nodes_.back()) return 0;
+				}
 
 			nodes_.shrink_to_fit();
 

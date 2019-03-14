@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <utility>
 #include <memory>
+#include <new>
 #include "Random_MersenneTwister32bit.hpp"
 #include "Utility_Matrix.hpp"
 

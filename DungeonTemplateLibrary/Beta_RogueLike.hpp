@@ -55,7 +55,7 @@ namespace dtl::generator::dungeon::stl {
 		}
 		//マップ生成
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
+		void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
 
 			using dtl::random::mersenne_twister_32bit;
 
