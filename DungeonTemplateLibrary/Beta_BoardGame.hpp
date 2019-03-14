@@ -218,7 +218,7 @@ namespace dtl::generator::boardGame {
 				create(matrix_, black_, white_);
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
+			constexpr void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) const noexcept {
 				createReversi(matrix_, black_, white_);
 			}
 		};
@@ -346,7 +346,7 @@ namespace dtl::generator::boardGame {
 				create(matrix_);
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_) noexcept {
+			constexpr void create(Matrix_& matrix_) const noexcept {
 				dtl::generator::boardGame::stl::createChess(matrix_);
 			}
 		};
@@ -391,7 +391,7 @@ namespace dtl::generator::boardGame {
 				create(matrix_, x_, y_);
 			}
 			template<typename Matrix_>
-			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
 				dtl::generator::boardGame::normal::createChess(matrix_, x_, y_);
 			}
 		};
@@ -419,7 +419,7 @@ namespace dtl::generator::puzzle::tool {
 		bool visited{};
 		std::vector<std::shared_ptr<KnightTourNode>> next{};
 
-		KnightTourNode(const std::int_fast32_t row_, const std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
+		explicit KnightTourNode(const std::int_fast32_t row_, const std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
 	};
 
 	class KnightTourIsUnvisited {
@@ -436,7 +436,7 @@ namespace dtl::generator::puzzle::tool {
 	private:
 		std::size_t counter{};
 	public:
-		KnightTourNotEqualUnvisited(const std::shared_ptr<KnightTourNode>& node_) noexcept : counter(static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited()))) { }
+		explicit KnightTourNotEqualUnvisited(const std::shared_ptr<KnightTourNode>& node_) noexcept : counter(static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited()))) { }
 		bool operator()(const std::shared_ptr<KnightTourNode>& node_) const noexcept {
 			return static_cast<std::size_t>(std::count_if(node_->next.begin(), node_->next.end(), KnightTourIsUnvisited())) != counter;
 		}

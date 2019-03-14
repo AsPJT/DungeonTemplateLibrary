@@ -82,7 +82,7 @@ namespace dtl::generator::common::stl {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, value_);
 		}
 	};
@@ -97,7 +97,7 @@ namespace dtl::generator::common::stl {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, value_);
 		}
 	};
@@ -112,7 +112,7 @@ namespace dtl::generator::common::stl {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, value_);
 		}
 	};
@@ -127,7 +127,7 @@ namespace dtl::generator::common::stl {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, value_);
 		}
 	};
@@ -437,7 +437,7 @@ namespace dtl::generator::common::layer::stl {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, layer_, value_);
 		}
 	};
@@ -452,7 +452,7 @@ namespace dtl::generator::common::layer::stl {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, layer_, value_);
 		}
 	};
@@ -467,7 +467,7 @@ namespace dtl::generator::common::layer::stl {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, layer_, value_);
 		}
 	};
@@ -482,7 +482,7 @@ namespace dtl::generator::common::layer::stl {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, layer_, value_);
 		}
 	};
