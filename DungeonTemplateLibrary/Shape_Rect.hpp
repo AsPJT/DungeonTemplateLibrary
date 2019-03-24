@@ -18,138 +18,158 @@
 
 namespace dtl::shape {
 
-	//四角形の描画
+	//四角形の生成
 	template<typename Matrix_Int_>
 	class Rect {
 	private:
 
+
+		///// エイリアス /////
+
+		using Index_Size = std::size_t;
+		using PairSize = std::pair<Index_Size, Index_Size>;
+
+
 		///// メンバ変数 /////
 
 		Matrix_Int_ draw_value{};
-		std::size_t x{};
-		std::size_t y{};
-		std::size_t w{};
-		std::size_t h{};
+		Index_Size point_x{};
+		Index_Size point_y{};
+		Index_Size width{};
+		Index_Size height{};
+
 
 		///// 代入処理 /////
 
 		template<typename Matrix_>
-		constexpr inline void substitutionSTL(Matrix_&& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-			matrix_[y_][x_] = draw_value;
+		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			matrix_[point_y_][point_x_] = draw_value;
 		}
 		template<typename Matrix_>
-		constexpr inline void substitutionArray(Matrix_&& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_) const noexcept {
-			matrix_[y_ * max_x_ + x_] = draw_value;
+		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+			matrix_[point_y_ * max_x_ + point_x_] = draw_value;
 		}
 		template<typename Matrix_>
-		constexpr inline void substitutionLayer(Matrix_&& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) const noexcept {
-			matrix_[y_][x_][layer_] = draw_value;
+		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			matrix_[point_y_][point_x_][layer_] = draw_value;
 		}
+
 
 		///// 基本処理 /////
 
 		//STL
 		template<typename Matrix_>
-		constexpr bool drawSTL(Matrix_&& matrix_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < matrix_[row].size(); ++col)
+		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 					this->substitutionSTL(matrix_, col, row);
 			return true;
 		}
 		template<typename Matrix_>
-		constexpr bool drawWidthSTL(Matrix_&& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < matrix_[row].size() && col < x_; ++col)
+		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 					this->substitutionSTL(matrix_, col, row);
 			return true;
 		}
+
 		//LayerSTL
 		template<typename Matrix_>
-		constexpr bool drawLayerSTL(Matrix_&& matrix_, const std::size_t layer_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < matrix_[row].size(); ++col)
+		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 					this->substitutionLayer(matrix_, layer_, col, row);
 			return true;
 		}
 		template<typename Matrix_>
-		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < matrix_[row].size() && col < x_; ++col)
+		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 					this->substitutionLayer(matrix_, layer_, col, row);
 			return true;
 		}
+
 		//Normal
 		template<typename Matrix_>
-		constexpr bool drawNormal(Matrix_&& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < x_; ++col)
+		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					this->substitutionSTL(matrix_, col, row);
 			return true;
 		}
+
 		//LayerNormal
 		template<typename Matrix_>
-		constexpr bool drawLayerNormal(Matrix_&& matrix_, const std::size_t layer_, std::size_t x_, const std::size_t y_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < x_; ++col)
+		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					this->substitutionLayer(matrix_, layer_, col, row);
 			return true;
 		}
+
 		//Array
 		template<typename Matrix_>
-		constexpr bool drawArray(Matrix_&& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_) const noexcept {
-			for (std::size_t row{ y }; row < y_; ++row)
-				for (std::size_t col{ x }; col < x_; ++col)
+		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+			for (Index_Size row{ point_y }; row < point_y_; ++row)
+				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					this->substitutionArray(matrix_, col, row, max_x_);
 			return true;
 		}
 
 	public:
 
+
 		///// 情報取得 /////
 
-		[[nodiscard]] constexpr std::size_t getX() const noexcept {
-			return this->x;
+		[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
+			return this->point_x;
 		}
-		[[nodiscard]] constexpr std::size_t getY() const noexcept {
-			return this->y;
+		[[nodiscard]] constexpr Index_Size getPointY() const noexcept {
+			return this->point_y;
 		}
-		[[nodiscard]] constexpr std::size_t getW() const noexcept {
-			return this->w;
+		[[nodiscard]] constexpr Index_Size getWidth() const noexcept {
+			return this->width;
 		}
-		[[nodiscard]] constexpr std::size_t getH() const noexcept {
-			return this->h;
+		[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
+			return this->height;
 		}
 		[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
 			return this->draw_value;
 		}
+
 
 		///// 生成呼び出し /////
 
 		//STL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_) const noexcept {
-			return (w == 0) ? this->drawSTL(matrix_, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y+h) : this->drawWidthSTL(matrix_, x + w, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y+h);
+			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y+height >= matrix_.size()) ? matrix_.size() : point_y+height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y+height >= matrix_.size()) ? matrix_.size() : point_y+height);
 		}
+
 		//LayerSTL
 		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const std::size_t layer_) const noexcept {
-			return (w == 0) ? this->drawLayerSTL(matrix_, layer_, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y + h) : this->drawLayerWidthSTL(matrix_, layer_, x + w, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y + h);
+		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
+			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y+height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y+height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
+
 		//Normal
 		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawNormal(matrix_, (w == 0 || x+w >= max_x_) ? max_x_ : x+w, (h == 0 || y+h >= max_y_) ? max_y_ : y+h);
+		constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->drawNormal(matrix_, (width == 0 || point_x+width >= max_x_) ? max_x_ : point_x+width, (height == 0 || point_y+height >= max_y_) ? max_y_ : point_y+height);
 		}
+
 		//LayerNormal
 		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const std::size_t layer_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawLayerNormal(matrix_, layer_, (w == 0 || x+w >= max_x_) ? max_x_ : x + w, (h == 0 || y+h >= max_y_) ? max_y_ : y + h);
+		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x+width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y+height >= max_y_) ? max_y_ : point_y + height);
 		}
+
 		//Array
 		template<typename Matrix_>
-		constexpr bool drawArray(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawArray(matrix_, (w == 0 || x+w >= max_x_) ? max_x_ : x+w, (h == 0 || y+h >= max_y_) ? max_y_ : y+h, max_x_);
+		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->drawArray(matrix_, (width == 0 || point_x+width >= max_x_) ? max_x_ : point_x+width, (height == 0 || point_y+height >= max_y_) ? max_y_ : point_y+height, max_x_);
 		}
+
 
 		///// ダンジョン行列生成 /////
 
@@ -159,62 +179,91 @@ namespace dtl::shape {
 			this->draw(matrix_);
 			return matrix_;
 		}
+		template<typename Matrix_>
+		constexpr auto create(Matrix_&& matrix_, bool& return_value_) const noexcept {
+			return_value_ = this->draw(matrix_);
+			return matrix_;
+		}
+
 		//LayerSTL
 		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const std::size_t layer_) const noexcept {
+		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 			this->draw(matrix_, layer_);
 			return matrix_;
 		}
+		template<typename Matrix_>
+		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, bool& return_value_) const noexcept {
+			return_value_ = this->draw(matrix_, layer_);
+			return matrix_;
+		}
+
 		//Normal
 		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
+		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			this->draw(matrix_, max_x_, max_y_);
 			return matrix_;
 		}
+		template<typename Matrix_>
+		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
+			return_value_ = this->draw(matrix_, max_x_, max_y_);
+			return matrix_;
+		}
+
 		//LayerNormal
 		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const std::size_t layer_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
+		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			this->draw(matrix_, layer_, max_x_, max_y_);
 			return matrix_;
 		}
+		template<typename Matrix_>
+		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
+			return_value_ = this->draw(matrix_, layer_, max_x_, max_y_);
+			return matrix_;
+		}
+
 		//Array
 		template<typename Matrix_>
-		constexpr auto createArray(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
+		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			this->drawArray(matrix_, max_x_, max_y_);
 			return matrix_;
 		}
+		template<typename Matrix_>
+		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
+			return_value_ = this->drawArray(matrix_, max_x_, max_y_);
+			return matrix_;
+		}
+
 
 		///// コンストラクタ /////
 
 		constexpr Rect() noexcept = default;
 		constexpr explicit Rect(const Matrix_Int_ draw_value_) noexcept
 			:draw_value(draw_value_) {}
-		constexpr explicit Rect(const std::pair<std::size_t, std::size_t>& length_) noexcept
-			:w(length_.first), h(length_.second) {}
-		constexpr explicit Rect(const std::pair<std::size_t, std::size_t>& length_, const Matrix_Int_ draw_value_) noexcept
-			:w(length_.first), h(length_.second),
+		constexpr explicit Rect(const PairSize& length_) noexcept
+			:width(length_.first), height(length_.second) {}
+		constexpr explicit Rect(const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+			:width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
-		constexpr explicit Rect(const std::pair<std::size_t, std::size_t>& position_, const std::pair<std::size_t, std::size_t>& length_) noexcept
-			:x(position_.first), y(position_.second),
-			w(length_.first), h(length_.second) {}
-		constexpr explicit Rect(const std::pair<std::size_t, std::size_t>& position_, const std::pair<std::size_t, std::size_t>& length_, const Matrix_Int_ draw_value_) noexcept
-			:x(position_.first), y(position_.second),
-			w(length_.first), h(length_.second),
+		constexpr explicit Rect(const PairSize& position_, const PairSize& length_) noexcept
+			:point_x(position_.first), point_y(position_.second),
+			width(length_.first), height(length_.second) {}
+		constexpr explicit Rect(const PairSize& position_, const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+			:point_x(position_.first), point_y(position_.second),
+			width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
-		constexpr explicit Rect(const std::size_t w_, const std::size_t h_) noexcept
-			:w(w_), h(h_) {}
-		constexpr explicit Rect(const std::size_t w_, const std::size_t h_, const Matrix_Int_ draw_value_) noexcept
-			:w(w_), h(h_),
+		constexpr explicit Rect(const Index_Size width_, const Index_Size height_) noexcept
+			:width(width_), height(height_) {}
+		constexpr explicit Rect(const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+			:width(width_), height(height_),
 			draw_value(draw_value_) {}
-		constexpr explicit Rect(const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept
-			:x(x_), y(y_),
-			w(w_), h(h_) {}
-		constexpr explicit Rect(const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ draw_value_) noexcept
-			:x(x_), y(y_),
-			w(w_), h(h_),
+		constexpr explicit Rect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
+			:point_x(point_x_), point_y(point_y_),
+			width(width_), height(height_) {}
+		constexpr explicit Rect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+			:point_x(point_x_), point_y(point_y_),
+			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
-
 }
 
 

@@ -11,7 +11,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
-#include "Generator_Common_PointGrid.hpp"
+#include "Shape_PointGrid.hpp"
 #include "Generator_Common_BorderOdd.hpp"
 
 namespace dtl::generator::common::data {

@@ -69,11 +69,11 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
-#include "Generator_Common_Border.hpp"
+#include "Shape_Border.hpp"
 #include "Generator_Common_BorderOdd.hpp"
 #include "Shape_Rect.hpp"
 #include "Generator_Common_OneLine.hpp"
-#include "Generator_Common_PointGrid.hpp"
+#include "Shape_PointGrid.hpp"
 #include "Generator_Common_PointGridField.hpp"
 #include "Generator_Common_PointGridFieldPutBlock.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
