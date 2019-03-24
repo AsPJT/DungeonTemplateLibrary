@@ -1,11 +1,13 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON_DUNGEON_INIT
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON_DUNGEON_INIT
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
+﻿/*###################################################################
+	Copyright (c) 2017-2019 Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	Distributed under the Boost Software License, Version 1.0. (See accompanying
+	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+###################################################################*/
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -103,32 +105,50 @@ namespace dtl::shape {
 
 	public:
 
+		///// 情報取得 /////
+
+		[[nodiscard]] constexpr std::size_t getX() const noexcept {
+			return this->x;
+		}
+		[[nodiscard]] constexpr std::size_t getY() const noexcept {
+			return this->y;
+		}
+		[[nodiscard]] constexpr std::size_t getW() const noexcept {
+			return this->w;
+		}
+		[[nodiscard]] constexpr std::size_t getH() const noexcept {
+			return this->h;
+		}
+		[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
+			return this->draw_value;
+		}
+
 		///// 生成呼び出し /////
 
 		//STL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_) const noexcept {
-			return (w == 0) ? this->drawSTL(matrix_, (h == 0 || h >= matrix_.size()) ? matrix_.size() : y+h) : this->drawWidthSTL(matrix_, (h == 0 || h >= matrix_.size()) ? matrix_.size() : x+w,y+h);
+			return (w == 0) ? this->drawSTL(matrix_, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y+h) : this->drawWidthSTL(matrix_, x + w, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y+h);
 		}
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const std::size_t layer_) const noexcept {
-			return (w == 0) ? this->drawLayerSTL(matrix_, layer_, (h == 0 || h >= matrix_.size()) ? matrix_.size() : y + h) : this->drawLayerWidthSTL(matrix_, layer_, (h == 0 || h >= matrix_.size()) ? matrix_.size() : x+w,y + h);
+			return (w == 0) ? this->drawLayerSTL(matrix_, layer_, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y + h) : this->drawLayerWidthSTL(matrix_, layer_, x + w, (h == 0 || y+h >= matrix_.size()) ? matrix_.size() : y + h);
 		}
 		//Normal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawNormal(matrix_, (w == 0 || w >= max_x_) ? max_x_ : x+w, (h == 0 || h >= max_y_) ? max_y_ : y+h);
+			return this->drawNormal(matrix_, (w == 0 || x+w >= max_x_) ? max_x_ : x+w, (h == 0 || y+h >= max_y_) ? max_y_ : y+h);
 		}
 		//LayerNormal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const std::size_t layer_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawLayerNormal(matrix_, layer_, (w == 0 || w >= max_x_) ? max_x_ : x + w, (h == 0 || h >= max_y_) ? max_y_ : y + h);
+			return this->drawLayerNormal(matrix_, layer_, (w == 0 || x+w >= max_x_) ? max_x_ : x + w, (h == 0 || y+h >= max_y_) ? max_y_ : y + h);
 		}
 		//Array
 		template<typename Matrix_>
 		constexpr bool drawArray(Matrix_&& matrix_, const std::size_t max_x_, const std::size_t max_y_) const noexcept {
-			return this->drawArray(matrix_, (w == 0 || w >= max_x_) ? max_x_ : x+w, (h == 0 || h >= max_y_) ? max_y_ : y+h, max_x_);
+			return this->drawArray(matrix_, (w == 0 || x+w >= max_x_) ? max_x_ : x+w, (h == 0 || y+h >= max_y_) ? max_y_ : y+h, max_x_);
 		}
 
 		///// ダンジョン行列生成 /////

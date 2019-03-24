@@ -71,7 +71,7 @@
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 #include "Generator_Common_Border.hpp"
 #include "Generator_Common_BorderOdd.hpp"
-#include "Generator_Common_DungeonInit.hpp"
+#include "Shape_Rect.hpp"
 #include "Generator_Common_OneLine.hpp"
 #include "Generator_Common_PointGrid.hpp"
 #include "Generator_Common_PointGridField.hpp"

@@ -147,7 +147,7 @@
     <ClInclude Include="Beta_FractalIsland.hpp" />
     <ClInclude Include="Generator_Common_Border.hpp" />
     <ClInclude Include="Generator_Common_BorderOdd.hpp" />
-    <ClInclude Include="Generator_Common_DungeonInit.hpp" />
+    <ClInclude Include="Shape_Rect.hpp" />
     <ClInclude Include="Generator_Common_PointGrid.hpp" />
     <ClInclude Include="Generator_Common_PointGridField.hpp" />
     <ClInclude Include="Beta_HorizontalScroll.hpp" />

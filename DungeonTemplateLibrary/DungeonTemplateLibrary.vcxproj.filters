@@ -24,9 +24,6 @@
     <ClInclude Include="Utility_NoiseShoreBool.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Generator_Common_DungeonInit.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Random_MersenneTwister32bit.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -142,6 +139,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Shape_Point.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape_Rect.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
