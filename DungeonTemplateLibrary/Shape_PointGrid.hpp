@@ -32,11 +32,11 @@ namespace dtl::shape {
 
 		///// メンバ変数 /////
 
-		Matrix_Int_ draw_value{};
 		Index_Size point_x{};
 		Index_Size point_y{};
 		Index_Size width{};
 		Index_Size height{};
+		Matrix_Int_ draw_value{};
 
 
 		///// 代入処理 /////
@@ -72,7 +72,7 @@ namespace dtl::shape {
 					this->substitutionSTL(matrix_, col, row);
 			return true;
 		}
-
+		
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {

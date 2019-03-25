@@ -18,7 +18,7 @@
 #include <typeinfo>
 #include <iomanip>
 #include <array>
-#include "Utility_GetOutputNumber.hpp"
+#include "Utility_IsOutputCast.hpp"
 
 //Dungeon Template Library Namespace
 namespace dtl::file::read::stl {

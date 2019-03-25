@@ -32,11 +32,11 @@ namespace dtl::shape {
 
 		///// メンバ変数 /////
 
-		Matrix_Int_ draw_value{};
 		Index_Size point_x{};
 		Index_Size point_y{};
 		Index_Size width{};
 		Index_Size height{};
+		Matrix_Int_ draw_value{};
 
 
 		///// 代入処理 /////
@@ -148,6 +148,7 @@ namespace dtl::shape {
 				this->substitutionLayer(matrix_, layer_, point_x, row);
 				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
 			}
+			return true;
 		}
 
 		//Array

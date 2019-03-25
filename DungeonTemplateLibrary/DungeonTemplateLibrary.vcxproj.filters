@@ -30,9 +30,6 @@
     <ClInclude Include="Utility_Init.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Console_Output_StringBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Generator_Common_BorderOdd.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -99,9 +96,6 @@
     <ClInclude Include="Generator_Common_OneLine.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Utility_GetOutputNumber.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Utility_RandomInnerBool.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -141,7 +135,13 @@
     <ClInclude Include="Shape_Border.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Output_Number.hpp">
+    <ClInclude Include="Utility_IsOutputCast.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_OutputNumber.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Console_OutputStringBool.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

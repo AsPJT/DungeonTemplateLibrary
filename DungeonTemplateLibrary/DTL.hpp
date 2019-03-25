@@ -1,14 +1,18 @@
+/*#######################################################################################
+	Copyright (c) 2017-2019 Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	Distributed under the Boost Software License, Version 1.0. (See accompanying
+	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#######################################################################################*/
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
 
+///// β版テストライブラリ /////
 
-/* β版テストライブラリ */
+/*機能が不十分な関数やクラスを扱う。
+(特に "STL, Normal, Array, LayerSTL, LayerNormal"の中の一部の出力機能が欠けている場合が多い)*/
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
@@ -32,17 +36,17 @@
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 
 
-/* コンソール出力 */
+///// コンソール出力 /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
-#include "Output_Number.hpp"
+#include "Console_OutputNumber.hpp"
 #include "Console_Output_String.hpp"
-#include "Console_Output_StringBool.hpp"
+#include "Console_OutputStringBool.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
 
 
-/* 便利な機能 */
+///// 便利な機能 /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
@@ -57,7 +61,7 @@
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
 
-/* 乱数 */
+///// 乱数 /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
@@ -65,7 +69,7 @@
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 
 
-/* 標準生成 */
+///// 標準生成 /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
