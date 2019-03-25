@@ -1,11 +1,11 @@
-﻿/*###################################################################
+﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-###################################################################*/
+#######################################################################################*/
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT_GRID
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT_GRID
 
@@ -237,34 +237,38 @@ namespace dtl::shape {
 		///// コンストラクタ /////
 
 		constexpr PointGrid() noexcept = default;
-		constexpr explicit PointGrid(const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit PointGrid(const Matrix_Int_& draw_value_) noexcept
 			:draw_value(draw_value_) {}
 		constexpr explicit PointGrid(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit PointGrid(const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit PointGrid(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit PointGrid(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit PointGrid(const PairSize& position_, const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit PointGrid(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit PointGrid(const Index_Size width_, const Index_Size height_) noexcept
 			:width(width_), height(height_) {}
-		constexpr explicit PointGrid(const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit PointGrid(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:width(width_), height(height_),
 			draw_value(draw_value_) {}
 		constexpr explicit PointGrid(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit PointGrid(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit PointGrid(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
 }
+
+
+
+
 
 //総合データ
 namespace dtl::generator::common::data {
@@ -283,14 +287,14 @@ namespace dtl::generator::common::stl {
 
 	//偶数マスを1で埋める
 	template<typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); row += 2)
 			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
 				matrix_[row][col] = 1;
 	}
 	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); row += 2)
 			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
 				matrix_[row][col] = value_;
@@ -300,13 +304,13 @@ namespace dtl::generator::common::stl {
 	class PointGrid {
 	public:
 		//コンストラクタ
-		constexpr PointGrid() noexcept = default;
+		[[deprecated("please use dtl::PointGrid class")]] constexpr PointGrid() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit PointGrid(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::PointGrid class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createPointGrid(matrix_, value_);
 		}
 	};
@@ -318,14 +322,14 @@ namespace dtl::generator::common::normal {
 
 	//偶数マスを1で埋める
 	template<typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row][col] = 1;
 	}
 	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row][col] = value_;
@@ -335,13 +339,13 @@ namespace dtl::generator::common::normal {
 	class PointGrid {
 	public:
 		//コンストラクタ
-		constexpr PointGrid() noexcept = default;
+		[[deprecated("please use dtl::PointGrid class")]] constexpr PointGrid() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit PointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::PointGrid class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createPointGrid(matrix_, x_, y_, value_);
 		}
 	};
@@ -353,14 +357,14 @@ namespace dtl::generator::common::array {
 
 	//偶数マスを1で埋める
 	template<typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row * x_ + col] = 1;
 	}
 	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row * x_ + col] = value_;
@@ -369,13 +373,13 @@ namespace dtl::generator::common::array {
 	class PointGrid {
 	public:
 		//コンストラクタ
-		constexpr PointGrid() noexcept = default;
+		[[deprecated("please use dtl::PointGrid class")]] constexpr PointGrid() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit PointGrid(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::PointGrid class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createPointGrid(matrix_, x_, y_, value_);
 		}
 	};
@@ -387,14 +391,14 @@ namespace dtl::generator::common::layer::stl {
 
 	//偶数マスを1で埋める
 	template<typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); row += 2)
 			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
 				matrix_[row][col][layer_] = 1;
 	}
 	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); row += 2)
 			for (std::size_t col{}; col < matrix_[row].size(); col += 2)
 				matrix_[row][col][layer_] = value_;
@@ -404,13 +408,13 @@ namespace dtl::generator::common::layer::stl {
 	class PointGrid {
 	public:
 		//コンストラクタ
-		constexpr PointGrid() noexcept = default;
+		[[deprecated("please use dtl::PointGrid class")]] constexpr PointGrid() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit PointGrid(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::PointGrid class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createPointGrid(matrix_, layer_, value_);
 		}
 	};
@@ -422,14 +426,14 @@ namespace dtl::generator::common::layer::normal {
 
 	//偶数マスを1で埋める
 	template<typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row][col][layer_] = 1;
 	}
 	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::PointGrid class")]] constexpr void createPointGrid(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; row += 2)
 			for (std::size_t col{}; col < x_; col += 2)
 				matrix_[row][col][layer_] = value_;
@@ -439,13 +443,13 @@ namespace dtl::generator::common::layer::normal {
 	class PointGrid {
 	public:
 		//コンストラクタ
-		constexpr PointGrid() noexcept = default;
+		[[deprecated("please use dtl::PointGrid class")]] constexpr PointGrid() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit PointGrid(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::PointGrid class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createPointGrid(matrix_, layer_, x_, y_, value_);
 		}
 	};

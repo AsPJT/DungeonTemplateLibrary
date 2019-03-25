@@ -1,11 +1,11 @@
-﻿/*###################################################################
+﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-###################################################################*/
+#######################################################################################*/
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
 
@@ -237,29 +237,29 @@ namespace dtl::shape {
 		///// コンストラクタ /////
 
 		constexpr Rect() noexcept = default;
-		constexpr explicit Rect(const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Rect(const Matrix_Int_& draw_value_) noexcept
 			:draw_value(draw_value_) {}
 		constexpr explicit Rect(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit Rect(const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Rect(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit Rect(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit Rect(const PairSize& position_, const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Rect(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit Rect(const Index_Size width_, const Index_Size height_) noexcept
 			:width(width_), height(height_) {}
-		constexpr explicit Rect(const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Rect(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:width(width_), height(height_),
 			draw_value(draw_value_) {}
 		constexpr explicit Rect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit Rect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Rect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			draw_value(draw_value_) {}

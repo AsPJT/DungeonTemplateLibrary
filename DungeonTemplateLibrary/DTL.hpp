@@ -36,7 +36,7 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
-#include "Console_Output_Number.hpp"
+#include "Output_Number.hpp"
 #include "Console_Output_String.hpp"
 #include "Console_Output_StringBool.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT

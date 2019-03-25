@@ -1,11 +1,11 @@
-﻿/*###################################################################
+﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-###################################################################*/
+#######################################################################################*/
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
 
@@ -286,34 +286,38 @@ namespace dtl::shape {
 		///// コンストラクタ /////
 
 		constexpr Border() noexcept = default;
-		constexpr explicit Border(const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Border(const Matrix_Int_& draw_value_) noexcept
 			:draw_value(draw_value_) {}
 		constexpr explicit Border(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit Border(const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Border(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit Border(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit Border(const PairSize& position_, const PairSize& length_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Border(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
 		constexpr explicit Border(const Index_Size width_, const Index_Size height_) noexcept
 			:width(width_), height(height_) {}
-		constexpr explicit Border(const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Border(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:width(width_), height(height_),
 			draw_value(draw_value_) {}
 		constexpr explicit Border(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit Border(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ draw_value_) noexcept
+		constexpr explicit Border(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
 }
+
+
+
+
 
 //総合データ
 namespace dtl::generator::common::data {
@@ -332,7 +336,7 @@ namespace dtl::generator::common::stl {
 
 	//マップの外枠を1で埋める
 	template<typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = 1;
@@ -346,7 +350,7 @@ namespace dtl::generator::common::stl {
 	}
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = value_;
@@ -363,13 +367,13 @@ namespace dtl::generator::common::stl {
 	class Border {
 	public:
 		//コンストラクタ
-		constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::Border class")]] constexpr Border() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit Border(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::Border class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::stl::createBorder(matrix_, value_);
 		}
 	};
@@ -381,7 +385,7 @@ namespace dtl::generator::common::normal {
 
 	//マップの外枠を1で埋める
 	template<typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = 1;
@@ -395,7 +399,7 @@ namespace dtl::generator::common::normal {
 	}
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = value_;
@@ -412,13 +416,13 @@ namespace dtl::generator::common::normal {
 	class Border {
 	public:
 		//コンストラクタ
-		constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::Border class")]] constexpr Border() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit Border(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::normal::createBorder(matrix_, x_, y_, value_);
 		}
 	};
@@ -429,7 +433,7 @@ namespace dtl::generator::common::normal {
 namespace dtl::generator::common::array {
 	//マップの外枠を1で埋める
 	template<typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[col] = 1;
@@ -443,7 +447,7 @@ namespace dtl::generator::common::array {
 	}
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[col] = value_;
@@ -459,13 +463,13 @@ namespace dtl::generator::common::array {
 	class Border {
 	public:
 		//コンストラクタ
-		constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::Border class")]] constexpr Border() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit Border(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::array::createBorder(matrix_, x_, y_, value_);
 		}
 	};
@@ -477,7 +481,7 @@ namespace dtl::generator::common::layer::stl {
 
 	//マップの外枠を1で埋める
 	template<typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = 1;
@@ -491,7 +495,7 @@ namespace dtl::generator::common::layer::stl {
 	}
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = value_;
@@ -508,13 +512,13 @@ namespace dtl::generator::common::layer::stl {
 	class Border {
 	public:
 		//コンストラクタ
-		constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::Border class")]] constexpr Border() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit Border(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::layer::stl::createBorder(matrix_, layer_, value_);
 		}
 	};
@@ -525,7 +529,7 @@ namespace dtl::generator::common::layer::stl {
 namespace dtl::generator::common::layer::normal {
 	//マップの外枠を1で埋める
 	template<typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = 1;
@@ -539,7 +543,7 @@ namespace dtl::generator::common::layer::normal {
 	}
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = value_;
@@ -556,13 +560,13 @@ namespace dtl::generator::common::layer::normal {
 	class Border {
 	public:
 		//コンストラクタ
-		constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::Border class")]] constexpr Border() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit Border(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			dtl::generator::common::layer::normal::createBorder(matrix_, layer_, x_, y_, value_);
 		}
 	};

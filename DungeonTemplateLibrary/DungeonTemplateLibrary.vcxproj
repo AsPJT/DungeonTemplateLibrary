@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Beta_BoardGame.hpp" />
-    <ClInclude Include="Console_Output_Number.hpp" />
+    <ClInclude Include="Output_Number.hpp" />
     <ClInclude Include="Console_Output_String.hpp" />
     <ClInclude Include="Console_Output_StringBool.hpp" />
     <ClInclude Include="DTL.hpp" />

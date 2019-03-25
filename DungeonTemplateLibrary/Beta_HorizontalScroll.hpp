@@ -1,11 +1,12 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL
+﻿/*#######################################################################################
+	Made by Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	This code is licensed under CC0.
+#######################################################################################*/
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
 
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
