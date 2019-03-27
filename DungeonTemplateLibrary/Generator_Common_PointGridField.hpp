@@ -12,7 +12,7 @@
 
 #include <cstddef>
 #include "Shape_PointGrid.hpp"
-#include "Generator_Common_BorderOdd.hpp"
+#include "Shape_BorderOdd.hpp"
 
 namespace dtl::generator::common::data {
 

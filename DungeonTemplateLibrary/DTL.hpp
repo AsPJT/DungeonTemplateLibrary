@@ -74,7 +74,7 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
 #include "Shape_Border.hpp"
-#include "Generator_Common_BorderOdd.hpp"
+#include "Shape_BorderOdd.hpp"
 #include "Shape_Rect.hpp"
 #include "Generator_Common_OneLine.hpp"
 #include "Shape_PointGrid.hpp"

@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER_ODD
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER_ODD
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -20,7 +20,7 @@ namespace dtl::shape {
 
 	//四角形の生成
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	private:
 
 
@@ -63,28 +63,39 @@ namespace dtl::shape {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
 				this->substitutionSTL(matrix_, col, point_y);
-			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col)
+			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col) {
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
 				this->substitutionSTL(matrix_, col, point_y_ - 1);
+			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
 				this->substitutionSTL(matrix_, point_x, row);
+				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row);
 				this->substitutionSTL(matrix_, matrix_[row].size() - 1, row);
 			}
 			return true;
 		}
 		template<typename Matrix_>
 		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (point_y_ == 0) return true;
+			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
 				this->substitutionSTL(matrix_, col, point_y);
-			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col)
+			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col) {
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
 				this->substitutionSTL(matrix_, col, point_y_ - 1);
-			if (point_x_ == 0) return true;
+			}
+			if (point_x_ < 2) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
 				this->substitutionSTL(matrix_, point_x, row);
-				if (matrix_[row].size() <= point_x_) this->substitutionSTL(matrix_, matrix_[row].size() - 1, row);
-				else this->substitutionSTL(matrix_, point_x_ - 1, row);
+				if (matrix_[row].size() <= point_x_) {
+					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row);
+					this->substitutionSTL(matrix_, matrix_[row].size() - 1, row);
+				}
+				else {
+					if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row);
+					this->substitutionSTL(matrix_, point_x_ - 1, row);
+				}
 			}
 			return true;
 		}
@@ -92,31 +103,42 @@ namespace dtl::shape {
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
-			if (point_y_ == 0) return true;
+			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
 				this->substitutionLayer(matrix_, layer_, col, point_y);
-			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col)
+			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col) {
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
 				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
+			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				if (matrix_[row].size() == 0) continue;
+				if (matrix_[row].size() < 2) continue;
 				this->substitutionLayer(matrix_, layer_, point_x, row);
+				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row);
 				this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row);
 			}
 			return true;
 		}
 		template<typename Matrix_>
 		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (point_y_ == 0) return true;
+			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
 				this->substitutionLayer(matrix_, layer_, col, point_y);
-			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col)
+			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col) {
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
 				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
-			if (point_x_ == 0) return true;
+			}
+			if (point_x_ < 2) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
 				this->substitutionLayer(matrix_, layer_, point_x, row);
-				if (matrix_[row].size() <= point_x_) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row);
-				else this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
+				if (matrix_[row].size() <= point_x_) {
+					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row);
+					this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row);
+				}
+				else {
+					if ((point_x_ - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row);
+					this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
+				}
 			}
 			return true;
 		}
@@ -124,13 +146,15 @@ namespace dtl::shape {
 		//Normal
 		template<typename Matrix_>
 		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (point_x_ == 0 || point_y_ == 0) return true;
+			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
 				this->substitutionSTL(matrix_, col, point_y);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
 				this->substitutionSTL(matrix_, col, point_y_ - 1);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				this->substitutionSTL(matrix_, point_x, row);
+				if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row);
 				this->substitutionSTL(matrix_, point_x_ - 1, row);
 			}
 			return true;
@@ -139,13 +163,15 @@ namespace dtl::shape {
 		//LayerNormal
 		template<typename Matrix_>
 		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (point_x_ == 0 || point_y_ == 0) return true;
+			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
 				this->substitutionLayer(matrix_, layer_, col, point_y);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
 				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				this->substitutionLayer(matrix_, layer_, point_x, row);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row);
 				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
 			}
 			return true;
@@ -154,13 +180,15 @@ namespace dtl::shape {
 		//Array
 		template<typename Matrix_>
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			if (point_x_ == 0 || point_y_ == 0) return true;
+			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
 				this->substitutionArray(matrix_, col, point_y, max_x_);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, col, point_y_ - 2, max_x_);
 				this->substitutionArray(matrix_, col, point_y_ - 1, max_x_);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				this->substitutionArray(matrix_, point_x, row, max_x_);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, point_x_ - 2, row, max_x_);
 				this->substitutionArray(matrix_, point_x_ - 1, row, max_x_);
 			}
 			return true;
@@ -286,30 +314,30 @@ namespace dtl::shape {
 
 		///// コンストラクタ /////
 
-		constexpr Border() noexcept = default;
-		constexpr explicit Border(const Matrix_Int_& draw_value_) noexcept
+		constexpr BorderOdd() noexcept = default;
+		constexpr explicit BorderOdd(const Matrix_Int_& draw_value_) noexcept
 			:draw_value(draw_value_) {}
-		constexpr explicit Border(const PairSize& length_) noexcept
+		constexpr explicit BorderOdd(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit Border(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
+		constexpr explicit BorderOdd(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
-		constexpr explicit Border(const PairSize& position_, const PairSize& length_) noexcept
+		constexpr explicit BorderOdd(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit Border(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
+		constexpr explicit BorderOdd(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			draw_value(draw_value_) {}
-		constexpr explicit Border(const Index_Size width_, const Index_Size height_) noexcept
+		constexpr explicit BorderOdd(const Index_Size width_, const Index_Size height_) noexcept
 			:width(width_), height(height_) {}
-		constexpr explicit Border(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
+		constexpr explicit BorderOdd(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:width(width_), height(height_),
 			draw_value(draw_value_) {}
-		constexpr explicit Border(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
+		constexpr explicit BorderOdd(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit Border(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
+		constexpr explicit BorderOdd(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
@@ -323,59 +351,73 @@ namespace dtl::shape {
 //総合データ
 namespace dtl::generator::common::data {
 
-	enum eBorder {
-		border_empty_id,
-		border_wall_id,
-		border_enum_num
+	enum eBorderOdd {
+		border_odd_empty_id,
+		border_odd_wall_id,
+		border_odd_enum_num
 	};
-	constexpr bool border_bool{ (border_enum_num <= 2) ? true : false };
+	constexpr bool border_odd_bool{ (border_odd_enum_num <= 2) ? true : false };
 
 } //namespace
 
 //STLデータ
 namespace dtl::generator::common::stl {
 
-	//マップの外枠を1で埋める
+	//マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_) noexcept {
-		if (matrix_.size() == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_) noexcept {
+		if (matrix_.size() < 2) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = 1;
-		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+		if (matrix_.size() % 2 == 1) {
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col] = 1;
+		}
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col] = 1;
 			matrix_[matrix_.size() - 1][col] = 1;
+		}
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
-			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row].size() < 2) continue;
 			matrix_[row][0] = 1;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2] = 1;
 			matrix_[row][matrix_[row].size() - 1] = 1;
 		}
 	}
-	//マップの外枠を指定した数値で埋める
+	//マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
-		if (matrix_.size() == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+		if (matrix_.size() < 2) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = value_;
-		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+		if (matrix_.size() % 2 == 1) {
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col] = value_;
+		}
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col] = value_;
 			matrix_[matrix_.size() - 1][col] = value_;
+		}
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
-			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row].size() < 2) continue;
 			matrix_[row][0] = value_;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2] = value_;
 			matrix_[row][matrix_[row].size() - 1] = value_;
 		}
 	}
 	//クラス版
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::shape::Border class")]] constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr BorderOdd() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Border(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit BorderOdd(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::shape::Border class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
-			dtl::generator::common::stl::createBorder(matrix_, value_);
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+			dtl::generator::common::stl::createBorderOdd(matrix_, value_);
 		}
 	};
 
@@ -384,47 +426,61 @@ namespace dtl::generator::common::stl {
 //通常データ
 namespace dtl::generator::common::normal {
 
-	//マップの外枠を1で埋める
+	//マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		if (y_ < 2) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = 1;
-		for (std::size_t col{}; col < x_; ++col)
+		if (y_ % 2 == 1) {
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col] = 1;
+		}
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col] = 1;
 			matrix_[y_ - 1][col] = 1;
-		if (x_ == 0) return;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = 1;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2] = 1;
 			matrix_[row][x_ - 1] = 1;
 		}
 	}
-	//マップの外枠を指定した数値で埋める
+	//マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		if (y_ < 2) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = value_;
-		for (std::size_t col{}; col < x_; ++col)
+		if (y_ % 2 == 1) {
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col] = value_;
+		}
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col] = value_;
 			matrix_[y_ - 1][col] = value_;
-		if (x_ == 0) return;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = value_;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2] = value_;
 			matrix_[row][x_ - 1] = value_;
 		}
 	}
 	//クラス版
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::shape::Border class")]] constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr BorderOdd() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Border(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit BorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::shape::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
-			dtl::generator::common::normal::createBorder(matrix_, x_, y_, value_);
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+			dtl::generator::common::normal::createBorderOdd(matrix_, x_, y_, value_);
 		}
 	};
 
@@ -432,46 +488,61 @@ namespace dtl::generator::common::normal {
 
 //配列データ
 namespace dtl::generator::common::array {
-	//マップの外枠を1で埋める
+
+	//マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0) return;
-		for (std::size_t col{}; col < x_; ++col)
-			matrix_[col] = 1;
-		for (std::size_t col{}; col < x_; ++col)
-			matrix_[(y_ - 1) * x_ + col] = 1;
-		if (x_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+		if (y_ < 2) return;
+		for (std::size_t row{}; row < x_; ++row)
+			matrix_[row] = 1;
+		if (y_ % 2 == 1) {
+			for (std::size_t row{}; row < x_; ++row)
+				matrix_[(y_ - 1) * x_ + row] = 1;
+		}
+		else for (std::size_t row{}; row < x_; ++row) {
+			matrix_[(y_ - 2) * x_ + row] = 1;
+			matrix_[(y_ - 1) * x_ + row] = 1;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
-			matrix_[row * x_] = 1;
-			matrix_[row * x_ + x_ - 1] = 1;
+			matrix_[row*x_] = 1;
+			if (x_ % 2 == 0) matrix_[row*x_ + x_ - 2] = 1;
+			matrix_[row*x_ + x_ - 1] = 1;
 		}
 	}
-	//マップの外枠を指定した数値で埋める
+	//マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		if (y_ < 2) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[col] = value_;
-		for (std::size_t col{}; col < x_; ++col)
+		if (y_ % 2 == 1) {
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[(y_ - 1) * x_ + col] = value_;
+		}
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[(y_ - 2) * x_ + col] = value_;
 			matrix_[(y_ - 1) * x_ + col] = value_;
-		if (x_ == 0) return;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
-			matrix_[row * x_] = value_;
-			matrix_[row * x_ + x_ - 1] = value_;
+			matrix_[row*x_] = value_;
+			if (x_ % 2 == 0) matrix_[row*x_ + x_ - 2] = value_;
+			matrix_[row*x_ + x_ - 1] = value_;
 		}
 	}
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::shape::Border class")]] constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr BorderOdd() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Border(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit BorderOdd(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::shape::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
-			dtl::generator::common::array::createBorder(matrix_, x_, y_, value_);
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+			dtl::generator::common::array::createBorderOdd(matrix_, x_, y_, value_);
 		}
 	};
 
@@ -480,47 +551,61 @@ namespace dtl::generator::common::array {
 //レイヤーSTLデータ
 namespace dtl::generator::common::layer::stl {
 
-	//マップの外枠を1で埋める
+	//マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_) noexcept {
-		if (matrix_.size() == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t layer_) noexcept {
+		if (matrix_.size() < 2) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = 1;
-		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+		if (matrix_.size() % 2 == 1) {
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col][layer_] = 1;
+		}
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col][layer_] = 1;
 			matrix_[matrix_.size() - 1][col][layer_] = 1;
+		}
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
-			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row].size() < 2) continue;
 			matrix_[row][0][layer_] = 1;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2][layer_] = 1;
 			matrix_[row][matrix_[row].size() - 1][layer_] = 1;
 		}
 	}
-	//マップの外枠を指定した数値で埋める
+	//マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
-		if (matrix_.size() == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+		if (matrix_.size() < 2) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = value_;
-		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+		if (matrix_.size() % 2 == 1) {
+			for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
+				matrix_[matrix_.size() - 1][col][layer_] = value_;
+		}
+		else for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col) {
+			matrix_[matrix_.size() - 2][col][layer_] = value_;
 			matrix_[matrix_.size() - 1][col][layer_] = value_;
+		}
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
-			if (matrix_[row].size() == 0) continue;
+			if (matrix_[row].size() < 2) continue;
 			matrix_[row][0][layer_] = value_;
+			if (matrix_[row].size() % 2 == 0) matrix_[row][matrix_[row].size() - 2][layer_] = value_;
 			matrix_[row][matrix_[row].size() - 1][layer_] = value_;
 		}
 	}
 	//クラス版
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::shape::Border class")]] constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr BorderOdd() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Border(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit BorderOdd(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::shape::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
-			dtl::generator::common::layer::stl::createBorder(matrix_, layer_, value_);
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+			dtl::generator::common::layer::stl::createBorderOdd(matrix_, layer_, value_);
 		}
 	};
 
@@ -528,47 +613,62 @@ namespace dtl::generator::common::layer::stl {
 
 //レイヤー通常データ
 namespace dtl::generator::common::layer::normal {
-	//マップの外枠を1で埋める
+
+	//マップの外枠を1で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-		if (y_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+		if (y_ < 2) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = 1;
-		for (std::size_t col{}; col < x_; ++col)
+		if (y_ % 2 == 1) {
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col][layer_] = 1;
+		}
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col][layer_] = 1;
 			matrix_[y_ - 1][col][layer_] = 1;
-		if (x_ == 0) return;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0][layer_] = 1;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2][layer_] = 1;
 			matrix_[row][x_ - 1][layer_] = 1;
 		}
 	}
-	//マップの外枠を指定した数値で埋める
+	//マップの外枠を指定した数値で埋める(枠の内部を奇数マスにする)
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::shape::Border class")]] constexpr void createBorder(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
-		if (y_ == 0) return;
+	[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void createBorderOdd(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+		if (y_ < 2) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = value_;
-		for (std::size_t col{}; col < x_; ++col)
+		if (y_ % 2 == 1) {
+			for (std::size_t col{}; col < x_; ++col)
+				matrix_[y_ - 1][col][layer_] = value_;
+		}
+		else for (std::size_t col{}; col < x_; ++col) {
+			matrix_[y_ - 2][col][layer_] = value_;
 			matrix_[y_ - 1][col][layer_] = value_;
-		if (x_ == 0) return;
+		}
+		if (x_ < 2) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0][layer_] = value_;
+			if (x_ % 2 == 0) matrix_[row][x_ - 2][layer_] = value_;
 			matrix_[row][x_ - 1][layer_] = value_;
 		}
 	}
 	//クラス版
 	template<typename Matrix_Int_>
-	class Border {
+	class BorderOdd {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::shape::Border class")]] constexpr Border() noexcept = default;
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr BorderOdd() noexcept = default;
 		template<typename Matrix_>
-		constexpr explicit Border(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
+		constexpr explicit BorderOdd(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::shape::Border class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
-			dtl::generator::common::layer::normal::createBorder(matrix_, layer_, x_, y_, value_);
+		[[deprecated("please use dtl::shape::BorderOdd class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+			dtl::generator::common::layer::normal::createBorderOdd(matrix_, layer_, x_, y_, value_);
 		}
 	};
 

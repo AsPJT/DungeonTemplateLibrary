@@ -12,7 +12,7 @@
 
 #include <cstddef>
 #include "Shape_PointGrid.hpp"
-#include "Generator_Common_BorderOdd.hpp"
+#include "Shape_BorderOdd.hpp"
 #include "Random_MersenneTwister32bit.hpp"
 
 namespace dtl::generator::common::data {

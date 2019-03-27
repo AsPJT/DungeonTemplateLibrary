@@ -290,14 +290,14 @@ namespace dtl::generator::common::stl {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col] = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col] = value_;
@@ -307,13 +307,13 @@ namespace dtl::generator::common::stl {
 	class DungeonInit {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::Rect class")]] constexpr DungeonInit() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr DungeonInit() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit DungeonInit(Matrix_& matrix_, const Matrix_Int_ value_ = 0) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 0) noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 0) noexcept {
 			dtl::generator::common::stl::createDungeonInit(matrix_, value_);
 		}
 	};
@@ -325,26 +325,26 @@ namespace dtl::generator::common::normal {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row][col] = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row][col] = value_;
 	}
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row][col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row][col] = value_;
@@ -354,13 +354,13 @@ namespace dtl::generator::common::normal {
 	class DungeonInit {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::Rect class")]] constexpr DungeonInit() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr DungeonInit() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit DungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
 			dtl::generator::common::normal::createDungeonInit(matrix_, x_, y_, value_);
 		}
 	};
@@ -372,26 +372,26 @@ namespace dtl::generator::common::array {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row * x_ + col] = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row * x_ + col] = value_;
 	}
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row * w_ + col] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row * w_ + col] = value_;
@@ -401,13 +401,13 @@ namespace dtl::generator::common::array {
 	class DungeonInit {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::Rect class")]] constexpr DungeonInit() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr DungeonInit() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit DungeonInit(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
 			dtl::generator::common::array::createDungeonInit(matrix_, x_, y_, value_);
 		}
 	};
@@ -419,14 +419,14 @@ namespace dtl::generator::common::rangeBasedFor {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_) noexcept {
 		for (auto&& row : matrix_)
 			for (auto&& col : row)
 				col = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		for (auto&& row : matrix_)
 			for (auto&& col : row)
 				col = value_;
@@ -439,14 +439,14 @@ namespace dtl::generator::common::layer::stl {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col][layer_] = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col][layer_] = value_;
@@ -456,13 +456,13 @@ namespace dtl::generator::common::layer::stl {
 	class DungeonInit {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::Rect class")]] constexpr DungeonInit() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr DungeonInit() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit DungeonInit(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 0) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 0) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 0) const noexcept {
 			dtl::generator::common::layer::stl::createDungeonInit(matrix_, layer_, value_);
 		}
 	};
@@ -474,26 +474,26 @@ namespace dtl::generator::common::layer::normal {
 
 	//全てのマスを0で埋める
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row][col][layer_] = 0;
 	}
 	//全てのマスを指定した数値で埋める
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row][col][layer_] = value_;
 	}
 	template<typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row][col][layer_] = 0;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	[[deprecated("please use dtl::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createDungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t w_, const std::size_t h_, const Matrix_Int_ value_) noexcept {
 		for (std::size_t row{ y_ }; row < h_; ++row)
 			for (std::size_t col{ x_ }; col < w_; ++col)
 				matrix_[row][col][layer_] = value_;
@@ -503,13 +503,13 @@ namespace dtl::generator::common::layer::normal {
 	class DungeonInit {
 	public:
 		//コンストラクタ
-		[[deprecated("please use dtl::Rect class")]] constexpr DungeonInit() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr DungeonInit() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit DungeonInit(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		[[deprecated("please use dtl::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 0) const noexcept {
 			dtl::generator::common::layer::normal::createDungeonInit(matrix_, layer_, x_, y_, value_);
 		}
 	};
