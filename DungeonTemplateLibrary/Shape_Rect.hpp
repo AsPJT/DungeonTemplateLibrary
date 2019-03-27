@@ -18,7 +18,7 @@
 
 namespace dtl::shape {
 
-	//四角形の生成
+	//マスを指定した数値で埋める
 	template<typename Matrix_Int_>
 	class Rect {
 	private:
@@ -264,6 +264,14 @@ namespace dtl::shape {
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
+	using RectU8 = dtl::shape::Rect<std::uint_fast8_t>;
+	using RectU16 = dtl::shape::Rect<std::uint_fast16_t>;
+	using RectU32 = dtl::shape::Rect<std::uint_fast32_t>;
+	using RectU64 = dtl::shape::Rect<std::uint_fast64_t>;
+	using RectI8 = dtl::shape::Rect<std::int_fast8_t>;
+	using RectI16 = dtl::shape::Rect<std::int_fast16_t>;
+	using RectI32 = dtl::shape::Rect<std::int_fast32_t>;
+	using RectI64 = dtl::shape::Rect<std::int_fast64_t>;
 }
 
 

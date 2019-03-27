@@ -1,11 +1,13 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON_ONE_LINE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON_ONE_LINE
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
+﻿/*#######################################################################################
+	Copyright (c) 2017-2019 Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	Distributed under the Boost Software License, Version 1.0. (See accompanying
+	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#######################################################################################*/
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_ONE_LINE
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_ONE_LINE
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -16,19 +18,19 @@
 namespace dtl::generator::common::stl {
 
 	template<typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
 			matrix_[matrix_.size() - 1][col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -36,7 +38,7 @@ namespace dtl::generator::common::stl {
 		}
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -44,19 +46,19 @@ namespace dtl::generator::common::stl {
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
 			matrix_[matrix_.size() - 1][col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -64,7 +66,7 @@ namespace dtl::generator::common::stl {
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -76,13 +78,13 @@ namespace dtl::generator::common::stl {
 	class OneLineDown {
 	public:
 		//コンストラクタ
-		constexpr OneLineDown() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineDown() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineDown(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, value_);
 		}
 	};
@@ -91,13 +93,13 @@ namespace dtl::generator::common::stl {
 	class OneLineUp {
 	public:
 		//コンストラクタ
-		constexpr OneLineUp() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineUp() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineUp(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, value_);
 		}
 	};
@@ -106,13 +108,13 @@ namespace dtl::generator::common::stl {
 	class OneLineLeft {
 	public:
 		//コンストラクタ
-		constexpr OneLineLeft() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineLeft() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineLeft(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, value_);
 		}
 	};
@@ -121,13 +123,13 @@ namespace dtl::generator::common::stl {
 	class OneLineRight {
 	public:
 		//コンストラクタ
-		constexpr OneLineRight() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineRight() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineRight(Matrix_& matrix_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, value_);
 		}
 	};
@@ -137,52 +139,52 @@ namespace dtl::generator::common::stl {
 namespace dtl::generator::common::normal {
 
 	template<typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[y_ - 1][col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = 1;
 		}
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[y_ - 1][col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1] = value_;
@@ -193,13 +195,13 @@ namespace dtl::generator::common::normal {
 	class OneLineDown {
 	public:
 		//コンストラクタ
-		constexpr OneLineDown() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineDown() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, x_, y_, value_);
 		}
 	};
@@ -208,13 +210,13 @@ namespace dtl::generator::common::normal {
 	class OneLineUp {
 	public:
 		//コンストラクタ
-		constexpr OneLineUp() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineUp() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, x_, y_, value_);
 		}
 	};
@@ -223,13 +225,13 @@ namespace dtl::generator::common::normal {
 	class OneLineLeft {
 	public:
 		//コンストラクタ
-		constexpr OneLineLeft() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineLeft() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, x_, y_, value_);
 		}
 	};
@@ -238,13 +240,13 @@ namespace dtl::generator::common::normal {
 	class OneLineRight {
 	public:
 		//コンストラクタ
-		constexpr OneLineRight() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineRight() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, x_, y_, value_);
 		}
 	};
@@ -254,52 +256,52 @@ namespace dtl::generator::common::normal {
 namespace dtl::generator::common::array {
 
 	template<typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[(y_ - 1)*x_ + col] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = 1;
 		}
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_ + x_ - 1] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[(y_ - 1)*x_ + col] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row*x_ + x_ - 1] = value_;
@@ -310,13 +312,13 @@ namespace dtl::generator::common::array {
 	class OneLineDown {
 	public:
 		//コンストラクタ
-		constexpr OneLineDown() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineDown() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, x_, y_, value_);
 		}
 	};
@@ -325,13 +327,13 @@ namespace dtl::generator::common::array {
 	class OneLineUp {
 	public:
 		//コンストラクタ
-		constexpr OneLineUp() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineUp() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, x_, y_, value_);
 		}
 	};
@@ -340,13 +342,13 @@ namespace dtl::generator::common::array {
 	class OneLineLeft {
 	public:
 		//コンストラクタ
-		constexpr OneLineLeft() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineLeft() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, x_, y_, value_);
 		}
 	};
@@ -355,13 +357,13 @@ namespace dtl::generator::common::array {
 	class OneLineRight {
 	public:
 		//コンストラクタ
-		constexpr OneLineRight() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineRight() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, x_, y_, value_);
 		}
 	};
@@ -371,19 +373,19 @@ namespace dtl::generator::common::array {
 namespace dtl::generator::common::layer::stl {
 
 	template<typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
 			matrix_[matrix_.size() - 1][col][layer_] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -391,7 +393,7 @@ namespace dtl::generator::common::layer::stl {
 		}
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -399,19 +401,19 @@ namespace dtl::generator::common::layer::stl {
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[0].size(); ++col)
 			matrix_[0][col][layer_] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t col{}; col < matrix_[matrix_.size() - 1].size(); ++col)
 			matrix_[matrix_.size() - 1][col][layer_] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -419,7 +421,7 @@ namespace dtl::generator::common::layer::stl {
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 		if (matrix_.size() == 0) return;
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			if (matrix_[row].size() == 0) continue;
@@ -431,13 +433,13 @@ namespace dtl::generator::common::layer::stl {
 	class OneLineDown {
 	public:
 		//コンストラクタ
-		constexpr OneLineDown() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineDown() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, layer_, value_);
 		}
 	};
@@ -446,13 +448,13 @@ namespace dtl::generator::common::layer::stl {
 	class OneLineUp {
 	public:
 		//コンストラクタ
-		constexpr OneLineUp() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineUp() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, layer_, value_);
 		}
 	};
@@ -461,13 +463,13 @@ namespace dtl::generator::common::layer::stl {
 	class OneLineLeft {
 	public:
 		//コンストラクタ
-		constexpr OneLineLeft() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineLeft() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, layer_, value_);
 		}
 	};
@@ -476,13 +478,13 @@ namespace dtl::generator::common::layer::stl {
 	class OneLineRight {
 	public:
 		//コンストラクタ
-		constexpr OneLineRight() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineRight() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, layer_, value_);
 		}
 	};
@@ -493,52 +495,52 @@ namespace dtl::generator::common::layer::stl {
 namespace dtl::generator::common::layer::normal {
 
 	template<typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[y_ - 1][col][layer_] = 1;
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0][layer_] = 1;
 		}
 	}
 	template<typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1][layer_] = 1;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineUp(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[0][col][layer_] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineDown(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (y_ == 0) return;
 		for (std::size_t col{}; col < x_; ++col)
 			matrix_[y_ - 1][col][layer_] = value_;
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineLeft(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][0][layer_] = value_;
 		}
 	}
 	template<typename Matrix_Int_, typename Matrix_>
-	constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+	[[deprecated("please use dtl::shape::Rect class")]] constexpr void createOneLineRight(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 		if (dtl::utility::tool::isMatrixEmpty(x_, y_)) return;
 		for (std::size_t row{}; row < y_; ++row) {
 			matrix_[row][x_ - 1][layer_] = value_;
@@ -549,13 +551,13 @@ namespace dtl::generator::common::layer::normal {
 	class OneLineDown {
 	public:
 		//コンストラクタ
-		constexpr OneLineDown() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineDown() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineDown(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineDown(matrix_, layer_, x_, y_, value_);
 		}
 	};
@@ -564,13 +566,13 @@ namespace dtl::generator::common::layer::normal {
 	class OneLineUp {
 	public:
 		//コンストラクタ
-		constexpr OneLineUp() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineUp() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineUp(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineUp(matrix_, layer_, x_, y_, value_);
 		}
 	};
@@ -579,13 +581,13 @@ namespace dtl::generator::common::layer::normal {
 	class OneLineLeft {
 	public:
 		//コンストラクタ
-		constexpr OneLineLeft() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineLeft() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineLeft(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineLeft(matrix_, layer_, x_, y_, value_);
 		}
 	};
@@ -594,13 +596,13 @@ namespace dtl::generator::common::layer::normal {
 	class OneLineRight {
 	public:
 		//コンストラクタ
-		constexpr OneLineRight() noexcept = default;
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr OneLineRight() noexcept = default;
 		template<typename Matrix_>
 		constexpr explicit OneLineRight(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) noexcept {
 			create(matrix_, layer_, x_, y_, value_);
 		}
 		template<typename Matrix_>
-		constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
+		[[deprecated("please use dtl::shape::Rect class")]] constexpr void create(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_ = 1) const noexcept {
 			createOneLineRight(matrix_, layer_, x_, y_, value_);
 		}
 	};

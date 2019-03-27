@@ -342,6 +342,14 @@ namespace dtl::shape {
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
+	using BorderOddU8 = dtl::shape::BorderOdd<std::uint_fast8_t>;
+	using BorderOddU16 = dtl::shape::BorderOdd<std::uint_fast16_t>;
+	using BorderOddU32 = dtl::shape::BorderOdd<std::uint_fast32_t>;
+	using BorderOddU64 = dtl::shape::BorderOdd<std::uint_fast64_t>;
+	using BorderOddI8 = dtl::shape::BorderOdd<std::int_fast8_t>;
+	using BorderOddI16 = dtl::shape::BorderOdd<std::int_fast16_t>;
+	using BorderOddI32 = dtl::shape::BorderOdd<std::int_fast32_t>;
+	using BorderOddI64 = dtl::shape::BorderOdd<std::int_fast64_t>;
 }
 
 

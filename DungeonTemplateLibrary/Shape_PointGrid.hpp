@@ -18,7 +18,7 @@
 
 namespace dtl::shape {
 
-	//四角形の生成
+	//偶数マスを指定した数値で埋める
 	template<typename Matrix_Int_>
 	class PointGrid {
 	private:
@@ -264,6 +264,14 @@ namespace dtl::shape {
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
+	using PointGridU8 = dtl::shape::PointGrid<std::uint_fast8_t>;
+	using PointGridU16 = dtl::shape::PointGrid<std::uint_fast16_t>;
+	using PointGridU32 = dtl::shape::PointGrid<std::uint_fast32_t>;
+	using PointGridU64 = dtl::shape::PointGrid<std::uint_fast64_t>;
+	using PointGridI8 = dtl::shape::PointGrid<std::int_fast8_t>;
+	using PointGridI16 = dtl::shape::PointGrid<std::int_fast16_t>;
+	using PointGridI32 = dtl::shape::PointGrid<std::int_fast32_t>;
+	using PointGridI64 = dtl::shape::PointGrid<std::int_fast64_t>;
 }
 
 

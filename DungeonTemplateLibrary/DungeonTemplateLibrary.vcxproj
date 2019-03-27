@@ -138,7 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Beta_BoardGame.hpp" />
     <ClInclude Include="Console_OutputNumber.hpp" />
-    <ClInclude Include="Console_Output_String.hpp" />
+    <ClInclude Include="Console_OutputString.hpp" />
     <ClInclude Include="Console_OutputStringBool.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="Beta_DungeonBinarization.hpp" />
@@ -148,13 +148,13 @@
     <ClInclude Include="Beta_DungeonOutput.hpp" />
     <ClInclude Include="Beta_DungeonPaint.hpp" />
     <ClInclude Include="Beta_DungeonRandom.hpp" />
-    <ClInclude Include="Generator_Common_OneLine.hpp" />
+    <ClInclude Include="Shape_OneLine.hpp" />
     <ClInclude Include="Beta_FractalIsland.hpp" />
     <ClInclude Include="Shape_Border.hpp" />
     <ClInclude Include="Shape_BorderOdd.hpp" />
     <ClInclude Include="Shape_Rect.hpp" />
     <ClInclude Include="Shape_PointGrid.hpp" />
-    <ClInclude Include="Generator_Common_PointGridField.hpp" />
+    <ClInclude Include="Shape_PointGridWithBorder.hpp" />
     <ClInclude Include="Beta_HorizontalScroll.hpp" />
     <ClInclude Include="Beta_MazeDig.hpp" />
     <ClInclude Include="Generator_Common_PointGridFieldPutBlock.hpp" />

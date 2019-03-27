@@ -21,7 +21,7 @@
 namespace dtl::console {
 
 	//四角形の生成
-	template<typename Matrix_Int_>
+	template<typename Matrix_Int_, typename OutputString_ = std::string>
 	class OutputStringBool {
 	private:
 
@@ -30,7 +30,6 @@ namespace dtl::console {
 
 		using Index_Size = std::size_t;
 		using PairSize = std::pair<Index_Size, Index_Size>;
-		using OutputString = std::string;
 
 
 		///// メンバ変数 /////
@@ -39,22 +38,22 @@ namespace dtl::console {
 		Index_Size point_y{};
 		Index_Size width{};
 		Index_Size height{};
-		OutputString false_string{};
-		OutputString true_string{};
+		OutputString_ false_string{};
+		OutputString_ true_string{};
 
 
 		///// 代入処理 /////
 
 		template<typename Matrix_>
-		constexpr inline auto outputSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		[[nodiscard]] constexpr inline auto outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			return matrix_[point_y_][point_x_];
 		}
 		template<typename Matrix_>
-		constexpr inline auto outputArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+		[[nodiscard]] constexpr inline auto outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 			return matrix_[point_y_ * max_x_ + point_x_];
 		}
 		template<typename Matrix_>
-		constexpr inline auto outputLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		[[nodiscard]] constexpr inline auto outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			return matrix_[point_y_][point_x_][layer_];
 		}
 
@@ -63,7 +62,7 @@ namespace dtl::console {
 
 		//STL
 		template<typename Matrix_>
-		bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_) const noexcept {
+		bool drawSTL(const Matrix_& matrix_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 					std::cout << ((this->outputSTL(matrix_, col, row)) ? true_string : false_string);
@@ -72,7 +71,7 @@ namespace dtl::console {
 			return true;
 		}
 		template<typename Matrix_>
-		bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		bool drawWidthSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 					std::cout << ((this->outputSTL(matrix_, col, row)) ? true_string : false_string);
@@ -83,7 +82,7 @@ namespace dtl::console {
 
 		//LayerSTL
 		template<typename Matrix_>
-		bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
+		bool drawLayerSTL(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 					std::cout << ((this->outputLayer(matrix_, layer_, col, row)) ? true_string : false_string);
@@ -92,7 +91,7 @@ namespace dtl::console {
 			return true;
 		}
 		template<typename Matrix_>
-		bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		bool drawLayerWidthSTL(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 					std::cout << ((this->outputLayer(matrix_, layer_, col, row)) ? true_string : false_string);
@@ -103,7 +102,7 @@ namespace dtl::console {
 
 		//Normal
 		template<typename Matrix_>
-		bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		bool drawNormal(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					std::cout << ((this->outputSTL(matrix_, col, row)) ? true_string : false_string);
@@ -114,7 +113,7 @@ namespace dtl::console {
 
 		//LayerNormal
 		template<typename Matrix_>
-		bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		bool drawLayerNormal(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					std::cout << ((this->outputLayer(matrix_, layer_, col, row)) ? true_string : false_string);
@@ -125,7 +124,7 @@ namespace dtl::console {
 
 		//Array
 		template<typename Matrix_>
-		bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+		bool drawArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
 					std::cout << ((this->outputArray(matrix_, col, row, max_x_)) ? true_string : false_string);
@@ -151,40 +150,37 @@ namespace dtl::console {
 		[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
 			return this->height;
 		}
-		[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
-			return this->false_string;
-		}
 
 
 		///// 生成呼び出し /////
 
 		//STL
 		template<typename Matrix_>
-		bool draw(Matrix_&& matrix_) const noexcept {
+		bool draw(const Matrix_& matrix_) const noexcept {
 			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 
 		//LayerSTL
 		template<typename Matrix_>
-		bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
+		bool draw(const Matrix_& matrix_, const Index_Size layer_) const noexcept {
 			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 
 		//Normal
 		template<typename Matrix_>
-		bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+		bool draw(const Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 
 		//LayerNormal
 		template<typename Matrix_>
-		bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+		bool draw(const Matrix_& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 
 		//Array
 		template<typename Matrix_>
-		bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+		bool drawArray(const Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
 		}
 
@@ -255,49 +251,53 @@ namespace dtl::console {
 		///// コンストラクタ /////
 
 		constexpr OutputStringBool() noexcept = default;
-		constexpr explicit OutputStringBool(const OutputString& true_string_) noexcept
+		constexpr explicit OutputStringBool(const OutputString_& true_string_) noexcept
 			:true_string(true_string_) {}
-		constexpr explicit OutputStringBool(const OutputString& true_string_, const OutputString& false_string_) noexcept
+		constexpr explicit OutputStringBool(const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 			:false_string(false_string_), true_string(true_string_) {}
 		constexpr explicit OutputStringBool(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit OutputStringBool(const PairSize& length_, const OutputString& true_string_) noexcept
+		constexpr explicit OutputStringBool(const PairSize& length_, const OutputString_& true_string_) noexcept
 			:width(length_.first), height(length_.second),
 			true_string(true_string_) {}
-		constexpr explicit OutputStringBool(const PairSize& length_, const OutputString& true_string_, const OutputString& false_string_) noexcept
+		constexpr explicit OutputStringBool(const PairSize& length_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 			:width(length_.first), height(length_.second),
 			false_string(false_string_), true_string(true_string_) {}
 		constexpr explicit OutputStringBool(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit OutputStringBool(const PairSize& position_, const PairSize& length_, const OutputString& true_string_) noexcept
+		constexpr explicit OutputStringBool(const PairSize& position_, const PairSize& length_, const OutputString_& true_string_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			true_string(true_string_) {}
-		constexpr explicit OutputStringBool(const PairSize& position_, const PairSize& length_, const OutputString& true_string_, const OutputString& false_string_) noexcept
+		constexpr explicit OutputStringBool(const PairSize& position_, const PairSize& length_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second),
 			false_string(false_string_), true_string(true_string_) {}
 		constexpr explicit OutputStringBool(const Index_Size width_, const Index_Size height_) noexcept
 			:width(width_), height(height_) {}
-		constexpr explicit OutputStringBool(const Index_Size width_, const Index_Size height_, const OutputString& true_string_) noexcept
+		constexpr explicit OutputStringBool(const Index_Size width_, const Index_Size height_, const OutputString_& true_string_) noexcept
 			:width(width_), height(height_),
 			true_string(true_string_) {}
-		constexpr explicit OutputStringBool(const Index_Size width_, const Index_Size height_, const OutputString& true_string_, const OutputString& false_string_) noexcept
+		constexpr explicit OutputStringBool(const Index_Size width_, const Index_Size height_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 			:width(width_), height(height_),
 			false_string(false_string_), true_string(true_string_) {}
 		constexpr explicit OutputStringBool(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit OutputStringBool(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputString& true_string_) noexcept
+		constexpr explicit OutputStringBool(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputString_& true_string_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			true_string(true_string_) {}
-		constexpr explicit OutputStringBool(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputString& true_string_, const OutputString& false_string_) noexcept
+		constexpr explicit OutputStringBool(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
 			false_string(false_string_), true_string(true_string_) {}
 	};
+	template<typename Matrix_Int_>
+	using OutputStringBoolS16 = OutputStringBool<Matrix_Int_, std::u16string>;
+	template<typename Matrix_Int_>
+	using OutputStringBoolS32 = OutputStringBool<Matrix_Int_, std::u32string>;
 }
 
 

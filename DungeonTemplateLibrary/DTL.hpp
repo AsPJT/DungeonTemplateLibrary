@@ -38,12 +38,14 @@
 
 ///// コンソール出力 /////
 
-//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
-#ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
+/* 完全0.4.X対応 */
+
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
+#ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #include "Console_OutputNumber.hpp"
-#include "Console_Output_String.hpp"
+#include "Console_OutputString.hpp"
 #include "Console_OutputStringBool.hpp"
-#endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT
+#endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 
 
 ///// 便利な機能 /////
@@ -71,16 +73,16 @@
 
 ///// 標準生成 /////
 
-//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
-#ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
+#ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 #include "Shape_Border.hpp"
 #include "Shape_BorderOdd.hpp"
 #include "Shape_Rect.hpp"
-#include "Generator_Common_OneLine.hpp"
+#include "Shape_OneLine.hpp"
 #include "Shape_PointGrid.hpp"
-#include "Generator_Common_PointGridField.hpp"
+#include "Shape_PointGridWithBorder.hpp"
 #include "Generator_Common_PointGridFieldPutBlock.hpp"
-#endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_GENERATOR_COMMON
+#endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
 #include "Generator_Terrain_SimpleBiomeIsland.hpp"
 #include "Generator_Terrain_SimpleCellularAutomatonIsland.hpp"
