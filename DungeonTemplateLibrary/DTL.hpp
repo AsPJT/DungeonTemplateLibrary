@@ -16,14 +16,18 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
-//関連ツール
+
+///// 関連ツール /////
+
 #include "Beta_DungeonBinarization.hpp"
 #include "Beta_DungeonNoise.hpp"
 #include "Beta_DungeonOutput.hpp"
 #include "Beta_DungeonRandom.hpp"
 #include "Beta_DungeonFile.hpp"
 #include "Beta_DungeonMatrix.hpp"
-//ダンジョン
+
+///// ダンジョン /////
+
 #include "Beta_FractalIsland.hpp"
 #include "Beta_MazeDig.hpp"
 #include "Beta_RogueLike.hpp"
@@ -42,8 +46,11 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
+//指定マスの値を数値で出力する。
 #include "Console_OutputNumber.hpp"
+//指定マスの値を指定した文字で出力する。
 #include "Console_OutputString.hpp"
+//指定マスの値(2値)を指定した文字で出力する。
 #include "Console_OutputStringBool.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 
@@ -67,6 +74,7 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
+//乱数生成
 #include "Random_MersenneTwister32bit.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 
@@ -75,19 +83,28 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
+//指定マスの周囲1マスに任意の値(1)を設置する。
 #include "Shape_Border.hpp"
+//Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
 #include "Shape_BorderOdd.hpp"
+//指定マスの全てに任意の値(1)を設置する。
 #include "Shape_Rect.hpp"
+//[削除予定]
 #include "Shape_OneLine.hpp"
+//指定マスの偶数列目かつ偶数行目に任意の値(1)を設置する。
 #include "Shape_PointGrid.hpp"
+//Shape_BorderOdd + Shape_PointGrid
 #include "Shape_PointGridWithBorder.hpp"
+//
 #include "Generator_Common_PointGridFieldPutBlock.hpp"
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
+//
 #include "Generator_Terrain_SimpleBiomeIsland.hpp"
+//
 #include "Generator_Terrain_SimpleCellularAutomatonIsland.hpp"
 
-
+//
 #include "Shape_Point.hpp"
 
 #endif //Included Dungeon Template Library

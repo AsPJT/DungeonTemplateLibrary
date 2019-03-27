@@ -38,20 +38,20 @@ namespace dtl::random {
 
 		//通常の乱数
 		template<typename Random_Int_>
-		[[nodiscard]] Random_Int_ operator()() noexcept {
+		[[nodiscard]] Random_Int_ rand() noexcept {
 			return static_cast<Random_Int_>(mt());
 		}
 		//0～最大値-1 (余りの範囲の一様分布乱数)
-		template<typename Random_Int_, typename Random_Int2_>
-		[[nodiscard]] Random_Int_ operator()(const Random_Int2_ max_) noexcept {
+		template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
+		[[nodiscard]] Random_Int_ rand(const Random_Int2_ max_) noexcept {
 			if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
-			std::uniform_int_distribution<> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
+			std::uniform_int_distribution<Random_Int_> uid(0, max_ - 1);
 			return static_cast<Random_Int_>(uid(mt));
 		}
 		//最小値～最大値
 		template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
-		[[nodiscard]] Random_Int_ operator()(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
-			std::uniform_int_distribution<> uid((static_cast<std::int_fast32_t>(min_) <= static_cast<std::int_fast32_t>(max_)) ? static_cast<std::int_fast32_t>(min_) : static_cast<std::int_fast32_t>(max_), (static_cast<std::int_fast32_t>(min_) <= static_cast<std::int_fast32_t>(max_)) ? static_cast<std::int_fast32_t>(max_) : static_cast<std::int_fast32_t>(min_));
+		[[nodiscard]] Random_Int_ rand(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
+			std::uniform_int_distribution<Random_Int_> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 			return static_cast<Random_Int_>(uid(mt));
 		}
 		//確率

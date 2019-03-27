@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace dtl::shape {
+namespace dtl::utility {
 
 	//マスを指定した数値で埋める
 	template<typename Matrix_Int_>
@@ -412,14 +412,14 @@ namespace dtl::shape {
 			width(width_), height(height_),
 			true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
 	};
-	using BinarizationU8 = dtl::shape::Binarization<std::uint_fast8_t>;
-	using BinarizationU16 = dtl::shape::Binarization<std::uint_fast16_t>;
-	using BinarizationU32 = dtl::shape::Binarization<std::uint_fast32_t>;
-	using BinarizationU64 = dtl::shape::Binarization<std::uint_fast64_t>;
-	using BinarizationI8 = dtl::shape::Binarization<std::int_fast8_t>;
-	using BinarizationI16 = dtl::shape::Binarization<std::int_fast16_t>;
-	using BinarizationI32 = dtl::shape::Binarization<std::int_fast32_t>;
-	using BinarizationI64 = dtl::shape::Binarization<std::int_fast64_t>;
+	using BinarizationU8 = dtl::utility::Binarization<std::uint_fast8_t>;
+	using BinarizationU16 = dtl::utility::Binarization<std::uint_fast16_t>;
+	using BinarizationU32 = dtl::utility::Binarization<std::uint_fast32_t>;
+	using BinarizationU64 = dtl::utility::Binarization<std::uint_fast64_t>;
+	using BinarizationI8 = dtl::utility::Binarization<std::int_fast8_t>;
+	using BinarizationI16 = dtl::utility::Binarization<std::int_fast16_t>;
+	using BinarizationI32 = dtl::utility::Binarization<std::int_fast32_t>;
+	using BinarizationI64 = dtl::utility::Binarization<std::int_fast64_t>;
 }
 
 
@@ -431,7 +431,7 @@ namespace dtl::utility::stl {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 				if (matrix_[row][col]) matrix_[row][col] = 1;
@@ -446,7 +446,7 @@ namespace dtl::utility::normal {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col) {
 				if (matrix_[row][col]) matrix_[row][col] = 1;
@@ -461,7 +461,7 @@ namespace dtl::utility::array {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col) {
 				if (matrix_[row*x_ + col]) matrix_[row*x_ + col] = 1;
@@ -476,7 +476,7 @@ namespace dtl::utility::rangeBasedFor {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_) noexcept {
 		for (auto&& row : matrix_)
 			for (auto&& col : row) {
 				if (col) col = 1;
@@ -491,7 +491,7 @@ namespace dtl::utility::layer::stl {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_, const std::size_t layer_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
 				if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = 1;
@@ -506,7 +506,7 @@ namespace dtl::utility::layer::normal {
 
 	//2値化処理
 	template<typename Matrix_>
-	constexpr void binarization(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 		for (std::size_t row{}; row < y_; ++row)
 			for (std::size_t col{}; col < x_; ++col) {
 				if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = 1;
