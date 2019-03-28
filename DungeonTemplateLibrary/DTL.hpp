@@ -97,6 +97,9 @@
 #include "Shape_PointGridWithBorder.hpp"
 //
 #include "Generator_Common_PointGridFieldPutBlock.hpp"
+
+#include "Shape_RandomRect.hpp"
+
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
 //

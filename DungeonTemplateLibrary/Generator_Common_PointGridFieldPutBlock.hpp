@@ -200,7 +200,7 @@ namespace dtl::shape {
 
 		//template<typename ...Args_>
 		//constexpr explicit PointGridAndSomeBlocksWithBorder(Args_&&... args_) noexcept
-		//	:borderOdd(args_...), pointGrid(args_...) {}
+		//	:borderOdd(std::forward<Args_>(args_)...), pointGrid(std::forward<Args_>(args_)...) {}
 	};
 }
 

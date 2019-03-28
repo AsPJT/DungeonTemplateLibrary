@@ -281,7 +281,7 @@ namespace dtl::console {
 		template<typename ...Args_>
 		explicit OutputString(const PairSize& length_, const OutputStringName_& first_, const Args_&... args_) noexcept
 			:width(length_.first), height(length_.second) {
-			this->string_String(first_, args_...);
+			this->string_String(first_, std::forward<Args_>(args_)...);
 		}
 		template<typename ...Args_>
 		explicit OutputString(const PairSize& position_, const PairSize& length_, const OutputStringName_& first_, const Args_&... args_) noexcept
@@ -292,13 +292,13 @@ namespace dtl::console {
 		template<typename ...Args_>
 		explicit OutputString(const Index_Size width_, const Index_Size height_, const OutputStringName_& first_, const Args_&... args_) noexcept
 			:width(width_), height(height_) {
-			this->string_String(first_, args_...);
+			this->string_String(first_, std::forward<Args_>(args_)...);
 		}
 		template<typename ...Args_>
 		explicit OutputString(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputStringName_& first_, const Args_&... args_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {
-			this->string_String(first_, args_...);
+			this->string_String(first_, std::forward<Args_>(args_)...);
 		}
 	};
 	template<typename Matrix_Int_>
@@ -319,11 +319,11 @@ namespace dtl::console::output::hiding {
 	template<typename ...Args_>
 	constexpr void string_String(std::vector<std::string>& string_vector_, const std::string& first_, const Args_&... args_) noexcept {
 		string_vector_.emplace_back(std::move(first_));
-		string_String(string_vector_, args_...);
+		string_String(string_vector_, std::forward<Args_>(args_)...);
 	}
 	template<typename ...Args_>
 	void string_Split(std::vector<std::string>& string_vector_, const Args_&... args_) noexcept {
-		string_String(string_vector_, args_...);
+		string_String(string_vector_, std::forward<Args_>(args_)...);
 	}
 
 } //namespace
@@ -337,7 +337,7 @@ namespace dtl::console::output::stl {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -359,7 +359,7 @@ namespace dtl::console::output::normal {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (std::size_t row{}; row < y_; ++row) {
 			for (std::size_t col{}; col < x_; ++col) {
@@ -381,7 +381,7 @@ namespace dtl::console::output::array {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (std::size_t row{}; row < y_; ++row) {
 			for (std::size_t col{}; col < x_; ++col) {
@@ -403,7 +403,7 @@ namespace dtl::console::output::rangeBasedFor {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (const auto& row : matrix_) {
 			for (const auto& col : row) {
@@ -425,7 +425,7 @@ namespace dtl::console::output::layer::stl {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (std::size_t row{}; row < matrix_.size(); ++row) {
 			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -447,7 +447,7 @@ namespace dtl::console::output::layer::normal {
 		using dtl::console::output::hiding::string_Split;
 
 		std::vector<std::string> string_vector;
-		string_Split(string_vector, args_...);
+		string_Split(string_vector, std::forward<Args_>(args_)...);
 
 		for (std::size_t row{}; row < y_; ++row) {
 			for (std::size_t col{}; col < x_; ++col) {

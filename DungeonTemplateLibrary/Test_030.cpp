@@ -25,52 +25,52 @@ int main() {
 
 	//STL
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).createOperator(a, [](shape_t a_) {return a_ == 0; }));
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(1, 0.2).createOperator(a, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Normal
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(1, 0.2).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Array
 	dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	dtl::console::OutputString<shape_t>(before_str, after_str).drawArray(dtl::shape::PointGridWithBorder<shape_t>(1).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
+	dtl::console::OutputString<shape_t>(before_str, after_str).drawArray(dtl::shape::RandomRect<shape_t>(1, 0.2).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
 	std::cout << '\n';
 
 	//LayerSTL
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(1, 0.2).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//LayerNormal
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(1, 0.2).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//STL
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createOperator(a, [](shape_t a_) {return a_ == 0; }));
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(point, length, 1).createOperator(a, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Normal
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(point, length, 1).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Array
 	dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).drawArray(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).drawArray(dtl::shape::RandomRect<shape_t>(point, length, 1).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
 	std::cout << '\n';
 
 	//LayerSTL
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(point, length, 1).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//LayerNormal
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::RandomRect<shape_t>(point, length, 1).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 
@@ -81,52 +81,52 @@ int main() {
 
 	////STL
 	//dtl::utility::Init<shape_t>(0).draw(a);
-	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(1, 2).create(a), [](shape_t a) {return a < 1; }));
+	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(1, 2).create(a), [](shape_t a) {return a < 1; }));
 	//std::cout << '\n';
 
 	////Normal
 	//dtl::utility::Init<shape_t>(0).draw(a);
-	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1,0).create(dtl::shape::PointGridWithBorder<shape_t>(id).create(a, size_x, size_y), [](shape_t a) {return a < 1; }));
+	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1,0).create(dtl::shape::RandomRect<shape_t>(id).create(a, size_x, size_y), [](shape_t a) {return a < 1; }));
 	//std::cout << '\n';
 
 	////Array
 	//dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").drawArray(dtl::utility::Binarization<shape_t>(1, 0).createArray(dtl::shape::PointGridWithBorder<shape_t>(1,2).createArray(b, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }), size_x, size_y);
+	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").drawArray(dtl::utility::Binarization<shape_t>(1, 0).createArray(dtl::shape::RandomRect<shape_t>(1,2).createArray(b, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }), size_x, size_y);
 	//std::cout << '\n';
 
 	////LayerSTL
 	//dtl::utility::Init<shape_t>(0).draw(c, 0);
-	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(1, 2).create(c, 0), 0, [](shape_t a) {return a < 1; }), 0);
+	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(1, 2).create(c, 0), 0, [](shape_t a) {return a < 1; }), 0);
 	//std::cout << '\n';
 
 	////LayerNormal
 	//dtl::utility::Init<shape_t>(0).draw(c, 0);
-	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(1, 2).create(c, 0, size_x, size_y), 0, [](shape_t a) {return a < 1; }), 0);
+	//dtl::console::OutputString<shape_t>(before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(1, 2).create(c, 0, size_x, size_y), 0, [](shape_t a) {return a < 1; }), 0);
 	//std::cout << '\n';
 
 	////STL
 	//dtl::utility::Init<shape_t>(0).draw(a);
-	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(point, length, id).create(a), [](shape_t a) {return a < 1; }));
+	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(point, length, id).create(a), [](shape_t a) {return a < 1; }));
 	//std::cout << '\n';
 
 	////Normal
 	//dtl::utility::Init<shape_t>(0).draw(a);
-	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(point, length, id).create(a, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }));
+	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(point, length, id).create(a, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }));
 	//std::cout << '\n';
 
 	////Array
 	//dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").drawArray(dtl::utility::Binarization<shape_t>(1, 0).createArray(dtl::shape::PointGridWithBorder<shape_t>(point, length, id).createArray(b, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }), size_x, size_y);
+	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").drawArray(dtl::utility::Binarization<shape_t>(1, 0).createArray(dtl::shape::RandomRect<shape_t>(point, length, id).createArray(b, size_x, size_y), size_x, size_y, [](shape_t a) {return a < 1; }), size_x, size_y);
 	//std::cout << '\n';
 
 	////LayerSTL
 	//dtl::utility::Init<shape_t>(0).draw(c, 0);
-	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(point, length, id).create(c, 0), 0, [](shape_t a) {return a < 1; }), 0);
+	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(point, length, id).create(c, 0), 0, [](shape_t a) {return a < 1; }), 0);
 	//std::cout << '\n';
 
 	////LayerNormal
 	//dtl::utility::Init<shape_t>(0).draw(c, 0);
-	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::PointGridWithBorder<shape_t>(point, length, id).create(c, 0, size_x, size_y), 0, [](shape_t a) {return a < 1; }), 0);
+	//dtl::console::OutputString<shape_t>(point, length, before_str, after_str, "%%").draw(dtl::utility::Binarization<shape_t>(1, 0).create(dtl::shape::RandomRect<shape_t>(point, length, id).create(c, 0, size_x, size_y), 0, [](shape_t a) {return a < 1; }), 0);
 	//std::cout << '\n';
 
 
@@ -135,13 +135,13 @@ int main() {
 	//	std::cout << dtl::random::mt32bit.rand<rnd>(5, 10) << std::endl;
 	//}
 	//using std::array;
-	//using dtl::shape::PointGridWithBorder;
+	//using dtl::shape::RandomRect;
 	//using dtl::console::OutputStringBool;
 
 	////2D平面を作成
 	//array<array<shape_t, 32>, 16> matrix{ {} };
 	////生成
-	////PointGridWithBorder<shape_t>(1).draw(matrix);
+	////RandomRect<shape_t>(1).draw(matrix);
 	//dtl::utility::Init<shape_t>(1).draw(matrix);
 
 	////出力

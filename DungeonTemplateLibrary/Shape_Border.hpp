@@ -75,13 +75,13 @@ namespace dtl::shape {
 		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y, args_...);
+				this->substitutionSTL(matrix_, col, point_y, std::forward<Args_>(args_)...);
 			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionSTL(matrix_, point_x, row, args_...);
-				this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
+				this->substitutionSTL(matrix_, point_x, row, std::forward<Args_>(args_)...);
+				this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -89,15 +89,15 @@ namespace dtl::shape {
 		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y, args_...);
+				this->substitutionSTL(matrix_, col, point_y, std::forward<Args_>(args_)...);
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			if (point_x_ == 0) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionSTL(matrix_, point_x, row, args_...);
-				if (matrix_[row].size() <= point_x_) this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
-				else this->substitutionSTL(matrix_, point_x_ - 1, row, args_...);
+				this->substitutionSTL(matrix_, point_x, row, std::forward<Args_>(args_)...);
+				if (matrix_[row].size() <= point_x_) this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, std::forward<Args_>(args_)...);
+				else this->substitutionSTL(matrix_, point_x_ - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -107,13 +107,13 @@ namespace dtl::shape {
 		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y, std::forward<Args_>(args_)...);
 			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
-				this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
+				this->substitutionLayer(matrix_, layer_, point_x, row, std::forward<Args_>(args_)...);
+				this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -121,15 +121,15 @@ namespace dtl::shape {
 		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y, std::forward<Args_>(args_)...);
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			if (point_x_ == 0) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
-				if (matrix_[row].size() <= point_x_) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
-				else this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, args_...);
+				this->substitutionLayer(matrix_, layer_, point_x, row, std::forward<Args_>(args_)...);
+				if (matrix_[row].size() <= point_x_) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, std::forward<Args_>(args_)...);
+				else this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -139,12 +139,12 @@ namespace dtl::shape {
 		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_x_ == 0 || point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionSTL(matrix_, col, point_y, args_...);
-				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
+				this->substitutionSTL(matrix_, col, point_y, std::forward<Args_>(args_)...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionSTL(matrix_, point_x, row, args_...);
-				this->substitutionSTL(matrix_, point_x_ - 1, row, args_...);
+				this->substitutionSTL(matrix_, point_x, row, std::forward<Args_>(args_)...);
+				this->substitutionSTL(matrix_, point_x_ - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -154,12 +154,12 @@ namespace dtl::shape {
 		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_x_ == 0 || point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y, std::forward<Args_>(args_)...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, std::forward<Args_>(args_)...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
-				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, args_...);
+				this->substitutionLayer(matrix_, layer_, point_x, row, std::forward<Args_>(args_)...);
+				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -169,12 +169,12 @@ namespace dtl::shape {
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&&... args_) const noexcept {
 			if (point_x_ == 0 || point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionArray(matrix_, col, point_y, max_x_, args_...);
-				this->substitutionArray(matrix_, col, point_y_ - 1, max_x_, args_...);
+				this->substitutionArray(matrix_, col, point_y, max_x_, std::forward<Args_>(args_)...);
+				this->substitutionArray(matrix_, col, point_y_ - 1, max_x_, std::forward<Args_>(args_)...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionArray(matrix_, point_x, row, max_x_, args_...);
-				this->substitutionArray(matrix_, point_x_ - 1, row, max_x_, args_...);
+				this->substitutionArray(matrix_, point_x, row, max_x_, std::forward<Args_>(args_)...);
+				this->substitutionArray(matrix_, point_x_ - 1, row, max_x_, std::forward<Args_>(args_)...);
 			}
 			return true;
 		}
@@ -258,22 +258,22 @@ namespace dtl::shape {
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->draw(matrix_, args_...);
+			this->draw(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawArray(matrix_, args_...);
+			this->drawArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperator(matrix_, args_...);
+			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperatorArray(matrix_, args_...);
+			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 

@@ -75,14 +75,14 @@ namespace dtl::shape {
 		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
-					this->substitutionSTL(matrix_, col, row, args_...);
+					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-					this->substitutionSTL(matrix_, col, row, args_...);
+					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -91,14 +91,14 @@ namespace dtl::shape {
 		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -107,7 +107,7 @@ namespace dtl::shape {
 		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionSTL(matrix_, col, row, args_...);
+					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -116,7 +116,7 @@ namespace dtl::shape {
 		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -125,7 +125,7 @@ namespace dtl::shape {
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
 				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionArray(matrix_, col, row, max_x_, args_...);
+					this->substitutionArray(matrix_, col, row, max_x_, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -208,22 +208,22 @@ namespace dtl::shape {
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->draw(matrix_, args_...);
+			this->draw(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawArray(matrix_, args_...);
+			this->drawArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperator(matrix_, args_...);
+			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperatorArray(matrix_, args_...);
+			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 

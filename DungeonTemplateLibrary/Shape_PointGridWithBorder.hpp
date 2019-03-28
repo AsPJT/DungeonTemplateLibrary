@@ -64,28 +64,28 @@ namespace dtl::shape {
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool draw(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			pointGrid.draw(matrix_, args_...);
-			borderOdd.draw(matrix_, args_...);
+			pointGrid.draw(matrix_, std::forward<Args_>(args_)...);
+			borderOdd.draw(matrix_, std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			pointGrid.drawOperator(matrix_, args_...);
-			borderOdd.drawOperator(matrix_, args_...);
+			pointGrid.drawOperator(matrix_, std::forward<Args_>(args_)...);
+			borderOdd.drawOperator(matrix_, std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			pointGrid.drawArray(matrix_, args_...);
-			borderOdd.drawArray(matrix_, args_...);
+			pointGrid.drawArray(matrix_, std::forward<Args_>(args_)...);
+			borderOdd.drawArray(matrix_, std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			pointGrid.drawOperatorArray(matrix_, args_...);
-			borderOdd.drawOperatorArray(matrix_, args_...);
+			pointGrid.drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
+			borderOdd.drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -94,22 +94,22 @@ namespace dtl::shape {
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->draw(matrix_, args_...);
+			this->draw(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawArray(matrix_, args_...);
+			this->drawArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperator(matrix_, args_...);
+			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			this->drawOperatorArray(matrix_, args_...);
+			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 			return matrix_;
 		}
 
@@ -148,7 +148,7 @@ namespace dtl::shape {
 
 		//template<typename ...Args_>
 		//constexpr explicit PointGridWithBorder(Args_&&... args_) noexcept
-		//	:borderOdd(args_...), pointGrid(args_...) {}
+		//	:borderOdd(std::forward<Args_>(args_)...), pointGrid(std::forward<Args_>(args_)...) {}
 	};
 }
 
