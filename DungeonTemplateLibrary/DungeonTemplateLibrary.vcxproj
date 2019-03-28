@@ -152,6 +152,7 @@
     <ClInclude Include="Beta_FractalIsland.hpp" />
     <ClInclude Include="Shape_Border.hpp" />
     <ClInclude Include="Shape_BorderOdd.hpp" />
+    <ClInclude Include="Shape_RandomRect.hpp" />
     <ClInclude Include="Shape_Rect.hpp" />
     <ClInclude Include="Shape_PointGrid.hpp" />
     <ClInclude Include="Shape_PointGridWithBorder.hpp" />

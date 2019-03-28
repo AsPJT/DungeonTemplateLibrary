@@ -54,6 +54,19 @@ namespace dtl::shape {
 			matrix_[point_y_][point_x_][layer_] = draw_value;
 		}
 
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionSTL(Function_&& function_, Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			if (function_(matrix_[point_y_][point_x_])) matrix_[point_y_][point_x_] = draw_value;
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionArray(Function_&& function_, Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+			if (function_(matrix_[point_y_ * max_x_ + point_x_])) matrix_[point_y_ * max_x_ + point_x_] = draw_value;
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionLayer(Function_&& function_, Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			if (function_(matrix_[point_y_][point_x_][layer_])) matrix_[point_y_][point_x_][layer_] = draw_value;
+		}
+
 
 		///// 基本処理 /////
 

@@ -144,6 +144,9 @@
     <ClInclude Include="Shape_PointGridWithBorder.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Shape_RandomRect.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt">

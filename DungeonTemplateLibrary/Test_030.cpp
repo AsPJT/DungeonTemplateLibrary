@@ -20,58 +20,63 @@ int main() {
 
 	//constexpr std::pair<shape_t, shape_t> id{ std::make_pair(1,2) };
 
-	const std::string before_str{ "  " };
+	const std::string before_str{ "//" };
 	const std::string after_str{ "##" };
 
 	//STL
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).create(a));
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(1).createOperator(a, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Normal
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).create(a, size_x, size_y));
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(1).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Array
 	dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	dtl::console::OutputString<shape_t>(before_str, after_str).drawArray(dtl::shape::PointGridWithBorder<shape_t>(1).createArray(b, size_x, size_y), size_x, size_y);
+	dtl::console::OutputString<shape_t>(before_str, after_str).drawArray(dtl::shape::BorderOdd<shape_t>(1).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
 	std::cout << '\n';
 
 	//LayerSTL
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).create(c, 0), 0);
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(1).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//LayerNormal
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(1).create(c, 0, size_x, size_y), 0);
+	dtl::console::OutputString<shape_t>(before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(1).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//STL
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).create(a));
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(point, length, 1).createOperator(a, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Normal
 	dtl::utility::Init<shape_t>(0).draw(a);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).create(a, size_x, size_y));
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(point, length, 1).createOperator(a, size_x, size_y, [](shape_t a_) {return a_ == 0; }));
 	std::cout << '\n';
 
 	//Array
 	dtl::utility::Init<shape_t>(0).drawArray(b, size_x, size_y);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).drawArray(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).createArray(b, size_x, size_y), size_x, size_y);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).drawArray(dtl::shape::BorderOdd<shape_t>(point, length, 1).createOperatorArray(b, size_x, size_y, [](shape_t a_) {return a_ == 0; }), size_x, size_y);
 	std::cout << '\n';
 
 	//LayerSTL
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).create(c, 0), 0);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(point, length, 1).createOperator(c, 0, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
 
 	//LayerNormal
 	dtl::utility::Init<shape_t>(0).draw(c, 0);
-	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::PointGridWithBorder<shape_t>(point, length, 1).create(c, 0, size_x, size_y), 0);
+	dtl::console::OutputString<shape_t>(point, length, before_str, after_str).draw(dtl::shape::BorderOdd<shape_t>(point, length, 1).createOperator(c, 0, size_x, size_y, [](shape_t a_) {return a_ == 0; }), 0);
 	std::cout << '\n';
+
+
+
+
+
 
 
 	////STL

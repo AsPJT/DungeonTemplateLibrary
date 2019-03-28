@@ -54,142 +54,155 @@ namespace dtl::shape {
 			matrix_[point_y_][point_x_][layer_] = draw_value;
 		}
 
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+			if (function_(matrix_[point_y_][point_x_])) matrix_[point_y_][point_x_] = draw_value;
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			if (function_(matrix_[point_y_ * max_x_ + point_x_])) matrix_[point_y_ * max_x_ + point_x_] = draw_value;
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+			if (function_(matrix_[point_y_][point_x_][layer_])) matrix_[point_y_][point_x_][layer_] = draw_value;
+		}
+
 
 		///// 基本処理 /////
 
 		//STL
-		template<typename Matrix_>
-		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ == 0) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y);
+				this->substitutionSTL(matrix_, col, point_y, args_...);
 			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col) {
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
-				this->substitutionSTL(matrix_, col, point_y_ - 1);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2, args_...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionSTL(matrix_, point_x, row);
-				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row);
-				this->substitutionSTL(matrix_, matrix_[row].size() - 1, row);
+				this->substitutionSTL(matrix_, point_x, row, args_...);
+				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row, args_...);
+				this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
 			}
 			return true;
 		}
-		template<typename Matrix_>
-		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
-				this->substitutionSTL(matrix_, col, point_y);
+				this->substitutionSTL(matrix_, col, point_y, args_...);
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col) {
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
-				this->substitutionSTL(matrix_, col, point_y_ - 1);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2, args_...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
 			}
 			if (point_x_ < 2) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionSTL(matrix_, point_x, row);
+				this->substitutionSTL(matrix_, point_x, row, args_...);
 				if (matrix_[row].size() <= point_x_) {
-					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row);
-					this->substitutionSTL(matrix_, matrix_[row].size() - 1, row);
+					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row, args_...);
+					this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
 				}
 				else {
-					if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row);
-					this->substitutionSTL(matrix_, point_x_ - 1, row);
+					if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row, args_...);
+					this->substitutionSTL(matrix_, point_x_ - 1, row, args_...);
 				}
 			}
 			return true;
 		}
 
 		//LayerSTL
-		template<typename Matrix_>
-		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < matrix_[point_y].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y);
+				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
 			for (Index_Size col{ point_x }; col < matrix_[point_y_ - 1].size(); ++col) {
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() < 2) continue;
-				this->substitutionLayer(matrix_, layer_, point_x, row);
-				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row);
-				this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row);
+				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
+				if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
+				this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
 			}
 			return true;
 		}
-		template<typename Matrix_>
-		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y].size(); ++col)
-				this->substitutionLayer(matrix_, layer_, col, point_y);
+				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
 			for (Index_Size col{ point_x }; col < point_x_&&col < matrix_[point_y_ - 1].size(); ++col) {
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
 			}
 			if (point_x_ < 2) return true;
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
 				if (matrix_[row].size() == 0) continue;
-				this->substitutionLayer(matrix_, layer_, point_x, row);
+				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
 				if (matrix_[row].size() <= point_x_) {
-					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row);
-					this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row);
+					if ((matrix_[row].size() - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
+					this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
 				}
 				else {
-					if ((point_x_ - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row);
-					this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
+					if ((point_x_ - point_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row, args_...);
+					this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, args_...);
 				}
 			}
 			return true;
 		}
 
 		//Normal
-		template<typename Matrix_>
-		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionSTL(matrix_, col, point_y);
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2);
-				this->substitutionSTL(matrix_, col, point_y_ - 1);
+				this->substitutionSTL(matrix_, col, point_y, args_...);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionSTL(matrix_, col, point_y_ - 2, args_...);
+				this->substitutionSTL(matrix_, col, point_y_ - 1, args_...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionSTL(matrix_, point_x, row);
-				if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row);
-				this->substitutionSTL(matrix_, point_x_ - 1, row);
+				this->substitutionSTL(matrix_, point_x, row, args_...);
+				if ((point_x_ - point_x) % 2 == 0) this->substitutionSTL(matrix_, point_x_ - 2, row, args_...);
+				this->substitutionSTL(matrix_, point_x_ - 1, row, args_...);
 			}
 			return true;
 		}
 
 		//LayerNormal
-		template<typename Matrix_>
-		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionLayer(matrix_, layer_, col, point_y);
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2);
-				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1);
+				this->substitutionLayer(matrix_, layer_, col, point_y, args_...);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, point_y_ - 2, args_...);
+				this->substitutionLayer(matrix_, layer_, col, point_y_ - 1, args_...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionLayer(matrix_, layer_, point_x, row);
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row);
-				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row);
+				this->substitutionLayer(matrix_, layer_, point_x, row, args_...);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, point_x_ - 2, row, args_...);
+				this->substitutionLayer(matrix_, layer_, point_x_ - 1, row, args_...);
 			}
 			return true;
 		}
 
 		//Array
-		template<typename Matrix_>
-		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&&... args_) const noexcept {
 			if (point_x_ < 2 || point_y_ < 2) return true;
 			for (Index_Size col{ point_x }; col < point_x_; ++col) {
-				this->substitutionArray(matrix_, col, point_y, max_x_);
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, col, point_y_ - 2, max_x_);
-				this->substitutionArray(matrix_, col, point_y_ - 1, max_x_);
+				this->substitutionArray(matrix_, col, point_y, max_x_, args_...);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, col, point_y_ - 2, max_x_, args_...);
+				this->substitutionArray(matrix_, col, point_y_ - 1, max_x_, args_...);
 			}
 			for (Index_Size row{ point_y }; row < point_y_; ++row) {
-				this->substitutionArray(matrix_, point_x, row, max_x_);
-				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, point_x_ - 2, row, max_x_);
-				this->substitutionArray(matrix_, point_x_ - 1, row, max_x_);
+				this->substitutionArray(matrix_, point_x, row, max_x_, args_...);
+				if ((point_y_ - point_y) % 2 == 0) this->substitutionArray(matrix_, point_x_ - 2, row, max_x_, args_...);
+				this->substitutionArray(matrix_, point_x_ - 1, row, max_x_, args_...);
 			}
 			return true;
 		}
@@ -223,11 +236,19 @@ namespace dtl::shape {
 		constexpr bool draw(Matrix_&& matrix_) const noexcept {
 			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
+		template<typename Matrix_, typename Function_>
+		constexpr bool drawOperator(Matrix_&& matrix_, Function_&& function_) const noexcept {
+			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+		}
 
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
+			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
 		}
 
 		//Normal
@@ -235,11 +256,19 @@ namespace dtl::shape {
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
+		template<typename Matrix_, typename Function_>
+		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
+			return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+		}
 
 		//LayerNormal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+		}
+		template<typename Matrix_, typename Function_>
+		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
+			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
 		}
 
 		//Array
@@ -247,67 +276,32 @@ namespace dtl::shape {
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 			return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
 		}
+		template<typename Matrix_, typename Function_>
+		constexpr bool drawOperatorArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
+			return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+		}
 
 
 		///// ダンジョン行列生成 /////
 
-		//STL
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_) const noexcept {
-			this->draw(matrix_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->draw(matrix_, args_...);
 			return matrix_;
 		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawArray(matrix_, args_...);
 			return matrix_;
 		}
-
-		//LayerSTL
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
-			this->draw(matrix_, layer_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawOperator(matrix_, args_...);
 			return matrix_;
 		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, layer_);
-			return matrix_;
-		}
-
-		//Normal
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->draw(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-
-		//LayerNormal
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->draw(matrix_, layer_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, layer_, max_x_, max_y_);
-			return matrix_;
-		}
-
-		//Array
-		template<typename Matrix_>
-		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->drawArray(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->drawArray(matrix_, max_x_, max_y_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawOperatorArray(matrix_, args_...);
 			return matrix_;
 		}
 
