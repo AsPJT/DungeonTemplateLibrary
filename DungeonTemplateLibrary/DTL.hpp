@@ -70,6 +70,11 @@
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
 
+///// エンティティ /////
+
+#include "Entity_MobManager.hpp"
+
+
 ///// 乱数 /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
@@ -95,9 +100,9 @@
 #include "Shape_PointGrid.hpp"
 //Shape_BorderOdd + Shape_PointGrid
 #include "Shape_PointGridWithBorder.hpp"
-//
-#include "Generator_Common_PointGridFieldPutBlock.hpp"
-
+//Shape_BorderOdd + Shape_PointGrid + Shape_RandomRect
+#include "Shape_PointGridAndSomeBlocksWithBorder.hpp"
+//指定マスに一定の確率で任意の値(1)を設置する。
 #include "Shape_RandomRect.hpp"
 
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
@@ -105,7 +110,7 @@
 //
 #include "Generator_Terrain_SimpleBiomeIsland.hpp"
 //
-#include "Generator_Terrain_SimpleCellularAutomatonIsland.hpp"
+#include "Shape_CellularAutomatonIsland.hpp"
 
 //
 #include "Shape_Point.hpp"

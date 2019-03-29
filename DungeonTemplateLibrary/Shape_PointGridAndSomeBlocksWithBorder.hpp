@@ -17,6 +17,7 @@
 #include <utility>
 #include "Shape_PointGrid.hpp"
 #include "Shape_BorderOdd.hpp"
+#include "Shape_RandomRect.hpp"
 
 namespace dtl::shape {
 
@@ -35,6 +36,7 @@ namespace dtl::shape {
 
 		///// メンバ変数 /////
 
+		dtl::shape::RandomRect<Matrix_Int_> randomRect{};
 		dtl::shape::BorderOdd<Matrix_Int_> borderOdd{};
 		dtl::shape::PointGrid<Matrix_Int_> pointGrid{};
 
@@ -65,6 +67,7 @@ namespace dtl::shape {
 		//STL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_) const noexcept {
+			randomRect.draw(matrix_);
 			pointGrid.draw(matrix_);
 			borderOdd.draw(matrix_);
 			return true;
@@ -73,6 +76,7 @@ namespace dtl::shape {
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
+			randomRect.draw(matrix_, layer_);
 			pointGrid.draw(matrix_, layer_);
 			borderOdd.draw(matrix_, layer_);
 			return true;
@@ -81,6 +85,7 @@ namespace dtl::shape {
 		//Normal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			randomRect.draw(matrix_, max_x_, max_y_);
 			pointGrid.draw(matrix_, max_x_, max_y_);
 			borderOdd.draw(matrix_, max_x_, max_y_);
 			return true;
@@ -89,6 +94,7 @@ namespace dtl::shape {
 		//LayerNormal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			randomRect.draw(matrix_, layer_, max_x_, max_y_);
 			pointGrid.draw(matrix_, layer_, max_x_, max_y_);
 			borderOdd.draw(matrix_, layer_, max_x_, max_y_);
 			return true;
@@ -97,6 +103,7 @@ namespace dtl::shape {
 		//Array
 		template<typename Matrix_>
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			randomRect.drawArray(matrix_, max_x_, max_y_);
 			pointGrid.drawArray(matrix_, max_x_, max_y_);
 			borderOdd.drawArray(matrix_, max_x_, max_y_);
 			return true;
@@ -170,7 +177,7 @@ namespace dtl::shape {
 
 		constexpr PointGridAndSomeBlocksWithBorder() noexcept = default;
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_) noexcept
-			:borderOdd(draw_value_), pointGrid(draw_value_) {}
+			:randomRect(draw_value_), borderOdd(draw_value_), pointGrid(draw_value_) {}
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const PairMatrixInt& pair_value_) noexcept
 			:borderOdd(pair_value_.second), pointGrid(pair_value_.first) {}
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const PairSize& length_) noexcept
@@ -187,8 +194,9 @@ namespace dtl::shape {
 			:borderOdd(position_, length_, pair_value_.second), pointGrid(position_, length_, pair_value_.first) {}
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 			:borderOdd(draw_value2_), pointGrid(draw_value_) {}
-		constexpr explicit PointGridAndSomeBlocksWithBorder(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
-			:borderOdd(width_, height_, draw_value_), pointGrid(width_, height_, draw_value_) {}
+		constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
+			:randomRect(draw_value3_), borderOdd(draw_value2_), pointGrid(draw_value_) {}
+
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const Index_Size width_, const Index_Size height_, const PairMatrixInt& pair_value_) noexcept
 			:borderOdd(width_, height_, pair_value_.second), pointGrid(width_, height_, pair_value_.first) {}
 		constexpr explicit PointGridAndSomeBlocksWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept

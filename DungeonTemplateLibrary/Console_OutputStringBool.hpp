@@ -298,6 +298,16 @@ namespace dtl::console {
 	using OutputStringBoolS16 = OutputStringBool<Matrix_Int_, std::u16string>;
 	template<typename Matrix_Int_>
 	using OutputStringBoolS32 = OutputStringBool<Matrix_Int_, std::u32string>;
+
+	using OutputStringBoolU8 = dtl::console::OutputStringBool<std::uint_fast8_t>;
+	using OutputStringBoolU16 = dtl::console::OutputStringBool<std::uint_fast16_t>;
+	using OutputStringBoolU32 = dtl::console::OutputStringBool<std::uint_fast32_t>;
+	using OutputStringBoolU64 = dtl::console::OutputStringBool<std::uint_fast64_t>;
+	using OutputStringBoolI8 = dtl::console::OutputStringBool<std::int_fast8_t>;
+	using OutputStringBoolI16 = dtl::console::OutputStringBool<std::int_fast16_t>;
+	using OutputStringBoolI32 = dtl::console::OutputStringBool<std::int_fast32_t>;
+	using OutputStringBoolI64 = dtl::console::OutputStringBool<std::int_fast64_t>;
+
 }
 
 

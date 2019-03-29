@@ -75,9 +75,6 @@
     <ClInclude Include="Beta_SimpleVoronoiIsland.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Generator_Common_PointGridFieldPutBlock.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Utility_Matrix.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -88,9 +85,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Utility_RandomBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Generator_Terrain_SimpleCellularAutomatonIsland.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Utility_CellularAutomaton.hpp">
@@ -147,6 +141,15 @@
     <ClInclude Include="Shape_RandomRect.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Shape_PointGridAndSomeBlocksWithBorder.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity_MobManager.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape_CellularAutomatonIsland.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt">
@@ -154,7 +157,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Test_030.cpp">
+    <ClCompile Include="20190329.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
