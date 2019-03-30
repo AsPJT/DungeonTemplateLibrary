@@ -16,6 +16,7 @@
 #include "Shape_Border.hpp"
 #include "Shape_RandomRect.hpp"
 #include "Utility_CellularAutomaton.hpp"
+#include "Base_Struct.hpp"
 
 namespace dtl::shape {
 

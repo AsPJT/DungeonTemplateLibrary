@@ -18,6 +18,7 @@
 #include "Shape_PointGrid.hpp"
 #include "Shape_BorderOdd.hpp"
 #include "Shape_RandomRect.hpp"
+#include "Base_Struct.hpp"
 
 namespace dtl::shape {
 

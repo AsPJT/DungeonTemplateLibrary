@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base_Struct.hpp" />
     <ClInclude Include="Beta_BoardGame.hpp" />
     <ClInclude Include="Console_OutputNumber.hpp" />
     <ClInclude Include="Console_OutputString.hpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Beta_DungeonPaint.hpp" />
     <ClInclude Include="Beta_DungeonRandom.hpp" />
     <ClInclude Include="Entity_MobManager.hpp" />
+    <ClInclude Include="Retouch_RemovePoint.hpp" />
     <ClInclude Include="Shape_OneLine.hpp" />
     <ClInclude Include="Beta_FractalIsland.hpp" />
     <ClInclude Include="Shape_Border.hpp" />

@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
+#include "Base_Struct.hpp"
 
 namespace dtl::shape {
 
@@ -233,22 +234,12 @@ namespace dtl::shape {
 		constexpr PointGrid() noexcept = default;
 		constexpr explicit PointGrid(const Matrix_Int_& draw_value_) noexcept
 			:draw_value(draw_value_) {}
-		constexpr explicit PointGrid(const PairSize& length_) noexcept
-			:width(length_.first), height(length_.second) {}
-		constexpr explicit PointGrid(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
-			:width(length_.first), height(length_.second),
-			draw_value(draw_value_) {}
-		constexpr explicit PointGrid(const PairSize& position_, const PairSize& length_) noexcept
-			:point_x(position_.first), point_y(position_.second),
-			width(length_.first), height(length_.second) {}
-		constexpr explicit PointGrid(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
-			:point_x(position_.first), point_y(position_.second),
-			width(length_.first), height(length_.second),
-			draw_value(draw_value_) {}
-		constexpr explicit PointGrid(const Index_Size width_, const Index_Size height_) noexcept
-			:width(width_), height(height_) {}
-		constexpr explicit PointGrid(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
-			:width(width_), height(height_),
+		constexpr explicit PointGrid(const dtl::base::MatrixRange& matrix_range_) noexcept
+			:point_x(matrix_range_.x), point_y(matrix_range_.y),
+			width(matrix_range_.w), height(matrix_range_.h) {}
+		constexpr explicit PointGrid(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			:point_x(matrix_range_.x), point_y(matrix_range_.y),
+			width(matrix_range_.w), height(matrix_range_.h),
 			draw_value(draw_value_) {}
 		constexpr explicit PointGrid(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),

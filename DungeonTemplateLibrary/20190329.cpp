@@ -18,8 +18,10 @@ int main() {
 	//Border<std::uint_fast8_t>(size_x / 2, 0, size_x / 2, size_y / 2, 2).draw(matrix);
 	//Border<std::uint_fast8_t>(0, size_y / 2, size_x / 2, size_y / 2, 3).draw(matrix);
 	//Border<std::uint_fast8_t>(size_x / 2, size_y / 2, size_x / 2, size_y / 2, 4).draw(matrix);
-	//OutputStringU8("・","■","▲","　","▲").draw(matrix);
+	
+	dtl::retouch::RemovePoint<std::uint_fast8_t>().draw(matrix);
+	OutputStringU8("・","■","▲","　","▲").draw(matrix);
 
-	dtl::tile::stl::outputTileCUI(matrix);
+	//dtl::tile::stl::outputTileCUI(matrix);
 
 }

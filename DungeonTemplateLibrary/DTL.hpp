@@ -9,6 +9,9 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 
+
+#include "Base_Struct.hpp"
+
 ///// β版テストライブラリ /////
 
 /*機能が不十分な関数やクラスを扱う。
@@ -73,6 +76,11 @@
 ///// エンティティ /////
 
 #include "Entity_MobManager.hpp"
+
+
+///// 修正 /////
+
+#include "Retouch_RemovePoint.hpp"
 
 
 ///// 乱数 /////
