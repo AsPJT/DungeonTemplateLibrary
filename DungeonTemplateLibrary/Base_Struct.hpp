@@ -50,4 +50,4 @@ namespace dtl::base {
 
 }
 
-#endif
+#endif //Included Dungeon Template Library

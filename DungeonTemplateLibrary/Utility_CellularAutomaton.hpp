@@ -40,7 +40,7 @@ namespace dtl::utility {
 
 		template<typename Matrix_>
 		constexpr inline void switchSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			switch (dtl::random::mt32bit.rand(4)) {
+			switch (dtl::random::mt32bit_4.get()) {
 			case 0:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ - 1]; break;
 			case 1:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1]; break;
 			case 2:matrix_[point_y_][point_x_] = matrix_[point_y_ - 1][point_x_]; break;
@@ -49,7 +49,7 @@ namespace dtl::utility {
 		}
 		template<typename Matrix_>
 		constexpr inline void switchArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			switch (dtl::random::mt32bit.rand(4)) {
+			switch (dtl::random::mt32bit_4.get()) {
 			case 0:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ - 1]; break;
 			case 1:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1]; break;
 			case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ - 1 * max_x_ + point_x_]; break;
@@ -58,7 +58,7 @@ namespace dtl::utility {
 		}
 		template<typename Matrix_>
 		constexpr inline void switchLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			switch (dtl::random::mt32bit.rand(4)) {
+			switch (dtl::random::mt32bit_4.get()) {
 			case 0:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ - 1][layer_]; break;
 			case 1:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_]; break;
 			case 2:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ - 1][point_x_][layer_]; break;

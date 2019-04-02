@@ -37,7 +37,7 @@ namespace dtl::random {
 		}
 
 		//通常の乱数
-		template<typename Random_Int_>
+		template<typename Random_Int_= std::uint_fast32_t>
 		[[nodiscard]] Random_Int_ rand() noexcept {
 			return static_cast<Random_Int_>(mt());
 		}
@@ -67,6 +67,26 @@ namespace dtl::random {
 
 	};
 	static thread_local dtl::random::MersenneTwister_32bit mt32bit;
+
+	class MT32bit_4 {
+	private:
+		std::size_t counter{ 16 };
+		std::uint_fast32_t random_num{};
+	public:
+		template<typename Random_Int_ = std::uint_fast32_t>
+		[[nodiscard]] Random_Int_ get() noexcept {
+			if (counter >= 16) {
+				random_num = dtl::random::mt32bit.rand();
+				counter = 0;
+			}
+			else ++counter;
+
+			auto tmp{ random_num & 3 };
+			random_num >>= 2;
+			return static_cast<Random_Int_>(tmp);
+		}
+	};
+	static thread_local dtl::random::MT32bit_4 mt32bit_4;
 
 } //namespace
 

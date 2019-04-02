@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -17,19 +17,19 @@
 
 namespace dtl::utility {
 
-	//ƒ}ƒX‚ğw’è‚µ‚½”’l‚Å–„‚ß‚é
+	//ãƒã‚¹ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã‚‹
 	template<typename Matrix_Int_>
 	class Init {
 	private:
 
 
-		///// ƒGƒCƒŠƒAƒX /////
+		///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
 
 		using Index_Size = std::size_t;
 		using PairSize = std::pair<Index_Size, Index_Size>;
 
 
-		///// ƒƒ“ƒo•Ï” /////
+		///// ãƒ¡ãƒ³ãƒå¤‰æ•° /////
 
 		Index_Size point_x{};
 		Index_Size point_y{};
@@ -38,7 +38,7 @@ namespace dtl::utility {
 		Matrix_Int_ draw_value{};
 
 
-		///// ‘ã“üˆ— /////
+		///// ä»£å…¥å‡¦ç† /////
 
 		template<typename Matrix_>
 		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
@@ -67,7 +67,7 @@ namespace dtl::utility {
 		}
 
 
-		///// Šî–{ˆ— /////
+		///// åŸºæœ¬å‡¦ç† /////
 
 		//STL
 		template<typename Matrix_, typename ...Args_>
@@ -131,7 +131,7 @@ namespace dtl::utility {
 	public:
 
 
-		///// î•ñæ“¾ /////
+		///// æƒ…å ±å–å¾— /////
 
 		[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
 			return this->point_x;
@@ -150,7 +150,7 @@ namespace dtl::utility {
 		}
 
 
-		///// ¶¬ŒÄ‚Ño‚µ /////
+		///// ç”Ÿæˆå‘¼ã³å‡ºã— /////
 
 		//STL
 		template<typename Matrix_>
@@ -203,7 +203,7 @@ namespace dtl::utility {
 		}
 
 
-		///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
+		///// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡Œåˆ—ç”Ÿæˆ /////
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
@@ -227,7 +227,7 @@ namespace dtl::utility {
 		}
 
 
-		///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+		///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
 
 		constexpr Init() noexcept = default;
 		constexpr explicit Init(const Matrix_Int_& draw_value_) noexcept
@@ -271,10 +271,10 @@ namespace dtl::utility {
 
 
 
-//STLƒf[ƒ^
+//STLãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::stl {
 
-	//ƒ_ƒ“ƒWƒ‡ƒ““à‚Ì’l‚ğ‰Šú‰»‚·‚é
+	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å†…ã®å€¤ã‚’åˆæœŸåŒ–ã™ã‚‹
 	template<typename Matrix_>
 	[[deprecated("please use dtl::utility::Init class")]] constexpr void init(Matrix_& matrix_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
@@ -287,7 +287,7 @@ namespace dtl::utility::stl {
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col] = value_;
 	}
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>
@@ -318,7 +318,7 @@ namespace dtl::utility::stl {
 
 } //namespace
 
-//’Êíƒf[ƒ^
+//é€šå¸¸ãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::normal {
 
 	template<typename Matrix_>
@@ -334,7 +334,7 @@ namespace dtl::utility::normal {
 				matrix_[row][col] = value_;
 	}
 
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>
@@ -365,7 +365,7 @@ namespace dtl::utility::normal {
 
 } //namespace
 
-//”z—ñƒf[ƒ^
+//é…åˆ—ãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::array {
 
 	template<typename Matrix_>
@@ -381,7 +381,7 @@ namespace dtl::utility::array {
 				matrix_[row*x_ + col] = value_;
 	}
 
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>
@@ -412,10 +412,10 @@ namespace dtl::utility::array {
 
 } //namespace
 
-//”ÍˆÍforƒf[ƒ^
+//ç¯„å›²forãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::rangeBasedFor {
 
-	//2’l‰»ˆ—
+	//2å€¤åŒ–å‡¦ç†
 	template<typename Matrix_>
 	[[deprecated("please use dtl::utility::Init class")]] constexpr void init(Matrix_& matrix_) noexcept {
 		for (auto&& row : matrix_)
@@ -428,7 +428,7 @@ namespace dtl::utility::rangeBasedFor {
 			for (auto&& col : row)
 				col = value_;
 	}
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>
@@ -459,10 +459,10 @@ namespace dtl::utility::rangeBasedFor {
 
 } //namespace
 
-//ƒŒƒCƒ„[STLƒf[ƒ^
+//ãƒ¬ã‚¤ãƒ¤ãƒ¼STLãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::layer::stl {
 
-	//ƒ_ƒ“ƒWƒ‡ƒ““à‚Ì’l‚ğ‰Šú‰»‚·‚é
+	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å†…ã®å€¤ã‚’åˆæœŸåŒ–ã™ã‚‹
 	template<typename Matrix_>
 	[[deprecated("please use dtl::utility::Init class")]] constexpr void init(Matrix_& matrix_, const std::size_t layer_) noexcept {
 		for (std::size_t row{}; row < matrix_.size(); ++row)
@@ -475,7 +475,7 @@ namespace dtl::utility::layer::stl {
 			for (std::size_t col{}; col < matrix_[row].size(); ++col)
 				matrix_[row][col][layer_] = value_;
 	}
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>
@@ -507,7 +507,7 @@ namespace dtl::utility::layer::stl {
 
 } //namespace
 
-//ƒŒƒCƒ„[’Êíƒf[ƒ^
+//ãƒ¬ã‚¤ãƒ¤ãƒ¼é€šå¸¸ãƒ‡ãƒ¼ã‚¿
 namespace dtl::utility::layer::normal {
 
 	template<typename Matrix_>
@@ -522,7 +522,7 @@ namespace dtl::utility::layer::normal {
 			for (std::size_t col{}; col < x_; ++col)
 				matrix_[row][col][layer_] = value_;
 	}
-	//ƒNƒ‰ƒX”Å
+	//ã‚¯ãƒ©ã‚¹ç‰ˆ
 	class Init {
 	public:
 		template<typename Matrix_>

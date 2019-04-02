@@ -100,6 +100,10 @@
 #include "Shape_Border.hpp"
 //Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
 #include "Shape_BorderOdd.hpp"
+//
+#include "Shape_CellularAutomatonIsland.hpp"
+//
+#include "Shape_MixRect.hpp"
 //指定マスの全てに任意の値(1)を設置する。
 #include "Shape_Rect.hpp"
 //[削除予定]
@@ -118,9 +122,11 @@
 //
 #include "Generator_Terrain_SimpleBiomeIsland.hpp"
 //
-#include "Shape_CellularAutomatonIsland.hpp"
+
 
 //
 #include "Shape_Point.hpp"
+
+#include "Camera_MatrixView.hpp"
 
 #endif //Included Dungeon Template Library

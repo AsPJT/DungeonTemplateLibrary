@@ -245,6 +245,21 @@ public:
 
 };
 
+class CollisionDetectionTrue {
+public:
+	template<typename Matrix_>
+	void operator()([[maybe_unused]] const Matrix_& matrix_, [[maybe_unused]] const std::int_fast32_t x_, [[maybe_unused]] const std::int_fast32_t y_, std::bitset<8>& dir_, [[maybe_unused]] const std::int_fast32_t mob_x_, [[maybe_unused]] const std::int_fast32_t mob_y_) const noexcept {
+		dir_[direction_array_down] = true;
+		dir_[direction_array_up] = true;
+		dir_[direction_array_left] = true;
+		dir_[direction_array_right] = true;
+		dir_[direction_array_down_left] = true;
+		dir_[direction_array_down_right] = true;
+		dir_[direction_array_up_left] = true;
+		dir_[direction_array_up_right] = true;
+	}
+};
+
 class CollisionDetectionBinarization {
 public:
 	template<typename Matrix_>
