@@ -66,36 +66,36 @@ namespace dtl::shape {
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool draw(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.draw(matrix_, std::forward<Args_>(args_)...);
-			border.draw(matrix_, std::forward<Args_>(args_)...);
+			randomRect.draw(matrix_, args_...);
+			border.draw(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, std::forward<Args_>(args_)...);
+				cellularAutomation.draw(matrix_, args_...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.drawOperator(matrix_, std::forward<Args_>(args_)...);
-			border.drawOperator(matrix_, std::forward<Args_>(args_)...);
+			randomRect.drawOperator(matrix_, args_...);
+			border.drawOperator(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, std::forward<Args_>(args_)...);
+				cellularAutomation.draw(matrix_, args_...);
 			return true;
 		}
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.drawArray(matrix_, std::forward<Args_>(args_)...);
-			border.drawArray(matrix_, std::forward<Args_>(args_)...);
+			randomRect.drawArray(matrix_, args_...);
+			border.drawArray(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, std::forward<Args_>(args_)...);
+				cellularAutomation.draw(matrix_, args_...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
-			border.drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
+			randomRect.drawOperatorArray(matrix_, args_...);
+			border.drawOperatorArray(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, std::forward<Args_>(args_)...);
+				cellularAutomation.draw(matrix_, args_...);
 			return true;
 		}
 
@@ -105,22 +105,22 @@ namespace dtl::shape {
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->draw(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawArray(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 
 

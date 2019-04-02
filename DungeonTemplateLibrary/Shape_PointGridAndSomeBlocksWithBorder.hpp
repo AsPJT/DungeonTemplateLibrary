@@ -65,112 +65,59 @@ namespace dtl::shape {
 
 		///// 生成呼び出し /////
 
-		//STL
-		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_) const noexcept {
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool draw(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			randomRect.draw(matrix_);
-			pointGrid.draw(matrix_);
-			borderOdd.draw(matrix_);
+			pointGrid.draw(matrix_, args_...);
+			borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
-
-		//LayerSTL
-		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
-			randomRect.draw(matrix_, layer_);
-			pointGrid.draw(matrix_, layer_);
-			borderOdd.draw(matrix_, layer_);
-			return true;
-		}
-
-		//Normal
-		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			randomRect.draw(matrix_, max_x_, max_y_);
-			pointGrid.draw(matrix_, max_x_, max_y_);
-			borderOdd.draw(matrix_, max_x_, max_y_);
-			return true;
-		}
-
-		//LayerNormal
-		template<typename Matrix_>
-		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			randomRect.draw(matrix_, layer_, max_x_, max_y_);
-			pointGrid.draw(matrix_, layer_, max_x_, max_y_);
-			borderOdd.draw(matrix_, layer_, max_x_, max_y_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			randomRect.draw(matrix_);
+			pointGrid.drawOperator(matrix_, args_...);
+			borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//Array
-		template<typename Matrix_>
-		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			randomRect.drawArray(matrix_, max_x_, max_y_);
-			pointGrid.drawArray(matrix_, max_x_, max_y_);
-			borderOdd.drawArray(matrix_, max_x_, max_y_);
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			randomRect.draw(matrix_);
+			pointGrid.drawArray(matrix_, args_...);
+			borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+			return true;
+		}
+		template<typename Matrix_, typename ...Args_>
+		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			randomRect.draw(matrix_);
+			pointGrid.drawOperatorArray(matrix_, args_...);
+			borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 
 		///// ダンジョン行列生成 /////
 
-		//STL
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_) const noexcept {
-			this->draw(matrix_);
-			return matrix_;
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->draw(matrix_, std::forward<Args_>(args_)...);
+			return std::forward<Matrix_>(matrix_);
 		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_);
-			return matrix_;
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawArray(matrix_, std::forward<Args_>(args_)...);
+			return std::forward<Matrix_>(matrix_);
 		}
-
-		//LayerSTL
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
-			this->draw(matrix_, layer_);
-			return matrix_;
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
+			return std::forward<Matrix_>(matrix_);
 		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, layer_);
-			return matrix_;
-		}
-
-		//Normal
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->draw(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-
-		//LayerNormal
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->draw(matrix_, layer_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto create(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->draw(matrix_, layer_, max_x_, max_y_);
-			return matrix_;
-		}
-
-		//Array
-		template<typename Matrix_>
-		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			this->drawArray(matrix_, max_x_, max_y_);
-			return matrix_;
-		}
-		template<typename Matrix_>
-		constexpr auto createArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, bool& return_value_) const noexcept {
-			return_value_ = this->drawArray(matrix_, max_x_, max_y_);
-			return matrix_;
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
+			return std::forward<Matrix_>(matrix_);
 		}
 
 

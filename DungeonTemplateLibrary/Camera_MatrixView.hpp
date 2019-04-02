@@ -75,6 +75,7 @@ namespace dtl::camera {
 		}
 
 		//コンストラクタ
+		constexpr MatrixView() noexcept = default;
 		constexpr MatrixView(const std::int_fast32_t window_width_, const std::int_fast32_t window_height_, const std::int_fast32_t pixel_width_, const std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept
 			:window_width(window_width_),
 			window_height(window_height_),
@@ -90,7 +91,22 @@ namespace dtl::camera {
 			cell_height(window_height_ / static_cast<double>(pixel_height_)),
 			target_x(target_x_),
 			target_y(target_y_) {}
-
+		void setInit(const std::int_fast32_t window_width_, const std::int_fast32_t window_height_, const std::int_fast32_t pixel_width_, const std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept {
+			window_width = window_width_;
+			window_height = window_height_;
+			window_start_x = 0;
+			window_start_y = 0;
+			window_end_x = window_width_;
+			window_end_y = window_height_;
+			window_center_x = window_width_ / 2;
+			window_center_y = window_height_ / 2;
+			pixel_width = pixel_width_;
+			pixel_height = pixel_height_;
+			cell_width = window_width_ / static_cast<double>(pixel_width_);
+			cell_height = window_height_ / static_cast<double>(pixel_height_);
+			target_x = target_x_;
+			target_y = target_y_;
+		}
 
 
 		template<typename Matrix_, typename View_Class_>

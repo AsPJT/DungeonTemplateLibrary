@@ -101,7 +101,11 @@ namespace dtl::tile {
 	//Wolfオートタイル形式の地形タイプを返す
 	template<typename Matrix_Int_>
 	[[nodiscard]] constexpr std::size_t getWolfAutoTileType(const Matrix_Int_ center_, const Matrix_Int_ next1_, const Matrix_Int_ next2_, const Matrix_Int_ next3_) noexcept {
-		return (center_ == next1_) ? ((center_ == next2_) ? ((center_ == next3_) ? wolf_auto_tile_type_all : wolf_auto_tile_type_cross) : wolf_auto_tile_type_width) : ((center_ == next2_) ? wolf_auto_tile_type_height : wolf_auto_tile_type_circle);
+		return (center_ == next1_) ?
+			((center_ == next2_) ?
+			((center_ == next3_) ? wolf_auto_tile_type_all : wolf_auto_tile_type_cross)
+				: wolf_auto_tile_type_width)
+			: ((center_ == next2_) ? wolf_auto_tile_type_height : wolf_auto_tile_type_circle);
 	}
 
 	//Wolfオートタイル形式の配列値を返す

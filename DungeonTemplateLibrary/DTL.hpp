@@ -120,7 +120,7 @@
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
 //
-#include "Generator_Terrain_SimpleBiomeIsland.hpp"
+#include "Shape_CellularAutomatonMixIsland.hpp"
 //
 
 

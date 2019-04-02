@@ -161,7 +161,7 @@
     <ClInclude Include="Beta_HorizontalScroll.hpp" />
     <ClInclude Include="Beta_MazeDig.hpp" />
     <ClInclude Include="Shape_PointGridAndSomeBlocksWithBorder.hpp" />
-    <ClInclude Include="Generator_Terrain_SimpleBiomeIsland.hpp" />
+    <ClInclude Include="Shape_CellularAutomatonMixIsland.hpp" />
     <ClInclude Include="Shape_CellularAutomatonIsland.hpp" />
     <ClInclude Include="Random_MersenneTwister32bit.hpp" />
     <ClInclude Include="Beta_RogueLike.hpp" />

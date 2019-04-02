@@ -84,14 +84,14 @@ namespace dtl::retouch {
 		constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < matrix_[row].size() - 1; ++col)
-					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionSTL(matrix_, col, row, args_...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawWidthSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < matrix_[row].size() - 1 && col < point_x_ - 1; ++col)
-					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionSTL(matrix_, col, row, args_...);
 			return true;
 		}
 
@@ -100,14 +100,14 @@ namespace dtl::retouch {
 		constexpr bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < matrix_[row].size() - 1; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionLayer(matrix_, layer_, col, row, args_...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawLayerWidthSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < matrix_[row].size() - 1 && col < point_x_ - 1; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionLayer(matrix_, layer_, col, row, args_...);
 			return true;
 		}
 
@@ -116,7 +116,7 @@ namespace dtl::retouch {
 		constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < point_x_ - 1; ++col)
-					this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionSTL(matrix_, col, row, args_...);
 			return true;
 		}
 
@@ -125,7 +125,7 @@ namespace dtl::retouch {
 		constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < point_x_ - 1; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+					this->substitutionLayer(matrix_, layer_, col, row, args_...);
 			return true;
 		}
 
@@ -134,7 +134,7 @@ namespace dtl::retouch {
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&&... args_) const noexcept {
 			for (Index_Size row{ point_y + 1 }; row < point_y_ - 1; ++row)
 				for (Index_Size col{ point_x + 1 }; col < point_x_ - 1; ++col)
-					this->substitutionArray(matrix_, col, row, max_x_, std::forward<Args_>(args_)...);
+					this->substitutionArray(matrix_, col, row, max_x_, args_...);
 			return true;
 		}
 
@@ -165,51 +165,51 @@ namespace dtl::retouch {
 		//STL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_) const noexcept {
-			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+			return (width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr bool drawOperator(Matrix_&& matrix_, Function_&& function_) const noexcept {
-			return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+			return (width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
 		}
 
 		//LayerSTL
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
-			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+			return (width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
-			return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+			return (width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
 		}
 
 		//Normal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+			return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-			return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+			return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
 		}
 
 		//LayerNormal
 		template<typename Matrix_>
 		constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+			return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr bool drawOperator(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-			return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+			return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
 		}
 
 		//Array
 		template<typename Matrix_>
 		constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+			return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr bool drawOperatorArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-			return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+			return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
 		}
 
 
@@ -218,22 +218,22 @@ namespace dtl::retouch {
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->draw(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawArray(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
 			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
-			return matrix_;
+			return std::forward<Matrix_>(matrix_);
 		}
 
 

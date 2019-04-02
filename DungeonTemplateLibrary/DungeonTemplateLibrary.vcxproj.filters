@@ -96,9 +96,6 @@
     <ClInclude Include="Utility_RandomInnerRandomValue.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Generator_Terrain_SimpleBiomeIsland.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Utility_Replace.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -163,6 +160,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Camera_MatrixView.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape_CellularAutomatonMixIsland.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
