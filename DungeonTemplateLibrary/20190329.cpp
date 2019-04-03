@@ -14,5 +14,5 @@ int main() {
 	dtl::shape::Rect<shape_t>({ 1,1,4,4 }, 1).draw(matrix);
 
 	dtl::console::OutputNumber<shape_t>(" [", "],").draw(matrix);
-
+	
 }

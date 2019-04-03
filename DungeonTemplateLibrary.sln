@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DungeonTemplateLibrary", "DungeonTemplateLibrary\DungeonTemplateLibrary.vcxproj", "{4F15A4A0-680A-4269-B271-A0C7B853D493}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DungeonTemplateLibrary_C99", "DungeonTemplateLibrary_C99\DungeonTemplateLibrary_C99.vcxproj", "{F246A85B-6A4B-4FEB-B5CB-09BDDF7EE0FA}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimeMeasurement", "TimeMeasurement\TimeMeasurement.vcxproj", "{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample", "Sample\Sample.vcxproj", "{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,22 +31,6 @@ Global
 		{F246A85B-6A4B-4FEB-B5CB-09BDDF7EE0FA}.Release|x64.Build.0 = Release|x64
 		{F246A85B-6A4B-4FEB-B5CB-09BDDF7EE0FA}.Release|x86.ActiveCfg = Release|Win32
 		{F246A85B-6A4B-4FEB-B5CB-09BDDF7EE0FA}.Release|x86.Build.0 = Release|Win32
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Debug|x64.ActiveCfg = Debug|x64
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Debug|x64.Build.0 = Debug|x64
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Debug|x86.ActiveCfg = Debug|Win32
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Debug|x86.Build.0 = Debug|Win32
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Release|x64.ActiveCfg = Release|x64
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Release|x64.Build.0 = Release|x64
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Release|x86.ActiveCfg = Release|Win32
-		{DA8E88A1-F045-45A0-A3AC-D389377FC3A8}.Release|x86.Build.0 = Release|Win32
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Debug|x64.ActiveCfg = Debug|x64
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Debug|x64.Build.0 = Debug|x64
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Debug|x86.ActiveCfg = Debug|Win32
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Debug|x86.Build.0 = Debug|Win32
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Release|x64.ActiveCfg = Release|x64
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Release|x64.Build.0 = Release|x64
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Release|x86.ActiveCfg = Release|Win32
-		{1878E7E4-4210-4EDF-B3A7-8E342C1DE8E6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
