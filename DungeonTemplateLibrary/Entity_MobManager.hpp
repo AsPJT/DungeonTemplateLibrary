@@ -50,6 +50,16 @@ namespace dtl::entity {
 		direction_down_right
 	};
 
+	constexpr inline double getSeconds(const double m_fps_, const double fps_ = 60.0) noexcept {
+		return ((fps_ == 0.0) ? 0.0 : m_fps_ / fps_);
+	}
+	constexpr inline double getDSeconds(const double fps_ = 60.0) noexcept {
+		return ((fps_ == 0.0) ? 0.0 : 1.0 / fps_);
+	}
+	constexpr inline std::uint_fast64_t getMicroseconds(const double m_fps_, const double fps_ = 60.0) noexcept {
+		return ((fps_ == 0.0) ? 0 : static_cast<std::uint_fast64_t>(m_fps_ / fps_ * 1'000'000.0 + 0.5));
+	}
+
 	class MobManager {
 	private:
 
@@ -57,7 +67,6 @@ namespace dtl::entity {
 		double small_x{}, small_y{}, walk_speed{ 0.1 };
 		std::uint_fast8_t status_x{ player_status_stay }, status_y{ player_status_stay };
 		std::bitset<8> can_walk_direction{ {} };
-		bool can_walk{};
 
 	public:
 		constexpr explicit MobManager() noexcept :can_walk_direction(0b11111111) {}

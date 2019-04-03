@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_REMOVE_POINT
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_REMOVE_POINT
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_BURY_POINT
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_BURY_POINT
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -20,7 +20,7 @@ namespace dtl::retouch {
 
 	//マスを指定した数値で埋める
 	template<typename Matrix_Int_>
-	class RemovePoint {
+	class BuryPoint {
 	private:
 
 
@@ -42,33 +42,33 @@ namespace dtl::retouch {
 
 		template<typename Matrix_>
 		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (matrix_[point_y_][point_x_ - 1] == matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_ + 1] == matrix_[point_y_ - 1][point_x_] && matrix_[point_y_ - 1][point_x_] == matrix_[point_y_ + 1][point_x_])
+			if (matrix_[point_y_][point_x_] != matrix_[point_y_][point_x_ - 1] && matrix_[point_y_][point_x_] != matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_] != matrix_[point_y_ - 1][point_x_] && matrix_[point_y_][point_x_] != matrix_[point_y_ + 1][point_x_])
 				matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1];
 		}
 		template<typename Matrix_>
 		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ - 1 * max_x_ + point_x_] == matrix_[point_y_ + 1 * max_x_ + point_x_])
+			if (matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ * max_x_ + point_x_ - 1] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ + 1 * max_x_ + point_x_])
 				matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
 		}
 		template<typename Matrix_>
 		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			if (matrix_[point_y_][point_x_ - 1][layer_] == matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_ + 1][layer_] == matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_ - 1][point_x_][layer_] == matrix_[point_y_ + 1][point_x_][layer_])
+			if (matrix_[point_y_][point_x_][layer_] != matrix_[point_y_][point_x_ - 1][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_ + 1][point_x_][layer_])
 				matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_];
 		}
 
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-			if (matrix_[point_y_][point_x_ - 1] == matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_ + 1] == matrix_[point_y_ - 1][point_x_] && matrix_[point_y_ - 1][point_x_] == matrix_[point_y_ + 1][point_x_] && function_(matrix_[point_y_][point_x_]))
+			if (matrix_[point_y_][point_x_] != matrix_[point_y_][point_x_ - 1] && matrix_[point_y_][point_x_] != matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_] != matrix_[point_y_ - 1][point_x_] && matrix_[point_y_][point_x_] != matrix_[point_y_ + 1][point_x_] && function_(matrix_[point_y_][point_x_]))
 				matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1];
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ - 1 * max_x_ + point_x_] == matrix_[point_y_ + 1 * max_x_ + point_x_] && function_(matrix_[point_y_][point_x_]))
+			if (matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ * max_x_ + point_x_ - 1] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ * max_x_ + point_x_] != matrix_[point_y_ + 1 * max_x_ + point_x_] && function_(matrix_[point_y_][point_x_]))
 				matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-			if (matrix_[point_y_][point_x_ - 1][layer_] == matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_ + 1][layer_] == matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_ - 1][point_x_][layer_] == matrix_[point_y_ + 1][point_x_][layer_] && function_(matrix_[point_y_][point_x_]))
+			if (matrix_[point_y_][point_x_][layer_] != matrix_[point_y_][point_x_ - 1][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_][point_x_][layer_] != matrix_[point_y_ + 1][point_x_][layer_] && function_(matrix_[point_y_][point_x_]))
 				matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_];
 		}
 
@@ -235,13 +235,13 @@ namespace dtl::retouch {
 
 		///// コンストラクタ /////
 
-		constexpr RemovePoint() noexcept = default;
-		constexpr explicit RemovePoint(const PairSize& length_) noexcept
+		constexpr BuryPoint() noexcept = default;
+		constexpr explicit BuryPoint(const PairSize& length_) noexcept
 			:width(length_.first), height(length_.second) {}
-		constexpr explicit RemovePoint(const PairSize& position_, const PairSize& length_) noexcept
+		constexpr explicit BuryPoint(const PairSize& position_, const PairSize& length_) noexcept
 			:point_x(position_.first), point_y(position_.second),
 			width(length_.first), height(length_.second) {}
-		constexpr explicit RemovePoint(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
+		constexpr explicit BuryPoint(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
 	};

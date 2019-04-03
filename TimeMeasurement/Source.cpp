@@ -8,8 +8,6 @@
 template<typename Matrix_,typename Dungeon_Generation_>
 constexpr void loop(Matrix_& matrix_, Dungeon_Generation_& dungeon_generation_, const std::size_t n_) noexcept {
 
-
-
 	for (std::size_t i{}; i < n_; ++i) {
 		dtl::generator::common::stl::initDungeon(matrix_);
 		dungeon_generation_.create(matrix_);

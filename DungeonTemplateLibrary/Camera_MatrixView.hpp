@@ -110,7 +110,7 @@ namespace dtl::camera {
 
 
 		template<typename Matrix_, typename View_Class_>
-		constexpr MatrixViewRect draw(Matrix_&& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_&& view_class_) const noexcept {
+		constexpr auto draw(Matrix_&& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_&& view_class_) const noexcept {
 			if (x_ == 0 || y_ == 0) return MatrixViewRect();
 			const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(target_x) };
 			const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(target_y) };

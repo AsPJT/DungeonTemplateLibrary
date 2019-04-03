@@ -165,6 +165,9 @@
     <ClInclude Include="Shape_CellularAutomatonMixIsland.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Retouch_BuryPoint.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="namespace.txt">
