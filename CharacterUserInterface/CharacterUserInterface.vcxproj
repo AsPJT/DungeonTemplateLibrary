@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,97 +18,38 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Base\Struct.hpp" />
-    <ClInclude Include="Beta\BoardGame.hpp" />
-    <ClInclude Include="Beta\DungeonBinarization.hpp" />
-    <ClInclude Include="Beta\DungeonFile.hpp" />
-    <ClInclude Include="Beta\DungeonMatrix.hpp" />
-    <ClInclude Include="Beta\DungeonNoise.hpp" />
-    <ClInclude Include="Beta\DungeonOutput.hpp" />
-    <ClInclude Include="Beta\DungeonPaint.hpp" />
-    <ClInclude Include="Beta\DungeonRandom.hpp" />
-    <ClInclude Include="Beta\FractalIsland.hpp" />
-    <ClInclude Include="Beta\HorizontalScroll.hpp" />
-    <ClInclude Include="Beta\MazeDig.hpp" />
-    <ClInclude Include="Beta\Rect.hpp" />
-    <ClInclude Include="Beta\RogueLike.hpp" />
-    <ClInclude Include="Beta\SimpleRogueLike.hpp" />
-    <ClInclude Include="Beta\SimpleVoronoiIsland.hpp" />
-    <ClInclude Include="Camera\MatrixView.hpp" />
-    <ClInclude Include="Console\OutputNumber.hpp" />
-    <ClInclude Include="Console\OutputString.hpp" />
-    <ClInclude Include="Console\OutputStringBool.hpp" />
-    <ClInclude Include="DTL.hpp" />
-    <ClInclude Include="Entity\MobManager.hpp" />
-    <ClInclude Include="Random\MersenneTwister32bit.hpp" />
-    <ClInclude Include="Retouch\BuryPoint.hpp" />
-    <ClInclude Include="Retouch\RemovePoint.hpp" />
-    <ClInclude Include="Shape\Border.hpp" />
-    <ClInclude Include="Shape\BorderOdd.hpp" />
-    <ClInclude Include="Shape\CellularAutomatonIsland.hpp" />
-    <ClInclude Include="Shape\CellularAutomatonMixIsland.hpp" />
-    <ClInclude Include="Shape\HalfMixRect.hpp" />
-    <ClInclude Include="Shape\MixRect.hpp" />
-    <ClInclude Include="Shape\OneLine.hpp" />
-    <ClInclude Include="Shape\Point.hpp" />
-    <ClInclude Include="Shape\PointGrid.hpp" />
-    <ClInclude Include="Shape\PointGridAndSomeBlocksWithBorder.hpp" />
-    <ClInclude Include="Shape\PointGridWithBorder.hpp" />
-    <ClInclude Include="Shape\RandomRect.hpp" />
-    <ClInclude Include="Shape\Rect.hpp" />
-    <ClInclude Include="Storage\FileCSV.hpp" />
-    <ClInclude Include="Utility\Binarization.hpp" />
-    <ClInclude Include="Utility\Binarization_Over.hpp" />
-    <ClInclude Include="Utility\CellularAutomaton.hpp" />
-    <ClInclude Include="Utility\CharCast.hpp" />
-    <ClInclude Include="Utility\Copy.hpp" />
-    <ClInclude Include="Utility\Init.hpp" />
-    <ClInclude Include="Utility\IsOutputCast.hpp" />
-    <ClInclude Include="Utility\Matrix.hpp" />
-    <ClInclude Include="Utility\NoiseBool.hpp" />
-    <ClInclude Include="Utility\NoiseShoreBool.hpp" />
-    <ClInclude Include="Utility\RandomBool.hpp" />
-    <ClInclude Include="Utility\RandomInnerBool.hpp" />
-    <ClInclude Include="Utility\RandomInnerRandomValue.hpp" />
-    <ClInclude Include="Utility\Replace.hpp" />
-    <ClInclude Include="Utility\SetItem.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{4F15A4A0-680A-4269-B271-A0C7B853D493}</ProjectGuid>
-    <RootNamespace>DungeonTemplateLibrary</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{47506EE8-B774-46EF-9363-82A520A4B997}</ProjectGuid>
+    <RootNamespace>CharacterUserInterface</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -129,15 +70,30 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -146,13 +102,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -161,43 +115,24 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <SubSystem>Console</SubSystem>
-      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -10,7 +10,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 
 
-#include "Base_Struct.hpp"
+#include <Base/Struct.hpp>
 
 ///// β版テストライブラリ /////
 
@@ -22,26 +22,26 @@
 
 ///// 関連ツール /////
 
-#include "Beta_DungeonBinarization.hpp"
-#include "Beta_DungeonNoise.hpp"
-#include "Beta_DungeonOutput.hpp"
-#include "Beta_DungeonRandom.hpp"
-#include "Beta_DungeonFile.hpp"
-#include "Beta_DungeonMatrix.hpp"
+#include <Beta/DungeonBinarization.hpp>
+#include <Beta/DungeonNoise.hpp>
+#include <Beta/DungeonOutput.hpp>
+#include <Beta/DungeonRandom.hpp>
+#include <Beta/DungeonFile.hpp>
+#include <Beta/DungeonMatrix.hpp>
 
-#include "Storage_FileCSV.hpp"
+#include <Storage/FileCSV.hpp>
 
 ///// ダンジョン /////
 
-#include "Beta_FractalIsland.hpp"
-#include "Beta_MazeDig.hpp"
-#include "Beta_RogueLike.hpp"
-#include "Beta_SimpleRogueLike.hpp"
-#include "Beta_SimpleVoronoiIsland.hpp"
-#include "Beta_BoardGame.hpp"
-#include "Beta_HorizontalScroll.hpp"
+#include <Beta/FractalIsland.hpp>
+#include <Beta/MazeDig.hpp>
+#include <Beta/RogueLike.hpp>
+#include <Beta/SimpleRogueLike.hpp>
+#include <Beta/SimpleVoronoiIsland.hpp>
+#include <Beta/BoardGame.hpp>
+#include <Beta/HorizontalScroll.hpp>
 //ペイント
-#include "Beta_DungeonPaint.hpp"
+#include <Beta/DungeonPaint.hpp>
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 
 
@@ -52,11 +52,11 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 //指定マスの値を数値で出力する。
-#include "Console_OutputNumber.hpp"
+#include <Console/OutputNumber.hpp>
 //指定マスの値を指定した文字で出力する。
-#include "Console_OutputString.hpp"
+#include <Console/OutputString.hpp>
 //指定マスの値(2値)を指定した文字で出力する。
-#include "Console_OutputStringBool.hpp"
+#include <Console/OutputStringBool.hpp>
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 
 
@@ -64,25 +64,26 @@
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
-#include "Utility_Binarization.hpp"
-#include "Utility_Binarization_Over.hpp"
-#include "Utility_Copy.hpp"
-#include "Utility_Init.hpp"
-#include "Utility_NoiseBool.hpp"
-#include "Utility_NoiseShoreBool.hpp"
-#include "Utility_Replace.hpp"
-#include "Utility_SetItem.hpp"
+#include <Utility/Binarization.hpp>
+#include <Utility/Binarization_Over.hpp>
+#include <Utility/Copy.hpp>
+#include <Utility/Init.hpp>
+#include <Utility/NoiseBool.hpp>
+#include <Utility/NoiseShoreBool.hpp>
+#include <Utility/Replace.hpp>
+#include <Utility/SetItem.hpp>
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 
 
 ///// エンティティ /////
 
-#include "Entity_MobManager.hpp"
+#include <Entity/MobManager.hpp>
 
 
 ///// 修正 /////
 
-#include "Retouch_RemovePoint.hpp"
+#include <Retouch/BuryPoint.hpp>
+#include <Retouch/RemovePoint.hpp>
 
 
 ///// 乱数 /////
@@ -90,7 +91,7 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 //乱数生成
-#include "Random_MersenneTwister32bit.hpp"
+#include <Random/MersenneTwister32bit.hpp>
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 
 
@@ -99,36 +100,36 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 //指定マスの周囲1マスに任意の値(1)を設置する。
-#include "Shape_Border.hpp"
+#include <Shape/Border.hpp>
 //Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
-#include "Shape_BorderOdd.hpp"
+#include <Shape/BorderOdd.hpp>
 //
-#include "Shape_CellularAutomatonIsland.hpp"
+#include <Shape/CellularAutomatonIsland.hpp>
 //
-#include "Shape_MixRect.hpp"
+#include <Shape/MixRect.hpp>
 //指定マスの全てに任意の値(1)を設置する。
-#include "Shape_Rect.hpp"
+#include <Shape/Rect.hpp>
 //[削除予定]
-#include "Shape_OneLine.hpp"
+#include <Shape/OneLine.hpp>
 //指定マスの偶数列目かつ偶数行目に任意の値(1)を設置する。
-#include "Shape_PointGrid.hpp"
+#include <Shape/PointGrid.hpp>
 //Shape_BorderOdd + Shape_PointGrid
-#include "Shape_PointGridWithBorder.hpp"
+#include <Shape/PointGridWithBorder.hpp>
 //Shape_BorderOdd + Shape_PointGrid + Shape_RandomRect
-#include "Shape_PointGridAndSomeBlocksWithBorder.hpp"
+#include <Shape/PointGridAndSomeBlocksWithBorder.hpp>
 //指定マスに一定の確率で任意の値(1)を設置する。
-#include "Shape_RandomRect.hpp"
+#include <Shape/RandomRect.hpp>
 
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
 //
-#include "Shape_CellularAutomatonMixIsland.hpp"
+#include <Shape/CellularAutomatonMixIsland.hpp>
 //
 
 
 //
-#include "Shape_Point.hpp"
+#include <Shape/Point.hpp>
 
-#include "Camera_MatrixView.hpp"
+#include <Camera/MatrixView.hpp>
 
 #endif //Included Dungeon Template Library

@@ -13,178 +13,203 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Base">
+      <UniqueIdentifier>{52162baf-66ef-4b44-8629-201f943888d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Beta">
+      <UniqueIdentifier>{7ecd78d4-cbfe-4642-ac2a-d808f1127009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{c1e28b7d-aa6e-47c3-8483-cd47e9188c35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Console">
+      <UniqueIdentifier>{f620e00e-251f-4522-898a-cd8c2e0856aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Entity">
+      <UniqueIdentifier>{818a6b34-2c8c-44b8-98c7-678443f69986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shape">
+      <UniqueIdentifier>{927d50bb-8add-4815-8512-f26701f8993c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Random">
+      <UniqueIdentifier>{e8068397-9099-4deb-94ca-27155b8ac7a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Retouch">
+      <UniqueIdentifier>{3bfda541-d1d6-4764-b717-1382a3d0097a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Storage">
+      <UniqueIdentifier>{05ddbb71-c53b-4ff0-934d-ca51307a99ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Utility">
+      <UniqueIdentifier>{7d946ab3-4e32-4664-8b07-359231cb8a5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base\Struct.hpp">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\BoardGame.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonBinarization.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonFile.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonMatrix.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonNoise.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonOutput.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonPaint.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\DungeonRandom.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\FractalIsland.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\HorizontalScroll.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\MazeDig.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\Rect.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\RogueLike.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\SimpleRogueLike.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Beta\SimpleVoronoiIsland.hpp">
+      <Filter>ヘッダー ファイル\Beta</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\MatrixView.hpp">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Console\OutputNumber.hpp">
+      <Filter>ヘッダー ファイル\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Console\OutputString.hpp">
+      <Filter>ヘッダー ファイル\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Console\OutputStringBool.hpp">
+      <Filter>ヘッダー ファイル\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\MobManager.hpp">
+      <Filter>ヘッダー ファイル\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Random\MersenneTwister32bit.hpp">
+      <Filter>ヘッダー ファイル\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Retouch\BuryPoint.hpp">
+      <Filter>ヘッダー ファイル\Retouch</Filter>
+    </ClInclude>
+    <ClInclude Include="Retouch\RemovePoint.hpp">
+      <Filter>ヘッダー ファイル\Retouch</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Border.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\BorderOdd.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CellularAutomatonIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CellularAutomatonMixIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\HalfMixRect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\MixRect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\OneLine.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Point.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\PointGrid.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\PointGridAndSomeBlocksWithBorder.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\PointGridWithBorder.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\RandomRect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Rect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage\FileCSV.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
     <ClInclude Include="DTL.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Utility_NoiseBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Binarization.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility_NoiseShoreBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Binarization_Over.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Random_MersenneTwister32bit.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\CellularAutomaton.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility_Init.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\CharCast.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility_Binarization.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Copy.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_BoardGame.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Init.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonBinarization.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\IsOutputCast.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonFile.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Matrix.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonMatrix.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\NoiseBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonNoise.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\NoiseShoreBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonOutput.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\RandomBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonPaint.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\RandomInnerBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_DungeonRandom.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\RandomInnerRandomValue.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_FractalIsland.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\Replace.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Beta_HorizontalScroll.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta_MazeDig.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta_RogueLike.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta_SimpleRogueLike.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta_SimpleVoronoiIsland.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_Matrix.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_Binarization_Over.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_RandomInnerBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_RandomBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_CellularAutomaton.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_SetItem.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_RandomInnerRandomValue.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_Replace.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_Copy.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_Point.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_Rect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_PointGrid.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_Border.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_IsOutputCast.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_OutputNumber.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_OutputStringBool.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_BorderOdd.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Console_OutputString.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_OneLine.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_PointGridWithBorder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_RandomRect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_PointGridAndSomeBlocksWithBorder.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity_MobManager.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_CellularAutomatonIsland.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Retouch_RemovePoint.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Base_Struct.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_MixRect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_HalfMixRect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera_MatrixView.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape_CellularAutomatonMixIsland.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Retouch_BuryPoint.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility_CharCast.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Storage_FileCSV.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta_Rect.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Utility\SetItem.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="namespace.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="20190329.cpp">
+    <ClCompile Include="Source.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
