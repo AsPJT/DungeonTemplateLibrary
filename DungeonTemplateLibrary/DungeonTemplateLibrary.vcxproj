@@ -75,7 +75,7 @@
     <ClInclude Include="Utility\SetItem.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

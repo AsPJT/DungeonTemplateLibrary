@@ -32,7 +32,7 @@
 
 # [Type] Terrain Generation
 
-## Simple Voronoi Island
+## SimpleVoronoiIsland
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -41,7 +41,7 @@
 
 ![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/svi.gif)
 
-## Simple Cellular Automaton Island
+## CellularAutomatonIsland
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -50,7 +50,7 @@
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/ri.gif)
 
-## Simple Biome Island
+## CellularAutomatonMixIsland
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -58,9 +58,8 @@
 |n|(Biome)|
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.png)
 
-## Fractal Island
+## FractalIsland
 
 |Sample Value|Name|
 |:---:|:---|
@@ -69,7 +68,7 @@
 ![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/FI_1.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fractal_island_3d.png)
 
-## Chunk Island
+## ChunkIsland
 
 |Sample Value|Name|
 |:---:|:---|
@@ -77,7 +76,7 @@
 
 ![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/chunk_island.gif)
 
-## Simple Diamond Square Average Island
+## SimpleDiamondSquareAverageIsland
 
 |Sample Value|Name|
 |:---:|:---|
@@ -85,7 +84,7 @@
 
 ![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/simple_diamond_square_average_island.gif)
 
-## Simple Diamond Square Average Island Corner
+## SimpleDiamondSquareAverageIslandCorner
 
 |Sample Value|Name|
 |:---:|:---|
@@ -105,11 +104,9 @@
 |3|Entrance|Black|
 |4|Way|Yellow|
 
-![rl1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rl1.gif)
-![rl4](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rl2.gif)
-![](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/aroguelike.png)
+![rl1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rls.gif)
 
-## Simple RogueLike
+## SimpleRogueLike
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -119,7 +116,7 @@
 ![STL1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/SRL_1.gif)
 ![srl3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/simple_roguelike.png)
 
-## Maze Dig
+## MazeDig
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -129,7 +126,7 @@
 ![maze_dig](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/MD_1.gif)
 ![maze_dig_3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/maze_dig.png)
 
-## RogueLike Cave
+## RogueLikeCave
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -180,7 +177,7 @@
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
 
-## PointGridField
+## PointGridWithBorder
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -189,7 +186,7 @@
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
-## PointGridFieldPutBlock
+## PointGridAndSomeBlocksWithBorder
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|

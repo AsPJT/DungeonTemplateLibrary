@@ -13,6 +13,6 @@ int main() {
 
 	dtl::shape::Border<shape_t>(1).draw(matrix);
 
-	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
+	dtl::console::OutputStringBool<shape_t>("■", "□").draw(matrix);
 
 }
