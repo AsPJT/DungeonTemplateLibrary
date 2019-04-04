@@ -35,23 +35,13 @@
 
 # [Type] Terrain Generation
 
-## [1] Simple Voronoi Island (v0.1.0~)
+## Simple Voronoi Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
-|Default Value|Name|Image Color|
+|Sample Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Pale Brown|
 |1|Land|Dark Olive|
-
-|Capacity Requirement|
-|:---:|
-|1 bit|
-
-### Variable
-![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
-
-### Matrix Type
-![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
 ### Generation Type
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
