@@ -23,78 +23,25 @@
 
 ### [>> SampleCode](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/SampleCode)
 
-## Matrix Type
-
-### Main Code
-
-```cpp
-using dungeon_t = std::uint_fast8_t;
-constexpr std::size_t x_size{ 12 };
-constexpr std::size_t y_size{ 8 };
-```
-
-### STL Matrix ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg)
-
-![no_default_array](https://img.shields.io/badge/default%20array-nothing-lightgrey.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![no_std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-nothing-lightgrey.svg)
-
-|Required Class Function:|operator[]|size|
-|:---|:---|:---|
-
-```cpp
-std::array<std::array<dungeon_t, x_size>, y_size> dungeon_stl_matrix{ {} };
-```
-
-### Normal Matrix ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg)
-
-![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
-
-|Required Class Function:|operator[]|
-|:---|:---|
-
-```cpp
-dungeon_t dungeon_default_matrix[y_size][x_size]{};
-```
-
-### Array Matrix ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
-
-![default_array](https://img.shields.io/badge/default%20array-passing-brightgreen.svg) ![std_array](https://img.shields.io/badge/std%3A%3Aarray-passing-brightgreen.svg) ![std_bitset](https://img.shields.io/badge/std%3A%3Abitset-passing-brightgreen.svg) ![std_vector](https://img.shields.io/badge/std%3A%3Avector-passing-brightgreen.svg) ![std_deque](https://img.shields.io/badge/std%3A%3Adeque-passing-brightgreen.svg) ![std_unique__ptr](https://img.shields.io/badge/std%3A%3Aunique__ptr-passing-brightgreen.svg)
-
-|Required Class Function:|operator[]|
-|:---|:---|
-
-```cpp
-dungeon_t dungeon_array_matrix[x_size*y_size]{};
-```
-
 ## Version 0.3.0 [ C++17 ]
 
 |Compiler|[C++17 (v0.3.0~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp17)|[C++14 (~v0.2.4)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|[C99](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/c99)|
 |:---|:---|:---|:---|
-|MSVC|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|![cl](https://img.shields.io/badge/cl%2014.10-passing-brightgreen.svg)|
-|GCC|![gcc](https://img.shields.io/badge/gcc-unknown-lightgrey.svg)|![gcc](https://img.shields.io/badge/gcc%205.1.0-passing-brightgreen.svg)|![gcc](https://img.shields.io/badge/gcc%204.4.7-passing-brightgreen.svg)|
-|Clang|![clang](https://img.shields.io/badge/clang%205.0.0-passing-brightgreen.svg)|![clang](https://img.shields.io/badge/clang%203.8.1-passing-brightgreen.svg)|![clang](https://img.shields.io/badge/clang%203.1-passing-brightgreen.svg)|
-|Zapcc|![zapcc](https://img.shields.io/badge/zapcc-unknown-lightgrey.svg)|![zapcc](https://img.shields.io/badge/zapcc%201.0.1-passing-brightgreen.svg)|![zapcc](https://img.shields.io/badge/zapcc%201.0.1-unknown-lightgrey.svg)||
-|ICC|![icc](https://img.shields.io/badge/icc-unknown-lightgrey.svg)|![icc](https://img.shields.io/badge/icc-unknown-lightgrey.svg)|![icc](https://img.shields.io/badge/icc-unknown-lightgrey.svg)|
+|MSVC|14.10-passing|14.10-passing|14.10-passing|
+|GCC|unknown|5.1.0-passing|4.4.7-passing|
+|Clang|5.0.0-passing|3.8.1-passing|3.1-passing|
+|Zapcc|unknown|1.0.1-passing|unknown||
+|ICC|unknown|unknown|unknown|
 
 # [Type] Terrain Generation
 
-## [1] Simple Voronoi Island (v0.1.0~)
+## Simple Voronoi Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
-|Default Value|Name|Image Color|
+|Sample Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Pale Brown|
 |1|Land|Dark Olive|
-
-|Capacity Requirement|
-|:---:|
-|1 bit|
-
-### Variable
-![bool_true](https://img.shields.io/badge/Variable-bool-brightgreen.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
-
-### Matrix Type
-![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
 
 ### Generation Type
 [![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
@@ -150,32 +97,6 @@ dungeon_t dungeon_array_matrix[x_size*y_size]{};
 ### Image
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.png)
-
-## [X] Biome Island (v0.2.X~)
-![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-Underdevelopment...
-
-|Default Value|Name|Image Color|
-|:---:|:---|:---|
-|0|Sea|Blue|
-|n|(Biome)|
-
-|Capacity Requirement|
-|:---:|
-|X bit|
-
-### Variable
-![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
-
-### Matrix Type
-![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
-
-### Generation Type
-[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
-
-### Image
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/do.gif)
 
 ## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
@@ -386,7 +307,7 @@ Underdevelopment...
 
 # [Type] Common Generation
 
-## [6] DungeonInit (v0.1.10~)
+## [6] [DungeonInit](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -413,7 +334,7 @@ Underdevelopment...
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
-## [7] Border (v0.1.10~)
+## [7] [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -442,7 +363,7 @@ Underdevelopment...
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
-## [8] BorderOdd (v0.1.10~)
+## [8] [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -471,7 +392,7 @@ Underdevelopment...
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
 
-## [9] PointGrid (v0.1.10~)
+## [9] [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -733,7 +654,9 @@ Underdevelopment...
 ## License
 
 Copyright (c) 2017-2019 Kasugaccho.
+
 Distributed under the Boost Software License, Version 1.0.
+
 (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 ## Contact
