@@ -295,20 +295,6 @@ namespace dtl::console {
 			width(width_), height(height_),
 			draw_string(draw_string_), before_draw_string(before_draw_string_) {}
 	};
-	template<typename Matrix_Int_>
-	using OutputNumberS16 = OutputNumber<Matrix_Int_, std::u16string>;
-	template<typename Matrix_Int_>
-	using OutputNumberS32 = OutputNumber<Matrix_Int_, std::u32string>;
-
-	using OutputNumberU8 = dtl::console::OutputNumber<std::uint_fast8_t>;
-	using OutputNumberU16 = dtl::console::OutputNumber<std::uint_fast16_t>;
-	using OutputNumberU32 = dtl::console::OutputNumber<std::uint_fast32_t>;
-	using OutputNumberU64 = dtl::console::OutputNumber<std::uint_fast64_t>;
-	using OutputNumberI8 = dtl::console::OutputNumber<std::int_fast8_t>;
-	using OutputNumberI16 = dtl::console::OutputNumber<std::int_fast16_t>;
-	using OutputNumberI32 = dtl::console::OutputNumber<std::int_fast32_t>;
-	using OutputNumberI64 = dtl::console::OutputNumber<std::int_fast64_t>;
-
 }
 
 

@@ -280,14 +280,6 @@ namespace dtl::utility {
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
 	};
-	using CellularAutomationU8 = dtl::utility::CellularAutomation<std::uint_fast8_t>;
-	using CellularAutomationU16 = dtl::utility::CellularAutomation<std::uint_fast16_t>;
-	using CellularAutomationU32 = dtl::utility::CellularAutomation<std::uint_fast32_t>;
-	using CellularAutomationU64 = dtl::utility::CellularAutomation<std::uint_fast64_t>;
-	using CellularAutomationI8 = dtl::utility::CellularAutomation<std::int_fast8_t>;
-	using CellularAutomationI16 = dtl::utility::CellularAutomation<std::int_fast16_t>;
-	using CellularAutomationI32 = dtl::utility::CellularAutomation<std::int_fast32_t>;
-	using CellularAutomationI64 = dtl::utility::CellularAutomation<std::int_fast64_t>;
 }
 
 

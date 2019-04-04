@@ -275,14 +275,6 @@ namespace dtl::utility {
 			width(width_), height(height_),
 			true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
 	};
-	using BinarizationU8 = dtl::utility::Binarization<std::uint_fast8_t>;
-	using BinarizationU16 = dtl::utility::Binarization<std::uint_fast16_t>;
-	using BinarizationU32 = dtl::utility::Binarization<std::uint_fast32_t>;
-	using BinarizationU64 = dtl::utility::Binarization<std::uint_fast64_t>;
-	using BinarizationI8 = dtl::utility::Binarization<std::int_fast8_t>;
-	using BinarizationI16 = dtl::utility::Binarization<std::int_fast16_t>;
-	using BinarizationI32 = dtl::utility::Binarization<std::int_fast32_t>;
-	using BinarizationI64 = dtl::utility::Binarization<std::int_fast64_t>;
 }
 
 

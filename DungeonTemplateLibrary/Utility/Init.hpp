@@ -257,14 +257,6 @@ namespace dtl::utility {
 			width(width_), height(height_),
 			draw_value(draw_value_) {}
 	};
-	using InitU8 = dtl::utility::Init<std::uint_fast8_t>;
-	using InitU16 = dtl::utility::Init<std::uint_fast16_t>;
-	using InitU32 = dtl::utility::Init<std::uint_fast32_t>;
-	using InitU64 = dtl::utility::Init<std::uint_fast64_t>;
-	using InitI8 = dtl::utility::Init<std::int_fast8_t>;
-	using InitI16 = dtl::utility::Init<std::int_fast16_t>;
-	using InitI32 = dtl::utility::Init<std::int_fast32_t>;
-	using InitI64 = dtl::utility::Init<std::int_fast64_t>;
 }
 
 

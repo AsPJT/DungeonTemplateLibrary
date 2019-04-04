@@ -260,14 +260,6 @@ namespace dtl::shape {
 			width(width_), height(height_),
 			draw_value(draw_value_), probability_value(probability_) {}
 	};
-	using RandomRectU8 = dtl::shape::RandomRect<std::uint_fast8_t>;
-	using RandomRectU16 = dtl::shape::RandomRect<std::uint_fast16_t>;
-	using RandomRectU32 = dtl::shape::RandomRect<std::uint_fast32_t>;
-	using RandomRectU64 = dtl::shape::RandomRect<std::uint_fast64_t>;
-	using RandomRectI8 = dtl::shape::RandomRect<std::int_fast8_t>;
-	using RandomRectI16 = dtl::shape::RandomRect<std::int_fast16_t>;
-	using RandomRectI32 = dtl::shape::RandomRect<std::int_fast32_t>;
-	using RandomRectI64 = dtl::shape::RandomRect<std::int_fast64_t>;
 }
 
 #endif //Included Dungeon Template Library

@@ -301,20 +301,6 @@ namespace dtl::console {
 			this->string_String(first_, std::forward<Args_>(args_)...);
 		}
 	};
-	template<typename Matrix_Int_>
-	using OutputStringS16 = OutputString<Matrix_Int_, std::u16string>;
-	template<typename Matrix_Int_>
-	using OutputStringS32 = OutputString<Matrix_Int_, std::u32string>;
-
-	using OutputStringU8 = dtl::console::OutputString<std::uint_fast8_t>;
-	using OutputStringU16 = dtl::console::OutputString<std::uint_fast16_t>;
-	using OutputStringU32 = dtl::console::OutputString<std::uint_fast32_t>;
-	using OutputStringU64 = dtl::console::OutputString<std::uint_fast64_t>;
-	using OutputStringI8 = dtl::console::OutputString<std::int_fast8_t>;
-	using OutputStringI16 = dtl::console::OutputString<std::int_fast16_t>;
-	using OutputStringI32 = dtl::console::OutputString<std::int_fast32_t>;
-	using OutputStringI64 = dtl::console::OutputString<std::int_fast64_t>;
-
 }
 
 

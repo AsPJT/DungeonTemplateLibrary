@@ -19,6 +19,7 @@
 #include <iomanip>
 #include <array>
 #include <Utility/IsOutputCast.hpp>
+#include <Storage/FileCSV.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl::file::read::stl {
