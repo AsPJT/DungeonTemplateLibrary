@@ -33,7 +33,6 @@
 # [Type] Terrain Generation
 
 ## Simple Voronoi Island
-![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
