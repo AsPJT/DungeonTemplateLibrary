@@ -29,6 +29,8 @@
 #include "Beta_DungeonFile.hpp"
 #include "Beta_DungeonMatrix.hpp"
 
+#include "Storage_FileCSV.hpp"
+
 ///// ƒ_ƒ“ƒWƒ‡ƒ“ /////
 
 #include "Beta_FractalIsland.hpp"

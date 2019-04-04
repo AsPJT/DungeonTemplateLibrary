@@ -255,14 +255,6 @@ namespace dtl::shape {
 			this->string_String(first_, std::forward<Args_>(args_)...);
 		}
 	};
-	using MixRectU8 = dtl::shape::MixRect<std::uint_fast8_t>;
-	using MixRectU16 = dtl::shape::MixRect<std::uint_fast16_t>;
-	using MixRectU32 = dtl::shape::MixRect<std::uint_fast32_t>;
-	using MixRectU64 = dtl::shape::MixRect<std::uint_fast64_t>;
-	using MixRectI8 = dtl::shape::MixRect<std::int_fast8_t>;
-	using MixRectI16 = dtl::shape::MixRect<std::int_fast16_t>;
-	using MixRectI32 = dtl::shape::MixRect<std::int_fast32_t>;
-	using MixRectI64 = dtl::shape::MixRect<std::int_fast64_t>;
 }
 
 #endif //Included Dungeon Template Library

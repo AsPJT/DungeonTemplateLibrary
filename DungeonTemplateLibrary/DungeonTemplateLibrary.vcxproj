@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Base_Struct.hpp" />
     <ClInclude Include="Beta_BoardGame.hpp" />
+    <ClInclude Include="Beta_Rect.hpp" />
     <ClInclude Include="Camera_MatrixView.hpp" />
     <ClInclude Include="Console_OutputNumber.hpp" />
     <ClInclude Include="Console_OutputString.hpp" />
@@ -173,9 +174,11 @@
     <ClInclude Include="Beta_SimpleRogueLike.hpp" />
     <ClInclude Include="Beta_SimpleVoronoiIsland.hpp" />
     <ClInclude Include="Shape_Point.hpp" />
+    <ClInclude Include="Storage_FileCSV.hpp" />
     <ClInclude Include="Utility_Binarization.hpp" />
     <ClInclude Include="Utility_Binarization_Over.hpp" />
     <ClInclude Include="Utility_CellularAutomaton.hpp" />
+    <ClInclude Include="Utility_CharCast.hpp" />
     <ClInclude Include="Utility_Copy.hpp" />
     <ClInclude Include="Utility_IsOutputCast.hpp" />
     <ClInclude Include="Utility_Init.hpp" />

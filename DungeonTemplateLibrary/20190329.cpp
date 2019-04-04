@@ -11,8 +11,11 @@ int main() {
 
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
 
-	dtl::shape::Rect<shape_t>({ 1,1,4,4 }, 1).draw(matrix);
+	dtl::shape::Border<shape_t>(1).draw(matrix);
 
-	dtl::console::OutputNumber<shape_t>(" [", "],").draw(matrix);
+	dtl::storage::FileCSV<shape_t>("str.csv").write(matrix);
+	dtl::file::write::stl::md(matrix, "str_md.txt");
+
+	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
 	
 }
