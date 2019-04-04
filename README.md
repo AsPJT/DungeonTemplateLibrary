@@ -386,7 +386,7 @@ Underdevelopment...
 
 # [Type] Common Generation
 
-## [6] DungeonInit (v0.1.10~)
+## [6] [DungeonInit](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -413,7 +413,7 @@ Underdevelopment...
 ### Image
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
-## [7] Border (v0.1.10~)
+## [7] [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -442,7 +442,7 @@ Underdevelopment...
 ### Matrix Type
 ![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
 
-## [8] BorderOdd (v0.1.10~)
+## [8] [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
@@ -471,7 +471,7 @@ Underdevelopment...
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
 
-## [9] PointGrid (v0.1.10~)
+## [9] [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid) (v0.1.10~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Matrix Size Min|Matrix Size Max|
