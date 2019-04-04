@@ -108,32 +108,6 @@
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.png)
 
-## [X] Biome Island (v0.2.X~)
-![cpp14](https://img.shields.io/badge/C%2B%2B14-developing-orange.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
-
-Underdevelopment...
-
-|Default Value|Name|Image Color|
-|:---:|:---|:---|
-|0|Sea|Blue|
-|n|(Biome)|
-
-|Capacity Requirement|
-|:---:|
-|X bit|
-
-### Variable
-![bool_false](https://img.shields.io/badge/Variable-bool-red.svg) ![int_true](https://img.shields.io/badge/Variable-Integer%20Types-brightgreen.svg)
-
-### Matrix Type
-![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![no_default_matrix](https://img.shields.io/badge/Default-nothing-lightgrey.svg) ![no_array_matrix](https://img.shields.io/badge/Array-nothing-lightgrey.svg)
-
-### Generation Type
-[![gt_r](https://img.shields.io/badge/generation%20type-random-orange.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Generation-Type)
-
-### Image
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/do.gif)
-
 ## [3] Fractal Island (v0.1.1~)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
