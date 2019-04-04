@@ -9,9 +9,6 @@
 </p>
 
 
-
-
-
 [>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
 # [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
@@ -45,7 +42,7 @@
 
 ![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/svi.gif)
 
-## [19] Simple Cellular Automaton Island (v0.2.1~)
+## Simple Cellular Automaton Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -55,7 +52,7 @@
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/ri.gif)
 
-## [19] Simple Biome Island (v0.2.2~)
+## Simple Biome Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -66,7 +63,7 @@
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.png)
 
-## [3] Fractal Island (v0.1.1~)
+## Fractal Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 |Sample Value|Name|
@@ -76,7 +73,7 @@
 ![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/FI_1.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fractal_island_3d.png)
 
-## [15] Chunk Island (v0.1.20~)
+## Chunk Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|
@@ -85,7 +82,7 @@
 
 ![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/chunk_island.gif)
 
-## [16] Simple Diamond Square Average Island (v0.1.21~)
+## Simple Diamond Square Average Island
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|
@@ -94,7 +91,7 @@
 
 ![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/simple_diamond_square_average_island.gif)
 
-## [14] Simple Diamond Square Average Island Corner (v0.1.19~)
+## Simple Diamond Square Average Island Corner
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|
@@ -105,7 +102,7 @@
 
 # [Type] Dungeon Generation
 
-## [2] RogueLike (v0.1.0~)
+## RogueLike
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -120,7 +117,7 @@
 ![rl4](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rl2.gif)
 ![](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/aroguelike.png)
 
-## [5] Simple RogueLike (v0.1.3~)
+## Simple RogueLike
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 |Sample Value|Name|Image Color|
@@ -131,7 +128,7 @@
 ![STL1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/SRL_1.gif)
 ![srl3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/simple_roguelike.png)
 
-## [4] Maze Dig (v0.1.2~)
+## Maze Dig
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99](https://img.shields.io/badge/C99-passing-brightgreen.svg)
 
 |Sample Value|Name|Image Color|
@@ -142,7 +139,7 @@
 ![maze_dig](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/MD_1.gif)
 ![maze_dig_3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/maze_dig.png)
 
-## [17] RogueLike Cave (v0.1.25~)
+## RogueLike Cave
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -158,7 +155,7 @@
 
 # [Type] Common Generation
 
-## [6] [DungeonInit](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect) (v0.1.10~)
+## [DungeonInit](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -167,7 +164,7 @@
 
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
-## [7] [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border) (v0.1.10~)
+## [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -178,10 +175,7 @@
 ![db](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border.png)
 ![border](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/border.png)
 
-### Matrix Type
-![stl_matrix](https://img.shields.io/badge/STL-passing-brightgreen.svg) ![default_matrix](https://img.shields.io/badge/Default-passing-brightgreen.svg) ![array_matrix](https://img.shields.io/badge/Array-passing-brightgreen.svg)
-
-## [8] [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd) (v0.1.10~)
+## [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -191,8 +185,7 @@
 
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
-
-## [9] [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid) (v0.1.10~)
+## [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid)
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -202,7 +195,7 @@
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
 
-## [10] PointGridField (v0.1.10~)
+## PointGridField
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -212,7 +205,7 @@
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
-## [12] PointGridFieldPutBlock (v0.1.13~)
+## PointGridFieldPutBlock
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -225,7 +218,7 @@
 
 # [Type] BoardGame Generation
 
-## [11] Reversi (v0.1.10~)
+## Reversi
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|Image Color|
@@ -238,7 +231,7 @@
 
 ![re32](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/reversi_32.gif)
 
-## [13] Chess (v0.1.14~)
+## Chess
 ![cpp14](https://img.shields.io/badge/C%2B%2B14-passing-brightgreen.svg) ![c99_no](https://img.shields.io/badge/C99-nothing-lightgrey.svg)
 
 |Sample Value|Name|
@@ -261,7 +254,7 @@
 
 # [Type] Horizontal Scroll Generation
 
-## [18] Mountain (v0.1.26~)
+## Mountain
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -272,11 +265,11 @@
 
 # Paint Tool
 
-## Pen (v0.1.9~)
+## Pen
 
 ![pen](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Paint/pen.gif)
 
-## Bucket (v0.1.9~)
+## Bucket
 
 ![bucket](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Paint/bucket.gif)
 
