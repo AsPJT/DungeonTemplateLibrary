@@ -82,7 +82,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/simple_diamond_square_average_island.gif)
+![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAI.gif)
 
 ## SimpleDiamondSquareAverageIslandCorner
 
@@ -90,7 +90,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/simple_diamond_square_average_island_corner.gif)
+![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAIC.gif)
 
 # [Type] Dungeon Generation
 
