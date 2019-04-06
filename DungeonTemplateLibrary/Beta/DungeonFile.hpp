@@ -202,7 +202,7 @@ namespace dtl::file::write::stl {
 		for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
 			for (std::size_t col{ 2 }; col <= matrix_[row].size(); ++col) {
 				ofs << "f " << (row*x_size + col) << " " << ((row - 1)*x_size + col) << " " << ((row - 1)*x_size + (col - 1)) << '\n';
-				ofs << "f " << (row*x_size + col) << " " << (row*x_size + (col - 1)) << " " << ((row - 1)*x_size + (col - 1)) << '\n';
+				ofs << "f " << (row * x_size + (col - 1)) << " " << (row * x_size + col) << " " << ((row - 1)*x_size + (col - 1)) << '\n';
 			}
 		return true;
 	}
@@ -229,6 +229,47 @@ namespace dtl::file::write::stl {
 			dtl::file::write::stl::hiding::write_objOutputId(ofs_, id_);
 		}
 
+	}
+
+	template<typename Matrix_Int_, typename Matrix_>
+	bool objSandbox(const Matrix_& matrix_, const std::string& str_) noexcept {
+		if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
+		std::ofstream ofs(str_);
+		if (ofs.fail()) return false;
+
+		dtl::file::write::stl::hiding::write_objOutputCube(ofs, 0, -1, 0, (std::int_fast32_t)matrix_[0].size(), 1, (std::int_fast32_t)matrix_.size());
+
+		std::size_t square_count{1};
+		for (std::size_t row{}; row < 1; ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
+				++square_count;
+			}
+		for (std::size_t row{ matrix_.size() - 2}; row < matrix_.size(); ++row)
+			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+				dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
+				++square_count;
+			}
+		for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row) {
+			for (std::size_t col{}; col < 1; ++col) {
+				dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
+				++square_count;
+			}
+			for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
+				auto tmp{ matrix_[row][col - 1] };
+				if (tmp >= matrix_[row][col + 1]) tmp = matrix_[row][col + 1];
+				if (tmp >= matrix_[row - 1][col]) tmp = matrix_[row - 1][col];
+				if (tmp >= matrix_[row + 1][col]) tmp = matrix_[row + 1][col];
+				if (tmp >= matrix_[row][col]) dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, matrix_[row][col] - 1, (std::int_fast32_t)row, 1, 1, 1, square_count);
+				else dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, tmp, (std::int_fast32_t)row, 1, matrix_[row][col] - tmp, 1, square_count);
+				++square_count;
+			}
+			for (std::size_t col{ matrix_[row].size() - 2 }; col < matrix_[row].size(); ++col) {
+				dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
+				++square_count;
+			}
+		}
+		return true;
 	}
 
 	template<typename Matrix_Int_, typename Matrix_>

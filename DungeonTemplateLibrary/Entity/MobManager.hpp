@@ -66,6 +66,9 @@ namespace dtl::entity {
 		std::int_fast32_t x{}, y{};
 		double small_x{}, small_y{}, walk_speed{ 0.1 };
 		std::uint_fast8_t status_x{ player_status_stay }, status_y{ player_status_stay };
+		//Œü‚¢‚Ä‚¢‚é•ûŠp
+		std::uint_fast8_t direction_array{ direction_array_down };
+		//“®‚­‚±‚Æ‚Ìo—ˆ‚é•ûŒü
 		std::bitset<8> can_walk_direction{ {} };
 
 	public:
@@ -256,16 +259,19 @@ namespace dtl::entity {
 			}
 		}
 		[[nodiscard]] std::int_fast32_t getX() const noexcept {
-			return x;
+			return this->x;
 		}
 		[[nodiscard]] std::int_fast32_t getY() const noexcept {
-			return y;
+			return this->y;
 		}
 		[[nodiscard]] double getPositionX() const noexcept {
-			return x + 0.5 + ((status_x == player_status_1) ? (-small_x) : (small_x));
+			return this->x + 0.5 + ((this->status_x == player_status_1) ? (-small_x) : (small_x));
 		}
 		[[nodiscard]] double getPositionY() const noexcept {
-			return y + 0.5 + ((status_y == player_status_1) ? (-small_y) : (small_y));
+			return this->y + 0.5 + ((this->status_y == player_status_1) ? (-small_y) : (small_y));
+		}
+		[[nodiscard]] std::int_fast32_t getDirection() const noexcept {
+			return this->direction_array;
 		}
 
 	};

@@ -132,7 +132,7 @@ namespace dtl::shape {
 			:border(first_), mixRect(first_, args_...), loop_num(loop_num_) {}
 		template<typename ...Args_>
 		constexpr explicit CellularAutomatonMixIsland(const dtl::base::MatrixRange& matrix_range_, const Index_Size& loop_num_, const Matrix_Int_& first_, const Args_&... args_) noexcept
-			:border(matrix_range_, first_), mixRect(matrix_range_, first_, args_...), loop_num(loop_num_) {}
+			:border(matrix_range_, first_), mixRect(matrix_range_, first_, args_...), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
 	};
 }
 

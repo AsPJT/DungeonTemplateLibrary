@@ -1,11 +1,12 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_NOISE_SHORE_BOOL
+﻿/*#######################################################################################
+	Made by Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	This code is licensed under CC0.
+#######################################################################################*/
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_NOISE_SHORE_BOOL
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_NOISE_SHORE_BOOL
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
 
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */

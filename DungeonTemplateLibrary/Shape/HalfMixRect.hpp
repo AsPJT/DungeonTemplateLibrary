@@ -252,7 +252,7 @@ namespace dtl::shape {
 		explicit HalfMixRect(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& first_, const Args_&... args_) noexcept
 			:point_x(matrix_range_.x), point_y(matrix_range_.y),
 			width(matrix_range_.w), height(matrix_range_.h) {
-			this->string_String(first_, std::forward<Args_>(args_)...);
+			this->string_String(first_, args_...);
 		}
 	};
 }
