@@ -74,7 +74,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FI.gif)
+![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FI2.gif)
 
 ## SimpleDiamondSquareAverageIsland
 
