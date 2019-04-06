@@ -65,7 +65,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI.gif)
+![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI2.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fractal_island_3d.png)
 
 ## ChunkIsland
