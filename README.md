@@ -39,7 +39,7 @@
 |0|Sea|Pale Brown|
 |1|Land|Dark Olive|
 
-![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/svi.gif)
+![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/VIB.gif)
 
 ## CellularAutomatonIsland
 
@@ -48,7 +48,7 @@
 |0|Sea|Pale Brown|
 |1|Land|Dark Olive|
 
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/ri.gif)
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAI.gif)
 
 ## CellularAutomatonMixIsland
 
@@ -57,7 +57,7 @@
 |0|Sea|Blue|
 |n|(Biome)|
 
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rpgi.gif)
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAMI.gif)
 
 ## FractalIsland
 
@@ -65,7 +65,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/FI_1.gif)
+![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fractal_island_3d.png)
 
 ## ChunkIsland
@@ -74,7 +74,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/chunk_island.gif)
+![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FI.gif)
 
 ## SimpleDiamondSquareAverageIsland
 
