@@ -36,8 +36,8 @@
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
-|0|Sea|Pale Brown|
-|1|Land|Dark Olive|
+|0|Sea|Blue|
+|1|Land|Green|
 
 ![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/VIB.gif)
 
@@ -45,8 +45,8 @@
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
-|0|Sea|Pale Brown|
-|1|Land|Dark Olive|
+|0|Sea|Blue|
+|1|Land|Green|
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAI.gif)
 
