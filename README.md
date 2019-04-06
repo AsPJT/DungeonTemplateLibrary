@@ -41,7 +41,7 @@
 
 ![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/VIB.gif)
 
-## CellularAutomatonIsland
+## CellularAutomatonIsland✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -50,7 +50,7 @@
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAI.gif)
 
-## CellularAutomatonMixIsland
+## CellularAutomatonMixIsland✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -141,7 +141,7 @@
 
 # [Type] Common Generation
 
-## [DungeonInit](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect)
+## [Rect](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Rect)✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -149,7 +149,7 @@
 
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
-## [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border)
+## [Border](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Border)✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -159,7 +159,7 @@
 ![db](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border.png)
 ![border](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/border.png)
 
-## [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd)
+## [BorderOdd](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/BorderOdd)✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -168,7 +168,7 @@
 
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
-## [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid)
+## [PointGrid](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/PointGrid)✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -177,7 +177,7 @@
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
 
-## PointGridWithBorder
+## PointGridWithBorder✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -186,7 +186,7 @@
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
-## PointGridAndSomeBlocksWithBorder
+## PointGridAndSomeBlocksWithBorder✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
