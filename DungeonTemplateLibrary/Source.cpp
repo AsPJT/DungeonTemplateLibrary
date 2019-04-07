@@ -36,6 +36,16 @@ int main() {
 	constexpr std::size_t height{ 100 };
 
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
+	//shape_t matrix[width * height]{};
+	//
+	////dtl::shape::MazeDig<shape_t>().draw(matrix);
+	////dtl::shape::CellularAutomatonIsland<shape_t>().drawArray(matrix, width, height);
+
+	////dtl::shape::Border<shape_t>(1).drawArray(matrix, width, height);
+
+	//dtl::storage::TerrainOBJ<shape_t>("c.obj").drawArray(matrix, width, height);
+	////dtl::console::OutputStringBool<shape_t>(" ","#").draw(matrix);
+	//return 0;
 
 	//dtl::shape::CellularAutomatonMixIsland<shape_t>(dtl::base::MatrixRange(10,10,80,80), 60, 1, 2, 3, 4).draw(matrix);
 	//dtl::shape::Border<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
@@ -50,10 +60,10 @@ int main() {
 	
 	//dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 2, 3).draw(matrix);
 
-	//dtl::shape::CellularAutomatonIsland<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
+	//dtl::shape::CellularAutomatonIsland<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 0, 50).draw(matrix);
 
 	const dtl::console::SetColor color("　");
 
-	dtl::console::OutputString<shape_t>(color.red(), color.blue(), color.green(), color.gray(), color.yellow()).draw(matrix);
+	dtl::console::OutputString<shape_t>(color.blue(), color.green(), color.gray(), color.yellow()).draw(matrix);//color.red(), 
 
 }

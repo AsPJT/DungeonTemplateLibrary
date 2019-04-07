@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG_OLD
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG_OLD
 
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 

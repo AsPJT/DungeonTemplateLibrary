@@ -30,7 +30,6 @@
     <ClInclude Include="Beta\DungeonRandom.hpp" />
     <ClInclude Include="Beta\FractalIsland.hpp" />
     <ClInclude Include="Beta\HorizontalScroll.hpp" />
-    <ClInclude Include="Beta\MazeDig.hpp" />
     <ClInclude Include="Beta\Rect.hpp" />
     <ClInclude Include="Beta\RogueLike.hpp" />
     <ClInclude Include="Beta\SimpleRogueLike.hpp" />
@@ -49,6 +48,7 @@
     <ClInclude Include="Shape\CellularAutomatonIsland.hpp" />
     <ClInclude Include="Shape\CellularAutomatonMixIsland.hpp" />
     <ClInclude Include="Shape\HalfMixRect.hpp" />
+    <ClInclude Include="Shape\MazeDig.hpp" />
     <ClInclude Include="Shape\MixRect.hpp" />
     <ClInclude Include="Shape\OneLine.hpp" />
     <ClInclude Include="Shape\Point.hpp" />
@@ -58,6 +58,7 @@
     <ClInclude Include="Shape\RandomRect.hpp" />
     <ClInclude Include="Shape\Rect.hpp" />
     <ClInclude Include="Storage\FileCSV.hpp" />
+    <ClInclude Include="Storage\FileTerrainOBJ.hpp" />
     <ClInclude Include="Utility\Binarization.hpp" />
     <ClInclude Include="Utility\Binarization_Over.hpp" />
     <ClInclude Include="Utility\CellularAutomaton.hpp" />

@@ -64,13 +64,13 @@ namespace dtl::shape {
 		///// 生成呼び出し /////
 
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool draw(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			pointGrid.draw(matrix_, args_...);
 			borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool drawOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			pointGrid.drawOperator(matrix_, args_...);
 			borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
@@ -78,13 +78,13 @@ namespace dtl::shape {
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool drawArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			pointGrid.drawArray(matrix_, args_...);
 			borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			pointGrid.drawOperatorArray(matrix_, args_...);
 			borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
@@ -94,22 +94,22 @@ namespace dtl::shape {
 		///// ダンジョン行列生成 /////
 
 		template<typename Matrix_, typename ...Args_>
-		constexpr auto create(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr auto create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			this->draw(matrix_, std::forward<Args_>(args_)...);
 			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr auto createArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr auto createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			this->drawArray(matrix_, std::forward<Args_>(args_)...);
 			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr auto createOperator(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr auto createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 			return std::forward<Matrix_>(matrix_);
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
+		constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 			this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 			return std::forward<Matrix_>(matrix_);
 		}
@@ -122,24 +122,8 @@ namespace dtl::shape {
 			:borderOdd(draw_value_), pointGrid(draw_value_) {}
 		constexpr explicit PointGridWithBorder(const PairMatrixInt& pair_value_) noexcept
 			:borderOdd(pair_value_.second), pointGrid(pair_value_.first) {}
-		constexpr explicit PointGridWithBorder(const PairSize& length_) noexcept
-			:borderOdd(length_), pointGrid(length_) {}
-		constexpr explicit PointGridWithBorder(const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
-			:borderOdd(length_, draw_value_), pointGrid(length_, draw_value_) {}
-		constexpr explicit PointGridWithBorder(const PairSize& length_, const PairMatrixInt& pair_value_) noexcept
-			:borderOdd(length_, pair_value_.second), pointGrid(length_, pair_value_.first) {}
-		constexpr explicit PointGridWithBorder(const PairSize& position_, const PairSize& length_) noexcept
-			:borderOdd(position_, length_), pointGrid(position_, length_) {}
-		constexpr explicit PointGridWithBorder(const PairSize& position_, const PairSize& length_, const Matrix_Int_& draw_value_) noexcept
-			:borderOdd(position_, length_, draw_value_), pointGrid(position_, length_, draw_value_) {}
-		constexpr explicit PointGridWithBorder(const PairSize& position_, const PairSize& length_, const PairMatrixInt& pair_value_) noexcept
-			:borderOdd(position_, length_, pair_value_.second), pointGrid(position_, length_, pair_value_.first) {}
 		constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 			:borderOdd(draw_value2_), pointGrid(draw_value_) {}
-		constexpr explicit PointGridWithBorder(const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
-			:borderOdd(width_, height_, draw_value_), pointGrid(width_, height_, draw_value_) {}
-		constexpr explicit PointGridWithBorder(const Index_Size width_, const Index_Size height_, const PairMatrixInt& pair_value_) noexcept
-			:borderOdd(width_, height_, pair_value_.second), pointGrid(width_, height_, pair_value_.first) {}
 		constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:borderOdd(point_x_, point_y_, width_, height_), pointGrid(point_x_, point_y_, width_, height_) {}
 		constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
@@ -147,9 +131,14 @@ namespace dtl::shape {
 		constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const PairMatrixInt& pair_value_) noexcept
 			:borderOdd(point_x_, point_y_, width_, height_, pair_value_.second), pointGrid(point_x_, point_y_, width_, height_, pair_value_.first) {}
 
-		//template<typename ...Args_>
-		//constexpr explicit PointGridWithBorder(Args_&&... args_) noexcept
-		//	:borderOdd(std::forward<Args_>(args_)...), pointGrid(std::forward<Args_>(args_)...) {}
+		constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_) noexcept
+			:borderOdd(matrix_range_), pointGrid(matrix_range_) {}
+		constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			:borderOdd(matrix_range_, draw_value_), pointGrid(matrix_range_, draw_value_) {}
+		constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const PairMatrixInt& pair_value_) noexcept
+			:borderOdd(matrix_range_, pair_value_.second), pointGrid(matrix_range_, pair_value_.first) {}
+		constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			:borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
 	};
 }
 

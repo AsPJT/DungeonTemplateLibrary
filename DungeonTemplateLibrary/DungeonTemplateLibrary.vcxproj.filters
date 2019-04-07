@@ -78,9 +78,6 @@
     <ClInclude Include="Beta\HorizontalScroll.hpp">
       <Filter>ヘッダー ファイル\Beta</Filter>
     </ClInclude>
-    <ClInclude Include="Beta\MazeDig.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
     <ClInclude Include="Beta\Rect.hpp">
       <Filter>ヘッダー ファイル\Beta</Filter>
     </ClInclude>
@@ -206,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="Utility\SetItem.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\MazeDig.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage\FileTerrainOBJ.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

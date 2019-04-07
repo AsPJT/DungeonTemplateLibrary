@@ -30,6 +30,7 @@
 #include <Beta/DungeonMatrix.hpp>
 
 #include <Storage/FileCSV.hpp>
+#include <Storage/FileTerrainOBJ.hpp>
 
 ///// ダンジョン /////
 
@@ -46,8 +47,6 @@
 
 
 ///// コンソール出力 /////
-
-/* 完全0.4.X対応 */
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
@@ -119,6 +118,8 @@
 #include <Shape/PointGridAndSomeBlocksWithBorder.hpp>
 //指定マスに一定の確率で任意の値(1)を設置する。
 #include <Shape/RandomRect.hpp>
+
+#include <Shape/MazeDig.hpp>
 
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_COMMON
 
