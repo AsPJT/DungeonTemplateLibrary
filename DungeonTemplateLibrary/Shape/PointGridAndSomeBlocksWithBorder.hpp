@@ -83,14 +83,14 @@ namespace dtl::shape {
 		//Array
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.draw(matrix_);
+			randomRect.drawArray(matrix_, args_...);
 			pointGrid.drawArray(matrix_, args_...);
 			borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&&... args_) const noexcept {
-			randomRect.draw(matrix_);
+			randomRect.drawOperatorArray(matrix_, args_...);
 			pointGrid.drawOperatorArray(matrix_, args_...);
 			borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			return true;

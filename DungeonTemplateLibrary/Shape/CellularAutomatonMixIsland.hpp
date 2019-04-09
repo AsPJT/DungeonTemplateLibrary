@@ -87,7 +87,7 @@ namespace dtl::shape {
 			mixRect.drawArray(matrix_, args_...);
 			border.drawArray(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, args_...);
+				cellularAutomation.drawArray(matrix_, args_...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
@@ -95,7 +95,7 @@ namespace dtl::shape {
 			mixRect.drawOperatorArray(matrix_, args_...);
 			border.drawOperatorArray(matrix_, args_...);
 			for (Index_Size i{}; i < loop_num; ++i)
-				cellularAutomation.draw(matrix_, args_...);
+				cellularAutomation.drawArray(matrix_, args_...);
 			return true;
 		}
 

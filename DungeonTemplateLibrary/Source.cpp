@@ -32,38 +32,38 @@ namespace dtl::console {
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	constexpr std::size_t width{ 100 };
-	constexpr std::size_t height{ 100 };
+	//using shape_t = float;
+	constexpr std::size_t width{ 256 };
+	constexpr std::size_t height{ 256 };
 
-	std::array<std::array<shape_t, width>, height> matrix{ {} };
-	//shape_t matrix[width * height]{};
-	//
-	////dtl::shape::MazeDig<shape_t>().draw(matrix);
-	////dtl::shape::CellularAutomatonIsland<shape_t>().drawArray(matrix, width, height);
+	//std::array<std::array<shape_t, width>, height> matrix{ {} };
 
-	////dtl::shape::Border<shape_t>(1).drawArray(matrix, width, height);
+	std::unique_ptr<shape_t[][width]> matrix(new(std::nothrow) shape_t[height][width]);
+	dtl::utility::Init<shape_t>(0).draw(matrix, width, height);
+	//std::unique_ptr<shape_t[][512]> matrix{ std::make_unique<shape_t[][512]>(512*512) };
 
-	//dtl::storage::TerrainOBJ<shape_t>("c.obj").drawArray(matrix, width, height);
-	////dtl::console::OutputStringBool<shape_t>(" ","#").draw(matrix);
-	//return 0;
+	dtl::shape::CellularAutomatonIsland<shape_t>(1, 0, 50).draw(matrix, width, height);
+	//dtl::generator::terrain::stl::SimpleVoronoiIsland<shape_t> sv(matrix);
+	//dtl::generator::terrain::stl::SimpleDiamondSquareAverageIsland<shape_t> sv(matrix, 255);
+	//dtl::generator::terrain::stl::FractalIsland<shape_t> sv(matrix, 0, 31);
 
-	//dtl::shape::CellularAutomatonMixIsland<shape_t>(dtl::base::MatrixRange(10,10,80,80), 60, 1, 2, 3, 4).draw(matrix);
-	//dtl::shape::Border<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
-	//dtl::shape::MixRect<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 2, 3, 4).draw(matrix);
-	//dtl::shape::BorderOdd<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
-	//dtl::shape::HalfMixRect<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 2, 3, 4).draw(matrix);
-	//dtl::shape::PointGrid<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
-	//dtl::shape::RandomRect<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
-	dtl::shape::Rect<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1).draw(matrix);
-	
-	//dtl::shape::PointGridWithBorder<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 2).draw(matrix);
-	
-	//dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 2, 3).draw(matrix);
-
-	//dtl::shape::CellularAutomatonIsland<shape_t>(dtl::base::MatrixRange(10, 10, 80, 80), 1, 0, 50).draw(matrix);
 
 	const dtl::console::SetColor color("　");
 
-	dtl::console::OutputString<shape_t>(color.blue(), color.green(), color.gray(), color.yellow()).draw(matrix);//color.red(), 
+	//for (std::size_t row{ 1 }; row < matrix.size() - 1; ++row) {
+	//	for (std::size_t col{ 1 }; col < matrix[row].size() - 1; ++col) {
+	//		if (matrix[row][col] >= matrix[row][col - 1] && matrix[row][col] >= matrix[row][col + 1] && matrix[row][col] >= matrix[row - 1][col] && matrix[row][col] >= matrix[row + 1][col]) {
+	//			auto max_value{ matrix[row][col - 1] };
+	//			if (max_value < matrix[row][col + 1]) max_value = matrix[row][col + 1];
+	//			if (max_value < matrix[row - 1][col]) max_value = matrix[row - 1][col];
+	//			if (max_value < matrix[row + 1][col]) max_value = matrix[row + 1][col];
+	//			matrix[row][col] = max_value;
+	//		}
+	//	}
+	//}
+
+	//dtl::storage::FileTerrainOBJ<shape_t>("cai3.obj").write(matrix, width, height);
+
+	dtl::console::OutputString<shape_t>(color.blue(), color.green(), color.gray(), color.yellow()).draw(matrix, width, height);//color.red(), 
 
 }
