@@ -98,7 +98,7 @@ namespace dtl::random {
 		template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
 		[[nodiscard]] Random_Int_ rand(const Random_Int2_ max_) noexcept {
 			if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
-			std::uniform_int_distribution<Random_Int_> uid(0, max_ - 1);
+			std::uniform_int_distribution<std::int_fast32_t> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
 			return static_cast<Random_Int_>(uid(mt));
 		}
 		//最小値～最大値

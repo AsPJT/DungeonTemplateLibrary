@@ -125,6 +125,8 @@
 
 //
 #include <Shape/CellularAutomatonMixIsland.hpp>
+
+#include <DiamondSquareAverage.hpp>
 //
 
 

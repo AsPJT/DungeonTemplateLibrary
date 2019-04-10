@@ -38,6 +38,7 @@
     <ClInclude Include="Console\OutputNumber.hpp" />
     <ClInclude Include="Console\OutputString.hpp" />
     <ClInclude Include="Console\OutputStringBool.hpp" />
+    <ClInclude Include="DiamondSquareAverage.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="Entity\MobManager.hpp" />
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
