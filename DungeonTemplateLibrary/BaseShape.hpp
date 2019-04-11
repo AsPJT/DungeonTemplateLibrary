@@ -22,7 +22,8 @@ namespace dtl::shape {
 	//マップの外枠を指定した数値で埋める
 	template<typename Matrix_Int_>
 	class BaseShape {
-	private:
+//	protected:
+	public:
 
 
 		///// エイリアス /////

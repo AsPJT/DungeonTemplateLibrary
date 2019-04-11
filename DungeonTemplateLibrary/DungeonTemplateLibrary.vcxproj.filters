@@ -213,7 +213,7 @@
     <ClInclude Include="Deprecated\BoardGame.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="BaseShape.h">
+    <ClInclude Include="BaseShape.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
   </ItemGroup>
