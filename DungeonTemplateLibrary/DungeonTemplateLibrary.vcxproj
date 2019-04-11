@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseShape.hpp" />
     <ClInclude Include="Base\Struct.hpp" />
     <ClInclude Include="Camera\MatrixView.hpp" />
     <ClInclude Include="Console\OutputNumber.hpp" />
