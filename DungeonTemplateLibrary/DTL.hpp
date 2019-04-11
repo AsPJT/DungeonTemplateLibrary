@@ -22,27 +22,27 @@
 
 ///// 関連ツール /////
 
-#include <Beta/DungeonBinarization.hpp>
-#include <Beta/DungeonNoise.hpp>
-#include <Beta/DungeonOutput.hpp>
-#include <Beta/DungeonRandom.hpp>
-#include <Beta/DungeonFile.hpp>
-#include <Beta/DungeonMatrix.hpp>
+#include <Deprecated/DungeonBinarization.hpp>
+#include <Deprecated/DungeonNoise.hpp>
+#include <Deprecated/DungeonOutput.hpp>
+#include <Deprecated/DungeonRandom.hpp>
+#include <Deprecated/DungeonFile.hpp>
+#include <Deprecated/DungeonMatrix.hpp>
 
 #include <Storage/FileCSV.hpp>
 #include <Storage/FileTerrainOBJ.hpp>
 
 ///// ダンジョン /////
 
-#include <Beta/FractalIsland.hpp>
-#include <Beta/MazeDig.hpp>
-#include <Beta/RogueLike.hpp>
-#include <Beta/SimpleRogueLike.hpp>
-#include <Beta/SimpleVoronoiIsland.hpp>
-#include <Beta/BoardGame.hpp>
-#include <Beta/HorizontalScroll.hpp>
+#include <Deprecated/FractalIsland.hpp>
+#include <Deprecated/MazeDig.hpp>
+#include <Deprecated/RogueLike.hpp>
+#include <Deprecated/SimpleRogueLike.hpp>
+#include <Deprecated/SimpleVoronoiIsland.hpp>
+#include <Deprecated/BoardGame.hpp>
+#include <Deprecated/HorizontalScroll.hpp>
 //ペイント
-#include <Beta/DungeonPaint.hpp>
+#include <Deprecated/DungeonPaint.hpp>
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BETA
 
 
@@ -126,7 +126,7 @@
 //
 #include <Shape/CellularAutomatonMixIsland.hpp>
 
-#include <DiamondSquareAverage.hpp>
+#include <Shape/DiamondSquareAverage.hpp>
 //
 
 

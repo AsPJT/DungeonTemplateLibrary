@@ -279,6 +279,37 @@ namespace dtl::shape {
 		}
 
 
+		///// セット /////
+
+		constexpr auto setPointX(const Index_Size& point_x_) noexcept {
+			point_x = point_x_;
+			return *this;
+		}
+		constexpr auto setPointY() noexcept {
+			return this->point_y;
+			return *this;
+		}
+		constexpr auto setWidth() noexcept {
+			return this->width;
+			return *this;
+		}
+		constexpr auto setHeight() noexcept {
+			return this->height;
+			return *this;
+		}
+		constexpr auto setValue() noexcept {
+			return this->draw_value;
+			return *this;
+		}
+		constexpr auto setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			point_x = matrix_range_.x;
+			point_y = matrix_range_.y;
+			width = matrix_range_.w;
+			height = matrix_range_.h;
+			return *this;
+		}
+
+
 		///// コンストラクタ /////
 
 		constexpr Border() noexcept = default;

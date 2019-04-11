@@ -16,9 +16,6 @@
     <Filter Include="ヘッダー ファイル\Base">
       <UniqueIdentifier>{52162baf-66ef-4b44-8629-201f943888d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Beta">
-      <UniqueIdentifier>{7ecd78d4-cbfe-4642-ac2a-d808f1127009}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Camera">
       <UniqueIdentifier>{c1e28b7d-aa6e-47c3-8483-cd47e9188c35}</UniqueIdentifier>
     </Filter>
@@ -43,52 +40,13 @@
     <Filter Include="ヘッダー ファイル\Utility">
       <UniqueIdentifier>{7d946ab3-4e32-4664-8b07-359231cb8a5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Deprecated">
+      <UniqueIdentifier>{7ecd78d4-cbfe-4642-ac2a-d808f1127009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Struct.hpp">
       <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\BoardGame.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonBinarization.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonFile.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonMatrix.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonNoise.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonOutput.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonPaint.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\DungeonRandom.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\FractalIsland.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\HorizontalScroll.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\Rect.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\RogueLike.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\SimpleRogueLike.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
-    </ClInclude>
-    <ClInclude Include="Beta\SimpleVoronoiIsland.hpp">
-      <Filter>ヘッダー ファイル\Beta</Filter>
     </ClInclude>
     <ClInclude Include="Camera\MatrixView.hpp">
       <Filter>ヘッダー ファイル\Camera</Filter>
@@ -210,12 +168,57 @@
     <ClInclude Include="Storage\FileTerrainOBJ.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
-    <ClInclude Include="DiamondSquareAverage.hpp">
+    <ClInclude Include="Shape\DiamondSquareAverage.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonFile.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonRandom.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\MazeDig.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\SimpleVoronoiIsland.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\HorizontalScroll.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\RogueLike.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\SimpleRogueLike.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonNoise.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\FractalIsland.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonPaint.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonOutput.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonMatrix.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\DungeonBinarization.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Deprecated\BoardGame.hpp">
+      <Filter>ヘッダー ファイル\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShape.h">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="20190411.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

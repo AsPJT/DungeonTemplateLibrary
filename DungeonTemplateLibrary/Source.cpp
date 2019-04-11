@@ -43,7 +43,7 @@ int main() {
 	dtl::utility::Init<shape_t>(0).draw(matrix, width, height);
 	//std::unique_ptr<shape_t[][512]> matrix{ std::make_unique<shape_t[][512]>(512*512) };
 
-	dtl::shape::SimpleDiamondSquareAverageIsland<shape_t>().draw(matrix, 64);
+	dtl::shape::SimpleDiamondSquareAverageIsland<shape_t>().draw(matrix, 128);
 	//dtl::shape::CellularAutomatonIsland<shape_t>(1, 0, 50).draw(matrix, width, height);
 	//dtl::generator::terrain::stl::SimpleVoronoiIsland<shape_t> sv(matrix);
 	//dtl::generator::terrain::stl::SimpleDiamondSquareAverageIsland<shape_t> sv(matrix, 255);
@@ -70,7 +70,7 @@ int main() {
 		}
 	}
 
-	dtl::storage::FileTerrainOBJ<shape_t>("cai6.obj").write(matrix, width, height);
+	dtl::storage::FileTerrainOBJ<shape_t>("cai7.obj").write(matrix, width, height);
 
 
 

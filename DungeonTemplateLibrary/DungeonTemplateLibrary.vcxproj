@@ -19,26 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseShape.h" />
     <ClInclude Include="Base\Struct.hpp" />
-    <ClInclude Include="Beta\BoardGame.hpp" />
-    <ClInclude Include="Beta\DungeonBinarization.hpp" />
-    <ClInclude Include="Beta\DungeonFile.hpp" />
-    <ClInclude Include="Beta\DungeonMatrix.hpp" />
-    <ClInclude Include="Beta\DungeonNoise.hpp" />
-    <ClInclude Include="Beta\DungeonOutput.hpp" />
-    <ClInclude Include="Beta\DungeonPaint.hpp" />
-    <ClInclude Include="Beta\DungeonRandom.hpp" />
-    <ClInclude Include="Beta\FractalIsland.hpp" />
-    <ClInclude Include="Beta\HorizontalScroll.hpp" />
-    <ClInclude Include="Beta\Rect.hpp" />
-    <ClInclude Include="Beta\RogueLike.hpp" />
-    <ClInclude Include="Beta\SimpleRogueLike.hpp" />
-    <ClInclude Include="Beta\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="Camera\MatrixView.hpp" />
     <ClInclude Include="Console\OutputNumber.hpp" />
     <ClInclude Include="Console\OutputString.hpp" />
     <ClInclude Include="Console\OutputStringBool.hpp" />
-    <ClInclude Include="DiamondSquareAverage.hpp" />
+    <ClInclude Include="Deprecated\BoardGame.hpp" />
+    <ClInclude Include="Deprecated\DungeonBinarization.hpp" />
+    <ClInclude Include="Deprecated\DungeonFile.hpp" />
+    <ClInclude Include="Deprecated\DungeonMatrix.hpp" />
+    <ClInclude Include="Deprecated\DungeonNoise.hpp" />
+    <ClInclude Include="Deprecated\DungeonOutput.hpp" />
+    <ClInclude Include="Deprecated\DungeonPaint.hpp" />
+    <ClInclude Include="Deprecated\DungeonRandom.hpp" />
+    <ClInclude Include="Deprecated\FractalIsland.hpp" />
+    <ClInclude Include="Deprecated\HorizontalScroll.hpp" />
+    <ClInclude Include="Deprecated\MazeDig.hpp" />
+    <ClInclude Include="Deprecated\RogueLike.hpp" />
+    <ClInclude Include="Deprecated\SimpleRogueLike.hpp" />
+    <ClInclude Include="Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="Entity\MobManager.hpp" />
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
@@ -48,6 +48,7 @@
     <ClInclude Include="Shape\BorderOdd.hpp" />
     <ClInclude Include="Shape\CellularAutomatonIsland.hpp" />
     <ClInclude Include="Shape\CellularAutomatonMixIsland.hpp" />
+    <ClInclude Include="Shape\DiamondSquareAverage.hpp" />
     <ClInclude Include="Shape\HalfMixRect.hpp" />
     <ClInclude Include="Shape\MazeDig.hpp" />
     <ClInclude Include="Shape\MixRect.hpp" />
@@ -77,7 +78,7 @@
     <ClInclude Include="Utility\SetItem.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="20190411.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
