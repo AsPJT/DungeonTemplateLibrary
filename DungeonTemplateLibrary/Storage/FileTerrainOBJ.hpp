@@ -71,7 +71,7 @@ namespace dtl::storage {
 
 		//STL
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -84,7 +84,7 @@ namespace dtl::storage {
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -99,7 +99,7 @@ namespace dtl::storage {
 
 		//LayerSTL
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -112,7 +112,7 @@ namespace dtl::storage {
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -127,7 +127,7 @@ namespace dtl::storage {
 
 		//Normal
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -142,7 +142,7 @@ namespace dtl::storage {
 
 		//LayerNormal
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -157,7 +157,7 @@ namespace dtl::storage {
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
-		constexpr bool writeArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+		bool writeArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -187,7 +187,7 @@ namespace dtl::storage {
 		[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
 			return this->height;
 		}
-		[[nodiscard]] constexpr std::string getString() const noexcept {
+		[[nodiscard]] std::string getString() const noexcept {
 			return this->str;
 		}
 
