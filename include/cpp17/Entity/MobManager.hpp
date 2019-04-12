@@ -171,6 +171,7 @@ namespace dtl::entity {
 			if (walk_direction == 0) return 0;
 			if (can_walk_direction[walk_direction - 1] == false) {
 				if (walk_direction <= direction_right) return 0;
+				//todo
 				else if (can_walk_direction[walk_direction - 1] && can_walk_direction[walk_direction - 1]) return 0;
 				switch (walk_direction) {
 				case direction_up_left:

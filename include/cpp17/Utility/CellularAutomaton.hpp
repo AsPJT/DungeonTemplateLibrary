@@ -40,7 +40,7 @@ namespace dtl::utility {
 
 		template<typename Matrix_>
 		constexpr inline void switchSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			switch (dtl::random::mt32bit_4.get()) {
+			switch (dtl::random::mt64bit_4.get()) {
 			case 0:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ - 1]; break;
 			case 1:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1]; break;
 			case 2:matrix_[point_y_][point_x_] = matrix_[point_y_ - 1][point_x_]; break;
@@ -49,16 +49,16 @@ namespace dtl::utility {
 		}
 		template<typename Matrix_>
 		constexpr inline void switchArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			switch (dtl::random::mt32bit_4.get()) {
+			switch (dtl::random::mt64bit_4.get()) {
 			case 0:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ - 1]; break;
 			case 1:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1]; break;
-			case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ - 1 * max_x_ + point_x_]; break;
-			case 3:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ + 1 * max_x_ + point_x_]; break;
+			case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ - 1) * max_x_ + point_x_]; break;
+			case 3:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ + 1) * max_x_ + point_x_]; break;
 			}
 		}
 		template<typename Matrix_>
 		constexpr inline void switchLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			switch (dtl::random::mt32bit_4.get()) {
+			switch (dtl::random::mt64bit_4.get()) {
 			case 0:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ - 1][layer_]; break;
 			case 1:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_]; break;
 			case 2:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ - 1][point_x_][layer_]; break;
@@ -76,8 +76,8 @@ namespace dtl::utility {
 			else this->switchSTL(matrix_, point_x_, point_y_);
 		}
 		template<typename Matrix_>
-		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {		
-			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ - 1 * max_x_ + point_x_] == matrix_[point_y_ + 1 * max_x_ + point_x_])
+		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {	
+			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[(point_y_ - 1) * max_x_ + point_x_] && matrix_[(point_y_ - 1) * max_x_ + point_x_] == matrix_[(point_y_ + 1) * max_x_ + point_x_])
 				matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
 			else this->switchArray(matrix_, point_x_, point_y_, max_x_);
 		}
@@ -96,7 +96,7 @@ namespace dtl::utility {
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[point_y_ - 1 * max_x_ + point_x_] && matrix_[point_y_ - 1 * max_x_ + point_x_] == matrix_[point_y_ + 1 * max_x_ + point_x_]&& function_(matrix_[point_y_][point_x_]))
+			if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[(point_y_ - 1) * max_x_ + point_x_] && matrix_[(point_y_ - 1) * max_x_ + point_x_] == matrix_[(point_y_ + 1) * max_x_ + point_x_]&& function_(matrix_[point_y_][point_x_]))
 				matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
 			else this->switchArray(matrix_, point_x_, point_y_, max_x_);
 		}
