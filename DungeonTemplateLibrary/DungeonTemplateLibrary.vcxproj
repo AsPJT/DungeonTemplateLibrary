@@ -39,6 +39,16 @@
     <ClInclude Include="Deprecated\SimpleRogueLike.hpp" />
     <ClInclude Include="Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="DTL.hpp" />
+    <ClInclude Include="DungeonBase.hpp" />
+    <ClInclude Include="DungeonCamera.hpp" />
+    <ClInclude Include="DungeonConsole.hpp" />
+    <ClInclude Include="DungeonDeprecated.hpp" />
+    <ClInclude Include="DungeonEntity.hpp" />
+    <ClInclude Include="DungeonRandom.hpp" />
+    <ClInclude Include="DungeonRetouch.hpp" />
+    <ClInclude Include="DungeonShape.hpp" />
+    <ClInclude Include="DungeonStorage.hpp" />
+    <ClInclude Include="DungeonUtility.hpp" />
     <ClInclude Include="Entity\MobManager.hpp" />
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
     <ClInclude Include="Retouch\BuryPoint.hpp" />
