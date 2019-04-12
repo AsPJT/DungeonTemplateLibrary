@@ -307,12 +307,23 @@ namespace dtl::shape {
 			this->draw_value = new_draw_value;
 			return *this;
 		}
-		//全ての値を初期値に戻す
-		constexpr auto clear() noexcept {
+		//始点座標(X,Y)を初期値に戻す
+		constexpr auto clearPoint() noexcept {
+			this->clearPointX();
+			this->clearPointY();
+			return *this;
+		}
+		//描画範囲を初期値に戻す
+		constexpr auto clearRange() noexcept {
 			this->clearPointX();
 			this->clearPointY();
 			this->clearWidth();
 			this->clearHeight();
+			return *this;
+		}
+		//全ての値を初期値に戻す
+		constexpr auto clear() noexcept {
+			this->clearRange();
 			this->clearValue();
 			return *this;
 		}

@@ -23,7 +23,7 @@ namespace dtl::shape {
 	constexpr void createDiamondSquareAverageSTL(Matrix_& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, const Matrix_Int_ max_value_) noexcept {
 		//再起の終了処理
 		if (size_ == 0) return;
-		const Matrix_Int_ & vertex_rand{ dtl::random::mt32bit.rand<Matrix_Int_>(size_) };
+		const Matrix_Int_ & vertex_rand{ dtl::random::mt32bit.get<Matrix_Int_>(size_) };
 		//頂点の高さを決める
 		const Matrix_Int_ & vertex_height{ static_cast<Matrix_Int_>((t1_ / 4 + t2_ / 4 + t3_ / 4 + t4_ / 4)) };
 		matrix_[start_y_ + y_][x_] = ((vertex_height > max_value_ - vertex_rand) ? max_value_ : (vertex_height + vertex_rand));
@@ -66,10 +66,10 @@ namespace dtl::shape {
 		constexpr void createSTL(Matrix_& matrix_, const std::size_t map_size_, const Matrix_Int_ max_value_ = 255) const noexcept {
 			const std::size_t start_x_{};
 			const std::size_t start_y_{};
-			matrix_[0][0] = matrix_[map_size_ / 2][0] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[0][map_size_] = matrix_[0][map_size_ / 2] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[map_size_][0] = matrix_[map_size_][map_size_ / 2] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[map_size_][map_size_] = matrix_[map_size_][map_size_ / 2] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
+			matrix_[0][0] = matrix_[map_size_ / 2][0] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[0][map_size_] = matrix_[0][map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[map_size_][0] = matrix_[map_size_][map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[map_size_][map_size_] = matrix_[map_size_][map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
 			matrix_[map_size_ / 2][map_size_ / 2] = max_value_;
 			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, start_x_, start_y_, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[0][0], matrix_[map_size_ / 2][0], matrix_[0][map_size_ / 2], matrix_[map_size_ / 2][map_size_ / 2], max_value_);
 			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, start_x_, start_y_, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[map_size_ / 2][0], matrix_[map_size_][0], matrix_[map_size_ / 2][map_size_ / 2], matrix_[map_size_][map_size_ / 2], max_value_);
@@ -80,10 +80,10 @@ namespace dtl::shape {
 		constexpr void createLayer(Matrix_& matrix_, const std::size_t& layer_, const std::size_t map_size_, const Matrix_Int_ max_value_ = 255) const noexcept {
 			const std::size_t start_x_{};
 			const std::size_t start_y_{};
-			matrix_[0][0][layer_] = matrix_[map_size_ / 2][0][layer_] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[0][map_size_][layer_] = matrix_[0][map_size_ / 2][layer_] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[map_size_][0][layer_] = matrix_[map_size_][map_size_ / 2][layer_] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
-			matrix_[map_size_][map_size_][layer_] = matrix_[map_size_][map_size_ / 2][layer_] = dtl::random::mt32bit.rand<Matrix_Int_>(max_value_ / 2);
+			matrix_[0][0][layer_] = matrix_[map_size_ / 2][0][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[0][map_size_][layer_] = matrix_[0][map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[map_size_][0][layer_] = matrix_[map_size_][map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
+			matrix_[map_size_][map_size_][layer_] = matrix_[map_size_][map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(max_value_ / 2);
 			matrix_[map_size_ / 2][map_size_ / 2][layer_] = max_value_;
 			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, start_x_, start_y_, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[0][0][layer_], matrix_[map_size_ / 2][0][layer_], matrix_[0][map_size_ / 2][layer_], matrix_[map_size_ / 2][map_size_ / 2][layer_], max_value_);
 			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, start_x_, start_y_, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[map_size_ / 2][0][layer_], matrix_[map_size_][0][layer_], matrix_[map_size_ / 2][map_size_ / 2][layer_], matrix_[map_size_][map_size_ / 2][layer_], max_value_);

@@ -128,7 +128,7 @@ namespace dtl::shape {
 			while (true) {
 				select_id = mazeDig_CreateLoop(matrix_, id_wall_, id_empty_, select_x, select_y);
 				if (select_id == 0) break;
-				select_id = dtl::random::mt32bit.rand<std::size_t>(select_id);
+				select_id = dtl::random::mt32bit.get<std::size_t>(select_id);
 				mazeDig_Dig(matrix_, select_x[select_id], select_y[select_id], id_wall_, id_empty_);
 			}
 			return;

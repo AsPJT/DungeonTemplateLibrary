@@ -41,7 +41,7 @@ namespace dtl::random {
 
 		//通常の乱数
 		template<typename Random_Int_ = std::uint_fast64_t>
-		[[nodiscard]] Random_Int_ rand() noexcept {
+		[[nodiscard]] Random_Int_ get() noexcept {
 			return static_cast<Random_Int_>(mt());
 		}
 
@@ -56,7 +56,7 @@ namespace dtl::random {
 	public:
 		[[nodiscard]] bool get() noexcept {
 			if (counter >= counter_num_1) {
-				random_num = dtl::random::mt64bit.rand();
+				random_num = dtl::random::mt64bit.get();
 				counter = 0;
 			}
 			else ++counter;
@@ -91,19 +91,19 @@ namespace dtl::random {
 
 		//通常の乱数
 		template<typename Random_Int_= std::uint_fast32_t>
-		[[nodiscard]] Random_Int_ rand() noexcept {
+		[[nodiscard]] Random_Int_ get() noexcept {
 			return static_cast<Random_Int_>(mt());
 		}
 		//0～最大値-1 (余りの範囲の一様分布乱数)
 		template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
-		[[nodiscard]] Random_Int_ rand(const Random_Int2_ max_) noexcept {
+		[[nodiscard]] Random_Int_ get(const Random_Int2_ max_) noexcept {
 			if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
 			std::uniform_int_distribution<std::int_fast32_t> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
 			return static_cast<Random_Int_>(uid(mt));
 		}
 		//最小値～最大値
 		template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
-		[[nodiscard]] Random_Int_ rand(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
+		[[nodiscard]] Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
 			std::uniform_int_distribution<Random_Int_> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 			return static_cast<Random_Int_>(uid(mt));
 		}
@@ -134,7 +134,7 @@ namespace dtl::random {
 		template<typename Random_Int_ = std::uint_fast64_t>
 		[[nodiscard]] Random_Int_ get() noexcept {
 			if (counter >= counter_num_2) {
-				random_num = dtl::random::mt64bit.rand();
+				random_num = dtl::random::mt64bit.get();
 				counter = 0;
 			}
 			else ++counter;
