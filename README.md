@@ -210,11 +210,16 @@ dtl::shape::PointGridWithBorder<shape_t>(point_grid, border).draw(matrix, width,
 
 ## PointGridAndSomeBlocksWithBorder✅
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid, border, block).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|1|Wall|Black|
-|2|Block|Red|
+|point_grid|PointGrid|Black|
+|border|Border|Black|
+|block|Block|Red|
 
 ![pgfpb](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/point_grid_field_put_block.gif)
 
