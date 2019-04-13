@@ -145,7 +145,7 @@
 ## [Rect✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Rect-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::Rect<shape_t>(draw_value).draw(matrix);
+dtl::shape::Rect<shape_t>(draw_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
@@ -157,7 +157,7 @@ dtl::shape::Rect<shape_t>(draw_value).draw(matrix);
 ## [Border✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::Border<shape_t>(draw_value).draw(matrix);
+dtl::shape::Border<shape_t>(draw_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
@@ -171,7 +171,7 @@ dtl::shape::Border<shape_t>(draw_value).draw(matrix);
 ## [BorderOdd✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::BorderOdd-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::BorderOdd<shape_t>(draw_value).draw(matrix);
+dtl::shape::BorderOdd<shape_t>(draw_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
@@ -183,19 +183,28 @@ dtl::shape::BorderOdd<shape_t>(draw_value).draw(matrix);
 
 ## [PointGrid✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGrid-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::PointGrid<shape_t>(draw_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|1|Wall|Black|
+|draw_value|PointGrid|Black|
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
 
 ## [PointGridWithBorder✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGridWithBorder-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::PointGridWithBorder<shape_t>(point_grid, border).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|1|Wall|Black|
+|point_grid|PointGrid|Black|
+|border|Border|Black|
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
