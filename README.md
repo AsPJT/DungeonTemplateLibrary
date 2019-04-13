@@ -32,14 +32,14 @@
 
 # [Type] Terrain Generation
 
-## SimpleVoronoiIsland
+## [CellularAutomatonMixIsland✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::CellularAutomatonMixIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
 |0|Sea|Blue|
-|1|Land|Green|
+|n|(Biome)|
 
-![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/VIB.gif)
+![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAMI.gif)
 
 ## CellularAutomatonIsland✅
 
@@ -49,15 +49,6 @@
 |1|Land|Green|
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAI.gif)
-
-## [CellularAutomatonMixIsland✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::CellularAutomatonMixIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
-
-|Sample Value|Name|Image Color|
-|:---:|:---|:---|
-|0|Sea|Blue|
-|n|(Biome)|
-
-![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAMI.gif)
 
 ## FractalIsland
 
@@ -91,6 +82,15 @@
 |0-255|Height|
 
 ![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAIC.gif)
+
+## SimpleVoronoiIsland
+
+|Sample Value|Name|Image Color|
+|:---:|:---|:---|
+|0|Sea|Blue|
+|1|Land|Green|
+
+![voronoi](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/VIB.gif)
 
 # [Type] Dungeon Generation
 
