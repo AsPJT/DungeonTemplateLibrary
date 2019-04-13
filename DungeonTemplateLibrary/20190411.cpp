@@ -1,18 +1,16 @@
 ﻿#include <DTL.hpp>
-#include <cstddef>
 #include <cstdint>
+#include <array>
 
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	constexpr std::size_t width{ 16 };
-	constexpr std::size_t height{ 8 };
+	std::array<std::array<shape_t, 33>, 33> matrix{ {} };
 
-	shape_t matrix[height * width]{};
+	dtl::shape::DiamondSquareAverageIsland<shape_t>(20, 80, 60).draw(matrix);
 
-	auto&& catch_matrix{ dtl::shape::Border<shape_t>(1).createArray(matrix, width, height) };
-
-	dtl::console::OutputString<shape_t>("//", "##").createArray(catch_matrix, width, height);
+	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
+	dtl::console::OutputStringBool<shape_t>("##", "//").drawOperator(matrix, [](const shape_t value_) {return value_ > 70; });
 
 	return 0;
 }

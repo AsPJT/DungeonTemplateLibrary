@@ -168,9 +168,6 @@
     <ClInclude Include="Storage\FileTerrainOBJ.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\DiamondSquareAverage.hpp">
-      <Filter>ヘッダー ファイル\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Deprecated\DungeonFile.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
@@ -242,6 +239,12 @@
     </ClInclude>
     <ClInclude Include="DungeonCamera.hpp">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\DiamondSquareAverageIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\DiamondSquareAverage.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
