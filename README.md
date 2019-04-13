@@ -144,28 +144,40 @@
 
 ## [Rect✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Rect-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::Rect<shape_t>(draw_value).draw(matrix);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|Black|
+|draw_value|Rect|Black|
 
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
 ## [Border✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::Border<shape_t>(draw_value).draw(matrix);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|1|Wall|Black|
+|draw_value|Border|Black|
 
 ![db](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border.png)
 ![border](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/border.png)
 
 ## [BorderOdd✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::BorderOdd-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
-|Sample Value|Name|Image Color|
+```cpp
+dtl::shape::BorderOdd<shape_t>(draw_value).draw(matrix);
+```
+
+|Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|1|Wall|Black|
+|draw_value|Border|Black|
 
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
