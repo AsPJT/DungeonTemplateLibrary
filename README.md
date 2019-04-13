@@ -76,7 +76,7 @@
 
 ![chunk](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FI2.gif)
 
-## SimpleDiamondSquareAverageIsland
+## [DiamondSquareAverageIsland✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::DiamondSquareAverageIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 |Sample Value|Name|
 |:---:|:---|
