@@ -145,25 +145,25 @@
 ## [Rect✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Rect-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::Rect<shape_t>(draw_value).draw(matrix, width, height);
+dtl::shape::Rect<shape_t>(rect_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|draw_value|Rect|Black|
+|rect_value|Rect|Black|
 
 ![di](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_init.png)
 
 ## [Border✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::Border<shape_t>(draw_value).draw(matrix, width, height);
+dtl::shape::Border<shape_t>(border_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|draw_value|Border|Black|
+|border_value|Border|Black|
 
 ![db](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border.png)
 ![border](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/border.png)
@@ -171,55 +171,55 @@ dtl::shape::Border<shape_t>(draw_value).draw(matrix, width, height);
 ## [BorderOdd✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::BorderOdd-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::BorderOdd<shape_t>(draw_value).draw(matrix, width, height);
+dtl::shape::BorderOdd<shape_t>(border_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|draw_value|Border|Black|
+|border_value|Border|Black|
 
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
 
 ## [PointGrid✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGrid-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::PointGrid<shape_t>(draw_value).draw(matrix, width, height);
+dtl::shape::PointGrid<shape_t>(point_grid_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|draw_value|PointGrid|Black|
+|point_grid_value|PointGrid|Black|
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
 
 ## [PointGridWithBorder✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGridWithBorder-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
-dtl::shape::PointGridWithBorder<shape_t>(point_grid, border).draw(matrix, width, height);
+dtl::shape::PointGridWithBorder<shape_t>(point_grid_value, border_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|point_grid|PointGrid|Black|
-|border|Border|Black|
+|point_grid_value|PointGrid|Black|
+|border_value|Border|Black|
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
 ## PointGridAndSomeBlocksWithBorder✅
 
 ```cpp
-dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid, border, block).draw(matrix, width, height);
+dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid_value, border_value, block_value).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
 |0|Empty|White|
-|point_grid|PointGrid|Black|
-|border|Border|Black|
-|block|Block|Red|
+|point_grid_value|PointGrid|Black|
+|border_value|Border|Black|
+|block_value|Block|Red|
 
 ![pgfpb](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/point_grid_field_put_block.gif)
 
