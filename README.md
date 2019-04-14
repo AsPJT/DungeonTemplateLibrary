@@ -162,7 +162,7 @@ dtl::shape::Border<shape_t>(border_value).draw(matrix, width, height);
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|White|
+|default_value|Empty|White|
 |border_value|Border|Black|
 
 ![db](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border.png)
@@ -176,7 +176,7 @@ dtl::shape::BorderOdd<shape_t>(border_value).draw(matrix, width, height);
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|White|
+|default_value|Empty|White|
 |border_value|Border|Black|
 
 ![bo](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/dungeon_border_odd.png)
@@ -189,7 +189,7 @@ dtl::shape::PointGrid<shape_t>(point_grid_value).draw(matrix, width, height);
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|White|
+|default_value|Empty|White|
 |point_grid_value|PointGrid|Black|
 
 ![pg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid.png)
@@ -202,7 +202,7 @@ dtl::shape::PointGridWithBorder<shape_t>(point_grid_value, border_value).draw(ma
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|White|
+|default_value|Empty|White|
 |point_grid_value|PointGrid|Black|
 |border_value|Border|Black|
 
@@ -216,7 +216,7 @@ dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid_value, border_v
 
 |Value Name|Name|Image Color|
 |:---:|:---|:---|
-|0|Empty|White|
+|default_value|Empty|White|
 |point_grid_value|PointGrid|Black|
 |border_value|Border|Black|
 |block_value|Block|Red|
