@@ -58,6 +58,7 @@
     <ClInclude Include="Shape\CellularAutomatonIsland.hpp" />
     <ClInclude Include="Shape\CellularAutomatonMixIsland.hpp" />
     <ClInclude Include="Shape\DiamondSquareAverage.hpp" />
+    <ClInclude Include="Shape\DiamondSquareAverageCornerIsland.hpp" />
     <ClInclude Include="Shape\DiamondSquareAverageIsland.hpp" />
     <ClInclude Include="Shape\HalfMixRect.hpp" />
     <ClInclude Include="Shape\MazeDig.hpp" />

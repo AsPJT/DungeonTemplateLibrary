@@ -246,6 +246,9 @@
     <ClInclude Include="Shape\DiamondSquareAverage.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\DiamondSquareAverageCornerIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190411.cpp">
