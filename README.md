@@ -76,7 +76,7 @@
 ![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAI.gif)
 ![dsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/diamond_sqare_ai.png)
 
-## SimpleDiamondSquareAverageIslandCorner
+## DiamondSquareAverageCornerIsland✅
 
 |Sample Value|Name|
 |:---:|:---|
