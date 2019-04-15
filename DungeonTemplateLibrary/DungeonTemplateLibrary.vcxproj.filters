@@ -43,6 +43,12 @@
     <Filter Include="ヘッダー ファイル\Deprecated">
       <UniqueIdentifier>{7ecd78d4-cbfe-4642-ac2a-d808f1127009}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ThirdParty">
+      <UniqueIdentifier>{b96fddbd-606e-45d4-bf71-09123eef72a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ThirdParty\STB">
+      <UniqueIdentifier>{906ff54e-2e50-4c26-876a-2d5c6654a7f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Struct.hpp">
@@ -249,10 +255,22 @@
     <ClInclude Include="Shape\DiamondSquareAverageCornerIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\STB\wrapper_stb_image_write.hpp">
+      <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\STB\stb_image_write.hpp">
+      <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonThirdParty.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190411.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

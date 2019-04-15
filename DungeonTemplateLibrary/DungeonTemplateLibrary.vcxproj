@@ -48,6 +48,7 @@
     <ClInclude Include="DungeonRetouch.hpp" />
     <ClInclude Include="DungeonShape.hpp" />
     <ClInclude Include="DungeonStorage.hpp" />
+    <ClInclude Include="DungeonThirdParty.hpp" />
     <ClInclude Include="DungeonUtility.hpp" />
     <ClInclude Include="Entity\MobManager.hpp" />
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
@@ -72,6 +73,8 @@
     <ClInclude Include="Shape\Rect.hpp" />
     <ClInclude Include="Storage\FileCSV.hpp" />
     <ClInclude Include="Storage\FileTerrainOBJ.hpp" />
+    <ClInclude Include="ThirdParty\STB\stb_image_write.hpp" />
+    <ClInclude Include="ThirdParty\STB\wrapper_stb_image_write.hpp" />
     <ClInclude Include="Utility\Binarization.hpp" />
     <ClInclude Include="Utility\Binarization_Over.hpp" />
     <ClInclude Include="Utility\CellularAutomaton.hpp" />
@@ -90,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190411.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -50,4 +50,7 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #include <DungeonUtility.hpp>
 
+/* ‰æ‘œ‘‚«o‚µƒ‰ƒCƒuƒ‰ƒŠ (dtl::thirdParty::stb) */
+#include <ThirdParty/STB/wrapper_stb_image_write.hpp>
+
 #endif //Included Dungeon Template Library
