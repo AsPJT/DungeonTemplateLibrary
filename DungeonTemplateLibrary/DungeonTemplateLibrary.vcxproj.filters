@@ -266,11 +266,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="20190411.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="pdf_sample.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

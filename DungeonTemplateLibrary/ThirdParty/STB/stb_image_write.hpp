@@ -155,7 +155,7 @@ LICENSE
 #ifndef INCLUDE_STB_IMAGE_WRITE_H
 #define INCLUDE_STB_IMAGE_WRITE_H
 
-#define STATIC_CONSTEXPR static constexpr
+#define STB_STATIC_CONSTEXPR static constexpr
 #include <cstdlib>
 #include <cstddef>
 
@@ -264,7 +264,7 @@ struct stbi__write_context {
 };
 
 // initialize a callback-based context
-STATIC_CONSTEXPR void stbi__start_write_callbacks(stbi__write_context* s_, stbi_write_func* c_, void* context_) noexcept {
+STB_STATIC_CONSTEXPR void stbi__start_write_callbacks(stbi__write_context* s_, stbi_write_func* c_, void* context_) noexcept {
 	s_->func = c_;
 	s_->context = context_;
 }
@@ -331,7 +331,7 @@ static void stbi__end_write_file(stbi__write_context * s) noexcept {
 typedef unsigned int stbiw_uint32;
 typedef int stb_image_write_test[sizeof(stbiw_uint32) == 4 ? 1 : -1];
 
-STATIC_CONSTEXPR void stbiw__writefv(stbi__write_context * s, const char* fmt, va_list v) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__writefv(stbi__write_context * s, const char* fmt, va_list v) noexcept {
 	while (*fmt) {
 		switch (*fmt++) {
 		case ' ': break;
@@ -366,7 +366,7 @@ static void stbiw__writef(stbi__write_context * s, const char* fmt, ...) noexcep
 	va_end(v);
 }
 
-STATIC_CONSTEXPR void stbiw__putc(stbi__write_context * s, unsigned char c) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__putc(stbi__write_context * s, unsigned char c) noexcept {
 	s->func(s->context, &c, 1);
 }
 
@@ -434,7 +434,7 @@ static void stbiw__write_pixels(stbi__write_context * s, const int rgb_dir, int 
 	}
 }
 
-STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_dir, const int vdir, const int x, const int y, const int comp, const int expand_mono, void* data, const int alpha, const int pad, const char* fmt, ...) noexcept {
+STB_STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_dir, const int vdir, const int x, const int y, const int comp, const int expand_mono, void* data, const int alpha, const int pad, const char* fmt, ...) noexcept {
 	if (y < 0 || x < 0) {
 		return 0;
 	}
@@ -448,7 +448,7 @@ STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_dir, 
 	}
 }
 
-STATIC_CONSTEXPR int stbi_write_bmp_core(stbi__write_context * s, const int x, const int y, const int comp, const void* data) noexcept {
+STB_STATIC_CONSTEXPR int stbi_write_bmp_core(stbi__write_context * s, const int x, const int y, const int comp, const void* data) noexcept {
 	int pad{ (-x * 3) & 3 };
 	return stbiw__outfile(s, -1, -1, x, y, comp, 1, (void*)data, 0, pad,
 		"11 4 22 4" "4 44 22 444444",
@@ -475,7 +475,7 @@ int stbi_write_bmp(const char* const filename, const int x, const int y, const i
 }
 #endif //!STBI_WRITE_NO_STDIO
 
-STATIC_CONSTEXPR int stbi_write_tga_core(stbi__write_context * s, const int x, const int y, const int comp, void* data) noexcept {
+STB_STATIC_CONSTEXPR int stbi_write_tga_core(stbi__write_context * s, const int x, const int y, const int comp, void* data) noexcept {
 	int has_alpha{ (comp == 2 || comp == 4) };
 	int colorbytes{ has_alpha ? comp - 1 : comp };
 	int format{ colorbytes < 2 ? 3 : 2 }; // 3 color channels (RGB/RGBA) = 2, 1 color channel (Y/YA) = 3
@@ -578,7 +578,7 @@ int stbi_write_tga(const char* const filename, const int x, const int y, const i
 
 #define stbiw__max(a, b)  ((a) > (b) ? (a) : (b))
 
-STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* linear) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* linear) noexcept {
 	int exponent{};
 	float maxcomp{ stbiw__max(linear[0], stbiw__max(linear[1], linear[2])) };
 
@@ -593,14 +593,14 @@ STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* linear) 
 	}
 }
 
-STATIC_CONSTEXPR void stbiw__write_run_data(stbi__write_context * s, const int length, unsigned char databyte) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__write_run_data(stbi__write_context * s, const int length, unsigned char databyte) noexcept {
 	unsigned char lengthbyte{ STBIW_UCHAR(length + 128) };
 	STBIW_ASSERT(length + 128 <= 255);
 	s->func(s->context, &lengthbyte, 1);
 	s->func(s->context, &databyte, 1);
 }
 
-STATIC_CONSTEXPR void stbiw__write_dump_data(stbi__write_context * s, const int length, unsigned char* data) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__write_dump_data(stbi__write_context * s, const int length, unsigned char* data) noexcept {
 	unsigned char lengthbyte{ STBIW_UCHAR(length) };
 	STBIW_ASSERT(length <= 128); // inconsistent with spec but consistent with official code
 	s->func(s->context, &lengthbyte, 1);
@@ -696,7 +696,7 @@ static void stbiw__write_hdr_scanline(stbi__write_context * s, const int width, 
 	}
 }
 
-STATIC_CONSTEXPR int stbi_write_hdr_core(stbi__write_context * s, const int x, const int y, const int comp, float* data) noexcept {
+STB_STATIC_CONSTEXPR int stbi_write_hdr_core(stbi__write_context * s, const int x, const int y, const int comp, float* data) noexcept {
 	if (y <= 0 || x <= 0 || data == nullptr) return 0;
 	else {
 		// Each component is stored separately. Allocate scratch space for full output scanline.
@@ -771,7 +771,7 @@ static void* stbiw__sbgrowf(void** arr, const int increment, const int itemsize)
 	return *arr;
 }
 
-STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsigned int* bitbuffer, int* bitcount) noexcept {
+STB_STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsigned int* bitbuffer, int* bitcount) noexcept {
 	while (*bitcount >= 8) {
 		stbiw__sbpush(data, STBIW_UCHAR(*bitbuffer));
 		*bitbuffer >>= 8;
@@ -780,7 +780,7 @@ STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsigned
 	return data;
 }
 
-STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
+STB_STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
 	int res{};
 	while (codebits--) {
 		res = (res << 1) | (code & 1);
@@ -789,14 +789,14 @@ STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
 	return res;
 }
 
-STATIC_CONSTEXPR unsigned int stbiw__zlib_countm(unsigned char* a, unsigned char* b, const int limit) noexcept {
+STB_STATIC_CONSTEXPR unsigned int stbiw__zlib_countm(unsigned char* a, unsigned char* b, const int limit) noexcept {
 	int i{};
 	for (; i < limit && i < 258; ++i)
 		if (a[i] != b[i]) break;
 	return i;
 }
 
-STATIC_CONSTEXPR unsigned int stbiw__zhash(unsigned char* data) noexcept {
+STB_STATIC_CONSTEXPR unsigned int stbiw__zhash(unsigned char* data) noexcept {
 	stbiw_uint32 hash{ static_cast<stbiw_uint32>(data[0] + (data[1] << 8) + (data[2] << 16)) };
 	hash ^= hash << 3;
 	hash += hash >> 5;
@@ -850,7 +850,7 @@ unsigned char* stbi_zlib_compress(unsigned char* data, const int data_len, int* 
 	i = 0;
 	while (i < data_len - 3) {
 		// hash next 3 bytes of data to be compressed
-		int h{ stbiw__zhash(data + i) & (stbiw__ZHASH - 1) }, best{ 3 };
+		int h{ static_cast<int>(stbiw__zhash(data + i) & (stbiw__ZHASH - 1)) }, best{ 3 };
 		unsigned char* bestloc{};
 		unsigned char** hlist{ hash_table[h] };
 		int n{ stbiw__sbcount(hlist) };
@@ -934,7 +934,7 @@ unsigned char* stbi_zlib_compress(unsigned char* data, const int data_len, int* 
 #endif // STBIW_ZLIB_COMPRESS
 }
 
-STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int len) noexcept {
+STB_STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int len) noexcept {
 #ifdef STBIW_CRC32
 	return STBIW_CRC32(buffer, len);
 #else
@@ -986,7 +986,7 @@ STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int len)
 #define stbiw__wp32(data,v) stbiw__wpng4(data, (v)>>24,(v)>>16,(v)>>8,(v));
 #define stbiw__wptag(data,s) stbiw__wpng4(data, s[0],s[1],s[2],s[3])
 
-STATIC_CONSTEXPR void stbiw__wpcrc(unsigned char** data, const int len) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__wpcrc(unsigned char** data, const int len) noexcept {
 	unsigned int crc{ stbiw__crc32(*data - len - 4, len + 4) };
 	stbiw__wp32(*data, crc);
 }
@@ -1153,7 +1153,7 @@ int stbi_write_png_to_func(stbi_write_func * func, void* context, const int x, c
 constexpr unsigned char stbiw__jpg_ZigZag[]{ 0,1,5,6,14,15,27,28,2,4,7,13,16,26,29,42,3,8,12,17,25,30,41,43,9,11,18,
 	  24,31,40,44,53,10,19,23,32,39,45,52,54,20,22,33,38,46,51,55,60,21,34,37,47,50,56,59,61,35,36,48,49,57,58,62,63 };
 
-STATIC_CONSTEXPR void stbiw__jpg_writeBits(stbi__write_context * s, int* bitBufP, int* bitCntP, const unsigned short* bs) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__jpg_writeBits(stbi__write_context * s, int* bitBufP, int* bitCntP, const unsigned short* bs) noexcept {
 	int bitBuf{ *bitBufP }, bitCnt{ *bitCntP };
 	bitCnt += bs[1];
 	bitBuf |= bs[0] << (24 - bitCnt);
@@ -1218,7 +1218,7 @@ static void stbiw__jpg_DCT(float* d0p, float* d1p, float* d2p, float* d3p, float
 	*d0p = d0;  *d2p = d2;  *d4p = d4;  *d6p = d6;
 }
 
-STATIC_CONSTEXPR void stbiw__jpg_calcBits(int val, unsigned short bits[2]) noexcept {
+STB_STATIC_CONSTEXPR void stbiw__jpg_calcBits(int val, unsigned short bits[2]) noexcept {
 	int tmp1{ val < 0 ? -val : val };
 	val = val < 0 ? val - 1 : val;
 	bits[1] = 1;
