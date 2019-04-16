@@ -73,7 +73,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAI.gif)
+![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAI256.gif)
 ![dsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/diamond_sqare_ai.png)
 
 ## DiamondSquareAverageCornerIsland✅
