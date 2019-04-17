@@ -28,14 +28,14 @@ ABOUT:
 BUILDING:
 
    You can #define STBIW_ASSERT(x) before the #include to avoid using assert.h.
-   You can #define STBIW_MALLOC(), STBIW_REALLOC(), and STBIW_FREE() to replace
+   You can #define std::malloc(), STBIW_REALLOC(), and std::free() to replace
    malloc,realloc,free.
    You can #define STBIW_MEMMOVE() to replace memmove()
    You can #define STBIW_ZLIB_COMPRESS to use a custom zlib-style compress function
    for PNG compression (instead of the builtin one), it must have the following signature:
    unsigned char * my_compress(unsigned char *data, int data_len, int *out_len, int quality);
-   The returned data will be freed with STBIW_FREE() (free() by default),
-   so it must be heap allocated with STBIW_MALLOC() (malloc() by default),
+   The returned data will be freed with std::free() (free() by default),
+   so it must be heap allocated with std::malloc() (malloc() by default),
 
 UNICODE:
 
@@ -155,9 +155,11 @@ LICENSE
 #ifndef INCLUDE_STB_IMAGE_WRITE_H
 #define INCLUDE_STB_IMAGE_WRITE_H
 
-#define STB_STATIC_CONSTEXPR static constexpr
+#define STBIW_STATIC_CONSTEXPR static constexpr
 #include <cstdlib>
 #include <cstddef>
+#include <cstdint>
+#include <string>
 
 // if STB_IMAGE_WRITE_STATIC causes problems, try defining  to 'inline' or 'static inline'
 
@@ -168,11 +170,15 @@ extern int stbi_write_force_png_filter;
 #endif
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_png(const char* const filename, const int w, const int h, const int comp, const void* data, const int stride_in_bytes) noexcept;
-int stbi_write_bmp(const char* const filename, const int w, const int h, const int comp, const void* data) noexcept;
-int stbi_write_tga(const char* const filename, const int w, const int h, const int comp, const void* data) noexcept;
-int stbi_write_hdr(const char* const filename, const int w, const int h, const int comp, const float* data) noexcept;
-int stbi_write_jpg(const char* const filename, const int x, const int y, const int comp, const void* data, const int quality) noexcept;
+template<typename Matrix_>
+bool stbi_write_png(const std::string& filename, const int w, const int h, const int comp, const Matrix_& data, const int stride_in_bytes) noexcept;
+template<typename Matrix_>
+int stbi_write_bmp(const std::string& filename, const int w, const int h, const int comp, const Matrix_& data) noexcept;
+template<typename Matrix_>
+int stbi_write_tga(const std::string& filename, const int w, const int h, const int comp, const Matrix_& data) noexcept;
+int stbi_write_hdr(const std::string& filename, const int w, const int h, const int comp, const float* data) noexcept;
+template<typename Matrix_>
+int stbi_write_jpg(const std::string& filename, const int x, const int y, const int comp, const Matrix_& data, const int quality) noexcept;
 
 #ifdef STBI_WINDOWS_UTF8
 int stbiw_convert_wchar_to_utf8(char* buffer, size_t bufferlen, const wchar_t* input) noexcept;
@@ -216,13 +222,13 @@ void stbi_flip_vertically_on_write(const int flip_boolean) noexcept;
 #elif !defined(STBIW_MALLOC) && !defined(STBIW_FREE) && !defined(STBIW_REALLOC) && !defined(STBIW_REALLOC_SIZED)
 // ok
 #else
-#error "Must define all or none of STBIW_MALLOC, STBIW_FREE, and STBIW_REALLOC (or STBIW_REALLOC_SIZED)."
+#error "Must define all or none of std::malloc, std::free, and STBIW_REALLOC (or STBIW_REALLOC_SIZED)."
 #endif
 
-#ifndef STBIW_MALLOC
-#define STBIW_MALLOC(sz) std::malloc(sz)
+#ifndef STBIW_MALLOC //
+#define STBIW_MALLOC(sz) std::malloc(sz) //
 #define STBIW_REALLOC(p,newsz) std::realloc(p,newsz)
-#define STBIW_FREE(p) std::free(p)
+#define  STBIW_FREE(p) std::free(p) //
 #endif
 
 #ifndef STBIW_REALLOC_SIZED
@@ -240,7 +246,7 @@ void stbi_flip_vertically_on_write(const int flip_boolean) noexcept;
 #define STBIW_ASSERT(x) assert(x)
 #endif
 
-#define STBIW_UCHAR(x) static_cast<unsigned char>((x) & 0xff)
+#define STBIW_UCHAR(x) static_cast<unsigned char>(x & 0xff)
 
 #ifdef STB_IMAGE_WRITE_STATIC
 static int stbi__flip_vertically_on_write{};
@@ -264,7 +270,7 @@ struct stbi__write_context {
 };
 
 // initialize a callback-based context
-STB_STATIC_CONSTEXPR void stbi__start_write_callbacks(stbi__write_context* s_, stbi_write_func* c_, void* context_) noexcept {
+STBIW_STATIC_CONSTEXPR void stbi__start_write_callbacks(stbi__write_context* s_, stbi_write_func* c_, void* context_) noexcept {
 	s_->func = c_;
 	s_->context = context_;
 }
@@ -331,7 +337,7 @@ static void stbi__end_write_file(stbi__write_context * s) noexcept {
 typedef unsigned int stbiw_uint32;
 typedef int stb_image_write_test[sizeof(stbiw_uint32) == 4 ? 1 : -1];
 
-STB_STATIC_CONSTEXPR void stbiw__writefv(stbi__write_context * s, const char* fmt, va_list v) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__writefv(stbi__write_context * s, const char* fmt, va_list v) noexcept {
 	while (*fmt) {
 		switch (*fmt++) {
 		case ' ': break;
@@ -366,7 +372,7 @@ static void stbiw__writef(stbi__write_context * s, const char* fmt, ...) noexcep
 	va_end(v);
 }
 
-STB_STATIC_CONSTEXPR void stbiw__putc(stbi__write_context * s, unsigned char c) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__putc(stbi__write_context * s, unsigned char c) noexcept {
 	s->func(s->context, &c, 1);
 }
 
@@ -408,7 +414,8 @@ static void stbiw__write_pixel(stbi__write_context * s, const int rgb_dir, const
 		s->func(s->context, &d[comp - 1], 1);
 }
 
-static void stbiw__write_pixels(stbi__write_context * s, const int rgb_dir, int vdir, const int x, const int y, const int comp, void* data, const int write_alpha, const int scanline_pad, const int expand_mono) noexcept {
+template<typename Matrix_>
+static void stbiw__write_pixels(stbi__write_context * s, const int rgb_dir, int vdir, const int x, const int y, const int comp, const Matrix_& data, const int write_alpha, const int scanline_pad, const int expand_mono) noexcept {
 	stbiw_uint32 zero{};
 	int i, j, j_end;
 
@@ -434,7 +441,8 @@ static void stbiw__write_pixels(stbi__write_context * s, const int rgb_dir, int 
 	}
 }
 
-STB_STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_dir, const int vdir, const int x, const int y, const int comp, const int expand_mono, void* data, const int alpha, const int pad, const char* fmt, ...) noexcept {
+template<typename Matrix_>
+STBIW_STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_dir, const int vdir, const int x, const int y, const int comp, const int expand_mono, const Matrix_& data, const int alpha, const int pad, const char* fmt, ...) noexcept {
 	if (y < 0 || x < 0) {
 		return 0;
 	}
@@ -448,9 +456,10 @@ STB_STATIC_CONSTEXPR int stbiw__outfile(stbi__write_context * s, const int rgb_d
 	}
 }
 
-STB_STATIC_CONSTEXPR int stbi_write_bmp_core(stbi__write_context * s, const int x, const int y, const int comp, const void* data) noexcept {
+template<typename Matrix_>
+STBIW_STATIC_CONSTEXPR int stbi_write_bmp_core(stbi__write_context * s, const int x, const int y, const int comp, const Matrix_& data) noexcept {
 	int pad{ (-x * 3) & 3 };
-	return stbiw__outfile(s, -1, -1, x, y, comp, 1, (void*)data, 0, pad,
+	return stbiw__outfile(s, -1, -1, x, y, comp, 1, data, 0, pad,
 		"11 4 22 4" "4 44 22 444444",
 		'B', 'M', 14 + 40 + (x * 3 + pad) * y, 0, 0, 14 + 40,  // file header
 		40, x, y, 1, 24, 0, 0, 0, 0, 0, 0);             // bitmap header
@@ -463,9 +472,10 @@ int stbi_write_bmp_to_func(stbi_write_func * func, void* context, const int x, c
 }
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_bmp(const char* const filename, const int x, const int y, const int comp, const void* data) noexcept {
+template<typename Matrix_>
+int stbi_write_bmp(const std::string& filename, const int x, const int y, const int comp, const Matrix_& data) noexcept {
 	stbi__write_context s;
-	if (stbi__start_write_file(&s, filename)) {
+	if (stbi__start_write_file(&s, filename.c_str())) {
 		int r = stbi_write_bmp_core(&s, x, y, comp, data);
 		stbi__end_write_file(&s);
 		return r;
@@ -475,7 +485,8 @@ int stbi_write_bmp(const char* const filename, const int x, const int y, const i
 }
 #endif //!STBI_WRITE_NO_STDIO
 
-STB_STATIC_CONSTEXPR int stbi_write_tga_core(stbi__write_context * s, const int x, const int y, const int comp, void* data) noexcept {
+template<typename Matrix_>
+STBIW_STATIC_CONSTEXPR int stbi_write_tga_core(stbi__write_context * s, const int x, const int y, const int comp, const Matrix_& data) noexcept {
 	int has_alpha{ (comp == 2 || comp == 4) };
 	int colorbytes{ has_alpha ? comp - 1 : comp };
 	int format{ colorbytes < 2 ? 3 : 2 }; // 3 color channels (RGB/RGBA) = 2, 1 color channel (Y/YA) = 3
@@ -483,7 +494,7 @@ STB_STATIC_CONSTEXPR int stbi_write_tga_core(stbi__write_context * s, const int 
 	if (y < 0 || x < 0) return 0;
 
 	if (!stbi_write_tga_with_rle) {
-		return stbiw__outfile(s, -1, -1, x, y, comp, 0, (void*)data, has_alpha, 0,
+		return stbiw__outfile(s, -1, -1, x, y, comp, 0, data, has_alpha, 0,
 			"111 221 2222 11", 0, 0, format, 0, 0, 0, 0, 0, x, y, (colorbytes + has_alpha) * 8, has_alpha * 8);
 	}
 	else {
@@ -560,10 +571,11 @@ int stbi_write_tga_to_func(stbi_write_func * func, void* context, const int x, c
 }
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_tga(const char* const filename, const int x, const int y, const int comp, const void* data) noexcept {
+template<typename Matrix_>
+int stbi_write_tga(const std::string& filename, const int x, const int y, const int comp, const Matrix_& data) noexcept {
 	stbi__write_context s;
-	if (stbi__start_write_file(&s, filename)) {
-		int r{ stbi_write_tga_core(&s, x, y, comp, (void*)data) };
+	if (stbi__start_write_file(&s, filename.c_str())) {
+		int r{ stbi_write_tga_core(&s, x, y, comp, data) };
 		stbi__end_write_file(&s);
 		return r;
 	}
@@ -578,7 +590,7 @@ int stbi_write_tga(const char* const filename, const int x, const int y, const i
 
 #define stbiw__max(a, b)  ((a) > (b) ? (a) : (b))
 
-STB_STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* linear) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* linear) noexcept {
 	int exponent{};
 	float maxcomp{ stbiw__max(linear[0], stbiw__max(linear[1], linear[2])) };
 
@@ -593,14 +605,14 @@ STB_STATIC_CONSTEXPR void stbiw__linear_to_rgbe(unsigned char* rgbe, float* line
 	}
 }
 
-STB_STATIC_CONSTEXPR void stbiw__write_run_data(stbi__write_context * s, const int length, unsigned char databyte) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__write_run_data(stbi__write_context * s, const int length, unsigned char databyte) noexcept {
 	unsigned char lengthbyte{ STBIW_UCHAR(length + 128) };
 	STBIW_ASSERT(length + 128 <= 255);
 	s->func(s->context, &lengthbyte, 1);
 	s->func(s->context, &databyte, 1);
 }
 
-STB_STATIC_CONSTEXPR void stbiw__write_dump_data(stbi__write_context * s, const int length, unsigned char* data) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__write_dump_data(stbi__write_context * s, const int length, unsigned char* data) noexcept {
 	unsigned char lengthbyte{ STBIW_UCHAR(length) };
 	STBIW_ASSERT(length <= 128); // inconsistent with spec but consistent with official code
 	s->func(s->context, &lengthbyte, 1);
@@ -696,11 +708,11 @@ static void stbiw__write_hdr_scanline(stbi__write_context * s, const int width, 
 	}
 }
 
-STB_STATIC_CONSTEXPR int stbi_write_hdr_core(stbi__write_context * s, const int x, const int y, const int comp, float* data) noexcept {
+STBIW_STATIC_CONSTEXPR int stbi_write_hdr_core(stbi__write_context * s, const int x, const int y, const int comp, float* data) noexcept {
 	if (y <= 0 || x <= 0 || data == nullptr) return 0;
 	else {
 		// Each component is stored separately. Allocate scratch space for full output scanline.
-		unsigned char* scratch = (unsigned char*)STBIW_MALLOC(x * 4);
+		unsigned char* scratch = (unsigned char*)std::malloc(x * 4);
 		int i{}, len{};
 		char buffer[128]{};
 		char header[] = "#?RADIANCE\n# Written by stb_image_write.h\nFORMAT=32-bit_rle_rgbe\n";
@@ -715,7 +727,7 @@ STB_STATIC_CONSTEXPR int stbi_write_hdr_core(stbi__write_context * s, const int 
 
 		for (i = 0; i < y; ++i)
 			stbiw__write_hdr_scanline(s, x, comp, scratch, data + comp * x * (stbi__flip_vertically_on_write ? y - 1 - i : i));
-		STBIW_FREE(scratch);
+		std::free(scratch);
 		return 1;
 	}
 }
@@ -727,9 +739,9 @@ int stbi_write_hdr_to_func(stbi_write_func * func, void* context, const int x, c
 }
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_hdr(const char* const filename, const int x, const int y, const int comp, const float* data) noexcept {
+int stbi_write_hdr(const std::string& filename, const int x, const int y, const int comp, const float* data) noexcept {
 	stbi__write_context s;
-	if (stbi__start_write_file(&s, filename)) {
+	if (stbi__start_write_file(&s, filename.c_str())) {
 		int r = stbi_write_hdr_core(&s, x, y, comp, (float*)data);
 		stbi__end_write_file(&s);
 		return r;
@@ -757,7 +769,7 @@ int stbi_write_hdr(const char* const filename, const int x, const int y, const i
 
 #define stbiw__sbpush(a, v)      (stbiw__sbmaybegrow(a,1), (a)[stbiw__sbn(a)++] = (v))
 #define stbiw__sbcount(a)        ((a) ? stbiw__sbn(a) : 0)
-#define stbiw__sbfree(a)         ((a) ? STBIW_FREE(stbiw__sbraw(a)),0 : 0)
+#define stbiw__sbfree(a)         ((a) ? std::free(stbiw__sbraw(a)),0 : 0)
 
 static void* stbiw__sbgrowf(void** arr, const int increment, const int itemsize) noexcept {
 	int m{ *arr ? 2 * stbiw__sbm(*arr) + increment : increment + 1 };
@@ -771,7 +783,7 @@ static void* stbiw__sbgrowf(void** arr, const int increment, const int itemsize)
 	return *arr;
 }
 
-STB_STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsigned int* bitbuffer, int* bitcount) noexcept {
+STBIW_STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsigned int* bitbuffer, int* bitcount) noexcept {
 	while (*bitcount >= 8) {
 		stbiw__sbpush(data, STBIW_UCHAR(*bitbuffer));
 		*bitbuffer >>= 8;
@@ -780,7 +792,7 @@ STB_STATIC_CONSTEXPR unsigned char* stbiw__zlib_flushf(unsigned char* data, unsi
 	return data;
 }
 
-STB_STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
+STBIW_STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
 	int res{};
 	while (codebits--) {
 		res = (res << 1) | (code & 1);
@@ -789,14 +801,14 @@ STB_STATIC_CONSTEXPR int stbiw__zlib_bitrev(int code, int codebits) noexcept {
 	return res;
 }
 
-STB_STATIC_CONSTEXPR unsigned int stbiw__zlib_countm(unsigned char* a, unsigned char* b, const int limit) noexcept {
+STBIW_STATIC_CONSTEXPR unsigned int stbiw__zlib_countm(unsigned char* a, unsigned char* b, const int limit) noexcept {
 	int i{};
 	for (; i < limit && i < 258; ++i)
 		if (a[i] != b[i]) break;
 	return i;
 }
 
-STB_STATIC_CONSTEXPR unsigned int stbiw__zhash(unsigned char* data) noexcept {
+STBIW_STATIC_CONSTEXPR unsigned int stbiw__zhash(unsigned char* data) noexcept {
 	stbiw_uint32 hash{ static_cast<stbiw_uint32>(data[0] + (data[1] << 8) + (data[2] << 16)) };
 	hash ^= hash << 3;
 	hash += hash >> 5;
@@ -835,7 +847,7 @@ unsigned char* stbi_zlib_compress(unsigned char* data, const int data_len, int* 
 	unsigned int bitbuf{};
 	int i, j, bitcount{};
 	unsigned char* out{ nullptr };
-	unsigned char*** hash_table{ (unsigned char***)STBIW_MALLOC(stbiw__ZHASH * sizeof(char**)) };
+	unsigned char*** hash_table{ (unsigned char***)std::malloc(stbiw__ZHASH * sizeof(char**)) };
 	if (hash_table == nullptr) return nullptr;
 	if (quality < 5) quality = 5;
 
@@ -909,7 +921,7 @@ unsigned char* stbi_zlib_compress(unsigned char* data, const int data_len, int* 
 
 	for (i = 0; i < stbiw__ZHASH; ++i)
 		(void)stbiw__sbfree(hash_table[i]);
-	STBIW_FREE(hash_table);
+	std::free(hash_table);
 
 	{
 		// compute adler32 on input
@@ -934,7 +946,7 @@ unsigned char* stbi_zlib_compress(unsigned char* data, const int data_len, int* 
 #endif // STBIW_ZLIB_COMPRESS
 }
 
-STB_STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int len) noexcept {
+STBIW_STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int len) noexcept {
 #ifdef STBIW_CRC32
 	return STBIW_CRC32(buffer, len);
 #else
@@ -986,7 +998,7 @@ STB_STATIC_CONSTEXPR unsigned int stbiw__crc32(unsigned char* buffer, const int 
 #define stbiw__wp32(data,v) stbiw__wpng4(data, (v)>>24,(v)>>16,(v)>>8,(v));
 #define stbiw__wptag(data,s) stbiw__wpng4(data, s[0],s[1],s[2],s[3])
 
-STB_STATIC_CONSTEXPR void stbiw__wpcrc(unsigned char** data, const int len) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__wpcrc(unsigned char** data, const int len) noexcept {
 	unsigned int crc{ stbiw__crc32(*data - len - 4, len + 4) };
 	stbiw__wp32(*data, crc);
 }
@@ -999,22 +1011,22 @@ static unsigned char stbiw__paeth(const int a, const int b, const int c) noexcep
 }
 
 // @OPTIMIZE: provide an option that always forces left-predict or paeth predict
-static void stbiw__encode_png_line(unsigned char* pixels, const int stride_bytes, const int width, const int height, const int y, const int n, const int filter_type, signed char* line_buffer) noexcept {
-	static int mapping[]{ 0,1,2,3,4 };
-	static int firstmap[]{ 0,1,0,5,6 };
-	int* mymap{ (y != 0) ? mapping : firstmap };
-	int i;
-	int type{ mymap[filter_type] };
-	unsigned char* z{ pixels + static_cast<std::size_t>(stride_bytes * (stbi__flip_vertically_on_write ? height - 1 - y : y)) };
-	int signed_stride{ stbi__flip_vertically_on_write ? -stride_bytes : stride_bytes };
+template<typename Matrix_>
+STBIW_STATIC_CONSTEXPR void stbiw__encode_png_line(const Matrix_& pixels, const int stride_bytes, const int width, const int height, const int y, const int n, const int filter_type, signed char* line_buffer) noexcept {
+	constexpr int mapping[5]{ 0,1,2,3,4 };
+	constexpr int firstmap[5]{ 0,1,0,5,6 };
+	const int* const mymap{ (y != 0) ? mapping : firstmap };
+	const int type{ mymap[filter_type] };
+	const unsigned char* const z{ (unsigned char*)pixels + static_cast<std::size_t>(stride_bytes * (stbi__flip_vertically_on_write ? height - 1 - y : y)) };
+	const int signed_stride{ stbi__flip_vertically_on_write ? -stride_bytes : stride_bytes };
 
 	if (type == 0) {
-		memcpy(line_buffer, z, static_cast<std::size_t>(width * n));
+		std::memcpy(line_buffer, z, static_cast<std::size_t>(width * n));
 		return;
 	}
 
 	// first loop isn't optimized since it's just one pixel    
-	for (i = 0; i < n; ++i) {
+	for (int i{}; i < n; ++i) {
 		switch (type) {
 		case 1: line_buffer[i] = z[i]; break;
 		case 2: line_buffer[i] = z[i] - z[i - signed_stride]; break;
@@ -1025,43 +1037,47 @@ static void stbiw__encode_png_line(unsigned char* pixels, const int stride_bytes
 		}
 	}
 	switch (type) {
-	case 1: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - z[i - n]; break;
-	case 2: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - z[i - signed_stride]; break;
-	case 3: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - ((z[i - n] + z[i - signed_stride]) >> 1); break;
-	case 4: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i - n], z[i - signed_stride], z[i - signed_stride - n]); break;
-	case 5: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - (z[i - n] >> 1); break;
-	case 6: for (i = n; i < width * n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i - n], 0, 0); break;
+	case 1: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - z[i - n]; break;
+	case 2: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - z[i - signed_stride]; break;
+	case 3: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - ((z[i - n] + z[i - signed_stride]) >> 1); break;
+	case 4: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i - n], z[i - signed_stride], z[i - signed_stride - n]); break;
+	case 5: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - (z[i - n] >> 1); break;
+	case 6: for (int i{ n }; i < width * n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i - n], 0, 0); break;
 	}
 }
 
-unsigned char* stbi_write_png_to_mem(const unsigned char* const pixels, int stride_bytes, const int x, const int y, const int n, int* const out_len) noexcept {
-	int force_filter{ stbi_write_force_png_filter };
-	int ctype[5]{ -1, 0, 4, 2, 6 };
-	unsigned char sig[8]{ 137,80,78,71,13,10,26,10 };
-	unsigned char* out, * o, * filt, * zlib;
-	signed char* line_buffer;
-	int j, zlen;
+template<typename Matrix_>
+unsigned char* stbi_write_png_to_mem(const Matrix_& pixels, int stride_bytes, const int x, const int y, const int n, int* const out_len) noexcept {
+	constexpr int ctype[5]{ -1, 0, 4, 2, 6 };
+	constexpr unsigned char sig[8]{ 137,80,78,71,13,10,26,10 };
+	unsigned char* out, * o;
 
 	if (stride_bytes == 0) stride_bytes = x * n;
+
+	int force_filter{ stbi_write_force_png_filter };
 	if (force_filter >= 5) force_filter = -1;
 
-	filt = (unsigned char*)STBIW_MALLOC((x * n + 1) * y); if (!filt) return 0;
-	line_buffer = (signed char*)STBIW_MALLOC(x * n); if (!line_buffer) { STBIW_FREE(filt); return 0; }
-	for (j = 0; j < y; ++j) {
+	unsigned char* filt{ (unsigned char*)std::malloc((x * n + 1) * y) };
+	if (!filt) return 0;
+	
+	signed char* line_buffer{ (signed char*)std::malloc(x * n) };
+	if (!line_buffer) { std::free(filt); return 0; }
+
+	for (int j{}; j < y; ++j) {
 		int filter_type;
 		if (force_filter > -1) {
 			filter_type = force_filter;
-			stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, force_filter, line_buffer);
+			stbiw__encode_png_line(pixels, stride_bytes, x, y, j, n, force_filter, line_buffer);
 		}
 		else { // Estimate the best filter by running through all of them:
-			int best_filter = 0, best_filter_val = 0x7fffffff, est, i;
-			for (filter_type = 0; filter_type < 5; filter_type++) {
-				stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, filter_type, line_buffer);
+			int best_filter{}, best_filter_val{ 0x7fffffff }, est{};
+			for (filter_type = 0; filter_type < 5; ++filter_type) {
+				stbiw__encode_png_line(pixels, stride_bytes, x, y, j, n, filter_type, line_buffer);
 
 				// Estimate the entropy of the line using this filter; the less, the better.
 				est = 0;
-				for (i = 0; i < x * n; ++i) {
-					est += abs((signed char)line_buffer[i]);
+				for (int i{}; i < x * n; ++i) {
+					est += std::abs((signed char)line_buffer[i]);
 				}
 				if (est < best_filter_val) {
 					best_filter_val = est;
@@ -1069,7 +1085,7 @@ unsigned char* stbi_write_png_to_mem(const unsigned char* const pixels, int stri
 				}
 			}
 			if (filter_type != best_filter) {  // If the last iteration already got us the best filter, don't redo it
-				stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, best_filter, line_buffer);
+				stbiw__encode_png_line(pixels, stride_bytes, x, y, j, n, best_filter, line_buffer);
 				filter_type = best_filter;
 			}
 		}
@@ -1077,13 +1093,15 @@ unsigned char* stbi_write_png_to_mem(const unsigned char* const pixels, int stri
 		filt[j * (x * n + 1)] = (unsigned char)filter_type;
 		STBIW_MEMMOVE(filt + j * (x * n + 1) + 1, line_buffer, x * n);
 	}
-	STBIW_FREE(line_buffer);
-	zlib = stbi_zlib_compress(filt, y * (x * n + 1), &zlen, stbi_write_png_compression_level);
-	STBIW_FREE(filt);
+	std::free(line_buffer);
+
+	int zlen{};
+	unsigned char* const zlib{ stbi_zlib_compress(filt, y * (x * n + 1), &zlen, stbi_write_png_compression_level) };
+	std::free(filt);
 	if (!zlib) return 0;
 
 	// each tag requires 12 bytes of overhead
-	out = (unsigned char*)STBIW_MALLOC(8 + 12 + 13 + 12 + zlen + 12);
+	out = (unsigned char*)std::malloc(8 + 12 + 13 + 12 + zlen + 12);
 	if (!out) return 0;
 	*out_len = 8 + 12 + 13 + 12 + zlen + 12;
 
@@ -1104,7 +1122,7 @@ unsigned char* stbi_write_png_to_mem(const unsigned char* const pixels, int stri
 	stbiw__wptag(o, "IDAT");
 	STBIW_MEMMOVE(o, zlib, zlen);
 	o += zlen;
-	STBIW_FREE(zlib);
+	std::free(zlib);
 	stbiw__wpcrc(&o, zlen);
 
 	stbiw__wp32(o, 0);
@@ -1117,18 +1135,21 @@ unsigned char* stbi_write_png_to_mem(const unsigned char* const pixels, int stri
 }
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_png(const char* const filename, const int x, const int y, const int comp, const void* data, const int stride_bytes) noexcept {
-	FILE* f;
-	int len;
-	unsigned char* png{ stbi_write_png_to_mem((const unsigned char*)data, stride_bytes, x, y, comp, &len) };
-	if (png == nullptr) return 0;
+template<typename Matrix_>
+bool stbi_write_png(const std::string& filename_, const int x_, const int y_, const int comp_, const Matrix_& data_, const int stride_bytes_) noexcept {
+	int len{};
+	unsigned char* png{ stbi_write_png_to_mem(data_, stride_bytes_, x_, y_, comp_, &len) };
+	if (png == nullptr) return false;
 
-	f = stbiw__fopen(filename, "wb");
-	if (!f) { STBIW_FREE(png); return 0; }
+	FILE* const f{ stbiw__fopen(filename_.c_str(), "wb") };
+	if (!f) {
+		std::free(png);
+		return false;
+	}
 	std::fwrite(png, 1, len, f);
 	std::fclose(f);
-	STBIW_FREE(png);
-	return 1;
+	std::free(png);
+	return true;
 }
 #endif
 
@@ -1137,7 +1158,7 @@ int stbi_write_png_to_func(stbi_write_func * func, void* context, const int x, c
 	unsigned char* png{ stbi_write_png_to_mem((const unsigned char*)data, stride_bytes, x, y, comp, &len) };
 	if (png == nullptr) return 0;
 	func(context, png, len);
-	STBIW_FREE(png);
+	std::free(png);
 	return 1;
 }
 
@@ -1153,7 +1174,7 @@ int stbi_write_png_to_func(stbi_write_func * func, void* context, const int x, c
 constexpr unsigned char stbiw__jpg_ZigZag[]{ 0,1,5,6,14,15,27,28,2,4,7,13,16,26,29,42,3,8,12,17,25,30,41,43,9,11,18,
 	  24,31,40,44,53,10,19,23,32,39,45,52,54,20,22,33,38,46,51,55,60,21,34,37,47,50,56,59,61,35,36,48,49,57,58,62,63 };
 
-STB_STATIC_CONSTEXPR void stbiw__jpg_writeBits(stbi__write_context * s, int* bitBufP, int* bitCntP, const unsigned short* bs) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__jpg_writeBits(stbi__write_context * s, int* bitBufP, int* bitCntP, const unsigned short* bs) noexcept {
 	int bitBuf{ *bitBufP }, bitCnt{ *bitCntP };
 	bitCnt += bs[1];
 	bitBuf |= bs[0] << (24 - bitCnt);
@@ -1218,7 +1239,7 @@ static void stbiw__jpg_DCT(float* d0p, float* d1p, float* d2p, float* d3p, float
 	*d0p = d0;  *d2p = d2;  *d4p = d4;  *d6p = d6;
 }
 
-STB_STATIC_CONSTEXPR void stbiw__jpg_calcBits(int val, unsigned short bits[2]) noexcept {
+STBIW_STATIC_CONSTEXPR void stbiw__jpg_calcBits(int val, unsigned short bits[2]) noexcept {
 	int tmp1{ val < 0 ? -val : val };
 	val = val < 0 ? val - 1 : val;
 	bits[1] = 1;
@@ -1294,7 +1315,8 @@ static int stbiw__jpg_processDU(stbi__write_context * s, int* bitBuf, int* bitCn
 	return DU[0];
 }
 
-static int stbi_write_jpg_core(stbi__write_context * s, int width, int height, int comp, const void* data, int quality) noexcept {
+template<typename Matrix_>
+static int stbi_write_jpg_core(stbi__write_context * s, int width, int height, int comp, const Matrix_& data, int quality) noexcept {
 	// Constants that don't pollute global namespace
 	constexpr unsigned char std_dc_luminance_nrcodes[]{ 0,0,1,5,1,1,1,1,1,1,0,0,0,0,0,0,0 };
 	constexpr unsigned char std_dc_luminance_values[]{ 0,1,2,3,4,5,6,7,8,9,10,11 };
@@ -1472,9 +1494,10 @@ int stbi_write_jpg_to_func(stbi_write_func * func, void* context, const int x, c
 
 
 #ifndef STBI_WRITE_NO_STDIO
-int stbi_write_jpg(const char* const filename, const int x, const int y, const int comp, const void* data, const int quality) noexcept {
+template<typename Matrix_>
+int stbi_write_jpg(const std::string& filename, const int x, const int y, const int comp, const Matrix_& data, const int quality) noexcept {
 	stbi__write_context s;
-	if (stbi__start_write_file(&s, filename)) {
+	if (stbi__start_write_file(&s, filename.c_str())) {
 		int r{ stbi_write_jpg_core(&s, x, y, comp, data, quality) };
 		stbi__end_write_file(&s);
 		return r;
@@ -1512,7 +1535,7 @@ int stbi_write_jpg(const char* const filename, const int x, const int y, const i
 	  0.99 (2015-09-13)
 			 warning fixes; TGA rle support
 	  0.98 (2015-04-08)
-			 added STBIW_MALLOC, STBIW_ASSERT etc
+			 added std::malloc, STBIW_ASSERT etc
 	  0.97 (2015-01-18)
 			 fixed HDR asserts, rewrote HDR rle logic
 	  0.96 (2015-01-17)
