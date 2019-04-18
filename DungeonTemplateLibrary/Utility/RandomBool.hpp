@@ -11,7 +11,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
-#include "Random_MersenneTwister32bit.hpp"
+#include <Random/MersenneTwister32bit.hpp>
 
 //STLデータ
 namespace dtl::utility::stl {

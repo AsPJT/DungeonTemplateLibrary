@@ -106,16 +106,16 @@ int main() {
 	constexpr std::size_t width{ 256 };
 	constexpr std::size_t height{ 256 };
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
-	//dtl::shape::PointGridWithBorder<bool>(1).draw(matrix);
+	//dtl::PointGridWithBorder<bool>(1).draw(matrix);
 
 	randomTerrain<shape_t>(matrix, width, height, 110, 120, 0, 255, 3);
 	
-	//dtl::console::OutputNumber<bool>(",").draw(matrix);
-	//dtl::console::OutputStringBool<bool>("##", "  ").drawOperator(matrix, [](const shape_t a) {return a > 150; });
+	//dtl::OutputNumber<bool>(",").draw(matrix);
+	//dtl::OutputStringBool<bool>("##", "  ").drawOperator(matrix, [](const shape_t a) {return a > 150; });
 
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writePNG("island256_256_7.png");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeJPG("island256_256_7.jpg");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeTGA("island256_256_7.tga");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeBMP("island256_256_7.bmp");
+	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writePNG("island256_256_8.png");
+	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeJPG("island256_256_8.jpg");
+	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeTGA("island256_256_8.tga");
+	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeBMP("island256_256_8.bmp");
 
 }

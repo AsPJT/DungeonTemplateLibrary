@@ -17,8 +17,6 @@
 
 #include <Utility/Binarization.hpp>
 
-#include <Utility/Binarization_Over.hpp>
-
 #include <Utility/Copy.hpp>
 
 #include <Utility/Init.hpp>

@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Base">
       <UniqueIdentifier>{52162baf-66ef-4b44-8629-201f943888d2}</UniqueIdentifier>
     </Filter>
@@ -96,9 +92,6 @@
     <ClInclude Include="Shape\MixRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\OneLine.hpp">
-      <Filter>ヘッダー ファイル\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Point.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
@@ -124,9 +117,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Binarization.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\Binarization_Over.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Utility\CellularAutomaton.hpp">

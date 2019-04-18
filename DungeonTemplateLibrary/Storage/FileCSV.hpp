@@ -20,9 +20,9 @@
 #include <iomanip>
 #include <Utility/CharCast.hpp>
 
-using namespace std::literals::string_literals;
-
 namespace dtl::storage {
+
+	using namespace std::literals::string_literals;
 
 	template<typename Matrix_Int_>
 	class FileCSV {

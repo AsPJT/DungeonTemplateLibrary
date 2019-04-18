@@ -64,7 +64,6 @@
     <ClInclude Include="Shape\HalfMixRect.hpp" />
     <ClInclude Include="Shape\MazeDig.hpp" />
     <ClInclude Include="Shape\MixRect.hpp" />
-    <ClInclude Include="Shape\OneLine.hpp" />
     <ClInclude Include="Shape\Point.hpp" />
     <ClInclude Include="Shape\PointGrid.hpp" />
     <ClInclude Include="Shape\PointGridAndSomeBlocksWithBorder.hpp" />
@@ -76,7 +75,6 @@
     <ClInclude Include="ThirdParty\STB\stb_image_write.hpp" />
     <ClInclude Include="ThirdParty\STB\wrapper_stb_image_write.hpp" />
     <ClInclude Include="Utility\Binarization.hpp" />
-    <ClInclude Include="Utility\Binarization_Over.hpp" />
     <ClInclude Include="Utility\CellularAutomaton.hpp" />
     <ClInclude Include="Utility\CharCast.hpp" />
     <ClInclude Include="Utility\Copy.hpp" />

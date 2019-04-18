@@ -54,15 +54,15 @@ namespace dtl::storage {
 		}
 
 		template<typename Matrix_>
-		constexpr inline void baseSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream& ofs_) const noexcept {
+		constexpr inline void baseSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream& ofs_) const noexcept {
 			ofs_ << "v " << point_x_* value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_])* value_z << " " << point_y_* value_y << '\n';
 		}
 		template<typename Matrix_>
-		constexpr inline void baseArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
+		constexpr inline void baseArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
 			ofs_ << "v " << point_x_* value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_])* value_z << " " << point_y_* value_y << '\n';
 		}
 		template<typename Matrix_>
-		constexpr inline void baseLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream& ofs_) const noexcept {
+		constexpr inline void baseLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream& ofs_) const noexcept {
 			ofs_ << "v " << point_x_* value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_])* value_z << " " << point_y_* value_y << '\n';
 		}
 
@@ -71,7 +71,7 @@ namespace dtl::storage {
 
 		//STL
 		template<typename Matrix_, typename ...Args_>
-		bool writeSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeSTL(const Matrix_ & matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -84,7 +84,7 @@ namespace dtl::storage {
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		bool writeWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -99,7 +99,7 @@ namespace dtl::storage {
 
 		//LayerSTL
 		template<typename Matrix_, typename ...Args_>
-		bool writeLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -112,7 +112,7 @@ namespace dtl::storage {
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
-		bool writeLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -127,7 +127,7 @@ namespace dtl::storage {
 
 		//Normal
 		template<typename Matrix_, typename ...Args_>
-		bool writeNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -142,7 +142,7 @@ namespace dtl::storage {
 
 		//LayerNormal
 		template<typename Matrix_, typename ...Args_>
-		bool writeLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+		bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -157,7 +157,7 @@ namespace dtl::storage {
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
-		bool writeArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+		bool writeArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 			std::ofstream ofs(str);
 			if (ofs.fail()) return false;
 			for (Index_Size row{ point_y }; row < point_y_; ++row)
@@ -196,52 +196,60 @@ namespace dtl::storage {
 
 		//STL
 		template<typename Matrix_>
-		constexpr bool write(Matrix_ && matrix_) const noexcept {
-			return (width == 0) ? this->writeSTL(std::forward<Matrix_>(matrix_), (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+		constexpr bool write(const Matrix_ & matrix_) const noexcept {
+			return (width == 0) ? this->writeSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
-		constexpr bool writeOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-			return (width == 0) ? this->writeSTL(std::forward<Matrix_>(matrix_), (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+		constexpr bool writeOperator(const Matrix_ & matrix_, Function_ && function_) const noexcept {
+			return (width == 0) ? this->writeSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
 		}
 
 		//LayerSTL
 		template<typename Matrix_>
-		constexpr bool write(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-			return (width == 0) ? this->writeLayerSTL(std::forward<Matrix_>(matrix_), layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+		constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_) const noexcept {
+			return (width == 0) ? this->writeLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
-		constexpr bool writeOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-			return (width == 0) ? this->writeLayerSTL(std::forward<Matrix_>(matrix_), layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+		constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
+			return (width == 0) ? this->writeLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
 		}
 
 		//Normal
 		template<typename Matrix_>
-		constexpr bool write(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->writeNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+		constexpr bool write(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->writeNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
-		constexpr bool writeOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-			return this->writeNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+		constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
+			return this->writeNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
 		}
 
 		//LayerNormal
 		template<typename Matrix_>
-		constexpr bool write(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->writeLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+		constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->writeLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
 		}
 		template<typename Matrix_, typename Function_>
-		constexpr bool writeOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-			return this->writeLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+		constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
+			return this->writeLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
 		}
 
 		//Array
 		template<typename Matrix_>
-		constexpr bool writeArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-			return this->writeArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+		constexpr bool writeArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+			return this->writeArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
 		}
 		template<typename Matrix_, typename Function_>
-		constexpr bool writeOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-			return this->writeArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+		constexpr bool writeOperatorArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
+			return this->writeArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+		}
+
+
+		///// 生成呼び出しファンクタ /////
+
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto operator()(const Matrix_& matrix_, Args_&& ... args_) const noexcept {
+			return this->write(matrix_, std::forward<Args_>(args_)...);
 		}
 
 

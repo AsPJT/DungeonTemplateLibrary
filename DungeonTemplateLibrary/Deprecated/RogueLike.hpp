@@ -13,7 +13,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <Random/MersenneTwister32bit.hpp>
-#include <Utility/Binarization_Over.hpp>
+#include <Utility/Binarization.hpp>
 #include <Utility/NoiseShoreBool.hpp>
 
 //Dungeon Template Library Namespace
@@ -280,7 +280,10 @@ namespace dtl::generator::dungeon::stl {
 		template<typename Matrix_>
 		constexpr void create(Matrix_& matrix_, const std::size_t way_max_ = 20) const noexcept {
 			dtl::generator::dungeon::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
-			dtl::utility::stl::binarizationOver(matrix_, 1);
+			//dtl::utility::stl::binarizationOver(matrix_, 1);
+
+			dtl::utility::Binarization<Matrix_Int_>(1, 0).drawOperator(matrix_, [](const Matrix_Int_ & value_) {return value_ >= 1; });
+
 			dtl::utility::stl::noiseShoreBothBool(matrix_, 0.1);
 		}
 	};

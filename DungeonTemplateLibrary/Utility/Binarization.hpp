@@ -203,6 +203,14 @@ namespace dtl::utility {
 		}
 
 
+		///// 生成呼び出しファンクタ /////
+
+		template<typename Matrix_, typename ...Args_>
+		constexpr auto operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+		}
+
+
 		///// ダンジョン行列生成 /////
 
 		template<typename Matrix_, typename ...Args_>
@@ -276,99 +284,5 @@ namespace dtl::utility {
 			true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
 	};
 }
-
-
-
-
-
-//STLデータ
-namespace dtl::utility::stl {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_) noexcept {
-		for (std::size_t row{}; row < matrix_.size(); ++row)
-			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-				if (matrix_[row][col]) matrix_[row][col] = 1;
-				else matrix_[row][col] = 0;
-			}
-	}
-
-} //namespace
-
-//通常データ
-namespace dtl::utility::normal {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t row{}; row < y_; ++row)
-			for (std::size_t col{}; col < x_; ++col) {
-				if (matrix_[row][col]) matrix_[row][col] = 1;
-				else matrix_[row][col] = 0;
-			}
-	}
-
-} //namespace
-
-//配列データ
-namespace dtl::utility::array {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t row{}; row < y_; ++row)
-			for (std::size_t col{}; col < x_; ++col) {
-				if (matrix_[row*x_ + col]) matrix_[row*x_ + col] = 1;
-				else matrix_[row*x_ + col] = 0;
-			}
-	}
-
-} //namespace
-
-//範囲forデータ
-namespace dtl::utility::rangeBasedFor {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_) noexcept {
-		for (auto&& row : matrix_)
-			for (auto&& col : row) {
-				if (col) col = 1;
-				else col = 0;
-			}
-	}
-
-} //namespace
-
-//レイヤーSTLデータ
-namespace dtl::utility::layer::stl {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t layer_) noexcept {
-		for (std::size_t row{}; row < matrix_.size(); ++row)
-			for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-				if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = 1;
-				else matrix_[row][col][layer_] = 0;
-			}
-	}
-
-} //namespace
-
-//レイヤー通常データ
-namespace dtl::utility::layer::normal {
-
-	//2値化処理
-	template<typename Matrix_>
-	[[deprecated("please use dtl::utility::Binarization class")]] constexpr void binarization(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-		for (std::size_t row{}; row < y_; ++row)
-			for (std::size_t col{}; col < x_; ++col) {
-				if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = 1;
-				else matrix_[row][col][layer_] = 0;
-			}
-	}
-
-} //namespace
 
 #endif //Included Dungeon Template Library

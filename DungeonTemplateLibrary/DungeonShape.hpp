@@ -35,8 +35,6 @@
 #include <Shape/MixRect.hpp>
 //指定マスの全てに任意の値(1)を設置する。
 #include <Shape/Rect.hpp>
-//[削除予定]
-#include <Shape/OneLine.hpp>
 //
 #include <Shape/Point.hpp>
 //指定マスの偶数列目かつ偶数行目に任意の値(1)を設置する。
