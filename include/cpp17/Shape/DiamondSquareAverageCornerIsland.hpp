@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_CORNER_ISLAND
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_CORNER_ISLAND
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -15,16 +15,17 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
-#include <memory>
-#include <new>
 #include <Base/Struct.hpp>
+#include <algorithm>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Shape/DiamondSquareAverage.hpp>
 
 namespace dtl::shape {
 
+
 	//マスを指定した数値で埋める
 	template<typename Matrix_Int_>
-	class MazeDig {
+	class DiamondSquareAverageCornerIsland {
 	private:
 
 
@@ -40,127 +41,61 @@ namespace dtl::shape {
 		Index_Size point_y{};
 		Index_Size width{};
 		Index_Size height{};
-		Matrix_Int_ draw_value{};
+		Matrix_Int_ min_value{};
+		Matrix_Int_ altitude{ 10 };
+		Matrix_Int_ add_altitude{};
 
 
-		//生成チェック
-		template<typename Matrix_>
-		constexpr bool mazeDig_Check(const Matrix_& matrix_) const noexcept {
-			if (matrix_.size() <= 2) return false;
-			if (matrix_[1].size() <= 2) return false;
-			return true;
-		}
-		//穴掘り
-		template<typename Matrix_>
-		constexpr void mazeDig_Dig(Matrix_ & matrix_, std::size_t x_, std::size_t y_, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
+		///// サイズ取得 /////
 
-			using dtl::random::mersenne_twister_32bit;
-
-			if (!mazeDig_Check(matrix_)) return;
-			std::int_fast32_t dx{}, dy{};
-			std::size_t random = std::size_t(mersenne_twister_32bit()), counter = 0;
-
-			const std::size_t i_max{ ((matrix_.size() % 2) == 0) ? matrix_.size() - 2 : matrix_.size() - 1 };
-			const std::size_t j_max{ ((matrix_[0].size() % 2) == 0) ? matrix_[0].size() - 2 : matrix_[0].size() - 1 };
-
-			while (counter < 4) {
-				switch ((random + counter) & 3)
-				{
-				case 0:dx = 0; dy = -2; break;
-				case 1:dx = -2; dy = 0; break;
-				case 2:dx = 0; dy = 2; break;
-				case 3:dx = 2; dy = 0; break;
-				default:dx = 0; dy = 0; break;
-				}
-				if (x_ + dx <= 0 || y_ + dy <= 0 || (x_ + dx) >= i_max || (y_ + dy) >= j_max || matrix_[x_ + dx][y_ + dy] == id_empty_) {
-					++counter;
-				}
-				else if (matrix_[x_ + dx][y_ + dy] == id_wall_) {
-					matrix_[x_ + (dx / 2)][y_ + (dy / 2)] = id_empty_;
-					matrix_[x_ + dx][y_ + dy] = id_empty_;
-					x_ += dx;
-					y_ += dy;
-					counter = 0;
-					random = std::size_t(mersenne_twister_32bit());
-				}
-			}
-			return;
-		}
-		//迷路生成
-		template<typename Matrix_>
-		constexpr std::size_t mazeDig_CreateLoop(const Matrix_ & matrix_, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_, std::unique_ptr<std::size_t[]> & select_x, std::unique_ptr<std::size_t[]> & select_y) const noexcept {
-			std::size_t select_id{};
-			const std::size_t i_max{ ((matrix_.size() % 2) == 0) ? matrix_.size() - 2 : matrix_.size() - 1 };
-			const std::size_t j_max{ ((matrix_[0].size() % 2) == 0) ? matrix_[0].size() - 2 : matrix_[0].size() - 1 };
-
-			for (std::size_t i{ 1 }; i < i_max; i += 2)
-				for (std::size_t j{ 1 }; j < j_max; j += 2) {
-					if (matrix_[i][j] != id_empty_) continue;
-					if ((i >= 2 && matrix_[i - 2][j] == id_wall_) || (j >= 2 && matrix_[i][j - 2] == id_wall_)) {
-						select_x[select_id] = i;
-						select_y[select_id] = j;
-						++select_id;
-					}
-					else if ((j == j_max - 1) && (i == i_max - 1)) break;
-					else if ((i + 2 < (i_max + 1) && matrix_[i + 2][j] == id_wall_) || (j + 2 < (j_max + 1) && matrix_[i][j + 2] == id_wall_)) {
-						select_x[select_id] = i;
-						select_y[select_id] = j;
-						++select_id;
-					}
-				}
-			return select_id;
-		}
-		//穴掘り法の迷路を生成する
-		template<typename Matrix_>
-		void mazeDig_Create(Matrix_ & matrix_, const Matrix_Int_ max_x_, const Matrix_Int_ max_y_, const Matrix_Int_ id_wall_, const Matrix_Int_ id_empty_) const noexcept {
-
-			if (max_x_ <= 2 || max_y_ <= 2) return;
-			matrix_[1][1] = id_empty_;
-
-			std::size_t select_id{};
-
-			std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[matrix_.size() * matrix_[0].size()] };
-			if (!select_x) return;
-			std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[matrix_.size() * matrix_[0].size()] };
-			if (!select_y) return;
-
-			//座標を選ぶ
+		[[nodiscard]] constexpr std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
+			std::size_t map_size{ 2 };
 			while (true) {
-				select_id = mazeDig_CreateLoop(matrix_, id_wall_, id_empty_, select_x, select_y);
-				if (select_id == 0) break;
-				select_id = dtl::random::mt32bit.get<std::size_t>(select_id);
-				mazeDig_Dig(matrix_, select_x[select_id], select_y[select_id], id_wall_, id_empty_);
+				if ((map_size + 1) > matrix_size) return map_size >>= 1;
+				map_size <<= 1;
 			}
-			return;
+			return 0;
 		}
 
 
 		///// 代入処理 /////
 
-		template<typename Matrix_>
-		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			matrix_[point_y_][point_x_] = draw_value;
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
+			matrix_[point_y][point_x] = min_value + altitude;
+			matrix_[point_y][point_x + map_size_] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[point_y + map_size_][point_x] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[point_y + map_size_][point_x + map_size_] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, point_x, point_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[point_y][point_x], matrix_[point_y + map_size_][point_x], matrix_[point_y][point_x + map_size_], matrix_[point_y + map_size_][point_x + map_size_], min_value + altitude, add_altitude, function_);
 		}
-		template<typename Matrix_>
-		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			matrix_[point_y_ * max_x_ + point_x_] = draw_value;
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
+			matrix_[(point_y)* max_x_ + (point_x)] = min_value + altitude;
+			matrix_[(point_y)* max_x_ + (point_x + map_size_)] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[(point_y + map_size_) * max_x_ + (point_x)] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[(point_y + map_size_) * max_x_ + (point_x + map_size_)] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, point_x, point_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[(point_y)* max_x_ + (point_x)], matrix_[(point_y + map_size_) * max_x_ + (point_x)], matrix_[(point_y)* max_x_ + (point_x + map_size_)], matrix_[(point_y + map_size_) * max_x_ + (point_x + map_size_)], min_value + altitude, add_altitude, function_);
 		}
-		template<typename Matrix_>
-		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			matrix_[point_y_][point_x_][layer_] = draw_value;
+		template<typename Matrix_, typename Function_>
+		constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
+			matrix_[point_y][point_x][layer_] = min_value + altitude;
+			matrix_[point_y][point_x + map_size_][layer_] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[point_y + map_size_][point_x][layer_] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			matrix_[point_y + map_size_][point_x + map_size_][layer_] = min_value + dtl::random::mt32bit.get<Matrix_Int_>(altitude);
+			createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, point_x, point_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[point_y][point_x][layer_], matrix_[point_y + map_size_][point_x][layer_], matrix_[point_y][point_x + map_size_][layer_], matrix_[point_y + map_size_][point_x + map_size_][layer_], min_value + altitude, add_altitude, function_);
 		}
 
-		template<typename Matrix_, typename Function_>
-		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-			if (function_(matrix_[point_y_][point_x_])) matrix_[point_y_][point_x_] = draw_value;
+		template<typename Matrix_>
+		constexpr inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_) const noexcept {
+			substitutionSTL(std::forward<Matrix_>(matrix_), map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 		}
-		template<typename Matrix_, typename Function_>
-		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-			if (function_(matrix_[point_y_ * max_x_ + point_x_])) matrix_[point_y_ * max_x_ + point_x_] = draw_value;
+		template<typename Matrix_>
+		constexpr inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_) const noexcept {
+			substitutionArray(std::forward<Matrix_>(matrix_), max_x_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 		}
-		template<typename Matrix_, typename Function_>
-		constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
-			if (function_(matrix_[point_y_][point_x_][layer_])) matrix_[point_y_][point_x_][layer_] = draw_value;
+		template<typename Matrix_>
+		constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_) const noexcept {
+			substitutionLayer(std::forward<Matrix_>(matrix_), layer_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 		}
 
 
@@ -169,61 +104,52 @@ namespace dtl::shape {
 		//STL
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			mazeDig_Create(matrix_, (matrix_.size() == 0) ? 0 : matrix_[0].size(), matrix_.size(), 0, 1);
-			//for (Index_Size row{ point_y }; row < point_y_; ++row)
-			//	for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
-			//		this->substitutionSTL(matrix_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			mazeDig_Create(matrix_, (matrix_.size() == 0) ? 0 : matrix_[0].size(), matrix_.size(), 0, 1);
-			//for (Index_Size row{ point_y }; row < point_y_; ++row)
-			//	for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-			//		this->substitutionSTL(matrix_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//LayerSTL
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			for (Index_Size row{ point_y }; row < point_y_; ++row)
-				for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			for (Index_Size row{ point_y }; row < point_y_; ++row)
-				for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//Normal
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			for (Index_Size row{ point_y }; row < point_y_; ++row)
-				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionSTL(matrix_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//LayerNormal
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-			for (Index_Size row{ point_y }; row < point_y_; ++row)
-				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionLayer(matrix_, layer_, col, row, args_...);
+			if (altitude < 2) return false;
+			this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
 			return true;
 		}
 
 		//Array
 		template<typename Matrix_, typename ...Args_>
 		constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-			for (Index_Size row{ point_y }; row < point_y_; ++row)
-				for (Index_Size col{ point_x }; col < point_x_; ++col)
-					this->substitutionArray(matrix_, col, row, max_x_, args_...);
+			if (altitude < 2) return false;
+			this->substitutionArray(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), max_x_, std::forward<Args_>(args_)...);
 			return true;
 		}
 
@@ -244,8 +170,11 @@ namespace dtl::shape {
 		[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
 			return this->height;
 		}
-		[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
-			return this->draw_value;
+		[[nodiscard]] constexpr Matrix_Int_ getMinValue() const noexcept {
+			return this->min_value;
+		}
+		[[nodiscard]] constexpr Matrix_Int_ getMaxValue() const noexcept {
+			return this->max_value;
 		}
 
 
@@ -328,24 +257,45 @@ namespace dtl::shape {
 
 		///// コンストラクタ /////
 
-		constexpr MazeDig() noexcept = default;
-		constexpr explicit MazeDig(const Matrix_Int_ & draw_value_) noexcept
-			:draw_value(draw_value_) {}
-		constexpr explicit MazeDig(const dtl::base::MatrixRange & matrix_range_) noexcept
+		constexpr DiamondSquareAverageCornerIsland() noexcept = default;
+		constexpr explicit DiamondSquareAverageCornerIsland(const Matrix_Int_ & min_value_) noexcept
+			:min_value(min_value_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
+			:min_value(min_value_), altitude(altitude_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
+			:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const dtl::base::MatrixRange & matrix_range_) noexcept
 			:point_x(matrix_range_.x), point_y(matrix_range_.y),
 			width(matrix_range_.w), height(matrix_range_.h) {}
-		constexpr explicit MazeDig(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+		constexpr explicit DiamondSquareAverageCornerIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
 			:point_x(matrix_range_.x), point_y(matrix_range_.y),
 			width(matrix_range_.w), height(matrix_range_.h),
-			draw_value(draw_value_) {}
-		constexpr explicit MazeDig(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
+			min_value(min_value_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
+			:point_x(matrix_range_.x), point_y(matrix_range_.y),
+			width(matrix_range_.w), height(matrix_range_.h),
+			min_value(min_value_), altitude(altitude_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
+			:point_x(matrix_range_.x), point_y(matrix_range_.y),
+			width(matrix_range_.w), height(matrix_range_.h),
+			min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_) {}
-		constexpr explicit MazeDig(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+		constexpr explicit DiamondSquareAverageCornerIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_) noexcept
 			:point_x(point_x_), point_y(point_y_),
 			width(width_), height(height_),
-			draw_value(draw_value_) {}
+			min_value(min_value_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
+			:point_x(point_x_), point_y(point_y_),
+			width(width_), height(height_),
+			min_value(min_value_), altitude(altitude_) {}
+		constexpr explicit DiamondSquareAverageCornerIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
+			:point_x(point_x_), point_y(point_y_),
+			width(width_), height(height_),
+			min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 	};
-}
+
+} //namespace
 
 #endif //Included Dungeon Template Library

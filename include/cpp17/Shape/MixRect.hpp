@@ -53,28 +53,28 @@ namespace dtl::shape {
 
 		template<typename Matrix_>
 		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			matrix_[point_y_][point_x_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			matrix_[point_y_][point_x_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 		template<typename Matrix_>
 		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-			matrix_[point_y_ * max_x_ + point_x_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			matrix_[point_y_ * max_x_ + point_x_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 		template<typename Matrix_>
 		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-			matrix_[point_y_][point_x_][layer_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			matrix_[point_y_][point_x_][layer_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-			if (function_(matrix_[point_y_][point_x_])) matrix_[point_y_][point_x_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			if (function_(matrix_[point_y_][point_x_])) matrix_[point_y_][point_x_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-			if (function_(matrix_[point_y_ * max_x_ + point_x_])) matrix_[point_y_ * max_x_ + point_x_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			if (function_(matrix_[point_y_ * max_x_ + point_x_])) matrix_[point_y_ * max_x_ + point_x_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 		template<typename Matrix_, typename Function_>
 		constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-			if (function_(matrix_[point_y_][point_x_][layer_])) matrix_[point_y_][point_x_][layer_] = draw_value[dtl::random::mt32bit.rand<std::size_t>(draw_value.size())];
+			if (function_(matrix_[point_y_][point_x_][layer_])) matrix_[point_y_][point_x_][layer_] = draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
 		}
 
 

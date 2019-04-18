@@ -26,6 +26,10 @@
 //
 #include <Shape/DiamondSquareAverage.hpp>
 //
+#include <Shape/DiamondSquareAverageCornerIsland.hpp>
+//
+#include <Shape/DiamondSquareAverageIsland.hpp>
+//
 #include <Shape/MazeDig.hpp>
 //
 #include <Shape/MixRect.hpp>

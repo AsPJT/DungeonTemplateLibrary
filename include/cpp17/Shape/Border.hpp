@@ -9,6 +9,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_BORDER
 
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+#######################################################################################*/
+
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
@@ -307,12 +312,23 @@ namespace dtl::shape {
 			this->draw_value = new_draw_value;
 			return *this;
 		}
-		//全ての値を初期値に戻す
-		constexpr auto clear() noexcept {
+		//始点座標(X,Y)を初期値に戻す
+		constexpr auto clearPoint() noexcept {
+			this->clearPointX();
+			this->clearPointY();
+			return *this;
+		}
+		//描画範囲を初期値に戻す
+		constexpr auto clearRange() noexcept {
 			this->clearPointX();
 			this->clearPointY();
 			this->clearWidth();
 			this->clearHeight();
+			return *this;
+		}
+		//全ての値を初期値に戻す
+		constexpr auto clear() noexcept {
+			this->clearRange();
 			this->clearValue();
 			return *this;
 		}
