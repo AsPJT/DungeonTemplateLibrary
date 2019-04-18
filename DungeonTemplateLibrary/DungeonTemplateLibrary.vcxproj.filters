@@ -266,9 +266,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="pdf_sample.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>

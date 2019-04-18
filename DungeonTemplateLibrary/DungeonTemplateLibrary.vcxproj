@@ -92,9 +92,6 @@
     <ClInclude Include="Utility\SetItem.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="pdf_sample.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
