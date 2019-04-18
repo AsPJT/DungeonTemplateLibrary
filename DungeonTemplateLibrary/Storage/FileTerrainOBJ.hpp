@@ -278,7 +278,7 @@ namespace dtl::storage {
 
 
 		///// コンストラクタ /////
-		//Value_Int_
+
 		constexpr FileTerrainOBJ() noexcept = default;
 		constexpr explicit FileTerrainOBJ(const std::string& write_value_) noexcept
 			:str(write_value_) {}

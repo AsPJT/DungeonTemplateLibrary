@@ -103,19 +103,22 @@ void randomTerrain(Matrix_&& matrix_, const std::size_t width, const std::size_t
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	constexpr std::size_t width{ 256 };
-	constexpr std::size_t height{ 256 };
+	constexpr std::size_t width{ 32 };
+	constexpr std::size_t height{ 32 };
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
 	//dtl::PointGridWithBorder<bool>(1).draw(matrix);
 
-	randomTerrain<shape_t>(matrix, width, height, 110, 120, 0, 255, 3);
+	//randomTerrain<shape_t>(matrix, width, height, 110, 120, 0, 255, 3);
 	
 	//dtl::OutputNumber<bool>(",").draw(matrix);
 	//dtl::OutputStringBool<bool>("##", "  ").drawOperator(matrix, [](const shape_t a) {return a > 150; });
+	//dtl::PointGridAndSomeBlocksWithBorder<shape_t>(1, 2, 3).draw(matrix);
+	//dtl::Replace<shape_t>(0, 1, 2, 3).draw(matrix);
+	//dtl::OutputNumber<shape_t>(",").draw(matrix);
 
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writePNG("island256_256_8.png");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeJPG("island256_256_8.jpg");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeTGA("island256_256_8.tga");
-	dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeBMP("island256_256_8.bmp");
+	//dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writePNG("island256_256_8.png");
+	//dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeJPG("island256_256_8.jpg");
+	//dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeTGA("island256_256_8.tga");
+	//dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writeBMP("island256_256_8.bmp");
 
 }

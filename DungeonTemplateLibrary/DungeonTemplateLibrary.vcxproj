@@ -83,9 +83,6 @@
     <ClInclude Include="Utility\Matrix.hpp" />
     <ClInclude Include="Utility\NoiseBool.hpp" />
     <ClInclude Include="Utility\NoiseShoreBool.hpp" />
-    <ClInclude Include="Utility\RandomBool.hpp" />
-    <ClInclude Include="Utility\RandomInnerBool.hpp" />
-    <ClInclude Include="Utility\RandomInnerRandomValue.hpp" />
     <ClInclude Include="Utility\Replace.hpp" />
     <ClInclude Include="Utility\SetItem.hpp" />
   </ItemGroup>
