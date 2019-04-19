@@ -25,9 +25,9 @@
 
 #include <Utility/NoiseShoreBool.hpp>
 
-#include <Utility/Replace.hpp>
+#include <Utility/ReplaceAll.hpp>
 
-#include <Utility/SetItem.hpp>
+#include <Utility/ReplaceSome.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY

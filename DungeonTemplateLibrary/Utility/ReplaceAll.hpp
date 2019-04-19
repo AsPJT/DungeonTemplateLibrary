@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL
 
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -16,6 +16,7 @@
 #include <cstdint>
 #include <utility>
 #include <vector>
+#include <algorithm>
 #include <Base/Struct.hpp>
 
 namespace dtl {
@@ -23,7 +24,7 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>
-		class Replace {
+		class ReplaceAll {
 		private:
 
 
@@ -54,52 +55,76 @@ namespace dtl {
 
 			template<typename Matrix_>
 			constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_][point_x_]) {
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_][point_x_]) {
 						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 			template<typename Matrix_>
 			constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_ * max_x_ + point_x_]) {
-						matrix_[point_y_ * max_x_ + point_x_] = after_value;
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_]) {
+						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 			template<typename Matrix_>
 			constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_][point_x_][layer_]) {
-						matrix_[point_y_][point_x_][layer_] = after_value;
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_][point_x_][layer_]) {
+						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 
 			template<typename Matrix_, typename Function_>
 			constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
 						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
-						matrix_[point_y_ * max_x_ + point_x_] = after_value;
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
+						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				for (const auto& i : before_value)
-					if (i == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
-						matrix_[point_y_][point_x_][layer_] = after_value;
+				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+					mid_value = (low_value + high_value) / 2;
+					if (before_value[mid_value] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
+						matrix_[point_y_][point_x_] = after_value;
 						return;
 					}
+					else if (before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
+					else high_value = mid_value - 1;
+				}
 			}
 
 
@@ -108,6 +133,7 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 						this->substitutionSTL(matrix_, col, row, args_...);
@@ -115,6 +141,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->substitutionSTL(matrix_, col, row, args_...);
@@ -124,6 +151,7 @@ namespace dtl {
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
 						this->substitutionLayer(matrix_, layer_, col, row, args_...);
@@ -131,6 +159,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->substitutionLayer(matrix_, layer_, col, row, args_...);
@@ -140,6 +169,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < point_x_; ++col)
 						this->substitutionSTL(matrix_, col, row, args_...);
@@ -149,6 +179,7 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < point_x_; ++col)
 						this->substitutionLayer(matrix_, layer_, col, row, args_...);
@@ -158,6 +189,7 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+				if (before_value.size() == 0) return false;
 				for (Index_Size row{ point_y }; row < point_y_; ++row)
 					for (Index_Size col{ point_x }; col < point_x_; ++col)
 						this->substitutionArray(matrix_, col, row, max_x_, args_...);
@@ -273,27 +305,29 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr Replace() noexcept = default;
-			constexpr explicit Replace(const Matrix_Int_ & after_value_) noexcept
+			constexpr ReplaceAll() noexcept = default;
+			constexpr explicit ReplaceAll(const Matrix_Int_ & after_value_) noexcept
 				:after_value(after_value_) {}
 			template<typename ...Args_>
-			explicit Replace(const Matrix_Int_& after_value_, const Matrix_Int_& first_, const Args_& ... args_) noexcept
+			explicit ReplaceAll(const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value_) {
-				this->string_String(first_, args_...);
+				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
+				std::sort(before_value.begin(), before_value.end());
 			}
-			constexpr explicit Replace(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit ReplaceAll(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:point_x(matrix_range_.x), point_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Replace(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
+			constexpr explicit ReplaceAll(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
 				:point_x(matrix_range_.x), point_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {}
 			template<typename ...Args_>
-			explicit Replace(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_, const Args_& ... args_) noexcept
+			explicit ReplaceAll(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
 				:point_x(matrix_range_.x), point_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {
-				this->string_String(first_, args_...);
+				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
+				std::sort(before_value.begin(), before_value.end());
 			}
 
 		};

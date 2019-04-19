@@ -83,11 +83,11 @@
     <ClInclude Include="Utility\Matrix.hpp" />
     <ClInclude Include="Utility\NoiseBool.hpp" />
     <ClInclude Include="Utility\NoiseShoreBool.hpp" />
-    <ClInclude Include="Utility\Replace.hpp" />
-    <ClInclude Include="Utility\SetItem.hpp" />
+    <ClInclude Include="Utility\ReplaceAll.hpp" />
+    <ClInclude Include="Utility\ReplaceSome.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pdf_sample.cpp" />
+    <ClCompile Include="20190411.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

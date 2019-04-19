@@ -105,15 +105,23 @@ int main() {
 	using shape_t = std::uint_fast8_t;
 	constexpr std::size_t width{ 32 };
 	constexpr std::size_t height{ 32 };
-	std::array<std::array<shape_t, width>, height> matrix{ {} };
+	//std::array<std::array<shape_t, width>, height> matrix{ {} };
 	//dtl::PointGridWithBorder<bool>(1).draw(matrix);
 
 	//randomTerrain<shape_t>(matrix, width, height, 110, 120, 0, 255, 3);
 	
 	//dtl::OutputNumber<bool>(",").draw(matrix);
 	//dtl::OutputStringBool<bool>("##", "  ").drawOperator(matrix, [](const shape_t a) {return a > 150; });
+	
+	const auto& matrix{ dtl::PointGridAndSomeBlocksWithBorder<shape_t>(1, 2, 3).create(std::array<std::array<shape_t, width>, height>()) };
+
 	//dtl::PointGridAndSomeBlocksWithBorder<shape_t>(1, 2, 3).draw(matrix);
-	//dtl::Replace<shape_t>(0, 1, 2, 3).draw(matrix);
+	
+	//dtl::ReplaceAll<shape_t>(0, 3).draw(matrix, width, height);
+
+	//dtl::ReplaceSome<shape_t>(3, 4, 2).draw(matrix, width, height);
+
+	dtl::OutputString<shape_t>("・", "■", "●", "□", "★").draw(matrix);
 	//dtl::OutputNumber<shape_t>(",").draw(matrix);
 
 	//dtl::storage::FileImage<shape_t, width, height, dtl::storage::primary_colors_rgb>(matrix, FileImageFunc()).writePNG("island256_256_8.png");

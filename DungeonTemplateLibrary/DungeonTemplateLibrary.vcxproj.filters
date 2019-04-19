@@ -143,12 +143,6 @@
     <ClInclude Include="Utility\NoiseShoreBool.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Replace.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\SetItem.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\MazeDig.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
@@ -245,9 +239,15 @@
     <ClInclude Include="DungeonThirdParty.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\ReplaceAll.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ReplaceSome.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pdf_sample.cpp">
+    <ClCompile Include="20190411.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
