@@ -68,14 +68,14 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				randomRect.draw(matrix_);
+				randomRect.draw(matrix_, args_...);
 				pointGrid.draw(matrix_, args_...);
 				borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				randomRect.draw(matrix_);
+				randomRect.draw(matrix_, args_...);
 				pointGrid.drawOperator(matrix_, args_...);
 				borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
