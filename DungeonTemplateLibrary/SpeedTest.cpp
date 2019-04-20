@@ -44,7 +44,7 @@ int main() {
 
 	dtl::utility::Init<shape_t>(0).draw(matrix, width, height);
 	start = std::chrono::system_clock::now();
-	dtl::shape::CellularAutomatonMixIsland<shape_t>(0, 1, 2).draw(matrix, width, height);
+	dtl::shape::CellularAutomatonMixIsland<shape_t>(100, 1, 2).draw(matrix, width, height);
 	end = std::chrono::system_clock::now();
 
 	std::cout << "[CellularAutomatonMixIsland]\n";

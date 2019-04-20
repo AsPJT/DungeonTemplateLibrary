@@ -174,8 +174,11 @@ namespace dtl {
 			[[nodiscard]] constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getMaxValue() const noexcept {
-				return this->max_value;
+			[[nodiscard]] constexpr Matrix_Int_ getAltitude() const noexcept {
+				return this->altitude;
+			}
+			[[nodiscard]] constexpr Matrix_Int_ getAddAltitude() const noexcept {
+				return this->add_altitude;
 			}
 
 
