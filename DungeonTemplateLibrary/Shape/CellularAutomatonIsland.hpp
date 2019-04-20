@@ -7,6 +7,7 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

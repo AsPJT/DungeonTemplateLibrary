@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_IS_OUTPUT_CAST
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_IS_OUTPUT_CAST
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

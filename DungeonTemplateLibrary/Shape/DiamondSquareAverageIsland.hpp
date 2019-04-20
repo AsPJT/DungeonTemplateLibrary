@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

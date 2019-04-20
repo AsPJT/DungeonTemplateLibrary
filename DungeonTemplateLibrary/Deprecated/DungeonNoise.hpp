@@ -8,6 +8,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
 
+/* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>

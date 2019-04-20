@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM_MERSENNE_TWISTER_32_BIT
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM_MERSENNE_TWISTER_32_BIT
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

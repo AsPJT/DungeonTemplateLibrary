@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TERRAIN_OBJ
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TERRAIN_OBJ
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
@@ -22,19 +23,19 @@
 
 namespace dtl::storage {
 
-	//ƒ}ƒX‚ğw’è‚µ‚½”’l‚Å–„‚ß‚é
+	//ãƒã‚¹ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã‚‹
 	template<typename Matrix_Int_,typename Value_Int_ = Matrix_Int_>
 	class FileTerrainOBJ {
 	private:
 
 
-		///// ƒGƒCƒŠƒAƒX /////
+		///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
 
 		using Index_Size = std::size_t;
 		using PairSize = std::pair<Index_Size, Index_Size>;
 
 
-		///// ƒƒ“ƒo•Ï” /////
+		///// ãƒ¡ãƒ³ãƒå¤‰æ•° /////
 
 		Index_Size point_x{};
 		Index_Size point_y{};
@@ -46,7 +47,7 @@ namespace dtl::storage {
 		Value_Int_ value_z{ 1 };
 
 
-		///// o—Íˆ— /////
+		///// å‡ºåŠ›å‡¦ç† /////
 
 		constexpr inline void mountain(const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
 			ofs_ << "f " << (point_y_ * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + (point_x_ - 1)) << '\n';
@@ -67,7 +68,7 @@ namespace dtl::storage {
 		}
 
 
-		///// Šî–{ˆ— /////
+		///// åŸºæœ¬å‡¦ç† /////
 
 		//STL
 		template<typename Matrix_, typename ...Args_>
@@ -173,7 +174,7 @@ namespace dtl::storage {
 	public:
 
 
-		///// î•ñæ“¾ /////
+		///// æƒ…å ±å–å¾— /////
 
 		[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
 			return this->point_x;
@@ -192,7 +193,7 @@ namespace dtl::storage {
 		}
 
 
-		///// ¶¬ŒÄ‚Ño‚µ /////
+		///// ç”Ÿæˆå‘¼ã³å‡ºã— /////
 
 		//STL
 		template<typename Matrix_>
@@ -245,7 +246,7 @@ namespace dtl::storage {
 		}
 
 
-		///// ¶¬ŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^ /////
+		///// ç”Ÿæˆå‘¼ã³å‡ºã—ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ /////
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto operator()(const Matrix_& matrix_, Args_&& ... args_) const noexcept {
@@ -253,7 +254,7 @@ namespace dtl::storage {
 		}
 
 
-		///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
+		///// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡Œåˆ—ç”Ÿæˆ /////
 
 		template<typename Matrix_, typename ...Args_>
 		constexpr auto create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -277,7 +278,7 @@ namespace dtl::storage {
 		}
 
 
-		///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+		///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
 
 		constexpr FileTerrainOBJ() noexcept = default;
 		constexpr explicit FileTerrainOBJ(const std::string& write_value_) noexcept

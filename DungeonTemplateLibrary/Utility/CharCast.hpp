@@ -1,4 +1,4 @@
-/*#######################################################################################
+﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_CHAR_CAST
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_CHAR_CAST
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

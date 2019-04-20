@@ -8,6 +8,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_NOISE_BOOL
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_NOISE_BOOL
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

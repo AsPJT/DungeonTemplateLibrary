@@ -9,6 +9,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_BINARIZATION
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_BINARIZATION
 
+/* Character Code : UTF-8 (BOM) */
+
 #include <cstddef>
 #include <cstdint>
 #include <utility>

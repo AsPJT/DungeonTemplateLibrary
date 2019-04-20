@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT_NUMBER
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_OUTPUT_NUMBER
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
@@ -22,19 +23,19 @@
 namespace dtl {
 	inline namespace console {
 
-		//lŠpŒ`‚Ì¶¬
+		//å››è§’å½¢ã®ç”Ÿæˆ
 		template<typename Matrix_Int_, typename OutputString_ = std::string>
 		class OutputNumber {
 		private:
 
 
-			///// ƒGƒCƒŠƒAƒX /////
+			///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
 
 			using Index_Size = std::size_t;
 			using PairSize = std::pair<Index_Size, Index_Size>;
 
 
-			///// ƒƒ“ƒo•Ï” /////
+			///// ãƒ¡ãƒ³ãƒå¤‰æ•° /////
 
 			Index_Size point_x{};
 			Index_Size point_y{};
@@ -44,7 +45,7 @@ namespace dtl {
 			OutputString_ before_draw_string{};
 
 
-			///// ‘ã“üˆ— /////
+			///// ä»£å…¥å‡¦ç† /////
 
 			template<typename Matrix_>
 			[[nodiscard]] constexpr inline auto outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
@@ -60,7 +61,7 @@ namespace dtl {
 			}
 
 
-			///// Šî–{ˆ— /////
+			///// åŸºæœ¬å‡¦ç† /////
 
 			//STL
 			template<typename Matrix_>
@@ -138,7 +139,7 @@ namespace dtl {
 		public:
 
 
-			///// î•ñæ“¾ /////
+			///// æƒ…å ±å–å¾— /////
 
 			[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
@@ -154,7 +155,7 @@ namespace dtl {
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µ /////
+			///// ç”Ÿæˆå‘¼ã³å‡ºã— /////
 
 			//STL
 			template<typename Matrix_>
@@ -187,7 +188,7 @@ namespace dtl {
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^ /////
+			///// ç”Ÿæˆå‘¼ã³å‡ºã—ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr auto operator()(const Matrix_& matrix_, Args_&& ... args_) const noexcept {
@@ -195,7 +196,7 @@ namespace dtl {
 			}
 
 
-			///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
+			///// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡Œåˆ—ç”Ÿæˆ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr auto create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
@@ -209,7 +210,7 @@ namespace dtl {
 			}
 
 
-			///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+			///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
 
 			constexpr OutputNumber() noexcept = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept

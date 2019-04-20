@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
@@ -19,14 +20,14 @@
 namespace dtl {
 	inline namespace entity {
 
-		//ƒvƒŒƒCƒ„[‚ÌŒü‚«
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ã
 		enum :std::uint_fast8_t {
 			player_status_stay,
 			player_status_1,
 			player_status_2
 		};
 
-		//•ûŒü(”z—ñŒ^)
+		//æ–¹å‘(é…åˆ—å‹)
 		enum :std::uint_fast8_t {
 			direction_array_up,
 			direction_array_down,
@@ -38,7 +39,7 @@ namespace dtl {
 			direction_array_down_right
 		};
 
-		//•ûŒü
+		//æ–¹å‘
 		enum :std::uint_fast8_t {
 			direction_empty,
 			direction_up,
@@ -67,9 +68,9 @@ namespace dtl {
 			std::int_fast32_t x{}, y{};
 			double small_x{}, small_y{}, walk_speed{ 0.1 };
 			std::uint_fast8_t status_x{ player_status_stay }, status_y{ player_status_stay };
-			//Œü‚¢‚Ä‚¢‚é•ûŠp
+			//å‘ã„ã¦ã„ã‚‹æ–¹è§’
 			std::uint_fast8_t direction_array{ direction_array_down };
-			//“®‚­‚±‚Æ‚Ìo—ˆ‚é•ûŒü
+			//å‹•ãã“ã¨ã®å‡ºæ¥ã‚‹æ–¹å‘
 			std::bitset<8> can_walk_direction{ {} };
 
 		public:
@@ -135,7 +136,7 @@ namespace dtl {
 				return (moveX() | moveY());
 			}
 
-			//•ûŒü
+			//æ–¹å‘
 			[[nodiscard]] constexpr std::uint_fast8_t walkDirectionY(const bool is_up_touch_, const bool is_down_touch_) const noexcept {
 				return (is_up_touch_) ? ((is_down_touch_) ? direction_empty : direction_up) : ((is_down_touch_) ? direction_down : direction_empty);
 			}
@@ -153,7 +154,7 @@ namespace dtl {
 				return (walk_direction_ == 0) ? false : ((can_walk_direction[walk_direction_ - 1] == false) ? false : true);
 			}
 
-			//‚ ‚½‚è”»’è
+			//ã‚ãŸã‚Šåˆ¤å®š
 			template<typename Matrix_, typename Set_>
 			void setCanWalkDirection(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, Set_ && set_) noexcept {
 				set_(matrix_, x_, y_, can_walk_direction, x, y);

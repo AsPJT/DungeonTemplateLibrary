@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -10,47 +10,47 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY
 
-/* Šî–{ƒNƒ‰ƒXƒ‰ƒCƒuƒ‰ƒŠ (dtl::base) */
+/* åŸºæœ¬ã‚¯ãƒ©ã‚¹ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::base) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BASE
 #include <DungeonBase.hpp>
 
-/* ‹“_ƒ‰ƒCƒuƒ‰ƒŠ */
+/* è¦–ç‚¹ãƒ©ã‚¤ãƒ–ãƒ©ãƒª */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA
 #include <DungeonCamera.hpp>
 
-/* ƒRƒ“ƒ\[ƒ‹ƒ‰ƒCƒuƒ‰ƒŠ (dtl::console) */
+/* ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::console) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #include <DungeonConsole.hpp>
 
-/* ”ñ„§ƒ‰ƒCƒuƒ‰ƒŠ */
+/* éæ¨å¥¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒª */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DEPRECATED
 #include <DungeonDeprecated.hpp>
 
-/* À‘Ìƒ‰ƒCƒuƒ‰ƒŠ (dtl::entity) */
+/* å®Ÿä½“ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::entity) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY
 #include <DungeonEntity.hpp>
 
-/* —”ƒ‰ƒCƒuƒ‰ƒŠ (dtl::random) */
+/* ä¹±æ•°ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::random) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
 #include <DungeonRandom.hpp>
 
-/* ‰ÁHƒ‰ƒCƒuƒ‰ƒŠ (dtl::retouch) */
+/* åŠ å·¥ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::retouch) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH
 #include <DungeonRetouch.hpp>
 
-/* Œ`ó¶¬ƒ‰ƒCƒuƒ‰ƒŠ (dtl::shape) */
+/* å½¢çŠ¶ç”Ÿæˆãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::shape) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE
 #include <DungeonShape.hpp>
 
-/* ƒXƒgƒŒ[ƒWƒ‰ƒCƒuƒ‰ƒŠ (dtl::storage) */
+/* ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::storage) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE
 #include <DungeonStorage.hpp>
 
-/* ‘½—p“rƒ‰ƒCƒuƒ‰ƒŠ (dtl::utility) */
+/* å¤šç”¨é€”ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::utility) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #include <DungeonUtility.hpp>
 
-/* ‰æ‘œ‘‚«o‚µƒ‰ƒCƒuƒ‰ƒŠ (dtl::thirdParty::stb) */
+/* ç”»åƒæ›¸ãå‡ºã—ãƒ©ã‚¤ãƒ–ãƒ©ãƒª (dtl::thirdParty::stb) */
 #include <DungeonThirdParty.hpp>
 
 #endif //Included Dungeon Template Library

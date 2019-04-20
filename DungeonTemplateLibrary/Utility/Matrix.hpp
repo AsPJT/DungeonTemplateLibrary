@@ -7,6 +7,7 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 
 #include <cstddef>

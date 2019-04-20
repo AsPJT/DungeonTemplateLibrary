@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_REMOVE_POINT
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_REMOVE_POINT
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

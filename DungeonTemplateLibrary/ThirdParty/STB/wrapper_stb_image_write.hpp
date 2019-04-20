@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

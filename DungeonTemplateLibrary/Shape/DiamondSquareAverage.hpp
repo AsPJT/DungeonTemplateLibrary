@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_Diamond_CREATE_DIAMOND_SQARE_AVERAGE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_Diamond_CREATE_DIAMOND_SQARE_AVERAGE
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 

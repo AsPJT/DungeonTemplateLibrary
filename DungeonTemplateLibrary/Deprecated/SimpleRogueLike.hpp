@@ -8,6 +8,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_ROGUE_LIKE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SIMPLE_ROGUE_LIKE
 
+/* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>

@@ -1,4 +1,4 @@
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_MIX_ISLAND
+ï»¿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_MIX_ISLAND
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_MIX_ISLAND
 //:::::----------::::::::::----------::::://
 //     Dungeon Template Library     //
@@ -7,6 +7,7 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
@@ -21,20 +22,20 @@
 namespace dtl {
 	inline namespace shape {
 
-		//ƒ}ƒbƒv‚ÌŠO˜g‚ğw’è‚µ‚½”’l‚Å–„‚ßA‹ô”ƒ}ƒX‚ğw’è‚µ‚½”’l‚Å–„‚ß‚é
+		//ãƒãƒƒãƒ—ã®å¤–æ ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã€å¶æ•°ãƒã‚¹ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã‚‹
 		template<typename Matrix_Int_>
 		class CellularAutomatonMixIsland {
 		private:
 
 
-			///// ƒGƒCƒŠƒAƒX /////
+			///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
 
 			using Index_Size = std::size_t;
 			using PairSize = std::pair<Index_Size, Index_Size>;
 			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
 
 
-			///// ƒƒ“ƒo•Ï” /////
+			///// ãƒ¡ãƒ³ãƒå¤‰æ•° /////
 
 			dtl::shape::Border<Matrix_Int_> border{};
 			dtl::shape::HalfMixRect<Matrix_Int_> mixRect{};
@@ -44,7 +45,7 @@ namespace dtl {
 		public:
 
 
-			///// î•ñæ“¾ /////
+			///// æƒ…å ±å–å¾— /////
 
 			[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
 				return this->border.getPointX();
@@ -63,7 +64,7 @@ namespace dtl {
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µ /////
+			///// ç”Ÿæˆå‘¼ã³å‡ºã— /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
@@ -101,7 +102,7 @@ namespace dtl {
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^ /////
+			///// ç”Ÿæˆå‘¼ã³å‡ºã—ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr auto operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
@@ -109,7 +110,7 @@ namespace dtl {
 			}
 
 
-			///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
+			///// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡Œåˆ—ç”Ÿæˆ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr auto create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -133,50 +134,50 @@ namespace dtl {
 			}
 
 
-			///// Á‹ /////
+			///// æ¶ˆå» /////
 
-			//n“_À•WX‚ğ‰Šú’l‚É–ß‚·
+			//å§‹ç‚¹åº§æ¨™Xã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearPointX() noexcept {
 				this->mixRect.clearPointX();
 				this->border.clearPointX();
 				this->cellularAutomation.clearPointX();
 				return *this;
 			}
-			//n“_À•WY‚ğ‰Šú’l‚É–ß‚·
+			//å§‹ç‚¹åº§æ¨™Yã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearPointY() noexcept {
 				this->mixRect.clearPointY();
 				this->border.clearPointY();
 				this->cellularAutomation.clearPointY();
 				return *this;
 			}
-			//”ÍˆÍ‚Ì‘å‚«‚³(X²•ûŒü)‚ğ‰Šú’l‚É–ß‚·
+			//ç¯„å›²ã®å¤§ãã•(Xè»¸æ–¹å‘)ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearWidth() noexcept {
 				this->mixRect.clearWidth();
 				this->border.clearWidth();
 				this->cellularAutomation.clearWidth();
 				return *this;
 			}
-			//”ÍˆÍ‚Ì‘å‚«‚³(Y²•ûŒü)‚ğ‰Šú’l‚É–ß‚·
+			//ç¯„å›²ã®å¤§ãã•(Yè»¸æ–¹å‘)ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearHeight() noexcept {
 				this->mixRect.clearHeight();
 				this->border.clearHeight();
 				this->cellularAutomation.clearHeight();
 				return *this;
 			}
-			//“h‚è’l‚ğ‰Šú’l‚É–ß‚·
+			//å¡—ã‚Šå€¤ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearValue() noexcept {
 				this->mixRect.clearValue();
 				this->border.clearValue();
 				this->cellularAutomation.clearValue();
 				return *this;
 			}
-			//n“_À•W(X,Y)‚ğ‰Šú’l‚É–ß‚·
+			//å§‹ç‚¹åº§æ¨™(X,Y)ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
-			//•`‰æ”ÍˆÍ‚ğ‰Šú’l‚É–ß‚·
+			//æç”»ç¯„å›²ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -184,7 +185,7 @@ namespace dtl {
 				this->clearHeight();
 				return *this;
 			}
-			//‘S‚Ä‚Ì’l‚ğ‰Šú’l‚É–ß‚·
+			//å…¨ã¦ã®å€¤ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			constexpr auto clear() noexcept {
 				this->clearRange();
 				this->clearValue();
@@ -192,7 +193,7 @@ namespace dtl {
 			}
 
 
-			///// ‘ã“ü /////
+			///// ä»£å…¥ /////
 
 			constexpr auto setPointX(const Index_Size point_x_) noexcept {
 				this->mixRect.setPointX(point_x_);
@@ -256,7 +257,7 @@ namespace dtl {
 			}
 
 
-			///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+			///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
 
 			constexpr CellularAutomatonMixIsland() noexcept = default;
 			template<typename ...Args_>
