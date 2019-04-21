@@ -15,35 +15,43 @@
 #include <iostream>
 #include <string>
 
-namespace dtl::console::output::stl {
+namespace dtl {
+	inline namespace console {
+		namespace output::stl {
 
-	//文字出力
-	template<typename Matrix_>
-	constexpr void stringMirrorBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_) noexcept {
-		for (std::size_t row{}; row < matrix_.size(); ++row) {
-			for (std::size_t col{ matrix_[row].size() / 2 }; col < matrix_[row].size(); ++col) {
-				if (matrix_[row][col]) std::cout << true_;
-				else std::cout << false_;
+			//文字出力
+			template<typename Matrix_>
+			constexpr void stringMirrorBool(const Matrix_& matrix_, const std::string& true_, const std::string& false_) noexcept {
+				for (std::size_t row{}; row < matrix_.size(); ++row) {
+					for (std::size_t col{ matrix_[row].size() / 2 }; col < matrix_[row].size(); ++col) {
+						if (matrix_[row][col]) std::cout << true_;
+						else std::cout << false_;
+					}
+					for (std::size_t col{}; col < matrix_[row].size() / 2; ++col) {
+						if (matrix_[row][col]) std::cout << true_;
+						else std::cout << false_;
+					}
+					std::cout << '\n';
+				}
 			}
-			for (std::size_t col{}; col < matrix_[row].size() / 2; ++col) {
-				if (matrix_[row][col]) std::cout << true_;
-				else std::cout << false_;
+
+		} //namespace
+	}
+}
+
+namespace dtl {
+	inline namespace console {
+		namespace console::output::tool {
+
+			void endl() noexcept {
+				std::cout << '\n';
 			}
-			std::cout << '\n';
-		}
+			void puts(const std::string& str_) noexcept {
+				std::cout << str_ << '\n';
+			}
+
+		} //namespace
 	}
-
-} //namespace
-
-namespace dtl::console::output::tool {
-
-	void endl() noexcept {
-		std::cout << '\n';
-	}
-	void puts(const std::string& str_) noexcept {
-		std::cout << str_ << '\n';
-	}
-
-} //namespace
+}
 
 #endif //Included Dungeon Template Library

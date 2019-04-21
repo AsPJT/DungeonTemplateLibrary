@@ -133,7 +133,7 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
+			bool drawSTL(Matrix_&& matrix_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -160,7 +160,7 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -189,7 +189,7 @@ namespace dtl {
 
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -216,7 +216,7 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -252,7 +252,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -281,7 +281,7 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -310,7 +310,7 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+			bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (replace_num == 0) return true;
 				if (before_value.size() == 0) return false;
 
@@ -441,6 +441,100 @@ namespace dtl {
 			constexpr auto createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
+			}
+
+
+			///// 消去 /////
+
+			//始点座標Xを初期値に戻す
+			constexpr auto clearPointX() noexcept {
+				this->point_x = 0;
+				return *this;
+			}
+			//始点座標Yを初期値に戻す
+			constexpr auto clearPointY() noexcept {
+				this->point_y = 0;
+				return *this;
+			}
+			//範囲の大きさ(X軸方向)を初期値に戻す
+			constexpr auto clearWidth() noexcept {
+				this->width = 0;
+				return *this;
+			}
+			//範囲の大きさ(Y軸方向)を初期値に戻す
+			constexpr auto clearHeight() noexcept {
+				this->height = 0;
+				return *this;
+			}
+			//始点座標(X,Y)を初期値に戻す
+			constexpr auto clearPoint() noexcept {
+				this->clearPointX();
+				this->clearPointY();
+				return *this;
+			}
+			//描画範囲を初期値に戻す
+			constexpr auto clearRange() noexcept {
+				this->clearPointX();
+				this->clearPointY();
+				this->clearWidth();
+				this->clearHeight();
+				return *this;
+			}
+			//全ての値を初期値に戻す
+			constexpr auto clear() noexcept {
+				this->clearRange();
+				return *this;
+			}
+
+
+			///// 代入 /////
+
+			constexpr auto setPointX(const Index_Size point_x_) noexcept {
+				this->point_x = point_x_;
+				return *this;
+			}
+			constexpr auto setPointY(const Index_Size point_y_) noexcept {
+				this->point_y = point_y_;
+				return *this;
+			}
+			constexpr auto setWidth(const Index_Size width_) noexcept {
+				this->width = width_;
+				return *this;
+			}
+			constexpr auto setHeight(const Index_Size height_) noexcept {
+				this->height = height_;
+				return *this;
+			}
+			constexpr auto setPoint(const Index_Size point_) noexcept {
+				this->point_x = point_;
+				this->point_y = point_;
+				return *this;
+			}
+			constexpr auto setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				return *this;
+			}
+			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				this->width = length_;
+				this->height = length_;
+				return *this;
+			}
+			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				this->width = width_;
+				this->height = height_;
+				return *this;
+			}
+			constexpr auto setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				this->point_x = matrix_range_.x;
+				this->point_y = matrix_range_.y;
+				this->width = matrix_range_.w;
+				this->height = matrix_range_.h;
+				return *this;
 			}
 
 
