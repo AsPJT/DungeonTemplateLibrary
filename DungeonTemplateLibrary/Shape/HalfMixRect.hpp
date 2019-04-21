@@ -163,7 +163,7 @@ namespace dtl {
 			[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
+			[[nodiscard]] constexpr std::vector<Matrix_Int_> getValue() const noexcept {
 				return this->draw_value;
 			}
 

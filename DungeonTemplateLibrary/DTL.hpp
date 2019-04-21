@@ -12,45 +12,45 @@
 
 /* 基本クラスライブラリ (dtl::base) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BASE
-#include <DungeonBase.hpp>
+#include <DTL/Base.hpp>
 
-/* 視点ライブラリ */
+/* 視点ライブラリ (dtl::camera) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA
-#include <DungeonCamera.hpp>
+#include <DTL/Camera.hpp>
 
 /* コンソールライブラリ (dtl::console) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
-#include <DungeonConsole.hpp>
+#include <DTL/Console.hpp>
 
 /* 非推奨ライブラリ */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DEPRECATED
-#include <DungeonDeprecated.hpp>
+#include <DTL/Deprecated.hpp>
 
 /* 実体ライブラリ (dtl::entity) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY
-#include <DungeonEntity.hpp>
+#include <DTL/Entity.hpp>
 
 /* 乱数ライブラリ (dtl::random) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RANDOM
-#include <DungeonRandom.hpp>
+#include <DTL/Random.hpp>
 
 /* 加工ライブラリ (dtl::retouch) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH
-#include <DungeonRetouch.hpp>
+#include <DTL/Retouch.hpp>
 
 /* 形状生成ライブラリ (dtl::shape) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE
-#include <DungeonShape.hpp>
+#include <DTL/Shape.hpp>
 
 /* ストレージライブラリ (dtl::storage) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE
-#include <DungeonStorage.hpp>
+#include <DTL/Storage.hpp>
 
 /* 多用途ライブラリ (dtl::utility) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
-#include <DungeonUtility.hpp>
+#include <DTL/Utility.hpp>
 
 /* 画像書き出しライブラリ (dtl::thirdParty::stb) */
-#include <DungeonThirdParty.hpp>
+#include <DTL/ThirdParty.hpp>
 
 #endif //Included Dungeon Template Library

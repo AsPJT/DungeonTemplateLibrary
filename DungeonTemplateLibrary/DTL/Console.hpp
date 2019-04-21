@@ -24,5 +24,7 @@
 //指定マスの値(2値)を指定した文字で出力する。
 #include <Console/OutputStringBool.hpp>
 
+#include <Console/OutputView.hpp>
+
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE

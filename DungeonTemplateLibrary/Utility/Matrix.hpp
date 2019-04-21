@@ -1,11 +1,12 @@
-﻿#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX
+﻿/*#######################################################################################
+	Made by Kasugaccho
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	This code is licensed under CC0.
+#######################################################################################*/
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX
-//:::::----------::::::::::----------::::://
-//     Dungeon Template Library     //
-//          Made by Gaccho.          //
-// This code is licensed under CC0.  //
-//       wanotaitei@gmail.com       //
-//:::::----------::::::::::----------::::://
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */

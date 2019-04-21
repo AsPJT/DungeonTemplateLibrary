@@ -45,6 +45,9 @@
     <Filter Include="ヘッダー ファイル\ThirdParty\STB">
       <UniqueIdentifier>{906ff54e-2e50-4c26-876a-2d5c6654a7f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\DTL">
+      <UniqueIdentifier>{3e27e26e-2a44-4eda-b0ff-0759cc87c4bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Struct.hpp">
@@ -191,36 +194,6 @@
     <ClInclude Include="Deprecated\BoardGame.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonDeprecated.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonConsole.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonUtility.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonRandom.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonShape.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonStorage.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonBase.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonRetouch.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonEntity.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonCamera.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\DiamondSquareAverageIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
@@ -236,14 +209,47 @@
     <ClInclude Include="ThirdParty\STB\stb_image_write.hpp">
       <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonThirdParty.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\ReplaceAll.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Utility\ReplaceSome.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Base.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Camera.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Console.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Deprecated.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Entity.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Random.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Retouch.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Shape.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Storage.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\ThirdParty.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTL\Utility.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
+    </ClInclude>
+    <ClInclude Include="Console\OutputView.hpp">
+      <Filter>ヘッダー ファイル\Console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

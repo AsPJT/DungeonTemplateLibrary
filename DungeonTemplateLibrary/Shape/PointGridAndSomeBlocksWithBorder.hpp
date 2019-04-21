@@ -11,7 +11,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGridAndSomeBlocksWithBorder-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
