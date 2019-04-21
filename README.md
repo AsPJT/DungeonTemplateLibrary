@@ -208,7 +208,7 @@ dtl::shape::PointGridWithBorder<shape_t>(point_grid_value, border_value).draw(ma
 
 ![pgf](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/fixed/point_grid_field.png)
 
-## PointGridAndSomeBlocksWithBorder✅
+## [PointGridAndSomeBlocksWithBorder✅](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGridAndSomeBlocksWithBorder-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9))
 
 ```cpp
 dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid_value, border_value, block_value).draw(matrix, width, height);
