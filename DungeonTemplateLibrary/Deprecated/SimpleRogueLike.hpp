@@ -70,19 +70,26 @@ namespace dtl {
 					std::size_t room_min_y{};
 					std::size_t room_rand_max_y{};
 
+					using Index_Size = std::size_t;
+					Index_Size point_x{};
+					Index_Size point_y{};
+					Index_Size width{};
+					Index_Size height{};
+
 
 				public:
 					//コンストラクタ
 					constexpr SimpleRogueLike() noexcept = default;
 					template <typename Matrix_>
-					constexpr explicit SimpleRogueLike(Matrix_& matrix_, const std::size_t division_min_ = 3, const std::size_t division_rand_max_ = 4, const std::size_t room_min_x_ = 5, const std::size_t room_rand_max_x_ = 2, const std::size_t room_min_y_ = 5, const std::size_t room_rand_max_y_ = 2) noexcept {
+					constexpr explicit SimpleRogueLike(Matrix_&& matrix_, const std::size_t division_min_ = 3, const std::size_t division_rand_max_ = 4, const std::size_t room_min_x_ = 5, const std::size_t room_rand_max_x_ = 2, const std::size_t room_min_y_ = 5, const std::size_t room_rand_max_y_ = 2) noexcept {
 						create(matrix_, division_min_, division_rand_max_, room_min_x_, room_rand_max_x_, room_min_y_, room_rand_max_y_);
 					}
 
 					//ローグライク生成関数
 					template <typename Matrix_>
-					constexpr void create(Matrix_& matrix_, const std::size_t division_min_ = 3, const std::size_t division_rand_max_ = 4, const std::size_t room_min_x_ = 5, const std::size_t room_rand_max_x_ = 2, const std::size_t room_min_y_ = 5, const std::size_t room_rand_max_y_ = 2) noexcept {
-						
+					constexpr void create(Matrix_&& matrix_, const std::size_t division_min_ = 3, const std::size_t division_rand_max_ = 4, const std::size_t room_min_x_ = 5, const std::size_t room_rand_max_x_ = 2, const std::size_t room_min_y_ = 5, const std::size_t room_rand_max_y_ = 2) noexcept {
+						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
+
 						division_min = division_min_;
 						division_rand_max = division_rand_max_;
 						room_min_x = room_min_x_;
@@ -90,32 +97,37 @@ namespace dtl {
 						room_min_y = room_min_y_;
 						room_rand_max_y = room_rand_max_y_;
 
-						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
+						const std::size_t size_y{ matrix_.size() };
+						const std::size_t size_x{ matrix_[0].size() };
+
+						
 						//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 						const std::size_t mapDivCount{ division_min + dtl::random::mt32bit.get<std::size_t>(division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 						dungeon_division.resize(mapDivCount);
 						dungeon_room.resize(mapDivCount);
 						dungeon_road.resize(mapDivCount);
-						for (std::size_t i{}; i < mapDivCount; ++i)
-							for (std::size_t j{}; j < 4; ++j) {
-								dungeon_division[i][j] = 0;
-								dungeon_room[i][j] = 0;
-								dungeon_road[i][j] = 0;
-							}
 
-						dungeon_division[0][0] = (matrix_.size() - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
-						dungeon_division[0][1] = (matrix_[0].size() - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
-						dungeon_division[0][2] = 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-						dungeon_division[0][3] = 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+						dungeon_division[0][0] = (size_y - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
+						dungeon_division[0][1] = (size_x - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
+						dungeon_division[0][2] = point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+						dungeon_division[0][3] = point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
 						dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 						dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
 
+						createDivision(mapDivCount);
+						
+						createRoom(mapDivCount);
+						substitutionRoom(matrix_, mapDivCount);
+						createRoad(matrix_, mapDivCount);
+					}
+
+					void createDivision(const std::size_t mapDivCount) noexcept {
+
 						//マップを区分けしていく処理(区域を分割する処理)
 						std::size_t division_After{};
 						std::int_fast32_t count{}; //(0:X, 1:Y) X軸で分けるかY軸で分けるか決める
-
 						for (std::size_t i{ 1 }; i < mapDivCount; ++i) {
 
 							//今まで作った区分けをランダムに指定(指定した区域をさらに区分けする)
@@ -159,6 +171,10 @@ namespace dtl {
 							dungeon_division[i][absTemplate(count - 1) + 2] = dungeon_division[division_After][absTemplate(count - 1) + 2]; //軸の左端(iL)の座標(division_AfterL)
 						}
 
+					}
+
+					void createRoom(const std::size_t mapDivCount) noexcept {
+
 						//部屋を生成する処理
 						for (std::size_t i{}; i < mapDivCount; ++i) {//区分け
 							dungeon_room[i][2] = dungeon_division[i][2]; //区分けX始点をマップX始点へ代入
@@ -192,18 +208,29 @@ namespace dtl {
 							dungeon_room[i][1] += n;
 							dungeon_room[i][3] += n;
 
+
+						}
+
+					}
+
+					template <typename Matrix_>
+					void substitutionRoom(Matrix_&& matrix_, const std::size_t mapDivCount) const noexcept {
+						//部屋を生成する処理
+						for (std::size_t i{}; i < mapDivCount; ++i)
 							for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 								for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
 									matrix_[j][k] = room_value;
-						}
+					}
 
+//通路を生成する処理
+//通路は２部屋間の細い道のことを指す。
+//通路を作るために２部屋をそれぞれ前(Before)と後(After)で分ける。
+//for文で全ての部屋をチェックし、前後の部屋を繋ぐ通路を作る。
+//まず、前の通路を作り、次に後の通路を作る。
+//最後に前と後の通路を繋げる。
 
-						//通路を生成する処理
-						//通路は２部屋間の細い道のことを指す。
-						//通路を作るために２部屋をそれぞれ前(Before)と後(After)で分ける。
-						//for文で全ての部屋をチェックし、前後の部屋を繋ぐ通路を作る。
-						//まず、前の通路を作り、次に後の通路を作る。
-						//最後に前と後の通路を繋げる。
+					template <typename Matrix_>
+					void createRoad(Matrix_&& matrix_, const std::size_t mapDivCount) noexcept {
 						std::size_t roomAfter{};
 						for (std::size_t roomBefore{}; roomBefore < mapDivCount; ++roomBefore) {
 							roomAfter = dungeon_road[roomBefore][0];
@@ -246,8 +273,9 @@ namespace dtl {
 								break;
 							}
 						}
-						return;
+
 					}
+
 
 				};
 

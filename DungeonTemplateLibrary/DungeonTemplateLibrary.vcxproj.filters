@@ -155,9 +155,6 @@
     <ClInclude Include="Deprecated\DungeonFile.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="Deprecated\DungeonRandom.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
     <ClInclude Include="Deprecated\MazeDig.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
@@ -168,9 +165,6 @@
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
     <ClInclude Include="Deprecated\RogueLike.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
-    <ClInclude Include="Deprecated\SimpleRogueLike.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
     <ClInclude Include="Deprecated\DungeonNoise.hpp">
@@ -247,6 +241,12 @@
     </ClInclude>
     <ClInclude Include="Console\OutputView.hpp">
       <Filter>ヘッダー ファイル\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\AbsoluteRect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\SimpleRogueLike.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

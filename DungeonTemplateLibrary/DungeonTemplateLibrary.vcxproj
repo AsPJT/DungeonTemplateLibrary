@@ -31,12 +31,10 @@
     <ClInclude Include="Deprecated\DungeonMatrix.hpp" />
     <ClInclude Include="Deprecated\DungeonNoise.hpp" />
     <ClInclude Include="Deprecated\DungeonPaint.hpp" />
-    <ClInclude Include="Deprecated\DungeonRandom.hpp" />
     <ClInclude Include="Deprecated\FractalIsland.hpp" />
     <ClInclude Include="Deprecated\HorizontalScroll.hpp" />
     <ClInclude Include="Deprecated\MazeDig.hpp" />
     <ClInclude Include="Deprecated\RogueLike.hpp" />
-    <ClInclude Include="Deprecated\SimpleRogueLike.hpp" />
     <ClInclude Include="Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="DTL.hpp" />
     <ClInclude Include="DTL\Base.hpp" />
@@ -54,6 +52,7 @@
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
     <ClInclude Include="Retouch\BuryPoint.hpp" />
     <ClInclude Include="Retouch\RemovePoint.hpp" />
+    <ClInclude Include="Shape\AbsoluteRect.hpp" />
     <ClInclude Include="Shape\Border.hpp" />
     <ClInclude Include="Shape\BorderOdd.hpp" />
     <ClInclude Include="Shape\CellularAutomatonIsland.hpp" />
@@ -70,6 +69,7 @@
     <ClInclude Include="Shape\PointGridWithBorder.hpp" />
     <ClInclude Include="Shape\RandomRect.hpp" />
     <ClInclude Include="Shape\Rect.hpp" />
+    <ClInclude Include="Shape\SimpleRogueLike.hpp" />
     <ClInclude Include="Storage\FileCSV.hpp" />
     <ClInclude Include="Storage\FileTerrainOBJ.hpp" />
     <ClInclude Include="ThirdParty\STB\stb_image_write.hpp" />

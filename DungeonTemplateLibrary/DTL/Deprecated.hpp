@@ -21,13 +21,13 @@
 
 ///// 関連ツール /////
 
-#include <Deprecated/DungeonBinarization.hpp>
+//#include <Deprecated/DungeonBinarization.hpp>
 
 #include <Deprecated/DungeonNoise.hpp>
 
 //#include <Deprecated/DungeonOutput.hpp>
 
-#include <Deprecated/DungeonRandom.hpp>
+//#include <Deprecated/DungeonRandom.hpp>
 
 #include <Deprecated/DungeonFile.hpp>
 
@@ -42,7 +42,7 @@
 
 #include <Deprecated/RogueLike.hpp>
 
-#include <Deprecated/SimpleRogueLike.hpp>
+//#include <Deprecated/SimpleRogueLike.hpp>
 
 #include <Deprecated/SimpleVoronoiIsland.hpp>
 

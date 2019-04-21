@@ -8,10 +8,9 @@ int main() {
 	std::array<std::array<shape_t, 64>, 64> matrix{ {} };
 
 	//dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(1, 2, 3).draw(matrix);
+	dtl::SimpleRogueLike<shape_t>(2, 3, 3, 4, 5, 2, 5, 2).draw(matrix);
 
-	dtl::generator::dungeon::stl::SimpleRogueLike<shape_t>().create(matrix);
-
-	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
+	//dtl::console::OutputNumber<shape_t>(",").draw(matrix);
 	dtl::console::OutputString<shape_t>("■", "・", "□", "・").draw(matrix);
 
 	return 0;
