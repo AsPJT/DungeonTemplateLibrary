@@ -87,7 +87,7 @@
     <ClInclude Include="Utility\ReplaceSome.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SpeedTest.cpp" />
+    <ClCompile Include="20190421.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

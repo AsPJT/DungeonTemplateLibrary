@@ -7,6 +7,11 @@
 //       wanotaitei@gmail.com       //
 //:::::----------::::::::::----------::::://
 
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::CellularAutomatonMixIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+#######################################################################################*/
+
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */

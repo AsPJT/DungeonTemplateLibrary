@@ -9,6 +9,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MAZE_DIG
 
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	/
+#######################################################################################*/
+
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */

@@ -9,6 +9,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RECT
 
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	/
+#######################################################################################*/
+
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
