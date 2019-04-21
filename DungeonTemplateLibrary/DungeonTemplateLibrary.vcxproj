@@ -30,7 +30,6 @@
     <ClInclude Include="Deprecated\DungeonFile.hpp" />
     <ClInclude Include="Deprecated\DungeonMatrix.hpp" />
     <ClInclude Include="Deprecated\DungeonNoise.hpp" />
-    <ClInclude Include="Deprecated\DungeonOutput.hpp" />
     <ClInclude Include="Deprecated\DungeonPaint.hpp" />
     <ClInclude Include="Deprecated\DungeonRandom.hpp" />
     <ClInclude Include="Deprecated\FractalIsland.hpp" />

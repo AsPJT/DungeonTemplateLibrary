@@ -106,7 +106,7 @@ namespace dtl {
 			//最小値～最大値
 			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
 			[[nodiscard]] Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
-				std::uniform_int_distribution<> uid(static_cast<std::int_fast32_t>((min_ <= max_) ? min_ : max_), static_cast<std::int_fast32_t>((min_ <= max_) ? max_ : min_));
+				std::uniform_int_distribution<> uid(static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(mt));
 			}
 			//確率
