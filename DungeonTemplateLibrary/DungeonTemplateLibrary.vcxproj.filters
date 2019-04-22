@@ -248,6 +248,9 @@
     <ClInclude Include="Shape\FractalLoopIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\FractalIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190421.cpp">

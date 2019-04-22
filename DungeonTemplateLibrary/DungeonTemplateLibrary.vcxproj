@@ -59,6 +59,7 @@
     <ClInclude Include="Shape\DiamondSquareAverage.hpp" />
     <ClInclude Include="Shape\DiamondSquareAverageCornerIsland.hpp" />
     <ClInclude Include="Shape\DiamondSquareAverageIsland.hpp" />
+    <ClInclude Include="Shape\FractalIsland.hpp" />
     <ClInclude Include="Shape\FractalLoopIsland.hpp" />
     <ClInclude Include="Shape\HalfMixRect.hpp" />
     <ClInclude Include="Shape\MazeDig.hpp" />
