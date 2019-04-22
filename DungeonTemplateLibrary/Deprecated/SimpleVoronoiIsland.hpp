@@ -137,6 +137,71 @@ namespace dtl::generator::terrain::stl {
 		}
 	};
 
+	template<typename Matrix_Int_>
+	class SVI {
+	public:
+		//コンストラクタ
+		constexpr SVI() noexcept = default;
+
+		//ボロノイ図を作る
+		template<typename Matrix_>
+		void create(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+			//原点の座標と各面の色(もしくは地形データ)を記録する変数
+			std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[count_] };
+			if (!point) return;
+			std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[count_] };
+			if (!color) return;
+
+			createPoint(point, color, count_, static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
+			createSites(point, color, count_, matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));
+		}
+	private:
+
+		using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+
+		//陸地であるか陸地でないか判別する
+		constexpr bool isIsland(const std::unique_ptr<Point_Pair_[]>& point_, const std::size_t point_num_, const std::int_fast32_t w_, const std::int_fast32_t h_, const std::int_fast32_t numerator_, const std::int_fast32_t denominator_) const noexcept {
+			return (point_[point_num_].first > (w_ * numerator_ / denominator_) && point_[point_num_].first < (w_ * (denominator_ - numerator_) / denominator_)) && (point_[point_num_].second > (h_ * numerator_ / denominator_) && point_[point_num_].second < (h_ * (denominator_ - numerator_) / denominator_));
+		}
+		//原点の場所と陸地を決定する
+		constexpr void createPoint(std::unique_ptr<Point_Pair_[]> & point_, std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
+
+			using dtl::random::mersenne_twister_32bit;
+
+			for (std::size_t i{}, array_num{}; i < count_; ++i) {
+				point_[array_num] = Point_Pair_(mersenne_twister_32bit(w_), mersenne_twister_32bit(h_));
+				if (mersenne_twister_32bit.probability(rbool_))
+					color_[array_num] = land_;
+				else color_[array_num] = sea_;
+				++array_num;
+			}
+		}
+
+		//2点間の距離を返す
+		constexpr std::int_fast32_t distanceSqrd(const Point_Pair_ & point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+			x_ -= point_.first;
+			y_ -= point_.second;
+			return x_ * x_ + y_ * y_;
+		}
+
+		//図形を描画
+		template<typename Matrix_>
+		constexpr void createSites(const std::unique_ptr<Point_Pair_[]> & point_, const std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, Matrix_ & matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+			std::int_fast32_t ds{}, dist{};
+			for (std::size_t hh{}, ind{}; hh < h_; ++hh)
+				for (std::size_t ww{}; ww < w_; ++ww) {
+					ind = (std::numeric_limits<std::size_t>::max)();
+					dist = (std::numeric_limits<std::int_fast32_t>::max)();
+					for (std::size_t it{}; it < count_; ++it) {
+						if ((ds = distanceSqrd(point_[it], static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh))) >= dist) continue;
+						dist = ds;
+						ind = it;
+					}
+					if (ind != (std::numeric_limits<std::size_t>::max)()) matrix_[hh][ww] = color_[ind];
+				}
+		}
+	};
+
 } //namespace
 
 #endif //Included Dungeon Template Library
