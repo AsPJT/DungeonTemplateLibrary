@@ -32,6 +32,8 @@
 //
 #include <Shape/DiamondSquareAverageIsland.hpp>
 //
+#include <Shape/FractalLoopIsland.hpp>
+//
 #include <Shape/MazeDig.hpp>
 //
 #include <Shape/MixRect.hpp>

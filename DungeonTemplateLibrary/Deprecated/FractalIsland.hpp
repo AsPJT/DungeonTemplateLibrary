@@ -423,6 +423,72 @@ namespace dtl::generator::terrain::stl {
 	};
 
 
+	template<typename Matrix_Int_, std::size_t chunk_size = 16>
+	class FractalLoopIsland {
+	public:
+		//コンストラクタ
+		constexpr FractalLoopIsland() noexcept = default;
+		//ワールドマップ生成
+		template<typename Matrix_>
+		void create(Matrix_& matrix_, const std::int_fast32_t max_value_ = 255) const noexcept {
+			if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
+
+			const std::size_t point_y{};
+			const std::size_t point_x{};
+
+			const std::size_t point_y_{ matrix_.size() };
+			const std::size_t point_x_{ (point_y_ == 0) ? 0 : matrix_[0].size() };
+
+			std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
+			const std::size_t chunk_x{ ((point_x_ - point_x) / chunk_size) };
+			const std::size_t chunk_y{ ((point_y_ - point_y) / chunk_size) };
+
+			std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+			if (!rand_up) return;
+			std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+			if (!rand_down) return;
+			std::unique_ptr<std::int_fast32_t[]> rand_first_row{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+			if (!rand_first_row) return;
+
+			for (std::size_t col{}; col < chunk_x; ++col) {
+				rand_up[col] = dtl::random::mt32bit.get<std::int_fast32_t>(max_value_);
+				rand_first_row[col] = rand_up[col];
+			}
+			rand_first_row[chunk_x] = rand_up[chunk_x] = rand_up[0];
+
+			for (std::size_t row{}; row < chunk_y; ++row) {
+
+				if ((row + 1) == chunk_y) rand_down = std::move(rand_first_row);
+				else {
+					for (std::size_t col{}; col < chunk_x; ++col)
+						rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(max_value_);
+					rand_down[chunk_x] = rand_down[0];
+				}
+				for (std::size_t col{}; col < chunk_x; ++col) {
+					//四角形の4点の高さを決定
+					chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
+					chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
+					chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
+					chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
+					//チャンク生成
+					createWorldMapSimple(chunk_matrix, static_cast<Matrix_Int_>(max_value_));
+					//生成したチャンクをワールドマップにコピペ
+					for (std::size_t row2{}; row2 < chunk_size; ++row2)
+						for (std::size_t col2{}; col2 < chunk_size; ++col2)
+							matrix_[point_y + row * chunk_size + row2][point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
+				}
+				for (std::size_t col{}; col <= chunk_x; ++col)
+					rand_up[col] = rand_down[col];
+			}
+		}
+	private:
+		//チャンク生成の呼び出し・実行
+		constexpr void createWorldMapSimple(std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> & matrix_, const Matrix_Int_ max_value_) const noexcept {
+			createDiamondSquareAverage_Map<Matrix_Int_>(chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0], matrix_[chunk_array_max][0], matrix_[0][chunk_array_max], matrix_[chunk_array_max][chunk_array_max], matrix_, max_value_);
+		}
+	};
+
+
 
 } //namespace
 
