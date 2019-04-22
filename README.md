@@ -50,7 +50,7 @@
 
 ![ri](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/CAI.gif)
 
-## FractalIsland
+## FractalLoopIsland✅
 
 |Sample Value|Name|
 |:---:|:---|
@@ -107,7 +107,7 @@
 
 ![rl1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/rls.gif)
 
-## SimpleRogueLike
+## SimpleRogueLike✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
@@ -117,7 +117,7 @@
 ![STL1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/SRL_1.gif)
 ![srl3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/simple_roguelike.png)
 
-## MazeDig
+## MazeDig✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
