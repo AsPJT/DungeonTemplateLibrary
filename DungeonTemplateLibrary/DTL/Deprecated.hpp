@@ -38,7 +38,7 @@
 
 #include <Deprecated/FractalIsland.hpp>
 
-#include <Deprecated/MazeDig.hpp>
+//#include <Deprecated/MazeDig.hpp>
 
 #include <Deprecated/RogueLike.hpp>
 

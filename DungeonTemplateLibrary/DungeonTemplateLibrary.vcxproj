@@ -33,7 +33,6 @@
     <ClInclude Include="Deprecated\DungeonPaint.hpp" />
     <ClInclude Include="Deprecated\FractalIsland.hpp" />
     <ClInclude Include="Deprecated\HorizontalScroll.hpp" />
-    <ClInclude Include="Deprecated\MazeDig.hpp" />
     <ClInclude Include="Deprecated\RogueLike.hpp" />
     <ClInclude Include="Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="DTL.hpp" />
