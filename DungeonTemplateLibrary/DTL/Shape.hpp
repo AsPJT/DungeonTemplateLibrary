@@ -15,6 +15,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE
 
+#include <Shape/AbsoluteMemberRect.hpp>
+
 #include <Shape/AbsoluteRect.hpp>
 
 /* https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/std::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/ */
@@ -51,6 +53,8 @@
 #include <Shape/PointGridAndSomeBlocksWithBorder.hpp>
 //指定マスに一定の確率で任意の値(1)を設置する。
 #include <Shape/RandomRect.hpp>
+
+#include <Shape/RandomVoronoi.hpp>
 
 #include <Shape/SimpleRogueLike.hpp>
 

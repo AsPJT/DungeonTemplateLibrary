@@ -51,6 +51,7 @@
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
     <ClInclude Include="Retouch\BuryPoint.hpp" />
     <ClInclude Include="Retouch\RemovePoint.hpp" />
+    <ClInclude Include="Shape\AbsoluteMemberRect.hpp" />
     <ClInclude Include="Shape\AbsoluteRect.hpp" />
     <ClInclude Include="Shape\Border.hpp" />
     <ClInclude Include="Shape\BorderOdd.hpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="Shape\PointGridAndSomeBlocksWithBorder.hpp" />
     <ClInclude Include="Shape\PointGridWithBorder.hpp" />
     <ClInclude Include="Shape\RandomRect.hpp" />
+    <ClInclude Include="Shape\RandomVoronoi.hpp" />
     <ClInclude Include="Shape\Rect.hpp" />
     <ClInclude Include="Shape\SimpleRogueLike.hpp" />
     <ClInclude Include="Storage\FileCSV.hpp" />
@@ -86,6 +88,7 @@
     <ClInclude Include="Utility\NoiseShoreBool.hpp" />
     <ClInclude Include="Utility\ReplaceAll.hpp" />
     <ClInclude Include="Utility\ReplaceSome.hpp" />
+    <ClInclude Include="Utility\VoronoiDiagram.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190421.cpp" />

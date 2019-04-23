@@ -29,5 +29,7 @@
 
 #include <Utility/ReplaceSome.hpp>
 
+#include <Utility/VoronoiDiagram.hpp>
+
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY

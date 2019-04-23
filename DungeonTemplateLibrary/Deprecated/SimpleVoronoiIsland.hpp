@@ -159,10 +159,6 @@ namespace dtl::generator::terrain::stl {
 
 		using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
 
-		//陸地であるか陸地でないか判別する
-		constexpr bool isIsland(const std::unique_ptr<Point_Pair_[]>& point_, const std::size_t point_num_, const std::int_fast32_t w_, const std::int_fast32_t h_, const std::int_fast32_t numerator_, const std::int_fast32_t denominator_) const noexcept {
-			return (point_[point_num_].first > (w_ * numerator_ / denominator_) && point_[point_num_].first < (w_ * (denominator_ - numerator_) / denominator_)) && (point_[point_num_].second > (h_ * numerator_ / denominator_) && point_[point_num_].second < (h_ * (denominator_ - numerator_) / denominator_));
-		}
 		//原点の場所と陸地を決定する
 		constexpr void createPoint(std::unique_ptr<Point_Pair_[]> & point_, std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
 

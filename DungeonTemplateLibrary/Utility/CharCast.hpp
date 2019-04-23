@@ -16,41 +16,43 @@
 #include <sstream>
 #include <string>
 
-namespace dtl::utility {
+namespace dtl {
+	inline namespace utility {
 
-	template<typename Int_>
-	[[nodiscard]] auto charCast(const std::string& field_) noexcept {
-		std::istringstream field_stream(field_);
-		Int_ field_int{};
-		field_stream >> field_int;
-		return field_int;
-	}
-	template<>
-	[[nodiscard]] auto charCast<std::string>(const std::string& field_) noexcept {
-		return field_;
-	}
-	template<>
-	[[nodiscard]] auto charCast<char>(const std::string& field_) noexcept {
-		std::istringstream field_stream(field_);
-		int field_int{};
-		field_stream >> field_int;
-		return static_cast<char>(field_int);
-	}
-	template<>
-	[[nodiscard]] auto charCast<signed char>(const std::string& field_) noexcept {
-		std::istringstream field_stream(field_);
-		int field_int{};
-		field_stream >> field_int;
-		return static_cast<signed char>(field_int);
-	}
-	template<>
-	[[nodiscard]] auto charCast<unsigned char>(const std::string& field_) noexcept {
-		std::istringstream field_stream(field_);
-		int field_int{};
-		field_stream >> field_int;
-		return static_cast<unsigned char>(field_int);
-	}
+		template<typename Int_>
+		[[nodiscard]] auto charCast(const std::string& field_) noexcept {
+			std::istringstream field_stream(field_);
+			Int_ field_int{};
+			field_stream >> field_int;
+			return field_int;
+		}
+		template<>
+		[[nodiscard]] auto charCast<std::string>(const std::string& field_) noexcept {
+			return field_;
+		}
+		template<>
+		[[nodiscard]] auto charCast<char>(const std::string& field_) noexcept {
+			std::istringstream field_stream(field_);
+			int field_int{};
+			field_stream >> field_int;
+			return static_cast<char>(field_int);
+		}
+		template<>
+		[[nodiscard]] auto charCast<signed char>(const std::string& field_) noexcept {
+			std::istringstream field_stream(field_);
+			int field_int{};
+			field_stream >> field_int;
+			return static_cast<signed char>(field_int);
+		}
+		template<>
+		[[nodiscard]] auto charCast<unsigned char>(const std::string& field_) noexcept {
+			std::istringstream field_stream(field_);
+			int field_int{};
+			field_stream >> field_int;
+			return static_cast<unsigned char>(field_int);
+		}
 
+	}
 }
 
 #endif //Included Dungeon Template Library

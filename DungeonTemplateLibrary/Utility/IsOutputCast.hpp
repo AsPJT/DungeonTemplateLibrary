@@ -13,47 +13,53 @@
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-namespace dtl::utility {
+namespace dtl {
+	inline namespace utility {
 
-	template<typename Int_>
-	[[nodiscard]] constexpr bool isOutputCast() noexcept {
-		return false;
-	}
-	template<>
-	[[nodiscard]] constexpr bool isOutputCast<char>() noexcept {
-		return true;
-	}
-	template<>
-	[[nodiscard]] constexpr bool isOutputCast<signed char>() noexcept {
-		return true;
-	}
-	template<>
-	[[nodiscard]] constexpr bool isOutputCast<unsigned char>() noexcept {
-		return true;
-	}
+		template<typename Int_>
+		[[nodiscard]] constexpr bool isOutputCast() noexcept {
+			return false;
+		}
+		template<>
+		[[nodiscard]] constexpr bool isOutputCast<char>() noexcept {
+			return true;
+		}
+		template<>
+		[[nodiscard]] constexpr bool isOutputCast<signed char>() noexcept {
+			return true;
+		}
+		template<>
+		[[nodiscard]] constexpr bool isOutputCast<unsigned char>() noexcept {
+			return true;
+		}
 
+	}
 }
 
 //共有データ
-namespace dtl::utility::tool {
+namespace dtl {
+	inline namespace utility {
+		namespace tool {
 
-	template<typename Matrix_Int_>
-	[[nodiscard]] constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
-		return value_;
-	}
-	template<>
-	[[nodiscard]] constexpr auto getOutputNumber<char>(const char value_) noexcept {
-		return static_cast<int>(value_);
-	}
-	template<>
-	[[nodiscard]] constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
-		return static_cast<int>(value_);
-	}
-	template<>
-	[[nodiscard]] constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
-		return static_cast<int>(value_);
-	}
+			template<typename Matrix_Int_>
+			[[nodiscard]] constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
+				return value_;
+			}
+			template<>
+			[[nodiscard]] constexpr auto getOutputNumber<char>(const char value_) noexcept {
+				return static_cast<int>(value_);
+			}
+			template<>
+			[[nodiscard]] constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
+				return static_cast<int>(value_);
+			}
+			template<>
+			[[nodiscard]] constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
+				return static_cast<int>(value_);
+			}
 
+		}
+	}
 }
 
 #endif //Included Dungeon Template Library

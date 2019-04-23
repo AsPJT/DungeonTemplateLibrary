@@ -251,6 +251,15 @@
     <ClInclude Include="Shape\FractalIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\VoronoiDiagram.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\AbsoluteMemberRect.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\RandomVoronoi.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190421.cpp">

@@ -15,7 +15,17 @@ int main() {
 	//dtl::thirdParty::stb::FileSTB<shape_t, width, height, 3>().writePNG("fi.png", [](unsigned char* a) {});
 	//dtl::console::OutputStringBool<shape_t>("■", "・").drawOperator(matrix, [](const shape_t value_) {return value_ > 120; });
 
-	dtl::generator::terrain::stl::SVI<shape_t>().create(matrix, 1500);
+	//dtl::generator::terrain::stl::SVI<shape_t>().create(matrix, 1500);
+
+	//dtl::utility::VoronoiDiagram<shape_t>(1000).draw(matrix, [](const std::pair<std::int_fast32_t, std::int_fast32_t>&, shape_t & color_) {
+	//	if (dtl::random::mt32bit.probability()) color_ = 1;
+	//	else color_ = 0;
+	//	});
+
+	//dtl::shape::AbsoluteMemberRect<shape_t>(1).draw(matrix);
+
+	dtl::RandomVoronoi<shape_t>(1000).draw(matrix);
+
 	dtl::console::OutputStringBool<shape_t>("■", "・").draw(matrix);
 
 	//dtl::FractalIsland<shape_t>(dtl::MatrixRange(32, 16, 0, 0), 0, 170, 80).draw(matrix_layer, 0, width, height);
