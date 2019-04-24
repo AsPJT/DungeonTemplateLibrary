@@ -113,7 +113,10 @@ namespace dtl {
 
 			template<typename Matrix_, typename View_Class_>
 			constexpr MatrixViewRect&& draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
-				if (x_ == 0 || y_ == 0) return MatrixViewRect();
+				if (x_ == 0 || y_ == 0) {
+					MatrixViewRect mvr{};
+					return std::move(mvr);
+				}
 				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(target_x) };
 				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(target_y) };
 				const std::int_fast32_t draw_position_x{ (target_x == static_cast<double>(static_cast<std::int_fast32_t>(target_x))) ? window_center_x : window_center_x - static_cast<std::int_fast32_t>((target_x - static_cast<double>(static_cast<std::int_fast32_t>(target_x))) * static_cast<double>(pixel_width)) };

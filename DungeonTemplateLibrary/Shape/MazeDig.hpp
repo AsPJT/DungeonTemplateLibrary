@@ -194,7 +194,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				matrix_[point_y + 1][point_x + 1] = empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;
@@ -216,7 +216,7 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
+			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
 				matrix_[point_y + 1][point_x + 1][layer_] = empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;
@@ -239,7 +239,7 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
+			bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
 				matrix_[(point_y + 1) * max_x_ + point_x + 1] = empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;

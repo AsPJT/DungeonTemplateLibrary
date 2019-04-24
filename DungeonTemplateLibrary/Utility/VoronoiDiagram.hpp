@@ -110,7 +110,7 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+			inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
 				if (!point) return;
@@ -121,7 +121,7 @@ namespace dtl {
 				createSites(point, color, matrix_, point_x_, point_y_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
 				if (!point) return;
@@ -132,7 +132,7 @@ namespace dtl {
 				createSitesArray(point, color, matrix_, max_x_, point_x_, point_y_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+			inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
 				if (!point) return;
