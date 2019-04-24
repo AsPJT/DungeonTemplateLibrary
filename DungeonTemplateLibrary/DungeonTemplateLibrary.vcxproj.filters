@@ -194,9 +194,6 @@
     <ClInclude Include="ThirdParty\STB\wrapper_stb_image_write.hpp">
       <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\STB\stb_image_write.hpp">
-      <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\ReplaceAll.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
