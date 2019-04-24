@@ -280,36 +280,36 @@ namespace dtl {
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::normal::noiseShoreBool(matrix_);
-				dtl::utility::normal::rnoiseShoreBool(matrix_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::normal::noiseShoreBool(matrix_, rbool_);
-				dtl::utility::normal::rnoiseShoreBool(matrix_, rbool_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::normal::noiseShoreBool(matrix_, rbool1_);
-				dtl::utility::normal::rnoiseShoreBool(matrix_, rbool2_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool1_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::normal::rnoiseShoreBool(matrix_);
-				dtl::utility::normal::noiseShoreBool(matrix_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::normal::rnoiseShoreBool(matrix_, rbool_);
-				dtl::utility::normal::noiseShoreBool(matrix_, rbool_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::normal::rnoiseShoreBool(matrix_, rbool1_);
-				dtl::utility::normal::noiseShoreBool(matrix_, rbool2_);
+				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool1_);
+				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 
 		} //namespace
@@ -416,36 +416,36 @@ namespace dtl {
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::array::noiseShoreBool(matrix_);
-				dtl::utility::array::rnoiseShoreBool(matrix_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_);
 			}
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::array::noiseShoreBool(matrix_, rbool_);
-				dtl::utility::array::rnoiseShoreBool(matrix_, rbool_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
 			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::array::noiseShoreBool(matrix_, rbool1_);
-				dtl::utility::array::rnoiseShoreBool(matrix_, rbool2_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool1_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::array::rnoiseShoreBool(matrix_);
-				dtl::utility::array::noiseShoreBool(matrix_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_);
 			}
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::array::rnoiseShoreBool(matrix_, rbool_);
-				dtl::utility::array::noiseShoreBool(matrix_, rbool_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
 			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::array::rnoiseShoreBool(matrix_, rbool1_);
-				dtl::utility::array::noiseShoreBool(matrix_, rbool2_);
+				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool1_);
+				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 
 		} //namespace
@@ -691,36 +691,36 @@ namespace dtl {
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
 				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
 				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 				}
 				template<typename Matrix_>
 				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool1_);
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool2_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool1_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool2_);
 				}
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
 				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
 				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 				}
 				template<typename Matrix_>
 				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool1_);
-					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool2_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool1_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool2_);
 				}
 
 			} //namespace

@@ -55,8 +55,6 @@ namespace dtl {
 			//原点の場所と陸地を決定する
 			template<typename Function_>
 			constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
-				const Matrix_Int_ land_{ 1 };
-				const Matrix_Int_ sea_{};
 				for (std::size_t i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
 					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
 					function_(point_[array_num], color_[array_num]);
@@ -96,7 +94,7 @@ namespace dtl {
 				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 					for (std::size_t ww{}; ww < w_; ++ww)
 						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
-							matrix_[hh][ww] = color_[ind];
+							matrix_[hh][ww][layer_] = color_[ind];
 			}
 			template<typename Matrix_>
 			constexpr void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const std::size_t w_, const std::size_t h_) const noexcept {
@@ -104,7 +102,7 @@ namespace dtl {
 				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 					for (std::size_t ww{}; ww < w_; ++ww)
 						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
-							matrix_[hh][ww] = color_[ind];
+							matrix_[hh * max_x_ + ww] = color_[ind];
 			}
 
 

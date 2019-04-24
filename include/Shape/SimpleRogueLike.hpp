@@ -91,7 +91,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) noexcept {
+			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -118,7 +118,7 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) noexcept {
+			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -144,7 +144,7 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) noexcept {
+			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID

@@ -136,7 +136,7 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の左下の地形タイプを返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+			DTL_NODISCARD
 		constexpr auto getWolfAutoTileTypeLowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ - ((x_ <= min_x_) ? 0 : 1)], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_ - ((x_ <= min_x_) ? 0 : 1)]);
 		}

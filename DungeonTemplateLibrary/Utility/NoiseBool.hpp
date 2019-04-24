@@ -70,7 +70,7 @@ namespace dtl {
 
 			//1/2の確率でマップデータの値をbit反転させる
 			template<typename Matrix_>
-			constexpr void noiseBool(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			constexpr void noiseBool(Matrix_& matrix_, const std::size_t, const std::size_t y_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -84,7 +84,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値をbit反転させる
 			template<typename Matrix_>
-			constexpr void noiseBool(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+			constexpr void noiseBool(Matrix_& matrix_, const std::size_t, const std::size_t y_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -98,7 +98,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 			template<typename True_Int_, typename False_Int_, typename Matrix_>
-			constexpr void noiseBool(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const double rbool_, const True_Int_ true_tile_, const False_Int_ false_tile_ = 0) noexcept {
+			constexpr void noiseBool(Matrix_& matrix_, const std::size_t, const std::size_t y_, const double rbool_, const True_Int_ true_tile_, const False_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -261,7 +261,7 @@ namespace dtl {
 
 				//1/2の確率でマップデータの値をbit反転させる
 				template<typename Matrix_>
-				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t, const std::size_t y_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 
@@ -275,7 +275,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値をbit反転させる
 				template<typename Matrix_>
-				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t, const std::size_t y_, const double rbool_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 
@@ -289,7 +289,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 				template<typename True_Int_, typename False_Int_, typename Matrix_>
-				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const True_Int_ true_tile_, const False_Int_ false_tile_ = 0) noexcept {
+				constexpr void noiseBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t, const std::size_t y_, const double rbool_, const True_Int_ true_tile_, const False_Int_ false_tile_ = 0) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 
