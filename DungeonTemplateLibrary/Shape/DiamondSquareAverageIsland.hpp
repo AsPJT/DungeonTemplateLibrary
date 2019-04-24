@@ -25,6 +25,7 @@
 #include <algorithm>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -55,15 +56,7 @@ namespace dtl {
 
 			///// サイズ取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
 				std::size_t map_size{ 2 };
 				while (true) {
@@ -186,87 +179,31 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getAltitude() const noexcept {
 				return this->altitude;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getAddAltitude() const noexcept {
 				return this->add_altitude;
 			}

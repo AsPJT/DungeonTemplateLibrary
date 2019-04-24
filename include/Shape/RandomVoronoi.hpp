@@ -24,6 +24,7 @@
 #include <Utility/VoronoiDiagram.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -53,63 +54,23 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->voronoiDiagram.getPointX();
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->voronoiDiagram.getPointY();
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->voronoiDiagram.getWidth();
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->voronoiDiagram.getHeight();
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr std::size_t getValue() const noexcept {
 				return this->voronoiDiagram.getValue();
 			}

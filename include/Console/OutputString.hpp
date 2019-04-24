@@ -19,6 +19,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace console {
@@ -57,41 +58,17 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr inline std::size_t outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return static_cast<std::size_t>(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr inline std::size_t outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				return static_cast<std::size_t>(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr inline std::size_t outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return static_cast<std::size_t>(matrix_[point_y_][point_x_][layer_]);
 			}
@@ -191,51 +168,19 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}

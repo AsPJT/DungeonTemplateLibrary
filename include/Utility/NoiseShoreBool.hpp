@@ -14,6 +14,7 @@
 
 #include <cstddef>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Macros/nodiscard.hpp>
 
 //共有データ
 namespace dtl {
@@ -22,15 +23,7 @@ namespace dtl {
 
 			//noiseShoreBool関数から取得したマップデータの値を1/2の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -39,15 +32,7 @@ namespace dtl {
 			}
 			//noiseShoreBool関数から取得したマップデータの値を[rbool_]の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;

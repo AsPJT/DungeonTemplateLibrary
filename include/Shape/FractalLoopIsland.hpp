@@ -10,7 +10,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_LOOP_ISLAND
 
 /*#######################################################################################
-	“ú–{ŒêƒŠƒtƒ@ƒŒƒ“ƒX (Reference-JP)
+	ï¿½ï¿½ï¿½{ï¿½êƒŠï¿½tï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½X (Reference-JP)
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::FractalLoopIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
@@ -26,23 +26,24 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
 //#include <Deprecated/FractalIsland.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace shape {
 
-		//ƒ}ƒX‚ğw’è‚µ‚½”’l‚Å–„‚ß‚é
+		//ï¿½}ï¿½Xï¿½ï¿½wï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Å–ï¿½ï¿½ß‚ï¿½
 		template<typename Matrix_Int_, std::size_t chunk_size = 16>
 		class FractalLoopIsland {
 		private:
 
 
-			///// ƒGƒCƒŠƒAƒX /////
+			///// ï¿½Gï¿½Cï¿½ï¿½ï¿½Aï¿½X /////
 
 			using Index_Size = std::size_t;
 			using PairSize = std::pair<Index_Size, Index_Size>;
 
 
-			///// ƒƒ“ƒo•Ï” /////
+			///// ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ïï¿½ /////
 
 			Index_Size point_x{};
 			Index_Size point_y{};
@@ -53,9 +54,9 @@ namespace dtl {
 			Matrix_Int_ add_altitude{};
 
 
-			///// Šî–{ˆ— /////
+			///// ï¿½ï¿½{ï¿½ï¿½ï¿½ï¿½ /////
 
-			//ƒ`ƒƒƒ“ƒN¶¬‚ÌŒÄ‚Ño‚µEÀs
+			//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ÌŒÄ‚Ñoï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½s
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimple(Matrix2_&& matrix_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix2_>(matrix_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0], matrix_[chunk_size][0], matrix_[0][chunk_size], matrix_[chunk_size][chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
@@ -64,7 +65,7 @@ namespace dtl {
 			constexpr void createWorldMapSimple(Matrix2_&& matrix_) const noexcept {
 				createWorldMapSimple(matrix_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
-			//ƒ`ƒƒƒ“ƒN¶¬‚ÌŒÄ‚Ño‚µEÀs
+			//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ÌŒÄ‚Ñoï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½s
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageLayer<Matrix_Int_, Matrix2_>(matrix_, layer_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0][layer_], matrix_[chunk_size][0][layer_], matrix_[0][chunk_size][layer_], matrix_[chunk_size][chunk_size][layer_], this->min_value + this->altitude, this->add_altitude, function_);
@@ -73,7 +74,7 @@ namespace dtl {
 			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_) const noexcept {
 				createWorldMapSimpleLayer(matrix_, layer_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
-			//ƒ`ƒƒƒ“ƒN¶¬‚ÌŒÄ‚Ño‚µEÀs
+			//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ÌŒÄ‚Ñoï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½s
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix2_>(matrix_, max_x_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0], matrix_[chunk_size * max_x_], matrix_[chunk_size], matrix_[chunk_size * max_x_ + chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
@@ -113,14 +114,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//lŠpŒ`‚Ì4“_‚Ì‚‚³‚ğŒˆ’è
+						//ï¿½lï¿½pï¿½`ï¿½ï¿½4ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//ƒ`ƒƒƒ“ƒN¶¬
+						//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
 						createWorldMapSimple(chunk_matrix, args_...);
-						//¶¬‚µ‚½ƒ`ƒƒƒ“ƒN‚ğƒ[ƒ‹ƒhƒ}ƒbƒv‚ÉƒRƒsƒy
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½}ï¿½bï¿½vï¿½ÉƒRï¿½sï¿½y
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->point_y + row * chunk_size + row2][this->point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
@@ -161,14 +162,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//lŠpŒ`‚Ì4“_‚Ì‚‚³‚ğŒˆ’è
+						//ï¿½lï¿½pï¿½`ï¿½ï¿½4ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//ƒ`ƒƒƒ“ƒN¶¬
+						//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
 						createWorldMapSimple(chunk_matrix, args_...);
-						//¶¬‚µ‚½ƒ`ƒƒƒ“ƒN‚ğƒ[ƒ‹ƒhƒ}ƒbƒv‚ÉƒRƒsƒy
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½}ï¿½bï¿½vï¿½ÉƒRï¿½sï¿½y
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->point_y + row * chunk_size + row2][this->point_x + col * chunk_size + col2][layer_] = chunk_matrix[row2][col2];
@@ -209,14 +210,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//lŠpŒ`‚Ì4“_‚Ì‚‚³‚ğŒˆ’è
+						//ï¿½lï¿½pï¿½`ï¿½ï¿½4ï¿½_ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//ƒ`ƒƒƒ“ƒN¶¬
+						//ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
 						createWorldMapSimple(chunk_matrix, args_...);
-						//¶¬‚µ‚½ƒ`ƒƒƒ“ƒN‚ğƒ[ƒ‹ƒhƒ}ƒbƒv‚ÉƒRƒsƒy
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½[ï¿½ï¿½ï¿½hï¿½}ï¿½bï¿½vï¿½ÉƒRï¿½sï¿½y
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[(this->point_y + row * chunk_size + row2) * max_x_ + point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
@@ -230,95 +231,39 @@ namespace dtl {
 		public:
 
 
-			///// î•ñæ“¾ /////
+			///// ï¿½ï¿½ï¿½æ“¾ /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getAltitude() const noexcept {
 				return this->altitude;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr Matrix_Int_ getAddAltitude() const noexcept {
 				return this->add_altitude;
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µ /////
+			///// ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ /////
 
 			//STL
 			template<typename Matrix_>
@@ -371,7 +316,7 @@ namespace dtl {
 			}
 
 
-			///// ¶¬ŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^ /////
+			///// ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½tï¿½@ï¿½ï¿½ï¿½Nï¿½^ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -379,7 +324,7 @@ namespace dtl {
 			}
 
 
-			///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
+			///// ï¿½_ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ñ¶ï¿½ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -403,7 +348,7 @@ namespace dtl {
 			}
 
 
-			///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+			///// ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ /////
 
 			constexpr FractalLoopIsland() noexcept = default;
 			constexpr explicit FractalLoopIsland(const Matrix_Int_ & min_value_) noexcept
