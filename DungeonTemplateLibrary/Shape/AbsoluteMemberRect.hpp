@@ -115,24 +115,24 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				absoluteRect.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->absoluteRect.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				absoluteRect.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->absoluteRect.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				absoluteRect.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->absoluteRect.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				absoluteRect.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->absoluteRect.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 

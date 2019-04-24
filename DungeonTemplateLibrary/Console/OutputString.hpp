@@ -49,7 +49,7 @@ namespace dtl {
 			constexpr void string_String() const noexcept {}
 			template<typename ...Args_>
 			constexpr void string_String(const OutputStringName_& first_, const Args_& ... args_) noexcept {
-				string_vector.emplace_back(first_);
+				this->string_vector.emplace_back(first_);
 				this->string_String(args_...);
 			}
 
@@ -102,10 +102,10 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			bool drawSTL(const Matrix_ & matrix_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col) {
-						if (this->outputSTL(matrix_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputSTL(matrix_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col) {
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -113,10 +113,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col) {
-						if (this->outputSTL(matrix_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputSTL(matrix_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col) {
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -126,10 +126,10 @@ namespace dtl {
 			//LayerSTL
 			template<typename Matrix_>
 			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputLayer(matrix_, layer_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col) {
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -137,10 +137,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputLayer(matrix_, layer_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col) {
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -150,10 +150,10 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_>
 			bool drawNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < point_x_; ++col) {
-						if (this->outputSTL(matrix_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputSTL(matrix_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col) {
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -163,10 +163,10 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_>
 			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < point_x_; ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputLayer(matrix_, layer_, col, row)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col) {
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
 				}
@@ -176,10 +176,10 @@ namespace dtl {
 			//Array
 			template<typename Matrix_>
 			bool drawArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				for (Index_Size row{ point_y }; row < point_y_; ++row) {
-					for (Index_Size col{ point_x }; col < point_x_; ++col) {
-						if (this->outputArray(matrix_, col, row, max_x_) >= string_vector.size()) continue;
-						std::cout << string_vector[this->outputArray(matrix_, col, row, max_x_)];
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col) {
+						if (this->outputArray(matrix_, col, row, max_x_) >= this->string_vector.size()) continue;
+						std::cout << this->string_vector[this->outputArray(matrix_, col, row, max_x_)];
 					}
 					std::cout << '\n';
 				}
@@ -246,31 +246,31 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			bool draw(const Matrix_ & matrix_) const noexcept {
-				return (width == 0) ? this->drawSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return (this->width == 0) ? this->drawSTL(matrix_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->drawWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			bool draw(const Matrix_ & matrix_, const Index_Size layer_) const noexcept {
-				return (width == 0) ? this->drawLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->drawLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return (this->width == 0) ? this->drawLayerSTL(matrix_, layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->drawLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			bool draw(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawNormal(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			bool draw(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 
 			//Array
 			template<typename Matrix_>
 			bool drawArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+				return this->drawArray(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
 			}
 
 

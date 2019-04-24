@@ -116,7 +116,7 @@ void createSimpleRogueLikeAll(int** matrix_, const int x_, const int y_, const i
 		dungeon_room[i][3] = dungeon_division[i][3]; //区分けY始点をマップY始点へ代入
 
 		//X座標の部屋の長さを指定
-		dungeon_room[i][0] = dungeon_division[i][2] + room_min_x + (int)dungeonRand2(1, (int)room_rand_max_x);
+		dungeon_room[i][0] = dungeon_division[i][2] + this->room_min_x + (int)dungeonRand2(1, (int)room_rand_max_x);
 		if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
 			dungeon_room[i][0] = dungeon_division[i][0] - 4;
 			if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
@@ -124,7 +124,7 @@ void createSimpleRogueLikeAll(int** matrix_, const int x_, const int y_, const i
 			}
 		}
 
-		dungeon_room[i][1] = dungeon_division[i][3] + room_min_y + (int)dungeonRand2(1, (int)room_rand_max_y);
+		dungeon_room[i][1] = dungeon_division[i][3] + this->room_min_y + (int)dungeonRand2(1, (int)room_rand_max_y);
 		if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {
 			dungeon_room[i][1] = dungeon_division[i][1] - 4;
 			if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {

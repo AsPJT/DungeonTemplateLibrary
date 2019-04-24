@@ -63,12 +63,12 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx] == empty_value) {
+					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx] == this->empty_value) {
 						++counter;
 					}
-					else if (matrix_[y_ + dy][x_ + dx] == wall_value) {
-						matrix_[y_ + (dy / 2)][x_ + (dx / 2)] = empty_value;
-						matrix_[y_ + dy][x_ + dx] = empty_value;
+					else if (matrix_[y_ + dy][x_ + dx] == this->wall_value) {
+						matrix_[y_ + (dy / 2)][x_ + (dx / 2)] = this->empty_value;
+						matrix_[y_ + dy][x_ + dx] = this->empty_value;
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
@@ -88,12 +88,12 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == empty_value) {
+					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == this->empty_value) {
 						++counter;
 					}
-					else if (matrix_[y_ + dy][x_ + dx][layer_] == wall_value) {
-						matrix_[y_ + (dy / 2)][x_ + (dx / 2)][layer_] = empty_value;
-						matrix_[y_ + dy][x_ + dx][layer_] = empty_value;
+					else if (matrix_[y_ + dy][x_ + dx][layer_] == this->wall_value) {
+						matrix_[y_ + (dy / 2)][x_ + (dx / 2)][layer_] = this->empty_value;
+						matrix_[y_ + dy][x_ + dx][layer_] = this->empty_value;
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
@@ -113,12 +113,12 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == empty_value) {
+					if (x_ + dx <= static_cast<std::int_fast32_t>(point_x) || y_ + dy <= static_cast<std::int_fast32_t>(point_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
 						++counter;
 					}
-					else if (matrix_[(y_ + dy) * max_x_ + x_ + dx] == wall_value) {
-						matrix_[(y_ + (dy / 2)) * max_x_ + x_ + (dx / 2)] = empty_value;
-						matrix_[(y_ + dy) * max_x_ + x_ + dx] = empty_value;
+					else if (matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->wall_value) {
+						matrix_[(y_ + (dy / 2)) * max_x_ + x_ + (dx / 2)] = this->empty_value;
+						matrix_[(y_ + dy) * max_x_ + x_ + dx] = this->empty_value;
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
@@ -131,16 +131,16 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
-				for (std::size_t i{ point_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ point_x + 1 }; j < j_max; j += 2) {
-						if (matrix_[i][j] != empty_value) continue;
-						if ((i >= point_y + 2 && matrix_[i - 2][j] == wall_value) || (j >= point_x + 2 && matrix_[i][j - 2] == wall_value)) {
+				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
+					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
+						if (matrix_[i][j] != this->empty_value) continue;
+						if ((i >= this->point_y + 2 && matrix_[i - 2][j] == this->wall_value) || (j >= this->point_x + 2 && matrix_[i][j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
 						}
 						else if ((j >= j_max - 1) && (i >= i_max - 1)) break;
-						else if ((i + 2 < (i_max + 1) && matrix_[i + 2][j] == wall_value) || (j + 2 < (j_max + 1) && matrix_[i][j + 2] == wall_value)) {
+						else if ((i + 2 < (i_max + 1) && matrix_[i + 2][j] == this->wall_value) || (j + 2 < (j_max + 1) && matrix_[i][j + 2] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
@@ -151,16 +151,16 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
-				for (std::size_t i{ point_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ point_x + 1 }; j < j_max; j += 2) {
-						if (matrix_[i][j][layer_] != empty_value) continue;
-						if ((i >= point_y + 2 && matrix_[i - 2][j][layer_] == wall_value) || (j >= point_x + 2 && matrix_[i][j - 2][layer_] == wall_value)) {
+				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
+					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
+						if (matrix_[i][j][layer_] != this->empty_value) continue;
+						if ((i >= this->point_y + 2 && matrix_[i - 2][j][layer_] == this->wall_value) || (j >= this->point_x + 2 && matrix_[i][j - 2][layer_] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
 						}
 						else if ((j >= j_max - 1) && (i >= i_max - 1)) break;
-						else if ((i + 2 < (i_max + 1) && matrix_[i + 2][j][layer_] == wall_value) || (j + 2 < (j_max + 1) && matrix_[i][j + 2][layer_] == wall_value)) {
+						else if ((i + 2 < (i_max + 1) && matrix_[i + 2][j][layer_] == this->wall_value) || (j + 2 < (j_max + 1) && matrix_[i][j + 2][layer_] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
@@ -171,16 +171,16 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
-				for (std::size_t i{ point_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ point_x + 1 }; j < j_max; j += 2) {
-						if (matrix_[i * max_x_ + j] != empty_value) continue;
-						if ((i >= point_y + 2 && matrix_[(i - 2) * max_x_ + j] == wall_value) || (j >= point_x + 2 && matrix_[i * max_x_ + j - 2] == wall_value)) {
+				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
+					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
+						if (matrix_[i * max_x_ + j] != this->empty_value) continue;
+						if ((i >= this->point_y + 2 && matrix_[(i - 2) * max_x_ + j] == this->wall_value) || (j >= this->point_x + 2 && matrix_[i * max_x_ + j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
 						}
 						else if ((j >= j_max - 1) && (i >= i_max - 1)) break;
-						else if ((i + 2 < (i_max + 1) && matrix_[(i + 2) * max_x_ + j] == wall_value) || (j + 2 < (j_max + 1) && matrix_[i * max_x_ + j + 2] == wall_value)) {
+						else if ((i + 2 < (i_max + 1) && matrix_[(i + 2) * max_x_ + j] == this->wall_value) || (j + 2 < (j_max + 1) && matrix_[i * max_x_ + j + 2] == this->wall_value)) {
 							select_x[select_id] = j;
 							select_y[select_id] = i;
 							++select_id;
@@ -195,14 +195,14 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				matrix_[point_y + 1][point_x + 1] = empty_value;
+				matrix_[this->point_y + 1][this->point_x + 1] = this->empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;
 				std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((point_y_ - point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
-				const std::size_t j_max{ ((((point_x_ - point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
+				const std::size_t i_max{ ((((point_y_ - this->point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
+				const std::size_t j_max{ ((((point_x_ - this->point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
 
 				//座標を選ぶ
 				for (std::size_t select_id{};;) {
@@ -217,14 +217,14 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
-				matrix_[point_y + 1][point_x + 1][layer_] = empty_value;
+				matrix_[this->point_y + 1][this->point_x + 1][layer_] = this->empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;
 				std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((point_y_ - point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
-				const std::size_t j_max{ ((((point_x_ - point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
+				const std::size_t i_max{ ((((point_y_ - this->point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
+				const std::size_t j_max{ ((((point_x_ - this->point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
 
 				//座標を選ぶ
 				for (std::size_t select_id{};;) {
@@ -240,14 +240,14 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
-				matrix_[(point_y + 1) * max_x_ + point_x + 1] = empty_value;
+				matrix_[(this->point_y + 1) * max_x_ + point_x + 1] = this->empty_value;
 				std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_x) return false;
 				std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((point_y_ - point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
-				const std::size_t j_max{ ((((point_x_ - point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
+				const std::size_t i_max{ ((((point_y_ - this->point_y) & 1) == 0) ? point_y_ - 2 : point_y_ - 1) };
+				const std::size_t j_max{ ((((point_x_ - this->point_x) & 1) == 0) ? point_x_ - 2 : point_x_ - 1) };
 
 				//座標を選ぶ
 				for (std::size_t select_id{};;) {
@@ -320,51 +320,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
 			}
 
 

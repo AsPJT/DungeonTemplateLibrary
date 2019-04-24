@@ -452,8 +452,8 @@ namespace dtl {
 						const std::size_t point_x_{ (point_y_ == 0) ? 0 : matrix_[0].size() };
 
 						std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
-						const std::size_t chunk_x{ ((point_x_ - point_x) / chunk_size) };
-						const std::size_t chunk_y{ ((point_y_ - point_y) / chunk_size) };
+						const std::size_t chunk_x{ ((point_x_ - this->point_x) / chunk_size) };
+						const std::size_t chunk_y{ ((point_y_ - this->point_y) / chunk_size) };
 
 						std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 						if (!rand_up) return;
@@ -487,7 +487,7 @@ namespace dtl {
 								//生成したチャンクをワールドマップにコピペ
 								for (std::size_t row2{}; row2 < chunk_size; ++row2)
 									for (std::size_t col2{}; col2 < chunk_size; ++col2)
-										matrix_[point_y + row * chunk_size + row2][point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
+										matrix_[this->point_y + row * chunk_size + row2][this->point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
 							}
 							for (std::size_t col{}; col <= chunk_x; ++col)
 								rand_up[col] = rand_down[col];

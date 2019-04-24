@@ -56,7 +56,7 @@ namespace dtl {
 			constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
 				const Matrix_Int_ land_{ 1 };
 				const Matrix_Int_ sea_{};
-				for (std::size_t i{}, array_num{}; i < draw_value; ++i, ++array_num) {
+				for (std::size_t i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
 					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
 					function_(point_[array_num], color_[array_num]);
 				}
@@ -72,7 +72,7 @@ namespace dtl {
 			constexpr bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, std::size_t& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
 				ind = (std::numeric_limits<std::size_t>::max)();
 				dist = (std::numeric_limits<std::int_fast32_t>::max)();
-				for (std::size_t it{}; it < draw_value; ++it) {
+				for (std::size_t it{}; it < this->draw_value; ++it) {
 					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
@@ -112,9 +112,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
+				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[draw_value] };
+				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<std::int_fast32_t>(point_x_), static_cast<std::int_fast32_t>(point_y_), function_);
@@ -123,9 +123,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
+				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[draw_value] };
+				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<std::int_fast32_t>(point_x_), static_cast<std::int_fast32_t>(point_y_), function_);
@@ -134,9 +134,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[draw_value] };
+				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[draw_value] };
+				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<std::int_fast32_t>(point_x_), static_cast<std::int_fast32_t>(point_y_), function_);
@@ -239,31 +239,31 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename Function_>
 			constexpr bool draw(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename Function_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_, typename Function_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename Function_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
 			}
 
 

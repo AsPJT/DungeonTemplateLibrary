@@ -120,36 +120,36 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				randomRect.draw(matrix_, args_...);
-				border.draw(matrix_, args_...);
+				this->randomRect.draw(matrix_, args_...);
+				this->border.draw(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.draw(matrix_, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				randomRect.drawOperator(matrix_, args_...);
-				border.drawOperator(matrix_, args_...);
+				this->randomRect.drawOperator(matrix_, args_...);
+				this->border.drawOperator(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.draw(matrix_, args_...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				randomRect.drawArray(matrix_, args_...);
-				border.drawArray(matrix_, args_...);
+				this->randomRect.drawArray(matrix_, args_...);
+				this->border.drawArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.draw(matrix_, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				randomRect.drawOperatorArray(matrix_, args_...);
-				border.drawOperatorArray(matrix_, args_...);
+				this->randomRect.drawOperatorArray(matrix_, args_...);
+				this->border.drawOperatorArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.draw(matrix_, args_...);
 				return true;
 			}
 

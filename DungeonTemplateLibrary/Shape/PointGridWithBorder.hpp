@@ -117,28 +117,28 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				pointGrid.draw(matrix_, args_...);
-				borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->pointGrid.draw(matrix_, args_...);
+				this->borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				pointGrid.drawOperator(matrix_, args_...);
-				borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->pointGrid.drawOperator(matrix_, args_...);
+				this->borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				pointGrid.drawArray(matrix_, args_...);
-				borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->pointGrid.drawArray(matrix_, args_...);
+				this->borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				pointGrid.drawOperatorArray(matrix_, args_...);
-				borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
+				this->pointGrid.drawOperatorArray(matrix_, args_...);
+				this->borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 

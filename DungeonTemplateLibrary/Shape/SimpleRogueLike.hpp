@@ -93,7 +93,7 @@ namespace dtl {
 			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const std::size_t mapDivCount{ division_min + dtl::random::mt32bit.get<std::size_t>(division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				dungeon_division.resize(mapDivCount);
 				dungeon_room.resize(mapDivCount);
@@ -101,8 +101,8 @@ namespace dtl {
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
-				dungeon_division[0][2] = point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-				dungeon_division[0][3] = point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+				dungeon_division[0][2] = this->point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+				dungeon_division[0][3] = this->point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
@@ -110,7 +110,7 @@ namespace dtl {
 				createDivision(mapDivCount);
 
 				createRoom(mapDivCount);
-				substitutionRoom(matrix_, mapDivCount);
+				this->substitutionRoom(matrix_, mapDivCount);
 				createRoad(matrix_, mapDivCount);
 				return true;
 			}
@@ -120,7 +120,7 @@ namespace dtl {
 			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const std::size_t mapDivCount{ division_min + dtl::random::mt32bit.get<std::size_t>(division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				dungeon_division.resize(mapDivCount);
 				dungeon_room.resize(mapDivCount);
@@ -128,8 +128,8 @@ namespace dtl {
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
-				dungeon_division[0][2] = point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-				dungeon_division[0][3] = point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+				dungeon_division[0][2] = this->point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+				dungeon_division[0][3] = this->point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
@@ -137,7 +137,7 @@ namespace dtl {
 				createDivision(mapDivCount);
 				
 				createRoom(mapDivCount);
-				substitutionRoomLayer(matrix_, mapDivCount, layer_);
+				this->substitutionRoomLayer(matrix_, mapDivCount, layer_);
 				return true;
 			}
 
@@ -146,7 +146,7 @@ namespace dtl {
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const std::size_t mapDivCount{ division_min + dtl::random::mt32bit.get<std::size_t>(division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				dungeon_division.resize(mapDivCount);
 				dungeon_room.resize(mapDivCount);
@@ -154,8 +154,8 @@ namespace dtl {
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
-				dungeon_division[0][2] = point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-				dungeon_division[0][3] = point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+				dungeon_division[0][2] = this->point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+				dungeon_division[0][3] = this->point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
@@ -163,7 +163,7 @@ namespace dtl {
 				createDivision(mapDivCount);
 				
 				createRoom(mapDivCount);
-				substitutionRoomArray(matrix_, mapDivCount, max_x_);
+				this->substitutionRoomArray(matrix_, mapDivCount, max_x_);
 				return true;
 			}
 
@@ -225,7 +225,7 @@ namespace dtl {
 					dungeon_room[i][3] = dungeon_division[i][3]; //区分けY始点をマップY始点へ代入
 
 					//X座標の部屋の長さを指定
-					dungeon_room[i][0] = dungeon_division[i][2] + room_min_y + dtl::random::mt32bit.get<std::size_t>(room_rand_max_x);
+					dungeon_room[i][0] = dungeon_division[i][2] + this->room_min_y + dtl::random::mt32bit.get<std::size_t>(this->room_rand_max_x);
 					if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
 						dungeon_room[i][0] = dungeon_division[i][0] - 4;
 						if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
@@ -233,7 +233,7 @@ namespace dtl {
 						}
 					}
 
-					dungeon_room[i][1] = dungeon_division[i][3] + room_min_x + dtl::random::mt32bit.get<std::size_t>(room_rand_max_y);
+					dungeon_room[i][1] = dungeon_division[i][3] + this->room_min_x + dtl::random::mt32bit.get<std::size_t>(this->room_rand_max_y);
 					if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {
 						dungeon_room[i][1] = dungeon_division[i][1] - 4;
 						if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {
@@ -263,7 +263,7 @@ namespace dtl {
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 						for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
-							matrix_[j][k] = room_value;
+							matrix_[j][k] = this->room_value;
 			}
 			template <typename Matrix_>
 			void substitutionRoomLayer(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size layer_) const noexcept {
@@ -271,7 +271,7 @@ namespace dtl {
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 						for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
-							matrix_[j][k][layer_] = room_value;
+							matrix_[j][k][layer_] = this->room_value;
 			}
 			template <typename Matrix_>
 			void substitutionRoomArray(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size max_x_) const noexcept {
@@ -279,7 +279,7 @@ namespace dtl {
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
 						for (std::size_t k{ dungeon_room[i][3] }; k < dungeon_room[i][1]; ++k)
-							matrix_[j * max_x_ + k] = room_value;
+							matrix_[j * max_x_ + k] = this->room_value;
 			}
 
 
@@ -301,30 +301,30 @@ namespace dtl {
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
-							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][2] }; j < dungeon_room[roomAfter][2]; ++j)
-							matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0]][j] = road_value; //通路をマップチップに線画 2から5(上から下)
+							matrix_[dungeon_division[roomBefore][0]][j] = this->road_value; //通路をマップチップに線画 2から5(上から下)
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0]][j] = road_value; //通路をマップチップに線画 5から2(下から上)
+							matrix_[dungeon_division[roomBefore][0]][j] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
 						dungeon_road[roomBefore][2] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
-							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = road_value; //通路をマップチップに線画
+							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][3] }; j < dungeon_room[roomAfter][3]; ++j)
-							matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = road_value; //通路をマップチップに線画
+							matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; ++j)
-							matrix_[j][dungeon_division[roomBefore][1]] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_division[roomBefore][1]] = this->road_value; //通路をマップチップに線画
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; ++j)
-							matrix_[j][dungeon_division[roomBefore][1]] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_division[roomBefore][1]] = this->road_value; //通路をマップチップに線画
 						break;
 					}
 				}
@@ -340,30 +340,30 @@ namespace dtl {
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
-							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]][layer_] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]][layer_] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][2] }; j < dungeon_room[roomAfter][2]; ++j)
-							matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]][layer_] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]][layer_] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0]][j][layer_] = road_value; //通路をマップチップに線画 2から5(上から下)
+							matrix_[dungeon_division[roomBefore][0]][j][layer_] = this->road_value; //通路をマップチップに線画 2から5(上から下)
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0]][j][layer_] = road_value; //通路をマップチップに線画 5から2(下から上)
+							matrix_[dungeon_division[roomBefore][0]][j][layer_] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
 						dungeon_road[roomBefore][2] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
-							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j][layer_] = road_value; //通路をマップチップに線画
+							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j][layer_] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][3] }; j < dungeon_room[roomAfter][3]; ++j)
-							matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j][layer_] = road_value; //通路をマップチップに線画
+							matrix_[dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]][j][layer_] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; ++j)
-							matrix_[j][dungeon_division[roomBefore][1]][layer_] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_division[roomBefore][1]][layer_] = this->road_value; //通路をマップチップに線画
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; ++j)
-							matrix_[j][dungeon_division[roomBefore][1]][layer_] = road_value; //通路をマップチップに線画
+							matrix_[j][dungeon_division[roomBefore][1]][layer_] = this->road_value; //通路をマップチップに線画
 						break;
 					}
 				}
@@ -379,30 +379,30 @@ namespace dtl {
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
-							matrix_[j * max_x_ + dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = road_value; //通路をマップチップに線画
+							matrix_[j * max_x_ + dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][2] }; j < dungeon_room[roomAfter][2]; ++j)
-							matrix_[j * max_x_ + dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = road_value; //通路をマップチップに線画
+							matrix_[j * max_x_ + dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0] * max_x_ + j] = road_value; //通路をマップチップに線画 2から5(上から下)
+							matrix_[dungeon_division[roomBefore][0] * max_x_ + j] = this->road_value; //通路をマップチップに線画 2から5(上から下)
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][3] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]; ++j)
-							matrix_[dungeon_division[roomBefore][0] * max_x_ + j] = road_value; //通路をマップチップに線画 5から2(下から上)
+							matrix_[dungeon_division[roomBefore][0] * max_x_ + j] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
 						dungeon_road[roomBefore][2] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
 						dungeon_road[roomBefore][3] = dtl::random::mt32bit.get<std::size_t>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (std::size_t j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
-							matrix_[(dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]) * max_x_ + j] = road_value; //通路をマップチップに線画
+							matrix_[(dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]) * max_x_ + j] = this->road_value; //通路をマップチップに線画
 						//後の通路
 						for (std::size_t j{ dungeon_division[roomAfter][3] }; j < dungeon_room[roomAfter][3]; ++j)
-							matrix_[(dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]) * max_x_ + j] = road_value; //通路をマップチップに線画
+							matrix_[(dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]) * max_x_ + j] = this->road_value; //通路をマップチップに線画
 						//通路をつなぐ
 						for (std::size_t j{ dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2] }; j <= dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2]; ++j)
-							matrix_[j * max_x_ + dungeon_division[roomBefore][1]] = road_value; //通路をマップチップに線画
+							matrix_[j * max_x_ + dungeon_division[roomBefore][1]] = this->road_value; //通路をマップチップに線画
 						for (std::size_t j{ dungeon_road[roomBefore][3] + dungeon_room[roomAfter][2] }; j <= dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]; ++j)
-							matrix_[j * max_x_ + dungeon_division[roomBefore][1]] = road_value; //通路をマップチップに線画
+							matrix_[j * max_x_ + dungeon_division[roomBefore][1]] = this->road_value; //通路をマップチップに線画
 						break;
 					}
 				}
@@ -468,51 +468,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_) noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
 			}
 
 

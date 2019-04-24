@@ -76,11 +76,11 @@ namespace dtl {
 			bool writeSTL(const Matrix_ & matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
@@ -89,11 +89,11 @@ namespace dtl {
 			bool writeWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < point_x_) ? matrix_[row].size() : point_x_, ofs);
 				return true;
@@ -104,11 +104,11 @@ namespace dtl {
 			bool writeLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < matrix_[row].size(); ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
@@ -117,11 +117,11 @@ namespace dtl {
 			bool writeLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < matrix_[row].size() && col < point_x_; ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col < matrix_[row].size() && col < point_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < point_x_) ? matrix_[row].size() : point_x_, ofs);
 				return true;
@@ -132,11 +132,11 @@ namespace dtl {
 			bool writeNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < point_x_; ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col <= point_x_; ++col)
 						this->mountain(col, row, point_x_, ofs);
 				return true;
@@ -147,11 +147,11 @@ namespace dtl {
 			bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < point_x_; ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col <= point_x_; ++col)
 						this->mountain(col, row, point_x_, ofs);
 				return true;
@@ -162,11 +162,11 @@ namespace dtl {
 			bool writeArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				std::ofstream ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ point_y }; row < point_y_; ++row)
-					for (Index_Size col{ point_x }; col < point_x_; ++col)
+				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
+					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
 						this->baseArray(matrix_, col, row, max_x_, ofs, args_...);
 
-				for (std::size_t row{ point_y + 1 }; row < point_y_; ++row)
+				for (std::size_t row{ this->point_y + 1 }; row < point_y_; ++row)
 					for (std::size_t col{ point_x + 2 }; col <= point_x_; ++col)
 						this->mountain(col, row, point_x_, ofs);
 				return true;
@@ -244,51 +244,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool write(const Matrix_ & matrix_) const noexcept {
-				return (width == 0) ? this->writeSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return (this->width == 0) ? this->writeSTL(matrix_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->writeWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeOperator(const Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return (width == 0) ? this->writeSTL(matrix_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeWidthSTL(matrix_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return (this->width == 0) ? this->writeSTL(matrix_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->writeWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_) const noexcept {
-				return (width == 0) ? this->writeLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height);
+				return (this->width == 0) ? this->writeLayerSTL(matrix_, layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->writeLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (width == 0) ? this->writeLayerSTL(matrix_, layer_, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_) : this->writeLayerWidthSTL(matrix_, layer_, point_x + width, (height == 0 || point_y + height >= matrix_.size()) ? matrix_.size() : point_y + height, function_);
+				return (this->width == 0) ? this->writeLayerSTL(matrix_, layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->writeLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->writeNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->writeNormal(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeNormal(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->writeNormal(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->writeLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height);
+				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeOperator(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeLayerNormal(matrix_, layer_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, function_);
+				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool writeArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->writeArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_);
+				return this->writeArray(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeOperatorArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeArray(matrix_, (width == 0 || point_x + width >= max_x_) ? max_x_ : point_x + width, (height == 0 || point_y + height >= max_y_) ? max_y_ : point_y + height, max_x_, function_);
+				return this->writeArray(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
 			}
 
 
