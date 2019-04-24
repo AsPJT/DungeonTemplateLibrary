@@ -65,28 +65,32 @@ namespace dtl {
 
 		} //namespace
 
-		namespace layer::stl {
+		namespace layer {
+			namespace stl {
 
-			template<typename Matrix_, typename Matrix2_>
-			constexpr void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
-						matrix_[row][col][layer_] = matrix2_[row][col][layer_];
-			}
+				template<typename Matrix_, typename Matrix2_>
+				constexpr void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_) noexcept {
+					for (std::size_t row{}; row < matrix_.size(); ++row)
+						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+							matrix_[row][col][layer_] = matrix2_[row][col][layer_];
+				}
 
-		} //namespace
+			} //namespace
+		}
 
-		namespace layer::normal {
+		namespace layer {
+			namespace normal {
 
-			template<typename Matrix_, typename Matrix2_>
-			constexpr void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						matrix_[row][col][layer_] = matrix2_[row][col][layer_];
-			}
+				template<typename Matrix_, typename Matrix2_>
+				constexpr void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					for (std::size_t row{}; row < y_; ++row)
+						for (std::size_t col{}; col < x_; ++col)
+							matrix_[row][col][layer_] = matrix2_[row][col][layer_];
+				}
 
-		} //namespace
+			} //namespace
 
+		}
 	}
 }
 

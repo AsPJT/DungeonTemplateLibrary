@@ -458,276 +458,280 @@ namespace dtl {
 		} //namespace
 
 		//レイヤーSTLデータ
-		namespace layer::stl {
+		namespace layer {
+			namespace stl {
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_) noexcept {
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
-						else matrix_[row][col][layer_] = true;
-					}
-			}
+					for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
+							else matrix_[row][col][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
-						else matrix_[row][col][layer_] = true;
-					}
-			}
+					for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
+							else matrix_[row][col][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
-					for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false_tile_;
-						else matrix_[row][col][layer_] = true_tile_;
-					}
-			}
+					for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
+						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false_tile_;
+							else matrix_[row][col][layer_] = true_tile_;
+						}
+				}
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
-					for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
-						else matrix_[row - 1][col - 1][layer_] = true;
-					}
-			}
+					for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+						for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
+							else matrix_[row - 1][col - 1][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
-					for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
-						else matrix_[row - 1][col - 1][layer_] = true;
-					}
-			}
+					for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+						for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
+							else matrix_[row - 1][col - 1][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
-					for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false_tile_;
-						else matrix_[row - 1][col - 1][layer_] = true_tile_;
-					}
-			}
+					for (std::size_t row{ matrix_.size() - 1 }; row >= 1; --row)
+						for (std::size_t col{ matrix_[row].size() - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false_tile_;
+							else matrix_[row - 1][col - 1][layer_] = true_tile_;
+						}
+				}
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
-			}
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
-			}
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool1_);
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool2_);
-			}
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
-			}
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
-			}
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool1_);
-				dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool2_);
-			}
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
+				}
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
+				}
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool1_);
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool2_);
+				}
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
+				}
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
+				}
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
+					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool1_);
+					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool2_);
+				}
 
-		} //namespace
+			} //namespace
+		}
 
 		//レイヤー通常データ
-		namespace layer::normal {
+		namespace layer {
+			namespace normal {
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < y_; ++row)
-					for (std::size_t col{ 1 }; col < x_; ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
-						else matrix_[row][col][layer_] = true;
-					}
-			}
+					for (std::size_t row{ 1 }; row < y_; ++row)
+						for (std::size_t col{ 1 }; col < x_; ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
+							else matrix_[row][col][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < y_; ++row)
-					for (std::size_t col{ 1 }; col < x_; ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
-						else matrix_[row][col][layer_] = true;
-					}
-			}
+					for (std::size_t row{ 1 }; row < y_; ++row)
+						for (std::size_t col{ 1 }; col < x_; ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false;
+							else matrix_[row][col][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ 1 }; row < y_; ++row)
-					for (std::size_t col{ 1 }; col < x_; ++col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false_tile_;
-						else matrix_[row][col][layer_] = true_tile_;
-					}
-			}
+					for (std::size_t row{ 1 }; row < y_; ++row)
+						for (std::size_t col{ 1 }; col < x_; ++col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row][col][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row][col][layer_]) matrix_[row][col][layer_] = false_tile_;
+							else matrix_[row][col][layer_] = true_tile_;
+						}
+				}
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ y_ - 1 }; row >= 1; --row)
-					for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
-						else matrix_[row - 1][col - 1][layer_] = true;
-					}
-			}
+					for (std::size_t row{ y_ - 1 }; row >= 1; --row)
+						for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_])) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
+							else matrix_[row - 1][col - 1][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ y_ - 1 }; row >= 1; --row)
-					for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
-						else matrix_[row - 1][col - 1][layer_] = true;
-					}
-			}
+					for (std::size_t row{ y_ - 1 }; row >= 1; --row)
+						for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false;
+							else matrix_[row - 1][col - 1][layer_] = true;
+						}
+				}
 
-			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
-				using dtl::random::mersenne_twister_32bit;
-				using dtl::utility::tool::isNoise_noiseShoreBool;
+					using dtl::random::mersenne_twister_32bit;
+					using dtl::utility::tool::isNoise_noiseShoreBool;
 
-				for (std::size_t row{ y_ - 1 }; row >= 1; --row)
-					for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
-						//ノイズを発生させるか判定する
-						if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
-						if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false_tile_;
-						else matrix_[row - 1][col - 1][layer_] = true_tile_;
-					}
-			}
+					for (std::size_t row{ y_ - 1 }; row >= 1; --row)
+						for (std::size_t col{ x_ - 1 }; col >= 1; --col) {
+							//ノイズを発生させるか判定する
+							if (!isNoise_noiseShoreBool(matrix_[row - 1][col - 1][layer_], matrix_[row][col - 1][layer_], matrix_[row - 1][col][layer_], rbool_)) continue;
+							if (matrix_[row - 1][col - 1][layer_]) matrix_[row - 1][col - 1][layer_] = false_tile_;
+							else matrix_[row - 1][col - 1][layer_] = true_tile_;
+						}
+				}
 
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
-			}
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
-			}
-			template<typename Matrix_>
-			constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool1_);
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool2_);
-			}
-			//1/2の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
-			}
-			//[rbool_]の確率で岸(地形)にノイズを発生させる
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
-			}
-			template<typename Matrix_>
-			constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
-				dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool1_);
-				dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool2_);
-			}
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
+				}
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
+				}
+				template<typename Matrix_>
+				constexpr void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool1_);
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool2_);
+				}
+				//1/2の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_);
+				}
+				//[rbool_]の確率で岸(地形)にノイズを発生させる
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool_);
+				}
+				template<typename Matrix_>
+				constexpr void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
+					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, rbool1_);
+					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, rbool2_);
+				}
 
-		} //namespace
+			} //namespace
+		}
 	}
 }
 

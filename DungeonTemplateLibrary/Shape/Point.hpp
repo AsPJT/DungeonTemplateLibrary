@@ -160,84 +160,88 @@ namespace  dtl {
 
 namespace  dtl {
 	inline namespace shape {
-		namespace layer::stl {
-
-			template<typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, std::size_t set_x_, const std::size_t set_y_) noexcept {
-				if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
-				matrix_[set_y_][set_x_][layer_] = 1;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
-				if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
-				matrix_[set_y_][set_x_][layer_] = value_;
-			}
-
-			template<typename Matrix_Int_>
-			class PointUnique {
-			private:
-				std::size_t x{}, y{};
-				Matrix_Int_ value{ 1 };
-			public:
-				constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_) noexcept :x(x_), y(y_) {}
-				constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+		namespace layer {
+			namespace stl {
 
 				template<typename Matrix_>
-				constexpr void draw(Matrix_& matrix_, const std::size_t layer_) const noexcept {
-					dtl::shape::layer::stl::createPoint(matrix_, layer_, x, y, value);
+				constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, std::size_t set_x_, const std::size_t set_y_) noexcept {
+					if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
+					matrix_[set_y_][set_x_][layer_] = 1;
 				}
-			};
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPoint(Matrix_ & matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
+					if (matrix_.size() <= set_y_ || matrix_[set_y_].size() <= set_x_) return;
+					matrix_[set_y_][set_x_][layer_] = value_;
+				}
 
-		} //namespace
+				template<typename Matrix_Int_>
+				class PointUnique {
+				private:
+					std::size_t x{}, y{};
+					Matrix_Int_ value{ 1 };
+				public:
+					constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_) noexcept :x(x_), y(y_) {}
+					constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+
+					template<typename Matrix_>
+					constexpr void draw(Matrix_& matrix_, const std::size_t layer_) const noexcept {
+						dtl::shape::layer::stl::createPoint(matrix_, layer_, x, y, value);
+					}
+				};
+
+			} //namespace
+		}
 	}
 }
 
 namespace  dtl {
 	inline namespace shape {
-		namespace layer::normal {
-
-			template<typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_) noexcept {
-				matrix_[set_y_][set_x_][layer_] = 1;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
-				matrix_[set_y_][set_x_][layer_] = value_;
-			}
-			template<typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t set_x_, const std::size_t set_y_) noexcept {
-				if (x_ <= set_x_ || y_ <= set_y_) return;
-				matrix_[set_y_][set_x_][layer_] = 1;
-			}
-			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
-				if (x_ <= set_x_ || y_ <= set_y_) return;
-				matrix_[set_y_][set_x_][layer_] = value_;
-			}
-
-			template<typename Matrix_Int_>
-			class PointUnique {
-			private:
-				std::size_t x{}, y{};
-				Matrix_Int_ value{ 1 };
-			public:
-				constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_) noexcept :x(x_), y(y_) {}
-				constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+		namespace layer {
+			namespace normal {
 
 				template<typename Matrix_>
-				constexpr void draw(Matrix_& matrix_, const std::size_t layer_) const noexcept {
-					dtl::shape::layer::normal::createPoint(matrix_, layer_, x, y, value);
+				constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_) noexcept {
+					matrix_[set_y_][set_x_][layer_] = 1;
+				}
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
+					matrix_[set_y_][set_x_][layer_] = value_;
 				}
 				template<typename Matrix_>
-				constexpr void draw(Matrix_& matrix_, const std::size_t layer_, const std::size_t size_x_, const std::size_t size_y_) const noexcept {
-					dtl::shape::layer::normal::createPoint(matrix_, layer_, size_x_, size_y_, x, y, value);
+				constexpr void createPoint(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t set_x_, const std::size_t set_y_) noexcept {
+					if (x_ <= set_x_ || y_ <= set_y_) return;
+					matrix_[set_y_][set_x_][layer_] = 1;
 				}
-				template<typename Matrix_>
-				constexpr void draw(Matrix_& matrix_, const std::size_t layer_, const std::size_t size_) const noexcept {
-					dtl::shape::layer::normal::createPoint(matrix_, layer_, size_, size_, x, y, value);
+				template<typename Matrix_Int_, typename Matrix_>
+				constexpr void createPoint(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t set_x_, const std::size_t set_y_, const Matrix_Int_ value_) noexcept {
+					if (x_ <= set_x_ || y_ <= set_y_) return;
+					matrix_[set_y_][set_x_][layer_] = value_;
 				}
-			};
 
+				template<typename Matrix_Int_>
+				class PointUnique {
+				private:
+					std::size_t x{}, y{};
+					Matrix_Int_ value{ 1 };
+				public:
+					constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_) noexcept :x(x_), y(y_) {}
+					constexpr explicit PointUnique(const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+
+					template<typename Matrix_>
+					constexpr void draw(Matrix_& matrix_, const std::size_t layer_) const noexcept {
+						dtl::shape::layer::normal::createPoint(matrix_, layer_, x, y, value);
+					}
+					template<typename Matrix_>
+					constexpr void draw(Matrix_& matrix_, const std::size_t layer_, const std::size_t size_x_, const std::size_t size_y_) const noexcept {
+						dtl::shape::layer::normal::createPoint(matrix_, layer_, size_x_, size_y_, x, y, value);
+					}
+					template<typename Matrix_>
+					constexpr void draw(Matrix_& matrix_, const std::size_t layer_, const std::size_t size_) const noexcept {
+						dtl::shape::layer::normal::createPoint(matrix_, layer_, size_, size_, x, y, value);
+					}
+				};
+
+			}
 		}
 	}
 }

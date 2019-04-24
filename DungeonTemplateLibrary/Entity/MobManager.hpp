@@ -341,8 +341,8 @@ namespace dtl {
 
 		class CollisionDetectionTrue {
 		public:
-			template<typename Matrix_>
-			void operator()([[maybe_unused]] const Matrix_& matrix_, [[maybe_unused]] const std::int_fast32_t x_, [[maybe_unused]] const std::int_fast32_t y_, std::bitset<8>& dir_, [[maybe_unused]] const std::int_fast32_t mob_x_, [[maybe_unused]] const std::int_fast32_t mob_y_) const noexcept {
+			template<typename Matrix_> //maybe_unused
+			void operator()(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, std::bitset<8>& dir_, const std::int_fast32_t, const std::int_fast32_t) const noexcept {
 				dir_[direction_array_down] = true;
 				dir_[direction_array_up] = true;
 				dir_[direction_array_left] = true;
