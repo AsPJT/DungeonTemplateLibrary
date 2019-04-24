@@ -1,4 +1,4 @@
-/*#######################################################################################
+﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
@@ -10,7 +10,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_LOOP_ISLAND
 
 /*#######################################################################################
-	���{�ꃊ�t�@�����X (Reference-JP)
+	日本語リファレンス (Reference-JP)
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::FractalLoopIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
@@ -26,24 +26,23 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
 //#include <Deprecated/FractalIsland.hpp>
-#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace shape {
 
-		//�}�X��w�肵�����l�Ŗ��߂�
+		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, std::size_t chunk_size = 16>
 		class FractalLoopIsland {
 		private:
 
 
-			///// �G�C���A�X /////
+			///// エイリアス /////
 
 			using Index_Size = std::size_t;
 			using PairSize = std::pair<Index_Size, Index_Size>;
 
 
-			///// �����o�ϐ� /////
+			///// メンバ変数 /////
 
 			Index_Size point_x{};
 			Index_Size point_y{};
@@ -54,9 +53,9 @@ namespace dtl {
 			Matrix_Int_ add_altitude{};
 
 
-			///// ��{���� /////
+			///// 基本処理 /////
 
-			//�`�����N�����̌Ăяo���E���s
+			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimple(Matrix2_&& matrix_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix2_>(matrix_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0], matrix_[chunk_size][0], matrix_[0][chunk_size], matrix_[chunk_size][chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
@@ -65,7 +64,7 @@ namespace dtl {
 			constexpr void createWorldMapSimple(Matrix2_&& matrix_) const noexcept {
 				createWorldMapSimple(matrix_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
-			//�`�����N�����̌Ăяo���E���s
+			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageLayer<Matrix_Int_, Matrix2_>(matrix_, layer_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0][layer_], matrix_[chunk_size][0][layer_], matrix_[0][chunk_size][layer_], matrix_[chunk_size][chunk_size][layer_], this->min_value + this->altitude, this->add_altitude, function_);
@@ -74,13 +73,13 @@ namespace dtl {
 			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_) const noexcept {
 				createWorldMapSimpleLayer(matrix_, layer_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
-			//�`�����N�����̌Ăяo���E���s
+			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
 			constexpr void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix2_>(matrix_, max_x_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0], matrix_[chunk_size * max_x_], matrix_[chunk_size], matrix_[chunk_size * max_x_ + chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
-			constexpr void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_) const noexcept {
+			constexpr void createWorldMapSimpleArray(Matrix2_ && matrix_, const Index_Size max_x_) const noexcept {
 				createWorldMapSimpleArray(matrix_, max_x_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 
@@ -114,14 +113,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//�l�p�`��4�_�̍������
+						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//�`�����N����
+						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
-						//���������`�����N��[���h�}�b�v�ɃR�s�y
+						//生成したチャンクをワールドマップにコピペ
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->point_y + row * chunk_size + row2][this->point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
@@ -162,14 +161,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//�l�p�`��4�_�̍������
+						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//�`�����N����
+						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
-						//���������`�����N��[���h�}�b�v�ɃR�s�y
+						//生成したチャンクをワールドマップにコピペ
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->point_y + row * chunk_size + row2][this->point_x + col * chunk_size + col2][layer_] = chunk_matrix[row2][col2];
@@ -210,14 +209,14 @@ namespace dtl {
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (std::size_t col{}; col < chunk_x; ++col) {
-						//�l�p�`��4�_�̍������
+						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
 						chunk_matrix[0][chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[chunk_size][chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
-						//�`�����N����
+						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
-						//���������`�����N��[���h�}�b�v�ɃR�s�y
+						//生成したチャンクをワールドマップにコピペ
 						for (std::size_t row2{}; row2 < chunk_size; ++row2)
 							for (std::size_t col2{}; col2 < chunk_size; ++col2)
 								matrix_[(this->point_y + row * chunk_size + row2) * max_x_ + point_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
@@ -231,43 +230,99 @@ namespace dtl {
 		public:
 
 
-			///// ���擾 /////
+			///// 情報取得 /////
 
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Matrix_Int_ getAltitude() const noexcept {
 				return this->altitude;
 			}
-			DTL_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Matrix_Int_ getAddAltitude() const noexcept {
 				return this->add_altitude;
 			}
 
 
-			///// �����Ăяo�� /////
+			///// 生成呼び出し /////
 
 			//STL
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_&& matrix_) const noexcept {
+			constexpr bool draw(Matrix_ && matrix_) const noexcept {
 				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
@@ -316,7 +371,7 @@ namespace dtl {
 			}
 
 
-			///// �����Ăяo���t�@���N�^ /////
+			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -324,7 +379,7 @@ namespace dtl {
 			}
 
 
-			///// �_���W�����s�񐶐� /////
+			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -348,7 +403,7 @@ namespace dtl {
 			}
 
 
-			///// �R���X�g���N�^ /////
+			///// コンストラクタ /////
 
 			constexpr FractalLoopIsland() noexcept = default;
 			constexpr explicit FractalLoopIsland(const Matrix_Int_ & min_value_) noexcept
