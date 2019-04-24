@@ -110,19 +110,44 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-			[[nodiscard]] constexpr Index_Size getPointY() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-			[[nodiscard]] constexpr Index_Size getWidth() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getValue() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Matrix_Int_ getValue() const noexcept {
 				return this->draw_value;
 			}
 

@@ -55,7 +55,12 @@ namespace dtl {
 
 			///// サイズ取得 /////
 
-			[[nodiscard]] constexpr std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
 				std::size_t map_size{ 2 };
 				while (true) {
 					if ((map_size + 1) > matrix_size) return map_size >>= 1;
@@ -177,25 +182,60 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-			[[nodiscard]] constexpr Index_Size getPointY() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-			[[nodiscard]] constexpr Index_Size getWidth() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getMinValue() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getAltitude() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Matrix_Int_ getAltitude() const noexcept {
 				return this->altitude;
 			}
-			[[nodiscard]] constexpr Matrix_Int_ getAddAltitude() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Matrix_Int_ getAddAltitude() const noexcept {
 				return this->add_altitude;
 			}
 

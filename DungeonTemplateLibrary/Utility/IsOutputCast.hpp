@@ -17,19 +17,39 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		[[nodiscard]] constexpr bool isOutputCast() noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		constexpr bool isOutputCast() noexcept {
 			return false;
 		}
 		template<>
-		[[nodiscard]] constexpr bool isOutputCast<char>() noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		constexpr bool isOutputCast<char>() noexcept {
 			return true;
 		}
 		template<>
-		[[nodiscard]] constexpr bool isOutputCast<signed char>() noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		constexpr bool isOutputCast<signed char>() noexcept {
 			return true;
 		}
 		template<>
-		[[nodiscard]] constexpr bool isOutputCast<unsigned char>() noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
 		}
 
@@ -42,19 +62,39 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_Int_>
-			[[nodiscard]] constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
 				return value_;
 			}
 			template<>
-			[[nodiscard]] constexpr auto getOutputNumber<char>(const char value_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr auto getOutputNumber<char>(const char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			[[nodiscard]] constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			[[nodiscard]] constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 

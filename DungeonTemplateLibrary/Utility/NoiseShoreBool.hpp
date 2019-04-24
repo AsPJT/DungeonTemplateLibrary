@@ -22,7 +22,12 @@ namespace dtl {
 
 			//noiseShoreBool関数から取得したマップデータの値を1/2の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-			[[nodiscard]] constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -30,7 +35,12 @@ namespace dtl {
 			}
 			//noiseShoreBool関数から取得したマップデータの値を[rbool_]の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-			[[nodiscard]] constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const double rbool_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 

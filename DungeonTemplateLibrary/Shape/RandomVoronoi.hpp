@@ -44,25 +44,53 @@ namespace dtl {
 			///// メンバ変数 /////
 
 			dtl::utility::VoronoiDiagram<Matrix_Int_> voronoiDiagram{};
+			double probability_value{ 0.5 };
+			Matrix_Int_ true_color{};
+			Matrix_Int_ false_color{};
 
 		public:
 
 
 			///// 情報取得 /////
 
-			[[nodiscard]] constexpr Index_Size getPointX() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointX() const noexcept {
 				return this->voronoiDiagram.getPointX();
 			}
-			[[nodiscard]] constexpr Index_Size getPointY() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getPointY() const noexcept {
 				return this->voronoiDiagram.getPointY();
 			}
-			[[nodiscard]] constexpr Index_Size getWidth() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getWidth() const noexcept {
 				return this->voronoiDiagram.getWidth();
 			}
-			[[nodiscard]] constexpr Index_Size getHeight() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr Index_Size getHeight() const noexcept {
 				return this->voronoiDiagram.getHeight();
 			}
-			[[nodiscard]] constexpr std::size_t getValue() const noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
+			constexpr std::size_t getValue() const noexcept {
 				return this->voronoiDiagram.getValue();
 			}
 
@@ -73,9 +101,9 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
-					[](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
-						if (dtl::random::mt32bit.probability()) color_ = 1;
-						else color_ = 0;
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
+						else color_ = this->false_color;
 					});
 			}
 
@@ -83,9 +111,9 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
-					[](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
-						if (dtl::random::mt32bit.probability()) color_ = 1;
-						else color_ = 0;
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
+						else color_ = this->false_color;
 					});
 			}
 
@@ -93,9 +121,9 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
-					[](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
-						if (dtl::random::mt32bit.probability()) color_ = 1;
-						else color_ = 0;
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
+						else color_ = this->false_color;
 					});
 			}
 
@@ -103,9 +131,9 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
-					[](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
-						if (dtl::random::mt32bit.probability()) color_ = 1;
-						else color_ = 0;
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
+						else color_ = this->false_color;
 					});
 			}
 
@@ -113,9 +141,9 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
-					[](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
-						if (dtl::random::mt32bit.probability()) color_ = 1;
-						else color_ = 0;
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
+						else color_ = this->false_color;
 					});
 			}
 
@@ -258,14 +286,23 @@ namespace dtl {
 			constexpr RandomVoronoi() noexcept = default;
 			constexpr explicit RandomVoronoi(const std::size_t draw_value_) noexcept
 				:voronoiDiagram(draw_value_) {}
+			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_) noexcept
+				:voronoiDiagram(draw_value_), probability_value(probability_value_) {}
+			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
+				:voronoiDiagram(draw_value_), probability_value(probability_value_), true_color(true_color_) {}
+			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
+				:voronoiDiagram(draw_value_), probability_value(probability_value_), true_color(true_color_), false_color(false_color_) {}
+
 			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_) noexcept
 				:voronoiDiagram(matrix_range_) {}
 			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_) noexcept
 				:voronoiDiagram(matrix_range_, draw_value_) {}
-			constexpr explicit RandomVoronoi(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:voronoiDiagram(point_x_, point_y_, width_, height_) {}
-			constexpr explicit RandomVoronoi(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const std::size_t draw_value_) noexcept
-				:voronoiDiagram(point_x_, point_y_, width_, height_, draw_value_) {}
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_) noexcept
+				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_) {}
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
+				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_), true_color(true_color_) {}
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
+				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_), true_color(true_color_), false_color(false_color_) {}
 		};
 	}
 }

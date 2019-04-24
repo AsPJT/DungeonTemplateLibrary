@@ -217,7 +217,12 @@ namespace dtl::generator::terrain::stl {
 		createDiamondSquareAverage_Map(x_ + size_, y_ + size_, size_, matrix_[y_][x_], s3, s4, t4_, matrix_, max_value_);
 	}
 
-	[[nodiscard]] constexpr std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+	[[nodiscard]]
+#endif
+#endif
+	constexpr std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
 		std::size_t map_size{ 2 };
 		while (true) {
 			if ((map_size + 1) > matrix_size) return (map_size >>= 1);

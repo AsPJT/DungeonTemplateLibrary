@@ -24,9 +24,9 @@ int main() {
 
 	//dtl::shape::AbsoluteMemberRect<shape_t>(1).draw(matrix);
 
-	dtl::RandomVoronoi<shape_t>(1000).draw(matrix);
+	dtl::RandomVoronoi<shape_t>(1000, 0.3, 2, 1).draw(matrix);
 
-	dtl::console::OutputStringBool<shape_t>("■", "・").draw(matrix);
+	dtl::console::OutputString<shape_t>("■", "○","●").draw(matrix);
 
 	//dtl::FractalIsland<shape_t>(dtl::MatrixRange(32, 16, 0, 0), 0, 170, 80).draw(matrix_layer, 0, width, height);
 	//dtl::console::OutputStringBool<shape_t>("■", "・").drawOperator(matrix_layer, 0, width, height, [](const shape_t value_) {return value_ > 50; });

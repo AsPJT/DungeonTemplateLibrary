@@ -20,32 +20,57 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		[[nodiscard]] auto charCast(const std::string& field_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		auto charCast(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			Int_ field_int{};
 			field_stream >> field_int;
 			return field_int;
 		}
 		template<>
-		[[nodiscard]] auto charCast<std::string>(const std::string& field_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		auto charCast<std::string>(const std::string& field_) noexcept {
 			return field_;
 		}
 		template<>
-		[[nodiscard]] auto charCast<char>(const std::string& field_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		auto charCast<char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
 			field_stream >> field_int;
 			return static_cast<char>(field_int);
 		}
 		template<>
-		[[nodiscard]] auto charCast<signed char>(const std::string& field_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		auto charCast<signed char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
 			field_stream >> field_int;
 			return static_cast<signed char>(field_int);
 		}
 		template<>
-		[[nodiscard]] auto charCast<unsigned char>(const std::string& field_) noexcept {
+#ifdef __cplusplus
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
+		auto charCast<unsigned char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
 			field_stream >> field_int;
