@@ -17,7 +17,6 @@
 #include <cstdint>
 #include <utility>
 #include <Random/MersenneTwister32bit.hpp>
-#include <Macro/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -177,23 +176,63 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Matrix_Int_ getValue() const noexcept {
 				return this->draw_value;
 			}

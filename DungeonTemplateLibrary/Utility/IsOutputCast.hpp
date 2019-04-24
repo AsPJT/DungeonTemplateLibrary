@@ -13,28 +13,58 @@
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <Macro/nodiscard.hpp>
-
 namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
 		constexpr bool isOutputCast() noexcept {
 			return false;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
 		constexpr bool isOutputCast<char>() noexcept {
 			return true;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
 		constexpr bool isOutputCast<signed char>() noexcept {
 			return true;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+		[[nodiscard]]
+#endif
+#endif
 		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
 		}
@@ -48,22 +78,54 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_Int_>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
 				return value_;
 			}
 			template<>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr auto getOutputNumber<char>(const char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
 				return static_cast<int>(value_);
 			}

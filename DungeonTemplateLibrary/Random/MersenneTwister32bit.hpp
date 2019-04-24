@@ -16,7 +16,6 @@
 #include <cstdint>
 #include <random>
 #include <bitset>
-#include <Macro/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace random {
@@ -44,7 +43,15 @@ namespace dtl {
 
 			//通常の乱数
 			template<typename Random_Int_ = std::uint_fast64_t>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(mt());
 			}
@@ -58,7 +65,15 @@ namespace dtl {
 			std::size_t counter{ counter_num_1 };
 			std::uint_fast64_t random_num{};
 		public:
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			bool get() noexcept {
 				if (counter >= counter_num_1) {
 					random_num = dtl::random::mt64bit.get();
@@ -96,13 +111,29 @@ namespace dtl {
 
 			//通常の乱数
 			template<typename Random_Int_ = std::uint_fast32_t>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(mt());
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
 			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			Random_Int_ get(const Random_Int2_ max_) noexcept {
 				if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
 				std::uniform_int_distribution<> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
@@ -110,19 +141,43 @@ namespace dtl {
 			}
 			//最小値～最大値
 			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
 				std::uniform_int_distribution<> uid(static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(mt));
 			}
 			//確率
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			bool probability(const double probability_) noexcept {
 				std::bernoulli_distribution uid(probability_);
 				return uid(mt);
 			}
 			//1/2の確率
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			bool probability() noexcept {
 				//std::uniform_int_distribution<> uid(0, 1);
 				//return ((uid(mt)) ? true : false);
@@ -142,7 +197,15 @@ namespace dtl {
 			std::uint_fast64_t random_num{};
 		public:
 			template<typename Random_Int_ = std::uint_fast64_t>
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			Random_Int_ get() noexcept {
 				if (counter >= counter_num_2) {
 					random_num = dtl::random::mt64bit.get();
@@ -177,31 +240,71 @@ namespace dtl {
 			}
 
 			//通常の乱数
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			std::uint_fast32_t operator()() noexcept {
 				return mt();
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			std::int_fast32_t operator()(const std::int_fast32_t max_) noexcept {
 				if (max_ <= 1) return 0;
 				std::uniform_int_distribution<> uid(0, max_ - 1);
 				return uid(mt);
 			}
 			//最小値～最大値
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			std::int_fast32_t operator()(const std::int_fast32_t min_, const std::int_fast32_t max_) noexcept {
 				std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 				return uid(mt);
 			}
 			//確率
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			bool probability(const double probability_) noexcept {
 				std::bernoulli_distribution uid(probability_);
 				return uid(mt);
 			}
 			//1/2の確率
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			bool probability() noexcept {
 				std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(mt)) ? true : false);

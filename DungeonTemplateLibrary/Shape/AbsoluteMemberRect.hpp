@@ -23,7 +23,6 @@
 #include <utility>
 #include <Shape/AbsoluteRect.hpp>
 #include <Base/Struct.hpp>
-#include <Macro/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -50,23 +49,63 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointX() const noexcept {
 				return this->absoluteRect.getPointX();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getPointY() const noexcept {
 				return this->absoluteRect.getPointY();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getWidth() const noexcept {
 				return this->absoluteRect.getWidth();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Index_Size getHeight() const noexcept {
 				return this->absoluteRect.getHeight();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201703L)
+			[[nodiscard]]
+#endif
+#endif
 			constexpr Matrix_Int_ getValue() const noexcept {
 				return this->absoluteRect.getValue();
 			}
