@@ -220,7 +220,11 @@ namespace dtl {
 					createDiamondSquareAverage_Map(x_ + size_, y_ + size_, size_, matrix_[y_][x_], s3, s4, t4_, matrix_, max_value_);
 				}
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+				[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 				[[nodiscard]]
 #endif

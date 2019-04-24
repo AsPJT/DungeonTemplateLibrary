@@ -22,7 +22,11 @@ namespace dtl {
 
 			//noiseShoreBool関数から取得したマップデータの値を1/2の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -35,7 +39,11 @@ namespace dtl {
 			}
 			//noiseShoreBool関数から取得したマップデータの値を[rbool_]の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif

@@ -55,7 +55,11 @@ namespace dtl {
 
 			///// サイズ取得 /////
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -170,7 +174,11 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -178,7 +186,11 @@ namespace dtl {
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -186,7 +198,11 @@ namespace dtl {
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -194,7 +210,11 @@ namespace dtl {
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -202,7 +222,11 @@ namespace dtl {
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -210,7 +234,11 @@ namespace dtl {
 			constexpr Matrix_Int_ getMinValue() const noexcept {
 				return this->min_value;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -218,7 +246,11 @@ namespace dtl {
 			constexpr Matrix_Int_ getAltitude() const noexcept {
 				return this->altitude;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -284,7 +316,7 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			}
 
@@ -292,22 +324,22 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}

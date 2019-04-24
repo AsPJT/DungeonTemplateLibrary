@@ -79,27 +79,67 @@ namespace dtl {
 			constexpr explicit MobManager(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0b11111111) {}
 
-			constexpr void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
 				x = x_;
 				y = y_;
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
-			constexpr void setWalkSpeed(const double walk_speed_) noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				void setWalkSpeed(const double walk_speed_) noexcept {
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			template<typename Pair_>
-			constexpr void setPosition(const Pair_ & pair_) noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				void setPosition(const Pair_ & pair_) noexcept {
 				x = static_cast<std::int_fast32_t>(pair_.first);
 				y = static_cast<std::int_fast32_t>(pair_.second);
 			}
-			constexpr void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				x = x_;
 				y = y_;
 			}
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -108,14 +148,32 @@ namespace dtl {
 				return (status_x != player_status_stay || status_y != player_status_stay);
 			}
 
-			constexpr void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				while (x < 0) x += x_;
 				while (y < 0) y += x_;
 				if (x >= x_) x %= x_;
 				if (y >= y_) y %= y_;
 			}
 
-			constexpr bool moveX() noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				bool moveX() noexcept {
 				if (status_x == player_status_stay) return false;
 				small_x += walk_speed;
 				if (small_x < 1.0) return false;
@@ -126,7 +184,16 @@ namespace dtl {
 				status_x = player_status_stay;
 				return true;
 			}
-			constexpr bool moveY() noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				bool moveY() noexcept {
 				if (status_y == player_status_stay) return false;
 				small_y += walk_speed;
 				if (small_y < 1.0) return false;
@@ -142,7 +209,11 @@ namespace dtl {
 			}
 
 			//方向
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -150,7 +221,11 @@ namespace dtl {
 			constexpr std::uint_fast8_t walkDirectionY(const bool is_up_touch_, const bool is_down_touch_) const noexcept {
 				return (is_up_touch_) ? ((is_down_touch_) ? direction_empty : direction_up) : ((is_down_touch_) ? direction_down : direction_empty);
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -158,7 +233,11 @@ namespace dtl {
 			constexpr std::uint_fast8_t walkDirectionX(const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (is_left_touch_) ? ((is_right_touch_) ? direction_empty : direction_left) : ((is_right_touch_) ? direction_right : direction_empty);
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -166,7 +245,11 @@ namespace dtl {
 			constexpr std::uint_fast8_t walkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (walkDirectionX(is_left_touch_, is_right_touch_)) ? (walkDirectionY(is_up_touch_, is_down_touch_) * 2 + walkDirectionX(is_left_touch_, is_right_touch_)) : (walkDirectionY(is_up_touch_, is_down_touch_));
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -175,7 +258,11 @@ namespace dtl {
 				return (walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) == 0) ? false :
 					((can_walk_direction[walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) - 1] == false) ? false : true);
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -198,12 +285,25 @@ namespace dtl {
 				set_(can_walk_direction, x, y);
 			}
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
 #endif
-			constexpr std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
+#if defined(_MSVC_LANG) //C++14 use constexpr
+#if (_MSVC_LANG >= 201402L)
+			constexpr
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus >= 201402L)
+			constexpr
+#endif
+#endif
+				std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;
 				if (can_walk_direction[walk_direction - 1] == false) {
@@ -296,7 +396,11 @@ namespace dtl {
 					return;
 				}
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -304,7 +408,11 @@ namespace dtl {
 			std::int_fast32_t getX() const noexcept {
 				return this->x;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -312,7 +420,11 @@ namespace dtl {
 			std::int_fast32_t getY() const noexcept {
 				return this->y;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -320,7 +432,11 @@ namespace dtl {
 			double getPositionX() const noexcept {
 				return this->x + 0.5 + ((this->status_x == player_status_1) ? (-small_x) : (small_x));
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -328,7 +444,11 @@ namespace dtl {
 			double getPositionY() const noexcept {
 				return this->y + 0.5 + ((this->status_y == player_status_1) ? (-small_y) : (small_y));
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif

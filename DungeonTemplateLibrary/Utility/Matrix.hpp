@@ -18,7 +18,11 @@ namespace dtl {
 	inline namespace utility {
 		namespace tool {
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -26,7 +30,11 @@ namespace dtl {
 			constexpr bool isMatrixEmpty(const std::size_t xy_) noexcept {
 				return (xy_ == 0);
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -35,7 +43,11 @@ namespace dtl {
 				return (y_ == 0 || x_ == 0);
 			}
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -46,7 +58,11 @@ namespace dtl {
 
 			//配列の要素数を取得
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -55,7 +71,11 @@ namespace dtl {
 				return ((matrix_.size() == 0) ? 0 : (matrix_.size() * matrix_[0].size()));
 			}
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -64,7 +84,11 @@ namespace dtl {
 				return ((matrix_.size() == 0) ? 0 : matrix_[0].size());
 			}
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -74,7 +98,11 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -98,7 +126,11 @@ namespace dtl {
 				return value_ = matrix_[y_][x_];
 			}
 			template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif

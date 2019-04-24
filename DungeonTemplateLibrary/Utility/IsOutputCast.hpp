@@ -17,7 +17,11 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -26,7 +30,11 @@ namespace dtl {
 			return false;
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -35,7 +43,11 @@ namespace dtl {
 			return true;
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -44,7 +56,11 @@ namespace dtl {
 			return true;
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -62,7 +78,11 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -71,7 +91,11 @@ namespace dtl {
 				return value_;
 			}
 			template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -80,7 +104,11 @@ namespace dtl {
 				return static_cast<int>(value_);
 			}
 			template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -89,7 +117,11 @@ namespace dtl {
 				return static_cast<int>(value_);
 			}
 			template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif

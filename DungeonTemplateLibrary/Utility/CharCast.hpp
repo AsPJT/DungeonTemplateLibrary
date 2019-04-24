@@ -20,7 +20,11 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -32,7 +36,11 @@ namespace dtl {
 			return field_int;
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -41,7 +49,11 @@ namespace dtl {
 			return field_;
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -53,7 +65,11 @@ namespace dtl {
 			return static_cast<char>(field_int);
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -65,7 +81,11 @@ namespace dtl {
 			return static_cast<signed char>(field_int);
 		}
 		template<>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif

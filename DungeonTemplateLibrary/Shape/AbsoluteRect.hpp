@@ -110,7 +110,11 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -118,7 +122,11 @@ namespace dtl {
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -126,7 +134,11 @@ namespace dtl {
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -134,7 +146,11 @@ namespace dtl {
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -142,7 +158,11 @@ namespace dtl {
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -208,7 +228,7 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			}
 
@@ -216,22 +236,22 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -240,39 +260,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr auto clearPointX() noexcept {
+			constexpr AbsoluteRect& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr auto clearPointY() noexcept {
+			constexpr AbsoluteRect& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr auto clearWidth() noexcept {
+			constexpr AbsoluteRect& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr auto clearHeight() noexcept {
+			constexpr AbsoluteRect& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr auto clearValue() noexcept {
+			constexpr AbsoluteRect& clearValue() noexcept {
 				const Matrix_Int_ new_draw_value{};
 				this->draw_value = new_draw_value;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr auto clearPoint() noexcept {
+			constexpr AbsoluteRect& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr auto clearRange() noexcept {
+			constexpr AbsoluteRect& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -280,7 +300,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr auto clear() noexcept {
+			constexpr AbsoluteRect& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -289,51 +309,51 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr auto setPointX(const Index_Size point_x_) noexcept {
+			constexpr AbsoluteRect& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr auto setPointY(const Index_Size point_y_) noexcept {
+			constexpr AbsoluteRect& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr auto setWidth(const Index_Size width_) noexcept {
+			constexpr AbsoluteRect& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr auto setHeight(const Index_Size height_) noexcept {
+			constexpr AbsoluteRect& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr auto setValue(const Matrix_Int_ & draw_value_) noexcept {
+			constexpr AbsoluteRect& setValue(const Matrix_Int_ & draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_) noexcept {
+			constexpr AbsoluteRect& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			constexpr AbsoluteRect& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			constexpr AbsoluteRect& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			constexpr AbsoluteRect& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr auto setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+			constexpr AbsoluteRect& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;

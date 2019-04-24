@@ -54,7 +54,11 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -62,7 +66,11 @@ namespace dtl {
 			constexpr Index_Size getPointX() const noexcept {
 				return this->border.getPointX();
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -70,7 +78,11 @@ namespace dtl {
 			constexpr Index_Size getPointY() const noexcept {
 				return this->border.getPointY();
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -78,7 +90,11 @@ namespace dtl {
 			constexpr Index_Size getWidth() const noexcept {
 				return this->border.getWidth();
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -86,7 +102,11 @@ namespace dtl {
 			constexpr Index_Size getHeight() const noexcept {
 				return this->border.getHeight();
 			}
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+			[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 			[[nodiscard]]
 #endif
@@ -137,7 +157,7 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			}
 
@@ -145,22 +165,22 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -169,48 +189,48 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr auto clearPointX() noexcept {
+			constexpr CellularAutomatonMixIsland& clearPointX() noexcept {
 				this->mixRect.clearPointX();
 				this->border.clearPointX();
 				this->cellularAutomation.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr auto clearPointY() noexcept {
+			constexpr CellularAutomatonMixIsland& clearPointY() noexcept {
 				this->mixRect.clearPointY();
 				this->border.clearPointY();
 				this->cellularAutomation.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr auto clearWidth() noexcept {
+			constexpr CellularAutomatonMixIsland& clearWidth() noexcept {
 				this->mixRect.clearWidth();
 				this->border.clearWidth();
 				this->cellularAutomation.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr auto clearHeight() noexcept {
+			constexpr CellularAutomatonMixIsland& clearHeight() noexcept {
 				this->mixRect.clearHeight();
 				this->border.clearHeight();
 				this->cellularAutomation.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr auto clearValue() noexcept {
+			constexpr CellularAutomatonMixIsland& clearValue() noexcept {
 				this->mixRect.clearValue();
 				this->border.clearValue();
 				this->cellularAutomation.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr auto clearPoint() noexcept {
+			constexpr CellularAutomatonMixIsland& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr auto clearRange() noexcept {
+			constexpr CellularAutomatonMixIsland& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -218,7 +238,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr auto clear() noexcept {
+			constexpr CellularAutomatonMixIsland& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -227,60 +247,60 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr auto setPointX(const Index_Size point_x_) noexcept {
+			constexpr CellularAutomatonMixIsland& setPointX(const Index_Size point_x_) noexcept {
 				this->mixRect.setPointX(point_x_);
 				this->border.setPointX(point_x_);
 				this->cellularAutomation.setPointX(point_x_);
 				return *this;
 			}
-			constexpr auto setPointY(const Index_Size point_y_) noexcept {
+			constexpr CellularAutomatonMixIsland& setPointY(const Index_Size point_y_) noexcept {
 				this->mixRect.setPointY(point_y_);
 				this->border.setPointY(point_y_);
 				this->cellularAutomation.setPointY(point_y_);
 				return *this;
 			}
-			constexpr auto setWidth(const Index_Size width_) noexcept {
+			constexpr CellularAutomatonMixIsland& setWidth(const Index_Size width_) noexcept {
 				this->mixRect.setWidth(width_);
 				this->border.setWidth(width_);
 				this->cellularAutomation.setWidth(width_);
 				return *this;
 			}
-			constexpr auto setHeight(const Index_Size height_) noexcept {
+			constexpr CellularAutomatonMixIsland& setHeight(const Index_Size height_) noexcept {
 				this->mixRect.setHeight(height_);
 				this->border.setHeight(height_);
 				this->cellularAutomation.setHeight(height_);
 				return *this;
 			}
-			constexpr auto setValue(const Matrix_Int_& draw_value_) noexcept {
+			constexpr CellularAutomatonMixIsland& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->mixRect.setValue(draw_value_);
 				this->border.setValue(draw_value_);
 				this->cellularAutomation.setValue(draw_value_);
 				return *this;
 			}
-			constexpr auto setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			constexpr CellularAutomatonMixIsland& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->mixRect.setRange(matrix_range_);
 				this->border.setRange(matrix_range_);
 				this->cellularAutomation.setRange(matrix_range_);
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_) noexcept {
+			constexpr CellularAutomatonMixIsland& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			constexpr CellularAutomatonMixIsland& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			constexpr CellularAutomatonMixIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			constexpr CellularAutomatonMixIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(width_);

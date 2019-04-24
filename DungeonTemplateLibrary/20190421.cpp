@@ -5,8 +5,8 @@
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	constexpr std::size_t width{ 256 };
-	constexpr std::size_t height{ 256 };
+	constexpr std::size_t width{ 64 };
+	constexpr std::size_t height{ 64 };
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
 	//std::array<shape_t, width * height> matrix_array{ {} };
 	//std::array<std::array<std::array<shape_t, 2>, width>, height> matrix_layer{ {} };
@@ -24,7 +24,7 @@ int main() {
 
 	//dtl::shape::AbsoluteMemberRect<shape_t>(1).draw(matrix);
 
-	dtl::RandomVoronoi<shape_t>(1000, 0.3, 2, 1).draw(matrix);
+	dtl::RandomVoronoi<shape_t>(50, 0.3, 2, 1).draw(matrix);
 
 	dtl::console::OutputString<shape_t>("■", "○","●").draw(matrix);
 

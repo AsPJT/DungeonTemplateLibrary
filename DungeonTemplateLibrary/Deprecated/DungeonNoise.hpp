@@ -106,7 +106,11 @@ namespace dtl {
 
 		//Wolfオートタイル形式の地形タイプを返す
 		template<typename Matrix_Int_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -120,7 +124,11 @@ namespace dtl {
 		}
 
 		//Wolfオートタイル形式の配列値を返す
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -131,7 +139,11 @@ namespace dtl {
 
 		//Wolfオートタイル形式の左上の地形タイプを返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -141,7 +153,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右上の地形タイプを返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -151,7 +167,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の左下の地形タイプを返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -161,7 +181,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右下の地形タイプを返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -172,7 +196,11 @@ namespace dtl {
 
 		//Wolfオートタイル形式の左上の配列番号を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -182,7 +210,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右上の配列番号を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -192,7 +224,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の左下の配列番号を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -202,7 +238,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右下の配列番号を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -213,7 +253,11 @@ namespace dtl {
 
 		//Wolfオートタイル形式の左上の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -223,7 +267,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右上の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -233,7 +281,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の左下の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -243,7 +295,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右下の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -263,7 +319,11 @@ namespace dtl {
 
 		//Wolfオートタイル形式の左上の配列値を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -273,7 +333,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右上の配列値を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -283,7 +347,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の左下の配列値を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
@@ -293,7 +361,11 @@ namespace dtl {
 		}
 		//Wolfオートタイル形式の右下の配列値を返す
 		template<typename Matrix_>
-#ifdef __cplusplus
+#if defined(_MSVC_LANG) //C++17 use nodiscard
+#if (_MSVC_LANG >= 201703L)
+		[[nodiscard]]
+#endif
+#elif defined(__cplusplus)
 #if (__cplusplus >= 201703L)
 		[[nodiscard]]
 #endif
