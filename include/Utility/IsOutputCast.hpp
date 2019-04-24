@@ -13,58 +13,28 @@
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
+#include <Macros/nodiscard.hpp>
+
 namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		constexpr bool isOutputCast() noexcept {
 			return false;
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		constexpr bool isOutputCast<char>() noexcept {
 			return true;
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		constexpr bool isOutputCast<signed char>() noexcept {
 			return true;
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
 		}
@@ -78,54 +48,22 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_Int_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
 				return value_;
 			}
 			template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr auto getOutputNumber<char>(const char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DTL_NODISCARD
 			constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
 				return static_cast<int>(value_);
 			}

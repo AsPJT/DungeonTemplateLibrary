@@ -15,20 +15,13 @@
 
 #include <sstream>
 #include <string>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		auto charCast(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			Int_ field_int{};
@@ -36,28 +29,12 @@ namespace dtl {
 			return field_int;
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		auto charCast<std::string>(const std::string& field_) noexcept {
 			return field_;
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		auto charCast<char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
@@ -65,15 +42,7 @@ namespace dtl {
 			return static_cast<char>(field_int);
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		auto charCast<signed char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
@@ -81,15 +50,7 @@ namespace dtl {
 			return static_cast<signed char>(field_int);
 		}
 		template<>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-		[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-		[[nodiscard]]
-#endif
-#endif
+		DTL_NODISCARD
 		auto charCast<unsigned char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
