@@ -152,7 +152,7 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			}
 
@@ -160,22 +160,22 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr auto createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -184,48 +184,48 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr auto clearPointX() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearPointX() noexcept {
 				this->randomRect.clearPointX();
 				this->borderOdd.clearPointX();
 				this->pointGrid.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr auto clearPointY() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearPointY() noexcept {
 				this->randomRect.clearPointY();
 				this->borderOdd.clearPointY();
 				this->pointGrid.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr auto clearWidth() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearWidth() noexcept {
 				this->randomRect.clearWidth();
 				this->borderOdd.clearWidth();
 				this->pointGrid.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr auto clearHeight() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearHeight() noexcept {
 				this->randomRect.clearHeight();
 				this->borderOdd.clearHeight();
 				this->pointGrid.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr auto clearValue() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearValue() noexcept {
 				this->randomRect.clearValue();
 				this->borderOdd.clearValue();
 				this->pointGrid.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr auto clearPoint() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr auto clearRange() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -233,7 +233,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr auto clear() noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -242,60 +242,60 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr auto setPointX(const Index_Size point_x_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size point_x_) noexcept {
 				this->randomRect.setPointX(point_x_);
 				this->borderOdd.setPointX(point_x_);
 				this->pointGrid.setPointX(point_x_);
 				return *this;
 			}
-			constexpr auto setPointY(const Index_Size point_y_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size point_y_) noexcept {
 				this->randomRect.setPointY(point_y_);
 				this->borderOdd.setPointY(point_y_);
 				this->pointGrid.setPointY(point_y_);
 				return *this;
 			}
-			constexpr auto setWidth(const Index_Size width_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setWidth(const Index_Size width_) noexcept {
 				this->randomRect.setWidth(width_);
 				this->borderOdd.setWidth(width_);
 				this->pointGrid.setWidth(width_);
 				return *this;
 			}
-			constexpr auto setHeight(const Index_Size height_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setHeight(const Index_Size height_) noexcept {
 				this->randomRect.setHeight(height_);
 				this->borderOdd.setHeight(height_);
 				this->pointGrid.setHeight(height_);
 				return *this;
 			}
-			constexpr auto setValue(const Matrix_Int_& draw_value_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->randomRect.setValue(draw_value_);
 				this->borderOdd.setValue(draw_value_);
 				this->pointGrid.setValue(draw_value_);
 				return *this;
 			}
-			constexpr auto setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->randomRect.setRange(matrix_range_);
 				this->borderOdd.setRange(matrix_range_);
 				this->pointGrid.setRange(matrix_range_);
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			constexpr auto setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
-			constexpr auto setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			constexpr PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(width_);

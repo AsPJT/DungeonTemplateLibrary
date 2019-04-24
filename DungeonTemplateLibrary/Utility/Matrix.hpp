@@ -122,7 +122,7 @@ namespace dtl {
 			}
 			//指定位置の値を取得する
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr auto getMatrixValue(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_ & value_) noexcept {
+			constexpr Matrix_Int_& getMatrixValue(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, Matrix_Int_ & value_) noexcept {
 				return value_ = matrix_[y_][x_];
 			}
 			template<typename Matrix_>
