@@ -48,6 +48,9 @@
     <Filter Include="ヘッダー ファイル\DTL">
       <UniqueIdentifier>{3e27e26e-2a44-4eda-b0ff-0759cc87c4bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Macro">
+      <UniqueIdentifier>{f572daa4-9283-4791-ac31-0b1eeea3e46a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Struct.hpp">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="Shape\RandomVoronoi.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro\nodiscard.hpp">
+      <Filter>ヘッダー ファイル\Macro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

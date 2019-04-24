@@ -20,6 +20,7 @@
 #include <fstream>
 #include <Base/Struct.hpp>
 #include <Utility/IsOutputCast.hpp>
+#include <Macro/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace storage {
@@ -177,63 +178,23 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			std::string getString() const noexcept {
 				return this->str;
 			}

@@ -18,6 +18,7 @@
 #include <utility>
 #include <iostream>
 #include <string>
+#include <Macro/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace console {
@@ -47,81 +48,33 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return matrix_[point_y_][point_x_];
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				return matrix_[point_y_ * max_x_ + point_x_];
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return matrix_[point_y_][point_x_][layer_];
 			}
 
 			template<typename Matrix_, typename Function_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
 				return function_(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				return function_(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr inline auto outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				return function_(matrix_[point_y_][point_x_][layer_]);
 			}
@@ -207,51 +160,19 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}

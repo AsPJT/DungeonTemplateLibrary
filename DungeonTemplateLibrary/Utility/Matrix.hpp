@@ -12,101 +12,46 @@
 /* Bug Check : not checked */
 
 #include <cstddef>
+#include <Macro/nodiscard.hpp>
 
 //共有データ
 namespace dtl {
 	inline namespace utility {
 		namespace tool {
 
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr bool isMatrixEmpty(const std::size_t xy_) noexcept {
 				return (xy_ == 0);
 			}
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr bool isMatrixEmpty(const std::size_t x_, const std::size_t y_) noexcept {
 				return (y_ == 0 || x_ == 0);
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr bool isMatrixEmpty(const Matrix_ & matrix_) noexcept {
 				return (matrix_.size() == 0 || matrix_[0].size() == 0);
 			}
 
 			//配列の要素数を取得
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr std::size_t getMatrixSize(const Matrix_ & matrix_) noexcept {
 				return ((matrix_.size() == 0) ? 0 : (matrix_.size() * matrix_[0].size()));
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr std::size_t getMatrixSizeX(const Matrix_ & matrix_) noexcept {
 				return ((matrix_.size() == 0) ? 0 : matrix_[0].size());
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr std::size_t getMatrixSizeY(const Matrix_ & matrix_) noexcept {
 				return matrix_.size();
 			}
 
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr bool isMatrixLessThan(const Matrix_ & matrix_, const std::size_t num_) noexcept {
 				return (matrix_.size() < num_ || matrix_[0].size() < num_);
 			}
@@ -126,15 +71,7 @@ namespace dtl {
 				return value_ = matrix_[y_][x_];
 			}
 			template<typename Matrix_>
-#if defined(_MSVC_LANG) //C++17 use nodiscard
-#if (_MSVC_LANG >= 201703L)
-			[[nodiscard]]
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201703L)
-			[[nodiscard]]
-#endif
-#endif
+			DUNGEON_TEMPLATE_LIBRARY_MACRO_NODISCARD
 			constexpr auto getMatrixValue(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				return matrix_[y_][x_];
 			}

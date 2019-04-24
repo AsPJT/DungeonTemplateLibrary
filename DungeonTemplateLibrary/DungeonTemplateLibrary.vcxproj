@@ -48,6 +48,7 @@
     <ClInclude Include="DTL\ThirdParty.hpp" />
     <ClInclude Include="DTL\Utility.hpp" />
     <ClInclude Include="Entity\MobManager.hpp" />
+    <ClInclude Include="Macro\nodiscard.hpp" />
     <ClInclude Include="Random\MersenneTwister32bit.hpp" />
     <ClInclude Include="Retouch\BuryPoint.hpp" />
     <ClInclude Include="Retouch\RemovePoint.hpp" />
