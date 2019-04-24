@@ -22,7 +22,7 @@
 
 ## Version 0.4.3.1 [ C++14/17 ]
 
-|Compiler|[C++17 (v0.3.0~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp17)|[C++14 (~v0.2.4/v0.4.3.1~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|[C99](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/c99)|
+|Compiler|[C++17 (v0.3.0~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp17)|[C++14 (~v0.2.4/v0.4.3.1\~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|[C99](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/c99)|
 |:---|:---|:---|:---|
 |MSVC|14.10-passing|14.10-passing|14.10-passing|
 |GCC|unknown|5.1.0-passing|4.4.7-passing|
@@ -59,7 +59,7 @@
 ![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI2.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fli.png)
 
-## ChunkIsland
+## FractalIsland✅
 
 |Sample Value|Name|
 |:---:|:---|
