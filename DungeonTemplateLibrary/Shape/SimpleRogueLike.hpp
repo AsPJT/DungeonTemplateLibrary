@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SIMPLE_ROGUE_LIKE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SIMPLE_ROGUE_LIKE
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SIMPLE_ROGUE_LIKE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SIMPLE_ROGUE_LIKE_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)

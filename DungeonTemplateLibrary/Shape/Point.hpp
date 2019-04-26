@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_POINT_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */

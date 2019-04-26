@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)

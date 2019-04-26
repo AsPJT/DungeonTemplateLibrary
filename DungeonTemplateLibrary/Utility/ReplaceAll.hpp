@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_ALL_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */

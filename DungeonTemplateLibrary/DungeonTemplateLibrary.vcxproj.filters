@@ -263,6 +263,9 @@
     <ClInclude Include="Macros\nodiscard.hpp">
       <Filter>ヘッダー ファイル\Macros</Filter>
     </ClInclude>
+    <ClInclude Include="Macros\constexpr.hpp">
+      <Filter>ヘッダー ファイル\Macros</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190421.cpp">

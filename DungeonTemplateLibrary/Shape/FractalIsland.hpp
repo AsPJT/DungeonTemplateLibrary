@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_ISLAND
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_ISLAND
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_ISLAND_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_FRACTAL_ISLAND_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)

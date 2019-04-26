@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_COPY
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_COPY
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_COPY_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_COPY_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
