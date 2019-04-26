@@ -8,8 +8,8 @@
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	constexpr std::size_t width{ 2160 };
-	constexpr std::size_t height{ 2160 };
+	constexpr std::size_t width{ 540 };
+	constexpr std::size_t height{ 540 };
 
 	std::unique_ptr<std::bitset<width>[]> matrix(new(std::nothrow) std::bitset<width>[height]);
 
@@ -27,7 +27,7 @@ int main() {
 			color_[2] = 0;
 		}
 
-		}).writePNG("a.png");
+		}).writePNG("b.png");
 
 		return 0;
 }
