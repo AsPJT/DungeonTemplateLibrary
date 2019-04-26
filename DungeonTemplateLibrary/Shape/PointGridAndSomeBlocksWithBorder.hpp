@@ -26,6 +26,7 @@
 #include <Shape/RandomRect.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -79,14 +80,16 @@ namespace dtl {
 			///// 生成呼び出し /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.draw(matrix_, args_...);
 				this->pointGrid.draw(matrix_, args_...);
 				this->borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.draw(matrix_, args_...);
 				this->pointGrid.drawOperator(matrix_, args_...);
 				this->borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
@@ -95,14 +98,16 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.drawArray(matrix_, args_...);
 				this->pointGrid.drawArray(matrix_, args_...);
 				this->borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.drawOperatorArray(matrix_, args_...);
 				this->pointGrid.drawOperatorArray(matrix_, args_...);
 				this->borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
@@ -121,22 +126,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -145,48 +154,55 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearPointX() noexcept {
 				this->randomRect.clearPointX();
 				this->borderOdd.clearPointX();
 				this->pointGrid.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearPointY() noexcept {
 				this->randomRect.clearPointY();
 				this->borderOdd.clearPointY();
 				this->pointGrid.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearWidth() noexcept {
 				this->randomRect.clearWidth();
 				this->borderOdd.clearWidth();
 				this->pointGrid.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearHeight() noexcept {
 				this->randomRect.clearHeight();
 				this->borderOdd.clearHeight();
 				this->pointGrid.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearValue() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearValue() noexcept {
 				this->randomRect.clearValue();
 				this->borderOdd.clearValue();
 				this->pointGrid.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -194,7 +210,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr PointGridAndSomeBlocksWithBorder& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -203,60 +220,70 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size point_x_) noexcept {
 				this->randomRect.setPointX(point_x_);
 				this->borderOdd.setPointX(point_x_);
 				this->pointGrid.setPointX(point_x_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size point_y_) noexcept {
 				this->randomRect.setPointY(point_y_);
 				this->borderOdd.setPointY(point_y_);
 				this->pointGrid.setPointY(point_y_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setWidth(const Index_Size width_) noexcept {
 				this->randomRect.setWidth(width_);
 				this->borderOdd.setWidth(width_);
 				this->pointGrid.setWidth(width_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setHeight(const Index_Size height_) noexcept {
 				this->randomRect.setHeight(height_);
 				this->borderOdd.setHeight(height_);
 				this->pointGrid.setHeight(height_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setValue(const Matrix_Int_& draw_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->randomRect.setValue(draw_value_);
 				this->borderOdd.setValue(draw_value_);
 				this->pointGrid.setValue(draw_value_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->randomRect.setRange(matrix_range_);
 				this->borderOdd.setRange(matrix_range_);
 				this->pointGrid.setRange(matrix_range_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
-			constexpr PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(width_);

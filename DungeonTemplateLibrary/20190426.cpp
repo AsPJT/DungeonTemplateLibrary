@@ -4,15 +4,15 @@
 #include <array>
 
 int main() {
-	
+
 	using shape_t = std::uint_fast8_t;
 	constexpr std::size_t width{ 64 };
 	constexpr std::size_t height{ 64 };
 	std::array<std::array<shape_t, width>, height> matrix{ {} };
 
 	dtl::RandomVoronoi<shape_t>(50, 0.3, 2, 0).draw(matrix);
-
-	dtl::console::OutputString<shape_t>("//", "##","%%").draw(matrix);
+	
+	dtl::console::OutputString<shape_t>("//", "##", "%%").draw(matrix);
 
 	dtl::thirdParty::stb::FileSTB<shape_t, width, height>(matrix, [](const shape_t value_, unsigned char* color_) {
 		if (value_) {
@@ -25,8 +25,8 @@ int main() {
 			color_[1] = 0;
 			color_[2] = 0;
 		}
-		
+
 		}).writePNG("a.png");
 
-	return 0;
+		return 0;
 }

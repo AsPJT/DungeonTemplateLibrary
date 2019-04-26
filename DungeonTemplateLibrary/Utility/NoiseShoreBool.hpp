@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 //共有データ
 namespace dtl {

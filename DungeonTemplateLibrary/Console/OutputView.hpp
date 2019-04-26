@@ -19,6 +19,7 @@
 #include <iostream>
 #include <string>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace console {
@@ -49,15 +50,18 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_, typename Function_>
-			constexpr inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
 				function_(matrix_[point_y_][point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				function_(matrix_[point_y_ * max_x_ + point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				function_(matrix_[point_y_][point_x_][layer_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 
@@ -190,12 +194,14 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -204,33 +210,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr OutputView& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr OutputView& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr OutputView& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr OutputView& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr OutputView& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr OutputView& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -238,7 +250,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr OutputView& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -246,47 +259,56 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr OutputView& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr OutputView& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr OutputView& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr OutputView& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr OutputView& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr OutputView& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr OutputView& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				OutputView& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;

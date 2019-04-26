@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {

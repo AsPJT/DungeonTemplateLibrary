@@ -16,6 +16,7 @@
 #include <cstddef>
 #include <Shape/Rect.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {

@@ -13,6 +13,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {

@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <utility>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {

@@ -21,6 +21,7 @@
 #include <Base/Struct.hpp>
 #include <Utility/IsOutputCast.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace storage {
@@ -51,21 +52,25 @@ namespace dtl {
 
 			///// 出力処理 /////
 
-			constexpr inline void mountain(const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void mountain(const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
 				ofs_ << "f " << (point_y_ * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + (point_x_ - 1)) << '\n';
 				ofs_ << "f " << (point_y_ * max_x_ + (point_x_ - 1)) << " " << (point_y_ * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + (point_x_ - 1)) << '\n';
 			}
 
 			template<typename Matrix_>
-			constexpr inline void baseSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void baseSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
-			constexpr inline void baseArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream & ofs_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void baseArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
-			constexpr inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 
@@ -264,22 +269,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->write(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->writeArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->writeOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->writeOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -288,33 +297,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr FileTerrainOBJ& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr FileTerrainOBJ& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr FileTerrainOBJ& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr FileTerrainOBJ& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr FileTerrainOBJ& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr FileTerrainOBJ& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -322,7 +337,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr FileTerrainOBJ& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -330,47 +346,56 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr FileTerrainOBJ& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr FileTerrainOBJ& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				FileTerrainOBJ& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;

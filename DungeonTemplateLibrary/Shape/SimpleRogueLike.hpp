@@ -27,6 +27,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -91,7 +92,8 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -118,7 +120,8 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -144,7 +147,8 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ...) noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ...) noexcept {
 
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
@@ -496,22 +500,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -520,33 +528,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr SimpleRogueLike& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr SimpleRogueLike& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr SimpleRogueLike& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr SimpleRogueLike& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr SimpleRogueLike& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr SimpleRogueLike& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -554,7 +568,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr SimpleRogueLike& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -562,47 +577,56 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr SimpleRogueLike& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr SimpleRogueLike& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -610,7 +634,8 @@ namespace dtl {
 				return *this;
 			}
 
-			constexpr SimpleRogueLike& setRogueLike(const std::size_t division_min_, const std::size_t division_rand_max_, const std::size_t room_min_x_, const std::size_t room_rand_max_x_, const std::size_t room_min_y_, const std::size_t room_rand_max_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				SimpleRogueLike& setRogueLike(const std::size_t division_min_, const std::size_t division_rand_max_, const std::size_t room_min_x_, const std::size_t room_rand_max_x_, const std::size_t room_min_y_, const std::size_t room_rand_max_y_) noexcept {
 				division_min = division_min_;
 				division_rand_max = division_rand_max_;
 				room_min_x = room_min_x_;

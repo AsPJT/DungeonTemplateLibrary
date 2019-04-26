@@ -27,6 +27,7 @@
 #include <Shape/DiamondSquareAverage.hpp>
 //#include <Deprecated/FractalIsland.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -58,29 +59,35 @@ namespace dtl {
 
 			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
-			constexpr void createWorldMapSimple(Matrix2_&& matrix_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimple(Matrix2_&& matrix_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix2_>(matrix_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0], matrix_[chunk_size][0], matrix_[0][chunk_size], matrix_[chunk_size][chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
-			constexpr void createWorldMapSimple(Matrix2_&& matrix_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimple(Matrix2_&& matrix_) const noexcept {
 				createWorldMapSimple(matrix_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
-			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageLayer<Matrix_Int_, Matrix2_>(matrix_, layer_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0][layer_], matrix_[chunk_size][0][layer_], matrix_[0][chunk_size][layer_], matrix_[chunk_size][chunk_size][layer_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
-			constexpr void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_) const noexcept {
 				createWorldMapSimpleLayer(matrix_, layer_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			//チャンク生成の呼び出し・実行
 			template<typename Matrix2_, typename Function_>
-			constexpr void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix2_>(matrix_, max_x_, 0, 0, chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0], matrix_[chunk_size * max_x_], matrix_[chunk_size], matrix_[chunk_size * max_x_ + chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
-			constexpr void createWorldMapSimpleArray(Matrix2_ && matrix_, const Index_Size max_x_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createWorldMapSimpleArray(Matrix2_ && matrix_, const Index_Size max_x_) const noexcept {
 				createWorldMapSimpleArray(matrix_, max_x_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 
@@ -321,22 +328,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}

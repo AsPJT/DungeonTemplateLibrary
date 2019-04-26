@@ -14,6 +14,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {

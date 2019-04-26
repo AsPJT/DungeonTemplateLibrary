@@ -13,6 +13,7 @@
 
 #include <cstddef>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 //共有データ
 namespace dtl {

@@ -16,6 +16,7 @@
 #include <sstream>
 #include <string>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {
