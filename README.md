@@ -247,7 +247,20 @@ dtl::shape::RandomRect<shape_t>(noise_value).draw(matrix, width, height);
 |default_value|Empty|White|
 |noise_value|Noise|Black|
 
-![wn](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rr256.gif)
+![rr](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rr256.gif)
+
+## RandomVoronoi✅
+
+```cpp
+dtl::shape::RandomVoronoi<shape_t>(voronoi_num, probability, true_value, false_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|false_value|FALSE|White|
+|true_value|TRUE|Black|
+
+![rv](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rv256.gif)
 
 # [Type] BoardGame Generation
 
