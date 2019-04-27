@@ -56,7 +56,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI2.gif)
+![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI_NEW256.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fli.png)
 
 ## FractalIsland✅
