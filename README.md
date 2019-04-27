@@ -56,7 +56,7 @@
 |:---:|:---|
 |0-255|Height|
 
-![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI2.gif)
+![FI1](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/FLI_NEW256.gif)
 ![fi3d](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/3D/fli.png)
 
 ## FractalIsland✅
@@ -222,6 +222,45 @@ dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid_value, border_v
 |block_value|Block|Red|
 
 ![pgfpb](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/point_grid_field_put_block.gif)
+
+## WhiteNoise✅
+
+```cpp
+dtl::shape::WhiteNoise<shape_t>(noise_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|default_value|Empty|White|
+|noise_value|Noise|Black|
+
+![wn](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/wn256.gif)
+
+## RandomRect✅
+
+```cpp
+dtl::shape::RandomRect<shape_t>(noise_value, probability).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|default_value|Empty|White|
+|noise_value|Noise|Black|
+
+![rr](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rr256.gif)
+
+## RandomVoronoi✅
+
+```cpp
+dtl::shape::RandomVoronoi<shape_t>(voronoi_num, probability, true_value, false_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|false_value|FALSE|White|
+|true_value|TRUE|Black|
+
+![rv](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rv256.gif)
 
 # [Type] BoardGame Generation
 
