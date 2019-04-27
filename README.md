@@ -239,7 +239,7 @@ dtl::shape::WhiteNoise<shape_t>(noise_value).draw(matrix, width, height);
 ## RandomRect✅
 
 ```cpp
-dtl::shape::RandomRect<shape_t>(noise_value).draw(matrix, width, height);
+dtl::shape::RandomRect<shape_t>(noise_value, probability).draw(matrix, width, height);
 ```
 
 |Value Name|Name|Image Color|
