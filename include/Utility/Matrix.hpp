@@ -5,14 +5,15 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_MATRIX_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 
 #include <cstddef>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 //共有データ
 namespace dtl {
@@ -58,11 +59,13 @@ namespace dtl {
 
 			//指定位置に値を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 				matrix_[y_][x_] = value_;
 			}
 			template<typename Matrix_>
-			constexpr void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				matrix_[y_][x_] = 0;
 			}
 			//指定位置の値を取得する

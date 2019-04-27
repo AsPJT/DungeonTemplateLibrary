@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RANDOM_VORONOI
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RANDOM_VORONOI
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RANDOM_VORONOI_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_RANDOM_VORONOI_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
@@ -25,6 +25,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -140,22 +141,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -164,38 +169,45 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr RandomVoronoi& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearPointX() noexcept {
 				this->voronoiDiagram.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr RandomVoronoi& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearPointY() noexcept {
 				this->voronoiDiagram.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr RandomVoronoi& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearWidth() noexcept {
 				this->voronoiDiagram.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr RandomVoronoi& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearHeight() noexcept {
 				this->voronoiDiagram.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr RandomVoronoi& clearValue() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearValue() noexcept {
 				this->voronoiDiagram.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr RandomVoronoi& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr RandomVoronoi& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -203,7 +215,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr RandomVoronoi& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -212,48 +225,58 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr RandomVoronoi& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setPointX(const Index_Size point_x_) noexcept {
 				this->voronoiDiagram.setPointX(point_x_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setPointY(const Index_Size point_y_) noexcept {
 				this->voronoiDiagram.setPointY(point_y_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setWidth(const Index_Size width_) noexcept {
 				this->voronoiDiagram.setWidth(width_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setHeight(const Index_Size height_) noexcept {
 				this->voronoiDiagram.setHeight(height_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setValue(const std::size_t draw_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setValue(const std::size_t draw_value_) noexcept {
 				this->voronoiDiagram.setValue(draw_value_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->voronoiDiagram.setRange(matrix_range_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
-			constexpr RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(width_);

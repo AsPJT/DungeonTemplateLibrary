@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_DIAMOND_SQARE_AVERAGE_ISLAND_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
@@ -26,6 +26,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -57,7 +58,8 @@ namespace dtl {
 			///// サイズ取得 /////
 
 			DTL_NODISCARD
-			constexpr std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
 				std::size_t map_size{ 2 };
 				while (true) {
 					if ((map_size + 1) > matrix_size) return map_size >>= 1;
@@ -70,7 +72,8 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->point_y][this->point_x] = matrix_[this->point_y + map_size_ / 2][this->point_x] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[this->point_y][this->point_x + map_size_] = matrix_[this->point_y][this->point_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[this->point_y + map_size_][this->point_x] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
@@ -82,7 +85,8 @@ namespace dtl {
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_], matrix_[this->point_y + map_size_][this->point_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				matrix_[(this->point_y)* max_x_ + (this->point_x)] = matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_)] = matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x)] = matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
@@ -94,7 +98,8 @@ namespace dtl {
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->point_y][this->point_x][layer_] = matrix_[this->point_y + map_size_ / 2][this->point_x][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[this->point_y][this->point_x + map_size_][layer_] = matrix_[this->point_y][this->point_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
 				matrix_[this->point_y + map_size_][this->point_x][layer_] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
@@ -107,15 +112,18 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			constexpr inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_) const noexcept {
 				this->substitutionSTL(std::forward<Matrix_>(matrix_), map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_) const noexcept {
 				this->substitutionArray(std::forward<Matrix_>(matrix_), max_x_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_) const noexcept {
 				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 
@@ -124,13 +132,15 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
 				return true;
@@ -138,13 +148,15 @@ namespace dtl {
 
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
 				return true;
@@ -152,7 +164,8 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
 				return true;
@@ -160,7 +173,8 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
 				return true;
@@ -168,7 +182,8 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				this->substitutionArray(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), max_x_, std::forward<Args_>(args_)...);
 				return true;
@@ -273,22 +288,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}

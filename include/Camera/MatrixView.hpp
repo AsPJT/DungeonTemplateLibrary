@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_MATRIX_VIEW
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_MATRIX_VIEW
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_MATRIX_VIEW_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_MATRIX_VIEW_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
@@ -15,6 +15,7 @@
 
 #include <cstdint>
 #include <utility>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace camera {
@@ -31,7 +32,8 @@ namespace dtl {
 		public:
 			constexpr SampleMatrixViewDraw() noexcept = default;
 			template<typename Matrix_> //maybe_unused
-			constexpr void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
+			DTL_CONSTEXPR_CPP14
+				void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
 		};
 
 		class MatrixView {
@@ -59,17 +61,20 @@ namespace dtl {
 			double target_y{};
 		public:
 
-			constexpr void setTarget(const double target_x_, const double target_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void setTarget(const double target_x_, const double target_y_) noexcept {
 				target_x = target_x_;
 				target_y = target_y_;
 			}
-			constexpr void checkTarget(const double x_, const double y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void checkTarget(const double x_, const double y_) noexcept {
 				while (target_x < 0) target_x += x_;
 				while (target_y < 0) target_y += x_;
 				while (target_x >= x_) target_x -= x_;
 				while (target_y >= y_) target_y -= y_;
 			}
-			constexpr void checkTarget(double& target_x_, double& target_y_, const double x_, const double y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void checkTarget(double& target_x_, double& target_y_, const double x_, const double y_) const noexcept {
 				while (target_x_ < 0) target_x_ += x_;
 				while (target_y_ < 0) target_y_ += x_;
 				while (target_x_ >= x_) target_x_ -= x_;
@@ -112,7 +117,8 @@ namespace dtl {
 
 
 			template<typename Matrix_, typename View_Class_>
-			constexpr MatrixViewRect&& draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				MatrixViewRect&& draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
 				if (x_ == 0 || y_ == 0) {
 					MatrixViewRect mvr{};
 					return std::move(mvr);
@@ -176,7 +182,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			constexpr inline MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
-				return draw(matrix_, x_, y_, SampleMatrixViewDraw());
+				return this->draw(matrix_, x_, y_, SampleMatrixViewDraw());
 			}
 
 		};

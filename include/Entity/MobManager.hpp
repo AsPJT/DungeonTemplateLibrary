@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_MOB_MANAGER_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
@@ -17,6 +17,7 @@
 #include <cstdint>
 #include <bitset>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace entity {
@@ -80,57 +81,25 @@ namespace dtl {
 			constexpr explicit MobManager(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0b11111111) {}
 
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
 				x = x_;
 				y = y_;
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				void setWalkSpeed(const double walk_speed_) noexcept {
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			template<typename Pair_>
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				void setPosition(const Pair_ & pair_) noexcept {
 				x = static_cast<std::int_fast32_t>(pair_.first);
 				y = static_cast<std::int_fast32_t>(pair_.second);
 			}
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				x = x_;
 				y = y_;
@@ -141,15 +110,7 @@ namespace dtl {
 				return (status_x != player_status_stay || status_y != player_status_stay);
 			}
 
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				while (x < 0) x += x_;
 				while (y < 0) y += x_;
@@ -157,15 +118,7 @@ namespace dtl {
 				if (y >= y_) y %= y_;
 			}
 
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				bool moveX() noexcept {
 				if (status_x == player_status_stay) return false;
 				small_x += walk_speed;
@@ -177,15 +130,7 @@ namespace dtl {
 				status_x = player_status_stay;
 				return true;
 			}
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				bool moveY() noexcept {
 				if (status_y == player_status_stay) return false;
 				small_y += walk_speed;
@@ -197,7 +142,8 @@ namespace dtl {
 				status_y = player_status_stay;
 				return true;
 			}
-			constexpr bool move() noexcept {
+			DTL_CONSTEXPR_CPP14 //C++14
+				bool move() noexcept {
 				return (moveX() | moveY());
 			}
 
@@ -239,15 +185,7 @@ namespace dtl {
 			}
 
 			DTL_NODISCARD
-#if defined(_MSVC_LANG) //C++14 use constexpr
-#if (_MSVC_LANG >= 201402L)
-			constexpr
-#endif
-#elif defined(__cplusplus)
-#if (__cplusplus >= 201402L)
-			constexpr
-#endif
-#endif
+			DTL_CONSTEXPR_CPP14
 				std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;

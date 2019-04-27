@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_PAINT
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_PAINT
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_PAINT_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_PAINT_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <memory>
 #include <new>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -34,11 +35,13 @@ namespace dtl {
 			//コンストラクタ
 			constexpr Pen() noexcept = default;
 			template<typename Matrix_>
-			constexpr explicit Pen(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				explicit Pen(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, x_, y_, paint_value_);
 			}
 			template<typename Matrix_>
-			constexpr void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
 				matrix_[y_][x_] = paint_value_;
 			}
 		};
@@ -51,12 +54,14 @@ namespace dtl {
 			//コンストラクタ
 			constexpr Bucket() noexcept = default;
 			template<typename Matrix_>
-			constexpr explicit Bucket(Matrix_& matrix_, const std::int_fast32_t col_, const std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				explicit Bucket(Matrix_& matrix_, const std::int_fast32_t col_, const std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, col_, row_, paint_value_);
 			}
 		private:
 			template<typename Matrix_>
-			constexpr void setPoint(Matrix_& matrix_, const std::size_t col_, const std::size_t row_, const Matrix_Int_ value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void setPoint(Matrix_& matrix_, const std::size_t col_, const std::size_t row_, const Matrix_Int_ value_) const noexcept {
 				matrix_[row_][col_] = value_;
 			}
 			template<typename Matrix_>
@@ -65,7 +70,8 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			constexpr void scanLine(const Matrix_& matrix_, std::unique_ptr<BucketBuffer[]>& buffer_, std::size_t& end_n_, std::int_fast32_t left_x_, const std::int_fast32_t right_x_, const std::int_fast32_t y_, const std::int_fast32_t old_y_, const Matrix_Int_ value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void scanLine(const Matrix_& matrix_, std::unique_ptr<BucketBuffer[]>& buffer_, std::size_t& end_n_, std::int_fast32_t left_x_, const std::int_fast32_t right_x_, const std::int_fast32_t y_, const std::int_fast32_t old_y_, const Matrix_Int_ value_) const noexcept {
 				while (left_x_ <= right_x_) {
 
 					for (; left_x_ < right_x_; ++left_x_)

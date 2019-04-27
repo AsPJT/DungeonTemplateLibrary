@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -47,7 +48,8 @@ namespace dtl {
 
 			constexpr void string_String() const noexcept {}
 			template<typename Int_, typename ...Args_>
-			constexpr void string_String(const Int_& first_, const Args_& ... args_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void string_String(const Int_& first_, const Args_& ... args_) noexcept {
 				this->before_value.emplace_back(static_cast<Matrix_Int_>(first_));
 				this->string_String(args_...);
 			}
@@ -56,7 +58,8 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-			constexpr inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_]) {
@@ -68,7 +71,8 @@ namespace dtl {
 				}
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_]) {
@@ -80,7 +84,8 @@ namespace dtl {
 				}
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_]) {
@@ -93,7 +98,8 @@ namespace dtl {
 			}
 
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
@@ -105,7 +111,8 @@ namespace dtl {
 				}
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
@@ -117,7 +124,8 @@ namespace dtl {
 				}
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
@@ -344,23 +352,23 @@ namespace dtl {
 			///// 情報取得 /////
 
 			DTL_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
+				constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
+				constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
+				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
+				constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
 			DTL_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Int_ getValue() const noexcept {
 				return this->after_value;
 			}
 
@@ -429,22 +437,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -453,33 +465,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr ReplaceSome& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr ReplaceSome& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr ReplaceSome& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr ReplaceSome& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr ReplaceSome& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr ReplaceSome& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -487,7 +505,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr ReplaceSome& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -495,47 +514,56 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr ReplaceSome& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr ReplaceSome& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr ReplaceSome& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr ReplaceSome& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr ReplaceSome& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr ReplaceSome& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr ReplaceSome& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr ReplaceSome& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr ReplaceSome& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				ReplaceSome& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -578,257 +606,6 @@ namespace dtl {
 			}
 
 		};
-	}
-}
-
-#include <cstddef>
-#include <vector>
-#include <utility>
-#include <algorithm>
-#include <Utility/Copy.hpp>
-
-//STLデータ
-namespace dtl {
-	inline namespace utility {
-		namespace stl {
-
-			template<typename After_Int_, typename Matrix_Int_, typename Matrix_>
-			bool setItem(Matrix_& matrix_, const std::size_t n_, const After_Int_ set_value_, const Matrix_Int_ clear_value_) noexcept {
-				if (n_ == 0) return true;
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
-
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
-						if (matrix_[row][col] == clear_value_) value_pairs.emplace_back(std::make_pair(row, col));
-				if (value_pairs.size() == 0) return false;
-				value_pairs.shrink_to_fit();
-
-				if (n_ >= value_pairs.size()) {
-					for (auto&& i : value_pairs)
-						dtl::utility::tool::castCopyValue(matrix_[i.first][i.second], set_value_);
-					return true;
-				}
-
-				std::size_t index{ static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size()))) };
-				for (std::size_t modify_count{}; modify_count < n_; ++modify_count) {
-
-					const auto& [modify_y, modify_x] {value_pairs[index]};
-					if (matrix_[modify_y][modify_x] != clear_value_) return false;
-
-					dtl::utility::tool::castCopyValue(matrix_[modify_y][modify_x], set_value_);
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
-
-					if (value_pairs.size() == 0) break;
-					index = static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size())));
-				}
-				return true;
-			}
-			template<typename After_Int_, typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t n_, const After_Int_ set_value_) noexcept {
-				return dtl::utility::stl::setItem(matrix_, n_, set_value_, 1);
-			}
-			template<typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t n_) noexcept {
-				return dtl::utility::stl::setItem(matrix_, n_, 2, 1);
-			}
-
-		} //namespace
-	}
-}
-
-namespace dtl {
-	inline namespace utility {
-		namespace normal {
-
-			template<typename After_Int_, typename Matrix_Int_, typename Matrix_>
-			bool setItem(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_, const Matrix_Int_ clear_value_) noexcept {
-				if (n_ == 0) return true;
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
-
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						if (matrix_[row][col] == clear_value_) value_pairs.emplace_back(std::make_pair(row, col));
-				if (value_pairs.size() == 0) return false;
-				value_pairs.shrink_to_fit();
-
-				if (n_ >= value_pairs.size()) {
-					for (auto&& i : value_pairs)
-						dtl::utility::tool::castCopyValue(matrix_[i.first][i.second], set_value_);
-					return true;
-				}
-
-				std::size_t index{ static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size()))) };
-				for (std::size_t modify_count{}; modify_count < n_; ++modify_count) {
-
-					const auto& [modify_y, modify_x] {value_pairs[index]};
-					if (matrix_[modify_y][modify_x] != clear_value_) return false;
-
-					dtl::utility::tool::castCopyValue(matrix_[modify_y][modify_x], set_value_);
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
-
-					if (value_pairs.size() == 0) break;
-					index = static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size())));
-				}
-				return true;
-			}
-			template<typename After_Int_, typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_) noexcept {
-				return dtl::utility::normal::setItem(matrix_, x_, y_, n_, set_value_, 1);
-			}
-			template<typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_) noexcept {
-				return dtl::utility::normal::setItem(matrix_, x_, y_, n_, 2, 1);
-			}
-
-		} //namespace
-	}
-}
-
-namespace dtl {
-	inline namespace utility {
-		namespace array {
-
-			template<typename After_Int_, typename Matrix_Int_, typename Matrix_>
-			bool setItem(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_, const Matrix_Int_ clear_value_) noexcept {
-				if (n_ == 0) return true;
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
-
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
-						if (matrix_[row * x_ + col] == clear_value_) value_pairs.emplace_back(std::make_pair(row, col));
-				if (value_pairs.size() == 0) return false;
-				value_pairs.shrink_to_fit();
-
-				if (n_ >= value_pairs.size()) {
-					for (auto&& i : value_pairs)
-						dtl::utility::tool::castCopyValue(matrix_[i.first * x_ + i.second], set_value_);
-					return true;
-				}
-
-				std::size_t index{ static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size()))) };
-				for (std::size_t modify_count{}; modify_count < n_; ++modify_count) {
-
-					const auto& [modify_y, modify_x] {value_pairs[index]};
-					if (matrix_[modify_y * x_ + modify_x] != clear_value_) return false;
-
-					dtl::utility::tool::castCopyValue(matrix_[modify_y * x_ + modify_x], set_value_);
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
-
-					if (value_pairs.size() == 0) break;
-					index = static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size())));
-				}
-				return true;
-			}
-			template<typename After_Int_, typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_) noexcept {
-				return dtl::utility::array::setItem(matrix_, x_, y_, n_, set_value_, 1);
-			}
-			template<typename Matrix_>
-			inline bool setItem(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t n_) noexcept {
-				return dtl::utility::array::setItem(matrix_, x_, y_, n_, 2, 1);
-			}
-
-		} //namespace
-	}
-}
-
-namespace dtl {
-	inline namespace utility {
-		namespace layer {
-			namespace stl {
-
-				template<typename After_Int_, typename Matrix_Int_, typename Matrix_>
-				bool setItem(Matrix_& matrix_, const std::size_t layer_, const std::size_t n_, const After_Int_ set_value_, const Matrix_Int_ clear_value_) noexcept {
-					if (n_ == 0) return true;
-					std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
-
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							if (matrix_[row][col][layer_] == clear_value_) value_pairs.emplace_back(std::make_pair(row, col));
-					if (value_pairs.size() == 0) return false;
-					value_pairs.shrink_to_fit();
-
-					if (n_ >= value_pairs.size()) {
-						for (auto&& i : value_pairs)
-							dtl::utility::tool::castCopyValue(matrix_[i.first][i.second][layer_], set_value_);
-						return true;
-					}
-
-					std::size_t index{ static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size()))) };
-					for (std::size_t modify_count{}; modify_count < n_; ++modify_count) {
-
-						const auto& [modify_y, modify_x] {value_pairs[index]};
-						if (matrix_[modify_y][modify_x][layer_] != clear_value_) return false;
-
-						dtl::utility::tool::castCopyValue(matrix_[modify_y][modify_x][layer_], set_value_);
-						value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
-
-						if (value_pairs.size() == 0) break;
-						index = static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size())));
-					}
-					return true;
-				}
-				template<typename After_Int_, typename Matrix_>
-				inline bool setItem(Matrix_ & matrix_, const std::size_t layer_, const std::size_t n_, const After_Int_ set_value_) noexcept {
-					return dtl::utility::layer::stl::setItem(matrix_, layer_, n_, set_value_, 1);
-				}
-				template<typename Matrix_>
-				inline bool setItem(Matrix_ & matrix_, const std::size_t layer_, const std::size_t n_) noexcept {
-					return dtl::utility::layer::stl::setItem(matrix_, layer_, n_, 2, 1);
-				}
-
-			} //namespace
-		}
-	}
-}
-
-namespace dtl {
-	inline namespace utility {
-		namespace layer {
-			namespace normal {
-
-				template<typename After_Int_, typename Matrix_Int_, typename Matrix_>
-				bool setItem(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_, const Matrix_Int_ clear_value_) noexcept {
-					if (n_ == 0) return true;
-					std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
-
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
-							if (matrix_[row][col][layer_] == clear_value_) value_pairs.emplace_back(std::make_pair(row, col));
-					if (value_pairs.size() == 0) return false;
-					value_pairs.shrink_to_fit();
-
-					if (n_ >= value_pairs.size()) {
-						for (auto&& i : value_pairs)
-							dtl::utility::tool::castCopyValue(matrix_[i.first][i.second][layer_], set_value_);
-						return true;
-					}
-
-					std::size_t index{ static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size()))) };
-					for (std::size_t modify_count{}; modify_count < n_; ++modify_count) {
-
-						const auto& [modify_y, modify_x] {value_pairs[index]};
-						if (matrix_[modify_y][modify_x][layer_] != clear_value_) return false;
-
-						dtl::utility::tool::castCopyValue(matrix_[modify_y][modify_x][layer_], set_value_);
-						value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
-
-						if (value_pairs.size() == 0) break;
-						index = static_cast<std::size_t>(dtl::random::mersenne_twister_32bit(static_cast<std::int_fast32_t>(value_pairs.size())));
-					}
-					return true;
-				}
-				template<typename After_Int_, typename Matrix_>
-				inline bool setItem(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t n_, const After_Int_ set_value_) noexcept {
-					return dtl::utility::layer::normal::setItem(matrix_, layer_, x_, y_, n_, set_value_, 1);
-				}
-				template<typename Matrix_>
-				inline bool setItem(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const std::size_t n_) noexcept {
-					return dtl::utility::layer::normal::setItem(matrix_, layer_, x_, y_, n_, 2, 1);
-				}
-
-			} //namespace
-		}
 	}
 }
 

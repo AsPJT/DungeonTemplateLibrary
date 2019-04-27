@@ -15,6 +15,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HPP
 
+/* バージョン */
+#ifndef DTL_VERSION
+#define DTL_VERSION (20190427L)
+#endif
+
 /* 基本クラスライブラリ (dtl::base) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BASE_HPP
 #include <DTL/Base.hpp>

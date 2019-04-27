@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_ISLAND
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_ISLAND
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_ISLAND_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_CELLULAR_AUTOMATON_ISLAND_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
@@ -26,6 +26,7 @@
 #include <Utility/CellularAutomaton.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -80,7 +81,8 @@ namespace dtl {
 			///// 生成呼び出し /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.draw(matrix_, args_...);
 				this->border.draw(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
@@ -88,7 +90,8 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->randomRect.drawOperator(matrix_, args_...);
 				this->border.drawOperator(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
@@ -98,7 +101,8 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->randomRect.drawArray(matrix_, args_...);
 				this->border.drawArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
@@ -106,7 +110,8 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->randomRect.drawOperatorArray(matrix_, args_...);
 				this->border.drawOperatorArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
@@ -126,22 +131,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -150,48 +159,55 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr CellularAutomatonIsland& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearPointX() noexcept {
 				this->randomRect.clearPointX();
 				this->border.clearPointX();
 				this->cellularAutomation.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr CellularAutomatonIsland& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearPointY() noexcept {
 				this->randomRect.clearPointY();
 				this->border.clearPointY();
 				this->cellularAutomation.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr CellularAutomatonIsland& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearWidth() noexcept {
 				this->randomRect.clearWidth();
 				this->border.clearWidth();
 				this->cellularAutomation.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr CellularAutomatonIsland& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearHeight() noexcept {
 				this->randomRect.clearHeight();
 				this->border.clearHeight();
 				this->cellularAutomation.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr CellularAutomatonIsland& clearValue() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearValue() noexcept {
 				this->randomRect.clearValue();
 				this->border.clearValue();
 				this->cellularAutomation.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr CellularAutomatonIsland& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr CellularAutomatonIsland& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -199,7 +215,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr CellularAutomatonIsland& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -208,60 +225,70 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr CellularAutomatonIsland& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setPointX(const Index_Size point_x_) noexcept {
 				this->randomRect.setPointX(point_x_);
 				this->border.setPointX(point_x_);
 				this->cellularAutomation.setPointX(point_x_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setPointY(const Index_Size point_y_) noexcept {
 				this->randomRect.setPointY(point_y_);
 				this->border.setPointY(point_y_);
 				this->cellularAutomation.setPointY(point_y_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setWidth(const Index_Size width_) noexcept {
 				this->randomRect.setWidth(width_);
 				this->border.setWidth(width_);
 				this->cellularAutomation.setWidth(width_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setHeight(const Index_Size height_) noexcept {
 				this->randomRect.setHeight(height_);
 				this->border.setHeight(height_);
 				this->cellularAutomation.setHeight(height_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setValue(const Matrix_Int_& draw_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->randomRect.setValue(draw_value_);
 				this->border.setValue(draw_value_);
 				this->cellularAutomation.setValue(draw_value_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->randomRect.setRange(matrix_range_);
 				this->border.setRange(matrix_range_);
 				this->cellularAutomation.setRange(matrix_range_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
-			constexpr CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(point_x_);
 				this->setPointY(point_y_);
 				this->setWidth(width_);

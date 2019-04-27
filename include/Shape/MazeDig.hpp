@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_MAZE_DIG_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
@@ -26,6 +26,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -54,7 +55,8 @@ namespace dtl {
 
 			//穴掘り
 			template<typename Matrix_>
-			constexpr void mazeDig_Dig(Matrix_&& matrix_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void mazeDig_Dig(Matrix_&& matrix_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
 				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
@@ -79,7 +81,8 @@ namespace dtl {
 				return;
 			}
 			template<typename Matrix_>
-			constexpr void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
 				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
@@ -104,7 +107,8 @@ namespace dtl {
 				return;
 			}
 			template<typename Matrix_>
-			constexpr void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
 				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
@@ -130,7 +134,8 @@ namespace dtl {
 			}
 			//迷路生成
 			template<typename Matrix_>
-			constexpr std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
@@ -150,7 +155,8 @@ namespace dtl {
 				return select_id;
 			}
 			template<typename Matrix_>
-			constexpr std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
@@ -170,7 +176,8 @@ namespace dtl {
 				return select_id;
 			}
 			template<typename Matrix_>
-			constexpr std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::unique_ptr<std::size_t[]>& select_x, std::unique_ptr<std::size_t[]>& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->point_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->point_x + 1 }; j < j_max; j += 2) {
@@ -348,22 +355,26 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -372,33 +383,39 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr MazeDig& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr MazeDig& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr MazeDig& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr MazeDig& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr MazeDig& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr MazeDig& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -406,7 +423,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr MazeDig& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -414,47 +432,56 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr MazeDig& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr MazeDig& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr MazeDig& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr MazeDig& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr MazeDig& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr MazeDig& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr MazeDig& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr MazeDig& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr MazeDig& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				MazeDig& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;

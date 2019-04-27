@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HORIZONTAL_SCROLL_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Utility/Matrix.hpp>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {

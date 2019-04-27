@@ -5,8 +5,8 @@
 
 	This code is licensed under CC0.
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DUNGEON_NOISE_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
@@ -14,13 +14,15 @@
 #include <cstddef>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {
 		namespace stl {
 
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -32,7 +34,8 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -45,7 +48,8 @@ namespace dtl {
 			}
 
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 
@@ -57,7 +61,8 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
 

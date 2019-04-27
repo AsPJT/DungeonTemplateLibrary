@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_VORONOI_DIAGRAM
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_VORONOI_DIAGRAM
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_VORONOI_DIAGRAM_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_VORONOI_DIAGRAM_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
@@ -26,6 +26,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -54,7 +55,8 @@ namespace dtl {
 
 			//原点の場所と陸地を決定する
 			template<typename Function_>
-			constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
 				for (std::size_t i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
 					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
 					function_(point_[array_num], color_[array_num]);
@@ -62,13 +64,15 @@ namespace dtl {
 			}
 
 			//2点間の距離を返す
-			constexpr std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
 				x_ -= point_.first;
 				y_ -= point_.second;
 				return x_ * x_ + y_ * y_;
 			}
 
-			constexpr bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, std::size_t& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, std::size_t& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
 				ind = (std::numeric_limits<std::size_t>::max)();
 				dist = (std::numeric_limits<std::int_fast32_t>::max)();
 				for (std::size_t it{}; it < this->draw_value; ++it) {
@@ -81,7 +85,8 @@ namespace dtl {
 
 			//図形を描画
 			template<typename Matrix_>
-			constexpr void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
 				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 					for (std::size_t ww{}; ww < w_; ++ww)
@@ -89,7 +94,8 @@ namespace dtl {
 							matrix_[hh][ww] = color_[ind];
 			}
 			template<typename Matrix_>
-			constexpr void createSitesLayer(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size layer_, const std::size_t w_, const std::size_t h_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createSitesLayer(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size layer_, const std::size_t w_, const std::size_t h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
 				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 					for (std::size_t ww{}; ww < w_; ++ww)
@@ -97,7 +103,8 @@ namespace dtl {
 							matrix_[hh][ww][layer_] = color_[ind];
 			}
 			template<typename Matrix_>
-			constexpr void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const std::size_t w_, const std::size_t h_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const std::size_t w_, const std::size_t h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
 				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 					for (std::size_t ww{}; ww < w_; ++ww)
@@ -147,21 +154,24 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawNormal(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
 				this->substitutionSTL(matrix_, point_x_, point_y_, args_...);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
 				this->substitutionLayer(matrix_, layer_, point_x_, point_y_, args_...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool drawArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
 				this->substitutionArray(matrix_, point_x_, point_y_, max_x_, args_...);
 				return true;
 			}
@@ -237,12 +247,14 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			constexpr Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
@@ -251,38 +263,45 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			constexpr VoronoiDiagram& clearPointX() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearPointX() noexcept {
 				this->point_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			constexpr VoronoiDiagram& clearPointY() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearPointY() noexcept {
 				this->point_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			constexpr VoronoiDiagram& clearWidth() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			constexpr VoronoiDiagram& clearHeight() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			constexpr VoronoiDiagram& clearValue() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearValue() noexcept {
 				this->draw_value = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			constexpr VoronoiDiagram& clearPoint() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			constexpr VoronoiDiagram& clearRange() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -290,7 +309,8 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			constexpr VoronoiDiagram& clear() noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
@@ -299,51 +319,61 @@ namespace dtl {
 
 			///// 代入 /////
 
-			constexpr VoronoiDiagram& setPointX(const Index_Size point_x_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setPointX(const Index_Size point_x_) noexcept {
 				this->point_x = point_x_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setPointY(const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setPointY(const Index_Size point_y_) noexcept {
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setWidth(const Index_Size width_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setHeight(const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setValue(const std::size_t draw_value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setValue(const std::size_t draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setPoint(const Index_Size point_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setPoint(const Index_Size point_) noexcept {
 				this->point_x = point_;
 				this->point_y = point_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->point_x = point_x_;
 				this->point_y = point_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
-			constexpr VoronoiDiagram& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				VoronoiDiagram& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->point_x = matrix_range_.x;
 				this->point_y = matrix_range_.y;
 				this->width = matrix_range_.w;

@@ -9,8 +9,8 @@
 
 #ifdef STB_IMAGE_WRITE_IMPLEMENTATION
 
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_STB_WRAPPER_STB_IMAGE_WRITE_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
@@ -56,19 +56,19 @@ namespace dtl {
 							function_(matrix_[row][col], &data[(row * Width_ + col) * Color_Num_]);
 				}
 
-				auto writePNG(const std::string & string_, const int stride_in_bytes_ = 0) const noexcept {
+				int writePNG(const std::string & string_, const int stride_in_bytes_ = 0) const noexcept {
 					return stbi_write_png(string_.c_str(), static_cast<int>(Width_), static_cast<int>(Height_), static_cast<int>(Color_Num_), data.get(), stride_in_bytes_);
 				}
-				auto writeBMP(const std::string & string_) const noexcept {
+				int writeBMP(const std::string & string_) const noexcept {
 					return stbi_write_bmp(string_.c_str(), static_cast<int>(Width_), static_cast<int>(Height_), static_cast<int>(Color_Num_), data.get());
 				}
-				auto writeTGA(const std::string & string_) const noexcept {
+				int writeTGA(const std::string & string_) const noexcept {
 					return stbi_write_tga(string_.c_str(), static_cast<int>(Width_), static_cast<int>(Height_), static_cast<int>(Color_Num_), data.get());
 				}
-				auto writeHDR(const std::string & string_) const noexcept {
+				int writeHDR(const std::string & string_) const noexcept {
 					return stbi_write_hdr(string_.c_str(), static_cast<int>(Width_), static_cast<int>(Height_), static_cast<int>(Color_Num_), data.get());
 				}
-				auto writeJPG(const std::string & string_, const int quality_ = 100) const noexcept {
+				int writeJPG(const std::string & string_, const int quality_ = 100) const noexcept {
 					return stbi_write_jpg(string_.c_str(), static_cast<int>(Width_), static_cast<int>(Height_), static_cast<int>(Color_Num_), data.get(), quality_);
 				}
 			};

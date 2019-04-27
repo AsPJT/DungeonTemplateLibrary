@@ -6,8 +6,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_CSV
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_CSV
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_CSV_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_CSV_HPP
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <iomanip>
 #include <Utility/CharCast.hpp>
+#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace storage {
@@ -45,15 +46,18 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-			constexpr inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
 				matrix_[point_y_][point_x_] = value_;
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, const Matrix_Int_& value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, const Matrix_Int_& value_) const noexcept {
 				matrix_[point_y_ * max_x_ + point_x_] = value_;
 			}
 			template<typename Matrix_>
-			constexpr inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
+			DTL_CONSTEXPR_CPP14
+				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
 				matrix_[point_y_][point_x_][layer_] = value_;
 			}
 
