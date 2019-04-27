@@ -130,25 +130,25 @@ namespace dtl {
 		//Wolfオートタイル形式の左上の地形タイプを返す
 		template<typename Matrix_>
 		DTL_NODISCARD
-		constexpr auto getWolfAutoTileTypeUpperLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0) noexcept {
+		constexpr std::size_t getWolfAutoTileTypeUpperLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ - ((x_ <= min_x_) ? 0 : 1)], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_ - ((x_ <= min_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の右上の地形タイプを返す
 		template<typename Matrix_>
 		DTL_NODISCARD
-		constexpr auto getWolfAutoTileTypeUpperRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0) noexcept {
+		constexpr std::size_t getWolfAutoTileTypeUpperRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ + ((x_ >= max_x_) ? 0 : 1)], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_ + ((x_ >= max_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の左下の地形タイプを返す
 		template<typename Matrix_>
 			DTL_NODISCARD
-		constexpr auto getWolfAutoTileTypeLowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_) noexcept {
+		constexpr std::size_t getWolfAutoTileTypeLowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ - ((x_ <= min_x_) ? 0 : 1)], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_ - ((x_ <= min_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の右下の地形タイプを返す
 		template<typename Matrix_>
 		DTL_NODISCARD
-		constexpr auto getWolfAutoTileTypeLowerRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_) noexcept {
+		constexpr std::size_t getWolfAutoTileTypeLowerRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ + ((x_ >= max_x_) ? 0 : 1)], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_ + ((x_ >= max_x_) ? 0 : 1)]);
 		}
 

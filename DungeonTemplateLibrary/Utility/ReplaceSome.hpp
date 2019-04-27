@@ -33,7 +33,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////

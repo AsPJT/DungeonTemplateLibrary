@@ -38,7 +38,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
 
 

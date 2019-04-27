@@ -58,5 +58,7 @@
 
 #include <Shape/SimpleRogueLike.hpp>
 
+#include <Shape/WhiteNoise.hpp>
+
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_HPP
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_HPP

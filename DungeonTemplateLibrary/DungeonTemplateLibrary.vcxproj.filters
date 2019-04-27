@@ -266,6 +266,9 @@
     <ClInclude Include="Macros\constexpr.hpp">
       <Filter>ヘッダー ファイル\Macros</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\WhiteNoise.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190426.cpp">

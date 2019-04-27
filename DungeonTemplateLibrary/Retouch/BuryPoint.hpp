@@ -31,7 +31,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////
@@ -380,11 +380,9 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr BuryPoint() noexcept = default;
-			constexpr explicit BuryPoint(const PairSize & length_) noexcept
-				:width(length_.first), height(length_.second) {}
-			constexpr explicit BuryPoint(const PairSize & position_, const PairSize & length_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second) {}
+			constexpr explicit BuryPoint(const dtl::base::MatrixRange& matrix_range_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {}
 			constexpr explicit BuryPoint(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_) {}

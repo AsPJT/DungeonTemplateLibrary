@@ -18,6 +18,7 @@
 #include <utility>
 #include <iostream>
 #include <string>
+#include <Base/Struct.hpp>
 #include <Utility/IsOutputCast.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
@@ -34,7 +35,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////
@@ -51,18 +52,21 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline auto outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]);
+			DTL_CONSTEXPR_CPP14
+				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline auto outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				return ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]);
+			DTL_CONSTEXPR_CPP14
+				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline auto outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]);
+			DTL_CONSTEXPR_CPP14
+				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
 			}
 
 
@@ -73,7 +77,7 @@ namespace dtl {
 			bool drawSTL(const Matrix_ & matrix_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
-						std::cout << this->before_draw_string << this->outputSTL(matrix_, col, row) << this->draw_string;
+						this->outputSTL(matrix_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -82,7 +86,7 @@ namespace dtl {
 			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-						std::cout << this->before_draw_string << this->outputSTL(matrix_, col, row) << this->draw_string;
+						this->outputSTL(matrix_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -93,7 +97,7 @@ namespace dtl {
 			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
-						std::cout << this->before_draw_string << this->outputLayer(matrix_, layer_, col, row) << this->draw_string;
+						this->outputLayer(matrix_, layer_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -102,7 +106,7 @@ namespace dtl {
 			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-						std::cout << this->before_draw_string << this->outputLayer(matrix_, layer_, col, row) << this->draw_string;
+						this->outputLayer(matrix_, layer_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -113,7 +117,7 @@ namespace dtl {
 			bool drawNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						std::cout << this->before_draw_string << this->outputSTL(matrix_, col, row) << this->draw_string;
+						this->outputSTL(matrix_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -124,7 +128,7 @@ namespace dtl {
 			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						std::cout << this->before_draw_string << this->outputLayer(matrix_, layer_, col, row) << this->draw_string;
+						this->outputLayer(matrix_, layer_, col, row);
 					std::cout << '\n';
 				}
 				return true;
@@ -135,7 +139,7 @@ namespace dtl {
 			bool drawArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row) {
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						std::cout << this->before_draw_string << this->outputArray(matrix_, col, row, max_x_) << this->draw_string;
+						this->outputArray(matrix_, col, row, max_x_);
 					std::cout << '\n';
 				}
 				return true;
@@ -332,39 +336,23 @@ namespace dtl {
 
 
 			///// コンストラクタ /////
-
+			using PairSize = std::pair<Index_Size, Index_Size>;
 			constexpr OutputNumber() noexcept = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
 				:draw_string(draw_string_) {}
 			constexpr explicit OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:draw_string(draw_string_), before_draw_string(before_draw_string_) {}
-			constexpr explicit OutputNumber(const PairSize & length_) noexcept
-				:width(length_.first), height(length_.second) {}
-			constexpr explicit OutputNumber(const PairSize & length_, const OutputString_ & draw_string_) noexcept
-				:width(length_.first), height(length_.second),
-				draw_string(draw_string_) {}
-			constexpr explicit OutputNumber(const PairSize & length_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
-				:width(length_.first), height(length_.second),
-				draw_string(draw_string_), before_draw_string(before_draw_string_) {}
-			constexpr explicit OutputNumber(const PairSize & position_, const PairSize & length_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second) {}
-			constexpr explicit OutputNumber(const PairSize & position_, const PairSize & length_, const OutputString_ & draw_string_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second),
-				draw_string(draw_string_) {}
-			constexpr explicit OutputNumber(const PairSize & position_, const PairSize & length_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second),
-				draw_string(draw_string_), before_draw_string(before_draw_string_) {}
-			constexpr explicit OutputNumber(const Index_Size width_, const Index_Size height_) noexcept
-				:width(width_), height(height_) {}
-			constexpr explicit OutputNumber(const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
-				:width(width_), height(height_),
-				draw_string(draw_string_) {}
-			constexpr explicit OutputNumber(const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
-				:width(width_), height(height_),
-				draw_string(draw_string_), before_draw_string(before_draw_string_) {}
+
+			constexpr OutputNumber(const dtl::base::MatrixRange& matrix_range_)
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {}
+			constexpr explicit OutputNumber(const dtl::base::MatrixRange& matrix_range_, const OutputString_& draw_string_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h), draw_string(draw_string_) {}
+			constexpr explicit OutputNumber(const dtl::base::MatrixRange& matrix_range_, const OutputString_& before_draw_string_, const OutputString_& draw_string_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h), draw_string(draw_string_), before_draw_string(before_draw_string_) {}
+
 			constexpr explicit OutputNumber(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_) {}
