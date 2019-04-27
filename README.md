@@ -236,6 +236,19 @@ dtl::shape::WhiteNoise<shape_t>(noise_value).draw(matrix, width, height);
 
 ![wn](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/wn256.gif)
 
+## RandomRect✅
+
+```cpp
+dtl::shape::RandomRect<shape_t>(noise_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|default_value|Empty|White|
+|noise_value|Noise|Black|
+
+![wn](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/rr256.gif)
+
 # [Type] BoardGame Generation
 
 ## Reversi
