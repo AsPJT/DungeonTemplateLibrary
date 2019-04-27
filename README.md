@@ -223,6 +223,19 @@ dtl::shape::PointGridAndSomeBlocksWithBorder<shape_t>(point_grid_value, border_v
 
 ![pgfpb](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/2D/random/point_grid_field_put_block.gif)
 
+## WhiteNoise✅
+
+```cpp
+dtl::shape::WhiteNoise<shape_t>(noise_value).draw(matrix, width, height);
+```
+
+|Value Name|Name|Image Color|
+|:---:|:---|:---|
+|default_value|Empty|White|
+|noise_value|Noise|Black|
+
+![wn](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Noise/wn256.gif)
+
 # [Type] BoardGame Generation
 
 ## Reversi
