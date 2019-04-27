@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Utility/Matrix.hpp>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {

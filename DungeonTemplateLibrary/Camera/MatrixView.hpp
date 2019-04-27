@@ -32,7 +32,8 @@ namespace dtl {
 		public:
 			constexpr SampleMatrixViewDraw() noexcept = default;
 			template<typename Matrix_> //maybe_unused
-			constexpr void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
+			DTL_CONSTEXPR_CPP14
+				void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
 		};
 
 		class MatrixView {

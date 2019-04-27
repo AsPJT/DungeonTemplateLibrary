@@ -12,6 +12,7 @@
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 
@@ -20,7 +21,8 @@ namespace dtl {
 		namespace stl {
 
 			template<typename Matrix_, typename STL2_>
-			constexpr void binarizationBool(Matrix_& matrix_, STL2_& stl2_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void binarizationBool(Matrix_& matrix_, STL2_& stl2_) noexcept {
 				if (matrix_.size() != stl2_.size()) return;
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -31,7 +33,8 @@ namespace dtl {
 			}
 
 			template<typename Matrix_, typename STL2_, typename Matrix_Int_>
-			constexpr void binarizationBool(Matrix_ & matrix_, STL2_ & stl2_, const Matrix_Int_ value_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				void binarizationBool(Matrix_ & matrix_, STL2_ & stl2_, const Matrix_Int_ value_) noexcept {
 				if (matrix_.size() != stl2_.size()) return;
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {

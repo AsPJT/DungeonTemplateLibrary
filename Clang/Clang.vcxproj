@@ -79,7 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <CppLanguageStandard />
-      <AdditionalOptions>-std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std=c++14 %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -97,7 +97,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard />
-      <AdditionalOptions>-std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std=c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,7 +111,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard />
-      <AdditionalOptions>-std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std=c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +127,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\DungeonTemplateLibrary;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard />
-      <AdditionalOptions>-std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-std=c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

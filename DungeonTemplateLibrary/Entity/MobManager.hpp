@@ -142,7 +142,8 @@ namespace dtl {
 				status_y = player_status_stay;
 				return true;
 			}
-			constexpr bool move() noexcept {
+			DTL_CONSTEXPR_CPP14 //C++14
+				bool move() noexcept {
 				return (moveX() | moveY());
 			}
 

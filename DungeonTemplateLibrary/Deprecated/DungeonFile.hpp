@@ -21,6 +21,7 @@
 #include <array>
 #include <Utility/IsOutputCast.hpp>
 #include <Storage/FileCSV.hpp>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -134,7 +135,8 @@ namespace dtl {
 				namespace hiding {
 
 					template<typename Matrix_>
-					constexpr void stringTemplate_svg(const Matrix_& matrix_, std::ofstream& ofs_) noexcept {
+					DTL_CONSTEXPR_CPP14
+						void stringTemplate_svg(const Matrix_& matrix_, std::ofstream& ofs_) noexcept {
 						ofs_ << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << '\n';
 						ofs_ << "<svg version=\"1.1\" id=\"layer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 ";
 						ofs_ << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";

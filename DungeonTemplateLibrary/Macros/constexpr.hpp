@@ -15,7 +15,12 @@
 
 #ifndef DTL_CONSTEXPR_CPP14
 
-#if defined(_MSC_VER) && defined(_MSVC_LANG)
+#if defined(_MSC_VER)
+
+#if (_MSC_VER <= 1900)
+#define DTL_CONSTEXPR_CPP14
+
+#elif defined(_MSC_VER) && defined(_MSVC_LANG)
 #if (_MSVC_LANG >= 201402L)
 #define DTL_CONSTEXPR_CPP14 constexpr
 #endif
@@ -25,6 +30,8 @@
 
 #if (__cplusplus >= 201402L)
 #define DTL_CONSTEXPR_CPP14 constexpr
+#endif
+
 #endif
 
 #endif

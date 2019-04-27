@@ -17,6 +17,7 @@
 #include <limits>
 #include <memory>
 #include <new>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -59,7 +60,8 @@ namespace dtl {
 
 			//パスの有無
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr bool isPass(Matrix_ & matrix_, const Matrix_Int_ turn_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				bool isPass(Matrix_ & matrix_, const Matrix_Int_ turn_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
 						if (dtl::ai::reversi::putPiece(matrix_, col, row, turn_, false)) return false;
@@ -69,7 +71,8 @@ namespace dtl {
 			class Simple {
 			public:
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				DTL_CONSTEXPR_CPP14
+					bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
 							if (dtl::ai::reversi::putPiece(matrix_, col, row, turn_, true)) return true;
@@ -80,7 +83,8 @@ namespace dtl {
 			class Greed {
 			public:
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				DTL_CONSTEXPR_CPP14
+					bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 					using dtl::ai::reversi::putPiece;
@@ -104,7 +108,8 @@ namespace dtl {
 			class Unselfishness {
 			public:
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				DTL_CONSTEXPR_CPP14
+					bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 					std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
 					std::size_t put_piece_x{}, put_piece_y{};
 					for (std::size_t row{}; row < matrix_.size(); ++row)
@@ -125,7 +130,8 @@ namespace dtl {
 			class Priority {
 			public:
 				//優先順位
-				constexpr std::uint_fast8_t checkPriority(std::size_t x_, std::size_t y_, const std::size_t x_max_, const std::size_t y_max_) const noexcept {
+				DTL_CONSTEXPR_CPP14
+					std::uint_fast8_t checkPriority(std::size_t x_, std::size_t y_, const std::size_t x_max_, const std::size_t y_max_) const noexcept {
 					if (x_ == x_max_) x_ = 0;
 					else if (x_ == x_max_ - 1) x_ = 1;
 					else if (x_ == x_max_ - 2) x_ = 2;
@@ -140,7 +146,8 @@ namespace dtl {
 					return check_point[y_ * 4 + x_];
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr bool operator()(Matrix_ & matrix_, const Matrix_Int_ turn_) const noexcept {
+				DTL_CONSTEXPR_CPP14
+					bool operator()(Matrix_ & matrix_, const Matrix_Int_ turn_) const noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 
@@ -168,7 +175,8 @@ namespace dtl {
 			}
 
 			template<typename Matrix_Int_, typename Matrix_>
-			constexpr std::int_fast32_t checkResult(Matrix_& matrix_) noexcept {
+			DTL_CONSTEXPR_CPP14
+				std::int_fast32_t checkResult(Matrix_& matrix_) noexcept {
 				std::array<std::int_fast32_t, 2> piece_num{ {} };
 				std::int_fast32_t result{};
 				for (std::size_t row{}; row < matrix_.size(); ++row)
@@ -207,7 +215,8 @@ namespace dtl {
 
 				//リバーシを初期化する
 				template<typename Matrix_Int_, typename Matrix_>
-				constexpr void createReversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
+				DTL_CONSTEXPR_CPP14
+					void createReversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
 					if (matrix_.size() < 2 || matrix_[0].size() < 2) return;
 					const std::size_t & set_y{ matrix_.size() / 2 };
 					const std::size_t & set_x{ matrix_[0].size() / 2 };
@@ -226,7 +235,8 @@ namespace dtl {
 						create(matrix_, black_, white_);
 					}
 					template<typename Matrix_>
-					constexpr void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) const noexcept {
 						createReversi(matrix_, black_, white_);
 					}
 				};
@@ -284,7 +294,8 @@ namespace dtl {
 				};
 
 				template<typename Matrix_Int_>
-				constexpr bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
+				DTL_CONSTEXPR_CPP14
+					bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
 					if (koma_ >= shogi_ginsho1 && shogi_narigin1 % 2 == koma_ % 2) return true;
 					return false;
 				}
@@ -317,7 +328,8 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_>
-				constexpr void createChess(Matrix_& matrix_) noexcept {
+				DTL_CONSTEXPR_CPP14
+					void createChess(Matrix_& matrix_) noexcept {
 					if (matrix_.size() < 2) return;
 
 					for (std::size_t i{}; i < matrix_[1].size(); ++i)
@@ -354,7 +366,8 @@ namespace dtl {
 						create(matrix_);
 					}
 					template<typename Matrix_>
-					constexpr void create(Matrix_& matrix_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void create(Matrix_& matrix_) const noexcept {
 						dtl::generator::boardGame::stl::createChess(matrix_);
 					}
 				};
@@ -363,7 +376,8 @@ namespace dtl {
 			namespace normal {
 
 				template<typename Matrix_>
-				constexpr void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
+				DTL_CONSTEXPR_CPP14
+					void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
 					if (y_ < 2) return;
 
 					for (std::size_t col{}; col < x_; ++col)
@@ -399,7 +413,8 @@ namespace dtl {
 						create(matrix_, x_, y_);
 					}
 					template<typename Matrix_>
-					constexpr void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
 						dtl::generator::boardGame::normal::createChess(matrix_, x_, y_);
 					}
 				};

@@ -18,6 +18,7 @@
 #include <new>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Utility/Matrix.hpp>
+#include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -41,7 +42,8 @@ namespace dtl {
 					constexpr std::size_t size() const noexcept {
 						return array_size;
 					}
-					constexpr void clear() noexcept {
+					DTL_CONSTEXPR_CPP14
+						void clear() noexcept {
 						for (std::size_t i{}; i < array_size; ++i) {
 							point[i] = Point_Pair_(0, 0);
 							color[i] = 0;
@@ -65,19 +67,23 @@ namespace dtl {
 					//コンストラクタ
 					constexpr SimpleVoronoiIsland() noexcept = default;
 					template<typename Matrix_>
-					constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
+					DTL_CONSTEXPR_CPP14
+						explicit SimpleVoronoiIsland(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
 						create(matrix_, count_, rbool_, land_, sea_);
 					}
 					template<typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void operator()(Matrix_& matrix_, const std::size_t count_ = 100, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 						create(matrix_, count_, rbool_, land_, sea_);
 					}
 					template<typename Matrix_>
-					constexpr explicit SimpleVoronoiIsland(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
+					DTL_CONSTEXPR_CPP14
+						explicit SimpleVoronoiIsland(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) noexcept {
 						create(matrix_, svid_, rbool_, land_, sea_);
 					}
 					template<typename Matrix_>
-					constexpr void operator()(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void operator()(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 						create(matrix_, svid_, rbool_, land_, sea_);
 					}
 
@@ -95,7 +101,8 @@ namespace dtl {
 					}
 					//ボロノイ図を作る
 					template<typename Matrix_>
-					constexpr void create(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void create(Matrix_& matrix_, dtl::generator::terrain::data::VoronoiData<Matrix_Int_>& svid_, const double rbool_ = 0.4, const Matrix_Int_ land_ = 1, const Matrix_Int_ sea_ = 0) const noexcept {
 						createPoint(svid_.point, svid_.color, svid_.size(), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeX(matrix_)), static_cast<std::int_fast32_t>(dtl::utility::tool::getMatrixSizeY(matrix_)), rbool_, land_, sea_);
 						createSites(svid_.point, svid_.color, svid_.size(), matrix_, dtl::utility::tool::getMatrixSizeX(matrix_), dtl::utility::tool::getMatrixSizeY(matrix_));
 					}
@@ -108,7 +115,8 @@ namespace dtl {
 						return (point_[point_num_].first > (w_ * numerator_ / denominator_) && point_[point_num_].first < (w_ * (denominator_ - numerator_) / denominator_)) && (point_[point_num_].second > (h_ * numerator_ / denominator_) && point_[point_num_].second < (h_ * (denominator_ - numerator_) / denominator_));
 					}
 					//原点の場所と陸地を決定する
-					constexpr void createPoint(std::unique_ptr<Point_Pair_[]> & point_, std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void createPoint(std::unique_ptr<Point_Pair_[]> & point_, std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
 
@@ -122,7 +130,8 @@ namespace dtl {
 					}
 
 					//2点間の距離を返す
-					constexpr std::int_fast32_t distanceSqrd(const Point_Pair_ & point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						std::int_fast32_t distanceSqrd(const Point_Pair_ & point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
 						x_ -= point_.first;
 						y_ -= point_.second;
 						return x_ * x_ + y_ * y_;
@@ -130,7 +139,8 @@ namespace dtl {
 
 					//図形を描画
 					template<typename Matrix_>
-					constexpr void createSites(const std::unique_ptr<Point_Pair_[]> & point_, const std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, Matrix_ & matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void createSites(const std::unique_ptr<Point_Pair_[]> & point_, const std::unique_ptr<Matrix_Int_[]> & color_, const std::size_t count_, Matrix_ & matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
 						std::int_fast32_t ds{}, dist{};
 						for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 							for (std::size_t ww{}; ww < w_; ++ww) {
@@ -169,7 +179,8 @@ namespace dtl {
 					using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
 
 					//原点の場所と陸地を決定する
-					constexpr void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, const std::int_fast32_t w_, const std::int_fast32_t h_, const double rbool_, const Matrix_Int_ land_, const Matrix_Int_ sea_) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
 
@@ -183,7 +194,8 @@ namespace dtl {
 					}
 
 					//2点間の距離を返す
-					constexpr std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
 						x_ -= point_.first;
 						y_ -= point_.second;
 						return x_ * x_ + y_ * y_;
@@ -191,7 +203,8 @@ namespace dtl {
 
 					//図形を描画
 					template<typename Matrix_>
-					constexpr void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+					DTL_CONSTEXPR_CPP14
+						void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, const std::size_t count_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
 						std::int_fast32_t ds{}, dist{};
 						for (std::size_t hh{}, ind{}; hh < h_; ++hh)
 							for (std::size_t ww{}; ww < w_; ++ww) {
