@@ -41,7 +41,7 @@ namespace dtl {
 
 			using Index_Size = std::size_t;
 			
-			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
+			
 
 
 			///// メンバ変数 /////

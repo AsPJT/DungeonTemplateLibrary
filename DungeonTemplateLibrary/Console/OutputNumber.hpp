@@ -336,7 +336,7 @@ namespace dtl {
 
 
 			///// コンストラクタ /////
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 			constexpr OutputNumber() noexcept = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
 				:draw_string(draw_string_) {}

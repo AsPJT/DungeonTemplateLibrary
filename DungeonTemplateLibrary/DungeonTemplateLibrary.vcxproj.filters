@@ -269,6 +269,9 @@
     <ClInclude Include="Shape\WhiteNoise.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\SimpleVoronoiIsland.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190426.cpp">
