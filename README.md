@@ -84,7 +84,7 @@
 
 ![sdsai](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Terrain/DSAIC.gif)
 
-## SimpleVoronoiIsland
+## SimpleVoronoiIsland✅
 
 |Sample Value|Name|Image Color|
 |:---:|:---|:---|
