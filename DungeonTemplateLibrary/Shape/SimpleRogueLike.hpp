@@ -56,13 +56,7 @@ namespace dtl {
 //部屋のY座標の最小サイズ
 //部屋のY座標のサイズ加算
 
-//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-			std::vector<std::array<std::size_t, 4>> dungeon_division{};
-			//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-			std::vector<std::array<std::size_t, 4>> dungeon_room{};
-			//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
-			std::vector<std::array<std::size_t, 4>> dungeon_road{};
-
+			using StartEndArray = std::array<std::size_t, 4>;
 
 			///// エイリアス /////
 
@@ -93,14 +87,16 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
-
+				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
-				dungeon_division.resize(mapDivCount);
-				dungeon_room.resize(mapDivCount);
-				dungeon_road.resize(mapDivCount);
+				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
+				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -110,25 +106,26 @@ namespace dtl {
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
 
-				createDivision(mapDivCount);
-
-				createRoom(mapDivCount);
-				this->substitutionRoom(matrix_, mapDivCount);
-				createRoad(matrix_, mapDivCount);
+				createDivision(dungeon_road,dungeon_division, mapDivCount);
+				createRoom(dungeon_room, dungeon_division,mapDivCount);
+				this->substitutionRoom(dungeon_room, matrix_, mapDivCount);
+				createRoad(dungeon_road,dungeon_room, dungeon_division, matrix_, mapDivCount);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) noexcept {
-
+				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
-				dungeon_division.resize(mapDivCount);
-				dungeon_room.resize(mapDivCount);
-				dungeon_road.resize(mapDivCount);
+				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
+				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -138,24 +135,25 @@ namespace dtl {
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
 
-				createDivision(mapDivCount);
-				
-				createRoom(mapDivCount);
-				this->substitutionRoomLayer(matrix_, mapDivCount, layer_);
+				createDivision(dungeon_road,dungeon_division, mapDivCount);
+				createRoom(dungeon_room, dungeon_division,mapDivCount);
+				this->substitutionRoomLayer(dungeon_room, matrix_, mapDivCount, layer_);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ...) noexcept {
-
+				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
 				const std::size_t mapDivCount{ this->division_min + dtl::random::mt32bit.get<std::size_t>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
-				dungeon_division.resize(mapDivCount);
-				dungeon_room.resize(mapDivCount);
-				dungeon_road.resize(mapDivCount);
+				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
+				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
 
 				dungeon_division[0][0] = point_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = point_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -165,14 +163,13 @@ namespace dtl {
 				dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 				dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();
 
-				createDivision(mapDivCount);
-				
-				createRoom(mapDivCount);
-				this->substitutionRoomArray(matrix_, mapDivCount, max_x_);
+				createDivision(dungeon_road,dungeon_division,mapDivCount);
+				createRoom(dungeon_room, dungeon_division,mapDivCount);
+				this->substitutionRoomArray(dungeon_room, matrix_, mapDivCount, max_x_);
 				return true;
 			}
 
-			void createDivision(const std::size_t mapDivCount) noexcept {
+			void createDivision(std::vector<StartEndArray>& dungeon_road,std::vector<StartEndArray>& dungeon_division, const std::size_t mapDivCount) const noexcept {
 
 				//マップを区分けしていく処理(区域を分割する処理)
 				std::size_t division_After{};
@@ -222,7 +219,7 @@ namespace dtl {
 
 			}
 
-			void createRoom(const std::size_t mapDivCount) noexcept {
+			void createRoom(std::vector<StartEndArray>& dungeon_room,const std::vector<StartEndArray>& dungeon_division, const std::size_t mapDivCount) const noexcept {
 
 				//部屋を生成する処理
 				for (std::size_t i{}; i < mapDivCount; ++i) {//区分け
@@ -263,7 +260,7 @@ namespace dtl {
 			}
 
 			template <typename Matrix_>
-			void substitutionRoom(Matrix_&& matrix_, const std::size_t mapDivCount) const noexcept {
+			void substitutionRoom(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const std::size_t mapDivCount) const noexcept {
 				//部屋を生成する処理
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -271,7 +268,7 @@ namespace dtl {
 							matrix_[j][k] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomLayer(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size layer_) const noexcept {
+			void substitutionRoomLayer(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size layer_) const noexcept {
 				//部屋を生成する処理
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -279,7 +276,7 @@ namespace dtl {
 							matrix_[j][k][layer_] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomArray(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size max_x_) const noexcept {
+			void substitutionRoomArray(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size max_x_) const noexcept {
 				//部屋を生成する処理
 				for (std::size_t i{}; i < mapDivCount; ++i)
 					for (std::size_t j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -296,7 +293,7 @@ namespace dtl {
 			//最後に前と後の通路を繋げる。
 
 			template <typename Matrix_>
-			void createRoad(Matrix_&& matrix_, const std::size_t mapDivCount) noexcept {
+			void createRoad(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const std::size_t mapDivCount) const noexcept {
 				for (std::size_t roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路
@@ -335,7 +332,7 @@ namespace dtl {
 				}
 			}
 			template <typename Matrix_>
-			void createRoadLayer(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size layer_) noexcept {
+			void createRoadLayer(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size layer_) const noexcept {
 				for (std::size_t roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路
@@ -374,7 +371,7 @@ namespace dtl {
 				}
 			}
 			template <typename Matrix_>
-			void createRoadArray(Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size max_x_) noexcept {
+			void createRoadArray(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const std::size_t mapDivCount, const Index_Size max_x_) const noexcept {
 				for (std::size_t roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路
@@ -440,51 +437,51 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_) noexcept {
+			constexpr bool draw(Matrix_ && matrix_) const noexcept {
 				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) noexcept {
+			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
 				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) noexcept {
+			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
 				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) noexcept {
+			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
 				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
+			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
+			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
 				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
+			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
+			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
 				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) noexcept {
+			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) noexcept {
+			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
 				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
 			}
 
@@ -492,7 +489,7 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				return this->draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 			}
 
@@ -501,25 +498,25 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) noexcept {
+				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}

@@ -92,7 +92,6 @@ namespace dtl {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
-				return true;
 			}
 
 			//LayerSTL
