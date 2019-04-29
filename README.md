@@ -25,7 +25,7 @@
 |Zapcc|unknown|1.0.1-passing|unknown||
 |ICC|unknown|unknown|unknown|
 
-## API reference
+## [API reference](./REFERENCE.md)
 
 [**>> REFERENCE.md**](./REFERENCE.md)
 
