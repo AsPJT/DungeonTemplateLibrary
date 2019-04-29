@@ -1,6 +1,6 @@
 # DTL (Dungeon Template Library)
 
-![Logo-GIF](https://Kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color640_2.gif)
+![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color640_2_2.gif)
 
 ![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
 
