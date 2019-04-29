@@ -1,6 +1,6 @@
 # DTL (Dungeon Template Library)
 
-<img src="https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Logo/logo_color640.gif" alt="Search Library" width="640px">
+<img src="https://Kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color640.gif" alt="Search Library" width="640px">
 
 ![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
 
@@ -42,7 +42,7 @@ Distributed under the Boost Software License, Version 1.0.
 |E-mail:|wanotaitei@gmail.com|
 |:---|:---|
 |Twitter:|[@wanotaitei](https://twitter.com/wanotaitei)|
-|![svg](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/as_logo.svg)|**As Project**|
-|![gaccho](https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/gaccho_icon.svg)|Made by Gaccho.|
+|![svg](https://Kasugaccho.github.io/DungeonPicture/Picture/as_logo.svg)|**As Project**|
+|![gaccho](https://Kasugaccho.github.io/DungeonPicture/Picture/gaccho_icon.svg)|Made by Gaccho.|
 
 Japan Terrain Generation Research Institute
