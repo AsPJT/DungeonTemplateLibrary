@@ -1,13 +1,8 @@
-<p align="center">
-    <br>
-    <img src="https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Logo/logo_color640.gif" alt="Search Library" width="640px">
-    <br><br>
-  <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.ja"><img src="https://img.shields.io/badge/license-BSL--1.0-blue.svg"></a> <a href="https://github.com/Kasugaccho/AsLib"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg"></a>
-<a href="https://join.slack.com/t/dungeon-generation/shared_invite/enQtNTM4MzQwMDU5MTIyLWEwNjAwMTQyZjk4MDQyNDU0Y2NlMTU2OTE5YTcwOTM5MzJmZWJlMWY3ZWRkZWU4ZDY1MjJlNDU4M2Y4ZDZmOWI"><img src="https://img.shields.io/badge/slack-online-red.svg"></a>
- <br><br>
- DTL (Dungeon Template Library)
-</p>
+<img src="https://github.com/Kasugaccho/DungeonPicture/blob/master/Picture/Logo/logo_color640.gif" alt="Search Library" width="640px">
 
+![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
+
+DTL (Dungeon Template Library)
 
 [>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
