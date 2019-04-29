@@ -1,29 +1,61 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>地形生成研究所</title>
+    <style>
+h2 {
+    text-align: center;
+}
+.content{
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+}
+.box{
+  border: solid 7px #f6f6f6;
+  width: 300px;
+  height: 210px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.box img {
+    max-width: 256px;
+    height: 160px;
+}
+.text{
+  color: #3333aa;
+  width: 100%;
+  height: 2rem;
+  overflow: hidden;
+  padding-top: 3px;
+}
+</style>
 </head>
 <body lang="ja">
-    <br />
-    <h2 style="text-align: center;">
+    <h2>
         🌏地形生成研究所🌏
     </h2>
-    <br />
-    <br />
-    <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;">
-        <tbody>
-            <tr><td style="text-align: center;"><span style="margin-left: auto; margin-right: auto;"><a href="https://github.com/Kasugaccho/DTL_RogueLike" target="_blank"><img border="0" data-original-height="256" data-original-width="512" height="160" src="https://qiita-image-store.s3.amazonaws.com/0/213065/28d389da-7bf1-20f3-e99f-638c417f22e7.gif" width="320" /></a></span></td></tr>
-            <tr><td class="tr-caption" style="text-align: center;"><a href="https://github.com/Kasugaccho/DTL_RogueLike" target="_blank">RogueLike</a></td></tr>
-        </tbody>
-    </table>
-    <br />
-    <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;">
-        <tbody>
-            <tr><td style="text-align: center;"><span style="margin-left: auto; margin-right: auto;"><a href="https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland" target="_blank"><img border="0" data-original-height="256" data-original-width="256" src="https://qiita-image-store.s3.amazonaws.com/0/213065/9705715f-0d89-b585-b66a-fb6a5c778670.gif" /></a></span></td></tr>
-            <tr><td class="tr-caption" style="text-align: center;"><a href="https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland" target="_blank">Simple Voronoi Island</a></td></tr>
-        </tbody>
-    </table>
-    <br />
-    <br />
+    <div class="content">
+        <section class="box">
+            <div>
+                <a href="https://github.com/Kasugaccho/DTL_RogueLike">
+                    <img src="https://qiita-image-store.s3.amazonaws.com/0/213065/28d389da-7bf1-20f3-e99f-638c417f22e7.gif">
+                </a>
+            </div>
+            <p class="text"><a href="https://github.com/Kasugaccho/DTL_RogueLike">RogueLike</a></p>
+        </section>
+        <section class="box">
+            <div>
+                    <a href="https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland">
+                        <img src="https://qiita-image-store.s3.amazonaws.com/0/213065/9705715f-0d89-b585-b66a-fb6a5c778670.gif" />
+                    </a>
+            </div>
+            <p class="text"><a href="https://github.com/Kasugaccho/DTL_SimpleVoronoiIsland">Simple Voronoi Island</a></p>
+        </section>
+    </div>
 </body>
 </html>
