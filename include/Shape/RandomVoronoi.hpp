@@ -39,8 +39,8 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
-			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
+			
+			
 
 
 			///// メンバ変数 /////
@@ -83,7 +83,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) {
 						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -93,7 +93,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) {
 						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -103,7 +103,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) {
 						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -113,7 +113,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) {
 						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -123,7 +123,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_) {
+					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>&, Matrix_Int_ & color_, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) {
 						if (dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});

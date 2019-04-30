@@ -14,7 +14,9 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
-#include <Shape/Rect.hpp>
+#include <cstdint>
+#include <utility>
+#include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
 
@@ -30,7 +32,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+
 
 
 			///// メンバ変数 /////
@@ -85,7 +87,7 @@ namespace dtl {
 				bool drawSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
-						this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionSTL(matrix_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
@@ -93,7 +95,7 @@ namespace dtl {
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-						this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
@@ -103,7 +105,7 @@ namespace dtl {
 				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
-						this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
@@ -111,7 +113,7 @@ namespace dtl {
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
-						this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
@@ -121,7 +123,7 @@ namespace dtl {
 				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionSTL(matrix_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
@@ -131,7 +133,7 @@ namespace dtl {
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionLayer(matrix_, layer_, col, row, std::forward<Args_>(args_)...);
+						this->substitutionLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
@@ -141,7 +143,7 @@ namespace dtl {
 				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionArray(matrix_, col, row, max_x_, std::forward<Args_>(args_)...);
+						this->substitutionArray(matrix_, col, row, max_x_, args_...);
 				return true;
 			}
 
@@ -151,23 +153,23 @@ namespace dtl {
 			///// 情報取得 /////
 
 			DTL_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
+				constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
+				constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
+				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
+				constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
 			DTL_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Int_ getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -261,27 +263,140 @@ namespace dtl {
 			}
 
 
+			///// 消去 /////
+
+			//始点座標Xを初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearPointX() noexcept {
+				this->point_x = 0;
+				return *this;
+			}
+			//始点座標Yを初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearPointY() noexcept {
+				this->point_y = 0;
+				return *this;
+			}
+			//範囲の大きさ(X軸方向)を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearWidth() noexcept {
+				this->width = 0;
+				return *this;
+			}
+			//範囲の大きさ(Y軸方向)を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearHeight() noexcept {
+				this->height = 0;
+				return *this;
+			}
+			//塗り値を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearValue() noexcept {
+				const Matrix_Int_ new_draw_value{};
+				this->draw_value = new_draw_value;
+				return *this;
+			}
+			//始点座標(X,Y)を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearPoint() noexcept {
+				this->clearPointX();
+				this->clearPointY();
+				return *this;
+			}
+			//描画範囲を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clearRange() noexcept {
+				this->clearPointX();
+				this->clearPointY();
+				this->clearWidth();
+				this->clearHeight();
+				return *this;
+			}
+			//全ての値を初期値に戻す
+			DTL_CONSTEXPR_CPP14
+				Init& clear() noexcept {
+				this->clearRange();
+				this->clearValue();
+				return *this;
+			}
+
+
+			///// 代入 /////
+
+			DTL_CONSTEXPR_CPP14
+				Init& setPointX(const Index_Size point_x_) noexcept {
+				this->point_x = point_x_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setPointY(const Index_Size point_y_) noexcept {
+				this->point_y = point_y_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setWidth(const Index_Size width_) noexcept {
+				this->width = width_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setHeight(const Index_Size height_) noexcept {
+				this->height = height_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setValue(const Matrix_Int_ & draw_value_) noexcept {
+				this->draw_value = draw_value_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setPoint(const Index_Size point_) noexcept {
+				this->point_x = point_;
+				this->point_y = point_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				this->width = length_;
+				this->height = length_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->point_x = point_x_;
+				this->point_y = point_y_;
+				this->width = width_;
+				this->height = height_;
+				return *this;
+			}
+			DTL_CONSTEXPR_CPP14
+				Init& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				this->point_x = matrix_range_.x;
+				this->point_y = matrix_range_.y;
+				this->width = matrix_range_.w;
+				this->height = matrix_range_.h;
+				return *this;
+			}
+
+
 			///// コンストラクタ /////
 
 			constexpr Init() noexcept = default;
 			constexpr explicit Init(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit Init(const PairSize & length_) noexcept
-				:width(length_.first), height(length_.second) {}
-			constexpr explicit Init(const PairSize & length_, const Matrix_Int_ & draw_value_) noexcept
-				:width(length_.first), height(length_.second),
-				draw_value(draw_value_) {}
-			constexpr explicit Init(const PairSize & position_, const PairSize & length_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second) {}
-			constexpr explicit Init(const PairSize & position_, const PairSize & length_, const Matrix_Int_ & draw_value_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second),
-				draw_value(draw_value_) {}
-			constexpr explicit Init(const Index_Size width_, const Index_Size height_) noexcept
-				:width(width_), height(height_) {}
-			constexpr explicit Init(const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
-				:width(width_), height(height_),
+			constexpr explicit Init(const dtl::base::MatrixRange & matrix_range_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {}
+			constexpr explicit Init(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
 			constexpr explicit Init(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:point_x(point_x_), point_y(point_y_),

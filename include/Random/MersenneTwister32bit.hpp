@@ -52,15 +52,15 @@ namespace dtl {
 		};
 		static thread_local dtl::random::MersenneTwister_64bit mt64bit;
 
-		constexpr std::size_t counter_num_1{ 64 };
+		constexpr std::size_t mt64_bit_counter_num_1{ 64 };
 		class MT64bit_1 {
 		private:
-			std::size_t counter{ counter_num_1 };
+			std::size_t counter{ mt64_bit_counter_num_1 };
 			std::uint_fast64_t random_num{};
 		public:
 			DTL_NODISCARD
 			bool get() noexcept {
-				if (counter >= counter_num_1) {
+				if (counter >= mt64_bit_counter_num_1) {
 					random_num = dtl::random::mt64bit.get();
 					counter = 0;
 				}
@@ -73,6 +73,8 @@ namespace dtl {
 		};
 		static thread_local dtl::random::MT64bit_1 mt64bit_1;
 
+		constexpr std::size_t mt32_bit_counter_num_1{ 32 };
+
 		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister_32bit {
 		private:
@@ -80,6 +82,22 @@ namespace dtl {
 			std::mt19937 mt;
 			//非決定論的な乱数
 			std::random_device rd;
+
+			std::size_t counter_bit1{ mt32_bit_counter_num_1 };
+			std::uint_fast32_t random_num_bit1{};
+
+			DTL_NODISCARD
+				bool getBit1() noexcept {
+				if (counter_bit1 >= mt32_bit_counter_num_1) {
+					random_num_bit1 = this->get();
+					counter_bit1 = 0;
+				}
+				else ++counter_bit1;
+
+				const bool tmp{ (random_num_bit1 & 1) == 0 };
+				random_num_bit1 >>= 1;
+				return tmp;
+			}
 
 		public:
 			//コンストラクタ(初期化)
@@ -124,14 +142,32 @@ namespace dtl {
 			//1/2の確率
 			DTL_NODISCARD
 			bool probability() noexcept {
-				//std::uniform_int_distribution<> uid(0, 1);
-				//return ((uid(mt)) ? true : false);
-				return dtl::random::mt64bit_1.get();
+				return this->getBit1();
 			}
 
 		};
 		static thread_local dtl::random::MersenneTwister_32bit mt32bit;
 
+		
+		class MT32bit_1 {
+		private:
+			std::size_t counter{ mt32_bit_counter_num_1 };
+			std::uint_fast32_t random_num{};
+		public:
+			DTL_NODISCARD
+				bool get() noexcept {
+				if (counter >= mt32_bit_counter_num_1) {
+					random_num = dtl::random::mt32bit.get();
+					counter = 0;
+				}
+				else ++counter;
+
+				const bool tmp{ (random_num & 1) == 0 };
+				random_num >>= 1;
+				return tmp;
+			}
+		};
+		static thread_local dtl::random::MT32bit_1 mt32bit_1;
 
 
 		constexpr std::size_t counter_num_2{ 32 };

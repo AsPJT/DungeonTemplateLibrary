@@ -19,6 +19,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
 
@@ -34,7 +35,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////
@@ -48,7 +49,8 @@ namespace dtl {
 
 			//
 
-			constexpr void string_String() const noexcept {}
+			DTL_CONSTEXPR_CPP14
+				void string_String() const noexcept {}
 			template<typename ...Args_>
 			DTL_CONSTEXPR_CPP14
 				void string_String(const OutputStringName_& first_, const Args_& ... args_) noexcept {
@@ -356,32 +358,35 @@ namespace dtl {
 
 
 			///// コンストラクタ /////
-
+			
+			constexpr OutputString() noexcept = default;
 			template<typename ...Args_>
 			explicit OutputString(const OutputStringName_ & first_, const Args_ & ... args_) noexcept {
 				this->string_String(first_, args_...);
 			}
+
 			template<typename ...Args_>
-			explicit OutputString(const PairSize & length_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
-				:width(length_.first), height(length_.second) {
-				this->string_String(first_, std::forward<Args_>(args_)...);
-			}
+			constexpr explicit OutputString(const dtl::base::MatrixRange& matrix_range_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {}
+
 			template<typename ...Args_>
-			explicit OutputString(const PairSize & position_, const PairSize & length_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second) {
+			explicit OutputString(const dtl::base::MatrixRange& matrix_range_, const OutputStringName_& first_, const Args_& ... args_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {
 				this->string_String(first_, args_...);
 			}
+
 			template<typename ...Args_>
-			explicit OutputString(const Index_Size width_, const Index_Size height_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
-				:width(width_), height(height_) {
-				this->string_String(first_, std::forward<Args_>(args_)...);
-			}
+			constexpr explicit OutputString(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:point_x(point_x_), point_y(point_y_),
+				width(width_), height(height_) {}
+
 			template<typename ...Args_>
 			explicit OutputString(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_) {
-				this->string_String(first_, std::forward<Args_>(args_)...);
+				this->string_String(first_, args_...);
 			}
 		};
 	}

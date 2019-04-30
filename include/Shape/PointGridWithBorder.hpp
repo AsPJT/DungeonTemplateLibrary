@@ -39,8 +39,8 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
-			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
+			
+			
 
 
 			///// メンバ変数 /////
@@ -280,23 +280,17 @@ namespace dtl {
 			constexpr PointGridWithBorder() noexcept = default;
 			constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(draw_value_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridWithBorder(const PairMatrixInt& pair_value_) noexcept
-				:borderOdd(pair_value_.second), pointGrid(pair_value_.first) {}
 			constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(draw_value2_), pointGrid(draw_value_) {}
 			constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:borderOdd(point_x_, point_y_, width_, height_), pointGrid(point_x_, point_y_, width_, height_) {}
 			constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(point_x_, point_y_, width_, height_, draw_value_), pointGrid(point_x_, point_y_, width_, height_, draw_value_) {}
-			constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const PairMatrixInt& pair_value_) noexcept
-				:borderOdd(point_x_, point_y_, width_, height_, pair_value_.second), pointGrid(point_x_, point_y_, width_, height_, pair_value_.first) {}
 
 			constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_) noexcept
 				:borderOdd(matrix_range_), pointGrid(matrix_range_) {}
 			constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(matrix_range_, draw_value_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const PairMatrixInt& pair_value_) noexcept
-				:borderOdd(matrix_range_, pair_value_.second), pointGrid(matrix_range_, pair_value_.first) {}
 			constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
 		};

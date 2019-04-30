@@ -27,7 +27,7 @@ namespace dtl {
 	inline namespace storage {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_>
+		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = std::ofstream>
 		class FileTerrainOBJ {
 		private:
 
@@ -35,7 +35,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////
@@ -53,24 +53,24 @@ namespace dtl {
 			///// 出力処理 /////
 
 			DTL_CONSTEXPR_CPP14
-				inline void mountain(const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream& ofs_) const noexcept {
+				inline void mountain(const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Ofstream_& ofs_) const noexcept {
 				ofs_ << "f " << (point_y_ * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + (point_x_ - 1)) << '\n';
 				ofs_ << "f " << (point_y_ * max_x_ + (point_x_ - 1)) << " " << (point_y_ * max_x_ + point_x_) << " " << ((point_y_ - 1) * max_x_ + (point_x_ - 1)) << '\n';
 			}
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void baseSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
+				inline void baseSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void baseArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, std::ofstream & ofs_) const noexcept {
+				inline void baseArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, std::ofstream & ofs_) const noexcept {
+				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << "v " << point_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) * value_z << " " << point_y_ * value_y << '\n';
 			}
 
@@ -80,7 +80,7 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			bool writeSTL(const Matrix_ & matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
@@ -93,7 +93,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool writeWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
@@ -108,7 +108,7 @@ namespace dtl {
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
 			bool writeLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
@@ -121,7 +121,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool writeLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
@@ -136,7 +136,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			bool writeNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
@@ -151,7 +151,7 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
@@ -166,7 +166,7 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			bool writeArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				std::ofstream ofs(str);
+				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
 				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
 					for (Index_Size col{ this->point_x }; col < point_x_; ++col)

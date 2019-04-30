@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="20190426.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Base\Struct.hpp" />
+    <ClInclude Include="..\..\include\Camera\MatrixView.hpp" />
+    <ClInclude Include="..\..\include\Console\OutputNumber.hpp" />
+    <ClInclude Include="..\..\include\Console\OutputString.hpp" />
+    <ClInclude Include="..\..\include\Console\OutputStringBool.hpp" />
+    <ClInclude Include="..\..\include\Console\OutputView.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\BoardGame.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonBinarization.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonFile.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonMatrix.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonNoise.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonOutput.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonPaint.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\DungeonRandom.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\FractalIsland.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\HorizontalScroll.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\MazeDig.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\SimpleRogueLike.hpp" />
+    <ClInclude Include="..\..\include\Deprecated\SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="..\..\include\DTL.hpp" />
+    <ClInclude Include="..\..\include\DTL\Base.hpp" />
+    <ClInclude Include="..\..\include\DTL\Camera.hpp" />
+    <ClInclude Include="..\..\include\DTL\Console.hpp" />
+    <ClInclude Include="..\..\include\DTL\Deprecated.hpp" />
+    <ClInclude Include="..\..\include\DTL\Entity.hpp" />
+    <ClInclude Include="..\..\include\DTL\Random.hpp" />
+    <ClInclude Include="..\..\include\DTL\Retouch.hpp" />
+    <ClInclude Include="..\..\include\DTL\Shape.hpp" />
+    <ClInclude Include="..\..\include\DTL\Storage.hpp" />
+    <ClInclude Include="..\..\include\DTL\ThirdParty.hpp" />
+    <ClInclude Include="..\..\include\DTL\Utility.hpp" />
+    <ClInclude Include="..\..\include\Entity\MobManager.hpp" />
+    <ClInclude Include="..\..\include\Macros\constexpr.hpp" />
+    <ClInclude Include="..\..\include\Macros\nodiscard.hpp" />
+    <ClInclude Include="..\..\include\Random\MersenneTwister32bit.hpp" />
+    <ClInclude Include="..\..\include\Retouch\BuryPoint.hpp" />
+    <ClInclude Include="..\..\include\Retouch\RemovePoint.hpp" />
+    <ClInclude Include="..\..\include\Shape\AbsoluteMemberRect.hpp" />
+    <ClInclude Include="..\..\include\Shape\AbsoluteRect.hpp" />
+    <ClInclude Include="..\..\include\Shape\Border.hpp" />
+    <ClInclude Include="..\..\include\Shape\BorderOdd.hpp" />
+    <ClInclude Include="..\..\include\Shape\CellularAutomatonIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\CellularAutomatonMixIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\DiamondSquareAverage.hpp" />
+    <ClInclude Include="..\..\include\Shape\DiamondSquareAverageCornerIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\DiamondSquareAverageIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\FractalIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\FractalLoopIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\HalfMixRect.hpp" />
+    <ClInclude Include="..\..\include\Shape\MazeDig.hpp" />
+    <ClInclude Include="..\..\include\Shape\MazeDig_OLD.hpp" />
+    <ClInclude Include="..\..\include\Shape\MixRect.hpp" />
+    <ClInclude Include="..\..\include\Shape\Point.hpp" />
+    <ClInclude Include="..\..\include\Shape\PointGrid.hpp" />
+    <ClInclude Include="..\..\include\Shape\PointGridAndSomeBlocksWithBorder.hpp" />
+    <ClInclude Include="..\..\include\Shape\PointGridWithBorder.hpp" />
+    <ClInclude Include="..\..\include\Shape\RandomRect.hpp" />
+    <ClInclude Include="..\..\include\Shape\RandomVoronoi.hpp" />
+    <ClInclude Include="..\..\include\Shape\Rect.hpp" />
+    <ClInclude Include="..\..\include\Shape\SimpleRogueLike.hpp" />
+    <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="..\..\include\Shape\Template.hpp" />
+    <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileCSV.hpp" />
+    <ClInclude Include="..\..\include\Storage\FilePNG.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileTerrainOBJ.hpp" />
+    <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
+    <ClInclude Include="..\..\include\ThirdParty\STB\wrapper_stb_image_write.hpp" />
+    <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
+    <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />
+    <ClInclude Include="..\..\include\Utility\CharCast.hpp" />
+    <ClInclude Include="..\..\include\Utility\Copy.hpp" />
+    <ClInclude Include="..\..\include\Utility\Init.hpp" />
+    <ClInclude Include="..\..\include\Utility\IsOutputCast.hpp" />
+    <ClInclude Include="..\..\include\Utility\Matrix.hpp" />
+    <ClInclude Include="..\..\include\Utility\NoiseBool.hpp" />
+    <ClInclude Include="..\..\include\Utility\NoiseShoreBool.hpp" />
+    <ClInclude Include="..\..\include\Utility\ReplaceAll.hpp" />
+    <ClInclude Include="..\..\include\Utility\ReplaceSome.hpp" />
+    <ClInclude Include="..\..\include\Utility\VoronoiDiagram.hpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4F15A4A0-680A-4269-B271-A0C7B853D493}</ProjectGuid>
+    <RootNamespace>DungeonTemplateLibrary</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <OpenMPSupport>false</OpenMPSupport>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/EHsc</AdditionalOptions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <OpenMPSupport>false</OpenMPSupport>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/EHsc</AdditionalOptions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <OpenMPSupport>false</OpenMPSupport>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/EHsc</AdditionalOptions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <OpenMPSupport>false</OpenMPSupport>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <AdditionalOptions>/EHsc</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -14,6 +14,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
+#include <Base/Struct.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
 
@@ -29,8 +30,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
-			using PairMatrixInt = std::pair<Matrix_Int_, Matrix_Int_>;
+
 
 
 			///// メンバ変数 /////
@@ -152,23 +152,23 @@ namespace dtl {
 			///// 情報取得 /////
 
 			DTL_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
+				constexpr Index_Size getPointX() const noexcept {
 				return this->point_x;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
+				constexpr Index_Size getPointY() const noexcept {
 				return this->point_y;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
+				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
 			DTL_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
+				constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
 			DTL_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Int_ getValue() const noexcept {
 				return this->true_value;
 			}
 
@@ -377,37 +377,21 @@ namespace dtl {
 			constexpr Binarization() noexcept = default;
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_) noexcept
 				:true_value(true_value_) {}
-			constexpr explicit Binarization(const PairMatrixInt & pair_matrix_) noexcept
-				:true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
-			constexpr explicit Binarization(const PairSize & length_) noexcept
-				:width(length_.first), height(length_.second) {}
-			constexpr explicit Binarization(const PairSize & length_, const Matrix_Int_ & true_value_) noexcept
-				:width(length_.first), height(length_.second),
-				true_value(true_value_) {}
-			constexpr explicit Binarization(const PairSize & length_, const PairMatrixInt & pair_matrix_) noexcept
-				:width(length_.first), height(length_.second),
-				true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
-			constexpr explicit Binarization(const PairSize & position_, const PairSize & length_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second) {}
-			constexpr explicit Binarization(const PairSize & position_, const PairSize & length_, const Matrix_Int_ & true_value_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second),
-				true_value(true_value_) {}
-			constexpr explicit Binarization(const PairSize & position_, const PairSize & length_, const PairMatrixInt & pair_matrix_) noexcept
-				:point_x(position_.first), point_y(position_.second),
-				width(length_.first), height(length_.second),
-				true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
-			//constexpr explicit Binarization(const Index_Size width_, const Index_Size height_) noexcept
-			//	:width(width_), height(height_) {}
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
 				:true_value(true_value_), false_value(false_value_) {}
-			constexpr explicit Binarization(const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_) noexcept
-				:width(width_), height(height_),
+
+			constexpr explicit Binarization(const dtl::base::MatrixRange & matrix_range_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h) {}
+			constexpr explicit Binarization(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_) {}
-			constexpr explicit Binarization(const Index_Size width_, const Index_Size height_, const PairMatrixInt & pair_matrix_) noexcept
-				:width(width_), height(height_),
-				true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
+			constexpr explicit Binarization(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
+				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				width(matrix_range_.w), height(matrix_range_.h),
+				true_value(true_value_), false_value(false_value_) {}
+
 			constexpr explicit Binarization(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_) {}
@@ -415,10 +399,11 @@ namespace dtl {
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_),
 				true_value(true_value_) {}
-			constexpr explicit Binarization(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const PairMatrixInt & pair_matrix_) noexcept
+			constexpr explicit Binarization(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
 				:point_x(point_x_), point_y(point_y_),
 				width(width_), height(height_),
-				true_value(pair_matrix_.first), false_value(pair_matrix_.second) {}
+				true_value(true_value_), false_value(false_value_) {}
+
 		};
 	}
 }

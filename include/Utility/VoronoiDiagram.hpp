@@ -40,7 +40,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using PairSize = std::pair<Index_Size, Index_Size>;
+			
 
 
 			///// メンバ変数 /////
@@ -59,7 +59,7 @@ namespace dtl {
 				void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
 				for (std::size_t i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
 					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
-					function_(point_[array_num], color_[array_num]);
+					function_(point_[array_num], color_[array_num], static_cast<std::int_fast32_t>(point_x), static_cast<std::int_fast32_t>(point_x), w_, h_);
 				}
 			}
 
