@@ -1,8 +1,6 @@
-# DTL (Dungeon Template Library)
+# DTL (Dungeon Template Library) ![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
 
 ![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color960_2.gif)
-
-![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
 
 [>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
@@ -12,8 +10,6 @@
 - [>> Web Trial (Wandbox)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 ## Overview
-
-[>> SampleCode](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/SampleCode)
 
 ### Version 0.4.4 [ C++14/17 ]
 
