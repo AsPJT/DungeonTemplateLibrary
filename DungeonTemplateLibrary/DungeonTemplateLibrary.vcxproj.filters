@@ -272,6 +272,9 @@
     <ClInclude Include="Shape\SimpleVoronoiIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\Template.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190426.cpp">

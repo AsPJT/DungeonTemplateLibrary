@@ -76,6 +76,7 @@
     <ClInclude Include="Shape\Rect.hpp" />
     <ClInclude Include="Shape\SimpleRogueLike.hpp" />
     <ClInclude Include="Shape\SimpleVoronoiIsland.hpp" />
+    <ClInclude Include="Shape\Template.hpp" />
     <ClInclude Include="Shape\WhiteNoise.hpp" />
     <ClInclude Include="Storage\FileCSV.hpp" />
     <ClInclude Include="Storage\FileTerrainOBJ.hpp" />
