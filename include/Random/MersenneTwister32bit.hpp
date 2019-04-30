@@ -1,5 +1,6 @@
 ﻿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
+	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 

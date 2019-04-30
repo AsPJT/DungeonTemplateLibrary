@@ -6,15 +6,15 @@
 
 ## [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[>> Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+[>> SDK Downloads](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[>> Web Trial (Wandbox)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
+[>> Web Trial](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 ## Overview
 
 ### Version 0.4.4 [ C++14/17 ]
 
-|Compiler|[C++17 (v0.3.0~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp17)|[C++14 (~v0.2.4/v0.4.3.1\~)](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/master/include/cpp14)|
+|Compiler|C++17|C++14|
 |:---|:---|:---|
 |MSVC|14.10-passing|14.10-passing|
 |GCC|unknown|5.1.0-passing|
@@ -26,11 +26,12 @@
 
 [**>> REFERENCE.md**](./REFERENCE.md)
 
-[![dsai](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](./REFERENCE.md)
+[![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](./REFERENCE.md)
 
 ## License
 
 Copyright (c) 2017-2019 Kasugaccho.
+Copyright (c) 2018-2019 As Project.
 
 Distributed under the Boost Software License, Version 1.0.
 
