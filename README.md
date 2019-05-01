@@ -12,7 +12,7 @@
 
 ## Overview
 
-### Version 0.4.4 [ C++14/17 ]
+### [**Version 0.4.4**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++14/17 ]
 
 |Compiler|C++17|C++14|
 |:---|:---|:---|
