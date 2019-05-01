@@ -222,17 +222,17 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size point_x_) noexcept {
-				this->randomRect.setPointX(point_x_);
-				this->borderOdd.setPointX(point_x_);
-				this->pointGrid.setPointX(point_x_);
+				PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size end_x_) noexcept {
+				this->randomRect.setPointX(end_x_);
+				this->borderOdd.setPointX(end_x_);
+				this->pointGrid.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size point_y_) noexcept {
-				this->randomRect.setPointY(point_y_);
-				this->borderOdd.setPointY(point_y_);
-				this->pointGrid.setPointY(point_y_);
+				PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size end_y_) noexcept {
+				this->randomRect.setPointY(end_y_);
+				this->borderOdd.setPointY(end_y_);
+				this->pointGrid.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -270,23 +270,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;

@@ -71,8 +71,8 @@ namespace dtl {
 					std::size_t room_rand_max_y{};
 
 					using Index_Size = std::size_t;
-					Index_Size point_x{};
-					Index_Size point_y{};
+					Index_Size start_x{};
+					Index_Size start_y{};
 					Index_Size width{};
 					Index_Size height{};
 
@@ -110,8 +110,8 @@ namespace dtl {
 
 						dungeon_division[0][0] = (size_y - 1); //マップの区分け初期サイズX終点 (マップの大きさX軸)
 						dungeon_division[0][1] = (size_x - 1); //マップの区分け初期サイズY終点 (マップの大きさY軸)
-						dungeon_division[0][2] = point_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-						dungeon_division[0][3] = point_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+						dungeon_division[0][2] = start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+						dungeon_division[0][3] = start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
 						dungeon_road[0][0] = (std::numeric_limits<std::size_t>::max)();
 						dungeon_road[0][1] = (std::numeric_limits<std::size_t>::max)();

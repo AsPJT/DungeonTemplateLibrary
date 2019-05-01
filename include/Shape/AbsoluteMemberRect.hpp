@@ -192,13 +192,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				AbsoluteMemberRect& setPointX(const Index_Size point_x_) noexcept {
-				this->absoluteRect.setPointX(point_x_);
+				AbsoluteMemberRect& setPointX(const Index_Size end_x_) noexcept {
+				this->absoluteRect.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				AbsoluteMemberRect& setPointY(const Index_Size point_y_) noexcept {
-				this->absoluteRect.setPointY(point_y_);
+				AbsoluteMemberRect& setPointY(const Index_Size end_y_) noexcept {
+				this->absoluteRect.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -228,23 +228,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				AbsoluteMemberRect& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				AbsoluteMemberRect& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				AbsoluteMemberRect& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				AbsoluteMemberRect& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				AbsoluteMemberRect& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				AbsoluteMemberRect& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;
@@ -260,10 +260,10 @@ namespace dtl {
 				:absoluteRect(matrix_range_) {}
 			constexpr explicit AbsoluteMemberRect(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:absoluteRect(matrix_range_, draw_value_) {}
-			constexpr explicit AbsoluteMemberRect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:absoluteRect(point_x_, point_y_, width_, height_) {}
-			constexpr explicit AbsoluteMemberRect(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
-				:absoluteRect(point_x_, point_y_, width_, height_, draw_value_) {}
+			constexpr explicit AbsoluteMemberRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:absoluteRect(end_x_, end_y_, width_, height_) {}
+			constexpr explicit AbsoluteMemberRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
+				:absoluteRect(end_x_, end_y_, width_, height_, draw_value_) {}
 		};
 	}
 }

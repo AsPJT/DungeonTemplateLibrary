@@ -81,18 +81,18 @@ namespace dtl::generator::dungeon::stl {
 		void mazeDig_Create(Matrix_&& matrix_) const noexcept {
 
 			if (matrix_.size() <= 2 || matrix_[1].size() <= 2) return;
-			const std::size_t point_y_{ matrix_.size() };
-			const std::size_t point_x_{ (point_y_ == 0) ? 0 : matrix_[0].size() };
+			const std::size_t end_y_{ matrix_.size() };
+			const std::size_t end_x_{ (end_y_ == 0) ? 0 : matrix_[0].size() };
 
 			matrix_[1][1] = empty_value;
 
-			std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
+			std::unique_ptr<std::size_t[]> select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 			if (!select_x) return;
-			std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[point_x_ * point_y_] };
+			std::unique_ptr<std::size_t[]> select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 			if (!select_y) return;
 
-			const std::size_t i_max{ ((point_y_ & 1) == 0) ? point_y_ - 2 : point_y_ - 1 };
-			const std::size_t j_max{ ((point_x_ & 1) == 0) ? point_x_ - 2 : point_x_ - 1 };
+			const std::size_t i_max{ ((end_y_ & 1) == 0) ? end_y_ - 2 : end_y_ - 1 };
+			const std::size_t j_max{ ((end_x_ & 1) == 0) ? end_x_ - 2 : end_x_ - 1 };
 
 			//座標を選ぶ
 			for (std::size_t select_id{};;) {

@@ -227,13 +227,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				RandomVoronoi& setPointX(const Index_Size point_x_) noexcept {
-				this->voronoiDiagram.setPointX(point_x_);
+				RandomVoronoi& setPointX(const Index_Size end_x_) noexcept {
+				this->voronoiDiagram.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				RandomVoronoi& setPointY(const Index_Size point_y_) noexcept {
-				this->voronoiDiagram.setPointY(point_y_);
+				RandomVoronoi& setPointY(const Index_Size end_y_) noexcept {
+				this->voronoiDiagram.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -263,23 +263,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				RandomVoronoi& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				RandomVoronoi& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				RandomVoronoi& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				RandomVoronoi& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				RandomVoronoi& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;

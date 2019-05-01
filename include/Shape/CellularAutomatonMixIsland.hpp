@@ -227,17 +227,17 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonMixIsland& setPointX(const Index_Size point_x_) noexcept {
-				this->mixRect.setPointX(point_x_);
-				this->border.setPointX(point_x_);
-				this->cellularAutomation.setPointX(point_x_);
+				CellularAutomatonMixIsland& setPointX(const Index_Size end_x_) noexcept {
+				this->mixRect.setPointX(end_x_);
+				this->border.setPointX(end_x_);
+				this->cellularAutomation.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonMixIsland& setPointY(const Index_Size point_y_) noexcept {
-				this->mixRect.setPointY(point_y_);
-				this->border.setPointY(point_y_);
-				this->cellularAutomation.setPointY(point_y_);
+				CellularAutomatonMixIsland& setPointY(const Index_Size end_y_) noexcept {
+				this->mixRect.setPointY(end_y_);
+				this->border.setPointY(end_y_);
+				this->cellularAutomation.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -275,23 +275,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonMixIsland& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonMixIsland& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonMixIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonMixIsland& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonMixIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonMixIsland& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;

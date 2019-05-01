@@ -211,15 +211,15 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				PointGridWithBorder& setPointX(const Index_Size point_x_) noexcept {
-				this->borderOdd.setPointX(point_x_);
-				this->pointGrid.setPointX(point_x_);
+				PointGridWithBorder& setPointX(const Index_Size end_x_) noexcept {
+				this->borderOdd.setPointX(end_x_);
+				this->pointGrid.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridWithBorder& setPointY(const Index_Size point_y_) noexcept {
-				this->borderOdd.setPointY(point_y_);
-				this->pointGrid.setPointY(point_y_);
+				PointGridWithBorder& setPointY(const Index_Size end_y_) noexcept {
+				this->borderOdd.setPointY(end_y_);
+				this->pointGrid.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -253,23 +253,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridWithBorder& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridWithBorder& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				PointGridWithBorder& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				PointGridWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;
@@ -283,10 +283,10 @@ namespace dtl {
 				:borderOdd(draw_value_), pointGrid(draw_value_) {}
 			constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(draw_value2_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:borderOdd(point_x_, point_y_, width_, height_), pointGrid(point_x_, point_y_, width_, height_) {}
-			constexpr explicit PointGridWithBorder(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
-				:borderOdd(point_x_, point_y_, width_, height_, draw_value_), pointGrid(point_x_, point_y_, width_, height_, draw_value_) {}
+			constexpr explicit PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:borderOdd(end_x_, end_y_, width_, height_), pointGrid(end_x_, end_y_, width_, height_) {}
+			constexpr explicit PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
+				:borderOdd(end_x_, end_y_, width_, height_, draw_value_), pointGrid(end_x_, end_y_, width_, height_, draw_value_) {}
 
 			constexpr explicit PointGridWithBorder(const dtl::base::MatrixRange& matrix_range_) noexcept
 				:borderOdd(matrix_range_), pointGrid(matrix_range_) {}

@@ -39,8 +39,8 @@ namespace dtl {
 
 			///// メンバ変数 /////
 
-			Index_Size point_x{};
-			Index_Size point_y{};
+			Index_Size start_x{};
+			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
 
@@ -52,18 +52,18 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				function_(matrix_[point_y_][point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
+				inline void outputSTL(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				function_(matrix_[end_y_][end_x_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				function_(matrix_[point_y_ * max_x_ + point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
+				inline void outputArray(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				function_(matrix_[end_y_ * max_x_ + end_x_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
-				function_(matrix_[point_y_][point_x_][layer_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
+				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				function_(matrix_[end_y_][end_x_][layer_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
 			}
 
 
@@ -71,59 +71,59 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			bool drawSTL(const Matrix_ & matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
+			bool drawSTL(const Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->outputSTL(matrix_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
+			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->outputSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
-			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < matrix_[row].size(); ++col)
+			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->outputLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < matrix_[row].size() && col < point_x_; ++col)
+			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->outputLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			bool drawNormal(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
+			bool drawNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
+			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			bool drawArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
+			bool drawArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputArray(matrix_, col, row, max_x_, args_...);
 				return true;
 			}
@@ -135,11 +135,11 @@ namespace dtl {
 
 			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
-				return this->point_x;
+				return this->start_x;
 			}
 			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
-				return this->point_y;
+				return this->start_y;
 			}
 			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
@@ -156,31 +156,31 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename Function_>
 			bool draw(const Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(matrix_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->drawWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return (this->width == 0) ? this->drawSTL(matrix_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename Function_>
 			bool draw(const Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(matrix_, layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->drawLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return (this->width == 0) ? this->drawLayerSTL(matrix_, layer_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_, typename Function_>
 			bool draw(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->drawNormal(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename Function_>
 			bool draw(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->drawLayerNormal(matrix_, layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_, typename Function_>
 			bool drawArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
+				return this->drawArray(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
 			}
 
 
@@ -213,13 +213,13 @@ namespace dtl {
 			//始点座標Xを初期値に戻す
 			DTL_CONSTEXPR_CPP14
 				OutputView& clearPointX() noexcept {
-				this->point_x = 0;
+				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
 			DTL_CONSTEXPR_CPP14
 				OutputView& clearPointY() noexcept {
-				this->point_y = 0;
+				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
@@ -261,13 +261,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPointX(const Index_Size point_x_) noexcept {
-				this->point_x = point_x_;
+				OutputView& setPointX(const Index_Size end_x_) noexcept {
+				this->start_x = end_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPointY(const Index_Size point_y_) noexcept {
-				this->point_y = point_y_;
+				OutputView& setPointY(const Index_Size end_y_) noexcept {
+				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -282,36 +282,36 @@ namespace dtl {
 			}
 			DTL_CONSTEXPR_CPP14
 				OutputView& setPoint(const Index_Size point_) noexcept {
-				this->point_x = point_;
-				this->point_y = point_;
+				this->start_x = point_;
+				this->start_y = point_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				OutputView& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				OutputView& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				OutputView& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
 				OutputView& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
-				this->point_x = matrix_range_.x;
-				this->point_y = matrix_range_.y;
+				this->start_x = matrix_range_.x;
+				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
 				this->height = matrix_range_.h;
 				return *this;
@@ -325,15 +325,15 @@ namespace dtl {
 				:view_width(view_), view_height(view_) {}
 			constexpr explicit OutputView(const OutputView_& view_width_, const OutputView_& view_height_) noexcept
 				:view_width(view_width_), view_height(view_height_) {}
-			constexpr explicit OutputView(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputView(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				view_width(view_), view_height(view_) {}
-			constexpr explicit OutputView(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				view_width(view_width_), view_height(view_height_) {}
 		};

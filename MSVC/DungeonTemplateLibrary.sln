@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Build", "MSVC\Build\Build.vcxproj", "{CBCC78B8-72FF-4C8D-8DCC-F4FCADA64217}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Build", "Build\Build.vcxproj", "{CBCC78B8-72FF-4C8D-8DCC-F4FCADA64217}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Clang", "MSVC\Clang\Clang.vcxproj", "{458E7CD3-8206-4938-B514-683FFAEB9E2B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Clang", "Clang\Clang.vcxproj", "{458E7CD3-8206-4938-B514-683FFAEB9E2B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DungeonTemplateLibrary", "MSVC\DungeonTemplateLibrary\DungeonTemplateLibrary.vcxproj", "{4F15A4A0-680A-4269-B271-A0C7B853D493}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DungeonTemplateLibrary", "DungeonTemplateLibrary\DungeonTemplateLibrary.vcxproj", "{4F15A4A0-680A-4269-B271-A0C7B853D493}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

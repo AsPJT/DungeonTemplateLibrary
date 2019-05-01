@@ -227,17 +227,17 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonIsland& setPointX(const Index_Size point_x_) noexcept {
-				this->randomRect.setPointX(point_x_);
-				this->border.setPointX(point_x_);
-				this->cellularAutomation.setPointX(point_x_);
+				CellularAutomatonIsland& setPointX(const Index_Size end_x_) noexcept {
+				this->randomRect.setPointX(end_x_);
+				this->border.setPointX(end_x_);
+				this->cellularAutomation.setPointX(end_x_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonIsland& setPointY(const Index_Size point_y_) noexcept {
-				this->randomRect.setPointY(point_y_);
-				this->border.setPointY(point_y_);
-				this->cellularAutomation.setPointY(point_y_);
+				CellularAutomatonIsland& setPointY(const Index_Size end_y_) noexcept {
+				this->randomRect.setPointY(end_y_);
+				this->border.setPointY(end_y_);
+				this->cellularAutomation.setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -275,23 +275,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonIsland& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonIsland& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonIsland& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(length_);
 				this->setHeight(length_);
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomatonIsland& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->setPointX(point_x_);
-				this->setPointY(point_y_);
+				CellularAutomatonIsland& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->setPointX(end_x_);
+				this->setPointY(end_y_);
 				this->setWidth(width_);
 				this->setHeight(height_);
 				return *this;
@@ -302,7 +302,7 @@ namespace dtl {
 
 			constexpr CellularAutomatonIsland() noexcept = default;
 			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_) noexcept
-				:border(draw_value_), randomRect(draw_value_) {}
+				:randomRect(draw_value_) {}
 
 			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
 				:border(draw_value2_), randomRect(draw_value_) {}
@@ -311,15 +311,15 @@ namespace dtl {
 			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_, const double probability_) noexcept
 				:border(draw_value2_), randomRect(draw_value_, probability_), loop_num(loop_num_) {}
 
-			constexpr explicit CellularAutomatonIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:border(point_x_, point_y_, width_, height_), randomRect(point_x_, point_y_, width_, height_) {}
-			constexpr explicit CellularAutomatonIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
-				:border(point_x_, point_y_, width_, height_, draw_value_), randomRect(point_x_, point_y_, width_, height_, draw_value_) {}
+			constexpr explicit CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:border(end_x_, end_y_, width_, height_), randomRect(end_x_, end_y_, width_, height_) {}
+			constexpr explicit CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+				:border(end_x_, end_y_, width_, height_), randomRect(end_x_, end_y_, width_, height_, draw_value_) {}
 
 			constexpr explicit CellularAutomatonIsland(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:border(matrix_range_), randomRect(matrix_range_), cellularAutomation(matrix_range_) {}
 			constexpr explicit CellularAutomatonIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
-				:border(matrix_range_, draw_value_), randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_) {}
+				:randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_) {}
 
 			constexpr explicit CellularAutomatonIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
 				:border(matrix_range_, draw_value2_), randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_) {}

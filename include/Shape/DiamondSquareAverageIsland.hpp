@@ -47,8 +47,8 @@ namespace dtl {
 
 			///// メンバ変数 /////
 
-			Index_Size point_x{};
-			Index_Size point_y{};
+			Index_Size start_x{};
+			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
 			Matrix_Int_ min_value{};
@@ -75,41 +75,41 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
 				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
-				matrix_[this->point_y][this->point_x] = matrix_[this->point_y + map_size_ / 2][this->point_x] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y][this->point_x + map_size_] = matrix_[this->point_y][this->point_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_][this->point_x] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_][this->point_x + map_size_] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2] = this->min_value + this->altitude;
-				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->point_x, this->point_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->point_y][this->point_x], matrix_[this->point_y + map_size_ / 2][this->point_x], matrix_[this->point_y][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->point_x, this->point_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->point_y + map_size_ / 2][this->point_x], matrix_[this->point_y + map_size_][this->point_x], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[this->point_y][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2], matrix_[this->point_y][this->point_x + map_size_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_], matrix_[this->point_y + map_size_][this->point_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
+				matrix_[this->start_y][this->start_x] = matrix_[this->start_y + map_size_ / 2][this->start_x] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y][this->start_x + map_size_] = matrix_[this->start_y][this->start_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2] = this->min_value + this->altitude;
+				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x], matrix_[this->start_y + map_size_ / 2][this->start_x], matrix_[this->start_y][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x], matrix_[this->start_y + map_size_][this->start_x], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], matrix_[this->start_y][this->start_x + map_size_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_], matrix_[this->start_y + map_size_][this->start_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
 				inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
-				matrix_[(this->point_y)* max_x_ + (this->point_x)] = matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_)] = matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x)] = matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_)] = matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)] = this->min_value + this->altitude;
-				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->point_x, this->point_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[(this->point_y)* max_x_ + (this->point_x)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x)], matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->point_x, this->point_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y)* max_x_ + (this->point_x + map_size_)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_ / 2)], matrix_[(this->point_y + map_size_ / 2) * max_x_ + (this->point_x + map_size_)], matrix_[(this->point_y + map_size_) * max_x_ + (this->point_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
+				matrix_[(this->start_y)* max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)] = this->min_value + this->altitude;
+				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[(this->start_y)* max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)], matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
-				matrix_[this->point_y][this->point_x][layer_] = matrix_[this->point_y + map_size_ / 2][this->point_x][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y][this->point_x + map_size_][layer_] = matrix_[this->point_y][this->point_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_][this->point_x][layer_] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_][this->point_x + map_size_][layer_] = matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2][layer_] = this->min_value + this->altitude;
-				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->point_x, this->point_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->point_y][this->point_x][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x][layer_], matrix_[this->point_y][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->point_x, this->point_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->point_y + map_size_ / 2][this->point_x][layer_], matrix_[this->point_y + map_size_][this->point_x][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[this->point_y][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y][this->point_x + map_size_][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_][layer_], this->min_value + this->altitude, this->add_altitude, function_);
-				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->point_x, this->point_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y + map_size_][this->point_x + map_size_ / 2][layer_], matrix_[this->point_y + map_size_ / 2][this->point_x + map_size_][layer_], matrix_[this->point_y + map_size_][this->point_x + map_size_][layer_], this->min_value + this->altitude, this->add_altitude, function_);
+				matrix_[this->start_y][this->start_x][layer_] = matrix_[this->start_y + map_size_ / 2][this->start_x][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y][this->start_x + map_size_][layer_] = matrix_[this->start_y][this->start_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_] = this->min_value + this->altitude;
+				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x][layer_], matrix_[this->start_y][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x][layer_], matrix_[this->start_y + map_size_][this->start_x][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y][this->start_x + map_size_][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_][layer_], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ * 3 / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_][layer_], matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 
 			template<typename Matrix_>
@@ -134,59 +134,59 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawSTL(Matrix_ && matrix_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((end_y_ > (std::min)(matrix_[0].size(), end_x_)) ? (std::min)(matrix_[0].size(), end_x_) : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > matrix_[0].size()) ? matrix_[0].size() : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > (std::min)(matrix_[0].size(), point_x_)) ? (std::min)(matrix_[0].size(), point_x_) : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > (std::min)(matrix_[0].size(), end_x_)) ? (std::min)(matrix_[0].size(), end_x_) : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawNormal(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionSTL(std::forward<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
+				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), std::forward<Args_>(args_)...);
+				this->substitutionLayer(std::forward<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), std::forward<Args_>(args_)...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool drawArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionArray(std::forward<Matrix_>(matrix_), getMatrixSize((point_y_ > point_x_) ? point_x_ : point_y_), max_x_, std::forward<Args_>(args_)...);
+				this->substitutionArray(std::forward<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), max_x_, std::forward<Args_>(args_)...);
 				return true;
 			}
 
@@ -197,11 +197,11 @@ namespace dtl {
 
 			DTL_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
-				return this->point_x;
+				return this->start_x;
 			}
 			DTL_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
-				return this->point_y;
+				return this->start_y;
 			}
 			DTL_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
@@ -230,51 +230,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->drawWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
+				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height) : this->drawWidthSTL(matrix_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->drawWidthSTL(matrix_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height) : this->drawLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height);
+				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_) : this->drawLayerWidthSTL(matrix_, layer_, this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->drawNormal(std::forward<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
+				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
 			}
 
 
@@ -324,33 +324,33 @@ namespace dtl {
 			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 			constexpr explicit DiamondSquareAverageIsland(const dtl::base::MatrixRange & matrix_range_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 			constexpr explicit DiamondSquareAverageIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_) {}
 			constexpr explicit DiamondSquareAverageIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_), altitude(altitude_) {}
 			constexpr explicit DiamondSquareAverageIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				min_value(min_value_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 		};

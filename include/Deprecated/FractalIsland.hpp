@@ -451,12 +451,12 @@ namespace dtl {
 					void create(Matrix_& matrix_, const std::int_fast32_t max_value_ = 255) const noexcept {
 						if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 
-						const std::size_t point_y_{ matrix_.size() };
-						const std::size_t point_x_{ (point_y_ == 0) ? 0 : matrix_[0].size() };
+						const std::size_t end_y_{ matrix_.size() };
+						const std::size_t end_x_{ (end_y_ == 0) ? 0 : matrix_[0].size() };
 
 						std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
-						const std::size_t chunk_x{ ((point_x_) / chunk_size) };
-						const std::size_t chunk_y{ ((point_y_) / chunk_size) };
+						const std::size_t chunk_x{ ((end_x_) / chunk_size) };
+						const std::size_t chunk_y{ ((end_y_) / chunk_size) };
 
 						std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 						if (!rand_up) return;

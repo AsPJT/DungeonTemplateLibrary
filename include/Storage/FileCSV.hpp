@@ -48,18 +48,18 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
-				matrix_[point_y_][point_x_] = value_;
+				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Matrix_Int_& value_) const noexcept {
+				matrix_[end_y_][end_x_] = value_;
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, const Matrix_Int_& value_) const noexcept {
-				matrix_[point_y_ * max_x_ + point_x_] = value_;
+				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, const Matrix_Int_& value_) const noexcept {
+				matrix_[end_y_ * max_x_ + end_x_] = value_;
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, const Matrix_Int_& value_) const noexcept {
-				matrix_[point_y_][point_x_][layer_] = value_;
+				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, const Matrix_Int_& value_) const noexcept {
+				matrix_[end_y_][end_x_][layer_] = value_;
 			}
 
 			//csvファイルの読み込み時の分割

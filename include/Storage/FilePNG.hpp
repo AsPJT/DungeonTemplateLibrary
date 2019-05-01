@@ -41,8 +41,8 @@ namespace dtl {
 
 			///// メンバ変数 /////
 
-			Index_Size point_x{};
-			Index_Size point_y{};
+			Index_Size start_x{};
+			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
 			std::string str{};
@@ -53,18 +53,18 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				function_(matrix_[point_y_][point_x_], &data_[((point_y_ - this->point_y) * (point_max_x_ - this->point_x) + (point_x_ - this->point_x)) * Color_Num_]);
+				inline void substitutionSTL(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				function_(matrix_[point_y_][point_x_], &data_[((point_y_ - this->point_y) * (point_max_x_ - this->point_x) + (point_x_ - this->point_x)) * Color_Num_]);
+				inline void substitutionArray(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				function_(matrix_[point_y_][point_x_], &data_[((point_y_ - this->point_y) * (point_max_x_ - this->point_x) + (point_x_ - this->point_x)) * Color_Num_]);
+				inline void substitutionLayer(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
 			}
 
 			///// 基本処理 /////
@@ -72,36 +72,36 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool writeNormal(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Args_&& ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(point_x_ - this->point_x) * (point_y_ - this->point_y) * Color_Num_]);
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionSTL(point_x_,data,matrix_, col, row, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(point_x_ - this->point_x), static_cast<int>(point_y_ - this->point_y), static_cast<int>(Color_Num_), data.get(), 0);
+				bool writeNormal(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
+						this->substitutionSTL(end_x_,data,matrix_, col, row, args_...);
+				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), 0);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(point_x_ - this->point_x) * (point_y_ - this->point_y) * Color_Num_]);
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionLayer(point_x_,data,matrix_, layer_, col, row, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(point_x_ - this->point_x), static_cast<int>(point_y_ - this->point_y), static_cast<int>(Color_Num_), data.get(), 0);
+				bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
+						this->substitutionLayer(end_x_,data,matrix_, layer_, col, row, args_...);
+				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), 0);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			DTL_CONSTEXPR_CPP14
-				bool writeArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(point_x_ - this->point_x) * (point_y_ - this->point_y) * Color_Num_]);
-				for (Index_Size row{ this->point_y }; row < point_y_; ++row)
-					for (Index_Size col{ this->point_x }; col < point_x_; ++col)
-						this->substitutionArray(point_x_,data,matrix_, col, row, max_x_, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(point_x_ - this->point_x), static_cast<int>(point_y_ - this->point_y), static_cast<int>(Color_Num_), data.get(), 0);
+				bool writeArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
+						this->substitutionArray(end_x_,data,matrix_, col, row, max_x_, args_...);
+				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), 0);
 				return true;
 			}
 
@@ -112,11 +112,11 @@ namespace dtl {
 
 			DTL_NODISCARD
 				constexpr Index_Size getPointX() const noexcept {
-				return this->point_x;
+				return this->start_x;
 			}
 			DTL_NODISCARD
 				constexpr Index_Size getPointY() const noexcept {
-				return this->point_y;
+				return this->start_y;
 			}
 			DTL_NODISCARD
 				constexpr Index_Size getWidth() const noexcept {
@@ -137,31 +137,31 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename Function_>
 			constexpr bool write(const Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return this->writeNormal(matrix_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return this->writeNormal(matrix_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename Function_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= matrix_.size()) ? matrix_.size() : this->point_y + this->height, function_);
+				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_, typename Function_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeNormal(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->writeNormal(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename Function_>
 			constexpr bool write(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, function_);
+				return this->writeLayerNormal(matrix_, layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_, typename Function_>
 			constexpr bool writeArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->writeArray(matrix_, (this->width == 0 || this->point_x + this->width >= max_x_) ? max_x_ : this->point_x + this->width, (this->height == 0 || this->point_y + this->height >= max_y_) ? max_y_ : this->point_y + this->height, max_x_, function_);
+				return this->writeArray(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
 			}
 
 
@@ -194,13 +194,13 @@ namespace dtl {
 			//始点座標Xを初期値に戻す
 			DTL_CONSTEXPR_CPP14
 				FilePNG& clearPointX() noexcept {
-				this->point_x = 0;
+				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
 			DTL_CONSTEXPR_CPP14
 				FilePNG& clearPointY() noexcept {
-				this->point_y = 0;
+				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
@@ -242,13 +242,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				FilePNG& setPointX(const Index_Size point_x_) noexcept {
-				this->point_x = point_x_;
+				FilePNG& setPointX(const Index_Size end_x_) noexcept {
+				this->start_x = end_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				FilePNG& setPointY(const Index_Size point_y_) noexcept {
-				this->point_y = point_y_;
+				FilePNG& setPointY(const Index_Size end_y_) noexcept {
+				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -263,36 +263,36 @@ namespace dtl {
 			}
 			DTL_CONSTEXPR_CPP14
 				FilePNG& setPoint(const Index_Size point_) noexcept {
-				this->point_x = point_;
-				this->point_y = point_;
+				this->start_x = point_;
+				this->start_y = point_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				FilePNG& setPoint(const Index_Size point_x_, const Index_Size point_y_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				FilePNG& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				FilePNG& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size length_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				FilePNG& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				FilePNG& setRange(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->point_x = point_x_;
-				this->point_y = point_y_;
+				FilePNG& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = end_x_;
+				this->start_y = end_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
 				FilePNG& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
-				this->point_x = matrix_range_.x;
-				this->point_y = matrix_range_.y;
+				this->start_x = matrix_range_.x;
+				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
 				this->height = matrix_range_.h;
 				return *this;
@@ -308,26 +308,26 @@ namespace dtl {
 				:str(write_value_), Color_Num_(color_num_) {}
 
 			constexpr explicit FilePNG(const dtl::base::MatrixRange & matrix_range_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 			constexpr explicit FilePNG(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
 			constexpr explicit FilePNG(const dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const std::size_t color_num_) noexcept
-				:point_x(matrix_range_.x), point_y(matrix_range_.y),
+				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_), Color_Num_(color_num_) {}
 
-			constexpr explicit FilePNG(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit FilePNG(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_) {}
-			constexpr explicit FilePNG(const Index_Size point_x_, const Index_Size point_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const std::size_t color_num_) noexcept
-				:point_x(point_x_), point_y(point_y_),
+			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const std::size_t color_num_) noexcept
+				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_), Color_Num_(color_num_) {}
 		};
