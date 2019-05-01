@@ -30,7 +30,7 @@
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
-## License
+## [License](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
 
 Copyright (c) 2017-2019 Kasugaccho.
 Copyright (c) 2018-2019 As Project.
