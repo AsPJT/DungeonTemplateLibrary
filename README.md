@@ -1,6 +1,6 @@
-# DTL (Dungeon Template Library) ![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
+# DTL (Dungeon Template Library) [![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
 
-![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color800_2.gif)
+[![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color800_2.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
 [>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
@@ -12,7 +12,7 @@
 
 ## Overview
 
-### Version 0.4.4 [ C++14/17 ]
+### [**Version 0.4.4**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++14/17 ]
 
 |Compiler|C++17|C++14|
 |:---|:---|:---|
@@ -30,7 +30,7 @@
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
-## License
+## [License](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
 
 Copyright (c) 2017-2019 Kasugaccho.
 Copyright (c) 2018-2019 As Project.
