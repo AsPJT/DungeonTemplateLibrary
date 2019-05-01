@@ -1,6 +1,6 @@
 # DTL (Dungeon Template Library) ![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)
 
-![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color960_2.gif)
+![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color800_2.gif)
 
 [>> Japanese(日本語ページはこちら)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/%E3%83%9B%E3%83%BC%E3%83%A0)
 
@@ -22,21 +22,18 @@
 |Zapcc|unknown|1.0.1-passing|unknown|
 |ICC|unknown|unknown|
 
-## [API reference](./REFERENCE.md)
+## [API reference](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
-[**>> REFERENCE.md**](./REFERENCE.md)
+[**>> API reference**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
-[![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](./REFERENCE.md)
+[![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
 ## License
 
 Copyright (c) 2017-2019 Kasugaccho.
-
 Copyright (c) 2018-2019 As Project.
 
-Distributed under the Boost Software License, Version 1.0.
-
-(See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0.(See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 ## Contact
 
