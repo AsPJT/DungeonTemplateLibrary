@@ -301,5 +301,8 @@
     <ClInclude Include="..\..\include\Base\Struct.hpp">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Shape\Reversi.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

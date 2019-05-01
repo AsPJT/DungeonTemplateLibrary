@@ -23,7 +23,7 @@
 #include <Macros/constexpr.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace utility {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>

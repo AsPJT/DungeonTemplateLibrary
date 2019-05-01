@@ -82,6 +82,7 @@
     <ClInclude Include="..\..\include\Shape\RandomRect.hpp" />
     <ClInclude Include="..\..\include\Shape\RandomVoronoi.hpp" />
     <ClInclude Include="..\..\include\Shape\Rect.hpp" />
+    <ClInclude Include="..\..\include\Shape\Reversi.hpp" />
     <ClInclude Include="..\..\include\Shape\SimpleRogueLike.hpp" />
     <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\Shape\Template.hpp" />

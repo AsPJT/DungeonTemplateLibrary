@@ -57,6 +57,8 @@
 
 #include <Shape/RandomVoronoi.hpp>
 
+#include <Shape/Reversi.hpp>
+
 #include <Shape/SimpleRogueLike.hpp>
 
 #include <Shape/SimpleVoronoiIsland.hpp>

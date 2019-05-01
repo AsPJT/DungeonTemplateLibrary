@@ -192,8 +192,8 @@ namespace dtl {
 				if (walk_direction == 0) return 0;
 				if (can_walk_direction[walk_direction - 1] == false) {
 					if (walk_direction <= direction_right) return 0;
-					//todo
-					else if (can_walk_direction[walk_direction - 1] && can_walk_direction[walk_direction - 1]) return 0;
+					//todo (can_walk_direction[walk_direction - 1] && can_walk_direction[walk_direction - 1])
+					else if (can_walk_direction[walk_direction - 1]) return 0;
 					switch (walk_direction) {
 					case direction_up_left:
 						if (can_walk_direction[direction_array_up] && can_walk_direction[direction_array_left]) return 0;
