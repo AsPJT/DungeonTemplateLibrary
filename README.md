@@ -6,9 +6,9 @@
 
 ## [Download](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[>> SDK Downloads](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+[**>> SDK Downloads**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[>> Web Trial](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
+[**>> Web Trial**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 ## Overview
 
@@ -25,6 +25,8 @@
 ## [API reference](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
 [**>> API reference**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
+
+[**>> Roadmap**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Roadmap)
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
