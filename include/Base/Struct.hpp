@@ -33,7 +33,15 @@ namespace dtl {
 			Int_ y{};
 			constexpr Coordinate2Dimensional() noexcept = default;
 			constexpr Coordinate2Dimensional(const Int_& x_, const Int_& y_) noexcept :x(x_), y(y_) {};
+
+			constexpr bool operator==(const dtl::base::Coordinate2Dimensional<Int_>& vec2_) const noexcept {
+				return vec2_.x == this->x && vec2_.y == this->y;
+			}
+			constexpr bool operator!=(const dtl::base::Coordinate2Dimensional<Int_>& vec2_) const noexcept {
+				return vec2_.x != this->x || vec2_.y != this->y;
+			}
 		};
+		using MatrixVec2 = Coordinate2Dimensional<std::size_t>;
 
 		//座標と幅
 		template<typename Int_>
@@ -49,6 +57,13 @@ namespace dtl {
 				:x(x_), y(y_), w(l_), h(l_) {};
 			constexpr Coordinate2DimensionalAndLength2Dimensional(const Int_& x_, const Int_& y_, const Int_& w_, const Int_& h_) noexcept
 				:x(x_), y(y_), w(w_), h(h_) {};
+
+			constexpr bool operator==(const dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return range_.x == this->x && range_.y == this->y && range_.w == this->w && range_.h == this->h;
+			}
+			constexpr bool operator!=(const dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return range_.x != this->x || range_.y != this->y || range_.w != this->w || range_.h != this->h;
+			}
 		};
 		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<std::size_t>;
 
