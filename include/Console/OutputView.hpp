@@ -52,18 +52,18 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputSTL(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
+				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+				function_(matrix_[point_y_][point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputArray(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				function_(matrix_[end_y_ * max_x_ + end_x_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
+				inline void outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				function_(matrix_[point_y_ * max_x_ + point_x_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				function_(matrix_[end_y_][end_x_][layer_], static_cast<OutputView_>(end_x_), static_cast<OutputView_>(end_y_), this->view_width, this->view_height);
+				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				function_(matrix_[point_y_][point_x_][layer_], static_cast<OutputView_>(point_x_), static_cast<OutputView_>(point_y_), this->view_width, this->view_height);
 			}
 
 
@@ -261,13 +261,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				OutputView& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				OutputView& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -287,23 +287,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputView& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputView& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputView& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputView& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
@@ -325,15 +325,15 @@ namespace dtl {
 				:view_width(view_), view_height(view_) {}
 			constexpr explicit OutputView(const OutputView_& view_width_, const OutputView_& view_height_) noexcept
 				:view_width(view_width_), view_height(view_height_) {}
-			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				view_width(view_), view_height(view_) {}
-			constexpr explicit OutputView(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				view_width(view_width_), view_height(view_height_) {}
 		};

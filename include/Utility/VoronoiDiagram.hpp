@@ -321,13 +321,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				VoronoiDiagram& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				VoronoiDiagram& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				VoronoiDiagram& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				VoronoiDiagram& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -352,23 +352,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				VoronoiDiagram& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				VoronoiDiagram& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				VoronoiDiagram& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				VoronoiDiagram& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				VoronoiDiagram& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				VoronoiDiagram& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
@@ -395,11 +395,11 @@ namespace dtl {
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::size_t draw_value_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const std::size_t draw_value_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}
 		};

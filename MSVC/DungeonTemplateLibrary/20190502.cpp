@@ -6,25 +6,39 @@
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	std::array<std::array<shape_t, 64>, 48> matrix{ {} };
+	std::array<std::array<shape_t, 256>, 256> matrix{ {} };
 
-	dtl::shape::SimpleVoronoiIsland<shape_t>(40, 0.5, 1, 0).draw(matrix);
+	dtl::CellularAutomatonMixIsland<shape_t>(200, 0, 1, 2, 3, 4).draw(matrix);
 
-	dtl::storage::FileHDR<shape_t>("aa.hdr").write(matrix, [](const shape_t value, float* const color) {
-		if (value) {
-			color[0] = 1;
-			color[1] = 1;
-			color[2] = 1;
-		}
-		else {
-			color[0] = 0;
-			color[1] = 0;
-			color[2] = 0;
+	dtl::storage::FileHDR<shape_t>("file_sample.hdr", 3).write(matrix, [](const shape_t value, float* const color) {
+		switch (value) {
+		case 0:
+			color[0] = 41.0f / 255.0f;
+			color[1] = 40.0f / 255.0f;
+			color[2] = 159.0f / 255.0f;
+			break;
+		case 1:
+			color[0] = 101.0f / 255.0f;
+			color[1] = 163.0f / 255.0f;
+			color[2] = 56.0f / 255.0f;
+			break;
+		case 2:
+			color[0] = 223.0f / 255.0f;
+			color[1] = 203.0f / 255.0f;
+			color[2] = 140.0f / 255.0f;
+			break;
+		case 3:
+			color[0] = 9.0f / 255.0f;
+			color[1] = 100.0f / 255.0f;
+			color[2] = 5.0f / 255.0f;
+			break;
+		case 4:
+			color[0] = 164.0f / 255.0f;
+			color[1] = 143.0f / 255.0f;
+			color[2] = 50.0f / 255.0f;
+			break;
 		}
 		});
-
-	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
-	dtl::console::OutputString<shape_t>("//", "##").draw(matrix);
 
 	return 0;
 }

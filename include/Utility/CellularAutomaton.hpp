@@ -45,32 +45,32 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void switchSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void switchSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				switch (dtl::random::mt64bit_4.get()) {
-				case 0:matrix_[end_y_][end_x_] = matrix_[end_y_][end_x_ - 1]; break;
-				case 1:matrix_[end_y_][end_x_] = matrix_[end_y_][end_x_ + 1]; break;
-				case 2:matrix_[end_y_][end_x_] = matrix_[end_y_ - 1][end_x_]; break;
-				case 3:matrix_[end_y_][end_x_] = matrix_[end_y_ + 1][end_x_]; break;
+				case 0:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ - 1]; break;
+				case 1:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1]; break;
+				case 2:matrix_[point_y_][point_x_] = matrix_[point_y_ - 1][point_x_]; break;
+				case 3:matrix_[point_y_][point_x_] = matrix_[point_y_ + 1][point_x_]; break;
 				}
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void switchArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
+				inline void switchArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				switch (dtl::random::mt64bit_4.get()) {
-				case 0:matrix_[end_y_ * max_x_ + end_x_] = matrix_[end_y_ * max_x_ + end_x_ - 1]; break;
-				case 1:matrix_[end_y_ * max_x_ + end_x_] = matrix_[end_y_ * max_x_ + end_x_ + 1]; break;
-				case 2:matrix_[end_y_ * max_x_ + end_x_] = matrix_[(end_y_ - 1) * max_x_ + end_x_]; break;
-				case 3:matrix_[end_y_ * max_x_ + end_x_] = matrix_[(end_y_ + 1) * max_x_ + end_x_]; break;
+				case 0:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ - 1]; break;
+				case 1:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1]; break;
+				case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ - 1) * max_x_ + point_x_]; break;
+				case 3:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ + 1) * max_x_ + point_x_]; break;
 				}
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void switchLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void switchLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				switch (dtl::random::mt64bit_4.get()) {
-				case 0:matrix_[end_y_][end_x_][layer_] = matrix_[end_y_][end_x_ - 1][layer_]; break;
-				case 1:matrix_[end_y_][end_x_][layer_] = matrix_[end_y_][end_x_ + 1][layer_]; break;
-				case 2:matrix_[end_y_][end_x_][layer_] = matrix_[end_y_ - 1][end_x_][layer_]; break;
-				case 3:matrix_[end_y_][end_x_][layer_] = matrix_[end_y_ + 1][end_x_][layer_]; break;
+				case 0:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ - 1][layer_]; break;
+				case 1:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_]; break;
+				case 2:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ - 1][point_x_][layer_]; break;
+				case 3:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ + 1][point_x_][layer_]; break;
 				}
 			}
 
@@ -79,46 +79,46 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (matrix_[end_y_][end_x_ - 1] == matrix_[end_y_][end_x_ + 1] && matrix_[end_y_][end_x_ + 1] == matrix_[end_y_ - 1][end_x_] && matrix_[end_y_ - 1][end_x_] == matrix_[end_y_ + 1][end_x_])
-					matrix_[end_y_][end_x_] = matrix_[end_y_][end_x_ + 1];
-				else this->switchSTL(matrix_, end_x_, end_y_);
+				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				if (matrix_[point_y_][point_x_ - 1] == matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_ + 1] == matrix_[point_y_ - 1][point_x_] && matrix_[point_y_ - 1][point_x_] == matrix_[point_y_ + 1][point_x_])
+					matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1];
+				else this->switchSTL(matrix_, point_x_, point_y_);
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				if (matrix_[end_y_ * max_x_ + end_x_ - 1] == matrix_[end_y_ * max_x_ + end_x_ + 1] && matrix_[end_y_ * max_x_ + end_x_ + 1] == matrix_[(end_y_ - 1) * max_x_ + end_x_] && matrix_[(end_y_ - 1) * max_x_ + end_x_] == matrix_[(end_y_ + 1) * max_x_ + end_x_])
-					matrix_[end_y_ * max_x_ + end_x_] = matrix_[end_y_ * max_x_ + end_x_ + 1];
-				else this->switchArray(matrix_, end_x_, end_y_, max_x_);
+				inline void substitutionArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[(point_y_ - 1) * max_x_ + point_x_] && matrix_[(point_y_ - 1) * max_x_ + point_x_] == matrix_[(point_y_ + 1) * max_x_ + point_x_])
+					matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
+				else this->switchArray(matrix_, point_x_, point_y_, max_x_);
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (matrix_[end_y_][end_x_ - 1][layer_] == matrix_[end_y_][end_x_ + 1][layer_] && matrix_[end_y_][end_x_ + 1][layer_] == matrix_[end_y_ - 1][end_x_][layer_] && matrix_[end_y_ - 1][end_x_][layer_] == matrix_[end_y_ + 1][end_x_][layer_])
-					matrix_[end_y_][end_x_][layer_] = matrix_[end_y_][end_x_ + 1][layer_];
-				else this->switchLayer(matrix_, layer_, end_x_, end_y_);
+				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				if (matrix_[point_y_][point_x_ - 1][layer_] == matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_ + 1][layer_] == matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_ - 1][point_x_][layer_] == matrix_[point_y_ + 1][point_x_][layer_])
+					matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_];
+				else this->switchLayer(matrix_, layer_, point_x_, point_y_);
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (matrix_[end_y_][end_x_ - 1] == matrix_[end_y_][end_x_ + 1] && matrix_[end_y_][end_x_ + 1] == matrix_[end_y_ - 1][end_x_] && matrix_[end_y_ - 1][end_x_] == matrix_[end_y_ + 1][end_x_] && function_(matrix_[end_y_][end_x_]))
-					matrix_[end_y_][end_x_] = matrix_[end_y_][end_x_ + 1];
-				else this->switchSTL(matrix_, end_x_, end_y_);
+				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				if (matrix_[point_y_][point_x_ - 1] == matrix_[point_y_][point_x_ + 1] && matrix_[point_y_][point_x_ + 1] == matrix_[point_y_ - 1][point_x_] && matrix_[point_y_ - 1][point_x_] == matrix_[point_y_ + 1][point_x_] && function_(matrix_[point_y_][point_x_]))
+					matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1];
+				else this->switchSTL(matrix_, point_x_, point_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
-				if (matrix_[end_y_ * max_x_ + end_x_ - 1] == matrix_[end_y_ * max_x_ + end_x_ + 1] && matrix_[end_y_ * max_x_ + end_x_ + 1] == matrix_[(end_y_ - 1) * max_x_ + end_x_] && matrix_[(end_y_ - 1) * max_x_ + end_x_] == matrix_[(end_y_ + 1) * max_x_ + end_x_] && function_(matrix_[end_y_][end_x_]))
-					matrix_[end_y_ * max_x_ + end_x_] = matrix_[end_y_ * max_x_ + end_x_ + 1];
-				else this->switchArray(matrix_, end_x_, end_y_, max_x_);
+				inline void substitutionArray(Matrix_ && matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				if (matrix_[point_y_ * max_x_ + point_x_ - 1] == matrix_[point_y_ * max_x_ + point_x_ + 1] && matrix_[point_y_ * max_x_ + point_x_ + 1] == matrix_[(point_y_ - 1) * max_x_ + point_x_] && matrix_[(point_y_ - 1) * max_x_ + point_x_] == matrix_[(point_y_ + 1) * max_x_ + point_x_] && function_(matrix_[point_y_][point_x_]))
+					matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1];
+				else this->switchArray(matrix_, point_x_, point_y_, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (matrix_[end_y_][end_x_ - 1][layer_] == matrix_[end_y_][end_x_ + 1][layer_] && matrix_[end_y_][end_x_ + 1][layer_] == matrix_[end_y_ - 1][end_x_][layer_] && matrix_[end_y_ - 1][end_x_][layer_] == matrix_[end_y_ + 1][end_x_][layer_] && function_(matrix_[end_y_][end_x_]))
-					matrix_[end_y_][end_x_][layer_] = matrix_[end_y_][end_x_ + 1][layer_];
-				else this->switchLayer(matrix_, layer_, end_x_, end_y_);
+				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				if (matrix_[point_y_][point_x_ - 1][layer_] == matrix_[point_y_][point_x_ + 1][layer_] && matrix_[point_y_][point_x_ + 1][layer_] == matrix_[point_y_ - 1][point_x_][layer_] && matrix_[point_y_ - 1][point_x_][layer_] == matrix_[point_y_ + 1][point_x_][layer_] && function_(matrix_[point_y_][point_x_]))
+					matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_];
+				else this->switchLayer(matrix_, layer_, point_x_, point_y_);
 			}
 
 
@@ -359,13 +359,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				CellularAutomation& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				CellularAutomation& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomation& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				CellularAutomation& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -385,23 +385,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomation& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				CellularAutomation& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomation& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				CellularAutomation& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				CellularAutomation& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				CellularAutomation& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
@@ -422,8 +422,8 @@ namespace dtl {
 			constexpr explicit CellularAutomation(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit CellularAutomation(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit CellularAutomation(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
 		};
 	}

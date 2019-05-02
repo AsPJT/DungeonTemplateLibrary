@@ -200,9 +200,6 @@
     <ClInclude Include="..\..\include\Deprecated\BoardGame.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonBinarization.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Deprecated\DungeonFile.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
@@ -212,13 +209,7 @@
     <ClInclude Include="..\..\include\Deprecated\DungeonNoise.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonOutput.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Deprecated\DungeonPaint.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonRandom.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Deprecated\FractalIsland.hpp">

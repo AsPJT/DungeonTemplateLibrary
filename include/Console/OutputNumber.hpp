@@ -53,18 +53,18 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputSTL(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]) << this->draw_string;
+				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]) << this->draw_string;
+				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]) << this->draw_string;
+				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
 			}
 
 
@@ -276,13 +276,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				OutputNumber& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				OutputNumber& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputNumber& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				OutputNumber& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -302,23 +302,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputNumber& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputNumber& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputNumber& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputNumber& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputNumber& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputNumber& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
@@ -351,15 +351,15 @@ namespace dtl {
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), draw_string(draw_string_), before_draw_string(before_draw_string_) {}
 
-			constexpr explicit OutputNumber(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputNumber(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_string(draw_string_) {}
-			constexpr explicit OutputNumber(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_string(draw_string_), before_draw_string(before_draw_string_) {}
 		};

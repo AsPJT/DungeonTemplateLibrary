@@ -26,13 +26,10 @@
     <ClInclude Include="..\..\include\Console\OutputStringBool.hpp" />
     <ClInclude Include="..\..\include\Console\OutputView.hpp" />
     <ClInclude Include="..\..\include\Deprecated\BoardGame.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\DungeonBinarization.hpp" />
     <ClInclude Include="..\..\include\Deprecated\DungeonFile.hpp" />
     <ClInclude Include="..\..\include\Deprecated\DungeonMatrix.hpp" />
     <ClInclude Include="..\..\include\Deprecated\DungeonNoise.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\DungeonOutput.hpp" />
     <ClInclude Include="..\..\include\Deprecated\DungeonPaint.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\DungeonRandom.hpp" />
     <ClInclude Include="..\..\include\Deprecated\FractalIsland.hpp" />
     <ClInclude Include="..\..\include\Deprecated\HorizontalScroll.hpp" />
     <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp" />

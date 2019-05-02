@@ -197,49 +197,6 @@ namespace dtl {
 namespace dtl {
 	inline namespace generator {
 		namespace boardGame {
-
-			namespace data {
-
-				enum :std::size_t {
-					reversi_empty,
-					reversi_white,
-					reversi_black
-				};
-
-			}
-
-			namespace stl {
-
-				//リバーシを初期化する
-				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CONSTEXPR_CPP14
-					void createReversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
-					if (matrix_.size() < 2 || matrix_[0].size() < 2) return;
-					const std::size_t & set_y{ matrix_.size() / 2 };
-					const std::size_t & set_x{ matrix_[0].size() / 2 };
-					matrix_[set_y - 1][set_x - 1] = white_;
-					matrix_[set_y - 1][set_x] = black_;
-					matrix_[set_y][set_x - 1] = black_;
-					matrix_[set_y][set_x] = white_;
-				}
-				template<typename Matrix_Int_>
-				class Reversi {
-				public:
-					//コンストラクタ
-					constexpr Reversi() noexcept = default;
-					template<typename Matrix_>
-					constexpr explicit Reversi(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) noexcept {
-						create(matrix_, black_, white_);
-					}
-					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
-						void create(Matrix_& matrix_, const Matrix_Int_ black_ = 2, const Matrix_Int_ white_ = 1) const noexcept {
-						createReversi(matrix_, black_, white_);
-					}
-				};
-
-			}
-
 			namespace data {
 
 				enum :std::size_t {

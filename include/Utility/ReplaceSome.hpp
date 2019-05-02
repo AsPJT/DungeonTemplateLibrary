@@ -60,80 +60,80 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_][end_x_]) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_][point_x_]) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_][end_x_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
+				inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_ * max_x_ + end_x_]) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_]) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_ * max_x_ + end_x_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_][end_x_][layer_]) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_]) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_][end_x_][layer_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_][end_x_] && function_(matrix_[end_y_][end_x_])) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_][end_x_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_ * max_x_ + end_x_] && function_(matrix_[end_y_ * max_x_ + end_x_])) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_ * max_x_ + end_x_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CONSTEXPR_CPP14
-				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[end_y_][end_x_][layer_] && function_(matrix_[end_y_][end_x_][layer_])) {
-						value_pairs.emplace_back(std::make_pair(end_y_, end_x_));
+					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
+						value_pairs.emplace_back(std::make_pair(point_y_, point_x_));
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[end_y_][end_x_][layer_]) low_value = mid_value + 1;
+					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
@@ -516,13 +516,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				ReplaceSome& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				ReplaceSome& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				ReplaceSome& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				ReplaceSome& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -542,23 +542,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				ReplaceSome& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				ReplaceSome& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				ReplaceSome& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				ReplaceSome& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				ReplaceSome& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				ReplaceSome& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;

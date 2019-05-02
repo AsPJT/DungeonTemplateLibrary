@@ -52,34 +52,34 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				return matrix_[end_y_][end_x_];
+			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return matrix_[point_y_][point_x_];
 			}
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				return matrix_[end_y_ * max_x_ + end_x_];
+			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				return matrix_[point_y_ * max_x_ + point_x_];
 			}
 			template<typename Matrix_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				return matrix_[end_y_][end_x_][layer_];
+			constexpr inline Matrix_Int_ outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return matrix_[point_y_][point_x_][layer_];
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				return function_(matrix_[end_y_][end_x_]);
+			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+				return function_(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				return function_(matrix_[end_y_ * max_x_ + end_x_]);
+			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				return function_(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_NODISCARD
-			constexpr inline Matrix_Int_ outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				return function_(matrix_[end_y_][end_x_][layer_]);
+			constexpr inline Matrix_Int_ outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				return function_(matrix_[point_y_][point_x_][layer_]);
 			}
 
 
@@ -323,13 +323,13 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_CONSTEXPR_CPP14
-				OutputStringBool& setPointX(const Index_Size end_x_) noexcept {
-				this->start_x = end_x_;
+				OutputStringBool& setPointX(const Index_Size start_x_) noexcept {
+				this->start_x = start_x_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputStringBool& setPointY(const Index_Size end_y_) noexcept {
-				this->start_y = end_y_;
+				OutputStringBool& setPointY(const Index_Size start_y_) noexcept {
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
@@ -349,23 +349,23 @@ namespace dtl {
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputStringBool& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputStringBool& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputStringBool& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputStringBool& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = length_;
 				this->height = length_;
 				return *this;
 			}
 			DTL_CONSTEXPR_CPP14
-				OutputStringBool& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
-				this->start_x = end_x_;
-				this->start_y = end_y_;
+				OutputStringBool& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				this->start_x = start_x_;
+				this->start_y = start_y_;
 				this->width = width_;
 				this->height = height_;
 				return *this;
@@ -400,15 +400,15 @@ namespace dtl {
 				width(matrix_range_.w), height(matrix_range_.h),
 				false_string(false_string_), true_string(true_string_) {}
 
-			constexpr explicit OutputStringBool(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputStringBool(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_string(true_string_) {}
-			constexpr explicit OutputStringBool(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
-				:start_x(end_x_), start_y(end_y_),
+			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
+				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				false_string(false_string_), true_string(true_string_) {}
 		};
