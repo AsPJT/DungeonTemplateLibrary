@@ -61,6 +61,7 @@ namespace dtl {
 			constexpr bool operator==(const dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return range_.x == this->x && range_.y == this->y && range_.w == this->w && range_.h == this->h;
 			}
+
 			constexpr bool operator!=(const dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return range_.x != this->x || range_.y != this->y || range_.w != this->w || range_.h != this->h;
 			}
