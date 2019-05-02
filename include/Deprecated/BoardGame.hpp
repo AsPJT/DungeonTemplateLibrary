@@ -112,14 +112,14 @@ namespace dtl {
 				std::size_t put_piece_x{}, put_piece_y{};
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-						const auto& num{ dtl::ai::reversi::dtl::ai::reversiPutPiece(matrix_, col,row, turn_, false) };
+						const auto& num{ dtl::ai::reversiPutPiece(matrix_, col,row, turn_, false) };
 						if (num > 0 && (piece_turn_min > num || (piece_turn_min == num && dtl::random::mersenne_twister_32bit.probability()))) {
 							piece_turn_min = num;
 							put_piece_x = col;
 							put_piece_y = row;
 						}
 					}
-				dtl::ai::reversi::dtl::ai::reversiPutPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
+				dtl::ai::reversiPutPiece(matrix_, put_piece_x, put_piece_y, turn_, true);
 				return true;
 			}
 		};
@@ -180,7 +180,7 @@ namespace dtl {
 			for (std::size_t row{}; row < matrix_.size(); ++row)
 				for (std::size_t col{}; col < matrix_[row].size(); ++col)
 					if (matrix_[row][col] > 0) ++piece_num[matrix_[row][col] - 1];
-			if (dtl::ai::reversi::isPass(matrix_, (Matrix_Int_)1) && dtl::ai::reversi::isPass(matrix_, (Matrix_Int_)2)) {
+			if (dtl::ai::reversiIsPass(matrix_, (Matrix_Int_)1) && dtl::ai::reversiIsPass(matrix_, (Matrix_Int_)2)) {
 				if (piece_num[0] > piece_num[1]) result = 1;
 				else if (piece_num[0] < piece_num[1]) result = 2;
 				else result = 3;

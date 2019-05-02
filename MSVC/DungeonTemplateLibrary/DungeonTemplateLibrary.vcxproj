@@ -19,9 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="20190426.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\include\Base\Struct.hpp" />
     <ClInclude Include="..\..\include\Camera\MatrixView.hpp" />
     <ClInclude Include="..\..\include\Console\OutputNumber.hpp" />
@@ -43,17 +40,18 @@
     <ClInclude Include="..\..\include\Deprecated\SimpleRogueLike.hpp" />
     <ClInclude Include="..\..\include\Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\DTL.hpp" />
-    <ClInclude Include="..\..\include\DTL\Base.hpp" />
-    <ClInclude Include="..\..\include\DTL\Camera.hpp" />
-    <ClInclude Include="..\..\include\DTL\Console.hpp" />
-    <ClInclude Include="..\..\include\DTL\Deprecated.hpp" />
-    <ClInclude Include="..\..\include\DTL\Entity.hpp" />
-    <ClInclude Include="..\..\include\DTL\Random.hpp" />
-    <ClInclude Include="..\..\include\DTL\Retouch.hpp" />
-    <ClInclude Include="..\..\include\DTL\Shape.hpp" />
-    <ClInclude Include="..\..\include\DTL\Storage.hpp" />
-    <ClInclude Include="..\..\include\DTL\ThirdParty.hpp" />
-    <ClInclude Include="..\..\include\DTL\Utility.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Base.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Camera.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Console.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Deprecated.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Entity.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\ImageWrite.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Random.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Retouch.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Shape.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Storage.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\ThirdParty.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Utility.hpp" />
     <ClInclude Include="..\..\include\Entity\MobManager.hpp" />
     <ClInclude Include="..\..\include\Macros\constexpr.hpp" />
     <ClInclude Include="..\..\include\Macros\nodiscard.hpp" />
@@ -87,11 +85,14 @@
     <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\Shape\Template.hpp" />
     <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileBMP.hpp" />
     <ClInclude Include="..\..\include\Storage\FileCSV.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileHDR.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileJPG.hpp" />
     <ClInclude Include="..\..\include\Storage\FilePNG.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTerrainOBJ.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileTGA.hpp" />
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
-    <ClInclude Include="..\..\include\ThirdParty\STB\wrapper_stb_image_write.hpp" />
     <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />
     <ClInclude Include="..\..\include\Utility\CharCast.hpp" />
@@ -104,6 +105,9 @@
     <ClInclude Include="..\..\include\Utility\ReplaceAll.hpp" />
     <ClInclude Include="..\..\include\Utility\ReplaceSome.hpp" />
     <ClInclude Include="..\..\include\Utility\VoronoiDiagram.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="20190502.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

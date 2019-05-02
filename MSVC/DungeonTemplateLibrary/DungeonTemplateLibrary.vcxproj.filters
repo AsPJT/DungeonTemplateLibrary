@@ -45,17 +45,12 @@
     <Filter Include="ヘッダー ファイル\ThirdParty\STB">
       <UniqueIdentifier>{906ff54e-2e50-4c26-876a-2d5c6654a7f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\DTL">
-      <UniqueIdentifier>{3e27e26e-2a44-4eda-b0ff-0759cc87c4bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Macros">
       <UniqueIdentifier>{f572daa4-9283-4791-ac31-0b1eeea3e46a}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="20190426.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <Filter Include="ヘッダー ファイル\Dungeon">
+      <UniqueIdentifier>{3e27e26e-2a44-4eda-b0ff-0759cc87c4bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Utility\Binarization.hpp">
@@ -98,9 +93,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h">
-      <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\ThirdParty\STB\wrapper_stb_image_write.hpp">
       <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Storage\FileCSV.hpp">
@@ -208,39 +200,6 @@
     <ClInclude Include="..\..\include\Entity\MobManager.hpp">
       <Filter>ヘッダー ファイル\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Base.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Camera.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Console.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Deprecated.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Entity.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Random.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Retouch.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Shape.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Storage.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\ThirdParty.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Utility.hpp">
-      <Filter>ヘッダー ファイル\DTL</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Deprecated\BoardGame.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
@@ -304,5 +263,58 @@
     <ClInclude Include="..\..\include\Shape\Reversi.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Storage\FileBMP.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Storage\FileHDR.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Storage\FileJPG.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Storage\FileTGA.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Base.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Camera.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Console.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Deprecated.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Entity.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\ImageWrite.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Random.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Retouch.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Shape.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Storage.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\ThirdParty.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Utility.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="20190502.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
