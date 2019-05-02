@@ -20,7 +20,7 @@
 
 #include <Shape/AbsoluteRect.hpp>
 
-/* https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/std::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/ */
+//
 #include <Shape/Border.hpp>
 //Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
 #include <Shape/BorderOdd.hpp>

@@ -35,10 +35,7 @@
     <ClInclude Include="..\..\include\Deprecated\DungeonRandom.hpp" />
     <ClInclude Include="..\..\include\Deprecated\FractalIsland.hpp" />
     <ClInclude Include="..\..\include\Deprecated\HorizontalScroll.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\MazeDig.hpp" />
     <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\SimpleRogueLike.hpp" />
-    <ClInclude Include="..\..\include\Deprecated\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\DTL.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Base.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Camera.hpp" />
@@ -50,7 +47,6 @@
     <ClInclude Include="..\..\include\Dungeon\Retouch.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Shape.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Storage.hpp" />
-    <ClInclude Include="..\..\include\Dungeon\ThirdParty.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Utility.hpp" />
     <ClInclude Include="..\..\include\Entity\MobManager.hpp" />
     <ClInclude Include="..\..\include\Macros\constexpr.hpp" />
@@ -71,7 +67,6 @@
     <ClInclude Include="..\..\include\Shape\FractalLoopIsland.hpp" />
     <ClInclude Include="..\..\include\Shape\HalfMixRect.hpp" />
     <ClInclude Include="..\..\include\Shape\MazeDig.hpp" />
-    <ClInclude Include="..\..\include\Shape\MazeDig_OLD.hpp" />
     <ClInclude Include="..\..\include\Shape\MixRect.hpp" />
     <ClInclude Include="..\..\include\Shape\Point.hpp" />
     <ClInclude Include="..\..\include\Shape\PointGrid.hpp" />

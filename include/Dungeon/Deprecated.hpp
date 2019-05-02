@@ -22,13 +22,7 @@
 
 ///// 関連ツール /////
 
-//#include <Deprecated/DungeonBinarization.hpp>
-
 #include <Deprecated/DungeonNoise.hpp>
-
-//#include <Deprecated/DungeonOutput.hpp>
-
-//#include <Deprecated/DungeonRandom.hpp>
 
 #include <Deprecated/DungeonFile.hpp>
 
@@ -39,13 +33,7 @@
 
 #include <Deprecated/FractalIsland.hpp>
 
-//#include <Deprecated/MazeDig.hpp>
-
 #include <Deprecated/RogueLike.hpp>
-
-//#include <Deprecated/SimpleRogueLike.hpp>
-
-#include <Deprecated/SimpleVoronoiIsland.hpp>
 
 #include <Deprecated/BoardGame.hpp>
 

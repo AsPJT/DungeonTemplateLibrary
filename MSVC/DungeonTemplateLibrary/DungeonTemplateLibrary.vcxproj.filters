@@ -143,9 +143,6 @@
     <ClInclude Include="..\..\include\Shape\MazeDig.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\MazeDig_OLD.hpp">
-      <Filter>ヘッダー ファイル\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Shape\MixRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
@@ -230,16 +227,7 @@
     <ClInclude Include="..\..\include\Deprecated\HorizontalScroll.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\MazeDig.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\SimpleRogueLike.hpp">
-      <Filter>ヘッダー ファイル\Deprecated</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\SimpleVoronoiIsland.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Console\OutputNumber.hpp">
@@ -303,9 +291,6 @@
       <Filter>ヘッダー ファイル\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Dungeon\Storage.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\ThirdParty.hpp">
       <Filter>ヘッダー ファイル\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Dungeon\Utility.hpp">
