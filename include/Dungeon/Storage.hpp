@@ -18,6 +18,8 @@
 
 #include <Storage/FileCSV.hpp>
 
+#include <Storage/FileMD.hpp>
+
 #include <Storage/FileTerrainOBJ.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_HPP

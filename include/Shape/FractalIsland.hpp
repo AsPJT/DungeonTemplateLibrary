@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::FractalIsland-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::FractalIsland-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
