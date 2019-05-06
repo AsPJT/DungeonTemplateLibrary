@@ -21,7 +21,7 @@ namespace dtl {
 		namespace stl {
 
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -34,7 +34,7 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -48,7 +48,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -61,7 +61,7 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;

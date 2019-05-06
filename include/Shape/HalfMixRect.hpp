@@ -51,10 +51,10 @@ namespace dtl {
 			Index_Size height{};
 			std::vector<Matrix_Int_> draw_value{};
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void string_String() const noexcept {}
 			template<typename Int_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void string_String(const Int_& first_, const Args_& ... args_) noexcept {
 				this->draw_value.emplace_back(static_cast<Matrix_Int_>(first_));
 				this->string_String(args_...);
@@ -64,33 +64,33 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
 				matrix_[end_y_ * max_x_ + end_x_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_][layer_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
 
 			template<typename Matrix_, typename Function_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
 			template<typename Matrix_, typename Function_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
 			template<typename Matrix_, typename Function_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = ((dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())]);
 			}
@@ -100,7 +100,7 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
@@ -108,7 +108,7 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
@@ -118,7 +118,7 @@ namespace dtl {
 
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
@@ -126,7 +126,7 @@ namespace dtl {
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
@@ -136,7 +136,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -146,7 +146,7 @@ namespace dtl {
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -156,7 +156,7 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -186,7 +186,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_NODISCARD
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				std::vector<Matrix_Int_> getValue() const noexcept {
 				return this->draw_value;
 			}
@@ -256,25 +256,25 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
@@ -284,45 +284,45 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearValue() noexcept {
 				std::vector<Matrix_Int_> new_draw_value{};
 				this->draw_value = std::move(new_draw_value);
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -331,7 +331,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
@@ -341,50 +341,50 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setPointX(const Index_Size end_x_) noexcept {
 				this->start_x = end_x_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setPointY(const Index_Size end_y_) noexcept {
 				this->start_y = end_y_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setValue(const std::vector<Matrix_Int_>& draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
 			template<typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setValue(const Matrix_Int_& first_, const Args_& ... args_) noexcept {
 				this->string_String(first_, args_...);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
@@ -392,7 +392,7 @@ namespace dtl {
 				this->height = length_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
@@ -400,7 +400,7 @@ namespace dtl {
 				this->height = height_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				HalfMixRect& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;

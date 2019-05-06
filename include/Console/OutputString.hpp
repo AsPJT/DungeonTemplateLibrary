@@ -50,10 +50,10 @@ namespace dtl {
 
 			//
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void string_String() const noexcept {}
 			template<typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void string_String(const OutputStringName_& first_, const Args_& ... args_) noexcept {
 				this->string_vector.emplace_back(first_);
 				this->string_String(args_...);
@@ -235,13 +235,13 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
@@ -251,38 +251,38 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -291,7 +291,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& clear() noexcept {
 				this->clearRange();
 				return *this;
@@ -300,39 +300,39 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setPointX(const Index_Size start_x_) noexcept {
 				this->start_x = start_x_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setPointY(const Index_Size start_y_) noexcept {
 				this->start_y = start_y_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
@@ -340,7 +340,7 @@ namespace dtl {
 				this->height = length_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
@@ -348,7 +348,7 @@ namespace dtl {
 				this->height = height_;
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				OutputString& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;

@@ -35,12 +35,12 @@ namespace dtl {
 			//コンストラクタ
 			constexpr Pen() noexcept = default;
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				explicit Pen(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, x_, y_, paint_value_);
 			}
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
 				matrix_[y_][x_] = paint_value_;
 			}
@@ -54,13 +54,13 @@ namespace dtl {
 			//コンストラクタ
 			constexpr Bucket() noexcept = default;
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				explicit Bucket(Matrix_& matrix_, const std::int_fast32_t col_, const std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, col_, row_, paint_value_);
 			}
 		private:
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setPoint(Matrix_& matrix_, const std::size_t col_, const std::size_t row_, const Matrix_Int_ value_) const noexcept {
 				matrix_[row_][col_] = value_;
 			}
@@ -70,7 +70,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void scanLine(const Matrix_& matrix_, std::unique_ptr<BucketBuffer[]>& buffer_, std::size_t& end_n_, std::int_fast32_t left_x_, const std::int_fast32_t right_x_, const std::int_fast32_t y_, const std::int_fast32_t old_y_, const Matrix_Int_ value_) const noexcept {
 				while (left_x_ <= right_x_) {
 

@@ -135,7 +135,7 @@ namespace dtl {
 				namespace hiding {
 
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void stringTemplate_svg(const Matrix_& matrix_, std::ofstream& ofs_) noexcept {
 						ofs_ << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << '\n';
 						ofs_ << "<svg version=\"1.1\" id=\"layer\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 ";

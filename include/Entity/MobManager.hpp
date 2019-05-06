@@ -82,25 +82,25 @@ namespace dtl {
 			constexpr explicit MobManager(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0b11111111) {}
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
 				x = x_;
 				y = y_;
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setWalkSpeed(const double walk_speed_) noexcept {
 				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			template<typename Pair_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setPosition(const Pair_ & pair_) noexcept {
 				x = static_cast<std::int_fast32_t>(pair_.first);
 				y = static_cast<std::int_fast32_t>(pair_.second);
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				x = x_;
 				y = y_;
@@ -111,7 +111,7 @@ namespace dtl {
 				return (status_x != player_status_stay || status_y != player_status_stay);
 			}
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				while (x < 0) x += x_;
 				while (y < 0) y += x_;
@@ -119,7 +119,7 @@ namespace dtl {
 				if (y >= y_) y %= y_;
 			}
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool moveX() noexcept {
 				if (status_x == player_status_stay) return false;
 				small_x += walk_speed;
@@ -131,7 +131,7 @@ namespace dtl {
 				status_x = player_status_stay;
 				return true;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool moveY() noexcept {
 				if (status_y == player_status_stay) return false;
 				small_y += walk_speed;
@@ -143,7 +143,7 @@ namespace dtl {
 				status_y = player_status_stay;
 				return true;
 			}
-			DTL_CONSTEXPR_CPP14 //C++14
+			DTL_CPP14_CONSTEXPR //C++14
 				bool move() noexcept {
 				return (moveX() | moveY());
 			}
@@ -186,7 +186,7 @@ namespace dtl {
 			}
 
 			DTL_NODISCARD
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;

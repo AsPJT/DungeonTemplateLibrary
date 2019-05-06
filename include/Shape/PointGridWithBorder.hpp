@@ -79,14 +79,14 @@ namespace dtl {
 			///// 生成呼び出し /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.draw(matrix_, args_...);
 				this->borderOdd.draw(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawOperator(matrix_, args_...);
 				this->borderOdd.drawOperator(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
@@ -95,14 +95,14 @@ namespace dtl {
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawArray(matrix_, args_...);
 				this->borderOdd.drawArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawOperatorArray(matrix_, args_...);
 				this->borderOdd.drawOperatorArray(std::forward<Matrix_>(matrix_), std::forward<Args_>(args_)...);
@@ -121,25 +121,25 @@ namespace dtl {
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->draw(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
 				return std::forward<Matrix_>(matrix_);
@@ -149,49 +149,49 @@ namespace dtl {
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearPointX() noexcept {
 				this->borderOdd.clearPointX();
 				this->pointGrid.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearPointY() noexcept {
 				this->borderOdd.clearPointY();
 				this->pointGrid.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearWidth() noexcept {
 				this->borderOdd.clearWidth();
 				this->pointGrid.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearHeight() noexcept {
 				this->borderOdd.clearHeight();
 				this->pointGrid.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearValue() noexcept {
 				this->borderOdd.clearValue();
 				this->pointGrid.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -200,7 +200,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
@@ -210,55 +210,55 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setPointX(const Index_Size end_x_) noexcept {
 				this->borderOdd.setPointX(end_x_);
 				this->pointGrid.setPointX(end_x_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setPointY(const Index_Size end_y_) noexcept {
 				this->borderOdd.setPointY(end_y_);
 				this->pointGrid.setPointY(end_y_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setWidth(const Index_Size width_) noexcept {
 				this->borderOdd.setWidth(width_);
 				this->pointGrid.setWidth(width_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setHeight(const Index_Size height_) noexcept {
 				this->borderOdd.setHeight(height_);
 				this->pointGrid.setHeight(height_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->borderOdd.setValue(draw_value_);
 				this->pointGrid.setValue(draw_value_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->borderOdd.setRange(matrix_range_);
 				this->pointGrid.setRange(matrix_range_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
@@ -266,7 +266,7 @@ namespace dtl {
 				this->setHeight(length_);
 				return *this;
 			}
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				PointGridWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);

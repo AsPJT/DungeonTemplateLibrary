@@ -59,12 +59,12 @@ namespace dtl {
 
 			//指定位置に値を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 				matrix_[y_][x_] = value_;
 			}
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void setMatrixValue(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				matrix_[y_][x_] = 0;
 			}

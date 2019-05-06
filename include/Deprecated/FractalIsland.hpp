@@ -125,7 +125,7 @@ namespace dtl {
 				}
 
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void createLand(Matrix_ & matrix_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -162,7 +162,7 @@ namespace dtl {
 
 
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void createDeepOcean(Matrix_ & matrix_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -193,7 +193,7 @@ namespace dtl {
 				//Diamond Square (Average)
 				//ダイヤモンド・スクエア法(平均値)
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void createDiamondSquareAverage_Map(const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_ & matrix_, const Matrix_Int_ max_value_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -226,7 +226,7 @@ namespace dtl {
 				}
 
 				DTL_NODISCARD
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
 					std::size_t map_size{ 2 };
 					while (true) {
@@ -243,13 +243,13 @@ namespace dtl {
 					//コンストラクタ
 					constexpr SimpleDiamondSquareAverageIsland() noexcept = default;
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						explicit SimpleDiamondSquareAverageIsland(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) noexcept {
 						create(matrix_, max_value_);
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -277,13 +277,13 @@ namespace dtl {
 					//コンストラクタ
 					constexpr SimpleDiamondSquareAverageIslandCorner() noexcept = default;
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						explicit SimpleDiamondSquareAverageIslandCorner(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) noexcept {
 						create(matrix_, max_value_);
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_, const Matrix_Int_ max_value_ = 255) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -310,7 +310,7 @@ namespace dtl {
 					//コンストラクタ
 					constexpr FractalIsland() noexcept = default;
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						explicit FractalIsland(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) noexcept {
 						create(matrix_, seed_, max_value_);
 					}
@@ -367,7 +367,7 @@ namespace dtl {
 					}
 				private:
 					//チャンク生成の呼び出し・実行
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void createWorldMapSimple(std::array<std::array<Matrix_Int_, chunk_size>, chunk_size> & matrix_, const Matrix_Int_ max_value_) const noexcept {
 						createDiamondSquareAverage_Map<Matrix_Int_>(chunk_array_max_half, chunk_array_max_half, chunk_array_max_half, matrix_[0][0], matrix_[chunk_array_max][0], matrix_[0][chunk_array_max], matrix_[chunk_array_max][chunk_array_max], matrix_, max_value_);
 					}
@@ -379,7 +379,7 @@ namespace dtl {
 					//コンストラクタ
 					constexpr ChunkIsland() noexcept = default;
 					template<typename Matrix_>
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						explicit ChunkIsland(Matrix_& matrix_, std::size_t seed_ = 0, const std::int_fast32_t max_value_ = 255) noexcept {
 						create(matrix_, seed_, max_value_);
 					}
@@ -434,7 +434,7 @@ namespace dtl {
 					}
 				private:
 					//チャンク生成の呼び出し・実行
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void createWorldMapSimple(std::array<std::array<Matrix_Int_, chunk_size>, chunk_size> & matrix_, const Matrix_Int_ max_value_) const noexcept {
 						createDiamondSquareAverage_Map<Matrix_Int_>(chunk_array_max_half, chunk_array_max_half, chunk_array_max_half, matrix_[0][0], matrix_[chunk_array_max][0], matrix_[0][chunk_array_max], matrix_[chunk_array_max][chunk_array_max], matrix_, max_value_);
 					}
@@ -498,7 +498,7 @@ namespace dtl {
 					}
 				private:
 					//チャンク生成の呼び出し・実行
-					DTL_CONSTEXPR_CPP14
+					DTL_CPP14_CONSTEXPR
 						void createWorldMapSimple(std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> & matrix_, const Matrix_Int_ max_value_) const noexcept {
 						createDiamondSquareAverage_Map<Matrix_Int_>(chunk_size / 2, chunk_size / 2, chunk_size / 2, matrix_[0][0], matrix_[chunk_array_max][0], matrix_[0][chunk_array_max], matrix_[chunk_array_max][chunk_array_max], matrix_, max_value_);
 					}

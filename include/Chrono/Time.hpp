@@ -14,8 +14,8 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <Macros/nodiscard.hpp>
 #include <chrono>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace chrono {

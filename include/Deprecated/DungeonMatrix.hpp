@@ -21,14 +21,14 @@ namespace dtl {
 
 			//サイズ変更(std::vector, std::deque等)
 			template<typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				matrix_.resize(y_);
 				for (std::size_t row{}; row < y_; ++row)
 					matrix_[row].resize(x_);
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void resize(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
 				matrix_.resize(y_);
 				for (std::size_t row{}; row < y_; ++row) {
@@ -47,7 +47,7 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
 					matrix_.resize(y_);
 					for (std::size_t row{}; row < y_; ++row) {
@@ -57,7 +57,7 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 					matrix_.resize(y_);
 					for (std::size_t row{}; row < y_; ++row) {
@@ -70,14 +70,14 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const std::size_t layer_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col].resize(layer_);
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
@@ -99,7 +99,7 @@ namespace dtl {
 
 				//上下反転
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void flip(Matrix_& matrix_) noexcept {
 					for (std::size_t row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
 						if (row >= row2) break;
@@ -112,7 +112,7 @@ namespace dtl {
 				}
 				//左右反転
 				template<typename Matrix_>
-				DTL_CONSTEXPR_CPP14
+				DTL_CPP14_CONSTEXPR
 					void mirror(Matrix_& matrix_) noexcept {
 					for (std::size_t row{}; row < matrix_.size(); ++row)
 						for (std::size_t col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
@@ -133,7 +133,7 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_, typename Matrix2_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void convertSTL_intoDefault(Matrix_& matrix_, std::size_t& x_, std::size_t& y_, const Matrix2_& matrix2_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -141,7 +141,7 @@ namespace dtl {
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void convertSTL_intoArray(Matrix_ & matrix_, std::size_t & x_, std::size_t & y_, const Matrix2_ & matrix2_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -149,7 +149,7 @@ namespace dtl {
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
-			DTL_CONSTEXPR_CPP14
+			DTL_CPP14_CONSTEXPR
 				void convertSTL_intoLayer(Matrix_ & matrix_, std::size_t & layer_, const Matrix2_ & matrix2_) noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
