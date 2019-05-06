@@ -33,14 +33,14 @@ namespace dtl {
 			constexpr Time(const Clock_& value_) noexcept :mul_value(value_) {}
 
 			Time& update() noexcept {
-				old_sc = sc;
-				sc = std::chrono::system_clock::now();
-				clock = static_cast<Clock_>(std::chrono::duration_cast<Duration_>(sc - old_sc).count()) * mul_value;
+				this->old_sc = this->sc;
+				this->sc = std::chrono::system_clock::now();
+				this->clock = static_cast<Clock_>(std::chrono::duration_cast<Duration_>(this->sc - this->old_sc).count()) * this->mul_value;
 				return *this;
 			}
 
 			DTL_NODISCARD
-			constexpr Clock_ get() const noexcept { return clock; }
+			constexpr Clock_ get() const noexcept { return this->clock; }
 
 		};
 		static thread_local Time<double, std::chrono::nanoseconds> system_time(1.0e-09);

@@ -28,24 +28,6 @@ namespace dtl {
 			std::int_fast32_t y{};
 		};
 
-		//指定したマス(1マス)に値を格納する
-		template<typename Matrix_Int_>
-		class Pen {
-		public:
-			//コンストラクタ
-			constexpr Pen() noexcept = default;
-			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
-				explicit Pen(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) noexcept {
-				paint(matrix_, x_, y_, paint_value_);
-			}
-			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
-				void paint(Matrix_& matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
-				matrix_[y_][x_] = paint_value_;
-			}
-		};
-
 		//Flood Fill Algorithm
 		//塗りツール
 		template<typename Matrix_Int_>

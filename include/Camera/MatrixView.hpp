@@ -64,15 +64,15 @@ namespace dtl {
 
 			DTL_CPP14_CONSTEXPR
 				void setTarget(const double target_x_, const double target_y_) noexcept {
-				target_x = target_x_;
-				target_y = target_y_;
+				this->target_x = target_x_;
+				this->target_y = target_y_;
 			}
 			DTL_CPP14_CONSTEXPR
 				void checkTarget(const double x_, const double y_) noexcept {
-				while (target_x < 0) target_x += x_;
-				while (target_y < 0) target_y += x_;
-				while (target_x >= x_) target_x -= x_;
-				while (target_y >= y_) target_y -= y_;
+				while (this->target_x < 0) this->target_x += x_;
+				while (this->target_y < 0) this->target_y += x_;
+				while (this->target_x >= x_) this->target_x -= x_;
+				while (this->target_y >= y_) this->target_y -= y_;
 			}
 			DTL_CPP14_CONSTEXPR
 				void checkTarget(double& target_x_, double& target_y_, const double x_, const double y_) const noexcept {
@@ -100,20 +100,20 @@ namespace dtl {
 				target_x(target_x_),
 				target_y(target_y_) {}
 			void setInit(const std::int_fast32_t window_width_, const std::int_fast32_t window_height_, const std::int_fast32_t pixel_width_, const std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept {
-				window_width = window_width_;
-				window_height = window_height_;
-				window_start_x = 0;
-				window_start_y = 0;
-				window_end_x = window_width_;
-				window_end_y = window_height_;
-				window_center_x = window_width_ / 2;
-				window_center_y = window_height_ / 2;
-				pixel_width = pixel_width_;
-				pixel_height = pixel_height_;
-				cell_width = window_width_ / static_cast<double>(pixel_width_);
-				cell_height = window_height_ / static_cast<double>(pixel_height_);
-				target_x = target_x_;
-				target_y = target_y_;
+				this->window_width = window_width_;
+				this->window_height = window_height_;
+				this->window_start_x = 0;
+				this->window_start_y = 0;
+				this->window_end_x = window_width_;
+				this->window_end_y = window_height_;
+				this->window_center_x = window_width_ / 2;
+				this->window_center_y = window_height_ / 2;
+				this->pixel_width = pixel_width_;
+				this->pixel_height = pixel_height_;
+				this->cell_width = window_width_ / static_cast<double>(pixel_width_);
+				this->cell_height = window_height_ / static_cast<double>(pixel_height_);
+				this->target_x = target_x_;
+				this->target_y = target_y_;
 			}
 
 
@@ -124,59 +124,59 @@ namespace dtl {
 					MatrixViewRect mvr{};
 					return std::move(mvr);
 				}
-				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(target_x) };
-				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(target_y) };
-				const std::int_fast32_t draw_position_x{ (target_x == static_cast<double>(static_cast<std::int_fast32_t>(target_x))) ? window_center_x : window_center_x - static_cast<std::int_fast32_t>((target_x - static_cast<double>(static_cast<std::int_fast32_t>(target_x))) * static_cast<double>(pixel_width)) };
-				const std::int_fast32_t draw_position_y{ (target_y == static_cast<double>(static_cast<std::int_fast32_t>(target_y))) ? window_center_y : window_center_y - static_cast<std::int_fast32_t>((target_y - static_cast<double>(static_cast<std::int_fast32_t>(target_y))) * static_cast<double>(pixel_height)) };
+				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(this->target_x) };
+				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(this->target_y) };
+				const std::int_fast32_t draw_position_x{ (this->target_x == static_cast<double>(static_cast<std::int_fast32_t>(this->target_x))) ? this->window_center_x : this->window_center_x - static_cast<std::int_fast32_t>((this->target_x - static_cast<double>(static_cast<std::int_fast32_t>(this->target_x))) * static_cast<double>(this->pixel_width)) };
+				const std::int_fast32_t draw_position_y{ (this->target_y == static_cast<double>(static_cast<std::int_fast32_t>(this->target_y))) ? this->window_center_y : this->window_center_y - static_cast<std::int_fast32_t>((this->target_y - static_cast<double>(static_cast<std::int_fast32_t>(this->target_y))) * static_cast<double>(this->pixel_height)) };
 
 				MatrixViewRect rect{};
 
-				for (std::int_fast32_t i{ draw_position_y }, draw_y{ target_int_y };; i -= pixel_height, --draw_y) {
-					if (i <= (window_start_y - pixel_height)) {
+				for (std::int_fast32_t i{ draw_position_y }, draw_y{ target_int_y };; i -= this->pixel_height, --draw_y) {
+					if (i <= (this->window_start_y - this->pixel_height)) {
 						rect.start_y = draw_y;
 						break;
 					}
 					while (draw_y < 0) draw_y += y_;
 					if (draw_y >= y_) draw_y %= y_;
 					//左上
-					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x };; j -= pixel_width, --draw_x) {
-						if (j <= (window_start_x - pixel_width)) {
+					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x };; j -= this->pixel_width, --draw_x) {
+						if (j <= (this->window_start_x - this->pixel_width)) {
 							rect.start_x = draw_x;
 							break;
 						}
 						while (draw_x < 0) draw_x += x_;
 						if (draw_x >= x_) draw_x %= x_;
-						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, pixel_width, pixel_height);
+						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 					//右上
-					for (std::int_fast32_t j{ draw_position_x + pixel_width }, draw_x{ target_int_x + 1 }; j < window_end_x; j += pixel_width, ++draw_x) {
+					for (std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 }; j < this->window_end_x; j += this->pixel_width, ++draw_x) {
 						if (draw_x >= x_) draw_x %= x_;
 						while (draw_x < 0) draw_x += x_;
-						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, pixel_width, pixel_height);
+						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 				}
-				for (std::int_fast32_t i{ draw_position_y + pixel_height }, draw_y{ target_int_y + 1 };; i += pixel_height, ++draw_y) {
-					if (i >= window_end_y) {
+				for (std::int_fast32_t i{ draw_position_y + this->pixel_height }, draw_y{ target_int_y + 1 };; i += this->pixel_height, ++draw_y) {
+					if (i >= this->window_end_y) {
 						rect.end_y = draw_y;
 						break;
 					}
 					if (draw_y >= y_) draw_y %= y_;
 					while (draw_y < 0) draw_y += y_;
 					//左下
-					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x }; j > (window_start_x - pixel_width); j -= pixel_width, --draw_x) {
+					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x }; j > (this->window_start_x - this->pixel_width); j -= this->pixel_width, --draw_x) {
 						while (draw_x < 0) draw_x += x_;
 						if (draw_x >= x_) draw_x %= x_;
-						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, pixel_width, pixel_height);
+						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 					//右下
-					for (std::int_fast32_t j{ draw_position_x + pixel_width }, draw_x{ target_int_x + 1 };; j += pixel_width, ++draw_x) {
-						if (j >= window_end_x) {
+					for (std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 };; j += this->pixel_width, ++draw_x) {
+						if (j >= this->window_end_x) {
 							rect.end_x = draw_x;
 							break;
 						}
 						if (draw_x >= x_) draw_x %= x_;
 						while (draw_x < 0) draw_x += x_;
-						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, pixel_width, pixel_height);
+						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 				}
 				return std::move(rect);

@@ -56,7 +56,7 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 			std::string str{};
-			std::size_t Color_Num_{ 3 };
+			std::size_t color_num{ 3 };
 			int stride_in_bytes{};
 
 
@@ -65,17 +65,17 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_CPP14_CONSTEXPR
 				inline void substitutionSTL(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CPP14_CONSTEXPR
 				inline void substitutionArray(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_CPP14_CONSTEXPR
 				inline void substitutionLayer(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * Color_Num_]);
+				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
 			///// 基本処理 /////
@@ -83,36 +83,36 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 				bool writeNormal(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionSTL(end_x_,data,matrix_, col, row, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), stride_in_bytes);
+				stbi_write_png(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get(), stride_in_bytes);
 				return true;
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 				bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionLayer(end_x_,data,matrix_, layer_, col, row, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), stride_in_bytes);
+				stbi_write_png(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get(), stride_in_bytes);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 				bool writeArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * Color_Num_]);
+				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionArray(end_x_,data,matrix_, col, row, max_x_, args_...);
-				stbi_write_png(str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(Color_Num_), data.get(), stride_in_bytes);
+				stbi_write_png(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get(), stride_in_bytes);
 				return true;
 			}
 
@@ -316,9 +316,9 @@ namespace dtl {
 			constexpr explicit FilePNG(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FilePNG(const std::string& write_value_, const std::size_t color_num_) noexcept
-				:str(write_value_), Color_Num_(color_num_) {}
+				:str(write_value_), color_num(color_num_) {}
 			constexpr explicit FilePNG(const std::string& write_value_, const std::size_t color_num_, const int stride_in_bytes_) noexcept
-				:str(write_value_), Color_Num_(color_num_), stride_in_bytes(stride_in_bytes_) {}
+				:str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}
 
 			constexpr explicit FilePNG(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
@@ -330,11 +330,11 @@ namespace dtl {
 			constexpr explicit FilePNG(const dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const std::size_t color_num_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
-				str(write_value_), Color_Num_(color_num_) {}
+				str(write_value_), color_num(color_num_) {}
 			constexpr explicit FilePNG(const dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const std::size_t color_num_, const int stride_in_bytes_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
-				str(write_value_), Color_Num_(color_num_), stride_in_bytes(stride_in_bytes_) {}
+				str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}
 
 			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
@@ -346,11 +346,11 @@ namespace dtl {
 			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const std::size_t color_num_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
-				str(write_value_), Color_Num_(color_num_) {}
+				str(write_value_), color_num(color_num_) {}
 			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const std::size_t color_num_, const int stride_in_bytes_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
-				str(write_value_), Color_Num_(color_num_), stride_in_bytes(stride_in_bytes_) {}
+				str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}
 		};
 	}
 }

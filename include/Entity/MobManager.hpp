@@ -62,7 +62,7 @@ namespace dtl {
 			return ((fps_ == 0.0) ? 0.0 : 1.0 / fps_);
 		}
 		constexpr inline std::uint_fast64_t getMicroseconds(const double m_fps_, const double fps_ = 60.0) noexcept {
-			return ((fps_ == 0.0) ? 0 : static_cast<std::uint_fast64_t>(m_fps_ / fps_ * 1'000'000.0 + 0.5));
+			return ((fps_ == 0.0) ? 0 : static_cast<std::uint_fast64_t>(m_fps_ / fps_ * 1000000.0 + 0.5));
 		}
 
 		class MobManager {
@@ -84,63 +84,63 @@ namespace dtl {
 
 			DTL_CPP14_CONSTEXPR
 				void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
-				x = x_;
-				y = y_;
-				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
+				this->x = x_;
+				this->y = y_;
+				this->walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			DTL_CPP14_CONSTEXPR
 				void setWalkSpeed(const double walk_speed_) noexcept {
-				walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
+				this->walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			template<typename Pair_>
 			DTL_CPP14_CONSTEXPR
 				void setPosition(const Pair_ & pair_) noexcept {
-				x = static_cast<std::int_fast32_t>(pair_.first);
-				y = static_cast<std::int_fast32_t>(pair_.second);
+				this->x = static_cast<std::int_fast32_t>(pair_.first);
+				this->y = static_cast<std::int_fast32_t>(pair_.second);
 			}
 			DTL_CPP14_CONSTEXPR
 				void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
-				x = x_;
-				y = y_;
+				this->x = x_;
+				this->y = y_;
 			}
 
 			DTL_NODISCARD
 			constexpr bool isWalk() const noexcept {
-				return (status_x != player_status_stay || status_y != player_status_stay);
+				return (this->status_x != player_status_stay || this->status_y != player_status_stay);
 			}
 
 			DTL_CPP14_CONSTEXPR
 				void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
-				while (x < 0) x += x_;
-				while (y < 0) y += x_;
-				if (x >= x_) x %= x_;
-				if (y >= y_) y %= y_;
+				while (this->x < 0) this->x += x_;
+				while (this->y < 0) this->y += x_;
+				if (this->x >= x_) this->x %= x_;
+				if (this->y >= y_) this->y %= y_;
 			}
 
 			DTL_CPP14_CONSTEXPR
 				bool moveX() noexcept {
-				if (status_x == player_status_stay) return false;
-				small_x += walk_speed;
-				if (small_x < 1.0) return false;
+				if (this->status_x == player_status_stay) return false;
+				this->small_x += this->walk_speed;
+				if (this->small_x < 1.0) return false;
 
-				if (status_x == player_status_1) --x;
-				else ++x;
-				small_x = 0.0;
-				status_x = player_status_stay;
+				if (this->status_x == player_status_1) --(this->x);
+				else ++(this->x);
+				this->small_x = 0.0;
+				this->status_x = player_status_stay;
 				return true;
 			}
 			DTL_CPP14_CONSTEXPR
 				bool moveY() noexcept {
-				if (status_y == player_status_stay) return false;
-				small_y += walk_speed;
-				if (small_y < 1.0) return false;
+				if (this->status_y == player_status_stay) return false;
+				this->small_y += this->walk_speed;
+				if (this->small_y < 1.0) return false;
 
-				if (status_y == player_status_1) --y;
-				else ++y;
-				small_y = 0.0;
-				status_y = player_status_stay;
+				if (this->status_y == player_status_1) --(this->y);
+				else ++(this->y);
+				this->small_y = 0.0;
+				this->status_y = player_status_stay;
 				return true;
 			}
 			DTL_CPP14_CONSTEXPR //C++14
@@ -164,25 +164,25 @@ namespace dtl {
 			DTL_NODISCARD
 			constexpr bool isWalkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) == 0) ? false :
-					((can_walk_direction[walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) - 1] == false) ? false : true);
+					((this->can_walk_direction[walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) - 1] == false) ? false : true);
 			}
 			DTL_NODISCARD
 			constexpr bool isWalkDirection(const std::uint_fast8_t walk_direction_) const noexcept {
-				return (walk_direction_ == 0) ? false : ((can_walk_direction[walk_direction_ - 1] == false) ? false : true);
+				return (walk_direction_ == 0) ? false : ((this->can_walk_direction[walk_direction_ - 1] == false) ? false : true);
 			}
 
 			//あたり判定
 			template<typename Matrix_, typename Set_>
 			void setCanWalkDirection(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, Set_ && set_) noexcept {
-				set_(matrix_, x_, y_, can_walk_direction, x, y);
+				set_(matrix_, x_, y_, this->can_walk_direction, this->x, this->y);
 			}
 			template<typename Matrix_, typename Set_>
 			void setCanWalkDirection(Matrix_ && matrix_, Set_ && set_) noexcept {
-				set_(matrix_, can_walk_direction, x, y);
+				set_(matrix_, this->can_walk_direction, this->x, this->y);
 			}
 			template<typename Matrix_, typename Set_>
 			void setCanWalkDirection(Set_ && set_) noexcept {
-				set_(can_walk_direction, x, y);
+				set_(this->can_walk_direction, this->x, this->y);
 			}
 
 			DTL_NODISCARD
@@ -190,41 +190,41 @@ namespace dtl {
 				std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;
-				if (can_walk_direction[walk_direction - 1] == false) {
+				if (this->can_walk_direction[walk_direction - 1] == false) {
 					if (walk_direction <= direction_right) return 0;
-					//todo (can_walk_direction[walk_direction - 1] && can_walk_direction[walk_direction - 1])
-					else if (can_walk_direction[walk_direction - 1]) return 0;
+					//todo (this->can_walk_direction[walk_direction - 1] && this->can_walk_direction[walk_direction - 1])
+					else if (this->can_walk_direction[walk_direction - 1]) return 0;
 					switch (walk_direction) {
 					case direction_up_left:
-						if (can_walk_direction[direction_array_up] && can_walk_direction[direction_array_left]) return 0;
-						else if (!can_walk_direction[direction_array_up] && !can_walk_direction[direction_array_left]) return 0;
-						else if (can_walk_direction[direction_array_up])
+						if (this->can_walk_direction[direction_array_up] && this->can_walk_direction[direction_array_left]) return 0;
+						else if (!(this->can_walk_direction[direction_array_up]) && !(this->can_walk_direction[direction_array_left])) return 0;
+						else if (this->can_walk_direction[direction_array_up])
 							walk_direction = direction_up;
-						else if (can_walk_direction[direction_array_left])
+						else if (this->can_walk_direction[direction_array_left])
 							walk_direction = direction_left;
 						break;
 					case direction_up_right:
-						if (can_walk_direction[direction_array_up] && can_walk_direction[direction_array_right]) return 0;
-						else if (!can_walk_direction[direction_array_up] && !can_walk_direction[direction_array_right]) return 0;
-						else if (can_walk_direction[direction_array_up])
+						if (this->can_walk_direction[direction_array_up] && this->can_walk_direction[direction_array_right]) return 0;
+						else if (!(this->can_walk_direction[direction_array_up]) && !(this->can_walk_direction[direction_array_right])) return 0;
+						else if (this->can_walk_direction[direction_array_up])
 							walk_direction = direction_up;
-						else if (can_walk_direction[direction_array_right])
+						else if (this->can_walk_direction[direction_array_right])
 							walk_direction = direction_right;
 						break;
 					case direction_down_left:
-						if (can_walk_direction[direction_array_down] && can_walk_direction[direction_array_left]) return 0;
-						else if (!can_walk_direction[direction_array_down] && !can_walk_direction[direction_array_left]) return 0;
-						else if (can_walk_direction[direction_array_down])
+						if (this->can_walk_direction[direction_array_down] && this->can_walk_direction[direction_array_left]) return 0;
+						else if (!(this->can_walk_direction[direction_array_down]) && !(this->can_walk_direction[direction_array_left])) return 0;
+						else if (this->can_walk_direction[direction_array_down])
 							walk_direction = direction_down;
-						else if (can_walk_direction[direction_array_left])
+						else if (this->can_walk_direction[direction_array_left])
 							walk_direction = direction_left;
 						break;
 					case direction_down_right:
-						if (can_walk_direction[direction_array_down] && can_walk_direction[direction_array_right]) return 0;
-						else if (!can_walk_direction[direction_array_down] && !can_walk_direction[direction_array_right]) return 0;
-						else if (can_walk_direction[direction_array_down])
+						if (this->can_walk_direction[direction_array_down] && this->can_walk_direction[direction_array_right]) return 0;
+						else if (!(this->can_walk_direction[direction_array_down]) && !(this->can_walk_direction[direction_array_right])) return 0;
+						else if (this->can_walk_direction[direction_array_down])
 							walk_direction = direction_down;
-						else if (can_walk_direction[direction_array_right])
+						else if (this->can_walk_direction[direction_array_right])
 							walk_direction = direction_right;
 						break;
 					}
@@ -239,44 +239,44 @@ namespace dtl {
 
 				switch (walk_direction) {
 				case direction_up:
-					status_y = player_status_1;
-					small_y += walk_speed;
+					this->status_y = player_status_1;
+					this->small_y += this->walk_speed;
 					return;
 				case direction_down:
-					status_y = player_status_2;
-					small_y += walk_speed;
+					this->status_y = player_status_2;
+					this->small_y += this->walk_speed;
 					return;
 				case direction_left:
-					status_x = player_status_1;
-					small_x += walk_speed;
+					this->status_x = player_status_1;
+					this->small_x += this->walk_speed;
 					return;
 				case direction_right:
-					status_x = player_status_2;
-					small_x += walk_speed;
+					this->status_x = player_status_2;
+					this->small_x += this->walk_speed;
 					return;
 				case direction_up_left:
-					status_x = player_status_1;
-					small_x += walk_speed;
-					status_y = player_status_1;
-					small_y += walk_speed;
+					this->status_x = player_status_1;
+					this->small_x += this->walk_speed;
+					this->status_y = player_status_1;
+					this->small_y += this->walk_speed;
 					return;
 				case direction_up_right:
-					status_x = player_status_2;
-					small_x += walk_speed;
-					status_y = player_status_1;
-					small_y += walk_speed;
+					this->status_x = player_status_2;
+					this->small_x += this->walk_speed;
+					this->status_y = player_status_1;
+					this->small_y += this->walk_speed;
 					return;
 				case direction_down_left:
-					status_x = player_status_1;
-					small_x += walk_speed;
-					status_y = player_status_2;
-					small_y += walk_speed;
+					this->status_x = player_status_1;
+					this->small_x += this->walk_speed;
+					this->status_y = player_status_2;
+					this->small_y += this->walk_speed;
 					return;
 				case direction_down_right:
-					status_x = player_status_2;
-					small_x += walk_speed;
-					status_y = player_status_2;
-					small_y += walk_speed;
+					this->status_x = player_status_2;
+					this->small_x += this->walk_speed;
+					this->status_y = player_status_2;
+					this->small_y += this->walk_speed;
 					return;
 				}
 			}
@@ -290,11 +290,11 @@ namespace dtl {
 			}
 			DTL_NODISCARD
 			double getPositionX() const noexcept {
-				return this->x + 0.5 + ((this->status_x == player_status_1) ? (-small_x) : (small_x));
+				return this->x + 0.5 + ((this->status_x == player_status_1) ? (-(this->small_x)) : (this->small_x));
 			}
 			DTL_NODISCARD
 			double getPositionY() const noexcept {
-				return this->y + 0.5 + ((this->status_y == player_status_1) ? (-small_y) : (small_y));
+				return this->y + 0.5 + ((this->status_y == player_status_1) ? (-(this->small_y)) : (this->small_y));
 			}
 			DTL_NODISCARD
 			std::int_fast32_t getDirection() const noexcept {
