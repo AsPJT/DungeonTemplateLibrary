@@ -37,6 +37,7 @@
     <ClInclude Include="..\..\include\DTL.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Base.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Camera.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Chrono.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Console.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Deprecated.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Entity.hpp" />

@@ -293,6 +293,9 @@
     <ClInclude Include="..\..\include\Chrono\Time.hpp">
       <Filter>ヘッダー ファイル\Chrono</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Chrono.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">

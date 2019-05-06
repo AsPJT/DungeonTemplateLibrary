@@ -28,6 +28,10 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_HPP
 #include <Dungeon/Camera.hpp>
 
+/* 時間ライブラリ (dtl::chrono) */
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CHRONO_HPP
+#include <Dungeon/Chrono.hpp>
+
 /* コンソールライブラリ (dtl::console) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CONSOLE_HPP
 #include <Dungeon/Console.hpp>
