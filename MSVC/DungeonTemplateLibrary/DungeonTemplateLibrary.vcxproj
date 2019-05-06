@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Base\Struct.hpp" />
     <ClInclude Include="..\..\include\Camera\MatrixView.hpp" />
+    <ClInclude Include="..\..\include\Chrono\Time.hpp" />
     <ClInclude Include="..\..\include\Console\OutputNumber.hpp" />
     <ClInclude Include="..\..\include\Console\OutputString.hpp" />
     <ClInclude Include="..\..\include\Console\OutputStringBool.hpp" />

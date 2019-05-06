@@ -51,6 +51,9 @@
     <Filter Include="ヘッダー ファイル\Dungeon">
       <UniqueIdentifier>{3e27e26e-2a44-4eda-b0ff-0759cc87c4bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Chrono">
+      <UniqueIdentifier>{cec74aec-c31c-4b70-b3d8-4c90c52a9096}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Utility\Binarization.hpp">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\Dungeon\Utility.hpp">
       <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Chrono\Time.hpp">
+      <Filter>ヘッダー ファイル\Chrono</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

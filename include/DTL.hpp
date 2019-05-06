@@ -17,7 +17,7 @@
 
 /* バージョン */
 #ifndef DTL_VERSION
-#define DTL_VERSION (20190502L)
+#define DTL_VERSION (20190503L)
 #endif
 
 /* 基本クラスライブラリ (dtl::base) */
