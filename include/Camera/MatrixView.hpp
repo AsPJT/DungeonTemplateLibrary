@@ -121,8 +121,7 @@ namespace dtl {
 			DTL_CPP14_CONSTEXPR
 				MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
 				if (x_ == 0 || y_ == 0) {
-					MatrixViewRect mvr{};
-					return mvr;
+					return {};
 				}
 				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(this->target_x) };
 				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(this->target_y) };
