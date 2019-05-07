@@ -125,8 +125,8 @@ namespace dtl {
 				}
 				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(this->target_x) };
 				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(this->target_y) };
-				const std::int_fast32_t draw_position_x{ (this->target_x == static_cast<double>(static_cast<std::int_fast32_t>(this->target_x))) ? this->window_center_x : this->window_center_x - static_cast<std::int_fast32_t>((this->target_x - static_cast<double>(static_cast<std::int_fast32_t>(this->target_x))) * static_cast<double>(this->pixel_width)) };
-				const std::int_fast32_t draw_position_y{ (this->target_y == static_cast<double>(static_cast<std::int_fast32_t>(this->target_y))) ? this->window_center_y : this->window_center_y - static_cast<std::int_fast32_t>((this->target_y - static_cast<double>(static_cast<std::int_fast32_t>(this->target_y))) * static_cast<double>(this->pixel_height)) };
+				const std::int_fast32_t draw_position_x{ (this->target_x == static_cast<double>(target_int_x)) ? this->window_center_x : this->window_center_x - static_cast<std::int_fast32_t>((this->target_x - static_cast<double>(target_int_x)) * static_cast<double>(this->pixel_width)) };
+				const std::int_fast32_t draw_position_y{ (this->target_y == static_cast<double>(target_int_y)) ? this->window_center_y : this->window_center_y - static_cast<std::int_fast32_t>((this->target_y - static_cast<double>(target_int_y)) * static_cast<double>(this->pixel_height)) };
 
 				MatrixViewRect rect{};
 
