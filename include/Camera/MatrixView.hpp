@@ -119,7 +119,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename View_Class_>
 			DTL_CPP14_CONSTEXPR
-				MatrixViewRect&& draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
+				MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
 				if (x_ == 0 || y_ == 0) {
 					MatrixViewRect mvr{};
 					return std::move(mvr);
