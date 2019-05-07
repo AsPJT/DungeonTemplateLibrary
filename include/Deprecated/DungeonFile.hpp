@@ -243,7 +243,6 @@ namespace dtl {
 				bool all(const Matrix_ & matrix_, const std::string & str_) noexcept {
 					//Text
 					dtl::file::write::stl::dtlm(matrix_, str_ + ".dtlm");
-					dtl::file::write::stl::csv(matrix_, str_ + ".csv");
 					//Picture
 					dtl::file::write::stl::svg(matrix_, str_ + ".svg");
 					return true;
@@ -252,7 +251,6 @@ namespace dtl {
 				bool folderAll(const Matrix_ & matrix_, const std::string & str_1, const std::string & str_2) noexcept {
 					//Text
 					dtl::file::write::stl::dtlm(matrix_, str_1 + "dtlm\\" + str_2 + ".dtlm");
-					dtl::file::write::stl::csv(matrix_, str_1 + "csv\\" + str_2 + ".csv");
 					//Picture
 					dtl::file::write::stl::svg(matrix_, str_1 + "svg\\" + str_2 + ".svg");
 					return true;
