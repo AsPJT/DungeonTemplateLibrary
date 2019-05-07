@@ -12,6 +12,9 @@ int main() {
 
 	dtl::storage::FileTXT_0_9<shape_t>("file_sample_0_9.txt").write(matrix,32,32);
 
+	dtl::storage::FilePBM<shape_t>("file_sample.pbm").write(matrix, 32, 32);
+	dtl::storage::FilePBM<shape_t>("file_sample2.pbm").write(matrix);
+
 	dtl::storage::FilePNG<shape_t>("file_sample2.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
 		switch (value) {
 		case 0:

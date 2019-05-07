@@ -84,6 +84,7 @@
     <ClInclude Include="..\..\include\Storage\FileHDR.hpp" />
     <ClInclude Include="..\..\include\Storage\FileJPG.hpp" />
     <ClInclude Include="..\..\include\Storage\FileMD.hpp" />
+    <ClInclude Include="..\..\include\Storage\FilePBM.hpp" />
     <ClInclude Include="..\..\include\Storage\FilePNG.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTerrainOBJ.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTGA.hpp" />
