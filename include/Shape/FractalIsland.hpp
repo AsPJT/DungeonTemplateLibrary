@@ -24,6 +24,9 @@
 #include <utility>
 #include <Base/Struct.hpp>
 #include <algorithm>
+#include <array>
+#include <memory>
+#include <new>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
 //#include <Deprecated/FractalIsland.hpp>
