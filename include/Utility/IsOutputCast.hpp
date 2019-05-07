@@ -43,34 +43,4 @@ namespace dtl {
 	}
 }
 
-//共有データ
-namespace dtl {
-	inline namespace utility {
-		namespace tool {
-
-			template<typename Matrix_Int_>
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
-				return value_;
-			}
-			template<>
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr auto getOutputNumber<char>(const char value_) noexcept {
-				return static_cast<int>(value_);
-			}
-			template<>
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
-				return static_cast<int>(value_);
-			}
-			template<>
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
-				return static_cast<int>(value_);
-			}
-
-		}
-	}
-}
-
 #endif //Included Dungeon Template Library

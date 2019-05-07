@@ -19,8 +19,6 @@
 #include <typeinfo>
 #include <iomanip>
 #include <array>
-#include <Utility/IsOutputCast.hpp>
-#include <Storage/FileCSV.hpp>
 #include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
@@ -69,68 +67,6 @@ namespace dtl {
 	inline namespace file {
 		namespace write {
 			namespace stl {
-				//mdファイルの書き込み
-				template<typename Matrix_>
-				bool md(const Matrix_& matrix_, const std::string& str_) noexcept {
-					if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
-					std::ofstream ofs(str_);
-					if (ofs.fail()) return false;
-					ofs << '|';
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						ofs << row << '|';
-					ofs << '\n' << '|';
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						ofs << ":---|";
-					ofs << '\n';
-					for (std::size_t row{}; row < matrix_.size(); ++row) {
-						if (matrix_[row].size() == 0) continue;
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-							ofs << '|';
-							ofs << dtl::utility::tool::getOutputNumber(matrix_[row][col]);
-						}
-						ofs << '|';
-						ofs << '\n';
-					}
-					return true;
-				}
-				//0~9ファイルの書き込み
-				template<typename Matrix_>
-				bool txt_0_9(const Matrix_& matrix_, const std::string& str_) noexcept {
-					std::ofstream ofs(str_);
-					if (ofs.fail()) return false;
-					for (std::size_t row{}; row < matrix_.size(); ++row) {
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
-							if (matrix_[row][col] <= 0) ofs << 0;
-							else if (matrix_[row][col] >= 9) ofs << 9;
-							ofs << dtl::utility::tool::getOutputNumber(matrix_[row][col]);
-						}
-						ofs << '\n';
-					}
-					return true;
-				}
-				//pbmファイルの書き込み
-				template<typename Matrix_>
-				bool pbm(const Matrix_ & matrix_, const std::string & str_) noexcept {
-					std::ofstream ofs(str_);
-					if (ofs.fail()) return false;
-
-					ofs << "P1" << '\n';
-					ofs << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << " ";
-					ofs << matrix_.size() << '\n';
-
-					for (std::size_t row{}; row < matrix_.size(); ++row) {
-						if (matrix_[row].size() == 0) continue;
-						if (matrix_[row][0]) ofs << 1;
-						else ofs << 0;
-						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
-							ofs << " ";
-							if (matrix_[row][col]) ofs << 1;
-							else ofs << 0;
-						}
-						ofs << '\n';
-					}
-					return true;
-				}
 
 				namespace hiding {
 
@@ -197,25 +133,6 @@ namespace dtl {
 						}
 					}
 					ofs << "</svg>";
-					return true;
-				}
-				//objファイルの書き込み
-				template<typename Matrix_>
-				bool objTerrain(const Matrix_& matrix_, const std::string& str_) noexcept {
-					if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
-					std::ofstream ofs(str_);
-					if (ofs.fail()) return false;
-
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
-							ofs << "v " << col << " " << dtl::utility::tool::getOutputNumber(matrix_[row][col]) << " " << row << '\n';
-
-					std::size_t x_size{ matrix_[0].size() };
-					for (std::size_t row{ 1 }; row < matrix_.size(); ++row)
-						for (std::size_t col{ 2 }; col <= matrix_[row].size(); ++col) {
-							ofs << "f " << (row * x_size + col) << " " << ((row - 1) * x_size + col) << " " << ((row - 1) * x_size + (col - 1)) << '\n';
-							ofs << "f " << (row * x_size + (col - 1)) << " " << (row * x_size + col) << " " << ((row - 1) * x_size + (col - 1)) << '\n';
-						}
 					return true;
 				}
 
@@ -328,7 +245,6 @@ namespace dtl {
 					dtl::file::write::stl::dtlm(matrix_, str_ + ".dtlm");
 					dtl::file::write::stl::csv(matrix_, str_ + ".csv");
 					//Picture
-					dtl::file::write::stl::pbm(matrix_, str_ + ".pbm");
 					dtl::file::write::stl::svg(matrix_, str_ + ".svg");
 					return true;
 				}
@@ -338,7 +254,6 @@ namespace dtl {
 					dtl::file::write::stl::dtlm(matrix_, str_1 + "dtlm\\" + str_2 + ".dtlm");
 					dtl::file::write::stl::csv(matrix_, str_1 + "csv\\" + str_2 + ".csv");
 					//Picture
-					dtl::file::write::stl::pbm(matrix_, str_1 + "pbm\\" + str_2 + ".pbm");
 					dtl::file::write::stl::svg(matrix_, str_1 + "svg\\" + str_2 + ".svg");
 					return true;
 				}

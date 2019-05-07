@@ -62,9 +62,6 @@
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Utility\CharCast.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Utility\Copy.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
@@ -72,9 +69,6 @@
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Utility\IsOutputCast.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\Matrix.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Utility\NoiseBool.hpp">
@@ -97,9 +91,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h">
       <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileCSV.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Storage\FilePNG.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>

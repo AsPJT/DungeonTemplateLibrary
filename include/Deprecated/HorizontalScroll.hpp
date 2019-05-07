@@ -14,7 +14,6 @@
 #include <cstddef>
 #include <cstdint>
 #include <Random/MersenneTwister32bit.hpp>
-#include <Utility/Matrix.hpp>
 #include <Macros/constexpr.hpp>
 
 //Dungeon Template Library Namespace
@@ -25,7 +24,7 @@ namespace dtl {
 
 				template<typename Matrix_Int_, typename Matrix_>
 				void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const std::int_fast32_t rand_value_) noexcept {
-					if (dtl::utility::tool::isMatrixEmpty(matrix_)) return;
+					//if (dtl::utility::tool::isMatrixEmpty(matrix_)) return;
 
 					std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 

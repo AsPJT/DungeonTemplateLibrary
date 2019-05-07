@@ -80,7 +80,6 @@
     <ClInclude Include="..\..\include\Shape\Template.hpp" />
     <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp" />
     <ClInclude Include="..\..\include\Storage\FileBMP.hpp" />
-    <ClInclude Include="..\..\include\Storage\FileCSV.hpp" />
     <ClInclude Include="..\..\include\Storage\FileHDR.hpp" />
     <ClInclude Include="..\..\include\Storage\FileJPG.hpp" />
     <ClInclude Include="..\..\include\Storage\FileMD.hpp" />
@@ -92,11 +91,9 @@
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
     <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />
-    <ClInclude Include="..\..\include\Utility\CharCast.hpp" />
     <ClInclude Include="..\..\include\Utility\Copy.hpp" />
     <ClInclude Include="..\..\include\Utility\Init.hpp" />
     <ClInclude Include="..\..\include\Utility\IsOutputCast.hpp" />
-    <ClInclude Include="..\..\include\Utility\Matrix.hpp" />
     <ClInclude Include="..\..\include\Utility\NoiseBool.hpp" />
     <ClInclude Include="..\..\include\Utility\NoiseShoreBool.hpp" />
     <ClInclude Include="..\..\include\Utility\ReplaceAll.hpp" />

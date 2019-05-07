@@ -16,8 +16,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_HPP
 
-#include <Storage/FileCSV.hpp>
-
 #include <Storage/FileMD.hpp>
 
 #include <Storage/FilePBM.hpp>
