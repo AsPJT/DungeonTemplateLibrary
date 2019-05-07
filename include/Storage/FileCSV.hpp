@@ -47,17 +47,17 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Matrix_Int_& value_) const noexcept {
 				matrix_[end_y_][end_x_] = value_;
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, const Matrix_Int_& value_) const noexcept {
 				matrix_[end_y_ * max_x_ + end_x_] = value_;
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, const Matrix_Int_& value_) const noexcept {
 				matrix_[end_y_][end_x_][layer_] = value_;
 			}

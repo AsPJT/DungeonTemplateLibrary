@@ -10,7 +10,7 @@ int main() {
 
 	dtl::CellularAutomatonMixIsland<shape_t>(5, 0, 1, 2, 3, 4).draw(matrix);
 
-	dtl::storage::FileMD<shape_t>("file_sample.txt").write(matrix);
+	dtl::storage::FileTXT_0_9<shape_t>("file_sample_0_9.txt").write(matrix,32,32);
 
 	dtl::storage::FilePNG<shape_t>("file_sample2.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
 		switch (value) {

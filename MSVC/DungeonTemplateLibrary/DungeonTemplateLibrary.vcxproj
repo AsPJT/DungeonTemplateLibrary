@@ -87,6 +87,7 @@
     <ClInclude Include="..\..\include\Storage\FilePNG.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTerrainOBJ.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTGA.hpp" />
+    <ClInclude Include="..\..\include\Storage\FileTXT_0_9.hpp" />
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
     <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />

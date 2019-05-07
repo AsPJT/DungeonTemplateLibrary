@@ -125,7 +125,7 @@ namespace dtl {
 				}
 
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void createLand(Matrix_ & matrix_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -162,7 +162,7 @@ namespace dtl {
 
 
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void createDeepOcean(Matrix_ & matrix_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -193,7 +193,7 @@ namespace dtl {
 				//Diamond Square (Average)
 				//ダイヤモンド・スクエア法(平均値)
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void createDiamondSquareAverage_Map(const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_ & matrix_, const Matrix_Int_ max_value_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -225,8 +225,8 @@ namespace dtl {
 					createDiamondSquareAverage_Map(x_ + size_, y_ + size_, size_, matrix_[y_][x_], s3, s4, t4_, matrix_, max_value_);
 				}
 
-				DTL_NODISCARD
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
 					std::size_t map_size{ 2 };
 					while (true) {

@@ -45,7 +45,7 @@ namespace dtl {
 
 			//通常の乱数
 			template<typename Random_Int_ = std::uint_fast64_t>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(this->mt());
 			}
@@ -59,7 +59,7 @@ namespace dtl {
 			std::size_t counter{ mt64_bit_counter_num_1 };
 			std::uint_fast64_t random_num{};
 		public:
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			bool get() noexcept {
 				if (this->counter >= mt64_bit_counter_num_1) {
 					this->random_num = dtl::random::mt64bit.get();
@@ -87,7 +87,7 @@ namespace dtl {
 			std::size_t counter_bit1{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num_bit1{};
 
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 				bool getBit1() noexcept {
 				if (counter_bit1 >= mt32_bit_counter_num_1) {
 					random_num_bit1 = this->get();
@@ -115,13 +115,13 @@ namespace dtl {
 
 			//通常の乱数
 			template<typename Random_Int_ = std::uint_fast32_t>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(this->mt());
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
 			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			Random_Int_ get(const Random_Int2_ max_) noexcept {
 				if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
 				std::uniform_int_distribution<> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
@@ -129,19 +129,19 @@ namespace dtl {
 			}
 			//最小値～最大値
 			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
 				std::uniform_int_distribution<> uid(static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 			//確率
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			bool probability(const double probability_) noexcept {
 				std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
 			//1/2の確率
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			bool probability() noexcept {
 				return this->getBit1();
 			}
@@ -155,7 +155,7 @@ namespace dtl {
 			std::size_t counter{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num{};
 		public:
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 				bool get() noexcept {
 				if (counter >= mt32_bit_counter_num_1) {
 					random_num = dtl::random::mt32bit.get();
@@ -179,7 +179,7 @@ namespace dtl {
 			std::uint_fast64_t random_num{};
 		public:
 			template<typename Random_Int_ = std::uint_fast64_t>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			Random_Int_ get() noexcept {
 				if (this->counter >= counter_num_2) {
 					this->random_num = dtl::random::mt64bit.get();
@@ -214,31 +214,31 @@ namespace dtl {
 			}
 
 			//通常の乱数
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			std::uint_fast32_t operator()() noexcept {
 				return this->mt();
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			std::int_fast32_t operator()(const std::int_fast32_t max_) noexcept {
 				if (max_ <= 1) return 0;
 				std::uniform_int_distribution<> uid(0, max_ - 1);
 				return uid(this->mt);
 			}
 			//最小値～最大値
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			std::int_fast32_t operator()(const std::int_fast32_t min_, const std::int_fast32_t max_) noexcept {
 				std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 				return uid(this->mt);
 			}
 			//確率
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			bool probability(const double probability_) noexcept {
 				std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
 			//1/2の確率
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			bool probability() noexcept {
 				std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(this->mt)) ? true : false);

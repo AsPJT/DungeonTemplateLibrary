@@ -59,7 +59,7 @@ namespace dtl {
 
 		//パスの有無
 		template<typename Matrix_Int_, typename Matrix_>
-		DTL_CPP14_CONSTEXPR
+		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 			bool reversiIsPass(Matrix_ & matrix_, const Matrix_Int_ turn_) noexcept {
 			for (std::size_t row{}; row < matrix_.size(); ++row)
 				for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -70,7 +70,7 @@ namespace dtl {
 		class ReversiSimple {
 		public:
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 				for (std::size_t row{}; row < matrix_.size(); ++row)
 					for (std::size_t col{}; col < matrix_[row].size(); ++col)
@@ -82,7 +82,7 @@ namespace dtl {
 		class ReversiGreed {
 		public:
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -106,7 +106,7 @@ namespace dtl {
 		class ReversiUnselfishness {
 		public:
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
 				std::size_t piece_turn_min{ (std::numeric_limits<std::size_t>::max)() };
 				std::size_t put_piece_x{}, put_piece_y{};
@@ -128,7 +128,7 @@ namespace dtl {
 		class ReversiPriority {
 		public:
 			//優先順位
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				std::uint_fast8_t checkPriority(std::size_t x_, std::size_t y_, const std::size_t x_max_, const std::size_t y_max_) const noexcept {
 				if (x_ == x_max_) x_ = 0;
 				else if (x_ == x_max_ - 1) x_ = 1;
@@ -144,7 +144,7 @@ namespace dtl {
 				return check_point[y_ * 4 + x_];
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool operator()(Matrix_ & matrix_, const Matrix_Int_ turn_) const noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -173,7 +173,7 @@ namespace dtl {
 		}
 
 		template<typename Matrix_Int_, typename Matrix_>
-		DTL_CPP14_CONSTEXPR
+		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 			std::int_fast32_t reversiCheckResult(Matrix_& matrix_) noexcept {
 			std::array<std::int_fast32_t, 2> piece_num{ {} };
 			std::int_fast32_t result{};
@@ -248,7 +248,7 @@ namespace dtl {
 				};
 
 				template<typename Matrix_Int_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
 					if (koma_ >= shogi_ginsho1 && shogi_narigin1 % 2 == koma_ % 2) return true;
 					return false;
@@ -282,7 +282,7 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void createChess(Matrix_& matrix_) noexcept {
 					if (matrix_.size() < 2) return;
 
@@ -320,7 +320,7 @@ namespace dtl {
 						create(matrix_);
 					}
 					template<typename Matrix_>
-					DTL_CPP14_CONSTEXPR
+					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_) const noexcept {
 						dtl::generator::boardGame::stl::createChess(matrix_);
 					}
@@ -330,7 +330,7 @@ namespace dtl {
 			namespace normal {
 
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void createChess(Matrix_& matrix_, const std::size_t  x_, const std::size_t y_) noexcept {
 					if (y_ < 2) return;
 
@@ -367,7 +367,7 @@ namespace dtl {
 						create(matrix_, x_, y_);
 					}
 					template<typename Matrix_>
-					DTL_CPP14_CONSTEXPR
+					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) const noexcept {
 						dtl::generator::boardGame::normal::createChess(matrix_, x_, y_);
 					}

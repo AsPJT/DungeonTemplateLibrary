@@ -22,7 +22,7 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		auto charCast(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			Int_ field_int{};
@@ -30,12 +30,12 @@ namespace dtl {
 			return field_int;
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		auto charCast<std::string>(const std::string& field_) noexcept {
 			return field_;
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		auto charCast<char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
@@ -43,7 +43,7 @@ namespace dtl {
 			return static_cast<char>(field_int);
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		auto charCast<signed char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};
@@ -51,7 +51,7 @@ namespace dtl {
 			return static_cast<signed char>(field_int);
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		auto charCast<unsigned char>(const std::string& field_) noexcept {
 			std::istringstream field_stream(field_);
 			int field_int{};

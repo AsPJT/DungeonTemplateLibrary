@@ -24,7 +24,7 @@ namespace dtl {
 
 			//noiseShoreBool関数から取得したマップデータの値を1/2の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -33,7 +33,7 @@ namespace dtl {
 			}
 			//noiseShoreBool関数から取得したマップデータの値を[rbool_]の確率でノイズさせるか判定する
 			template<typename Matrix_Int_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -48,7 +48,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_& matrix_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -65,7 +65,7 @@ namespace dtl {
 
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -82,7 +82,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -99,7 +99,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -116,7 +116,7 @@ namespace dtl {
 
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -133,7 +133,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -150,40 +150,40 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_) noexcept {
 				dtl::utility::stl::noiseShoreBool(matrix_);
 				dtl::utility::stl::rnoiseShoreBool(matrix_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const double rbool_) noexcept {
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool_);
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool1_);
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool2_);
 			}
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_) noexcept {
 				dtl::utility::stl::rnoiseShoreBool(matrix_);
 				dtl::utility::stl::noiseShoreBool(matrix_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const double rbool_) noexcept {
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool_);
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::stl::rnoiseShoreBool(matrix_, rbool1_);
 				dtl::utility::stl::noiseShoreBool(matrix_, rbool2_);
@@ -196,7 +196,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -213,7 +213,7 @@ namespace dtl {
 
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -230,7 +230,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -247,7 +247,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -264,7 +264,7 @@ namespace dtl {
 
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -281,7 +281,7 @@ namespace dtl {
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -298,40 +298,40 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_);
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool_);
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool1_);
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_);
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_);
 			}
 			//[rbool_]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::normal::rnoiseShoreBool(matrix_, x_, y_, rbool1_);
 				dtl::utility::normal::noiseShoreBool(matrix_, x_, y_, rbool2_);
@@ -344,7 +344,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -361,7 +361,7 @@ namespace dtl {
 
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -378,7 +378,7 @@ namespace dtl {
 
 			//[(rbool_)]の確率でマップデータの値がtrueの場合は[(true_tile_)]、falseの場合は[(false_tile_)]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -395,7 +395,7 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -412,7 +412,7 @@ namespace dtl {
 
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -429,7 +429,7 @@ namespace dtl {
 
 			//[(rbool_)]の確率でマップデータの値がtrueの場合は[(true_tile_)]、falseの場合は[(false_tile_)]を代入する
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -446,40 +446,40 @@ namespace dtl {
 
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_);
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_);
 			}
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool_);
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool1_);
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool2_);
 			}
 			//1/2の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_);
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_);
 			}
 			//[(rbool_)]の確率で岸(地形)にノイズを発生させる
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool_);
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool_);
 			}
 			template<typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 				dtl::utility::array::rnoiseShoreBool(matrix_, x_, y_, rbool1_);
 				dtl::utility::array::noiseShoreBool(matrix_, x_, y_, rbool2_);
@@ -493,7 +493,7 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -510,7 +510,7 @@ namespace dtl {
 
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -527,7 +527,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -544,7 +544,7 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -561,7 +561,7 @@ namespace dtl {
 
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -578,7 +578,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -595,40 +595,40 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
 				}
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool1_);
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool2_);
 				}
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_) noexcept {
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_);
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool_) noexcept {
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool_);
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool_);
 				}
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const double rbool1_, const double rbool2_) noexcept {
 					dtl::utility::layer::stl::rnoiseShoreBool(matrix_, layer_, rbool1_);
 					dtl::utility::layer::stl::noiseShoreBool(matrix_, layer_, rbool2_);
@@ -643,7 +643,7 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_& matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -660,7 +660,7 @@ namespace dtl {
 
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -677,7 +677,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -694,7 +694,7 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -711,7 +711,7 @@ namespace dtl {
 
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -728,7 +728,7 @@ namespace dtl {
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
 				template<typename Matrix_Int_, typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
@@ -745,40 +745,40 @@ namespace dtl {
 
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_);
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 				}
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void noiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool1_);
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool2_);
 				}
 				//1/2の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_);
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_);
 				}
 				//[rbool_]の確率で岸(地形)にノイズを発生させる
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool_) noexcept {
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool_);
 				}
 				template<typename Matrix_>
-				DTL_CPP14_CONSTEXPR
+				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void rnoiseShoreBothBool(Matrix_ & matrix_, const std::size_t layer_, const std::size_t x_, const std::size_t y_, const double rbool1_, const double rbool2_) noexcept {
 					dtl::utility::layer::normal::rnoiseShoreBool(matrix_, layer_, x_, y_, rbool1_);
 					dtl::utility::layer::normal::noiseShoreBool(matrix_, layer_, x_, y_, rbool2_);

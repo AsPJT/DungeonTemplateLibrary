@@ -299,6 +299,9 @@
     <ClInclude Include="..\..\include\Storage\FileMD.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Storage\FileTXT_0_9.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">

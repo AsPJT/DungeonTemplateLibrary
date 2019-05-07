@@ -7,8 +7,13 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TERRAIN_OBJ_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TERRAIN_OBJ_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TXT_0_9_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_FILE_TXT_0_9_HPP
+
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::storage::FileTXT_0_9-(ストレージクラス)/
+#######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
@@ -29,14 +34,14 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = std::ofstream>
-		class FileTerrainOBJ {
+		class FileTXT_0_9 {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			
+
 
 
 			///// メンバ変数 /////
@@ -53,26 +58,26 @@ namespace dtl {
 
 			///// 出力処理 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void mountain(const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Ofstream_& ofs_) const noexcept {
-				ofs_ << "f " << (end_y_ * max_x_ + end_x_) << " " << ((end_y_ - 1) * max_x_ + end_x_) << " " << ((end_y_ - 1) * max_x_ + (end_x_ - 1)) << '\n';
-				ofs_ << "f " << (end_y_ * max_x_ + (end_x_ - 1)) << " " << (end_y_ * max_x_ + end_x_) << " " << ((end_y_ - 1) * max_x_ + (end_x_ - 1)) << '\n';
-			}
-
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void baseSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]) * value_z << " " << end_y_ * value_y << '\n';
+				if (matrix_[end_y_][end_x_] <= 0) ofs_ << 0;
+				else if (matrix_[end_y_][end_x_] >= 9) ofs_ << 9;
+				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]);
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void baseArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]) * value_z << " " << end_y_ * value_y << '\n';
+				if (matrix_[end_y_ * max_x_ + end_x_] <= 0) ofs_ << 0;
+				else if (matrix_[end_y_ * max_x_ + end_x_] >= 9) ofs_ << 9;
+				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]);
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]) * value_z << " " << end_y_ * value_y << '\n';
+				if (matrix_[end_y_][end_x_][layer_] <= 0) ofs_ << 0;
+				else if (matrix_[end_y_][end_x_][layer_] >= 9) ofs_ << 9;
+				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]);
 			}
 
 
@@ -83,26 +88,22 @@ namespace dtl {
 			bool writeSTL(const Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
-						this->mountain(col, row, matrix_[row].size(), ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool writeWidthSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
-						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 
@@ -111,26 +112,22 @@ namespace dtl {
 			bool writeLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
-						this->mountain(col, row, matrix_[row].size(), ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool writeLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
-						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 
@@ -139,13 +136,11 @@ namespace dtl {
 			bool writeNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
-						this->mountain(col, row, end_x_, ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 
@@ -154,13 +149,11 @@ namespace dtl {
 			bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
-						this->mountain(col, row, end_x_, ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 
@@ -169,13 +162,11 @@ namespace dtl {
 			bool writeArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				Ofstream_ ofs(str);
 				if (ofs.fail()) return false;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseArray(matrix_, col, row, max_x_, ofs, args_...);
-
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
-						this->mountain(col, row, end_x_, ofs);
+					ofs << '\n';
+				}
 				return true;
 			}
 
@@ -185,23 +176,23 @@ namespace dtl {
 			///// 情報取得 /////
 
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
+				constexpr Index_Size getPointX() const noexcept {
 				return this->start_x;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
+				constexpr Index_Size getPointY() const noexcept {
 				return this->start_y;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
+				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
+				constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			std::string getString() const noexcept {
+				std::string getString() const noexcept {
 				return this->str;
 			}
 
@@ -299,38 +290,38 @@ namespace dtl {
 
 			//始点座標Xを初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearPointX() noexcept {
+				FileTXT_0_9& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearPointY() noexcept {
+				FileTXT_0_9& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearWidth() noexcept {
+				FileTXT_0_9& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearHeight() noexcept {
+				FileTXT_0_9& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearPoint() noexcept {
+				FileTXT_0_9& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clearRange() noexcept {
+				FileTXT_0_9& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
@@ -339,7 +330,7 @@ namespace dtl {
 			}
 			//全ての値を初期値に戻す
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& clear() noexcept {
+				FileTXT_0_9& clear() noexcept {
 				this->clearRange();
 				return *this;
 			}
@@ -348,39 +339,39 @@ namespace dtl {
 			///// 代入 /////
 
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setPointX(const Index_Size end_x_) noexcept {
+				FileTXT_0_9& setPointX(const Index_Size end_x_) noexcept {
 				this->start_x = end_x_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setPointY(const Index_Size end_y_) noexcept {
+				FileTXT_0_9& setPointY(const Index_Size end_y_) noexcept {
 				this->start_y = end_y_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setWidth(const Index_Size width_) noexcept {
+				FileTXT_0_9& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setHeight(const Index_Size height_) noexcept {
+				FileTXT_0_9& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setPoint(const Index_Size point_) noexcept {
+				FileTXT_0_9& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				FileTXT_0_9& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				FileTXT_0_9& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				this->width = length_;
@@ -388,7 +379,7 @@ namespace dtl {
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				FileTXT_0_9& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				this->width = width_;
@@ -396,7 +387,7 @@ namespace dtl {
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				FileTerrainOBJ& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				FileTXT_0_9& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -407,46 +398,25 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileTerrainOBJ() noexcept = default;
-			constexpr explicit FileTerrainOBJ(const std::string & write_value_) noexcept
+			constexpr FileTXT_0_9() noexcept = default;
+			constexpr explicit FileTXT_0_9(const std::string & write_value_) noexcept
 				:str(write_value_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_) noexcept
+
+			constexpr explicit FileTXT_0_9(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
+			constexpr explicit FileTXT_0_9(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
 
-			constexpr explicit FileTerrainOBJ(const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
-				:str(write_value_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				str(write_value_),
-				value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr explicit FileTXT_0_9(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_) noexcept
+			constexpr explicit FileTXT_0_9(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_) {}
-
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				str(write_value_),
-				value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
 		};
 	}
 }

@@ -33,7 +33,7 @@ namespace dtl {
 		public:
 			constexpr SampleMatrixViewDraw() noexcept = default;
 			template<typename Matrix_> //maybe_unused
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
 		};
 
@@ -62,19 +62,19 @@ namespace dtl {
 			double target_y{};
 		public:
 
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void setTarget(const double target_x_, const double target_y_) noexcept {
 				this->target_x = target_x_;
 				this->target_y = target_y_;
 			}
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void checkTarget(const double x_, const double y_) noexcept {
 				while (this->target_x < 0) this->target_x += x_;
 				while (this->target_y < 0) this->target_y += x_;
 				while (this->target_x >= x_) this->target_x -= x_;
 				while (this->target_y >= y_) this->target_y -= y_;
 			}
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void checkTarget(double& target_x_, double& target_y_, const double x_, const double y_) const noexcept {
 				while (target_x_ < 0) target_x_ += x_;
 				while (target_y_ < 0) target_y_ += x_;
@@ -118,7 +118,7 @@ namespace dtl {
 
 
 			template<typename Matrix_, typename View_Class_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
 				if (x_ == 0 || y_ == 0) {
 					return {};

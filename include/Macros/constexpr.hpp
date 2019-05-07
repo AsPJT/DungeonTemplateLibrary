@@ -14,32 +14,32 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#ifndef DTL_CPP14_CONSTEXPR
+#ifndef DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 
 #if defined(_MSC_VER)
 
 #if (_MSC_VER <= 1900)
-#define DTL_CPP14_CONSTEXPR
+#define DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 
 #elif defined(_MSC_VER) && defined(_MSVC_LANG)
 #if (_MSVC_LANG >= 201402L)
-#define DTL_CPP14_CONSTEXPR constexpr
+#define DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR constexpr
 #endif
 #endif
 
 #elif defined(__cplusplus)
 
 #if (__cplusplus >= 201402L)
-#define DTL_CPP14_CONSTEXPR constexpr
+#define DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR constexpr
 #endif
 
 #endif
 
 #endif
 
-///// もしDTL_CPP14_CONSTEXPRが無かったらつくる /////
-#ifndef DTL_CPP14_CONSTEXPR
-#define DTL_CPP14_CONSTEXPR
+///// もしDUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPRが無かったらつくる /////
+#ifndef DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+#define DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 #endif
 
 #endif //Included Dungeon Template Library

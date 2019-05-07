@@ -20,22 +20,22 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr bool isOutputCast() noexcept {
 			return false;
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr bool isOutputCast<char>() noexcept {
 			return true;
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr bool isOutputCast<signed char>() noexcept {
 			return true;
 		}
 		template<>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
 		}
@@ -49,22 +49,22 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_Int_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr auto getOutputNumber(const Matrix_Int_ value_) noexcept {
 				return value_;
 			}
 			template<>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr auto getOutputNumber<char>(const char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr auto getOutputNumber<signed char>(const signed char value_) noexcept {
 				return static_cast<int>(value_);
 			}
 			template<>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			constexpr auto getOutputNumber<unsigned char>(const unsigned char value_) noexcept {
 				return static_cast<int>(value_);
 			}

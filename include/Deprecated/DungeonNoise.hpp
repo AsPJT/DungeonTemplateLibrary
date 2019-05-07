@@ -21,7 +21,7 @@ namespace dtl {
 		namespace stl {
 
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -34,7 +34,7 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -48,7 +48,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -61,7 +61,7 @@ namespace dtl {
 					}
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DTL_CPP14_CONSTEXPR
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
 
 				using dtl::random::mersenne_twister_32bit;
@@ -112,7 +112,7 @@ namespace dtl {
 
 		//Wolfオートタイル形式の地形タイプを返す
 		template<typename Matrix_Int_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileType(const Matrix_Int_ center_, const Matrix_Int_ next1_, const Matrix_Int_ next2_, const Matrix_Int_ next3_) noexcept {
 			return (center_ == next1_) ?
 				((center_ == next2_) ?
@@ -122,82 +122,82 @@ namespace dtl {
 		}
 
 		//Wolfオートタイル形式の配列値を返す
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileID(const std::size_t type_, const std::size_t dir_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return anime_num_ * 2 + type_ * anime_max_ * 4 + ((dir_ <= tile_upper_right) ? dir_ : dir_ + anime_max_ * 2 - 2);
 		}
 
 		//Wolfオートタイル形式の左上の地形タイプを返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileTypeUpperLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ - ((x_ <= min_x_) ? 0 : 1)], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_ - ((x_ <= min_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の右上の地形タイプを返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileTypeUpperRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ + ((x_ >= max_x_) ? 0 : 1)], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_], matrix_[y_ - ((y_ <= min_y_) ? 0 : 1)][x_ + ((x_ >= max_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の左下の地形タイプを返す
 		template<typename Matrix_>
-			DTL_NODISCARD
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileTypeLowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ - ((x_ <= min_x_) ? 0 : 1)], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_ - ((x_ <= min_x_) ? 0 : 1)]);
 		}
 		//Wolfオートタイル形式の右下の地形タイプを返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileTypeLowerRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_) noexcept {
 			return getWolfAutoTileType(matrix_[y_][x_], matrix_[y_][x_ + ((x_ >= max_x_) ? 0 : 1)], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_], matrix_[y_ + ((y_ >= max_y_) ? 0 : 1)][x_ + ((x_ >= max_x_) ? 0 : 1)]);
 		}
 
 		//Wolfオートタイル形式の左上の配列番号を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileID_UpperLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileID(getWolfAutoTileTypeUpperLeft(matrix_, x_, y_, min_x_, min_y_), tile_upper_left, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の右上の配列番号を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileID_UpperRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileID(getWolfAutoTileTypeUpperRight(matrix_, x_, y_, max_x_, min_y_), tile_upper_right, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の左下の配列番号を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileID_LowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileID(getWolfAutoTileTypeLowerLeft(matrix_, x_, y_, min_x_, max_y_), tile_lower_left, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の右下の配列番号を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr std::size_t getWolfAutoTileID_LowerRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileID(getWolfAutoTileTypeLowerRight(matrix_, x_, y_, max_x_, max_y_), tile_lower_right, anime_num_, anime_max_);
 		}
 
 		//Wolfオートタイル形式の左上の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileArrayUpperLeft(const Matrix_ & matrix_, const TileArray_ & tile_array_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return tile_array_[getWolfAutoTileID_UpperLeft(matrix_, x_, y_, min_x_, min_y_, anime_num_, anime_max_)];
 		}
 		//Wolfオートタイル形式の右上の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileArrayUpperRight(const Matrix_ & matrix_, const TileArray_ & tile_array_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return tile_array_[getWolfAutoTileID_UpperRight(matrix_, x_, y_, max_x_, min_y_, anime_num_, anime_max_)];
 		}
 		//Wolfオートタイル形式の左下の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileArrayLowerLeft(const Matrix_ & matrix_, const TileArray_ & tile_array_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return tile_array_[getWolfAutoTileID_LowerLeft(matrix_, x_, y_, min_x_, max_y_, anime_num_, anime_max_)];
 		}
 		//Wolfオートタイル形式の右下の配列値を返す
 		template<typename TileArray_, typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileArrayLowerRight(const Matrix_ & matrix_, const TileArray_ & tile_array_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return tile_array_[getWolfAutoTileID_LowerRight(matrix_, x_, y_, max_x_, max_y_, anime_num_, anime_max_)];
 		}
@@ -213,25 +213,25 @@ namespace dtl {
 
 		//Wolfオートタイル形式の左上の配列値を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileStringUpperLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_ = 0, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileArrayUpperLeft(matrix_, wolf_auto_tile_string, x_, y_, min_x_, min_y_, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の右上の配列値を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileStringUpperRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t min_y_ = 0, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileArrayUpperRight(matrix_, wolf_auto_tile_string, x_, y_, max_x_, min_y_, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の左下の配列値を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileStringLowerLeft(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t min_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileArrayLowerLeft(matrix_, wolf_auto_tile_string, x_, y_, min_x_, max_y_, anime_num_, anime_max_);
 		}
 		//Wolfオートタイル形式の右下の配列値を返す
 		template<typename Matrix_>
-		DTL_NODISCARD
+		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 		constexpr auto getWolfAutoTileStringLowerRight(const Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t max_x_, const std::size_t max_y_, const std::size_t anime_num_ = 0, const std::size_t anime_max_ = 1) noexcept {
 			return getWolfAutoTileArrayLowerRight(matrix_, wolf_auto_tile_string, x_, y_, max_x_, max_y_, anime_num_, anime_max_);
 		}
