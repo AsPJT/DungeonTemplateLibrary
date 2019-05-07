@@ -296,6 +296,9 @@
     <ClInclude Include="..\..\include\Storage\FilePBM.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Utility\RectBaseWithValue.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">
