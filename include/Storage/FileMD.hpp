@@ -51,9 +51,6 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 			std::string str{};
-			Value_Int_ value_x{ 1 };
-			Value_Int_ value_y{ 1 };
-			Value_Int_ value_z{ 1 };
 
 
 			///// 出力処理 /////

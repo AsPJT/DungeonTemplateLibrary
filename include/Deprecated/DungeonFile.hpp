@@ -327,8 +327,6 @@ namespace dtl {
 					//Text
 					dtl::file::write::stl::dtlm(matrix_, str_ + ".dtlm");
 					dtl::file::write::stl::csv(matrix_, str_ + ".csv");
-					dtl::file::write::stl::md(matrix_, str_ + ".md");
-					dtl::file::write::stl::txt_0_9(matrix_, str_ + "_0_9.txt");
 					//Picture
 					dtl::file::write::stl::pbm(matrix_, str_ + ".pbm");
 					dtl::file::write::stl::svg(matrix_, str_ + ".svg");
@@ -339,8 +337,6 @@ namespace dtl {
 					//Text
 					dtl::file::write::stl::dtlm(matrix_, str_1 + "dtlm\\" + str_2 + ".dtlm");
 					dtl::file::write::stl::csv(matrix_, str_1 + "csv\\" + str_2 + ".csv");
-					dtl::file::write::stl::md(matrix_, str_1 + "md\\" + str_2 + ".md");
-					dtl::file::write::stl::txt_0_9(matrix_, str_1 + "txt\\" + str_2 + "_0_9.txt");
 					//Picture
 					dtl::file::write::stl::pbm(matrix_, str_1 + "pbm\\" + str_2 + ".pbm");
 					dtl::file::write::stl::svg(matrix_, str_1 + "svg\\" + str_2 + ".svg");
