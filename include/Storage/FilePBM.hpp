@@ -83,7 +83,7 @@ namespace dtl {
 				if (ofs.fail()) return false;
 
 				ofs << "P1" << '\n';
-				ofs << (((end_y_ - this->start_y) == 0) ? 0 : (matrix_[0].size() - this->start_x)) << " ";
+				ofs << (((end_y_ - this->start_y) == 0) ? 0 : ((matrix_[0].size() < end_x_) ? matrix_[0].size() - this->start_x : end_x_ - this->start_x)) << " ";
 				ofs << end_y_ << '\n';
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -129,7 +129,7 @@ namespace dtl {
 				if (ofs.fail()) return false;
 
 				ofs << "P1" << '\n';
-				ofs << (((end_y_ - this->start_y) == 0) ? 0 : (matrix_[0].size() - this->start_x)) << " ";
+				ofs << (((end_y_ - this->start_y) == 0) ? 0 : ((matrix_[0].size() < end_x_) ? matrix_[0].size() - this->start_x : end_x_ - this->start_x)) << " ";
 				ofs << end_y_ << '\n';
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
