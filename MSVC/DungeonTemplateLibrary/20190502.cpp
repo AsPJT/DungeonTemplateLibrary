@@ -10,12 +10,12 @@ int main() {
 
 	dtl::CellularAutomatonMixIsland<shape_t>(5, 0, 1, 2, 3, 4).draw(matrix);
 
-	dtl::storage::FileTXT_0_9<shape_t>("file_sample_0_9.txt").write(matrix,32,32);
+	dtl::storage::FileTXT_0_9<shape_t>("Save/file_sample_0_9.txt").write(matrix,32,32);
 
-	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "file_sample.pbm").write(matrix, 32, 32);
-	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "file_sample2.pbm").write(matrix);
+	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "Save/file_sample.pbm").write(matrix, 32, 32);
+	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "Save/file_sample2.pbm").write(matrix);
 
-	dtl::storage::FilePNG<shape_t>("file_sample2.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
+	dtl::storage::FilePNG<shape_t>("Save/file_sample2.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
 		switch (value) {
 		case 0:
 			color[0] = 41;
