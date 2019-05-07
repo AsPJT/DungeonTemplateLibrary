@@ -316,7 +316,8 @@ namespace dtl {
 					//コンストラクタ
 					constexpr Chess() noexcept = default;
 					template<typename Matrix_>
-					constexpr explicit Chess(Matrix_& matrix_) noexcept {
+					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+						explicit Chess(Matrix_& matrix_) noexcept {
 						create(matrix_);
 					}
 					template<typename Matrix_>
@@ -363,7 +364,8 @@ namespace dtl {
 					//コンストラクタ
 					constexpr Chess() noexcept = default;
 					template<typename Matrix_>
-					constexpr explicit Chess(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+						explicit Chess(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
 						create(matrix_, x_, y_);
 					}
 					template<typename Matrix_>
@@ -547,7 +549,7 @@ namespace dtl {
 					//コンストラクタ
 					constexpr KnightTour() noexcept = default;
 					template<typename Matrix_>
-					constexpr explicit KnightTour(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t start_x_ = 0, const std::size_t start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) noexcept {
+					explicit KnightTour(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t start_x_ = 0, const std::size_t start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) noexcept {
 						create(matrix_, x_, y_, start_x_, start_y_, is_closed_, mod_value_);
 					}
 

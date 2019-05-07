@@ -38,7 +38,17 @@
 
 /* 非推奨ライブラリ */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DEPRECATED_HPP
+#if defined(_MSC_VER)
+#if defined(_MSVC_LANG)
+#if (_MSVC_LANG > 201103L)
 #include <Dungeon/Deprecated.hpp>
+#endif
+#endif
+#elif defined(__cplusplus)
+#if (__cplusplus > 201103L)
+#include <Dungeon/Deprecated.hpp>
+#endif
+#endif
 
 /* 実体ライブラリ (dtl::entity) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_ENTITY_HPP

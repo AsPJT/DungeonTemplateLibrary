@@ -47,7 +47,8 @@ namespace dtl {
 			Matrix_Int_ after_value{};
 			std::vector<Matrix_Int_> before_value{};
 
-			constexpr void string_String() const noexcept {}
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				void string_String() const noexcept {}
 			template<typename Int_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void string_String(const Int_& first_, const Args_& ... args_) noexcept {
