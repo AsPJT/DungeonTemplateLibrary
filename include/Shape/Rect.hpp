@@ -20,6 +20,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <algorithm>
+#include <limits>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
@@ -92,16 +93,6 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawSTL(Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					const Index_Size last_x = matrix_[row].size();
-					for (Index_Size col{ this->start_x }; col < last_x; ++col)
-						this->substitutionSTL(matrix_, col, row, args_...);
-				}
-				return true;
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size last_x = (std::min)(matrix_[row].size(), end_x_);
@@ -112,16 +103,6 @@ namespace dtl {
 			}
 
 			//LayerSTL
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					const Index_Size last_x = matrix_[row].size();
-					for (Index_Size col{ this->start_x }; col < last_x; ++col)
-						this->substitutionLayer(matrix_, layer_, col, row, args_...);
-				}
-				return true;
-			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
@@ -191,21 +172,21 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(matrix_, this->calcEndY(matrix_.size())) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return this->drawWidthSTL(matrix_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(matrix_, this->calcEndY(matrix_.size()), function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return this->drawWidthSTL(matrix_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(matrix_, layer_, this->calcEndY(matrix_.size())) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return this->drawLayerWidthSTL(matrix_, layer_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(matrix_, layer_, this->calcEndY(matrix_.size()), function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return this->drawLayerWidthSTL(matrix_, layer_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//Normal
