@@ -17,8 +17,8 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace retouch {

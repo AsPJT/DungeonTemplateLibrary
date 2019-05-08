@@ -21,13 +21,13 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <algorithm>
 #include <utility>
 #include <Base/Struct.hpp>
-#include <algorithm>
+#include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
-#include <Macros/nodiscard.hpp>
-#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {

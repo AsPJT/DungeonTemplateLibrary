@@ -13,9 +13,9 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
-#include <Random/MersenneTwister32bit.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
+#include <Random/MersenneTwister32bit.hpp>
 
 //共有データ
 namespace dtl {

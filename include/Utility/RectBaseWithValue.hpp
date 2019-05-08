@@ -12,8 +12,9 @@
 /* Bug Check : not checked */
 
 #include <cstddef>
-#include <Macros/nodiscard.hpp>
+#include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 
 //共有データ
 namespace dtl {

@@ -22,12 +22,12 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
-#include <Shape/PointGrid.hpp>
-#include <Shape/BorderOdd.hpp>
-#include <Shape/RandomRect.hpp>
 #include <Base/Struct.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
+#include <Shape/BorderOdd.hpp>
+#include <Shape/PointGrid.hpp>
+#include <Shape/RandomRect.hpp>
 
 namespace dtl {
 	inline namespace shape {

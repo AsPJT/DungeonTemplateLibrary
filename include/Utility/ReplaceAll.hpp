@@ -16,12 +16,12 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <algorithm>
 #include <utility>
 #include <vector>
-#include <algorithm>
 #include <Base/Struct.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace utility {

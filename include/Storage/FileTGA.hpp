@@ -21,13 +21,13 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <utility>
-#include <string>
 #include <fstream>
+#include <string>
+#include <utility>
 #include <Base/Struct.hpp>
-#include <Utility/IsOutputCast.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
+#include <Utility/IsOutputCast.hpp>
 
 #ifndef STB_IMAGE_WRITE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION

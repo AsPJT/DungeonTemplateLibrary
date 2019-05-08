@@ -11,8 +11,8 @@
 #include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 /* ここに必要なら追加のインクルードを書く */
 
 namespace dtl {

@@ -15,8 +15,8 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>
-#include <random>
 #include <bitset>
+#include <random>
 #include <Macros/nodiscard.hpp>
 
 namespace dtl {

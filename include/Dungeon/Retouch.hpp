@@ -17,7 +17,6 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_HPP
 
 #include <Retouch/BuryPoint.hpp>
-
 #include <Retouch/RemovePoint.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_RETOUCH_HPP

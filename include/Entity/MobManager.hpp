@@ -17,8 +17,8 @@
 #include <cstddef>
 #include <cstdint>
 #include <bitset>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace entity {

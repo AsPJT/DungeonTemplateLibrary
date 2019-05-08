@@ -15,8 +15,8 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstddef>
-#include <Random/MersenneTwister32bit.hpp>
 #include <Macros/constexpr.hpp>
+#include <Random/MersenneTwister32bit.hpp>
 
 namespace dtl {
 	inline namespace shape {

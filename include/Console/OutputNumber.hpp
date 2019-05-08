@@ -16,13 +16,13 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <utility>
 #include <iostream>
 #include <string>
+#include <utility>
 #include <Base/Struct.hpp>
-#include <Utility/IsOutputCast.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
+#include <Utility/IsOutputCast.hpp>
 
 namespace dtl {
 	inline namespace console {

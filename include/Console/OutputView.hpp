@@ -16,11 +16,11 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <utility>
 #include <iostream>
 #include <string>
-#include <Macros/nodiscard.hpp>
+#include <utility>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 
 namespace dtl {
 	inline namespace console {

@@ -22,12 +22,12 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
+#include <Base/Struct.hpp>
+#include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
 #include <Shape/Border.hpp>
 #include <Shape/HalfMixRect.hpp>
 #include <Utility/CellularAutomaton.hpp>
-#include <Base/Struct.hpp>
-#include <Macros/nodiscard.hpp>
-#include <Macros/constexpr.hpp>
 
 namespace dtl {
 	inline namespace shape {

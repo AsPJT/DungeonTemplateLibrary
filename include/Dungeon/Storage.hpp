@@ -17,11 +17,8 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_HPP
 
 #include <Storage/FileMD.hpp>
-
 #include <Storage/FilePBM.hpp>
-
 #include <Storage/FileTerrainOBJ.hpp>
-
 #include <Storage/FileTXT_0_9.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_STORAGE_HPP

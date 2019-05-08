@@ -22,11 +22,11 @@
 #include <cstddef>
 #include <cstdint>
 #include <utility>
-#include <Utility/VoronoiDiagram.hpp>
-#include <Random/MersenneTwister32bit.hpp>
 #include <Base/Struct.hpp>
-#include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Macros/nodiscard.hpp>
+#include <Random/MersenneTwister32bit.hpp>
+#include <Utility/VoronoiDiagram.hpp>
 
 namespace dtl {
 	inline namespace shape {

@@ -12,7 +12,7 @@ int main() {
 
 	dtl::storage::FileTXT_0_9<shape_t>("Save/file_sample_0_9.txt").write(matrix,32,32);
 
-	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "Save/file_sample.pbm").write(matrix, 32, 32);
+	dtl::storage::FilePBM<shape_t>("Save/file_sample.pbm").setRange(2, 2, 25, 25).write(matrix, 32, 32);
 	dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "Save/file_sample2.pbm").write(matrix);
 
 	dtl::storage::FilePNG<shape_t>("Save/file_sample2.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {

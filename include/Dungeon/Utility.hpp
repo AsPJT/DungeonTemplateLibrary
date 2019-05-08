@@ -17,19 +17,12 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_HPP
 
 #include <Utility/Binarization.hpp>
-
 #include <Utility/Copy.hpp>
-
 #include <Utility/Init.hpp>
-
 #include <Utility/NoiseBool.hpp>
-
 #include <Utility/NoiseShoreBool.hpp>
-
 #include <Utility/ReplaceAll.hpp>
-
 #include <Utility/ReplaceSome.hpp>
-
 #include <Utility/VoronoiDiagram.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_HPP

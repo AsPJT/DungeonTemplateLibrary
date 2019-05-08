@@ -22,22 +22,17 @@
 
 ///// 関連ツール /////
 
-#include <Deprecated/DungeonNoise.hpp>
-
 #include <Deprecated/DungeonFile.hpp>
-
 #include <Deprecated/DungeonMatrix.hpp>
+#include <Deprecated/DungeonNoise.hpp>
 
 
 ///// ダンジョン /////
 
-#include <Deprecated/FractalIsland.hpp>
-
-#include <Deprecated/RogueLike.hpp>
-
 #include <Deprecated/BoardGame.hpp>
-
+#include <Deprecated/FractalIsland.hpp>
 #include <Deprecated/HorizontalScroll.hpp>
+#include <Deprecated/RogueLike.hpp>
 
 
 ///// ペイント /////
