@@ -93,7 +93,9 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawWidthSTL(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				bool drawWidthSTL(Matrix_ & matrix_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(std::numeric_limits<Index_Size>::max());
+				const Index_Size end_y_ = this->calcEndY(matrix_.size());
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size last_x = (std::min)(matrix_[row].size(), end_x_);
 					for (Index_Size col{ this->start_x }; col < last_x; ++col)
@@ -105,7 +107,9 @@ namespace dtl {
 			//LayerSTL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerWidthSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				bool drawLayerWidthSTL(Matrix_ & matrix_, const Index_Size layer_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(std::numeric_limits<Index_Size>::max());
+				const Index_Size end_y_ = this->calcEndY(matrix_.size());
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size last_x = (std::min)(matrix_[row].size(), end_x_);
 					for (Index_Size col{ this->start_x }; col < last_x; ++col)
@@ -117,7 +121,9 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				bool drawNormal(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(max_x_);
+				const Index_Size end_y_ = this->calcEndY(max_y_);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionSTL(matrix_, col, row, args_...);
@@ -127,7 +133,9 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerNormal(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
+				bool drawLayerNormal(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(max_x_);
+				const Index_Size end_y_ = this->calcEndY(max_y_);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionLayer(matrix_, layer_, col, row, args_...);
@@ -137,7 +145,9 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawArray(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
+				bool drawArrayImpl(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(max_x_);
+				const Index_Size end_y_ = this->calcEndY(max_y_);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionArray(matrix_, col, row, max_x_, args_...);
@@ -147,7 +157,9 @@ namespace dtl {
 			//List
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawList(Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
+				bool drawListImpl(Matrix_& matrix_, Args_&& ... args_) const noexcept {
+				const Index_Size end_x_ = this->start_x + this->width + 1;
+				const Index_Size end_y_ = this->start_y + this->height + 1;
 				dtl::type::size row_count{}, col_count{};
 				for (auto&& row : matrix_) {
 					++row_count;
@@ -172,61 +184,61 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_) const noexcept {
-				return this->drawWidthSTL(matrix_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return this->drawWidthSTL(matrix_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return this->drawWidthSTL(matrix_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return this->drawWidthSTL(matrix_, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_) const noexcept {
-				return this->drawLayerWidthSTL(matrix_, layer_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return this->drawLayerWidthSTL(matrix_, layer_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return this->drawLayerWidthSTL(matrix_, layer_, (this->width == 0) ? std::numeric_limits<Index_Size>::max() : this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return this->drawLayerWidthSTL(matrix_, layer_, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(matrix_, this->calcEndX(max_x_), this->calcEndY(max_y_));
+				return this->drawNormal(matrix_, max_x_, max_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(matrix_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
+				return this->drawNormal(matrix_, max_x_, max_y_, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(matrix_, layer_, this->calcEndX(max_x_), this->calcEndY(max_y_));
+				return this->drawLayerNormal(matrix_, layer_, max_x_, max_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(matrix_, layer_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
+				return this->drawLayerNormal(matrix_, layer_, max_x_, max_y_, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(matrix_, this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_);
+				return this->drawArrayImpl(matrix_, max_x_, max_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(matrix_, this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_, function_);
+				return this->drawArrayImpl(matrix_, max_x_, max_y_, function_);
 			}
 
 			//List
 			template<typename Matrix_>
 			constexpr bool drawList(Matrix_& matrix_) const noexcept {
-				return this->drawList(matrix_, this->start_x + this->width + 1, this->start_y + this->height + 1);
+				return this->drawListImpl(matrix_);
 			}
 			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperatorList(Matrix_&& matrix_, Function_&& function_) const noexcept {
-				return this->drawList(matrix_, this->start_x + this->width + 1, this->start_y + this->height + 1, function_);
+			constexpr bool drawOperatorList(Matrix_& matrix_, Function_&& function_) const noexcept {
+				return this->drawListImpl(matrix_, function_);
 			}
 
 
