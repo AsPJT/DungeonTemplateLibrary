@@ -116,14 +116,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() == 0) continue;
 					this->substitutionSTL(matrix_, this->start_x, row, args_...);
-					if (matrix_[row].size() <= end_x_) {
-						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row, args_...);
-						this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
-					}
-					else {
-						if ((end_x_ - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, end_x_ - 2, row, args_...);
-						this->substitutionSTL(matrix_, end_x_ - 1, row, args_...);
-					}
+					const Index_Size last_x3 = (std::min)(matrix_[row].size(), end_x_);
+					if ((last_x3 - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, last_x3 - 2, row, args_...);
+					this->substitutionSTL(matrix_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
@@ -165,14 +160,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() == 0) continue;
 					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
-					if (matrix_[row].size() <= end_x_) {
-						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
-						this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
-					}
-					else {
-						if ((end_x_ - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, end_x_ - 2, row, args_...);
-						this->substitutionLayer(matrix_, layer_, end_x_ - 1, row, args_...);
-					}
+					const Index_Size last_x3 = (std::min)(matrix_[row].size(), end_x_);
+					if ((last_x3 - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, last_x3 - 2, row, args_...);
+					this->substitutionLayer(matrix_, layer_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
