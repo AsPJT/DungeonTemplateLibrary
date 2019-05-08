@@ -70,12 +70,12 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionArray(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
+				function_(matrix_[end_y_ * max_x_ + end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionLayer(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
+				function_(matrix_[end_y_][end_x_][layer_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
 			///// 基本処理 /////
