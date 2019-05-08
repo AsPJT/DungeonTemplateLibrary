@@ -83,7 +83,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
+				if (end_y_ <= this->start_y) return true;
 				const Index_Size last_x1 = matrix_[this->start_y].size();
 				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionSTL(matrix_, col, this->start_y, args_...);
@@ -91,27 +91,28 @@ namespace dtl {
 				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
 					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
+					const Index_Size last_x3 = matrix_[row].size();
+					if (last_x3 <= this->start_x) continue;
 					this->substitutionSTL(matrix_, this->start_x, row, args_...);
-					this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
+					this->substitutionSTL(matrix_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
+				if (end_y_ <= this->start_y) return true;
 				const Index_Size last_x1 = (std::min)(end_x_, matrix_[this->start_y].size());
 				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionSTL(matrix_, col, this->start_y, args_...);
 				const Index_Size last_x2 = (std::min)(end_x_, matrix_[end_y_ - 1].size());
 				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
 					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
-				if (end_x_ == 0) return true;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
+					const Index_Size last_x3 = (std::min)(end_x_, matrix_[row].size());
+					if (last_x3 <= this->start_x) continue;
 					this->substitutionSTL(matrix_, this->start_x, row, args_...);
-					this->substitutionSTL(matrix_, (std::min)(end_x_, matrix_[row].size()) - 1, row, args_...);
+					this->substitutionSTL(matrix_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
@@ -120,7 +121,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
+				if (end_y_ <= this->start_y) return true;
 				const Index_Size last_x1 = matrix_[this->start_y].size();
 				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
@@ -128,27 +129,28 @@ namespace dtl {
 				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
 					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
+					const Index_Size last_x3 = matrix_[row].size();
+					if (last_x3 <= this->start_x) continue;
 					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
-					this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
+					this->substitutionLayer(matrix_, layer_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
+				if (end_y_ <= this->start_y) return true;
 				const Index_Size last_x1 = (std::min)(end_x_, matrix_[this->start_y].size());
 				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
 				const Index_Size last_x2 = (std::min)(end_x_, matrix_[end_y_ - 1].size());
 				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
 					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
-				if (end_x_ == 0) return true;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
+					const Index_Size last_x3 = (std::min)(end_x_, matrix_[row].size());
+					if (last_x3 <= this->start_x) continue;
 					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
-					this->substitutionLayer(matrix_, layer_, (std::min)(end_x_, matrix_[row].size()) - 1, row, args_...);
+					this->substitutionLayer(matrix_, layer_, last_x3 - 1, row, args_...);
 				}
 				return true;
 			}
@@ -157,7 +159,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
+				if (end_x_ <= this->start_x || end_y_ <= this->start_y) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 					this->substitutionSTL(matrix_, col, this->start_y, args_...);
 					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
@@ -173,7 +175,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
+				if (end_x_ <= this->start_x || end_y_ <= this->start_y) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
 					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
@@ -189,7 +191,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawArray(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
+				if (end_x_ <= this->start_x || end_y_ <= this->start_y) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 					this->substitutionArray(matrix_, col, this->start_y, max_x_, args_...);
 					this->substitutionArray(matrix_, col, end_y_ - 1, max_x_, args_...);
