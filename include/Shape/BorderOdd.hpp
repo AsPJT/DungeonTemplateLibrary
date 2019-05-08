@@ -19,6 +19,7 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
+#include <algorithm>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
@@ -83,9 +84,11 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
+				const Index_Size last_x1 = matrix_[this->start_y].size();
+				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionSTL(matrix_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col) {
+				const Index_Size last_x2 = matrix_[end_y_ - 1].size();
+				for (Index_Size col{ this->start_x }; col < last_x2; ++col) {
 					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionSTL(matrix_, col, end_y_ - 2, args_...);
 					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
 				}
@@ -101,9 +104,11 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
+				const Index_Size last_x1 = (std::min)(end_x_, matrix_[this->start_y].size());
+				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionSTL(matrix_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col) {
+				const Index_Size last_x2 = (std::min)(end_x_, matrix_[end_y_ - 1].size());
+				for (Index_Size col{ this->start_x }; col < last_x2; ++col) {
 					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionSTL(matrix_, col, end_y_ - 2, args_...);
 					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
 				}
@@ -128,9 +133,11 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
-				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
+				const Index_Size last_x1 = matrix_[this->start_y].size();
+				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col) {
+				const Index_Size last_x2 = matrix_[end_y_ - 1].size();
+				for (Index_Size col{ this->start_x }; col < last_x2; ++col) {
 					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, end_y_ - 2, args_...);
 					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				}
@@ -146,9 +153,11 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
+				const Index_Size last_x1 = (std::min)(end_x_, matrix_[this->start_y].size());
+				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
 					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col) {
+				const Index_Size last_x2 = (std::min)(end_x_, matrix_[end_y_ - 1].size());
+				for (Index_Size col{ this->start_x }; col < last_x2; ++col) {
 					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, end_y_ - 2, args_...);
 					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				}
