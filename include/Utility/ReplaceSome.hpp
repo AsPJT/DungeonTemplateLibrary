@@ -1,10 +1,11 @@
 ﻿/*#######################################################################################
-	Made by Kasugaccho
+	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 
-	This code is licensed under CC0.
+	Distributed under the Boost Software License, Version 1.0. (See accompanying
+	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_UTILITY_REPLACE_SOME_HPP

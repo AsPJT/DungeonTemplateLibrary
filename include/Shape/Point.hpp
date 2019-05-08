@@ -1,5 +1,6 @@
 ﻿/*#######################################################################################
 	Made by Kasugaccho
+	Made by As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
 	wanotaitei@gmail.com
 
