@@ -79,6 +79,7 @@
     <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\Shape\Template.hpp" />
     <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp" />
+    <ClInclude Include="..\..\include\Standard\UniquePtr.hpp" />
     <ClInclude Include="..\..\include\Storage\FileBMP.hpp" />
     <ClInclude Include="..\..\include\Storage\FileHDR.hpp" />
     <ClInclude Include="..\..\include\Storage\FileJPG.hpp" />

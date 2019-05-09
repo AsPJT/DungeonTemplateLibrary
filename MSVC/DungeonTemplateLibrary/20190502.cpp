@@ -9,11 +9,16 @@
 int main() {
 
 	using shape_t = std::uint_fast8_t;
-	//std::array<std::array<shape_t, 32>, 32> matrix{ {} };
+	std::array<std::array<shape_t, 32>, 32> matrix{ {} };
 
-	std::vector<std::list<shape_t>> matrix(16, std::list<shape_t>(16, 0));
+	//std::vector<std::list<shape_t>> matrix(16, std::list<shape_t>(16, 0));
 
-	dtl::Rect<shape_t>(dtl::MatrixRange(5, 5, 5, 5), 1).drawList(matrix);
+	dtl::MazeDig<shape_t>(1, 0).draw(matrix);
+	dtl::OutputNumber<shape_t>(",").draw(matrix);
+
+	//dtl::FileTerrainOBJ<shape_t>("Save/o.obj").write(matrix);
+
+	//dtl::Rect<shape_t>(dtl::MatrixRange(5, 5, 5, 5), 1).drawList(matrix);
 
 	//for (auto&& row : matrix) {
 	//	for (auto&& col : row) {
@@ -22,7 +27,7 @@ int main() {
 	//	std::cout << '\n';
 	//}
 
-	dtl::console::OutputStringBool<shape_t>(dtl::MatrixRange(5, 5, 5, 5), "#", "/").drawList(matrix);
+	//dtl::console::OutputStringBool<shape_t>(dtl::MatrixRange(5, 5, 5, 5), "#", "/").drawList(matrix);
 
 	//dtl::CellularAutomatonMixIsland<shape_t>(5, 0, 1, 2, 3, 4).draw(matrix);
 
