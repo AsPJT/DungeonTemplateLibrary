@@ -77,6 +77,11 @@ namespace dtl {
 			constexpr inline std::size_t outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return static_cast<std::size_t>(matrix_[point_y_][point_x_][layer_]);
 			}
+			template<typename Matrix_>
+			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+				constexpr inline std::size_t outputList(const Matrix_& matrix_) const noexcept {
+				return static_cast<std::size_t>(matrix_);
+			}
 
 
 			///// 基本処理 /////
@@ -168,6 +173,26 @@ namespace dtl {
 				return true;
 			}
 
+			//List
+			template<typename Matrix_>
+			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				std::size_t row_count{}, col_count{};
+				for (const auto& row : matrix_) {
+					++row_count;
+					if (row_count <= this->start_y) continue;
+					if (end_y_ != 1 && row_count >= end_y_) break;
+					col_count = 0;
+					for (const auto& col : row) {
+						++col_count;
+						if (col_count <= this->start_x) continue;
+						if (end_x_ != 1 && col_count >= end_x_) break;
+						std::cout << this->string_vector[this->outputList(col)];
+					}
+					std::cout << '\n';
+				}
+				return true;
+			}
+
 		public:
 
 
@@ -221,6 +246,12 @@ namespace dtl {
 			template<typename Matrix_>
 			bool drawArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->drawArray(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
+			}
+
+			//List
+			template<typename Matrix_>
+			bool drawList(const Matrix_& matrix_) const noexcept {
+				return this->drawList(matrix_, this->start_x + this->width + 1, this->start_y + this->height + 1);
 			}
 
 

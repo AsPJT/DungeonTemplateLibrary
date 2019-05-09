@@ -66,6 +66,11 @@ namespace dtl {
 				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
 			}
+			template<typename Matrix_Value_>
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				inline void outputList(const Matrix_Value_& matrix_) const noexcept {
+				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->draw_string;
+			}
 
 
 			///// 基本処理 /////
@@ -143,6 +148,26 @@ namespace dtl {
 				return true;
 			}
 
+			//List
+			template<typename Matrix_>
+			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				std::size_t row_count{}, col_count{};
+				for (const auto& row : matrix_) {
+					++row_count;
+					if (row_count <= this->start_y) continue;
+					if (end_y_ != 1 && row_count >= end_y_) break;
+					col_count = 0;
+					for (const auto& col : row) {
+						++col_count;
+						if (col_count <= this->start_x) continue;
+						if (end_x_ != 1 && col_count >= end_x_) break;
+						this->outputList(col);
+					}
+					std::cout << '\n';
+				}
+				return true;
+			}
+
 		public:
 
 
@@ -196,6 +221,12 @@ namespace dtl {
 			template<typename Matrix_>
 			bool drawArray(const Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->drawArray(matrix_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
+			}
+
+			//List
+			template<typename Matrix_>
+			bool drawList(const Matrix_& matrix_) const noexcept {
+				return this->drawList(matrix_, this->start_x + this->width + 1, this->start_y + this->height + 1);
 			}
 
 
