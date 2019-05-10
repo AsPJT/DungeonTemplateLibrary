@@ -36,7 +36,7 @@ int main() {
 	//dtl::storage::FilePBM<shape_t>("Save/file_sample.pbm").setRange(2, 2, 25, 25).write(matrix, 32, 32);
 	//dtl::storage::FilePBM<shape_t>(dtl::MatrixRange(2, 2, 25, 25), "Save/file_sample2.pbm").write(matrix);
 
-	dtl::storage::FilePNG<shape_t>("Save/file_sample3.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
+	dtl::storage::FilePNG<shape_t>("Save/file_samplen.png", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
 		switch (value) {
 		case 0:
 			color[0] = 41;
@@ -62,6 +62,126 @@ int main() {
 			color[0] = 164;
 			color[1] = 143;
 			color[2] = 50;
+			break;
+		}
+		});
+
+	dtl::storage::FileJPG<shape_t>("Save/file_samplen.jpg", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
+		switch (value) {
+		case 0:
+			color[0] = 41;
+			color[1] = 40;
+			color[2] = 159;
+			break;
+		case 1:
+			color[0] = 101;
+			color[1] = 163;
+			color[2] = 56;
+			break;
+		case 2:
+			color[0] = 223;
+			color[1] = 203;
+			color[2] = 140;
+			break;
+		case 3:
+			color[0] = 9;
+			color[1] = 100;
+			color[2] = 5;
+			break;
+		case 4:
+			color[0] = 164;
+			color[1] = 143;
+			color[2] = 50;
+			break;
+		}
+		});
+
+	dtl::storage::FileBMP<shape_t>("Save/file_samplen.bmp", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
+		switch (value) {
+		case 0:
+			color[0] = 41;
+			color[1] = 40;
+			color[2] = 159;
+			break;
+		case 1:
+			color[0] = 101;
+			color[1] = 163;
+			color[2] = 56;
+			break;
+		case 2:
+			color[0] = 223;
+			color[1] = 203;
+			color[2] = 140;
+			break;
+		case 3:
+			color[0] = 9;
+			color[1] = 100;
+			color[2] = 5;
+			break;
+		case 4:
+			color[0] = 164;
+			color[1] = 143;
+			color[2] = 50;
+			break;
+		}
+		});
+
+	dtl::storage::FileTGA<shape_t>("Save/file_samplen.tga", 3).write(matrix, [](const shape_t value, unsigned char* const color) {
+		switch (value) {
+		case 0:
+			color[0] = 41;
+			color[1] = 40;
+			color[2] = 159;
+			break;
+		case 1:
+			color[0] = 101;
+			color[1] = 163;
+			color[2] = 56;
+			break;
+		case 2:
+			color[0] = 223;
+			color[1] = 203;
+			color[2] = 140;
+			break;
+		case 3:
+			color[0] = 9;
+			color[1] = 100;
+			color[2] = 5;
+			break;
+		case 4:
+			color[0] = 164;
+			color[1] = 143;
+			color[2] = 50;
+			break;
+		}
+		});
+
+	dtl::storage::FileHDR<shape_t>("Save/file_samplen.hdr", 3).write(matrix, [](const shape_t value, float* const color) {
+		switch (value) {
+		case 0:
+			color[0] = 41.0f / 255.0f;
+			color[1] = 40.0f / 255.0f;
+			color[2] = 159.0f / 255.0f;
+			break;
+		case 1:
+			color[0] = 101.0f / 255.0f;
+			color[1] = 163.0f / 255.0f;
+			color[2] = 56.0f / 255.0f;
+			break;
+		case 2:
+			color[0] = 223.0f / 255.0f;
+			color[1] = 203.0f / 255.0f;
+			color[2] = 140.0f / 255.0f;
+			break;
+		case 3:
+			color[0] = 9.0f / 255.0f;
+			color[1] = 100.0f / 255.0f;
+			color[2] = 5.0f / 255.0f;
+			break;
+		case 4:
+			color[0] = 164.0f / 255.0f;
+			color[1] = 143.0f / 255.0f;
+			color[2] = 50.0f / 255.0f;
 			break;
 		}
 		});
