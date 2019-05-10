@@ -232,13 +232,11 @@ namespace dtl {
 
 			//List
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				bool drawList(Matrix_&& matrix_) const noexcept {
+			constexpr bool drawList(Matrix_&& matrix_) const noexcept {
 				return this->drawList(std::forward<Matrix_>(matrix_), this->start_x + this->width + 1, this->start_y + this->height + 1);
 			}
 			template<typename Matrix_, typename Function_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				bool drawOperatorList(Matrix_&& matrix_, Function_&& function_) const noexcept {
+			constexpr bool drawOperatorList(Matrix_&& matrix_, Function_&& function_) const noexcept {
 				return this->drawList(std::forward<Matrix_>(matrix_), this->start_x + this->width + 1, this->start_y + this->height + 1, function_);
 			}
 

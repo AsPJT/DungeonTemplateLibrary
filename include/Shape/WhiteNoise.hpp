@@ -49,7 +49,6 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 			Matrix_Int_ draw_value{};
-			double probability_value{ 0.5 };
 
 			///// 代入処理 /////
 
@@ -68,6 +67,11 @@ namespace dtl {
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				if (dtl::random::mt32bit.probability()) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
+			template<typename Matrix_Value_>
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				inline void substitutionList(Matrix_Value_&& matrix_) const noexcept {
+				if (dtl::random::mt32bit.probability()) matrix_ = this->draw_value;
+			}
 
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
@@ -83,6 +87,11 @@ namespace dtl {
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_][layer_]) && dtl::random::mt32bit.probability()) matrix_[end_y_][end_x_][layer_] = this->draw_value;
+			}
+			template<typename Matrix_Value_, typename Function_>
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				inline void substitutionList(Matrix_Value_&& matrix_, Function_&& function_) const noexcept {
+				if (function_(matrix_) && dtl::random::mt32bit.probability()) matrix_ = this->draw_value;
 			}
 
 
@@ -151,6 +160,26 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionArray(matrix_, col, row, max_x_, args_...);
+				return true;
+			}
+
+			//List
+			template<typename Matrix_, typename ...Args_>
+			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				bool drawList(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
+				std::size_t row_count{}, col_count{};
+				for (auto&& row : matrix_) {
+					++row_count;
+					if (row_count <= this->start_y) continue;
+					if (end_y_ != 1 && row_count >= end_y_) break;
+					col_count = 0;
+					for (auto&& col : row) {
+						++col_count;
+						if (col_count <= this->start_x) continue;
+						if (end_x_ != 1 && col_count >= end_x_) break;
+						this->substitutionList(col, args_...);
+					}
+				}
 				return true;
 			}
 
@@ -231,6 +260,16 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
 				return this->drawArray(std::forward<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
+			}
+
+			//List
+			template<typename Matrix_>
+			constexpr bool drawList(Matrix_&& matrix_) const noexcept {
+				return this->drawList(std::forward<Matrix_>(matrix_), this->start_x + this->width + 1, this->start_y + this->height + 1);
+			}
+			template<typename Matrix_, typename Function_>
+			constexpr bool drawOperatorList(Matrix_ && matrix_, Function_ && function_) const noexcept {
+				return this->drawList(std::forward<Matrix_>(matrix_), this->start_x + this->width + 1, this->start_y + this->height + 1, function_);
 			}
 
 
