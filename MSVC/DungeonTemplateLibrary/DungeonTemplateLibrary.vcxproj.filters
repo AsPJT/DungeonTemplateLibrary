@@ -305,6 +305,9 @@
     <ClInclude Include="..\..\include\Standard\UniquePtr.hpp">
       <Filter>ヘッダー ファイル\Standard</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Standard\SizeT.hpp">
+      <Filter>ヘッダー ファイル\Standard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">

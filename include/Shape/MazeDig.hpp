@@ -33,7 +33,7 @@ namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Int_, typename UniquePtr_ = DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR<std::size_t[]>>
 		class MazeDig {
 		private:
 
@@ -41,7 +41,6 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = std::size_t;
-			using UniquePtr = DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR<std::size_t[]>;
 
 
 			///// メンバ変数 /////
@@ -136,7 +135,7 @@ namespace dtl {
 			//迷路生成
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, UniquePtr& select_x, UniquePtr& select_y) const noexcept {
+				std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
@@ -157,7 +156,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, UniquePtr& select_x, UniquePtr& select_y) const noexcept {
+				std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
@@ -178,7 +177,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, UniquePtr& select_x, UniquePtr& select_y) const noexcept {
+				std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				std::size_t select_id{};
 				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
 					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
@@ -206,9 +205,9 @@ namespace dtl {
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1] = this->empty_value;
 
-				UniquePtr select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
@@ -229,9 +228,9 @@ namespace dtl {
 			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1][layer_] = this->empty_value;
 
-				UniquePtr select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
@@ -253,9 +252,9 @@ namespace dtl {
 			bool drawArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_&& ...) const noexcept {
 				matrix_[(this->start_y + 1) * max_x_ + start_x + 1] = this->empty_value;
 
-				UniquePtr select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
