@@ -12,10 +12,10 @@
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 
-#include <cstddef>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 //共有データ
 namespace dtl {
@@ -28,7 +28,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 		protected:

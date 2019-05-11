@@ -19,14 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <utility>
 #include <vector>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -39,7 +38,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -66,43 +65,43 @@ namespace dtl {
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				matrix_[end_y_][end_x_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				matrix_[end_y_ * max_x_ + end_x_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				matrix_[end_y_ * max_x_ + end_x_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_][layer_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				matrix_[end_y_][end_x_][layer_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_Value_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_) const noexcept {
-				matrix_ = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				matrix_ = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 			template<typename Matrix_Value_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_, Function_&& function_) const noexcept {
-				if (function_(matrix_)) matrix_ = this->draw_value[dtl::random::mt32bit.get<std::size_t>(draw_value.size())];
+				if (function_(matrix_)) matrix_ = this->draw_value[dtl::random::mt32bit.get<dtl::type::size>(draw_value.size())];
 			}
 
 
@@ -178,7 +177,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawList(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				std::size_t row_count{}, col_count{};
+				dtl::type::size row_count{}, col_count{};
 				for (auto&& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;

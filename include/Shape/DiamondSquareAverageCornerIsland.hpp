@@ -19,8 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <algorithm>
 #include <utility>
 #include <Base/Struct.hpp>
@@ -28,6 +26,7 @@
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -41,7 +40,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -60,8 +59,8 @@ namespace dtl {
 
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t getMatrixSize(const Index_Size matrix_size) const noexcept {
-				std::size_t map_size{ 2 };
+				dtl::type::size getMatrixSize(const Index_Size matrix_size) const noexcept {
+				dtl::type::size map_size{ 2 };
 				while (true) {
 					if ((map_size + 1) > matrix_size) return map_size >>= 1;
 					map_size <<= 1;

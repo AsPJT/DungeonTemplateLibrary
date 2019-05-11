@@ -14,14 +14,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <iostream>
 #include <string>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 #include <Utility/IsOutputCast.hpp>
 
 namespace dtl {
@@ -35,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -151,7 +150,7 @@ namespace dtl {
 			//List
 			template<typename Matrix_>
 			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				std::size_t row_count{}, col_count{};
+				dtl::type::size row_count{}, col_count{};
 				for (const auto& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;

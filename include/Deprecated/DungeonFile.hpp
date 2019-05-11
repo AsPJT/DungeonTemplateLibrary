@@ -12,7 +12,6 @@
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/09] Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <fstream>
 #include <string>
@@ -21,6 +20,7 @@
 #include <iomanip>
 #include <array>
 #include <Macros/constexpr.hpp>
+#include <Type/SizeT.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -43,12 +43,12 @@ namespace dtl {
 					ifs.read(reinterpret_cast<char*>(&y_max), sizeof(std::uint64_t));
 
 					auto read_value{ matrix_[0][0] };
-					std::size_t x_count{};
-					std::size_t y_count{};
+					dtl::type::size x_count{};
+					dtl::type::size y_count{};
 					while (!ifs.eof()) {
 						ifs.read(reinterpret_cast<char*>(&read_value), sizeof(matrix_[0][0]));
-						if (x_count >= static_cast<std::size_t>(x_max)) {
-							x_count = static_cast<std::size_t>(0);
+						if (x_count >= static_cast<dtl::type::size>(x_max)) {
+							x_count = static_cast<dtl::type::size>(0);
 							++y_count;
 						}
 						if (y_count >= matrix_.size()) break;
@@ -83,10 +83,10 @@ namespace dtl {
 						ofs_ << matrix_.size();
 						ofs_ << ";\" xml:space=\"preserve\">" << '\n';
 					}
-					void rectTemplate_svg(std::ofstream & ofs_, const std::size_t col_, const std::size_t row_) noexcept {
+					void rectTemplate_svg(std::ofstream & ofs_, const dtl::type::size col_, const dtl::type::size row_) noexcept {
 						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" width=\"1\" height=\"1\"/>" << '\n';
 					}
-					void rectTemplateColor_svg(std::ofstream & ofs_, const std::size_t col_, const std::size_t row_) noexcept {
+					void rectTemplateColor_svg(std::ofstream & ofs_, const dtl::type::size col_, const dtl::type::size row_) noexcept {
 						ofs_ << "<rect x=\"" << col_ << "\" y=\"" << row_ << "\" class=\"st1\" width=\"1\" height=\"1\"/>" << '\n';
 					}
 
@@ -94,7 +94,7 @@ namespace dtl {
 
 				//svgファイルの書き込み(色付き)
 				template<typename Matrix_>
-				bool svgColor(const Matrix_& matrix_, const std::string& str_, const std::size_t color_true_ = 0, const std::size_t color_false_ = 0xffffff) noexcept {
+				bool svgColor(const Matrix_& matrix_, const std::string& str_, const dtl::type::size color_true_ = 0, const dtl::type::size color_false_ = 0xffffff) noexcept {
 					std::ofstream ofs(str_);
 					if (ofs.fail()) return false;
 
@@ -108,10 +108,10 @@ namespace dtl {
 					ofs << "</style>" << '\n';
 					ofs << "<rect class=\"st0\" width=\"" << ((matrix_.size() == 0) ? 0 : matrix_[0].size()) << "\" height=\"" << matrix_.size() << "\"/>" << '\n';
 
-					for (std::size_t row{}; row < matrix_.size(); ++row) {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row) {
 						if (matrix_[row].size() == 0) continue;
 						if (matrix_[row][0]) dtl::file::write::stl::hiding::rectTemplateColor_svg(ofs, 0, row);
-						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+						for (dtl::type::size col{ 1 }; col < matrix_[row].size(); ++col) {
 							if (matrix_[row][col]) dtl::file::write::stl::hiding::rectTemplateColor_svg(ofs, col, row);
 						}
 					}
@@ -126,10 +126,10 @@ namespace dtl {
 
 					dtl::file::write::stl::hiding::stringTemplate_svg(matrix_, ofs);
 
-					for (std::size_t row{}; row < matrix_.size(); ++row) {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row) {
 						if (matrix_[row].size() == 0) continue;
 						if (matrix_[row][0]) dtl::file::write::stl::hiding::rectTemplate_svg(ofs, 0, row);
-						for (std::size_t col{ 1 }; col < matrix_[row].size(); ++col) {
+						for (dtl::type::size col{ 1 }; col < matrix_[row].size(); ++col) {
 							if (matrix_[row][col]) dtl::file::write::stl::hiding::rectTemplate_svg(ofs, col, row);
 						}
 					}
@@ -139,7 +139,7 @@ namespace dtl {
 
 				namespace hiding {
 
-					void write_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) noexcept {
+					void write_objOutputId(std::ofstream& ofs_, const dtl::type::size id_ = 0) noexcept {
 						ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << '\n';
 						ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << '\n';
 						ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << '\n';
@@ -147,7 +147,7 @@ namespace dtl {
 						ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << '\n';
 						ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << '\n';
 					}
-					void write_objOutputCube(std::ofstream & ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) noexcept {
+					void write_objOutputCube(std::ofstream & ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, dtl::type::size id_ = 0) noexcept {
 						ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << '\n';
 						ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << '\n';
 						ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << '\n';
@@ -169,23 +169,23 @@ namespace dtl {
 
 					dtl::file::write::stl::hiding::write_objOutputCube(ofs, 0, -1, 0, (std::int_fast32_t)matrix_[0].size(), 1, (std::int_fast32_t)matrix_.size());
 
-					std::size_t square_count{ 1 };
-					for (std::size_t row{}; row < 1; ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+					dtl::type::size square_count{ 1 };
+					for (dtl::type::size row{}; row < 1; ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
 							++square_count;
 						}
-					for (std::size_t row{ matrix_.size() - 2 }; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+					for (dtl::type::size row{ matrix_.size() - 2 }; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
 							++square_count;
 						}
-					for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row) {
-						for (std::size_t col{}; col < 1; ++col) {
+					for (dtl::type::size row{ 1 }; row < matrix_.size() - 1; ++row) {
+						for (dtl::type::size col{}; col < 1; ++col) {
 							dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
 							++square_count;
 						}
-						for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
+						for (dtl::type::size col{ 1 }; col < matrix_[row].size() - 1; ++col) {
 							auto tmp{ matrix_[row][col - 1] };
 							if (tmp >= matrix_[row][col + 1]) tmp = matrix_[row][col + 1];
 							if (tmp >= matrix_[row - 1][col]) tmp = matrix_[row - 1][col];
@@ -194,7 +194,7 @@ namespace dtl {
 							else dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, tmp, (std::int_fast32_t)row, 1, matrix_[row][col] - tmp, 1, square_count);
 							++square_count;
 						}
-						for (std::size_t col{ matrix_[row].size() - 2 }; col < matrix_[row].size(); ++col) {
+						for (dtl::type::size col{ matrix_[row].size() - 2 }; col < matrix_[row].size(); ++col) {
 							dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, matrix_[row][col], 1, square_count);
 							++square_count;
 						}
@@ -210,9 +210,9 @@ namespace dtl {
 
 					dtl::file::write::stl::hiding::write_objOutputCube(ofs, 0, -1, 0, (std::int_fast32_t)matrix_[0].size(), 1, (std::int_fast32_t)matrix_.size());
 
-					std::size_t square_count{ 1 };
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					dtl::type::size square_count{ 1 };
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 							if (matrix_[row][col] == output_id_) {
 								dtl::file::write::stl::hiding::write_objOutputCube(ofs, (std::int_fast32_t)col, 0, (std::int_fast32_t)row, 1, block_size_, 1, square_count);
 								++square_count;
@@ -232,8 +232,8 @@ namespace dtl {
 					ofs.write(reinterpret_cast<char*>(&y_max), sizeof(std::uint64_t));
 
 					auto write_value{ matrix_[0][0] };
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							write_value = matrix_[row][col];
 							ofs.write(reinterpret_cast<const char*>(&write_value), sizeof(write_value));
 						}

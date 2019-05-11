@@ -12,12 +12,11 @@
 
 /* Character Code : UTF-8 (BOM) */
 
-#include <cstddef>
-#include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -30,7 +29,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 

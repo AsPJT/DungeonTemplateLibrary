@@ -14,7 +14,7 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace base {
@@ -41,7 +41,7 @@ namespace dtl {
 				return vec2_.x != this->x || vec2_.y != this->y;
 			}
 		};
-		using MatrixVec2 = Coordinate2Dimensional<std::size_t>;
+		using MatrixVec2 = Coordinate2Dimensional<dtl::type::size>;
 
 		//座標と幅
 		template<typename Int_>
@@ -66,7 +66,7 @@ namespace dtl {
 				return range_.x != this->x || range_.y != this->y || range_.w != this->w || range_.h != this->h;
 			}
 		};
-		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<std::size_t>;
+		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<dtl::type::size>;
 
 	}
 }

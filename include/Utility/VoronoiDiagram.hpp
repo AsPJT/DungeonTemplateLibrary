@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <new>
@@ -28,6 +27,7 @@
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -40,7 +40,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -50,7 +50,7 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			std::size_t draw_value{};
+			dtl::type::size draw_value{};
 
 			using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
 
@@ -58,7 +58,7 @@ namespace dtl {
 			template<typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
-				for (std::size_t i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
+				for (dtl::type::size i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
 					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
 					function_(point_[array_num], color_[array_num], static_cast<std::int_fast32_t>(start_x), static_cast<std::int_fast32_t>(start_x), w_, h_);
 				}
@@ -73,42 +73,42 @@ namespace dtl {
 			}
 
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, std::size_t& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
-				ind = (std::numeric_limits<std::size_t>::max)();
+				bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, dtl::type::size& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
+				ind = (std::numeric_limits<dtl::type::size>::max)();
 				dist = (std::numeric_limits<std::int_fast32_t>::max)();
-				for (std::size_t it{}; it < this->draw_value; ++it) {
+				for (dtl::type::size it{}; it < this->draw_value; ++it) {
 					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
 				}
-				return (ind != (std::numeric_limits<std::size_t>::max)());
+				return (ind != (std::numeric_limits<dtl::type::size>::max)());
 			}
 
 			//図形を描画
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const std::size_t w_, const std::size_t h_) const noexcept {
+				void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
-				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
-					for (std::size_t ww{}; ww < w_; ++ww)
+				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (dtl::type::size ww{}; ww < w_; ++ww)
 						if(createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
 							matrix_[hh][ww] = color_[ind];
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void createSitesLayer(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size layer_, const std::size_t w_, const std::size_t h_) const noexcept {
+				void createSitesLayer(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size layer_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
-				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
-					for (std::size_t ww{}; ww < w_; ++ww)
+				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (dtl::type::size ww{}; ww < w_; ++ww)
 						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
 							matrix_[hh][ww][layer_] = color_[ind];
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const std::size_t w_, const std::size_t h_) const noexcept {
+				void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
 				std::int_fast32_t ds{}, dist{};
-				for (std::size_t hh{}, ind{}; hh < h_; ++hh)
-					for (std::size_t ww{}; ww < w_; ++ww)
+				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (dtl::type::size ww{}; ww < w_; ++ww)
 						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
 							matrix_[hh * max_x_ + ww] = color_[ind];
 			}
@@ -199,7 +199,7 @@ namespace dtl {
 				return this->height;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr std::size_t getValue() const noexcept {
+			constexpr dtl::type::size getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -341,7 +341,7 @@ namespace dtl {
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				VoronoiDiagram& setValue(const std::size_t draw_value_) noexcept {
+				VoronoiDiagram& setValue(const dtl::type::size draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
@@ -386,19 +386,19 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr VoronoiDiagram() noexcept = default;
-			constexpr explicit VoronoiDiagram(const std::size_t draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const dtl::type::size draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit VoronoiDiagram(const dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit VoronoiDiagram(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
 			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const std::size_t draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const dtl::type::size draw_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}

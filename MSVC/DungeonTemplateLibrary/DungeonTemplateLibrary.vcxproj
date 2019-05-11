@@ -79,8 +79,6 @@
     <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp" />
     <ClInclude Include="..\..\include\Shape\Template.hpp" />
     <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp" />
-    <ClInclude Include="..\..\include\Standard\SizeT.hpp" />
-    <ClInclude Include="..\..\include\Standard\UniquePtr.hpp" />
     <ClInclude Include="..\..\include\Storage\FileBMP.hpp" />
     <ClInclude Include="..\..\include\Storage\FileHDR.hpp" />
     <ClInclude Include="..\..\include\Storage\FileJPG.hpp" />
@@ -91,6 +89,8 @@
     <ClInclude Include="..\..\include\Storage\FileTGA.hpp" />
     <ClInclude Include="..\..\include\Storage\FileTXT_0_9.hpp" />
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
+    <ClInclude Include="..\..\include\Type\SizeT.hpp" />
+    <ClInclude Include="..\..\include\Type\UniquePtr.hpp" />
     <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />
     <ClInclude Include="..\..\include\Utility\Copy.hpp" />

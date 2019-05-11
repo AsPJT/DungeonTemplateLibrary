@@ -12,8 +12,8 @@
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <Macros/constexpr.hpp>
+#include <Type/SizeT.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -23,18 +23,18 @@ namespace dtl {
 			//サイズ変更(std::vector, std::deque等)
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_) noexcept {
+				void resize(Matrix_& matrix_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
 				matrix_.resize(y_);
-				for (std::size_t row{}; row < y_; ++row)
+				for (dtl::type::size row{}; row < y_; ++row)
 					matrix_[row].resize(x_);
 			}
 			template<typename Matrix_Int_, typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void resize(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const Matrix_Int_ value_) noexcept {
+				void resize(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const Matrix_Int_ value_) noexcept {
 				matrix_.resize(y_);
-				for (std::size_t row{}; row < y_; ++row) {
+				for (dtl::type::size row{}; row < y_; ++row) {
 					matrix_[row].resize(x_);
-					for (std::size_t col{}; col < x_; ++col)
+					for (dtl::type::size col{}; col < x_; ++col)
 						matrix_[row][col] = value_;
 				}
 			}
@@ -49,41 +49,41 @@ namespace dtl {
 
 				template<typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void resize(Matrix_& matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_) noexcept {
+					void resize(Matrix_& matrix_, const dtl::type::size x_, const dtl::type::size y_, const dtl::type::size layer_) noexcept {
 					matrix_.resize(y_);
-					for (std::size_t row{}; row < y_; ++row) {
+					for (dtl::type::size row{}; row < y_; ++row) {
 						matrix_[row].resize(x_);
-						for (std::size_t col{}; col < x_; ++col)
+						for (dtl::type::size col{}; col < x_; ++col)
 							matrix_[row][col].resize(layer_);
 					}
 				}
 				template<typename Matrix_Int_, typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void resize(Matrix_ & matrix_, const std::size_t x_, const std::size_t y_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
+					void resize(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
 					matrix_.resize(y_);
-					for (std::size_t row{}; row < y_; ++row) {
+					for (dtl::type::size row{}; row < y_; ++row) {
 						matrix_[row].resize(x_);
-						for (std::size_t col{}; col < x_; ++col) {
+						for (dtl::type::size col{}; col < x_; ++col) {
 							matrix_[row][col].resize(layer_);
-							for (std::size_t layer{}; layer < layer_; ++layer)
+							for (dtl::type::size layer{}; layer < layer_; ++layer)
 								matrix_[row][col][layer_] = value_;
 						}
 					}
 				}
 				template<typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void resize(Matrix_ & matrix_, const std::size_t layer_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					void resize(Matrix_ & matrix_, const dtl::type::size layer_) noexcept {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col].resize(layer_);
 				}
 				template<typename Matrix_Int_, typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void resize(Matrix_ & matrix_, const std::size_t layer_, const Matrix_Int_ value_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+					void resize(Matrix_ & matrix_, const dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							matrix_[row][col].resize(layer_);
-							for (std::size_t layer{}; layer < layer_; ++layer)
+							for (dtl::type::size layer{}; layer < layer_; ++layer)
 								matrix_[row][col][layer_] = value_;
 						}
 				}
@@ -102,9 +102,9 @@ namespace dtl {
 				template<typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void flip(Matrix_& matrix_) noexcept {
-					for (std::size_t row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
+					for (dtl::type::size row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
 						if (row >= row2) break;
-						for (std::size_t col{}; col < matrix_[row].size(); ++col) {
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							const auto&& tmp{ (matrix_[row][col] + 0) };
 							matrix_[row][col] = matrix_[row2][col];
 							matrix_[row2][col] = std::move(tmp);
@@ -115,8 +115,8 @@ namespace dtl {
 				template<typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 					void mirror(Matrix_& matrix_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
 							if (col >= col2) break;
 							const auto && tmp{ (matrix_[row][col] + 0) };
 							matrix_[row][col] = matrix_[row][col2];
@@ -135,25 +135,25 @@ namespace dtl {
 
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void convertSTL_intoDefault(Matrix_& matrix_, std::size_t& x_, std::size_t& y_, const Matrix2_& matrix2_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				void convertSTL_intoDefault(Matrix_& matrix_, dtl::type::size& x_, dtl::type::size& y_, const Matrix2_& matrix2_) noexcept {
+				for (dtl::type::size row{}; row < matrix_.size(); ++row)
+					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 						matrix_[row][col] = matrix2_[row][col];
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void convertSTL_intoArray(Matrix_ & matrix_, std::size_t & x_, std::size_t & y_, const Matrix2_ & matrix2_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				void convertSTL_intoArray(Matrix_ & matrix_, dtl::type::size & x_, dtl::type::size & y_, const Matrix2_ & matrix2_) noexcept {
+				for (dtl::type::size row{}; row < matrix_.size(); ++row)
+					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 						matrix_[row * x_ + col] = matrix2_[row][col];
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void convertSTL_intoLayer(Matrix_ & matrix_, std::size_t & layer_, const Matrix2_ & matrix2_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				void convertSTL_intoLayer(Matrix_ & matrix_, dtl::type::size & layer_, const Matrix2_ & matrix2_) noexcept {
+				for (dtl::type::size row{}; row < matrix_.size(); ++row)
+					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 						matrix_[row][col][layer_] = matrix2_[row][col];
 			}
 

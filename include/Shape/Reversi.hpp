@@ -19,12 +19,11 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -37,7 +36,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 
@@ -113,16 +112,16 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_&& matrix_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ matrix_[set_y].size() / 2 };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ matrix_[set_y].size() / 2 };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
@@ -131,16 +130,16 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ matrix_[set_y].size() / 2 };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ matrix_[set_y].size() / 2 };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
@@ -149,8 +148,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ end_x_ / 2 };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
@@ -159,8 +158,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ end_x_ / 2 };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
@@ -169,8 +168,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				const std::size_t set_y{ end_y_ / 2 };
-				const std::size_t set_x{ end_x_ / 2 };
+				const dtl::type::size set_y{ end_y_ / 2 };
+				const dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionArray(matrix_, set_x, set_y, max_x_, args_...);
 				return true;
 			}

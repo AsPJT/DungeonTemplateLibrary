@@ -14,7 +14,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <bitset>
 #include <Macros/constexpr.hpp>

@@ -19,13 +19,12 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Shape/AbsoluteRect.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -38,7 +37,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 			
 

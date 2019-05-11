@@ -14,14 +14,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <fstream>
 #include <string>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 #include <Utility/IsOutputCast.hpp>
 
 namespace dtl {
@@ -35,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -87,8 +86,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
 			}
@@ -100,8 +99,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
 				return true;
 			}
@@ -115,8 +114,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
 			}
@@ -128,8 +127,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
 				return true;
 			}
@@ -143,8 +142,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}
@@ -158,8 +157,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}
@@ -173,8 +172,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseArray(matrix_, col, row, max_x_, ofs, args_...);
 
-				for (std::size_t row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (std::size_t col{ start_x + 2 }; col <= end_x_; ++col)
+				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}

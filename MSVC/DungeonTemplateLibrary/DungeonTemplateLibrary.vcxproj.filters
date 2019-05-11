@@ -54,7 +54,7 @@
     <Filter Include="ヘッダー ファイル\Chrono">
       <UniqueIdentifier>{cec74aec-c31c-4b70-b3d8-4c90c52a9096}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Standard">
+    <Filter Include="ヘッダー ファイル\Type">
       <UniqueIdentifier>{24c5dc8a-0e29-4784-a0bf-ea946424d0b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -302,11 +302,11 @@
     <ClInclude Include="..\..\include\Utility\RectBaseWithValue.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Standard\UniquePtr.hpp">
-      <Filter>ヘッダー ファイル\Standard</Filter>
+    <ClInclude Include="..\..\include\Type\SizeT.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Standard\SizeT.hpp">
-      <Filter>ヘッダー ファイル\Standard</Filter>
+    <ClInclude Include="..\..\include\Type\UniquePtr.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

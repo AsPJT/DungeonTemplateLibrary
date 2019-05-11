@@ -14,26 +14,25 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <iostream>
 #include <string>
 #include <utility>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace console {
 
 		//四角形の生成
-		template<typename Matrix_Int_, typename OutputView_ = std::size_t>
+		template<typename Matrix_Int_, typename OutputView_ = dtl::type::size>
 		class OutputView {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 

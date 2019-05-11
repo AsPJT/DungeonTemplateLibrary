@@ -14,7 +14,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <algorithm>
 #include <utility>
@@ -22,6 +21,7 @@
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -34,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -46,7 +46,7 @@ namespace dtl {
 			Index_Size height{};
 			Matrix_Int_ after_value{};
 			std::vector<Matrix_Int_> before_value{};
-			std::size_t replace_num{};
+			dtl::type::size replace_num{};
 
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void string_String() const noexcept {}
@@ -62,7 +62,7 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				inline void substitutionSTL(Matrix_&& matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_]) {
@@ -75,7 +75,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				inline void substitutionArray(Matrix_&& matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_]) {
@@ -88,7 +88,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_]) {
@@ -102,7 +102,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				inline void substitutionSTL(Matrix_ && matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
@@ -115,7 +115,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void substitutionArray(Matrix_ && matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
@@ -128,7 +128,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<std::size_t, std::size_t>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				inline void substitutionLayer(Matrix_ && matrix_, std::vector<std::pair<dtl::type::size, dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.size()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
@@ -149,7 +149,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
@@ -163,8 +163,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -176,7 +176,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
@@ -190,8 +190,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -205,7 +205,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
@@ -219,8 +219,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -232,7 +232,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
@@ -246,15 +246,15 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -268,7 +268,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -282,8 +282,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -297,7 +297,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -311,8 +311,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -326,7 +326,7 @@ namespace dtl {
 				if (this->replace_num == 0) return true;
 				if (this->before_value.size() == 0) return false;
 
-				std::vector<std::pair<std::size_t, std::size_t>> value_pairs{};
+				std::vector<std::pair<dtl::type::size, dtl::type::size>> value_pairs{};
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -340,8 +340,8 @@ namespace dtl {
 					return true;
 				}
 
-				for (std::size_t modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
-					index = dtl::random::mt32bit.get<std::size_t>(value_pairs.size());
+				for (dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
+					index = dtl::random::mt32bit.get<dtl::type::size>(value_pairs.size());
 					matrix_[value_pairs[index].first * max_x_ + value_pairs[index].second] = this->after_value;
 					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
 					if (value_pairs.size() == 0) break;
@@ -578,12 +578,12 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr ReplaceSome() noexcept = default;
-			constexpr explicit ReplaceSome(const std::size_t replace_num_) noexcept
+			constexpr explicit ReplaceSome(const dtl::type::size replace_num_) noexcept
 				:replace_num(replace_num_) {}
-			constexpr explicit ReplaceSome(const std::size_t replace_num_, const Matrix_Int_& after_value) noexcept
+			constexpr explicit ReplaceSome(const dtl::type::size replace_num_, const Matrix_Int_& after_value) noexcept
 				:after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			explicit ReplaceSome(const std::size_t replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			explicit ReplaceSome(const dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value), replace_num(replace_num_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
 				std::sort(before_value.begin(), before_value.end());
@@ -591,16 +591,16 @@ namespace dtl {
 			constexpr explicit ReplaceSome(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit ReplaceSome(const dtl::base::MatrixRange& matrix_range_, const std::size_t replace_num_) noexcept
+			constexpr explicit ReplaceSome(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size replace_num_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				replace_num(replace_num_) {}
-			constexpr explicit ReplaceSome(const dtl::base::MatrixRange & matrix_range_, const std::size_t replace_num_, const Matrix_Int_ & after_value) noexcept
+			constexpr explicit ReplaceSome(const dtl::base::MatrixRange & matrix_range_, const dtl::type::size replace_num_, const Matrix_Int_ & after_value) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			explicit ReplaceSome(const dtl::base::MatrixRange & matrix_range_, const std::size_t replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			explicit ReplaceSome(const dtl::base::MatrixRange & matrix_range_, const dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {

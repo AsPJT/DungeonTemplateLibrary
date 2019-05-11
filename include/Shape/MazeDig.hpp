@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <new>
 #include <utility>
@@ -27,20 +26,21 @@
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
-#include <Standard/UniquePtr.hpp>
+#include <Type/SizeT.hpp>
+#include <Type/UniquePtr.hpp>
 
 namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR<std::size_t[]>>
+		template<typename Matrix_Int_, typename UniquePtr_ = DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR<dtl::type::size[]>>
 		class MazeDig {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 			///// メンバ変数 /////
@@ -56,9 +56,9 @@ namespace dtl {
 			//穴掘り
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void mazeDig_Dig(Matrix_&& matrix_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+				void mazeDig_Dig(Matrix_&& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
-				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
+				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -75,16 +75,16 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<std::size_t>();
+						random = dtl::random::mt32bit.get<dtl::type::size>();
 					}
 				}
 				return;
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
-				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
+				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -101,16 +101,16 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<std::size_t>();
+						random = dtl::random::mt32bit.get<dtl::type::size>();
 					}
 				}
 				return;
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, std::size_t x_, std::size_t y_) const noexcept {
+				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				std::int_fast32_t dx{}, dy{};
-				for (std::size_t random{ dtl::random::mt32bit.get<std::size_t>() }, counter{}; counter < 4;) {
+				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -127,7 +127,7 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<std::size_t>();
+						random = dtl::random::mt32bit.get<dtl::type::size>();
 					}
 				}
 				return;
@@ -135,10 +135,10 @@ namespace dtl {
 			//迷路生成
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoop(const Matrix_& matrix_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				std::size_t select_id{};
-				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
+				dtl::type::size mazeDig_CreateLoop(const Matrix_& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				dtl::type::size select_id{};
+				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i][j] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[i - 2][j] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i][j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -156,10 +156,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				std::size_t select_id{};
-				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
+				dtl::type::size mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				dtl::type::size select_id{};
+				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i][j][layer_] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[i - 2][j][layer_] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i][j - 2][layer_] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -177,10 +177,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				std::size_t mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const std::size_t j_max, const std::size_t i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				std::size_t select_id{};
-				for (std::size_t i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (std::size_t j{ this->start_x + 1 }; j < j_max; j += 2) {
+				dtl::type::size mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				dtl::type::size select_id{};
+				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i * max_x_ + j] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[(i - 2) * max_x_ + j] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i * max_x_ + j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -205,19 +205,19 @@ namespace dtl {
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const std::size_t j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (std::size_t select_id{};;) {
+				for (dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoop(matrix_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<std::size_t>(select_id);
+					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
 					mazeDig_Dig(matrix_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 				return true;
@@ -228,19 +228,19 @@ namespace dtl {
 			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1][layer_] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const std::size_t j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (std::size_t select_id{};;) {
+				for (dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoopLayer(matrix_, layer_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<std::size_t>(select_id);
+					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
 					mazeDig_DigLayer(matrix_, layer_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 
@@ -252,19 +252,19 @@ namespace dtl {
 			bool drawArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_&& ...) const noexcept {
 				matrix_[(this->start_y + 1) * max_x_ + start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) std::size_t[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const std::size_t i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const std::size_t j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (std::size_t select_id{};;) {
+				for (dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoopArray(matrix_, max_x_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<std::size_t>(select_id);
+					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
 					mazeDig_DigArray(matrix_, max_x_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 

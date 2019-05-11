@@ -18,6 +18,7 @@
 #include <bitset>
 #include <random>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace random {
@@ -53,10 +54,10 @@ namespace dtl {
 		};
 		static thread_local dtl::random::MersenneTwister_64bit mt64bit;
 
-		constexpr std::size_t mt64_bit_counter_num_1{ 64 };
+		constexpr dtl::type::size mt64_bit_counter_num_1{ 64 };
 		class MT64bit_1 {
 		private:
-			std::size_t counter{ mt64_bit_counter_num_1 };
+			dtl::type::size counter{ mt64_bit_counter_num_1 };
 			std::uint_fast64_t random_num{};
 		public:
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
@@ -74,7 +75,7 @@ namespace dtl {
 		};
 		static thread_local dtl::random::MT64bit_1 mt64bit_1;
 
-		constexpr std::size_t mt32_bit_counter_num_1{ 32 };
+		constexpr dtl::type::size mt32_bit_counter_num_1{ 32 };
 
 		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister_32bit {
@@ -84,7 +85,7 @@ namespace dtl {
 			//非決定論的な乱数
 			std::random_device rd;
 
-			std::size_t counter_bit1{ mt32_bit_counter_num_1 };
+			dtl::type::size counter_bit1{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num_bit1{};
 
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
@@ -152,7 +153,7 @@ namespace dtl {
 		
 		class MT32bit_1 {
 		private:
-			std::size_t counter{ mt32_bit_counter_num_1 };
+			dtl::type::size counter{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num{};
 		public:
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
@@ -171,11 +172,11 @@ namespace dtl {
 		static thread_local dtl::random::MT32bit_1 mt32bit_1;
 
 
-		constexpr std::size_t counter_num_2{ 32 };
-		constexpr std::size_t counter_bit_num_2{ counter_num_2 * 2 };
+		constexpr dtl::type::size counter_num_2{ 32 };
+		constexpr dtl::type::size counter_bit_num_2{ counter_num_2 * 2 };
 		class MT64bit_4 {
 		private:
-			std::size_t counter{ counter_num_2 };
+			dtl::type::size counter{ counter_num_2 };
 			std::uint_fast64_t random_num{};
 		public:
 			template<typename Random_Int_ = std::uint_fast64_t>

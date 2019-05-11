@@ -19,13 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/SizeT.hpp>
 #include <Utility/VoronoiDiagram.hpp>
 
 namespace dtl {
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 			
 
@@ -73,7 +73,7 @@ namespace dtl {
 				return this->voronoiDiagram.getHeight();
 			}
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr std::size_t getValue() const noexcept {
+			constexpr dtl::type::size getValue() const noexcept {
 				return this->voronoiDiagram.getValue();
 			}
 
@@ -247,7 +247,7 @@ namespace dtl {
 				return *this;
 			}
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				RandomVoronoi& setValue(const std::size_t draw_value_) noexcept {
+				RandomVoronoi& setValue(const dtl::type::size draw_value_) noexcept {
 				this->voronoiDiagram.setValue(draw_value_);
 				return *this;
 			}
@@ -289,24 +289,24 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr RandomVoronoi() noexcept = default;
-			constexpr explicit RandomVoronoi(const std::size_t draw_value_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::type::size draw_value_) noexcept
 				:voronoiDiagram(draw_value_) {}
-			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::type::size draw_value_, const double probability_value_) noexcept
 				:voronoiDiagram(draw_value_), probability_value(probability_value_) {}
-			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::type::size draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
 				:voronoiDiagram(draw_value_), probability_value(probability_value_), true_color(true_color_) {}
-			constexpr explicit RandomVoronoi(const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::type::size draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
 				:voronoiDiagram(draw_value_), probability_value(probability_value_), true_color(true_color_), false_color(false_color_) {}
 
 			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_) noexcept
 				:voronoiDiagram(matrix_range_) {}
-			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_) noexcept
 				:voronoiDiagram(matrix_range_, draw_value_) {}
-			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_, const double probability_value_) noexcept
 				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_) {}
-			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_, const double probability_value_, const Matrix_Int_& true_color_) noexcept
 				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_), true_color(true_color_) {}
-			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const std::size_t draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
+			constexpr explicit RandomVoronoi(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_, const double probability_value_, const Matrix_Int_& true_color_, const Matrix_Int_& false_color_) noexcept
 				:voronoiDiagram(matrix_range_, draw_value_), probability_value(probability_value_), true_color(true_color_), false_color(false_color_) {}
 		};
 	}

@@ -14,8 +14,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <iostream>
 #include <string>
 #include <utility>
@@ -23,6 +21,7 @@
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace console {
@@ -35,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -64,23 +63,23 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr inline std::size_t outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return static_cast<std::size_t>(matrix_[point_y_][point_x_]);
+			constexpr inline dtl::type::size outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return static_cast<dtl::type::size>(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr inline std::size_t outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				return static_cast<std::size_t>(matrix_[point_y_ * max_x_ + point_x_]);
+			constexpr inline dtl::type::size outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				return static_cast<dtl::type::size>(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			constexpr inline std::size_t outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return static_cast<std::size_t>(matrix_[point_y_][point_x_][layer_]);
+			constexpr inline dtl::type::size outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return static_cast<dtl::type::size>(matrix_[point_y_][point_x_][layer_]);
 			}
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-				constexpr inline std::size_t outputList(const Matrix_& matrix_) const noexcept {
-				return static_cast<std::size_t>(matrix_);
+				constexpr inline dtl::type::size outputList(const Matrix_& matrix_) const noexcept {
+				return static_cast<dtl::type::size>(matrix_);
 			}
 
 
@@ -176,7 +175,7 @@ namespace dtl {
 			//List
 			template<typename Matrix_>
 			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				std::size_t row_count{}, col_count{};
+				dtl::type::size row_count{}, col_count{};
 				for (const auto& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;

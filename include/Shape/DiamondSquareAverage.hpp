@@ -14,9 +14,9 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <Macros/constexpr.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -25,7 +25,7 @@ namespace dtl {
 		//ダイヤモンド・スクエア法(平均値)
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
 		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-			void createDiamondSquareAverageSTL(Matrix_&& matrix_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_& t1_, const Matrix_Int_& t2_, const Matrix_Int_& t3_, const Matrix_Int_& t4_, const Matrix_Int_& max_value_, const Matrix_Int_& add_altitude_, Function_&& func_) noexcept {
+			void createDiamondSquareAverageSTL(Matrix_&& matrix_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_& t1_, const Matrix_Int_& t2_, const Matrix_Int_& t3_, const Matrix_Int_& t4_, const Matrix_Int_& max_value_, const Matrix_Int_& add_altitude_, Function_&& func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
 			const Matrix_Int_ & vertex_rand{ dtl::random::mt32bit.get<Matrix_Int_>(add_altitude_) };
@@ -54,7 +54,7 @@ namespace dtl {
 		}
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
 		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-			void createDiamondSquareAverageArray(Matrix_ && matrix_, const std::size_t max_x_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
+			void createDiamondSquareAverageArray(Matrix_ && matrix_, const dtl::type::size max_x_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
 			const Matrix_Int_ & vertex_rand{ dtl::random::mt32bit.get<Matrix_Int_>(add_altitude_) };
@@ -83,7 +83,7 @@ namespace dtl {
 		}
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
 		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-			void createDiamondSquareAverageLayer(Matrix_ && matrix_, const std::size_t layer_, const std::size_t start_x_, const std::size_t start_y_, const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
+			void createDiamondSquareAverageLayer(Matrix_ && matrix_, const dtl::type::size layer_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
 			const Matrix_Int_ & vertex_rand{ dtl::random::mt32bit.get<Matrix_Int_>(add_altitude_) };

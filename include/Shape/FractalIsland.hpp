@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <algorithm>
 #include <array>
@@ -31,19 +30,20 @@
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, std::size_t chunk_size = 16>
+		template<typename Matrix_Int_, dtl::type::size chunk_size = 16>
 		class FractalIsland {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 			
 
 
@@ -99,29 +99,29 @@ namespace dtl {
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
-				const std::size_t chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
-				const std::size_t chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
+				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
+				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
 				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_up) return false;
 				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (std::size_t col{}; col <= chunk_x; ++col)
+				for (dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (std::size_t row{}; row < chunk_y; ++row) {
+				for (dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (std::size_t col{}; col <= chunk_x; ++col)
+						for (dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (std::size_t col{ 1 }; col < chunk_x; ++col)
+						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
 							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (std::size_t col{}; col < chunk_x; ++col) {
+					for (dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
@@ -130,11 +130,11 @@ namespace dtl {
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (std::size_t row2{}; row2 < chunk_size; ++row2)
-							for (std::size_t col2{}; col2 < chunk_size; ++col2)
+						for (dtl::type::size row2{}; row2 < chunk_size; ++row2)
+							for (dtl::type::size col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->start_y + row * chunk_size + row2][this->start_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
 					}
-					for (std::size_t col{}; col <= chunk_x; ++col)
+					for (dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;
@@ -145,29 +145,29 @@ namespace dtl {
 			bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
-				const std::size_t chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
-				const std::size_t chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
+				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
+				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
 				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_up) return false;
 				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (std::size_t col{}; col <= chunk_x; ++col)
+				for (dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (std::size_t row{}; row < chunk_y; ++row) {
+				for (dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (std::size_t col{}; col <= chunk_x; ++col)
+						for (dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (std::size_t col{ 1 }; col < chunk_x; ++col)
+						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
 							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (std::size_t col{}; col < chunk_x; ++col) {
+					for (dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
@@ -176,11 +176,11 @@ namespace dtl {
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (std::size_t row2{}; row2 < chunk_size; ++row2)
-							for (std::size_t col2{}; col2 < chunk_size; ++col2)
+						for (dtl::type::size row2{}; row2 < chunk_size; ++row2)
+							for (dtl::type::size col2{}; col2 < chunk_size; ++col2)
 								matrix_[this->start_y + row * chunk_size + row2][this->start_x + col * chunk_size + col2][layer_] = chunk_matrix[row2][col2];
 					}
-					for (std::size_t col{}; col <= chunk_x; ++col)
+					for (dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;
@@ -191,29 +191,29 @@ namespace dtl {
 			bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
 				std::array<std::array<Matrix_Int_, chunk_size + 1>, chunk_size + 1> chunk_matrix{ {} };
-				const std::size_t chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
-				const std::size_t chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
+				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
+				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
 				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_up) return false;
 				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (std::size_t col{}; col <= chunk_x; ++col)
+				for (dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (std::size_t row{}; row < chunk_y; ++row) {
+				for (dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (std::size_t col{}; col <= chunk_x; ++col)
+						for (dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (std::size_t col{ 1 }; col < chunk_x; ++col)
+						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
 							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (std::size_t col{}; col < chunk_x; ++col) {
+					for (dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
 						chunk_matrix[chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
@@ -222,11 +222,11 @@ namespace dtl {
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (std::size_t row2{}; row2 < chunk_size; ++row2)
-							for (std::size_t col2{}; col2 < chunk_size; ++col2)
+						for (dtl::type::size row2{}; row2 < chunk_size; ++row2)
+							for (dtl::type::size col2{}; col2 < chunk_size; ++col2)
 								matrix_[(this->start_y + row * chunk_size + row2) * max_x_ + start_x + col * chunk_size + col2] = chunk_matrix[row2][col2];
 					}
-					for (std::size_t col{}; col <= chunk_x; ++col)
+					for (dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;

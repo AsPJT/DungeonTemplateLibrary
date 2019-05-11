@@ -13,8 +13,8 @@
 /* Bug Check : not checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <Macros/constexpr.hpp>
+#include <Type/SizeT.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -41,8 +41,8 @@ namespace dtl {
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_) noexcept {
-				for (std::size_t row{}; row < matrix_.size(); ++row)
-					for (std::size_t col{}; col < matrix_[row].size(); ++col)
+				for (dtl::type::size row{}; row < matrix_.size(); ++row)
+					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 						matrix_[row][col] = matrix2_[row][col];
 			}
 
@@ -52,9 +52,9 @@ namespace dtl {
 
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t x_, const std::size_t y_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
+				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
+				for (dtl::type::size row{}; row < y_; ++row)
+					for (dtl::type::size col{}; col < x_; ++col)
 						matrix_[row][col] = matrix2_[row][col];
 			}
 
@@ -64,9 +64,9 @@ namespace dtl {
 
 			template<typename Matrix_, typename Matrix2_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t x_, const std::size_t y_) noexcept {
-				for (std::size_t row{}; row < y_; ++row)
-					for (std::size_t col{}; col < x_; ++col)
+				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
+				for (dtl::type::size row{}; row < y_; ++row)
+					for (dtl::type::size col{}; col < x_; ++col)
 						matrix_[row * x_ + col] = matrix2_[row * x_ + col];
 			}
 
@@ -77,9 +77,9 @@ namespace dtl {
 
 				template<typename Matrix_, typename Matrix2_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_) noexcept {
-					for (std::size_t row{}; row < matrix_.size(); ++row)
-						for (std::size_t col{}; col < matrix_[row].size(); ++col)
+					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size layer_) noexcept {
+					for (dtl::type::size row{}; row < matrix_.size(); ++row)
+						for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col][layer_] = matrix2_[row][col][layer_];
 				}
 
@@ -91,9 +91,9 @@ namespace dtl {
 
 				template<typename Matrix_, typename Matrix2_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const std::size_t layer_, const std::size_t x_, const std::size_t y_) noexcept {
-					for (std::size_t row{}; row < y_; ++row)
-						for (std::size_t col{}; col < x_; ++col)
+					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size layer_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
+					for (dtl::type::size row{}; row < y_; ++row)
+						for (dtl::type::size col{}; col < x_; ++col)
 							matrix_[row][col][layer_] = matrix2_[row][col][layer_];
 				}
 

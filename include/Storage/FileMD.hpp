@@ -19,14 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <fstream>
 #include <string>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 #include <Utility/IsOutputCast.hpp>
 
 namespace dtl {
@@ -40,7 +39,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 
@@ -58,10 +57,10 @@ namespace dtl {
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				inline void mountain(const Index_Size end_y_, Ofstream_& ofs_) const noexcept {
 				ofs_ << '|';
-				for (std::size_t row{ this->start_y }; row < end_y_; ++row)
+				for (dtl::type::size row{ this->start_y }; row < end_y_; ++row)
 					ofs_ << row << '|';
 				ofs_ << '\n' << '|';
-				for (std::size_t row{ this->start_y }; row < end_y_; ++row)
+				for (dtl::type::size row{ this->start_y }; row < end_y_; ++row)
 					ofs_ << ":---|";
 				ofs_ << '\n';
 			}

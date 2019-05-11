@@ -7,12 +7,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SAMPLE_DUNGEON_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SAMPLE_DUNGEON_HPP
 
-#include <cstddef>
-#include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 /* ここに必要なら追加のインクルードを書く */
 
 namespace dtl {
@@ -26,7 +25,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 			///// メンバ変数(範囲指定) /////

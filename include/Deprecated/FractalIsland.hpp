@@ -12,7 +12,6 @@
 /* Character Code : UTF-8 (BOM) */
 /* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
 #include <cstdint>
 #include <array>
 #include <memory>
@@ -20,6 +19,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Macros/constexpr.hpp>
+#include <Type/SizeT.hpp>
 
 //Dungeon Template Library Namespace
 namespace dtl {
@@ -131,13 +131,13 @@ namespace dtl {
 
 					using dtl::random::mersenne_twister_32bit;
 
-					for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-						for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col)
+					for (dtl::type::size row{ 1 }; row < matrix_.size() - 1; ++row)
+						for (dtl::type::size col{ 1 }; col < matrix_[row].size() - 1; ++col)
 							if (matrix_[row][col] == biome_plains && mersenne_twister_32bit.probability()) matrix_[row][col] = biome_forest;
 
-					for (std::size_t i{}; i < 5; ++i)
-						for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-							for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
+					for (dtl::type::size i{}; i < 5; ++i)
+						for (dtl::type::size row{ 1 }; row < matrix_.size() - 1; ++row)
+							for (dtl::type::size col{ 1 }; col < matrix_[row].size() - 1; ++col) {
 								if (!isLandBiome(matrix_[row][col])) continue;
 								else if (!isLandBiome(matrix_[row][col - 1]) || !isLandBiome(matrix_[row][col + 1]) || !isLandBiome(matrix_[row - 1][col]) || !isLandBiome(matrix_[row + 1][col])) matrix_[row][col] = biome_plains;
 								else if (matrix_[row][col - 1] && matrix_[row][col + 1] && matrix_[row - 1][col] && matrix_[row + 1][col]) matrix_[row][col] = matrix_[row][col + 1];
@@ -168,13 +168,13 @@ namespace dtl {
 
 					using dtl::random::mersenne_twister_32bit;
 
-					for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-						for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col)
+					for (dtl::type::size row{ 1 }; row < matrix_.size() - 1; ++row)
+						for (dtl::type::size col{ 1 }; col < matrix_[row].size() - 1; ++col)
 							if (matrix_[row][col] == biome_ocean && mersenne_twister_32bit.probability()) matrix_[row][col] = biome_deep_ocean;
 
-					for (std::size_t i{}; i < 2; ++i)
-						for (std::size_t row{ 1 }; row < matrix_.size() - 1; ++row)
-							for (std::size_t col{ 1 }; col < matrix_[row].size() - 1; ++col) {
+					for (dtl::type::size i{}; i < 2; ++i)
+						for (dtl::type::size row{ 1 }; row < matrix_.size() - 1; ++row)
+							for (dtl::type::size col{ 1 }; col < matrix_[row].size() - 1; ++col) {
 								if (!isOceanBiome(matrix_[row][col])) continue;
 								else if (!isOceanBiome(matrix_[row][col - 1]) || !isOceanBiome(matrix_[row][col + 1]) || !isOceanBiome(matrix_[row - 1][col]) || !isOceanBiome(matrix_[row + 1][col])) matrix_[row][col] = biome_ocean;
 								else if (matrix_[row][col - 1] && matrix_[row][col + 1] && matrix_[row - 1][col] && matrix_[row + 1][col]) matrix_[row][col] = matrix_[row][col + 1];
@@ -195,12 +195,12 @@ namespace dtl {
 				//ダイヤモンド・スクエア法(平均値)
 				template<typename Matrix_Int_, typename Matrix_>
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					void createDiamondSquareAverage_Map(const std::size_t x_, const std::size_t y_, std::size_t size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_ & matrix_, const Matrix_Int_ max_value_) noexcept {
+					void createDiamondSquareAverage_Map(const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_ & matrix_, const Matrix_Int_ max_value_) noexcept {
 
 					using dtl::random::mersenne_twister_32bit;
 
 					//再起の終了処理
-					if (size_ == static_cast<std::size_t>(0)) return;
+					if (size_ == static_cast<dtl::type::size>(0)) return;
 
 					const Matrix_Int_ vertex_rand{ static_cast<Matrix_Int_>(mersenne_twister_32bit(static_cast<std::int_fast32_t>(size_))) };
 					//頂点の高さを決める
@@ -218,7 +218,7 @@ namespace dtl {
 					matrix_[y_][x_ - size_] = s1;
 
 					//分割サイズを半分にする
-					size_ /= static_cast<std::size_t>(2);
+					size_ /= static_cast<dtl::type::size>(2);
 					//4つに分割
 					createDiamondSquareAverage_Map(x_ - size_, y_ - size_, size_, t1_, s1, s2, matrix_[y_][x_], matrix_, max_value_);
 					createDiamondSquareAverage_Map(x_ - size_, y_ + size_, size_, s1, t2_, matrix_[y_][x_], s3, matrix_, max_value_);
@@ -228,8 +228,8 @@ namespace dtl {
 
 				DUNGEON_TEMPLATE_LIBRARY_NODISCARD
 				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-					std::size_t getDiamondSquareMatrixSize(const std::size_t matrix_size) noexcept {
-					std::size_t map_size{ 2 };
+					dtl::type::size getDiamondSquareMatrixSize(const dtl::type::size matrix_size) noexcept {
+					dtl::type::size map_size{ 2 };
 					while (true) {
 						if ((map_size + 1) > matrix_size) return (map_size >>= 1);
 						map_size <<= 1;

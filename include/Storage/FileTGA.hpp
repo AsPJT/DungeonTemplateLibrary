@@ -19,14 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstddef>
-#include <cstdint>
 #include <fstream>
 #include <string>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/SizeT.hpp>
 #include <Utility/IsOutputCast.hpp>
 
 #ifndef STB_IMAGE_WRITE_IMPLEMENTATION
@@ -45,7 +44,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = std::size_t;
+			using Index_Size = dtl::type::size;
 
 
 
@@ -56,24 +55,24 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 			std::string str{};
-			std::size_t color_num{ 3 };
+			dtl::type::size color_num{ 3 };
 
 
 			///// 代入処理 /////
 
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionSTL(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void substitutionSTL(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionArray(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void substitutionArray(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_ * max_x_ + end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
-				inline void substitutionLayer(const std::size_t point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void substitutionLayer(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_][end_x_][layer_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
@@ -314,7 +313,7 @@ namespace dtl {
 			constexpr FileTGA() noexcept = default;
 			constexpr explicit FileTGA(const std::string & write_value_) noexcept
 				:str(write_value_) {}
-			constexpr explicit FileTGA(const std::string & write_value_, const std::size_t color_num_) noexcept
+			constexpr explicit FileTGA(const std::string & write_value_, const dtl::type::size color_num_) noexcept
 				:str(write_value_), color_num(color_num_) {}
 
 			constexpr explicit FileTGA(const dtl::base::MatrixRange & matrix_range_) noexcept
@@ -324,7 +323,7 @@ namespace dtl {
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
-			constexpr explicit FileTGA(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_, const std::size_t color_num_) noexcept
+			constexpr explicit FileTGA(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_, const dtl::type::size color_num_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_), color_num(color_num_) {}
@@ -336,7 +335,7 @@ namespace dtl {
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_) {}
-			constexpr explicit FileTGA(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_, const std::size_t color_num_) noexcept
+			constexpr explicit FileTGA(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_, const dtl::type::size color_num_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_), color_num(color_num_) {}
