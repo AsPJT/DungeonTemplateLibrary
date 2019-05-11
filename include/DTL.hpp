@@ -17,7 +17,7 @@
 
 /* バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190508L)
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190511L)
 #endif
 
 
@@ -77,6 +77,6 @@
 
 ///* 画像書き出しライブラリ (dtl::thirdParty::stb) */
 ////#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_THIRD_PARTY_HPP
-//#include <DTL/ThirdParty.hpp>
+//#include <Dungeon/ThirdParty.hpp>
 
 #endif //Included Dungeon Template Library

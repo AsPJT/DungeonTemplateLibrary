@@ -10,7 +10,6 @@ int main() {
 
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, 64>, 64> matrix{ {} };
-
 	//std::vector<std::list<shape_t>> matrix(16, std::list<shape_t>(16, 0));
 
 	dtl::MazeDig<shape_t>(1, 0).draw(matrix);
