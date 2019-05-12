@@ -15,8 +15,8 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>
-#include <Type/Forward.hpp>
 #include <Macros/constexpr.hpp>
+#include <Type/Forward.hpp>
 
 namespace dtl {
 	inline namespace camera {

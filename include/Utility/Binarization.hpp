@@ -12,10 +12,10 @@
 
 /* Character Code : UTF-8 (BOM) */
 
-#include <Type/Forward.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 
 namespace dtl {

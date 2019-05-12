@@ -14,10 +14,10 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <Type/Forward.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 
 namespace dtl {

@@ -16,9 +16,9 @@
 
 #include <iostream>
 #include <string>
-#include <Type/Forward.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 
 namespace dtl {
