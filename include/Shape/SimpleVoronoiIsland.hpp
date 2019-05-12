@@ -19,13 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstdint>
 #include <utility>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Type/SizeT.hpp>
+#include <Type/SSizeT.hpp>
 #include <Utility/VoronoiDiagram.hpp>
 
 namespace dtl {
@@ -77,7 +77,7 @@ namespace dtl {
 				return this->voronoiDiagram.getValue();
 			}
 
-			constexpr bool isIsland(const std::pair<std::int_fast32_t, std::int_fast32_t>& point_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_, const std::int_fast32_t numerator_, const std::int_fast32_t denominator_) const noexcept {
+			constexpr bool isIsland(const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_, const dtl::type::ssize numerator_, const dtl::type::ssize denominator_) const noexcept {
 				//return true;
 				return (point_.first > ((w_ - sx_) * numerator_ / denominator_ + sx_) && point_.first < ((w_ - sx_) * (denominator_ - numerator_) / denominator_ + sx_)) && (point_.second > ((h_ - sy_) * numerator_ / denominator_ + sy_) && point_.second < ((h_ - sy_) * (denominator_ - numerator_) / denominator_ + sy_));
 			}
@@ -89,7 +89,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t> & point_, Matrix_Int_ & color_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_) {
+					[this](const std::pair<dtl::type::ssize, dtl::type::ssize> & point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
@@ -99,7 +99,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>& point_, Matrix_Int_ & color_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_) {
+					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
@@ -109,7 +109,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>& point_, Matrix_Int_ & color_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_) {
+					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
@@ -119,7 +119,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>& point_, Matrix_Int_ & color_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_) {
+					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
@@ -129,7 +129,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
-					[this](const std::pair<std::int_fast32_t, std::int_fast32_t>& point_, Matrix_Int_ & color_, const std::int_fast32_t sx_, const std::int_fast32_t sy_, const std::int_fast32_t w_, const std::int_fast32_t h_) {
+					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
 						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});

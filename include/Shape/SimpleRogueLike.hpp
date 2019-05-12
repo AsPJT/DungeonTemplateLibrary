@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstdint>
 #include <array>
 #include <limits>
 #include <utility>
@@ -29,6 +28,7 @@
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Type/SizeT.hpp>
+#include <Type/SSizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -43,7 +43,7 @@ namespace dtl {
 				return (value_ < 0) ? (-value_) : value_;
 			}
 
-			enum :std::int_fast32_t {
+			enum :dtl::type::ssize {
 				RL_COUNT_X,
 				RL_COUNT_Y
 			};
@@ -171,7 +171,7 @@ namespace dtl {
 
 				//マップを区分けしていく処理(区域を分割する処理)
 				dtl::type::size division_After{};
-				std::int_fast32_t count{}; //(0:X, 1:Y) X軸で分けるかY軸で分けるか決める
+				dtl::type::ssize count{}; //(0:X, 1:Y) X軸で分けるかY軸で分けるか決める
 				for (dtl::type::size i{ 1 }; i < mapDivCount; ++i) {
 
 					//今まで作った区分けをランダムに指定(指定した区域をさらに区分けする)
@@ -205,7 +205,9 @@ namespace dtl {
 
 					//count軸の設定
 					//0.軸の右端(iR)の座標(division_After*R/3~2division_After*R/3)
-					dungeon_division[i][count] = dungeon_division[division_After][count + 2] + ((dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3) + dtl::random::mt32bit.get<dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
+					dungeon_division[i][count] = dungeon_division[division_After][count + 2]
+						+ ((dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3)
+						+ dtl::random::mt32bit.get<dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
 
 					dungeon_division[i][count + 2] = dungeon_division[division_After][count + 2]; //0.軸の左端(iL)の座標(division_AfterL)
 					dungeon_division[division_After][count + 2] = dungeon_division[i][count]; //division_After軸の左端(division_AfterL)の座標(iR)

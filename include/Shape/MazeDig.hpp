@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstdint>
 #include <new>
 #include <utility>
 #include <Base/Struct.hpp>
@@ -27,6 +26,7 @@
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Type/SizeT.hpp>
+#include <Type/SSizeT.hpp>
 #include <Type/UniquePtr.hpp>
 
 namespace dtl {
@@ -57,7 +57,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void mazeDig_Dig(Matrix_&& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				std::int_fast32_t dx{}, dy{};
+				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
@@ -66,7 +66,9 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(start_x) || y_ + dy <= static_cast<std::int_fast32_t>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx] == this->empty_value) {
+					if (static_cast<dtl::type::ssize>(x_ + dx) <= static_cast<dtl::type::ssize>(start_x) || 
+						static_cast<dtl::type::ssize>(y_ + dy) <= static_cast<dtl::type::ssize>(start_y) || 
+						(x_ + dx) >= j_max || (y_ + dy) >= i_max || static_cast<Matrix_Int_>(matrix_[y_ + dy][x_ + dx]) == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[y_ + dy][x_ + dx] == this->wall_value) {
@@ -83,7 +85,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				std::int_fast32_t dx{}, dy{};
+				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
@@ -92,7 +94,7 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(start_x) || y_ + dy <= static_cast<std::int_fast32_t>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == this->empty_value) {
+					if (x_ + dx <= static_cast<dtl::type::ssize>(start_x) || y_ + dy <= static_cast<dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[y_ + dy][x_ + dx][layer_] == this->wall_value) {
@@ -109,7 +111,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				std::int_fast32_t dx{}, dy{};
+				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
@@ -118,7 +120,7 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<std::int_fast32_t>(start_x) || y_ + dy <= static_cast<std::int_fast32_t>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
+					if (x_ + dx <= static_cast<dtl::type::ssize>(start_x) || y_ + dy <= static_cast<dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->wall_value) {

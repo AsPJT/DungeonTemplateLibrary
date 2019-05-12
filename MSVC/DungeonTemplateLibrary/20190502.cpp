@@ -1,5 +1,5 @@
 ﻿#include <DTL.hpp>
-#include <Dungeon/ImageWrite.hpp>
+//#include <Dungeon/ImageWrite.hpp>
 #include <cstdint>
 #include <array>
 
@@ -7,13 +7,17 @@
 #include <vector>
 
 int main() {
-
+	
 	using shape_t = std::uint_fast8_t;
-	std::array<std::array<shape_t, 64>, 64> matrix{ {} };
+	std::array<std::array<shape_t, 196>, 128> matrix{ {} };
 	//std::vector<std::list<shape_t>> matrix(16, std::list<shape_t>(16, 0));
 
-	dtl::MazeDig<shape_t>(1, 0).draw(matrix);
+	dtl::shape::RandomVoronoi<shape_t>(100, 0.5, 1, 0).draw(matrix);
+	//dtl::FractalIsland<shape_t>(10, 150, 70).draw(matrix);
+	//dtl::SimpleRogueLike<shape_t>(1, 2, 4, 2, 4, 2, 4, 2).draw(matrix);
+	//dtl::MazeDig<shape_t>(1, 0).draw(matrix);
 	dtl::OutputNumber<shape_t>(",").draw(matrix);
+	//dtl::console::OutputStringBool<shape_t>("##", "//").drawOperator(matrix, [](const shape_t value_) {return value_ > 80; });
 
 	//dtl::FileTerrainOBJ<shape_t>("Save/o.obj").write(matrix);
 

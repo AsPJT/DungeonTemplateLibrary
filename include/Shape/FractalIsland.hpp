@@ -19,7 +19,6 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <cstdint>
 #include <algorithm>
 #include <array>
 #include <memory>
@@ -31,6 +30,7 @@
 #include <Random/MersenneTwister32bit.hpp>
 #include <Shape/DiamondSquareAverage.hpp>
 #include <Type/SizeT.hpp>
+#include <Type/SSizeT.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -102,9 +102,9 @@ namespace dtl {
 				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
 				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
-				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
 				for (dtl::type::size col{}; col <= chunk_x; ++col)
@@ -117,7 +117,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
+							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
@@ -148,9 +148,9 @@ namespace dtl {
 				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
 				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
-				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
 				for (dtl::type::size col{}; col <= chunk_x; ++col)
@@ -163,7 +163,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
+							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
@@ -194,9 +194,9 @@ namespace dtl {
 				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / chunk_size) };
 				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / chunk_size) };
 
-				std::unique_ptr<std::int_fast32_t[]> rand_up{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				std::unique_ptr<std::int_fast32_t[]> rand_down{ new(std::nothrow) std::int_fast32_t[chunk_x + 1] };
+				std::unique_ptr<dtl::type::ssize[]> rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
 				for (dtl::type::size col{}; col <= chunk_x; ++col)
@@ -209,7 +209,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<std::int_fast32_t>(this->altitude);
+							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
