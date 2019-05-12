@@ -311,6 +311,9 @@
     <ClInclude Include="..\..\include\Type\SSizeT.hpp">
       <Filter>ヘッダー ファイル\Type</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Type\Forward.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">

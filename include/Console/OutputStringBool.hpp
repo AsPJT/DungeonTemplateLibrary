@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <string>
-#include <utility>
+#include <Type/Forward.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
@@ -277,7 +277,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(const Matrix_& matrix_, Args_&& ... args_) const noexcept {
-				return this->draw(matrix_, std::forward<Args_>(args_)...);
+				return this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
 			}
 
 
@@ -286,26 +286,26 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->draw(matrix_, std::forward<Args_>(args_)...);
-				return std::forward<Matrix_>(matrix_);
+				this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawArray(matrix_, std::forward<Args_>(args_)...);
-				return std::forward<Matrix_>(matrix_);
+				this->drawArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperator(matrix_, std::forward<Args_>(args_)...);
-				return std::forward<Matrix_>(matrix_);
+				this->drawOperator(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
 			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperatorArray(matrix_, std::forward<Args_>(args_)...);
-				return std::forward<Matrix_>(matrix_);
+				this->drawOperatorArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
 			}
 
 

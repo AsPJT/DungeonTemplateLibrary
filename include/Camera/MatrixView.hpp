@@ -15,7 +15,7 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>
-#include <utility>
+#include <Type/Forward.hpp>
 #include <Macros/constexpr.hpp>
 
 namespace dtl {
