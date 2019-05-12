@@ -7,10 +7,10 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SAMPLE_DUNGEON_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_SHAPE_SAMPLE_DUNGEON_HPP
 
-#include <Type/Forward.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 /* ここに必要なら追加のインクルードを書く */
 

@@ -19,13 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <Type/Forward.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Shape/BorderOdd.hpp>
 #include <Shape/PointGrid.hpp>
 #include <Shape/RandomRect.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 
 namespace dtl {

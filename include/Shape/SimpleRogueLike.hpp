@@ -21,12 +21,12 @@
 
 #include <array>
 #include <limits>
-#include <Type/Forward.hpp>
 #include <vector>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 #include <Type/SSizeT.hpp>
 

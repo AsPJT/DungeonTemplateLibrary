@@ -20,11 +20,11 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <new>
-#include <Type/Forward.hpp>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
+#include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 #include <Type/SSizeT.hpp>
 #include <Type/UniquePtr.hpp>
