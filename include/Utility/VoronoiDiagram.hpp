@@ -19,21 +19,22 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <memory>
 #include <new>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Random/MersenneTwister32bit.hpp>
 #include <Type/Forward.hpp>
+#include <Type/NumericLimits.hpp>
 #include <Type/SizeT.hpp>
 #include <Type/SSizeT.hpp>
+#include <Type/UniquePtr.hpp>
 
 namespace dtl {
 	inline namespace utility {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<dtl::type::ssize, dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class VoronoiDiagram {
 		private:
 
@@ -52,64 +53,64 @@ namespace dtl {
 			Index_Size height{};
 			dtl::type::size draw_value{};
 
-			using Point_Pair_ = std::pair<std::int_fast32_t, std::int_fast32_t>;
+			using Point_Pair_ = std::pair<dtl::type::ssize, dtl::type::ssize>;
 
 			//原点の場所と陸地を決定する
 			template<typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createPoint(std::unique_ptr<Point_Pair_[]>& point_, std::unique_ptr<Matrix_Int_[]>& color_, const std::int_fast32_t w_, const std::int_fast32_t h_, Function_&& function_) const noexcept {
+				void createPoint(UniquePair_& point_, UniqueInt_& color_, const dtl::type::ssize w_, const dtl::type::ssize h_, Function_&& function_) const noexcept {
 				for (dtl::type::size i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
-					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<std::int_fast32_t>(w_), dtl::random::mt32bit.get<std::int_fast32_t>(h_));
-					function_(point_[array_num], color_[array_num], static_cast<std::int_fast32_t>(start_x), static_cast<std::int_fast32_t>(start_x), w_, h_);
+					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<dtl::type::ssize>(w_), dtl::random::mt32bit.get<dtl::type::ssize>(h_));
+					function_(point_[array_num], color_[array_num], static_cast<dtl::type::ssize>(start_x), static_cast<dtl::type::ssize>(start_x), w_, h_);
 				}
 			}
 
 			//2点間の距離を返す
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				std::int_fast32_t distanceSqrd(const Point_Pair_& point_, std::int_fast32_t x_, std::int_fast32_t y_) const noexcept {
+				dtl::type::ssize distanceSqrd(const Point_Pair_& point_, dtl::type::ssize x_, dtl::type::ssize y_) const noexcept {
 				x_ -= point_.first;
 				y_ -= point_.second;
 				return x_ * x_ + y_ * y_;
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool createSitesDistance(const std::unique_ptr<Point_Pair_[]>& point_, dtl::type::size& ind, std::int_fast32_t& dist, std::int_fast32_t& ds, const std::int_fast32_t ww, const std::int_fast32_t hh) const noexcept {
-				ind = (std::numeric_limits<dtl::type::size>::max)();
-				dist = (std::numeric_limits<std::int_fast32_t>::max)();
+				bool createSitesDistance(const UniquePair_& point_, dtl::type::size& ind, dtl::type::ssize& dist, dtl::type::ssize& ds, const dtl::type::ssize ww, const dtl::type::ssize hh) const noexcept {
+				ind = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
+				dist = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::ssize>::max)();
 				for (dtl::type::size it{}; it < this->draw_value; ++it) {
 					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
 				}
-				return (ind != (std::numeric_limits<dtl::type::size>::max)());
+				return (ind != (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)());
 			}
 
 			//図形を描画
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSites(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				std::int_fast32_t ds{}, dist{};
+				void createSites(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
+				dtl::type::ssize ds{}, dist{};
 				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
 					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if(createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
+						if(createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
 							matrix_[hh][ww] = color_[ind];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSitesLayer(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size layer_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				std::int_fast32_t ds{}, dist{};
+				void createSitesLayer(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size layer_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
+				dtl::type::ssize ds{}, dist{};
 				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
 					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
+						if (createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
 							matrix_[hh][ww][layer_] = color_[ind];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSitesArray(const std::unique_ptr<Point_Pair_[]>& point_, const std::unique_ptr<Matrix_Int_[]>& color_, Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				std::int_fast32_t ds{}, dist{};
+				void createSitesArray(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
+				dtl::type::ssize ds{}, dist{};
 				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
 					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if (createSitesDistance(point_, ind, dist, ds, static_cast<std::int_fast32_t>(ww), static_cast<std::int_fast32_t>(hh)))
+						if (createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
 							matrix_[hh * max_x_ + ww] = color_[ind];
 			}
 
@@ -119,34 +120,34 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<std::int_fast32_t>(end_x_), static_cast<std::int_fast32_t>(end_y_), function_);
+				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
 				createSites(point, color, matrix_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<std::int_fast32_t>(end_x_), static_cast<std::int_fast32_t>(end_y_), function_);
+				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
 				createSitesArray(point, color, matrix_, max_x_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
 			inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				std::unique_ptr<Point_Pair_[]> point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
 				if (!point) return;
-				std::unique_ptr<Matrix_Int_[]> color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<std::int_fast32_t>(end_x_), static_cast<std::int_fast32_t>(end_y_), function_);
+				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
 				createSitesLayer(point, color, matrix_, layer_, end_x_, end_y_);
 			}
 

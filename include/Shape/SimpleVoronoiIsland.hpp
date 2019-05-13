@@ -26,13 +26,14 @@
 #include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
 #include <Type/SSizeT.hpp>
+#include <Type/UniquePtr.hpp>
 #include <Utility/VoronoiDiagram.hpp>
 
 namespace dtl {
 	inline namespace shape {
 
 		//マップの外枠を指定した数値で埋め、偶数マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<dtl::type::ssize, dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class SimpleVoronoiIsland {
 		private:
 
@@ -46,7 +47,7 @@ namespace dtl {
 
 			///// メンバ変数 /////
 
-			dtl::utility::VoronoiDiagram<Matrix_Int_> voronoiDiagram{};
+			dtl::utility::VoronoiDiagram<Matrix_Int_, UniquePair_, UniqueInt_> voronoiDiagram{};
 			double probability_value{ 0.5 };
 			Matrix_Int_ land_value{};
 			Matrix_Int_ sea_value{};
