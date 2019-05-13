@@ -109,7 +109,7 @@ namespace dtl {
 			template<typename Matrix_Int_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
-				dtl::type::size piece_turn_min{ (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)() };
+				dtl::type::size piece_turn_min{ (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)() };
 				dtl::type::size put_piece_x{}, put_piece_y{};
 				for (dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {

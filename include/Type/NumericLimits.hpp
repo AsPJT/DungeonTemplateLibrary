@@ -25,4 +25,26 @@
 
 #endif
 
+
+#ifndef DTL_TYPE_NUMERIC_LIMITS_MIN
+
+#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#define DTL_TYPE_NUMERIC_LIMITS_MIN Min
+#else
+#define DTL_TYPE_NUMERIC_LIMITS_MIN min
+#endif
+
+#endif
+
+
+#ifndef DTL_TYPE_NUMERIC_LIMITS_MAX
+
+#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#define DTL_TYPE_NUMERIC_LIMITS_MAX Max
+#else
+#define DTL_TYPE_NUMERIC_LIMITS_MAX max
+#endif
+
+#endif
+
 #endif //Included Dungeon Template Library

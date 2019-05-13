@@ -75,14 +75,14 @@ namespace dtl {
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool createSitesDistance(const UniquePair_& point_, dtl::type::size& ind, dtl::type::ssize& dist, dtl::type::ssize& ds, const dtl::type::ssize ww, const dtl::type::ssize hh) const noexcept {
-				ind = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
-				dist = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::ssize>::max)();
+				ind = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dist = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::ssize>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 				for (dtl::type::size it{}; it < this->draw_value; ++it) {
 					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
 				}
-				return (ind != (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)());
+				return (ind != (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)());
 			}
 
 			//図形を描画

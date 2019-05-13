@@ -103,8 +103,8 @@ namespace dtl {
 				dungeon_division[0][2] = this->start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 				dungeon_division[0][3] = this->start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
-				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
-				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
+				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 
 				createDivision(dungeon_road,dungeon_division, mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
@@ -131,8 +131,8 @@ namespace dtl {
 				dungeon_division[0][2] = this->start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 				dungeon_division[0][3] = this->start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
-				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
-				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
+				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 
 				createDivision(dungeon_road,dungeon_division, mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
@@ -158,8 +158,8 @@ namespace dtl {
 				dungeon_division[0][2] = this->start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
 				dungeon_division[0][3] = this->start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
 
-				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
-				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::max)();
+				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 
 				createDivision(dungeon_road,dungeon_division,mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
