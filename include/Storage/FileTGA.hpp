@@ -26,6 +26,7 @@
 #include <Macros/nodiscard.hpp>
 #include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
+#include <Type/UniquePtr.hpp>
 #include <Utility/IsOutputCast.hpp>
 
 #ifndef STB_IMAGE_WRITE_IMPLEMENTATION
@@ -37,7 +38,7 @@ namespace dtl {
 	inline namespace storage {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<unsigned char[]>>
 		class FileTGA {
 		private:
 
@@ -62,17 +63,17 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]>& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void substitutionSTL(const dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void substitutionArray(const dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_ * max_x_ + end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(const dtl::type::size point_max_x_, std::unique_ptr<unsigned char[]> & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void substitutionLayer(const dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_][end_x_][layer_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
@@ -81,7 +82,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 				bool writeNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -93,7 +94,7 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 				bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -105,7 +106,7 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 				bool writeArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				std::unique_ptr<unsigned char[]> data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(new(std::nothrow) unsigned char[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
