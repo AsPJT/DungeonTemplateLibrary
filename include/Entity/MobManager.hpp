@@ -81,36 +81,36 @@ namespace dtl {
 			constexpr explicit MobManager(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0b11111111) {}
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setInit(const std::int_fast32_t x_, const std::int_fast32_t y_, const double walk_speed_) noexcept {
 				this->x = x_;
 				this->y = y_;
 				this->walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setWalkSpeed(const double walk_speed_) noexcept {
 				this->walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
 			}
 
 			template<typename Pair_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setPosition(const Pair_ & pair_) noexcept {
 				this->x = static_cast<std::int_fast32_t>(pair_.first);
 				this->y = static_cast<std::int_fast32_t>(pair_.second);
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setPosition(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				this->x = x_;
 				this->y = y_;
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr bool isWalk() const noexcept {
 				return (this->status_x != player_status_stay || this->status_y != player_status_stay);
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setInner(const std::int_fast32_t x_, const std::int_fast32_t y_) noexcept {
 				while (this->x < 0) this->x += x_;
 				while (this->y < 0) this->y += x_;
@@ -118,7 +118,7 @@ namespace dtl {
 				if (this->y >= y_) this->y %= y_;
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool moveX() noexcept {
 				if (this->status_x == player_status_stay) return false;
 				this->small_x += this->walk_speed;
@@ -130,7 +130,7 @@ namespace dtl {
 				this->status_x = player_status_stay;
 				return true;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool moveY() noexcept {
 				if (this->status_y == player_status_stay) return false;
 				this->small_y += this->walk_speed;
@@ -142,30 +142,30 @@ namespace dtl {
 				this->status_y = player_status_stay;
 				return true;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR //C++14
+			DTL_VERSIONING_CPP14_CONSTEXPR //C++14
 				bool move() noexcept {
 				return (moveX() | moveY());
 			}
 
 			//方向
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr std::uint_fast8_t walkDirectionY(const bool is_up_touch_, const bool is_down_touch_) const noexcept {
 				return (is_up_touch_) ? ((is_down_touch_) ? direction_empty : direction_up) : ((is_down_touch_) ? direction_down : direction_empty);
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr std::uint_fast8_t walkDirectionX(const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (is_left_touch_) ? ((is_right_touch_) ? direction_empty : direction_left) : ((is_right_touch_) ? direction_right : direction_empty);
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr std::uint_fast8_t walkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (walkDirectionX(is_left_touch_, is_right_touch_)) ? (walkDirectionY(is_up_touch_, is_down_touch_) * 2 + walkDirectionX(is_left_touch_, is_right_touch_)) : (walkDirectionY(is_up_touch_, is_down_touch_));
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr bool isWalkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) == 0) ? false :
 					((this->can_walk_direction[walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) - 1] == false) ? false : true);
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr bool isWalkDirection(const std::uint_fast8_t walk_direction_) const noexcept {
 				return (walk_direction_ == 0) ? false : ((this->can_walk_direction[walk_direction_ - 1] == false) ? false : true);
 			}
@@ -184,8 +184,8 @@ namespace dtl {
 				set_(this->can_walk_direction, this->x, this->y);
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP17_NODISCARD
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;
@@ -279,23 +279,23 @@ namespace dtl {
 					return;
 				}
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			std::int_fast32_t getX() const noexcept {
 				return this->x;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			std::int_fast32_t getY() const noexcept {
 				return this->y;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			double getPositionX() const noexcept {
 				return this->x + 0.5 + ((this->status_x == player_status_1) ? (-(this->small_x)) : (this->small_x));
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			double getPositionY() const noexcept {
 				return this->y + 0.5 + ((this->status_y == player_status_1) ? (-(this->small_y)) : (this->small_y));
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			std::int_fast32_t getDirection() const noexcept {
 				return this->direction_array;
 			}

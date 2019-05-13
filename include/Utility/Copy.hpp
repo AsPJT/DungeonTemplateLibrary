@@ -23,13 +23,13 @@ namespace dtl {
 
 			//キャストしてコピー
 			template<typename Matrix_Int_, typename Value_Int_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void castCopyValue(Matrix_Int_& value_, const Value_Int_& value2_) noexcept {
 				value_ = static_cast<Matrix_Int_>(value2_);
 			}
 
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void copyMatrix(Matrix_& matrix_, const Matrix_& matrix2_) noexcept {
 				matrix_ = matrix2_;
 			}
@@ -39,7 +39,7 @@ namespace dtl {
 		namespace stl {
 
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_) noexcept {
 				for (dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
@@ -51,7 +51,7 @@ namespace dtl {
 		namespace normal {
 
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
 				for (dtl::type::size row{}; row < y_; ++row)
 					for (dtl::type::size col{}; col < x_; ++col)
@@ -63,7 +63,7 @@ namespace dtl {
 		namespace array {
 
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
 				for (dtl::type::size row{}; row < y_; ++row)
 					for (dtl::type::size col{}; col < x_; ++col)
@@ -76,7 +76,7 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_, typename Matrix2_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size layer_) noexcept {
 					for (dtl::type::size row{}; row < matrix_.size(); ++row)
 						for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
@@ -90,7 +90,7 @@ namespace dtl {
 			namespace normal {
 
 				template<typename Matrix_, typename Matrix2_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void copyMatrix(Matrix_& matrix_, const Matrix2_& matrix2_, const dtl::type::size layer_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
 					for (dtl::type::size row{}; row < y_; ++row)
 						for (dtl::type::size col{}; col < x_; ++col)

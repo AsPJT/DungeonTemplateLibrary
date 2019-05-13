@@ -51,22 +51,22 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
 			}
 			template<typename Matrix_Value_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputList(const Matrix_Value_& matrix_) const noexcept {
 				std::cout << this->before_draw_string << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->draw_string;
 			}
@@ -172,19 +172,19 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->start_x;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->start_y;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
@@ -233,61 +233,61 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(const Matrix_& matrix_, Args_&& ... args_) const noexcept {
-				return this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
 
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -296,7 +296,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clear() noexcept {
 				this->clearRange();
 				return *this;
@@ -305,39 +305,39 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setPointX(const Index_Size start_x_) noexcept {
 				this->start_x = start_x_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setPointY(const Index_Size start_y_) noexcept {
 				this->start_y = start_y_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
@@ -345,7 +345,7 @@ namespace dtl {
 				this->height = length_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
@@ -353,7 +353,7 @@ namespace dtl {
 				this->height = height_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;

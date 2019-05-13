@@ -55,23 +55,23 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getPointX() const noexcept {
 				return this->borderOdd.getPointX();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getPointY() const noexcept {
 				return this->borderOdd.getPointY();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getWidth() const noexcept {
 				return this->borderOdd.getWidth();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getHeight() const noexcept {
 				return this->borderOdd.getHeight();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Matrix_Int_ getValue() const noexcept {
 				return this->borderOdd.getValue();
 			}
@@ -80,37 +80,37 @@ namespace dtl {
 			///// 生成呼び出し /////
 
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.draw(matrix_, args_...);
 				this->pointGrid.draw(matrix_, args_...);
-				this->borderOdd.draw(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				this->borderOdd.draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.draw(matrix_, args_...);
 				this->pointGrid.drawOperator(matrix_, args_...);
-				this->borderOdd.drawOperator(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawOperator(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.drawArray(matrix_, args_...);
 				this->pointGrid.drawArray(matrix_, args_...);
-				this->borderOdd.drawArray(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				this->randomRect.drawOperatorArray(matrix_, args_...);
 				this->pointGrid.drawOperatorArray(matrix_, args_...);
-				this->borderOdd.drawOperatorArray(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawOperatorArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -119,42 +119,42 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				return this->draw(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawOperator(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperator(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawOperatorArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperatorArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
 
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearPointX() noexcept {
 				this->randomRect.clearPointX();
 				this->borderOdd.clearPointX();
@@ -162,7 +162,7 @@ namespace dtl {
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearPointY() noexcept {
 				this->randomRect.clearPointY();
 				this->borderOdd.clearPointY();
@@ -170,7 +170,7 @@ namespace dtl {
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearWidth() noexcept {
 				this->randomRect.clearWidth();
 				this->borderOdd.clearWidth();
@@ -178,7 +178,7 @@ namespace dtl {
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearHeight() noexcept {
 				this->randomRect.clearHeight();
 				this->borderOdd.clearHeight();
@@ -186,7 +186,7 @@ namespace dtl {
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearValue() noexcept {
 				this->randomRect.clearValue();
 				this->borderOdd.clearValue();
@@ -194,14 +194,14 @@ namespace dtl {
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -210,7 +210,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
@@ -220,61 +220,61 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setPointX(const Index_Size end_x_) noexcept {
 				this->randomRect.setPointX(end_x_);
 				this->borderOdd.setPointX(end_x_);
 				this->pointGrid.setPointX(end_x_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setPointY(const Index_Size end_y_) noexcept {
 				this->randomRect.setPointY(end_y_);
 				this->borderOdd.setPointY(end_y_);
 				this->pointGrid.setPointY(end_y_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setWidth(const Index_Size width_) noexcept {
 				this->randomRect.setWidth(width_);
 				this->borderOdd.setWidth(width_);
 				this->pointGrid.setWidth(width_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setHeight(const Index_Size height_) noexcept {
 				this->randomRect.setHeight(height_);
 				this->borderOdd.setHeight(height_);
 				this->pointGrid.setHeight(height_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->randomRect.setValue(draw_value_);
 				this->borderOdd.setValue(draw_value_);
 				this->pointGrid.setValue(draw_value_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->randomRect.setRange(matrix_range_);
 				this->borderOdd.setRange(matrix_range_);
 				this->pointGrid.setRange(matrix_range_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
@@ -282,7 +282,7 @@ namespace dtl {
 				this->setHeight(length_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				PointGridAndSomeBlocksWithBorder& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);

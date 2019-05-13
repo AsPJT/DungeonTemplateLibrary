@@ -57,7 +57,7 @@ namespace dtl {
 					//コンストラクタ
 					constexpr RogueLike() noexcept = default;
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						explicit RogueLike(Matrix_& matrix_, const dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
@@ -82,19 +82,19 @@ namespace dtl {
 				private:
 					//タイルを取得
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						Matrix_Int_ getTileType(const Matrix_ & matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
 						if (static_cast<dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<dtl::type::size>(0) : matrix_[0].size()) || static_cast<dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
 						return matrix_[y_][x_];
 					}
 					//タイルを置く
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						void setTileType(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const Matrix_Int_ tile_) const noexcept {
 						matrix_[y_][x_] = tile_;
 					}
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -117,7 +117,7 @@ namespace dtl {
 						return false;
 					}
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x, const std::int_fast32_t y, const dtl::type::size dir_) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -151,7 +151,7 @@ namespace dtl {
 						return false;
 					}
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool makeRoom(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -197,7 +197,7 @@ namespace dtl {
 						return false;
 					}
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool makeWay(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const dtl::type::size dir_) const noexcept {
 
 						using dtl::random::mersenne_twister_32bit;
@@ -262,7 +262,7 @@ namespace dtl {
 						return true;
 					}
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool placeOutputNumber(Matrix_& matrix_, const RogueLikeOutputNumber<std::int_fast32_t>& rect, const Matrix_Int_ tile_) const noexcept {
 						if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(matrix_.size()) - 1)
 							return false;
@@ -287,13 +287,13 @@ namespace dtl {
 					//コンストラクタ
 					constexpr RogueLikeCave() noexcept = default;
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						explicit RogueLikeCave(Matrix_& matrix_, const dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
-					DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+					DTL_VERSIONING_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_, const dtl::type::size way_max_ = 20) const noexcept {
 						dtl::generator::dungeon::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
 						//dtl::utility::stl::binarizationOver(matrix_, 1);

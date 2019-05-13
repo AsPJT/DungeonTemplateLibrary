@@ -14,13 +14,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#ifndef DUNGEON_TEMPLATE_LIBRARY_FORWARD
+#ifndef DTL_TYPE_FORWARD
 
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
-#define DUNGEON_TEMPLATE_LIBRARY_FORWARD ::Forward
+#define DTL_TYPE_FORWARD ::Forward
 #else
 #include <utility>
-#define DUNGEON_TEMPLATE_LIBRARY_FORWARD std::forward
+#define DTL_TYPE_FORWARD std::forward
 #endif
 
 #endif

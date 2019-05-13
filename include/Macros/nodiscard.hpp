@@ -10,20 +10,20 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MACROS_NODISCARD_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_MACROS_NODISCARD_HPP
 
-///// DUNGEON_TEMPLATE_LIBRARY_NODISCARDÇ™Ç»Ç¢èÍçá /////
-#ifndef DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+///// DTL_VERSIONING_CPP17_NODISCARDÇ™Ç»Ç¢èÍçá /////
+#ifndef DTL_VERSIONING_CPP17_NODISCARD
 #ifdef __has_cpp_attribute
 
 #if __has_cpp_attribute(nodiscard)
-#define DUNGEON_TEMPLATE_LIBRARY_NODISCARD [[nodiscard]]
+#define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
 #endif
 
 #elif defined(__clang__)
-#define DUNGEON_TEMPLATE_LIBRARY_NODISCARD __attribute__((warn_unused_result))
+#define DTL_VERSIONING_CPP17_NODISCARD __attribute__((warn_unused_result))
 
 #elif defined(_MSC_VER)
 // _Must_inspect_result_ expands into this
-#define DUNGEON_TEMPLATE_LIBRARY_NODISCARD                                                                                                                                                                                                                                                                                                \
+#define DTL_VERSIONING_CPP17_NODISCARD                                                                                                                                                                                                                                                                                                \
   __declspec("SAL_name"                                                                                                                                                                                                                                                                                                        \
              "("                                                                                                                                                                                                                                                                                                               \
              "\"_Must_inspect_result_\""                                                                                                                                                                                                                                                                                       \
@@ -36,9 +36,9 @@
 #endif
 #endif
 
-///// Ç‡ÇµDUNGEON_TEMPLATE_LIBRARY_NODISCARDÇ™ñ≥Ç©Ç¡ÇΩÇÁÇ¬Ç≠ÇÈ /////
-#ifndef DUNGEON_TEMPLATE_LIBRARY_NODISCARD
-#define DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+///// Ç‡ÇµDTL_VERSIONING_CPP17_NODISCARDÇ™ñ≥Ç©Ç¡ÇΩÇÁÇ¬Ç≠ÇÈ /////
+#ifndef DTL_VERSIONING_CPP17_NODISCARD
+#define DTL_VERSIONING_CPP17_NODISCARD
 #endif
 
 #endif

@@ -33,7 +33,7 @@ namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR<dtl::type::size[]>>
+		template<typename Matrix_Int_, typename UniquePtr_ = dtl::type::UniquePtr<dtl::type::size[]>>
 		class MazeDig {
 		private:
 
@@ -55,7 +55,7 @@ namespace dtl {
 
 			//穴掘り
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void mazeDig_Dig(Matrix_&& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
@@ -83,7 +83,7 @@ namespace dtl {
 				return;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
@@ -109,7 +109,7 @@ namespace dtl {
 				return;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
 				dtl::type::ssize dx{}, dy{};
 				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
@@ -136,7 +136,7 @@ namespace dtl {
 			}
 			//迷路生成
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				dtl::type::size mazeDig_CreateLoop(const Matrix_& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				dtl::type::size select_id{};
 				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
@@ -157,7 +157,7 @@ namespace dtl {
 				return select_id;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				dtl::type::size mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				dtl::type::size select_id{};
 				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
@@ -178,7 +178,7 @@ namespace dtl {
 				return select_id;
 			}
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				dtl::type::size mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
 				dtl::type::size select_id{};
 				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
@@ -278,19 +278,19 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->start_x;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->start_y;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
@@ -301,51 +301,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_) const noexcept {
-				return this->drawNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return this->drawNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return this->drawLayerNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= ((matrix_.size() == 0) ? 0 : matrix_[0].size())) ? ((matrix_.size() == 0) ? 0 : matrix_[0].size()) : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
 			}
 
 
@@ -353,73 +353,73 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				return this->draw(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperator(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperator(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperatorArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperatorArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
 
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -428,7 +428,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& clear() noexcept {
 				this->clearRange();
 				return *this;
@@ -437,39 +437,39 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setPointX(const Index_Size end_x_) noexcept {
 				this->start_x = end_x_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setPointY(const Index_Size end_y_) noexcept {
 				this->start_y = end_y_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
@@ -477,7 +477,7 @@ namespace dtl {
 				this->height = length_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
@@ -485,7 +485,7 @@ namespace dtl {
 				this->height = height_;
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				MazeDig& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;

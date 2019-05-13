@@ -56,23 +56,23 @@ namespace dtl {
 
 			///// 情報取得 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->voronoiDiagram.getPointX();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointY() const noexcept {
 				return this->voronoiDiagram.getPointY();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getWidth() const noexcept {
 				return this->voronoiDiagram.getWidth();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->voronoiDiagram.getHeight();
 			}
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr dtl::type::size getValue() const noexcept {
 				return this->voronoiDiagram.getValue();
 			}
@@ -135,79 +135,79 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				return this->draw(DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_), DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
+				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
 			///// ダンジョン行列生成 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& create(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->draw(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawOperator(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperator(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 			template<typename Matrix_, typename ...Args_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				Matrix_&& createOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				this->drawOperatorArray(matrix_, DUNGEON_TEMPLATE_LIBRARY_FORWARD<Args_>(args_)...);
-				return DUNGEON_TEMPLATE_LIBRARY_FORWARD<Matrix_>(matrix_);
+				this->drawOperatorArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
 
 			///// 消去 /////
 
 			//始点座標Xを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearPointX() noexcept {
 				this->voronoiDiagram.clearPointX();
 				return *this;
 			}
 			//始点座標Yを初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearPointY() noexcept {
 				this->voronoiDiagram.clearPointY();
 				return *this;
 			}
 			//範囲の大きさ(X軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearWidth() noexcept {
 				this->voronoiDiagram.clearWidth();
 				return *this;
 			}
 			//範囲の大きさ(Y軸方向)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearHeight() noexcept {
 				this->voronoiDiagram.clearHeight();
 				return *this;
 			}
 			//塗り値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearValue() noexcept {
 				this->voronoiDiagram.clearValue();
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
 			//描画範囲を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
@@ -216,7 +216,7 @@ namespace dtl {
 				return *this;
 			}
 			//全ての値を初期値に戻す
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
@@ -226,49 +226,49 @@ namespace dtl {
 
 			///// 代入 /////
 
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setPointX(const Index_Size end_x_) noexcept {
 				this->voronoiDiagram.setPointX(end_x_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setPointY(const Index_Size end_y_) noexcept {
 				this->voronoiDiagram.setPointY(end_y_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setWidth(const Index_Size width_) noexcept {
 				this->voronoiDiagram.setWidth(width_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setHeight(const Index_Size height_) noexcept {
 				this->voronoiDiagram.setHeight(height_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setValue(const dtl::type::size draw_value_) noexcept {
 				this->voronoiDiagram.setValue(draw_value_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->voronoiDiagram.setRange(matrix_range_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setPoint(const Index_Size point_) noexcept {
 				this->setPointX(point_);
 				this->setPointY(point_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);
@@ -276,7 +276,7 @@ namespace dtl {
 				this->setHeight(length_);
 				return *this;
 			}
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				RandomVoronoi& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->setPointX(end_x_);
 				this->setPointY(end_y_);

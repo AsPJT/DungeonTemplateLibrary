@@ -14,15 +14,21 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#ifndef DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR
-
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
-#define DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR ::TUniquePtr
+namespace dtl {
+	namespace type {
+		template<typename ...Args_>
+		using UniquePtr = ::TUniquePtr<Args_...>;
+	}
+}
 #else
-#include <memory>
-#define DUNGEON_TEMPLATE_LIBRARY_UNIQUE_PTR std::unique_ptr
-#endif
-
+#include <utility>
+namespace dtl {
+	namespace type {
+		template<typename ...Args_>
+		using UniquePtr = std::unique_ptr<Args_...>;
+	}
+}
 #endif
 
 #endif //Included Dungeon Template Library

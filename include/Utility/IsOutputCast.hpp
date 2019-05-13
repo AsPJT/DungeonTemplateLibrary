@@ -20,22 +20,22 @@ namespace dtl {
 	inline namespace utility {
 
 		template<typename Int_>
-		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr bool isOutputCast() noexcept {
 			return false;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr bool isOutputCast<char>() noexcept {
 			return true;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr bool isOutputCast<signed char>() noexcept {
 			return true;
 		}
 		template<>
-		DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
 		}

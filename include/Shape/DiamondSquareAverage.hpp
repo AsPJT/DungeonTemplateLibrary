@@ -24,7 +24,7 @@ namespace dtl {
 		//Diamond Square (Average)
 		//ダイヤモンド・スクエア法(平均値)
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
-		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+		DTL_VERSIONING_CPP14_CONSTEXPR
 			void createDiamondSquareAverageSTL(Matrix_&& matrix_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_& t1_, const Matrix_Int_& t2_, const Matrix_Int_& t3_, const Matrix_Int_& t4_, const Matrix_Int_& max_value_, const Matrix_Int_& add_altitude_, Function_&& func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
@@ -53,7 +53,7 @@ namespace dtl {
 			createDiamondSquareAverageSTL<Matrix_Int_, Matrix_, Function_>(matrix_, start_x_, start_y_, x_ + size_, y_ + size_, size_, matrix_[start_y_ + y_][start_x_ + x_], s3, s4, t4_, max_value_, static_cast<Matrix_Int_>(func_(add_altitude_)), func_);
 		}
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
-		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+		DTL_VERSIONING_CPP14_CONSTEXPR
 			void createDiamondSquareAverageArray(Matrix_ && matrix_, const dtl::type::size max_x_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
@@ -82,7 +82,7 @@ namespace dtl {
 			createDiamondSquareAverageArray<Matrix_Int_, Matrix_, Function_>(matrix_, max_x_, start_x_, start_y_, x_ + size_, y_ + size_, size_, matrix_[(start_y_ + y_) * max_x_ + (start_x_ + x_)], s3, s4, t4_, max_value_, static_cast<Matrix_Int_>(func_(add_altitude_)), func_);
 		}
 		template<typename Matrix_Int_, typename Matrix_, typename Function_>
-		DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+		DTL_VERSIONING_CPP14_CONSTEXPR
 			void createDiamondSquareAverageLayer(Matrix_ && matrix_, const dtl::type::size layer_, const dtl::type::size start_x_, const dtl::type::size start_y_, const dtl::type::size x_, const dtl::type::size y_, dtl::type::size size_, const Matrix_Int_ & t1_, const Matrix_Int_ & t2_, const Matrix_Int_ & t3_, const Matrix_Int_ & t4_, const Matrix_Int_ & max_value_, const Matrix_Int_ & add_altitude_, Function_ && func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;

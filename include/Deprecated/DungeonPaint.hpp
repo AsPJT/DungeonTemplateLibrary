@@ -37,13 +37,13 @@ namespace dtl {
 			//コンストラクタ
 			constexpr Bucket() noexcept = default;
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				explicit Bucket(Matrix_& matrix_, const std::int_fast32_t col_, const std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, col_, row_, paint_value_);
 			}
 		private:
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setPoint(Matrix_& matrix_, const dtl::type::size col_, const dtl::type::size row_, const Matrix_Int_ value_) const noexcept {
 				matrix_[row_][col_] = value_;
 			}
@@ -53,7 +53,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void scanLine(const Matrix_& matrix_, std::unique_ptr<BucketBuffer[]>& buffer_, dtl::type::size& end_n_, std::int_fast32_t left_x_, const std::int_fast32_t right_x_, const std::int_fast32_t y_, const std::int_fast32_t old_y_, const Matrix_Int_ value_) const noexcept {
 				while (left_x_ <= right_x_) {
 

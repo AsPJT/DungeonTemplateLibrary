@@ -39,7 +39,7 @@ namespace dtl {
 				return *this;
 			}
 
-			DUNGEON_TEMPLATE_LIBRARY_NODISCARD
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Clock_ get() const noexcept { return this->clock; }
 
 		};

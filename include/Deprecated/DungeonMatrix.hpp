@@ -22,14 +22,14 @@ namespace dtl {
 
 			//サイズ変更(std::vector, std::deque等)
 			template<typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void resize(Matrix_& matrix_, const dtl::type::size x_, const dtl::type::size y_) noexcept {
 				matrix_.resize(y_);
 				for (dtl::type::size row{}; row < y_; ++row)
 					matrix_[row].resize(x_);
 			}
 			template<typename Matrix_Int_, typename Matrix_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void resize(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const Matrix_Int_ value_) noexcept {
 				matrix_.resize(y_);
 				for (dtl::type::size row{}; row < y_; ++row) {
@@ -48,7 +48,7 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void resize(Matrix_& matrix_, const dtl::type::size x_, const dtl::type::size y_, const dtl::type::size layer_) noexcept {
 					matrix_.resize(y_);
 					for (dtl::type::size row{}; row < y_; ++row) {
@@ -58,7 +58,7 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
 					matrix_.resize(y_);
 					for (dtl::type::size row{}; row < y_; ++row) {
@@ -71,14 +71,14 @@ namespace dtl {
 					}
 				}
 				template<typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const dtl::type::size layer_) noexcept {
 					for (dtl::type::size row{}; row < matrix_.size(); ++row)
 						for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col].resize(layer_);
 				}
 				template<typename Matrix_Int_, typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void resize(Matrix_ & matrix_, const dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
 					for (dtl::type::size row{}; row < matrix_.size(); ++row)
 						for (dtl::type::size col{}; col < matrix_[row].size(); ++col) {
@@ -100,7 +100,7 @@ namespace dtl {
 
 				//上下反転
 				template<typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void flip(Matrix_& matrix_) noexcept {
 					for (dtl::type::size row{}, row2{ matrix_.size() - 1 };; ++row, --row2) {
 						if (row >= row2) break;
@@ -113,7 +113,7 @@ namespace dtl {
 				}
 				//左右反転
 				template<typename Matrix_>
-				DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+				DTL_VERSIONING_CPP14_CONSTEXPR
 					void mirror(Matrix_& matrix_) noexcept {
 					for (dtl::type::size row{}; row < matrix_.size(); ++row)
 						for (dtl::type::size col{}, col2{ matrix_[row].size() - 1 };; ++col, --col2) {
@@ -134,7 +134,7 @@ namespace dtl {
 		namespace tool {
 
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void convertSTL_intoDefault(Matrix_& matrix_, dtl::type::size& x_, dtl::type::size& y_, const Matrix2_& matrix2_) noexcept {
 				for (dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
@@ -142,7 +142,7 @@ namespace dtl {
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void convertSTL_intoArray(Matrix_ & matrix_, dtl::type::size & x_, dtl::type::size & y_, const Matrix2_ & matrix2_) noexcept {
 				for (dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
@@ -150,7 +150,7 @@ namespace dtl {
 				((y_ = matrix2_.size()) == 0) ? (x_ = 0) : (x_ = matrix2_[0].size());
 			}
 			template<typename Matrix_, typename Matrix2_>
-			DUNGEON_TEMPLATE_LIBRARY_CPP14_CONSTEXPR
+			DTL_VERSIONING_CPP14_CONSTEXPR
 				void convertSTL_intoLayer(Matrix_ & matrix_, dtl::type::size & layer_, const Matrix2_ & matrix2_) noexcept {
 				for (dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (dtl::type::size col{}; col < matrix_[row].size(); ++col)
