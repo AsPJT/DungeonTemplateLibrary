@@ -4,7 +4,7 @@
 #include <array>
 
 int main() {
-
+	
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, 64>, 48> matrix{ {} };
 
