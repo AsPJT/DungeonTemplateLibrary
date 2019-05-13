@@ -12,8 +12,8 @@
 	[Additional Options] /Zc:__cplusplus
 #######################################################################################*/
 
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_HPP
 
 /* バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION

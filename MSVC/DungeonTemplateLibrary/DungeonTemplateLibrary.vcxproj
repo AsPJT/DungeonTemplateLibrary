@@ -98,8 +98,10 @@
     <ClInclude Include="..\..\include\Utility\Binarization.hpp" />
     <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp" />
     <ClInclude Include="..\..\include\Utility\Copy.hpp" />
+    <ClInclude Include="..\..\include\Utility\DrawJagged.hpp" />
     <ClInclude Include="..\..\include\Utility\Init.hpp" />
     <ClInclude Include="..\..\include\Utility\IsOutputCast.hpp" />
+    <ClInclude Include="..\..\include\Utility\MatrixWrapper.hpp" />
     <ClInclude Include="..\..\include\Utility\NoiseBool.hpp" />
     <ClInclude Include="..\..\include\Utility\NoiseShoreBool.hpp" />
     <ClInclude Include="..\..\include\Utility\RectBaseWithValue.hpp" />

@@ -106,7 +106,8 @@ namespace dtl {
 			using Index_Size = std::size_t;
 			using is_jagged = std::false_type;
 			constexpr MatrixWrapper(Matrix& mat) noexcept : mat(mat) {}
-			constexpr MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_y_; }
 			Matrix& mat;
@@ -123,7 +124,8 @@ namespace dtl {
 			using is_jagged = std::false_type;
 			Matrix mat;
 			Index_Size max_y_;
-			constexpr MatrixWrapper(Matrix mat, const Index_Size max_x, const Index_Size max_y) : mat(mat), max_y_(max_y) { assert(max_x_ == max_x); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix mat, const Index_Size max_x, const Index_Size max_y) : mat(mat), max_y_(max_y) { assert(max_x_ == max_x); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_y_; }
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x]; }
@@ -140,7 +142,8 @@ namespace dtl {
 			Matrix& mat;
 			Index_Size layer_;
 			constexpr MatrixWrapper(Matrix& mat, const Index_Size layer) noexcept : mat(mat), layer_(layer) {}
-			constexpr MatrixWrapper(Matrix& mat, const Index_Size layer, const Index_Size max_x, const Index_Size max_y) : mat(mat), layer_(layer) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix& mat, const Index_Size layer, const Index_Size max_x, const Index_Size max_y) : mat(mat), layer_(layer) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_y_; }
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x][layer_]; }
@@ -157,7 +160,8 @@ namespace dtl {
 			Matrix mat;
 			Index_Size layer_;
 			Index_Size max_y_;
-			constexpr MatrixWrapper(Matrix mat, const Index_Size layer, const Index_Size max_x, const Index_Size max_y) : mat(mat), layer_(layer), max_y_(max_y) { assert(max_x_ == max_x); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix mat, const Index_Size layer, const Index_Size max_x, const Index_Size max_y) : mat(mat), layer_(layer), max_y_(max_y) { assert(max_x_ == max_x); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_y_; }
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x][layer_]; }
@@ -173,7 +177,8 @@ namespace dtl {
 			using is_jagged = std::false_type;
 			Matrix& mat;
 			constexpr MatrixWrapper(Matrix& mat) noexcept : mat(mat) {}
-			constexpr MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_y_; }
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x]; }
@@ -205,7 +210,8 @@ namespace dtl {
 			using is_jagged = std::false_type;
 			Matrix& mat;
 			Index_Size max_x_;
-			constexpr MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat), max_x_(max_x) { assert(max_x * max_y == max_len_); }
+			DTL_VERSIONING_CPP14_CONSTEXPR
+			MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat), max_x_(max_x) { assert(max_x * max_y == max_len_); }
 			constexpr Index_Size getX() const noexcept { return max_x_; }
 			constexpr Index_Size getY() const noexcept { return max_len_ / max_x_; }
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y * max_x_ + x]; }
@@ -262,7 +268,7 @@ namespace dtl {
 		};
 
 		template<typename Matrix_, typename... Args_>
-		constexpr auto makeWrapper(Matrix_&& mat, Args_&&... args_) {
+		constexpr MatrixWrapper<typename std::remove_reference<Matrix_>::type> makeWrapper(Matrix_&& mat, Args_&&... args_) {
 			return MatrixWrapper<typename std::remove_reference<Matrix_>::type>(mat, std::forward<Args_>(args_)...);
 		}
 	}

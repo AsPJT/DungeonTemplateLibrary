@@ -320,6 +320,12 @@
     <ClInclude Include="..\..\include\Type\NumericLimits.hpp">
       <Filter>ヘッダー ファイル\Type</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Utility\DrawJagged.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Utility\MatrixWrapper.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">
