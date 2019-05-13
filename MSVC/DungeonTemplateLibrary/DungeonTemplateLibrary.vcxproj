@@ -90,6 +90,7 @@
     <ClInclude Include="..\..\include\Storage\FileTXT_0_9.hpp" />
     <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h" />
     <ClInclude Include="..\..\include\Type\Forward.hpp" />
+    <ClInclude Include="..\..\include\Type\IntX.hpp" />
     <ClInclude Include="..\..\include\Type\SizeT.hpp" />
     <ClInclude Include="..\..\include\Type\SSizeT.hpp" />
     <ClInclude Include="..\..\include\Type\UniquePtr.hpp" />

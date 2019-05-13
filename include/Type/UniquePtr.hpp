@@ -14,21 +14,15 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
+#ifndef DTL_TYPE_UNIQUE_PTR
+
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
-namespace dtl {
-	namespace type {
-		template<typename ...Args_>
-		using UniquePtr = ::TUniquePtr<Args_...>;
-	}
-}
+#define DTL_TYPE_UNIQUE_PTR ::TUniquePtr
 #else
-#include <utility>
-namespace dtl {
-	namespace type {
-		template<typename ...Args_>
-		using UniquePtr = std::unique_ptr<Args_...>;
-	}
-}
+#include <memory>
+#define DTL_TYPE_UNIQUE_PTR std::unique_ptr
+#endif
+
 #endif
 
 #endif //Included Dungeon Template Library

@@ -33,7 +33,7 @@ namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = dtl::type::UniquePtr<dtl::type::size[]>>
+		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<dtl::type::size[]>>
 		class MazeDig {
 		private:
 
