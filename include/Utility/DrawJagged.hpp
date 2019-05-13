@@ -13,9 +13,9 @@
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 
+#include <Macros/constexpr.hpp>
 #include <Type/Forward.hpp>
 #include <Type/SizeT.hpp>
-#include <Macros/constexpr.hpp>
 #include <Utility/MatrixWrapper.hpp>
 
 namespace dtl {
