@@ -57,6 +57,9 @@
     <Filter Include="ヘッダー ファイル\Type">
       <UniqueIdentifier>{24c5dc8a-0e29-4784-a0bf-ea946424d0b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Board">
+      <UniqueIdentifier>{096d7971-9c79-40ba-bf6b-2edfac2a9cfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Utility\Binarization.hpp">
@@ -325,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\Utility\MatrixWrapper.hpp">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Board\WriteNumber.hpp">
+      <Filter>ヘッダー ファイル\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Dungeon\Board.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

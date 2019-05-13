@@ -25,6 +25,10 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BASE_HPP
 #include <Dungeon/Base.hpp>
 
+/* 文字列クラスライブラリ (dtl::board) */
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_BOARD_HPP
+#include <Dungeon/Board.hpp>
+
 /* 視点ライブラリ (dtl::camera) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_CAMERA_HPP
 #include <Dungeon/Camera.hpp>

@@ -13,8 +13,8 @@
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : not checked */
 
-#include <cstddef>
 #include <cassert>
+#include <cstddef>
 #include <array>
 #include <type_traits>
 #include <Macros/constexpr.hpp>

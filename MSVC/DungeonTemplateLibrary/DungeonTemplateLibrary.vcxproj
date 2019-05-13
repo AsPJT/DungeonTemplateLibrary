@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Base\Struct.hpp" />
+    <ClInclude Include="..\..\include\Board\WriteNumber.hpp" />
     <ClInclude Include="..\..\include\Camera\MatrixView.hpp" />
     <ClInclude Include="..\..\include\Chrono\Time.hpp" />
     <ClInclude Include="..\..\include\Console\OutputNumber.hpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp" />
     <ClInclude Include="..\..\include\DTL.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Base.hpp" />
+    <ClInclude Include="..\..\include\Dungeon\Board.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Camera.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Chrono.hpp" />
     <ClInclude Include="..\..\include\Dungeon\Console.hpp" />
