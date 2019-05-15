@@ -87,7 +87,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionSTL(end_x_, data, matrix_, col, row, args_...);
-				stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
+				::stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}
 
@@ -99,7 +99,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionLayer(end_x_, data, matrix_, layer_, col, row, args_...);
-				stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
+				::stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}
 
@@ -111,7 +111,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->substitutionArray(end_x_, data, matrix_, col, row, max_x_, args_...);
-				stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
+				::stbi_write_tga(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}
 
