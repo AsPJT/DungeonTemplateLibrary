@@ -33,7 +33,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -170,7 +170,7 @@ namespace dtl {
 			//List
 			template<typename Matrix_, typename ...Args_>
 			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				dtl::type::size row_count{}, col_count{};
+				::dtl::type::size row_count{}, col_count{};
 				for (const auto& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;
@@ -410,7 +410,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				OutputStringBool& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				OutputStringBool& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -427,14 +427,14 @@ namespace dtl {
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
 				:false_string(false_string_), true_string(true_string_) {}
 
-			constexpr OutputStringBool(const dtl::base::MatrixRange& matrix_range_)
+			constexpr OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_)
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit OutputStringBool(const dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_) noexcept
+			constexpr explicit OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_string(true_string_) {}
-			constexpr explicit OutputStringBool(const dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
+			constexpr explicit OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				false_string(false_string_), true_string(true_string_) {}

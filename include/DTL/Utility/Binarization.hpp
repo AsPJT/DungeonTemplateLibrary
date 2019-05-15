@@ -29,7 +29,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -363,7 +363,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Binarization& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Binarization& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -380,14 +380,14 @@ namespace dtl {
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
 				:true_value(true_value_), false_value(false_value_) {}
 
-			constexpr explicit Binarization(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Binarization(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Binarization(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
+			constexpr explicit Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_) {}
-			constexpr explicit Binarization(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
+			constexpr explicit Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_), false_value(false_value_) {}

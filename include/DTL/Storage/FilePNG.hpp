@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::storage::FilePNG-(ストレージクラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FilePNG-(ストレージクラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -45,7 +45,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -56,7 +56,7 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 			std::string str{};
-			dtl::type::size color_num{ 3 };
+			::dtl::type::size color_num{ 3 };
 			int stride_in_bytes{};
 
 
@@ -64,17 +64,17 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(const dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void substitutionSTL(const ::dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(const dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				inline void substitutionArray(const ::dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_ * max_x_ + end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(const dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void substitutionLayer(const ::dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_][end_x_][layer_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
@@ -301,7 +301,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				FilePNG& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				FilePNG& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -315,23 +315,23 @@ namespace dtl {
 			constexpr FilePNG() noexcept = default;
 			constexpr explicit FilePNG(const std::string & write_value_) noexcept
 				:str(write_value_) {}
-			constexpr explicit FilePNG(const std::string& write_value_, const dtl::type::size color_num_) noexcept
+			constexpr explicit FilePNG(const std::string& write_value_, const ::dtl::type::size color_num_) noexcept
 				:str(write_value_), color_num(color_num_) {}
-			constexpr explicit FilePNG(const std::string& write_value_, const dtl::type::size color_num_, const int stride_in_bytes_) noexcept
+			constexpr explicit FilePNG(const std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_) noexcept
 				:str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}
 
-			constexpr explicit FilePNG(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit FilePNG(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FilePNG(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
+			constexpr explicit FilePNG(const ::dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
-			constexpr explicit FilePNG(const dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const dtl::type::size color_num_) noexcept
+			constexpr explicit FilePNG(const ::dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const ::dtl::type::size color_num_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_), color_num(color_num_) {}
-			constexpr explicit FilePNG(const dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const dtl::type::size color_num_, const int stride_in_bytes_) noexcept
+			constexpr explicit FilePNG(const ::dtl::base::MatrixRange& matrix_range_, const std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}
@@ -343,11 +343,11 @@ namespace dtl {
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_) {}
-			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const dtl::type::size color_num_) noexcept
+			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const ::dtl::type::size color_num_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_), color_num(color_num_) {}
-			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const dtl::type::size color_num_, const int stride_in_bytes_) noexcept
+			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_), color_num(color_num_), stride_in_bytes(stride_in_bytes_) {}

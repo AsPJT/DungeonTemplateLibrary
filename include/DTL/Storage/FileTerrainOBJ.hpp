@@ -34,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -61,17 +61,17 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]) * value_z << " " << end_y_ * value_y << '\n';
+				ofs_ << "v " << end_x_ * value_x << " " << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]) * value_z << " " << end_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]) * value_z << " " << end_y_ * value_y << '\n';
+				ofs_ << "v " << end_x_ * value_x << " " << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]) * value_z << " " << end_y_ * value_y << '\n';
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
-				ofs_ << "v " << end_x_ * value_x << " " << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]) * value_z << " " << end_y_ * value_y << '\n';
+				ofs_ << "v " << end_x_ * value_x << " " << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]) * value_z << " " << end_y_ * value_y << '\n';
 			}
 
 
@@ -86,8 +86,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
 			}
@@ -99,8 +99,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
 				return true;
 			}
@@ -114,8 +114,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col <= matrix_[row].size(); ++col)
 						this->mountain(col, row, matrix_[row].size(), ofs);
 				return true;
 			}
@@ -127,8 +127,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->mountain(col, row, (matrix_[row].size() < end_x_) ? matrix_[row].size() : end_x_, ofs);
 				return true;
 			}
@@ -142,8 +142,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseSTL(matrix_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}
@@ -157,8 +157,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseLayer(matrix_, layer_, col, row, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}
@@ -172,8 +172,8 @@ namespace dtl {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->baseArray(matrix_, col, row, max_x_, ofs, args_...);
 
-				for (dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
-					for (dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y + 1 }; row < end_y_; ++row)
+					for (::dtl::type::size col{ start_x + 2 }; col <= end_x_; ++col)
 						this->mountain(col, row, end_x_, ofs);
 				return true;
 			}
@@ -395,7 +395,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				FileTerrainOBJ& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				FileTerrainOBJ& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -409,21 +409,21 @@ namespace dtl {
 			constexpr FileTerrainOBJ() noexcept = default;
 			constexpr explicit FileTerrainOBJ(const std::string & write_value_) noexcept
 				:str(write_value_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
+			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
 
 			constexpr explicit FileTerrainOBJ(const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
 				:str(write_value_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
+			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
+			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_),

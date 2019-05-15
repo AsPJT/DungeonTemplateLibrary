@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::MazeDig-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::MazeDig-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -33,14 +33,14 @@ namespace dtl {
 	inline namespace shape {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<dtl::type::size[]>>
+		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
 		class MazeDig {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 			///// メンバ変数 /////
@@ -56,9 +56,9 @@ namespace dtl {
 			//穴掘り
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void mazeDig_Dig(Matrix_&& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				dtl::type::ssize dx{}, dy{};
-				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
+				void mazeDig_Dig(Matrix_&& matrix_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_) const noexcept {
+				::dtl::type::ssize dx{}, dy{};
+				for (::dtl::type::size random{ ::dtl::random::mt32bit.get<::dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -66,8 +66,8 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (static_cast<dtl::type::ssize>(x_ + dx) <= static_cast<dtl::type::ssize>(start_x) || 
-						static_cast<dtl::type::ssize>(y_ + dy) <= static_cast<dtl::type::ssize>(start_y) || 
+					if (static_cast<::dtl::type::ssize>(x_ + dx) <= static_cast<::dtl::type::ssize>(start_x) || 
+						static_cast<::dtl::type::ssize>(y_ + dy) <= static_cast<::dtl::type::ssize>(start_y) || 
 						(x_ + dx) >= j_max || (y_ + dy) >= i_max || static_cast<Matrix_Int_>(matrix_[y_ + dy][x_ + dx]) == this->empty_value) {
 						++counter;
 					}
@@ -77,16 +77,16 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<dtl::type::size>();
+						random = ::dtl::random::mt32bit.get<::dtl::type::size>();
 					}
 				}
 				return;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				dtl::type::ssize dx{}, dy{};
-				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
+				void mazeDig_DigLayer(Matrix_&& matrix_, const Index_Size layer_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_) const noexcept {
+				::dtl::type::ssize dx{}, dy{};
+				for (::dtl::type::size random{ ::dtl::random::mt32bit.get<::dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -94,7 +94,7 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<dtl::type::ssize>(start_x) || y_ + dy <= static_cast<dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == this->empty_value) {
+					if (x_ + dx <= static_cast<::dtl::type::ssize>(start_x) || y_ + dy <= static_cast<::dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[y_ + dy][x_ + dx][layer_] == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[y_ + dy][x_ + dx][layer_] == this->wall_value) {
@@ -103,16 +103,16 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<dtl::type::size>();
+						random = ::dtl::random::mt32bit.get<::dtl::type::size>();
 					}
 				}
 				return;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, dtl::type::size x_, dtl::type::size y_) const noexcept {
-				dtl::type::ssize dx{}, dy{};
-				for (dtl::type::size random{ dtl::random::mt32bit.get<dtl::type::size>() }, counter{}; counter < 4;) {
+				void mazeDig_DigArray(Matrix_&& matrix_, const Index_Size max_x_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_) const noexcept {
+				::dtl::type::ssize dx{}, dy{};
+				for (::dtl::type::size random{ ::dtl::random::mt32bit.get<::dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -120,7 +120,7 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<dtl::type::ssize>(start_x) || y_ + dy <= static_cast<dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
+					if (x_ + dx <= static_cast<::dtl::type::ssize>(start_x) || y_ + dy <= static_cast<::dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->wall_value) {
@@ -129,7 +129,7 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = dtl::random::mt32bit.get<dtl::type::size>();
+						random = ::dtl::random::mt32bit.get<::dtl::type::size>();
 					}
 				}
 				return;
@@ -137,10 +137,10 @@ namespace dtl {
 			//迷路生成
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				dtl::type::size mazeDig_CreateLoop(const Matrix_& matrix_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				dtl::type::size select_id{};
-				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
+				::dtl::type::size mazeDig_CreateLoop(const Matrix_& matrix_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				::dtl::type::size select_id{};
+				for (::dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (::dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i][j] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[i - 2][j] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i][j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -158,10 +158,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				dtl::type::size mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				dtl::type::size select_id{};
-				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
+				::dtl::type::size mazeDig_CreateLoopLayer(const Matrix_& matrix_, const Index_Size layer_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				::dtl::type::size select_id{};
+				for (::dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (::dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i][j][layer_] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[i - 2][j][layer_] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i][j - 2][layer_] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -179,10 +179,10 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				dtl::type::size mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size j_max, const dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
-				dtl::type::size select_id{};
-				for (dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
-					for (dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
+				::dtl::type::size mazeDig_CreateLoopArray(const Matrix_& matrix_, const Index_Size max_x_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, UniquePtr_& select_x, UniquePtr_& select_y) const noexcept {
+				::dtl::type::size select_id{};
+				for (::dtl::type::size i{ this->start_y + 1 }; i < i_max; i += 2)
+					for (::dtl::type::size j{ this->start_x + 1 }; j < j_max; j += 2) {
 						if (matrix_[i * max_x_ + j] != this->empty_value) continue;
 						if ((i >= this->start_y + 2 && matrix_[(i - 2) * max_x_ + j] == this->wall_value) || (j >= this->start_x + 2 && matrix_[i * max_x_ + j - 2] == this->wall_value)) {
 							select_x[select_id] = j;
@@ -207,19 +207,19 @@ namespace dtl {
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const ::dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (dtl::type::size select_id{};;) {
+				for (::dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoop(matrix_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
+					select_id = ::dtl::random::mt32bit.get<::dtl::type::size>(select_id);
 					mazeDig_Dig(matrix_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 				return true;
@@ -230,19 +230,19 @@ namespace dtl {
 			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1][layer_] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const ::dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (dtl::type::size select_id{};;) {
+				for (::dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoopLayer(matrix_, layer_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
+					select_id = ::dtl::random::mt32bit.get<::dtl::type::size>(select_id);
 					mazeDig_DigLayer(matrix_, layer_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 
@@ -254,19 +254,19 @@ namespace dtl {
 			bool drawArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_&& ...) const noexcept {
 				matrix_[(this->start_y + 1) * max_x_ + start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
-				const dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
-				const dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
+				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
+				const ::dtl::type::size j_max{ ((((end_x_ - this->start_x) & 1) == 0) ? end_x_ - 2 : end_x_ - 1) };
 
 				//座標を選ぶ
-				for (dtl::type::size select_id{};;) {
+				for (::dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoopArray(matrix_, max_x_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = dtl::random::mt32bit.get<dtl::type::size>(select_id);
+					select_id = ::dtl::random::mt32bit.get<::dtl::type::size>(select_id);
 					mazeDig_DigArray(matrix_, max_x_, j_max, i_max, select_x[select_id], select_y[select_id]);
 				}
 
@@ -486,7 +486,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				MazeDig& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				MazeDig& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -502,14 +502,14 @@ namespace dtl {
 				:empty_value(empty_value_) {}
 			constexpr explicit MazeDig(const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
 				:empty_value(empty_value_), wall_value(wall_value_) {}
-			constexpr explicit MazeDig(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit MazeDig(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit MazeDig(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & empty_value_) noexcept
+			constexpr explicit MazeDig(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & empty_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				empty_value(empty_value_) {}
-			constexpr explicit MazeDig(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
+			constexpr explicit MazeDig(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				empty_value(empty_value_), wall_value(wall_value_) {}

@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::CellularAutomatonMixIsland-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::CellularAutomatonMixIsland-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -39,16 +39,16 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 			
 
 
 			///// メンバ変数 /////
 
-			dtl::shape::Border<Matrix_Int_> border{};
-			dtl::shape::HalfMixRect<Matrix_Int_> mixRect{};
-			dtl::utility::CellularAutomation<Matrix_Int_> cellularAutomation{};
+			::dtl::shape::Border<Matrix_Int_> border{};
+			::dtl::shape::HalfMixRect<Matrix_Int_> mixRect{};
+			::dtl::utility::CellularAutomation<Matrix_Int_> cellularAutomation{};
 			Index_Size loop_num{ 1 };
 
 		public:
@@ -261,7 +261,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				CellularAutomatonMixIsland& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				CellularAutomatonMixIsland& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->mixRect.setRange(matrix_range_);
 				this->border.setRange(matrix_range_);
 				this->cellularAutomation.setRange(matrix_range_);
@@ -304,7 +304,7 @@ namespace dtl {
 			explicit CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:border(first_), mixRect(first_, args_...), loop_num(loop_num_) {}
 			template<typename ...Args_>
-			constexpr explicit CellularAutomatonMixIsland(const dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			constexpr explicit CellularAutomatonMixIsland(const ::dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:border(matrix_range_, first_), mixRect(matrix_range_, first_, args_...), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
 		};
 	}

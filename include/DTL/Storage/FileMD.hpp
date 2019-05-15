@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::storage::FileMD-(ストレージクラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileMD-(ストレージクラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -57,10 +57,10 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void mountain(const Index_Size end_y_, Ofstream_& ofs_) const noexcept {
 				ofs_ << '|';
-				for (dtl::type::size row{ this->start_y }; row < end_y_; ++row)
+				for (::dtl::type::size row{ this->start_y }; row < end_y_; ++row)
 					ofs_ << row << '|';
 				ofs_ << '\n' << '|';
-				for (dtl::type::size row{ this->start_y }; row < end_y_; ++row)
+				for (::dtl::type::size row{ this->start_y }; row < end_y_; ++row)
 					ofs_ << ":---|";
 				ofs_ << '\n';
 			}
@@ -69,19 +69,19 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << '|';
-				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]);
+				ofs_ << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_]) : matrix_[end_y_][end_x_]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << '|';
-				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]);
+				ofs_ << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_ * max_x_ + end_x_]) : matrix_[end_y_ * max_x_ + end_x_]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void baseLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Ofstream_ & ofs_) const noexcept {
 				ofs_ << '|';
-				ofs_ << ((dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]);
+				ofs_ << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[end_y_][end_x_][layer_]) : matrix_[end_y_][end_x_][layer_]);
 			}
 
 
@@ -427,7 +427,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				FileMD& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				FileMD& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -442,10 +442,10 @@ namespace dtl {
 			constexpr explicit FileMD(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 
-			constexpr explicit FileMD(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit FileMD(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FileMD(const dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
+			constexpr explicit FileMD(const ::dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}

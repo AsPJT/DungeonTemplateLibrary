@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::SimpleVoronoiIsland-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::SimpleVoronoiIsland-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -33,21 +33,21 @@ namespace dtl {
 	inline namespace shape {
 
 		//マップの外枠を指定した数値で埋め、偶数マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<dtl::type::ssize, dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class SimpleVoronoiIsland {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
 
 			///// メンバ変数 /////
 
-			dtl::utility::VoronoiDiagram<Matrix_Int_, UniquePair_, UniqueInt_> voronoiDiagram{};
+			::dtl::utility::VoronoiDiagram<Matrix_Int_, UniquePair_, UniqueInt_> voronoiDiagram{};
 			double probability_value{ 0.5 };
 			Matrix_Int_ land_value{};
 			Matrix_Int_ sea_value{};
@@ -74,11 +74,11 @@ namespace dtl {
 				return this->voronoiDiagram.getHeight();
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr dtl::type::size getValue() const noexcept {
+				constexpr ::dtl::type::size getValue() const noexcept {
 				return this->voronoiDiagram.getValue();
 			}
 
-			constexpr bool isIsland(const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_, const dtl::type::ssize numerator_, const dtl::type::ssize denominator_) const noexcept {
+			constexpr bool isIsland(const std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_, const ::dtl::type::ssize numerator_, const ::dtl::type::ssize denominator_) const noexcept {
 				//return true;
 				return (point_.first > ((w_ - sx_) * numerator_ / denominator_ + sx_) && point_.first < ((w_ - sx_) * (denominator_ - numerator_) / denominator_ + sx_)) && (point_.second > ((h_ - sy_) * numerator_ / denominator_ + sy_) && point_.second < ((h_ - sy_) * (denominator_ - numerator_) / denominator_ + sy_));
 			}
@@ -90,8 +90,8 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
-					[this](const std::pair<dtl::type::ssize, dtl::type::ssize> & point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize> & point_, Matrix_Int_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -100,8 +100,8 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
-					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Int_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -110,8 +110,8 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
-					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Int_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -120,8 +120,8 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
-					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Int_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -130,8 +130,8 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
-					[this](const std::pair<dtl::type::ssize, dtl::type::ssize>& point_, Matrix_Int_ & color_, const dtl::type::ssize sx_, const dtl::type::ssize sy_, const dtl::type::ssize w_, const dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Int_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -253,12 +253,12 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				SimpleVoronoiIsland& setValue(const dtl::type::size voronoi_num_) noexcept {
+				SimpleVoronoiIsland& setValue(const ::dtl::type::size voronoi_num_) noexcept {
 				this->voronoiDiagram.setValue(voronoi_num_);
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				SimpleVoronoiIsland& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				SimpleVoronoiIsland& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->voronoiDiagram.setRange(matrix_range_);
 				return *this;
 			}
@@ -295,24 +295,24 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr SimpleVoronoiIsland() noexcept = default;
-			constexpr explicit SimpleVoronoiIsland(const dtl::type::size voronoi_num_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_) noexcept
 				:voronoiDiagram(voronoi_num_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::type::size voronoi_num_, const double probability_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_), land_value(land_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_), land_value(land_value_), sea_value(sea_value_) {}
 
-			constexpr explicit SimpleVoronoiIsland(const dtl::base::MatrixRange& matrix_range_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:voronoiDiagram(matrix_range_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size voronoi_num_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size voronoi_num_, const double probability_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_), land_value(land_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
+			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_), land_value(land_value_), sea_value(sea_value_) {}
 		};
 	}

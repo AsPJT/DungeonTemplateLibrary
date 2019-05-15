@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::RandomRect-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::RandomRect-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -37,7 +37,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -55,43 +55,43 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
+				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				if (dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
+				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
+				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_) const noexcept {
-				if (dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
+				if (::dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_]) && dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
+				if (function_(matrix_[end_y_][end_x_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_ * max_x_ + end_x_]) && dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
+				if (function_(matrix_[end_y_ * max_x_ + end_x_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_][layer_]) && dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
+				if (function_(matrix_[end_y_][end_x_][layer_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 			template<typename Matrix_Value_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_, Function_&& function_) const noexcept {
-				if (function_(matrix_) && dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
+				if (function_(matrix_) && ::dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
 			}
 
 
@@ -167,7 +167,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawList(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				dtl::type::size row_count{}, col_count{};
+				::dtl::type::size row_count{}, col_count{};
 				for (auto&& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;
@@ -423,7 +423,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				RandomRect& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				RandomRect& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -439,14 +439,14 @@ namespace dtl {
 				:draw_value(draw_value_) {}
 			constexpr explicit RandomRect(const Matrix_Int_ & draw_value_, const double probability_) noexcept
 				:draw_value(draw_value_), probability_value(probability_) {}
-			constexpr explicit RandomRect(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit RandomRect(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
-			constexpr explicit RandomRect(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
+			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_), probability_value(probability_) {}

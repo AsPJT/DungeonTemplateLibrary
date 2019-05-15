@@ -53,7 +53,7 @@ LICENSE
  int stbi_write_jpg(char const*, int, int, int, const void*, int);///
 
 #ifdef STBI_WINDOWS_UTF8
- int stbiw_convert_wchar_to_utf8(char*, dtl::type::size, const wchar_t*);
+ int stbiw_convert_wchar_to_utf8(char*, ::dtl::type::size, const wchar_t*);
 #endif
 #endif
 
@@ -155,7 +155,7 @@ static void stbi__stdio_write(void* context_, void* data_, int size_) {
 STBIW_EXTERN __declspec(dllimport) int __stdcall MultiByteToWideChar(unsigned int cp, unsigned long flags, const char* str, int cbmb, wchar_t* widestr, int cchwide);
 STBIW_EXTERN __declspec(dllimport) int __stdcall WideCharToMultiByte(unsigned int cp, unsigned long flags, const wchar_t* widestr, int cchwide, char* str, int cbmb, const char* defchar, int* used_default);
 
- int stbiw_convert_wchar_to_utf8(char* buffer_, dtl::type::size bufferlen_, const wchar_t* input_) {
+ int stbiw_convert_wchar_to_utf8(char* buffer_, ::dtl::type::size bufferlen_, const wchar_t* input_) {
 	return WideCharToMultiByte(65001 /* UTF8 */, 0, input_, -1, buffer_, (int)bufferlen_, nullptr, nullptr);
 }
 #endif
@@ -580,7 +580,7 @@ static int stbi_write_hdr_core(stbi__write_context * s, int x, int y, int comp, 
 		return 0;
 	else {
 		// Each component is stored separately. Allocate scratch space for full output scanline.
-		unsigned char* scratch{ (unsigned char*)STBIW_MALLOC((dtl::type::size)x * 4) };
+		unsigned char* scratch{ (unsigned char*)STBIW_MALLOC((::dtl::type::size)x * 4) };
 		int i{}, len{};
 		char buffer[128]{};
 		char header[]{ "#?RADIANCE\n# Written by stb_image_write.h\nFORMAT=32-bit_rle_rgbe\n" };
@@ -930,8 +930,8 @@ static void stbiw__encode_png_line(unsigned char* pixels, int stride_bytes, int 
 		force_filter = -1;
 	}
 
-	filt = (unsigned char*)STBIW_MALLOC((dtl::type::size)(x * n + 1) * y); if (!filt) return 0;
-	line_buffer = (signed char*)STBIW_MALLOC((dtl::type::size)x * n); if (!line_buffer) { STBIW_FREE(filt); return 0; }
+	filt = (unsigned char*)STBIW_MALLOC((::dtl::type::size)(x * n + 1) * y); if (!filt) return 0;
+	line_buffer = (signed char*)STBIW_MALLOC((::dtl::type::size)x * n); if (!line_buffer) { STBIW_FREE(filt); return 0; }
 	for (j = 0; j < y; ++j) {
 		int filter_type;
 		if (force_filter > -1) {
@@ -968,7 +968,7 @@ static void stbiw__encode_png_line(unsigned char* pixels, int stride_bytes, int 
 	if (!zlib) return 0;
 
 	// each tag requires 12 bytes of overhead
-	out = (unsigned char*)STBIW_MALLOC((dtl::type::size)8 + 12 + 13 + 12 + zlen + 12);
+	out = (unsigned char*)STBIW_MALLOC((::dtl::type::size)8 + 12 + 13 + 12 + zlen + 12);
 	if (!out) return 0;
 	*out_len = 8 + 12 + 13 + 12 + zlen + 12;
 

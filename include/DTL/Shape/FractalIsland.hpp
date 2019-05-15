@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::FractalIsland-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::FractalIsland-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -34,17 +34,17 @@
 namespace dtl {
 	inline namespace shape {
 
-		constexpr dtl::type::size fi_chunk_size{ 16 };
+		constexpr ::dtl::type::size fi_chunk_size{ 16 };
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<dtl::type::ssize[]>>
+		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::ssize[]>>
 		class FractalIsland {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 			///// メンバ変数 /////
@@ -64,7 +64,7 @@ namespace dtl {
 			template<typename Matrix2_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void createWorldMapSimple(Matrix2_&& matrix_, Function_&& function_) const noexcept {
-				createDiamondSquareAverageSTL<Matrix_Int_, Matrix2_>(matrix_, 0, 0, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, matrix_[0][0], matrix_[dtl::shape::fi_chunk_size][0], matrix_[0][dtl::shape::fi_chunk_size], matrix_[dtl::shape::fi_chunk_size][dtl::shape::fi_chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageSTL<Matrix_Int_, Matrix2_>(matrix_, 0, 0, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, matrix_[0][0], matrix_[::dtl::shape::fi_chunk_size][0], matrix_[0][::dtl::shape::fi_chunk_size], matrix_[::dtl::shape::fi_chunk_size][::dtl::shape::fi_chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -75,7 +75,7 @@ namespace dtl {
 			template<typename Matrix2_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void createWorldMapSimpleLayer(Matrix2_&& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
-				createDiamondSquareAverageLayer<Matrix_Int_, Matrix2_>(matrix_, layer_, 0, 0, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, matrix_[0][0][layer_], matrix_[dtl::shape::fi_chunk_size][0][layer_], matrix_[0][dtl::shape::fi_chunk_size][layer_], matrix_[dtl::shape::fi_chunk_size][dtl::shape::fi_chunk_size][layer_], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageLayer<Matrix_Int_, Matrix2_>(matrix_, layer_, 0, 0, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, matrix_[0][0][layer_], matrix_[::dtl::shape::fi_chunk_size][0][layer_], matrix_[0][::dtl::shape::fi_chunk_size][layer_], matrix_[::dtl::shape::fi_chunk_size][::dtl::shape::fi_chunk_size][layer_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -86,7 +86,7 @@ namespace dtl {
 			template<typename Matrix2_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void createWorldMapSimpleArray(Matrix2_&& matrix_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				createDiamondSquareAverageArray<Matrix_Int_, Matrix2_>(matrix_, max_x_, 0, 0, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, dtl::shape::fi_chunk_size / 2, matrix_[0], matrix_[dtl::shape::fi_chunk_size * max_x_], matrix_[dtl::shape::fi_chunk_size], matrix_[dtl::shape::fi_chunk_size * max_x_ + dtl::shape::fi_chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
+				createDiamondSquareAverageArray<Matrix_Int_, Matrix2_>(matrix_, max_x_, 0, 0, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, ::dtl::shape::fi_chunk_size / 2, matrix_[0], matrix_[::dtl::shape::fi_chunk_size * max_x_], matrix_[::dtl::shape::fi_chunk_size], matrix_[::dtl::shape::fi_chunk_size * max_x_ + ::dtl::shape::fi_chunk_size], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix2_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -98,43 +98,43 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, dtl::shape::fi_chunk_size + 1>, dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
-				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / dtl::shape::fi_chunk_size) };
-				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / dtl::shape::fi_chunk_size) };
+				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
+				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (dtl::type::size col{}; col <= chunk_x; ++col)
+				for (::dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (dtl::type::size row{}; row < chunk_y; ++row) {
+				for (::dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (dtl::type::size col{}; col <= chunk_x; ++col)
+						for (::dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
+						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
+							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (dtl::type::size col{}; col < chunk_x; ++col) {
+					for (::dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
-						chunk_matrix[dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
-						chunk_matrix[0][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
-						chunk_matrix[dtl::shape::fi_chunk_size][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
+						chunk_matrix[0][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (dtl::type::size row2{}; row2 < dtl::shape::fi_chunk_size; ++row2)
-							for (dtl::type::size col2{}; col2 < dtl::shape::fi_chunk_size; ++col2)
-								matrix_[this->start_y + row * dtl::shape::fi_chunk_size + row2][this->start_x + col * dtl::shape::fi_chunk_size + col2] = chunk_matrix[row2][col2];
+						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fi_chunk_size; ++row2)
+							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fi_chunk_size; ++col2)
+								matrix_[this->start_y + row * ::dtl::shape::fi_chunk_size + row2][this->start_x + col * ::dtl::shape::fi_chunk_size + col2] = chunk_matrix[row2][col2];
 					}
-					for (dtl::type::size col{}; col <= chunk_x; ++col)
+					for (::dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;
@@ -144,43 +144,43 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, dtl::shape::fi_chunk_size + 1>, dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
-				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / dtl::shape::fi_chunk_size) };
-				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / dtl::shape::fi_chunk_size) };
+				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
+				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (dtl::type::size col{}; col <= chunk_x; ++col)
+				for (::dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (dtl::type::size row{}; row < chunk_y; ++row) {
+				for (::dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (dtl::type::size col{}; col <= chunk_x; ++col)
+						for (::dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
+						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
+							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (dtl::type::size col{}; col < chunk_x; ++col) {
+					for (::dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
-						chunk_matrix[dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
-						chunk_matrix[0][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
-						chunk_matrix[dtl::shape::fi_chunk_size][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
+						chunk_matrix[0][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (dtl::type::size row2{}; row2 < dtl::shape::fi_chunk_size; ++row2)
-							for (dtl::type::size col2{}; col2 < dtl::shape::fi_chunk_size; ++col2)
-								matrix_[this->start_y + row * dtl::shape::fi_chunk_size + row2][this->start_x + col * dtl::shape::fi_chunk_size + col2][layer_] = chunk_matrix[row2][col2];
+						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fi_chunk_size; ++row2)
+							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fi_chunk_size; ++col2)
+								matrix_[this->start_y + row * ::dtl::shape::fi_chunk_size + row2][this->start_x + col * ::dtl::shape::fi_chunk_size + col2][layer_] = chunk_matrix[row2][col2];
 					}
-					for (dtl::type::size col{}; col <= chunk_x; ++col)
+					for (::dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;
@@ -190,43 +190,43 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, dtl::shape::fi_chunk_size + 1>, dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
-				const dtl::type::size chunk_x{ ((end_x_ - this->start_x) / dtl::shape::fi_chunk_size) };
-				const dtl::type::size chunk_y{ ((end_y_ - this->start_y) / dtl::shape::fi_chunk_size) };
+				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
+				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
 
-				for (dtl::type::size col{}; col <= chunk_x; ++col)
+				for (::dtl::type::size col{}; col <= chunk_x; ++col)
 					rand_up[col] = 0;
 
-				for (dtl::type::size row{}; row < chunk_y; ++row) {
+				for (::dtl::type::size row{}; row < chunk_y; ++row) {
 
 					if ((row + 1) == chunk_y)
-						for (dtl::type::size col{}; col <= chunk_x; ++col)
+						for (::dtl::type::size col{}; col <= chunk_x; ++col)
 							rand_down[col] = 0;
 					else {
-						for (dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = dtl::random::mt32bit.get<dtl::type::ssize>(this->altitude);
+						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
+							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
-					for (dtl::type::size col{}; col < chunk_x; ++col) {
+					for (::dtl::type::size col{}; col < chunk_x; ++col) {
 						//四角形の4点の高さを決定
 						chunk_matrix[0][0] = static_cast<Matrix_Int_>(rand_up[col]);
-						chunk_matrix[dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
-						chunk_matrix[0][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
-						chunk_matrix[dtl::shape::fi_chunk_size][dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][0] = static_cast<Matrix_Int_>(rand_down[col]);
+						chunk_matrix[0][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
+						chunk_matrix[::dtl::shape::fi_chunk_size][::dtl::shape::fi_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
 						createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
-						for (dtl::type::size row2{}; row2 < dtl::shape::fi_chunk_size; ++row2)
-							for (dtl::type::size col2{}; col2 < dtl::shape::fi_chunk_size; ++col2)
-								matrix_[(this->start_y + row * dtl::shape::fi_chunk_size + row2) * max_x_ + start_x + col * dtl::shape::fi_chunk_size + col2] = chunk_matrix[row2][col2];
+						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fi_chunk_size; ++row2)
+							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fi_chunk_size; ++col2)
+								matrix_[(this->start_y + row * ::dtl::shape::fi_chunk_size + row2) * max_x_ + start_x + col * ::dtl::shape::fi_chunk_size + col2] = chunk_matrix[row2][col2];
 					}
-					for (dtl::type::size col{}; col <= chunk_x; ++col)
+					for (::dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
 				}
 				return true;
@@ -365,18 +365,18 @@ namespace dtl {
 				:min_value(min_value_), altitude(altitude_) {}
 			constexpr explicit FractalIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit FractalIsland(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit FractalIsland(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FractalIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
+			constexpr explicit FractalIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_) {}
-			constexpr explicit FractalIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
+			constexpr explicit FractalIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit FractalIsland(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
+			constexpr explicit FractalIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}

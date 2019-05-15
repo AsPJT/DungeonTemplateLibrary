@@ -34,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -63,23 +63,23 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline dtl::type::size outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return static_cast<dtl::type::size>(matrix_[point_y_][point_x_]);
+			constexpr inline ::dtl::type::size outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return static_cast<::dtl::type::size>(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline dtl::type::size outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				return static_cast<dtl::type::size>(matrix_[point_y_ * max_x_ + point_x_]);
+			constexpr inline ::dtl::type::size outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				return static_cast<::dtl::type::size>(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline dtl::type::size outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				return static_cast<dtl::type::size>(matrix_[point_y_][point_x_][layer_]);
+			constexpr inline ::dtl::type::size outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				return static_cast<::dtl::type::size>(matrix_[point_y_][point_x_][layer_]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr inline dtl::type::size outputList(const Matrix_& matrix_) const noexcept {
-				return static_cast<dtl::type::size>(matrix_);
+				constexpr inline ::dtl::type::size outputList(const Matrix_& matrix_) const noexcept {
+				return static_cast<::dtl::type::size>(matrix_);
 			}
 
 
@@ -175,7 +175,7 @@ namespace dtl {
 			//List
 			template<typename Matrix_>
 			bool drawList(const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				dtl::type::size row_count{}, col_count{};
+				::dtl::type::size row_count{}, col_count{};
 				for (const auto& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;
@@ -379,7 +379,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				OutputString& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				OutputString& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -397,12 +397,12 @@ namespace dtl {
 			}
 
 			template<typename ...Args_>
-			constexpr explicit OutputString(const dtl::base::MatrixRange& matrix_range_) noexcept
+			constexpr explicit OutputString(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 
 			template<typename ...Args_>
-			explicit OutputString(const dtl::base::MatrixRange& matrix_range_, const OutputStringName_& first_, const Args_& ... args_) noexcept
+			explicit OutputString(const ::dtl::base::MatrixRange& matrix_range_, const OutputStringName_& first_, const Args_& ... args_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {
 				this->string_String(first_, args_...);

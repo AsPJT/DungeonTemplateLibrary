@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Rect-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::Rect-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -37,14 +37,14 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 			
 
 
 			///// メンバ変数 /////
 
-			dtl::shape::AbsoluteRect<Matrix_Int_> absoluteRect{};
+			::dtl::shape::AbsoluteRect<Matrix_Int_> absoluteRect{};
 
 		public:
 
@@ -216,7 +216,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				AbsoluteMemberRect& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				AbsoluteMemberRect& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->absoluteRect.setRange(matrix_range_);
 				return *this;
 			}
@@ -255,9 +255,9 @@ namespace dtl {
 			constexpr AbsoluteMemberRect() noexcept = default;
 			constexpr explicit AbsoluteMemberRect(const Matrix_Int_& draw_value_) noexcept
 				:absoluteRect(draw_value_) {}
-			constexpr explicit AbsoluteMemberRect(const dtl::base::MatrixRange& matrix_range_) noexcept
+			constexpr explicit AbsoluteMemberRect(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:absoluteRect(matrix_range_) {}
-			constexpr explicit AbsoluteMemberRect(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr explicit AbsoluteMemberRect(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:absoluteRect(matrix_range_, draw_value_) {}
 			constexpr explicit AbsoluteMemberRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:absoluteRect(end_x_, end_y_, width_, height_) {}

@@ -19,7 +19,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>;
 			using DrawBase_t = DrawJagged<Border<Matrix_Int_>, Matrix_Int_>;
 
@@ -94,7 +94,7 @@ namespace dtl {
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -118,7 +118,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -514,7 +514,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Border& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -528,10 +528,10 @@ namespace dtl {
 			constexpr Border() noexcept = default;
 			constexpr explicit Border(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit Border(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Border(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Border(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Border(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}

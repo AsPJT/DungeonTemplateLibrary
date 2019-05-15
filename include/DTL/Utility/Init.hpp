@@ -31,7 +31,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -377,7 +377,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Init& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Init& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -391,10 +391,10 @@ namespace dtl {
 			constexpr Init() noexcept = default;
 			constexpr explicit Init(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit Init(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Init(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Init(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Init(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}

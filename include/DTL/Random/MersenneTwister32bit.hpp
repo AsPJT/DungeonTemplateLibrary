@@ -52,18 +52,18 @@ namespace dtl {
 			}
 
 		};
-		static thread_local dtl::random::MersenneTwister_64bit mt64bit;
+		static thread_local ::dtl::random::MersenneTwister_64bit mt64bit;
 
-		constexpr dtl::type::size mt64_bit_counter_num_1{ 64 };
+		constexpr ::dtl::type::size mt64_bit_counter_num_1{ 64 };
 		class MT64bit_1 {
 		private:
-			dtl::type::size counter{ mt64_bit_counter_num_1 };
+			::dtl::type::size counter{ mt64_bit_counter_num_1 };
 			std::uint_fast64_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool get() noexcept {
 				if (this->counter >= mt64_bit_counter_num_1) {
-					this->random_num = dtl::random::mt64bit.get();
+					this->random_num = ::dtl::random::mt64bit.get();
 					this->counter = 0;
 				}
 				else ++(this->counter);
@@ -73,9 +73,9 @@ namespace dtl {
 				return tmp;
 			}
 		};
-		static thread_local dtl::random::MT64bit_1 mt64bit_1;
+		static thread_local ::dtl::random::MT64bit_1 mt64bit_1;
 
-		constexpr dtl::type::size mt32_bit_counter_num_1{ 32 };
+		constexpr ::dtl::type::size mt32_bit_counter_num_1{ 32 };
 
 		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister_32bit {
@@ -85,7 +85,7 @@ namespace dtl {
 			//非決定論的な乱数
 			std::random_device rd;
 
-			dtl::type::size counter_bit1{ mt32_bit_counter_num_1 };
+			::dtl::type::size counter_bit1{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num_bit1{};
 
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -148,18 +148,18 @@ namespace dtl {
 			}
 
 		};
-		static thread_local dtl::random::MersenneTwister_32bit mt32bit;
+		static thread_local ::dtl::random::MersenneTwister_32bit mt32bit;
 
 		
 		class MT32bit_1 {
 		private:
-			dtl::type::size counter{ mt32_bit_counter_num_1 };
+			::dtl::type::size counter{ mt32_bit_counter_num_1 };
 			std::uint_fast32_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
 				bool get() noexcept {
 				if (counter >= mt32_bit_counter_num_1) {
-					random_num = dtl::random::mt32bit.get();
+					random_num = ::dtl::random::mt32bit.get();
 					counter = 0;
 				}
 				else ++counter;
@@ -169,21 +169,21 @@ namespace dtl {
 				return tmp;
 			}
 		};
-		static thread_local dtl::random::MT32bit_1 mt32bit_1;
+		static thread_local ::dtl::random::MT32bit_1 mt32bit_1;
 
 
-		constexpr dtl::type::size counter_num_2{ 32 };
-		constexpr dtl::type::size counter_bit_num_2{ counter_num_2 * 2 };
+		constexpr ::dtl::type::size counter_num_2{ 32 };
+		constexpr ::dtl::type::size counter_bit_num_2{ counter_num_2 * 2 };
 		class MT64bit_4 {
 		private:
-			dtl::type::size counter{ counter_num_2 };
+			::dtl::type::size counter{ counter_num_2 };
 			std::uint_fast64_t random_num{};
 		public:
 			template<typename Random_Int_ = std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
 				if (this->counter >= counter_num_2) {
-					this->random_num = dtl::random::mt64bit.get();
+					this->random_num = ::dtl::random::mt64bit.get();
 					this->counter = 0;
 				}
 				else ++(this->counter);
@@ -192,7 +192,7 @@ namespace dtl {
 				return static_cast<Random_Int_>(tmp);
 			}
 		};
-		static thread_local dtl::random::MT64bit_4 mt64bit_4;
+		static thread_local ::dtl::random::MT64bit_4 mt64bit_4;
 
 		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister32bit {
@@ -246,7 +246,7 @@ namespace dtl {
 			}
 
 		};
-		static thread_local dtl::random::MersenneTwister32bit mersenne_twister_32bit;
+		static thread_local ::dtl::random::MersenneTwister32bit mersenne_twister_32bit;
 
 	} //namespace
 }

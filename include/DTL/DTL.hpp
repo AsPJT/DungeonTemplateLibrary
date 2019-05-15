@@ -26,47 +26,47 @@
 #endif
 
 
-/* 基本クラスライブラリ (dtl::base) */
+/* 基本クラスライブラリ (::dtl::base) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_BASE_HPP
 #include <DTL/Base.hpp>
 
-/* 文字列クラスライブラリ (dtl::board) */
+/* 文字列クラスライブラリ (::dtl::board) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_BOARD_HPP
 #include <DTL/Board.hpp>
 
-/* 視点ライブラリ (dtl::camera) */
+/* 視点ライブラリ (::dtl::camera) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CAMERA_HPP
 #include <DTL/Camera.hpp>
 
-/* 時間ライブラリ (dtl::chrono) */
+/* 時間ライブラリ (::dtl::chrono) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CHRONO_HPP
 #include <DTL/Chrono.hpp>
 
-/* コンソールライブラリ (dtl::console) */
+/* コンソールライブラリ (::dtl::console) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_HPP
 #include <DTL/Console.hpp>
 
-/* 実体ライブラリ (dtl::entity) */
+/* 実体ライブラリ (::dtl::entity) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ENTITY_HPP
 #include <DTL/Entity.hpp>
 
-/* 乱数ライブラリ (dtl::random) */
+/* 乱数ライブラリ (::dtl::random) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_HPP
 #include <DTL/Random.hpp>
 
-/* 加工ライブラリ (dtl::retouch) */
+/* 加工ライブラリ (::dtl::retouch) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
 #include <DTL/Retouch.hpp>
 
-/* 形状生成ライブラリ (dtl::shape) */
+/* 形状生成ライブラリ (::dtl::shape) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_HPP
 #include <DTL/Shape.hpp>
 
-/* ストレージライブラリ (dtl::storage) */
+/* ストレージライブラリ (::dtl::storage) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_STORAGE_HPP
 #include <DTL/Storage.hpp>
 
-/* 多用途ライブラリ (dtl::utility) */
+/* 多用途ライブラリ (::dtl::utility) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_HPP
 #include <DTL/Utility.hpp>
 

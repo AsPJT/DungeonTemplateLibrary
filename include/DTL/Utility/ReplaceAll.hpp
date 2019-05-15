@@ -34,7 +34,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -432,7 +432,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				ReplaceAll& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				ReplaceAll& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -452,15 +452,15 @@ namespace dtl {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
 				std::sort(before_value.begin(), before_value.end());
 			}
-			constexpr explicit ReplaceAll(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit ReplaceAll(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit ReplaceAll(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
+			constexpr explicit ReplaceAll(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {}
 			template<typename ...Args_>
-			explicit ReplaceAll(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
+			explicit ReplaceAll(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {

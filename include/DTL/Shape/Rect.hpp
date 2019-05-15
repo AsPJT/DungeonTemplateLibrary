@@ -19,7 +19,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = RectBaseWithValue<Rect<Matrix_Int_>, Matrix_Int_>;
 			using DrawBase_t = DrawJagged<Rect<Matrix_Int_>, Matrix_Int_>;
 
@@ -74,7 +74,7 @@ namespace dtl {
 				bool drawListImpl(Matrix_& matrix_, Args_&& ... args_) const noexcept {
 				const Index_Size end_x_ = this->start_x + this->width + 1;
 				const Index_Size end_y_ = this->start_y + this->height + 1;
-				dtl::type::size row_count{}, col_count{};
+				::dtl::type::size row_count{}, col_count{};
 				for (auto&& row : matrix_) {
 					++row_count;
 					if (row_count <= this->start_y) continue;
@@ -131,7 +131,7 @@ namespace dtl {
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Rect-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::Rect-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -155,7 +155,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -501,7 +501,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Rect& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Rect& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -515,10 +515,10 @@ namespace dtl {
 			constexpr Rect() noexcept = default;
 			constexpr explicit Rect(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit Rect(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Rect(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Rect(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Rect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}

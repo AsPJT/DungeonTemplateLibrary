@@ -35,7 +35,7 @@ namespace dtl {
 					Matrix_Int_ w{}, h{};
 				};
 				//タイルID
-				enum :dtl::type::size {
+				enum :::dtl::type::size {
 					outside_wall_id,
 					inside_wall_id,
 					room_id,
@@ -43,7 +43,7 @@ namespace dtl {
 					way_id,
 				};
 				//方角
-				enum :dtl::type::size {
+				enum :::dtl::type::size {
 					direction_north,
 					direction_south,
 					direction_west,
@@ -58,23 +58,23 @@ namespace dtl {
 					constexpr RogueLike() noexcept = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						explicit RogueLike(Matrix_& matrix_, const dtl::type::size way_max_ = 20) noexcept {
+						explicit RogueLike(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
 					//マップ生成
 					template<typename Matrix_>
-					void create(Matrix_& matrix_, const dtl::type::size way_max_ = 20) const noexcept {
+					void create(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) const noexcept {
 
-						using dtl::random::mersenne_twister_32bit;
+						using ::dtl::random::mersenne_twister_32bit;
 
 						//部屋の位置情報
 						std::vector<RogueLikeOutputNumber<std::int_fast32_t>> room_rect;
 						//部屋または通路の生成可能な面の位置情報
 						std::vector<RogueLikeOutputNumber<std::int_fast32_t>> branch_point;
 						//最初の部屋を生成
-						if (!makeRoom(matrix_, room_rect, branch_point, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (dtl::type::size)mersenne_twister_32bit(4))) return;
+						if (!makeRoom(matrix_, room_rect, branch_point, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (::dtl::type::size)mersenne_twister_32bit(4))) return;
 						//機能配置
-						for (dtl::type::size i{ 1 }; i < way_max_; ++i)
+						for (::dtl::type::size i{ 1 }; i < way_max_; ++i)
 							if (!createNext(matrix_, room_rect, branch_point)) break;
 
 					}
@@ -84,31 +84,31 @@ namespace dtl {
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
 						Matrix_Int_ getTileType(const Matrix_ & matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
-						if (static_cast<dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<dtl::type::size>(0) : matrix_[0].size()) || static_cast<dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
+						if (static_cast<::dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<::dtl::type::size>(0) : matrix_[0].size()) || static_cast<::dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
 						return matrix_[y_][x_];
 					}
 					//タイルを置く
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						void setTileType(Matrix_ & matrix_, const dtl::type::size x_, const dtl::type::size y_, const Matrix_Int_ tile_) const noexcept {
+						void setTileType(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ tile_) const noexcept {
 						matrix_[y_][x_] = tile_;
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
 						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point) const noexcept {
 
-						using dtl::random::mersenne_twister_32bit;
+						using ::dtl::random::mersenne_twister_32bit;
 
-						for (dtl::type::size i{}, r{}; i < (dtl::type::size)0xffff; ++i) {
+						for (::dtl::type::size i{}, r{}; i < (::dtl::type::size)0xffff; ++i) {
 							if (branch_point.empty()) break;
 
 							//部屋か通路の乱数面を選択
-							r = (dtl::type::size)mersenne_twister_32bit((std::int_fast32_t)branch_point.size());
+							r = (::dtl::type::size)mersenne_twister_32bit((std::int_fast32_t)branch_point.size());
 							const auto& x{ mersenne_twister_32bit(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
 							const auto& y{ mersenne_twister_32bit(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
 							//方角カウンタ
-							for (dtl::type::size j{}; j < direction_count; ++j) {
+							for (::dtl::type::size j{}; j < direction_count; ++j) {
 								if (!createNext(matrix_, room_rect_, branch_point, x, y, j)) continue;
 								branch_point.erase(branch_point.begin() + r);
 								return true;
@@ -118,9 +118,9 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x, const std::int_fast32_t y, const dtl::type::size dir_) const noexcept {
+						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x, const std::int_fast32_t y, const ::dtl::type::size dir_) const noexcept {
 
-						using dtl::random::mersenne_twister_32bit;
+						using ::dtl::random::mersenne_twister_32bit;
 
 						std::int_fast32_t dx{};
 						std::int_fast32_t dy{};
@@ -152,9 +152,9 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool makeRoom(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
+						bool makeRoom(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
 
-						using dtl::random::mersenne_twister_32bit;
+						using ::dtl::random::mersenne_twister_32bit;
 
 						constexpr std::int_fast32_t minRoomSize{ 3 };
 						constexpr std::int_fast32_t maxRoomSize{ 6 };
@@ -198,9 +198,9 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool makeWay(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const dtl::type::size dir_) const noexcept {
+						bool makeWay(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
 
-						using dtl::random::mersenne_twister_32bit;
+						using ::dtl::random::mersenne_twister_32bit;
 
 						constexpr std::int_fast32_t minWayLength{ 3 };
 						constexpr std::int_fast32_t maxWayLength{ 15 };
@@ -288,19 +288,19 @@ namespace dtl {
 					constexpr RogueLikeCave() noexcept = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						explicit RogueLikeCave(Matrix_& matrix_, const dtl::type::size way_max_ = 20) noexcept {
+						explicit RogueLikeCave(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
 					//ワールドマップ生成
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						void create(Matrix_& matrix_, const dtl::type::size way_max_ = 20) const noexcept {
-						dtl::generator::dungeon::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
-						//dtl::utility::stl::binarizationOver(matrix_, 1);
+						void create(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) const noexcept {
+						::dtl::generator::dungeon::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
+						//::dtl::utility::stl::binarizationOver(matrix_, 1);
 
-						dtl::utility::Binarization<Matrix_Int_>(1, 0).drawOperator(matrix_, [](const Matrix_Int_ & value_) {return value_ >= 1; });
+						::dtl::utility::Binarization<Matrix_Int_>(1, 0).drawOperator(matrix_, [](const Matrix_Int_ & value_) {return value_ >= 1; });
 
-						dtl::utility::stl::noiseShoreBothBool(matrix_, 0.1);
+						::dtl::utility::stl::noiseShoreBothBool(matrix_, 0.1);
 					}
 				};
 

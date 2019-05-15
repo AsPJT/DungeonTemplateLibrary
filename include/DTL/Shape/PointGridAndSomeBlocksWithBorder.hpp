@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PointGridAndSomeBlocksWithBorder-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::PointGridAndSomeBlocksWithBorder-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -39,16 +39,16 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 			
 
 
 			///// メンバ変数 /////
 
-			dtl::shape::RandomRect<Matrix_Int_> randomRect{};
-			dtl::shape::BorderOdd<Matrix_Int_> borderOdd{};
-			dtl::shape::PointGrid<Matrix_Int_> pointGrid{};
+			::dtl::shape::RandomRect<Matrix_Int_> randomRect{};
+			::dtl::shape::BorderOdd<Matrix_Int_> borderOdd{};
+			::dtl::shape::PointGrid<Matrix_Int_> pointGrid{};
 
 		public:
 
@@ -256,7 +256,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				PointGridAndSomeBlocksWithBorder& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				PointGridAndSomeBlocksWithBorder& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->randomRect.setRange(matrix_range_);
 				this->borderOdd.setRange(matrix_range_);
 				this->pointGrid.setRange(matrix_range_);
@@ -305,15 +305,15 @@ namespace dtl {
 				:randomRect(draw_value3_, probability_), borderOdd(draw_value2_), pointGrid(draw_value_) {}
 
 
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const dtl::base::MatrixRange& matrix_range_) noexcept
+			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:randomRect(matrix_range_), borderOdd(matrix_range_), pointGrid(matrix_range_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:randomRect(matrix_range_, draw_value_), borderOdd(matrix_range_, draw_value_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
+			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
 				:randomRect(matrix_range_, draw_value3_), borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
+			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
 				:randomRect(matrix_range_, draw_value3_, probability_), borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
 
 		};

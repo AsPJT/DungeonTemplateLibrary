@@ -32,7 +32,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -46,7 +46,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				switch (dtl::random::mt64bit_4.get()) {
+				switch (::dtl::random::mt64bit_4.get()) {
 				case 0:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ - 1]; break;
 				case 1:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1]; break;
 				case 2:matrix_[point_y_][point_x_] = matrix_[point_y_ - 1][point_x_]; break;
@@ -56,7 +56,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				switch (dtl::random::mt64bit_4.get()) {
+				switch (::dtl::random::mt64bit_4.get()) {
 				case 0:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ - 1]; break;
 				case 1:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1]; break;
 				case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ - 1) * max_x_ + point_x_]; break;
@@ -66,7 +66,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				switch (dtl::random::mt64bit_4.get()) {
+				switch (::dtl::random::mt64bit_4.get()) {
 				case 0:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ - 1][layer_]; break;
 				case 1:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_]; break;
 				case 2:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ - 1][point_x_][layer_]; break;
@@ -407,7 +407,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				CellularAutomation& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				CellularAutomation& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -419,7 +419,7 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr CellularAutomation() noexcept = default;
-			constexpr explicit CellularAutomation(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit CellularAutomation(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 			constexpr explicit CellularAutomation(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept

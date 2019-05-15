@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Reversi-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::Reversi-(形状クラス)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -36,7 +36,7 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 
 
 
@@ -112,16 +112,16 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_&& matrix_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ matrix_[set_y].size() / 2 };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ matrix_[set_y].size() / 2 };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
@@ -130,16 +130,16 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ matrix_[set_y].size() / 2 };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ matrix_[set_y].size() / 2 };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ ((matrix_[set_y].size() / 2 < end_x_ / 2) ? matrix_[set_y].size() / 2 : end_x_ / 2) };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
@@ -148,8 +148,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ end_x_ / 2 };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionSTL(matrix_, set_x, set_y, args_...);
 				return true;
 			}
@@ -158,8 +158,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ end_x_ / 2 };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionLayer(matrix_, layer_, set_x, set_y, args_...);
 				return true;
 			}
@@ -168,8 +168,8 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				const dtl::type::size set_y{ end_y_ / 2 };
-				const dtl::type::size set_x{ end_x_ / 2 };
+				const ::dtl::type::size set_y{ end_y_ / 2 };
+				const ::dtl::type::size set_x{ end_x_ / 2 };
 				this->substitutionArray(matrix_, set_x, set_y, max_x_, args_...);
 				return true;
 			}
@@ -404,7 +404,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Reversi& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Reversi& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -421,14 +421,14 @@ namespace dtl {
 			constexpr explicit Reversi(const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
 				:black_value(black_value_), white_value(white_value_) {}
 
-			constexpr explicit Reversi(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Reversi(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Reversi(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & black_value_) noexcept
+			constexpr explicit Reversi(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & black_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_) {}
-			constexpr explicit Reversi(const dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr explicit Reversi(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_), white_value(white_value_) {}

@@ -34,14 +34,14 @@ namespace dtl {
 	inline namespace utility {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<dtl::type::ssize, dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class VoronoiDiagram {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -51,66 +51,66 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			dtl::type::size draw_value{};
+			::dtl::type::size draw_value{};
 
-			using Point_Pair_ = std::pair<dtl::type::ssize, dtl::type::ssize>;
+			using Point_Pair_ = std::pair<::dtl::type::ssize, ::dtl::type::ssize>;
 
 			//原点の場所と陸地を決定する
 			template<typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createPoint(UniquePair_& point_, UniqueInt_& color_, const dtl::type::ssize w_, const dtl::type::ssize h_, Function_&& function_) const noexcept {
-				for (dtl::type::size i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
-					point_[array_num] = Point_Pair_(dtl::random::mt32bit.get<dtl::type::ssize>(w_), dtl::random::mt32bit.get<dtl::type::ssize>(h_));
-					function_(point_[array_num], color_[array_num], static_cast<dtl::type::ssize>(start_x), static_cast<dtl::type::ssize>(start_x), w_, h_);
+				void createPoint(UniquePair_& point_, UniqueInt_& color_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_, Function_&& function_) const noexcept {
+				for (::dtl::type::size i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
+					point_[array_num] = Point_Pair_(::dtl::random::mt32bit.get<::dtl::type::ssize>(w_), ::dtl::random::mt32bit.get<::dtl::type::ssize>(h_));
+					function_(point_[array_num], color_[array_num], static_cast<::dtl::type::ssize>(start_x), static_cast<::dtl::type::ssize>(start_x), w_, h_);
 				}
 			}
 
 			//2点間の距離を返す
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				dtl::type::ssize distanceSqrd(const Point_Pair_& point_, dtl::type::ssize x_, dtl::type::ssize y_) const noexcept {
+				::dtl::type::ssize distanceSqrd(const Point_Pair_& point_, ::dtl::type::ssize x_, ::dtl::type::ssize y_) const noexcept {
 				x_ -= point_.first;
 				y_ -= point_.second;
 				return x_ * x_ + y_ * y_;
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool createSitesDistance(const UniquePair_& point_, dtl::type::size& ind, dtl::type::ssize& dist, dtl::type::ssize& ds, const dtl::type::ssize ww, const dtl::type::ssize hh) const noexcept {
-				ind = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
-				dist = (DTL_TYPE_NUMERIC_LIMITS<dtl::type::ssize>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
-				for (dtl::type::size it{}; it < this->draw_value; ++it) {
+				bool createSitesDistance(const UniquePair_& point_, ::dtl::type::size& ind, ::dtl::type::ssize& dist, ::dtl::type::ssize& ds, const ::dtl::type::ssize ww, const ::dtl::type::ssize hh) const noexcept {
+				ind = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dist = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::ssize>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				for (::dtl::type::size it{}; it < this->draw_value; ++it) {
 					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
 				}
-				return (ind != (DTL_TYPE_NUMERIC_LIMITS<dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)());
+				return (ind != (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)());
 			}
 
 			//図形を描画
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSites(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				dtl::type::ssize ds{}, dist{};
-				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
-					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if(createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
+				void createSites(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const ::dtl::type::size w_, const ::dtl::type::size h_) const noexcept {
+				::dtl::type::ssize ds{}, dist{};
+				for (::dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (::dtl::type::size ww{}; ww < w_; ++ww)
+						if(createSitesDistance(point_, ind, dist, ds, static_cast<::dtl::type::ssize>(ww), static_cast<::dtl::type::ssize>(hh)))
 							matrix_[hh][ww] = color_[ind];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSitesLayer(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size layer_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				dtl::type::ssize ds{}, dist{};
-				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
-					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if (createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
+				void createSitesLayer(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size layer_, const ::dtl::type::size w_, const ::dtl::type::size h_) const noexcept {
+				::dtl::type::ssize ds{}, dist{};
+				for (::dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (::dtl::type::size ww{}; ww < w_; ++ww)
+						if (createSitesDistance(point_, ind, dist, ds, static_cast<::dtl::type::ssize>(ww), static_cast<::dtl::type::ssize>(hh)))
 							matrix_[hh][ww][layer_] = color_[ind];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void createSitesArray(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size max_x_, const dtl::type::size w_, const dtl::type::size h_) const noexcept {
-				dtl::type::ssize ds{}, dist{};
-				for (dtl::type::size hh{}, ind{}; hh < h_; ++hh)
-					for (dtl::type::size ww{}; ww < w_; ++ww)
-						if (createSitesDistance(point_, ind, dist, ds, static_cast<dtl::type::ssize>(ww), static_cast<dtl::type::ssize>(hh)))
+				void createSitesArray(const UniquePair_& point_, const UniqueInt_& color_, Matrix_& matrix_, const Index_Size max_x_, const ::dtl::type::size w_, const ::dtl::type::size h_) const noexcept {
+				::dtl::type::ssize ds{}, dist{};
+				for (::dtl::type::size hh{}, ind{}; hh < h_; ++hh)
+					for (::dtl::type::size ww{}; ww < w_; ++ww)
+						if (createSitesDistance(point_, ind, dist, ds, static_cast<::dtl::type::ssize>(ww), static_cast<::dtl::type::ssize>(hh)))
 							matrix_[hh * max_x_ + ww] = color_[ind];
 			}
 
@@ -125,7 +125,7 @@ namespace dtl {
 				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
+				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
 				createSites(point, color, matrix_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
@@ -136,7 +136,7 @@ namespace dtl {
 				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
+				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
 				createSitesArray(point, color, matrix_, max_x_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
@@ -147,7 +147,7 @@ namespace dtl {
 				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
-				createPoint(point, color, static_cast<dtl::type::ssize>(end_x_), static_cast<dtl::type::ssize>(end_y_), function_);
+				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
 				createSitesLayer(point, color, matrix_, layer_, end_x_, end_y_);
 			}
 
@@ -200,7 +200,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr dtl::type::size getValue() const noexcept {
+			constexpr ::dtl::type::size getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -342,7 +342,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				VoronoiDiagram& setValue(const dtl::type::size draw_value_) noexcept {
+				VoronoiDiagram& setValue(const ::dtl::type::size draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
@@ -375,7 +375,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				VoronoiDiagram& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				VoronoiDiagram& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -387,19 +387,19 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr VoronoiDiagram() noexcept = default;
-			constexpr explicit VoronoiDiagram(const dtl::type::size draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const ::dtl::type::size draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit VoronoiDiagram(const dtl::base::MatrixRange& matrix_range_) noexcept
+			constexpr explicit VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit VoronoiDiagram(const dtl::base::MatrixRange& matrix_range_, const dtl::type::size draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
 			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const dtl::type::size draw_value_) noexcept
+			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::type::size draw_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}

@@ -26,14 +26,14 @@ namespace dtl {
 	inline namespace console {
 
 		//四角形の生成
-		template<typename Matrix_Int_, typename OutputView_ = dtl::type::size>
+		template<typename Matrix_Int_, typename OutputView_ = ::dtl::type::size>
 		class OutputView {
 		private:
 
 
 			///// エイリアス /////
 
-			using Index_Size = dtl::type::size;
+			using Index_Size = ::dtl::type::size;
 			
 
 
@@ -309,7 +309,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				OutputView& setRange(const dtl::base::MatrixRange& matrix_range_) noexcept {
+				OutputView& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
