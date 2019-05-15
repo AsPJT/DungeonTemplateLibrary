@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <string>
+#include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
 #include <Macros/nodiscard.hpp>
 #include <Type/Forward.hpp>

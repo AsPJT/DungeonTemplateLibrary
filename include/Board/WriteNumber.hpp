@@ -13,9 +13,8 @@
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
-#include <sstream>
-#include <iostream>
 
+#include <sstream>
 #include <string>
 #include <Base/Struct.hpp>
 #include <Macros/constexpr.hpp>
