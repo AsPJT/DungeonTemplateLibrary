@@ -44,8 +44,8 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			OutputString_ draw_string{};
-			OutputString_ before_draw_string{};
+			OutputString_ after_string{};
+			OutputString_ before_string{};
 
 
 			///// 代入処理 /////
@@ -53,22 +53,22 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				std::cout << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
+				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				std::cout << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
+				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				std::cout << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
+				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->after_string;
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputList(const Matrix_Value_& matrix_) const noexcept {
-				std::cout << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->draw_string;
+				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->after_string;
 			}
 
 
@@ -169,7 +169,7 @@ namespace dtl {
 
 		public:
 
-
+			
 			///// 情報取得 /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -187,6 +187,14 @@ namespace dtl {
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr OutputString_ getAfterString() const noexcept {
+				return this->after_string;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+			constexpr OutputString_ getBeforeString() const noexcept {
+				return this->before_string;
 			}
 
 
@@ -295,10 +303,29 @@ namespace dtl {
 				this->clearHeight();
 				return *this;
 			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputNumber& clearAfterString() noexcept {
+				OutputString_ output_string{};
+				this->after_string = output_string;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputNumber& clearBeforeString() noexcept {
+				OutputString_ output_string{};
+				this->before_string = output_string;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputNumber& clearString() noexcept {
+				this->clearAfterString();
+				this->clearBeforeString();
+				return *this;
+			}
 			//全ての値を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputNumber& clear() noexcept {
 				this->clearRange();
+				this->clearString();
 				return *this;
 			}
 
@@ -361,25 +388,35 @@ namespace dtl {
 				this->height = matrix_range_.h;
 				return *this;
 			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputNumber& setAfterString(const OutputString_& output_string_) noexcept {
+				this->after_string = output_string_;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputNumber& setBeforeString(const OutputString_& output_string_) noexcept {
+				this->before_string = output_string_;
+				return *this;
+			}
 
 
 			///// コンストラクタ /////
 			
 			constexpr OutputNumber() noexcept = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
-				:draw_string(draw_string_) {}
+				:after_string(draw_string_) {}
 			constexpr explicit OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
-				:draw_string(draw_string_), before_draw_string(before_draw_string_) {}
+				:after_string(draw_string_), before_string(before_draw_string_) {}
 
 			constexpr OutputNumber(const ::dtl::base::MatrixRange& matrix_range_)
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 			constexpr explicit OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h), draw_string(draw_string_) {}
+				width(matrix_range_.w), height(matrix_range_.h), after_string(draw_string_) {}
 			constexpr explicit OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& before_draw_string_, const OutputString_& draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h), draw_string(draw_string_), before_draw_string(before_draw_string_) {}
+				width(matrix_range_.w), height(matrix_range_.h), after_string(draw_string_), before_string(before_draw_string_) {}
 
 			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
@@ -387,11 +424,11 @@ namespace dtl {
 			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
-				draw_string(draw_string_) {}
+				after_string(draw_string_) {}
 			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
-				draw_string(draw_string_), before_draw_string(before_draw_string_) {}
+				after_string(draw_string_), before_string(before_draw_string_) {}
 		};
 	}
 }

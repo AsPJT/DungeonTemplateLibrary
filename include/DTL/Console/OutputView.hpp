@@ -149,6 +149,14 @@ namespace dtl {
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr OutputView_ getViewWidth() const noexcept {
+				return this->view_width;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr OutputView_ getViewHeight() const noexcept {
+				return this->view_height;
+			}
 
 
 			///// 生成呼び出し /////
@@ -250,10 +258,27 @@ namespace dtl {
 				this->clearHeight();
 				return *this;
 			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputView& clearViewHeight() noexcept {
+				this->view_height = 0;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputView& clearViewWidth() noexcept {
+				this->view_width = 0;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputView& clearView() noexcept {
+				this->clearViewHeight();
+				this->clearViewWidth();
+				return *this;
+			}
 			//全ての値を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputView& clear() noexcept {
 				this->clearRange();
+				this->clearView();
 				return *this;
 			}
 
@@ -314,6 +339,16 @@ namespace dtl {
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
 				this->height = matrix_range_.h;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputView& setViewHeight(const OutputView_ view_value_) noexcept {
+				this->view_height = view_value_;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputView& setViewWidth(const OutputView_ view_value_) noexcept {
+				this->view_width = view_value_;
 				return *this;
 			}
 

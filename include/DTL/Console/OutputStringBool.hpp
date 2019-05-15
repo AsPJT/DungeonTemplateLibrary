@@ -208,6 +208,14 @@ namespace dtl {
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr OutputString_ getTrueString() const noexcept {
+				return this->true_string;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr OutputString_ getFalseString() const noexcept {
+				return this->false_string;
+			}
 
 
 			///// 生成呼び出し /////
@@ -351,10 +359,29 @@ namespace dtl {
 				this->clearHeight();
 				return *this;
 			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputStringBool& clearTrueString() noexcept {
+				OutputString_ output_string{};
+				this->true_string = output_string;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputStringBool& clearFalseString() noexcept {
+				OutputString_ output_string{};
+				this->false_string = output_string;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputStringBool& clearString() noexcept {
+				this->clearTrueString();
+				this->clearFalseString();
+				return *this;
+			}
 			//全ての値を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputStringBool& clear() noexcept {
 				this->clearRange();
+				this->clearString();
 				return *this;
 			}
 
@@ -415,6 +442,16 @@ namespace dtl {
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
 				this->height = matrix_range_.h;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputStringBool& setTrueString(const OutputString_& output_string_) noexcept {
+				this->true_string = output_string_;
+				return *this;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				OutputStringBool& setFalseString(const OutputString_& output_string_) noexcept {
+				this->false_string = output_string_;
 				return *this;
 			}
 
