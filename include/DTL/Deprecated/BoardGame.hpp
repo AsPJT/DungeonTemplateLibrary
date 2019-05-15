@@ -388,10 +388,10 @@ namespace dtl {
 #include <cstdint>
 #include <array>
 #include <vector>
-#include <algorithm>
 #include <DTL/Type/Forward.hpp>
 #include <memory>
 #include <new>
+#include <DTL/Type/Min.hpp>
 
 namespace dtl {
 	inline namespace generator {
@@ -508,8 +508,8 @@ namespace dtl {
 								if (r >= 0 && r < y_ && c >= 0 && c < x_) p->next.emplace_back(nodes_[r * x_ + c]);
 							}
 						//Schwenkの定理
-						if (is_closed_ && (y_ * x_ % 2 == 1 || ((std::min)(y_, x_) == 2 || (std::min)(y_, x_) == 4)
-							|| ((std::min)(y_, x_) == 3 && ((std::max)(y_, x_) == 4 || (std::max)(y_, x_) == 6 || (std::max)(y_, x_) == 8)))) return 0;
+						if (is_closed_ && (y_ * x_ % 2 == 1 || (DTL_TYPE_MIN(y_, x_) == 2 || DTL_TYPE_MIN(y_, x_) == 4)
+							|| (DTL_TYPE_MIN(y_, x_) == 3 && ((std::max)(y_, x_) == 4 || (std::max)(y_, x_) == 6 || (std::max)(y_, x_) == 8)))) return 0;
 						if (!is_closed_ && y_ * x_ % 2 == 1 && start_pos_ % 2 == 1) return 0;
 
 						//探索

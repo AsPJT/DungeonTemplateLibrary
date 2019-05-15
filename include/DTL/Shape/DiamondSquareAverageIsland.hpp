@@ -19,13 +19,13 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <algorithm>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/Min.hpp>
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
@@ -142,7 +142,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > (std::min)(matrix_[0].size(), end_x_)) ? (std::min)(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -158,7 +158,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > (std::min)(matrix_[0].size(), end_x_)) ? (std::min)(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 

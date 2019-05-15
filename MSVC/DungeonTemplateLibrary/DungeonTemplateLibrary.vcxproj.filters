@@ -347,8 +347,8 @@
     <ClInclude Include="..\..\include\DTL\DTL.hpp">
       <Filter>ヘッダー ファイル\DTL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\DTL\Shape\Ellipse.hpp">
-      <Filter>ヘッダー ファイル\Shape</Filter>
+    <ClInclude Include="..\..\include\DTL\Type\Min.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

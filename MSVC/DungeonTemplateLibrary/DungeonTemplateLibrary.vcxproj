@@ -63,7 +63,6 @@
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverage.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageCornerIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageIsland.hpp" />
-    <ClInclude Include="..\..\include\DTL\Shape\Ellipse.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\FractalIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\FractalLoopIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\HalfMixRect.hpp" />
@@ -96,6 +95,7 @@
     <ClInclude Include="..\..\include\DTL\ThirdParty\STB\wrapper_stb_image_write.hpp" />
     <ClInclude Include="..\..\include\DTL\Type\Forward.hpp" />
     <ClInclude Include="..\..\include\DTL\Type\IntX.hpp" />
+    <ClInclude Include="..\..\include\DTL\Type\Min.hpp" />
     <ClInclude Include="..\..\include\DTL\Type\NumericLimits.hpp" />
     <ClInclude Include="..\..\include\DTL\Type\SizeT.hpp" />
     <ClInclude Include="..\..\include\DTL\Type\SSizeT.hpp" />
