@@ -60,285 +60,302 @@
     <Filter Include="ヘッダー ファイル\Board">
       <UniqueIdentifier>{096d7971-9c79-40ba-bf6b-2edfac2a9cfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\DTL">
+      <UniqueIdentifier>{e1893362-8d7b-4092-a5b2-5e699da2e12a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Utility\Binarization.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\CellularAutomaton.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\Copy.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\Init.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\IsOutputCast.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\NoiseBool.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\NoiseShoreBool.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\ReplaceAll.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\ReplaceSome.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\VoronoiDiagram.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\DTL.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ThirdParty\STB\stb_image_write.h">
+    <ClInclude Include="..\..\include\DTL\Utility\Binarization.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\CellularAutomaton.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\Copy.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\DrawJagged.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\Init.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\IsOutputCast.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\MatrixWrapper.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\NoiseBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\NoiseShoreBool.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\RectBaseWithValue.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\ReplaceAll.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\ReplaceSome.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility\VoronoiDiagram.hpp">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\Forward.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\IntX.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\NumericLimits.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\SizeT.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\SSizeT.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Type\UniquePtr.hpp">
+      <Filter>ヘッダー ファイル\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\ThirdParty\STB\stb_image_write.h">
       <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FilePNG.hpp">
+    <ClInclude Include="..\..\include\DTL\ThirdParty\STB\wrapper_stb_image_write.hpp">
+      <Filter>ヘッダー ファイル\ThirdParty\STB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FileBMP.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileTerrainOBJ.hpp">
+    <ClInclude Include="..\..\include\DTL\Storage\FileHDR.hpp">
       <Filter>ヘッダー ファイル\Storage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\AbsoluteMemberRect.hpp">
+    <ClInclude Include="..\..\include\DTL\Storage\FileJPG.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FileMD.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FilePBM.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FilePNG.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FileTerrainOBJ.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FileTGA.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage\FileTXT_0_9.hpp">
+      <Filter>ヘッダー ファイル\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Shape\AbsoluteMemberRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\AbsoluteRect.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\AbsoluteRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\Border.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\Border.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\BorderOdd.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\BorderOdd.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\CellularAutomatonIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\CellularAutomatonIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\CellularAutomatonMixIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\CellularAutomatonMixIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\DiamondSquareAverage.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverage.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\DiamondSquareAverageCornerIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageCornerIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\DiamondSquareAverageIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\FractalIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\FractalIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\FractalLoopIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\FractalLoopIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\HalfMixRect.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\HalfMixRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\MazeDig.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\MazeDig.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\MixRect.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\MixRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\Point.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\Point.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\PointGrid.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\PointGrid.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\PointGridAndSomeBlocksWithBorder.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\PointGridAndSomeBlocksWithBorder.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\PointGridWithBorder.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\PointGridWithBorder.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\RandomRect.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\RandomRect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\RandomVoronoi.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\RandomVoronoi.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\Rect.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\Rect.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\SimpleRogueLike.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\Reversi.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\SimpleVoronoiIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\SimpleRogueLike.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\Template.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\SimpleVoronoiIsland.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Shape\WhiteNoise.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\Template.hpp">
       <Filter>ヘッダー ファイル\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Retouch\BuryPoint.hpp">
+    <ClInclude Include="..\..\include\DTL\Shape\WhiteNoise.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Retouch\BuryPoint.hpp">
       <Filter>ヘッダー ファイル\Retouch</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Retouch\RemovePoint.hpp">
+    <ClInclude Include="..\..\include\DTL\Retouch\RemovePoint.hpp">
       <Filter>ヘッダー ファイル\Retouch</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Random\MersenneTwister32bit.hpp">
+    <ClInclude Include="..\..\include\DTL\Random\MersenneTwister32bit.hpp">
       <Filter>ヘッダー ファイル\Random</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Macros\constexpr.hpp">
+    <ClInclude Include="..\..\include\DTL\Macros\constexpr.hpp">
       <Filter>ヘッダー ファイル\Macros</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Macros\nodiscard.hpp">
+    <ClInclude Include="..\..\include\DTL\Macros\nodiscard.hpp">
       <Filter>ヘッダー ファイル\Macros</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Entity\MobManager.hpp">
+    <ClInclude Include="..\..\include\DTL\Entity\MobManager.hpp">
       <Filter>ヘッダー ファイル\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\BoardGame.hpp">
+    <ClInclude Include="..\..\include\DTL\Base.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Board.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Camera.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Chrono.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Console.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Deprecated.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Entity.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\ImageWrite.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Random.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Retouch.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Shape.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Storage.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\ThirdParty.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Utility.hpp">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Deprecated\BoardGame.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonFile.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\DungeonFile.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonMatrix.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\DungeonMatrix.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonNoise.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\DungeonNoise.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\DungeonPaint.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\DungeonPaint.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\FractalIsland.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\FractalIsland.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\HorizontalScroll.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\HorizontalScroll.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Deprecated\RogueLike.hpp">
+    <ClInclude Include="..\..\include\DTL\Deprecated\RogueLike.hpp">
       <Filter>ヘッダー ファイル\Deprecated</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Console\OutputNumber.hpp">
+    <ClInclude Include="..\..\include\DTL\Console\OutputNumber.hpp">
       <Filter>ヘッダー ファイル\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Console\OutputString.hpp">
+    <ClInclude Include="..\..\include\DTL\Console\OutputString.hpp">
       <Filter>ヘッダー ファイル\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Console\OutputStringBool.hpp">
+    <ClInclude Include="..\..\include\DTL\Console\OutputStringBool.hpp">
       <Filter>ヘッダー ファイル\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Console\OutputView.hpp">
+    <ClInclude Include="..\..\include\DTL\Console\OutputView.hpp">
       <Filter>ヘッダー ファイル\Console</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Camera\MatrixView.hpp">
-      <Filter>ヘッダー ファイル\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Base\Struct.hpp">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Shape\Reversi.hpp">
-      <Filter>ヘッダー ファイル\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileBMP.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileHDR.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileJPG.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileTGA.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Base.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Camera.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Console.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Deprecated.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Entity.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\ImageWrite.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Random.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Retouch.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Shape.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Storage.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Utility.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Chrono\Time.hpp">
+    <ClInclude Include="..\..\include\DTL\Chrono\Time.hpp">
       <Filter>ヘッダー ファイル\Chrono</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Chrono.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    <ClInclude Include="..\..\include\DTL\Camera\MatrixView.hpp">
+      <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileMD.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FileTXT_0_9.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Storage\FilePBM.hpp">
-      <Filter>ヘッダー ファイル\Storage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\RectBaseWithValue.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\SizeT.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\UniquePtr.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\SSizeT.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\Forward.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\IntX.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Type\NumericLimits.hpp">
-      <Filter>ヘッダー ファイル\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\DrawJagged.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Utility\MatrixWrapper.hpp">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Board\WriteNumber.hpp">
+    <ClInclude Include="..\..\include\DTL\Board\WriteNumber.hpp">
       <Filter>ヘッダー ファイル\Board</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Dungeon\Board.hpp">
-      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    <ClInclude Include="..\..\include\DTL\Base\Struct.hpp">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\DTL\DTL.hpp">
+      <Filter>ヘッダー ファイル\DTL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\DTL\desktop.ini">
+      <Filter>ヘッダー ファイル\Dungeon</Filter>
+    </None>
   </ItemGroup>
 </Project>
