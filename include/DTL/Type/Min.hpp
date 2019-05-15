@@ -17,7 +17,7 @@
 #ifndef DTL_TYPE_MIN
 
 #if defined(SPROUT_ALGORITHM_MIN_HPP) //Sprout
-#define DTL_TYPE_MIN (sprout::min)
+#define DTL_TYPE_MIN (::sprout::min)
 #else
 #include <algorithm>
 #define DTL_TYPE_MIN (std::min)
