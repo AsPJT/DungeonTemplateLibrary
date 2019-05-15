@@ -347,6 +347,9 @@
     <ClInclude Include="..\..\include\DTL\DTL.hpp">
       <Filter>ヘッダー ファイル\DTL</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\DTL\Shape\Ellipse.hpp">
+      <Filter>ヘッダー ファイル\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="20190502.cpp">

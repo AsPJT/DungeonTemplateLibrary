@@ -63,6 +63,7 @@
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverage.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageCornerIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\DiamondSquareAverageIsland.hpp" />
+    <ClInclude Include="..\..\include\DTL\Shape\Ellipse.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\FractalIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\FractalLoopIsland.hpp" />
     <ClInclude Include="..\..\include\DTL\Shape\HalfMixRect.hpp" />

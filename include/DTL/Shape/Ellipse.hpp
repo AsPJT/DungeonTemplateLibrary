@@ -1,85 +1,3 @@
-ï»¿/*
-#include <DTL/Base/Struct.hpp>
-#include <DTL/Macros/constexpr.hpp>
-#include <DTL/Macros/nodiscard.hpp>
-#include <DTL/Type/Forward.hpp>
-#include <DTL/Type/SizeT.hpp>
-#include <DTL/Utility/DrawJagged.hpp>
-#include <DTL/Utility/RectBaseWithValue.hpp>
-
-namespace dtl {
-	inline namespace shape {
-
-		//ãƒãƒƒãƒ—ã®å¤–æ ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã‚‹
-		template<typename Matrix_Int_>
-		class Border : public RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>,
-		               public DrawJagged<Border<Matrix_Int_>, Matrix_Int_> {
-		private:
-
-
-			///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
-
-			using Index_Size = dtl::type::size;
-			using ShapeBase_t = RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>;
-			using DrawBase_t = DrawJagged<Border<Matrix_Int_>, Matrix_Int_>;
-
-			friend DrawBase_t;
-
-
-			///// åŸºæœ¬å‡¦ç† /////
-
-			//STL
-			template<typename Matrix_, typename ...Args_, typename = typename std::enable_if<Matrix_::is_jagged::value>::type>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
-				if (end_y_ <= this->start_y) return true;
-				const Index_Size last_x1 = this->calcEndX(matrix_.getX(this->start_y));
-				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
-					matrix_.set(col, this->start_y, this->draw_value, args_...);
-				const Index_Size last_x2 = this->calcEndX(matrix_.getX(end_y_ - 1));
-				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
-					matrix_.set(col, end_y_ - 1, this->draw_value, args_...);
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					const Index_Size last_x3 = this->calcEndX(matrix_.getX(row));
-					if (last_x3 <= this->start_x) continue;
-					matrix_.set(this->start_x, row, this->draw_value, args_...);
-					matrix_.set(last_x3 - 1, row, this->draw_value, args_...);
-				}
-				return true;
-			}
-
-			//Normal
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_x_ = this->calcEndX(matrix_.getX());
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
-				if (end_x_ <= this->start_x || end_y_ <= this->start_y) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					matrix_.set(col, this->start_y, this->draw_value, args_...);
-					matrix_.set(col, end_y_ - 1, this->draw_value, args_...);
-				}
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					matrix_.set(this->start_x, row, this->draw_value, args_...);
-					matrix_.set(end_x_ - 1, row, this->draw_value, args_...);
-				}
-				return true;
-			}
-
-		public:
-
-
-			///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
-
-			using ShapeBase_t::ShapeBase_t;
-		};
-	}
-}
-
-#endif //Included Dungeon Template Library
-*/
-
 /*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
@@ -89,12 +7,12 @@ namespace dtl {
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_BORDER_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_BORDER_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_ELLIPSE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_ELLIPSE_HPP
 
 /*#######################################################################################
-	æ—¥æœ¬èªãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	“ú–{ŒêƒŠƒtƒ@ƒŒƒ“ƒX (Reference-JP)
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Ellipse-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
 /* Character Code : UTF-8 (BOM) */
@@ -110,19 +28,19 @@ namespace dtl {
 namespace dtl {
 	inline namespace shape {
 
-		//ãƒãƒƒãƒ—ã®å¤–æ ã‚’æŒ‡å®šã—ãŸæ•°å€¤ã§åŸ‹ã‚ã‚‹
+		//ƒ}ƒbƒv‚ÌŠO˜g‚ğw’è‚µ‚½”’l‚Å–„‚ß‚é
 		template<typename Matrix_Int_>
-		class Border {
+		class Ellipse {
 		private:
 
 
-			///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
+			///// ƒGƒCƒŠƒAƒX /////
 
 			using Index_Size = dtl::type::size;
 
 
 
-			///// ãƒ¡ãƒ³ãƒå¤‰æ•° /////
+			///// ƒƒ“ƒo•Ï” /////
 
 			Index_Size start_x{};
 			Index_Size start_y{};
@@ -131,7 +49,7 @@ namespace dtl {
 			Matrix_Int_ draw_value{};
 
 
-			///// ä»£å…¥å‡¦ç† /////
+			///// ‘ã“üˆ— /////
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -166,7 +84,7 @@ namespace dtl {
 			}
 
 
-			///// åŸºæœ¬å‡¦ç† /////
+			///// Šî–{ˆ— /////
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
@@ -287,7 +205,7 @@ namespace dtl {
 		public:
 
 
-			///// æƒ…å ±å–å¾— /////
+			///// î•ñæ“¾ /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getPointX() const noexcept {
@@ -311,7 +229,7 @@ namespace dtl {
 			}
 
 
-			///// ç”Ÿæˆå‘¼ã³å‡ºã— /////
+			///// ¶¬ŒÄ‚Ño‚µ /////
 
 			//STL
 			template<typename Matrix_>
@@ -364,7 +282,7 @@ namespace dtl {
 			}
 
 
-			///// ç”Ÿæˆå‘¼ã³å‡ºã—ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ /////
+			///// ¶¬ŒÄ‚Ño‚µƒtƒ@ƒ“ƒNƒ^ /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
@@ -372,7 +290,7 @@ namespace dtl {
 			}
 
 
-			///// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡Œåˆ—ç”Ÿæˆ /////
+			///// ƒ_ƒ“ƒWƒ‡ƒ“s—ñ¶¬ /////
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -400,105 +318,105 @@ namespace dtl {
 			}
 
 
-			///// æ¶ˆå» /////
+			///// Á‹ /////
 
-			//å§‹ç‚¹åº§æ¨™Xã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//n“_À•WX‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearPointX() noexcept {
+				Ellipse& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
-			//å§‹ç‚¹åº§æ¨™Yã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//n“_À•WY‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearPointY() noexcept {
+				Ellipse& clearPointY() noexcept {
 				this->start_y = 0;
 				return *this;
 			}
-			//ç¯„å›²ã®å¤§ãã•(Xè»¸æ–¹å‘)ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//”ÍˆÍ‚Ì‘å‚«‚³(X²•ûŒü)‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearWidth() noexcept {
+				Ellipse& clearWidth() noexcept {
 				this->width = 0;
 				return *this;
 			}
-			//ç¯„å›²ã®å¤§ãã•(Yè»¸æ–¹å‘)ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//”ÍˆÍ‚Ì‘å‚«‚³(Y²•ûŒü)‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearHeight() noexcept {
+				Ellipse& clearHeight() noexcept {
 				this->height = 0;
 				return *this;
 			}
-			//å¡—ã‚Šå€¤ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//“h‚è’l‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearValue() noexcept {
+				Ellipse& clearValue() noexcept {
 				const Matrix_Int_ new_draw_value{};
 				this->draw_value = new_draw_value;
 				return *this;
 			}
-			//å§‹ç‚¹åº§æ¨™(X,Y)ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//n“_À•W(X,Y)‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearPoint() noexcept {
+				Ellipse& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return *this;
 			}
-			//æç”»ç¯„å›²ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//•`‰æ”ÍˆÍ‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clearRange() noexcept {
+				Ellipse& clearRange() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				this->clearWidth();
 				this->clearHeight();
 				return *this;
 			}
-			//å…¨ã¦ã®å€¤ã‚’åˆæœŸå€¤ã«æˆ»ã™
+			//‘S‚Ä‚Ì’l‚ğ‰Šú’l‚É–ß‚·
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& clear() noexcept {
+				Ellipse& clear() noexcept {
 				this->clearRange();
 				this->clearValue();
 				return *this;
 			}
 
 
-			///// ä»£å…¥ /////
+			///// ‘ã“ü /////
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setPointX(const Index_Size end_x_) noexcept {
+				Ellipse& setPointX(const Index_Size end_x_) noexcept {
 				this->start_x = end_x_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setPointY(const Index_Size end_y_) noexcept {
+				Ellipse& setPointY(const Index_Size end_y_) noexcept {
 				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setWidth(const Index_Size width_) noexcept {
+				Ellipse& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setHeight(const Index_Size height_) noexcept {
+				Ellipse& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setValue(const Matrix_Int_ & draw_value_) noexcept {
+				Ellipse& setValue(const Matrix_Int_ & draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setPoint(const Index_Size point_) noexcept {
+				Ellipse& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
+				Ellipse& setPoint(const Index_Size end_x_, const Index_Size end_y_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
+				Ellipse& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size length_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				this->width = length_;
@@ -506,7 +424,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
+				Ellipse& setRange(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = end_x_;
 				this->start_y = end_y_;
 				this->width = width_;
@@ -514,7 +432,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Border& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
+				Ellipse& setRange(const dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -523,22 +441,22 @@ namespace dtl {
 			}
 
 
-			///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
+			///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
 
-			constexpr Border() noexcept = default;
-			constexpr explicit Border(const Matrix_Int_ & draw_value_) noexcept
+			constexpr Ellipse() noexcept = default;
+			constexpr explicit Ellipse(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit Border(const dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr explicit Ellipse(const dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Border(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Ellipse(const dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
-			constexpr explicit Border(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr explicit Ellipse(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit Border(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Ellipse(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}
