@@ -15,13 +15,13 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <cstdint>
-#include <algorithm>
 #include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
+#include <DTL/Type/Sort.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -586,7 +586,7 @@ namespace dtl {
 			explicit ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value), replace_num(replace_num_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
-				std::sort(before_value.begin(), before_value.end());
+				DTL_TYPE_SORT(before_value.begin(), before_value.end());
 			}
 			constexpr explicit ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
@@ -605,7 +605,7 @@ namespace dtl {
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
-				std::sort(before_value.begin(), before_value.end());
+				DTL_TYPE_SORT(before_value.begin(), before_value.end());
 			}
 
 		};

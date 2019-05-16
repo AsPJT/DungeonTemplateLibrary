@@ -88,7 +88,7 @@ namespace dtl {
 	inline namespace tile {
 
 		//タイル形式
-		enum :::dtl::type::size {
+		enum : ::dtl::type::size {
 			tile_type_empty,
 			tile_type_wolf_auto_tile,
 			tile_type_one_tile,
@@ -96,7 +96,7 @@ namespace dtl {
 		};
 
 		//Wolfオートタイル形式の地形タイプ
-		enum :::dtl::type::size {
+		enum : ::dtl::type::size {
 			wolf_auto_tile_type_circle,
 			wolf_auto_tile_type_height,
 			wolf_auto_tile_type_width,
@@ -104,7 +104,7 @@ namespace dtl {
 			wolf_auto_tile_type_all
 		};
 		//Wolfオートタイル形式の地形位置
-		enum :::dtl::type::size {
+		enum : ::dtl::type::size {
 			tile_upper_left,
 			tile_upper_right,
 			tile_lower_left,

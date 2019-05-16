@@ -200,7 +200,7 @@ namespace dtl {
 		namespace boardGame {
 			namespace data {
 
-				enum :::dtl::type::size {
+				enum : ::dtl::type::size {
 					shogi_empty,
 					shogi_next_place1,
 					shogi_next_place2,
@@ -259,7 +259,7 @@ namespace dtl {
 
 			namespace data {
 
-				enum :::dtl::type::size {
+				enum : ::dtl::type::size {
 					chess_empty,
 					chess_king1,
 					chess_king2,
@@ -391,7 +391,9 @@ namespace dtl {
 #include <DTL/Type/Forward.hpp>
 #include <memory>
 #include <new>
+#include <DTL/Type/Max.hpp>
 #include <DTL/Type/Min.hpp>
+#include <DTL/Type/Sort.hpp>
 
 namespace dtl {
 	inline namespace generator {
@@ -470,7 +472,7 @@ namespace dtl {
 						tour_.emplace_back(node_);
 						if (best_tour_.size() < tour_.size()) best_tour_ = tour_;
 						//Warnsdorffのアルゴリズム
-						std::sort(node_->next.begin(), node_->next.end(), ::dtl::generator::puzzle::tool::KnightTourLessMovable());
+						DTL_TYPE_SORT(node_->next.begin(), node_->next.end(), ::dtl::generator::puzzle::tool::KnightTourLessMovable());
 
 						if (node_ == nullptr) return;
 
@@ -509,7 +511,7 @@ namespace dtl {
 							}
 						//Schwenkの定理
 						if (is_closed_ && (y_ * x_ % 2 == 1 || (DTL_TYPE_MIN(y_, x_) == 2 || DTL_TYPE_MIN(y_, x_) == 4)
-							|| (DTL_TYPE_MIN(y_, x_) == 3 && ((std::max)(y_, x_) == 4 || (std::max)(y_, x_) == 6 || (std::max)(y_, x_) == 8)))) return 0;
+							|| (DTL_TYPE_MIN(y_, x_) == 3 && (DTL_TYPE_MAX(y_, x_) == 4 || DTL_TYPE_MAX(y_, x_) == 6 || DTL_TYPE_MAX(y_, x_) == 8)))) return 0;
 						if (!is_closed_ && y_ * x_ % 2 == 1 && start_pos_ % 2 == 1) return 0;
 
 						//探索

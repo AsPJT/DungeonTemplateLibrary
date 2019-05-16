@@ -35,7 +35,7 @@ namespace dtl {
 					Matrix_Int_ w{}, h{};
 				};
 				//タイルID
-				enum :::dtl::type::size {
+				enum : ::dtl::type::size {
 					outside_wall_id,
 					inside_wall_id,
 					room_id,
@@ -43,7 +43,7 @@ namespace dtl {
 					way_id,
 				};
 				//方角
-				enum :::dtl::type::size {
+				enum : ::dtl::type::size {
 					direction_north,
 					direction_south,
 					direction_west,

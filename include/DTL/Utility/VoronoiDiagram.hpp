@@ -78,7 +78,7 @@ namespace dtl {
 				ind = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 				dist = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::ssize>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
 				for (::dtl::type::size it{}; it < this->draw_value; ++it) {
-					if ((ds = distanceSqrd(point_[it], ww, hh)) >= dist) continue;
+					if ((ds = this->distanceSqrd(point_[it], ww, hh)) >= dist) continue;
 					dist = ds;
 					ind = it;
 				}
