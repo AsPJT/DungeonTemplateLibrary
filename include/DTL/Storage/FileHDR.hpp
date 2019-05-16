@@ -25,6 +25,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
 #include <DTL/Utility/IsOutputCast.hpp>
@@ -82,7 +83,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 				bool writeNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				UniquePtr_ data(new(std::nothrow) float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(DTL_TYPE_NEW float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -94,7 +95,7 @@ namespace dtl {
 			//LayerNormal
 			template<typename Matrix_, typename ...Args_>
 				bool writeLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				UniquePtr_ data(new(std::nothrow) float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(DTL_TYPE_NEW float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
@@ -106,7 +107,7 @@ namespace dtl {
 			//Array
 			template<typename Matrix_, typename ...Args_>
 				bool writeArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				UniquePtr_ data(new(std::nothrow) float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
+				UniquePtr_ data(DTL_TYPE_NEW float[(end_x_ - this->start_x) * (end_y_ - this->start_y) * this->color_num]);
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)

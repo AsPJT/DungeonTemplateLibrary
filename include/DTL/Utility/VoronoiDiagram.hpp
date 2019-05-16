@@ -19,12 +19,12 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <new>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/NumericLimits.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
@@ -120,9 +120,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
@@ -131,9 +131,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
@@ -142,9 +142,9 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
-				UniquePair_ point{ new(std::nothrow) Point_Pair_[this->draw_value] };
+				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ new(std::nothrow) Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);

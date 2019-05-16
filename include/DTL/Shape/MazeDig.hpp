@@ -19,12 +19,12 @@
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
 
-#include <new>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
@@ -207,9 +207,9 @@ namespace dtl {
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
@@ -230,9 +230,9 @@ namespace dtl {
 			bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ...) const noexcept {
 				matrix_[this->start_y + 1][this->start_x + 1][layer_] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
@@ -254,9 +254,9 @@ namespace dtl {
 			bool drawArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_&& ...) const noexcept {
 				matrix_[(this->start_y + 1) * max_x_ + start_x + 1] = this->empty_value;
 
-				UniquePtr_ select_x{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_x{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ new(std::nothrow) ::dtl::type::size[end_x_ * end_y_] };
+				UniquePtr_ select_y{ DTL_TYPE_NEW ::dtl::type::size[end_x_ * end_y_] };
 				if (!select_y) return false;
 
 				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };

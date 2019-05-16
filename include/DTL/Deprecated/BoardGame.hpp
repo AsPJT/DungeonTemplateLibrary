@@ -15,9 +15,9 @@
 #include <cstdint>
 #include <array>
 #include <memory>
-#include <new>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Type/NumericLimits.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 
 //Dungeon Template Library Namespace
@@ -31,9 +31,9 @@ namespace dtl {
 			::dtl::type::size piece_turn_num{};
 			if (matrix_[row_][col_] > 0) return 0;
 
-			std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ new(std::nothrow) std::int_fast32_t[matrix_[0].size()] };
+			std::unique_ptr<std::int_fast32_t[]> stl_tmp_x{ DTL_TYPE_NEW std::int_fast32_t[matrix_[0].size()] };
 			if (!stl_tmp_x) return 0;
-			std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ new(std::nothrow) std::int_fast32_t[matrix_.size()] };
+			std::unique_ptr<std::int_fast32_t[]> stl_tmp_y{ DTL_TYPE_NEW std::int_fast32_t[matrix_.size()] };
 			if (!stl_tmp_y) return 0;
 
 			for (std::int_fast32_t y{ -1 }; y <= 1; ++y)
@@ -390,9 +390,9 @@ namespace dtl {
 #include <vector>
 #include <DTL/Type/Forward.hpp>
 #include <memory>
-#include <new>
 #include <DTL/Type/Max.hpp>
 #include <DTL/Type/Min.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/Sort.hpp>
 
 namespace dtl {
@@ -497,7 +497,7 @@ namespace dtl {
 						//ノードの初期化
 						for (std::int_fast32_t i{}; i < y_; ++i)
 							for (std::int_fast32_t j{}; j < x_; ++j) {
-								nodes_.emplace_back(new(std::nothrow) ::dtl::generator::puzzle::tool::KnightTourNode(i, j));
+								nodes_.emplace_back(DTL_TYPE_NEW ::dtl::generator::puzzle::tool::KnightTourNode(i, j));
 								if (!nodes_.back()) return 0;
 							}
 

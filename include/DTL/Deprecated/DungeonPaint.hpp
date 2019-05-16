@@ -14,8 +14,8 @@
 
 #include <cstdint>
 #include <memory>
-#include <new>
 #include <DTL/Macros/constexpr.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 
 //Dungeon Template Library Namespace
@@ -89,7 +89,7 @@ namespace dtl {
 				const std::int_fast32_t size_max_x{ static_cast<std::int_fast32_t>(matrix_[0].size() - 1) };
 				const std::int_fast32_t size_max_y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
 
-				std::unique_ptr<BucketBuffer[]> buffer{ new(std::nothrow) BucketBuffer[matrix_[0].size()] };
+				std::unique_ptr<BucketBuffer[]> buffer{ DTL_TYPE_NEW BucketBuffer[matrix_[0].size()] };
 				if (!buffer) return;
 
 				::dtl::type::size start_n{};

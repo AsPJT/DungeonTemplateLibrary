@@ -20,13 +20,13 @@
 /* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <array>
-#include <new>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
@@ -102,11 +102,11 @@ namespace dtl {
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fli_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fli_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
-				UniquePtr_ rand_first_row{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_first_row{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {
@@ -150,11 +150,11 @@ namespace dtl {
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fli_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fli_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
-				UniquePtr_ rand_first_row{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_first_row{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {
@@ -198,11 +198,11 @@ namespace dtl {
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fli_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fli_chunk_size) };
 
-				UniquePtr_ rand_up{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_up{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_up) return false;
-				UniquePtr_ rand_down{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_down{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_down) return false;
-				UniquePtr_ rand_first_row{ new(std::nothrow) ::dtl::type::ssize[chunk_x + 1] };
+				UniquePtr_ rand_first_row{ DTL_TYPE_NEW ::dtl::type::ssize[chunk_x + 1] };
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {

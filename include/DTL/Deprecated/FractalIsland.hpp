@@ -14,8 +14,6 @@
 
 #include <cstdint>
 #include <array>
-#include <memory>
-#include <new>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Macros/constexpr.hpp>
@@ -187,54 +185,6 @@ namespace dtl {
 								case 3:matrix_[row][col] = matrix_[row + 1][col]; break;
 								}
 							}
-				}
-
-
-
-				//Diamond Square (Average)
-				//ダイヤモンド・スクエア法(平均値)
-				template<typename Matrix_Int_, typename Matrix_>
-				DTL_VERSIONING_CPP14_CONSTEXPR
-					void createDiamondSquareAverage_Map(const ::dtl::type::size x_, const ::dtl::type::size y_, ::dtl::type::size size_, const Matrix_Int_ t1_, const Matrix_Int_ t2_, const Matrix_Int_ t3_, const Matrix_Int_ t4_, Matrix_ & matrix_, const Matrix_Int_ max_value_) noexcept {
-
-					using ::dtl::random::mersenne_twister_32bit;
-
-					//再起の終了処理
-					if (size_ == static_cast<::dtl::type::size>(0)) return;
-
-					const Matrix_Int_ vertex_rand{ static_cast<Matrix_Int_>(mersenne_twister_32bit(static_cast<std::int_fast32_t>(size_))) };
-					//頂点の高さを決める
-					const Matrix_Int_ vertex_height{ static_cast<Matrix_Int_>((t1_ / 4 + t2_ / 4 + t3_ / 4 + t4_ / 4)) };
-					matrix_[y_][x_] = ((vertex_height > max_value_ - vertex_rand) ? max_value_ : (vertex_height + vertex_rand));
-					//四角形の2点同士の中点の高さを決定
-					const Matrix_Int_ s1{ static_cast<Matrix_Int_>((t1_ / 2 + t2_ / 2)) };
-					const Matrix_Int_ s2{ static_cast<Matrix_Int_>((t1_ / 2 + t3_ / 2)) };
-					const Matrix_Int_ s3{ static_cast<Matrix_Int_>((t2_ / 2 + t4_ / 2)) };
-					const Matrix_Int_ s4{ static_cast<Matrix_Int_>((t3_ / 2 + t4_ / 2)) };
-					//4つの地点の座標を決める
-					matrix_[y_ + size_][x_] = s3;
-					matrix_[y_ - size_][x_] = s2;
-					matrix_[y_][x_ + size_] = s4;
-					matrix_[y_][x_ - size_] = s1;
-
-					//分割サイズを半分にする
-					size_ /= static_cast<::dtl::type::size>(2);
-					//4つに分割
-					createDiamondSquareAverage_Map(x_ - size_, y_ - size_, size_, t1_, s1, s2, matrix_[y_][x_], matrix_, max_value_);
-					createDiamondSquareAverage_Map(x_ - size_, y_ + size_, size_, s1, t2_, matrix_[y_][x_], s3, matrix_, max_value_);
-					createDiamondSquareAverage_Map(x_ + size_, y_ - size_, size_, s2, matrix_[y_][x_], t3_, s4, matrix_, max_value_);
-					createDiamondSquareAverage_Map(x_ + size_, y_ + size_, size_, matrix_[y_][x_], s3, s4, t4_, matrix_, max_value_);
-				}
-
-				DTL_VERSIONING_CPP17_NODISCARD
-				DTL_VERSIONING_CPP14_CONSTEXPR
-					::dtl::type::size getDiamondSquareMatrixSize(const ::dtl::type::size matrix_size) noexcept {
-					::dtl::type::size map_size{ 2 };
-					while (true) {
-						if ((map_size + 1) > matrix_size) return (map_size >>= 1);
-						map_size <<= 1;
-					}
-					return 0;
 				}
 
 			} //namespace
