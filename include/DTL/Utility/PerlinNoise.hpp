@@ -94,10 +94,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const Pint octaves_, double x_) const noexcept {
+			double setOctaveNoise(const std::size_t octaves_, double x_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (Pint i{}; i < octaves_; ++i) {
+				for (std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_) * amp;
 					x_ *= 2.0;
 					amp *= 0.5;
@@ -106,10 +106,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const Pint octaves_, double x_, double y_) const noexcept {
+			double setOctaveNoise(const std::size_t octaves_, double x_, double y_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (Pint i{}; i < octaves_; ++i) {
+				for (std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_) * amp;
 					x_ *= 2.0;
 					y_ *= 2.0;
@@ -119,10 +119,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const Pint octaves_, double x_, double y_, double z_) const noexcept {
+			double setOctaveNoise(const std::size_t octaves_, double x_, double y_, double z_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (Pint i{}; i < octaves_; ++i) {
+				for (std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_, z_) * amp;
 					x_ *= 2.0;
 					y_ *= 2.0;
@@ -144,7 +144,7 @@ namespace dtl {
 			//オクターブ有りノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
-			double octaveNoise(const Pint octaves_, const Args... args_) const noexcept {
+			double octaveNoise(const std::size_t octaves_, const Args... args_) const noexcept {
 				return this->setOctaveNoise(octaves_, args_...)* 0.5 + 0.5;
 			}
 
