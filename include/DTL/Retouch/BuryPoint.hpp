@@ -10,6 +10,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_BURY_POINT_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_BURY_POINT_HPP
 
+/*#######################################################################################
+	日本語リファレンス (Reference-JP)
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::retouch::BuryPoint-(修正クラス)/
+#######################################################################################*/
+
 /* Character Code : UTF-8 (BOM) */
 /* Bug Check : already checked */
 /* Android NDK Compile (Clang 5.0) : already checked */
@@ -172,10 +177,6 @@ namespace dtl {
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getHeight() const noexcept {
 				return this->height;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
-				return this->draw_value;
 			}
 
 
