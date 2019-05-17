@@ -58,13 +58,29 @@ namespace dtl {
 			constexpr Coordinate2DimensionalAndLength2Dimensional(const Int_& x_, const Int_& y_, const Int_& w_, const Int_& h_) noexcept
 				:x(x_), y(y_), w(w_), h(h_) {};
 
+			//中身が一致しているか調べる
 			constexpr bool operator==(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return range_.x == this->x && range_.y == this->y && range_.w == this->w && range_.h == this->h;
 			}
-
+			//中身が不一致か調べる
 			constexpr bool operator!=(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return range_.x != this->x || range_.y != this->y || range_.w != this->w || range_.h != this->h;
 			}
+
+			//面積比較
+			constexpr bool operator>(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h) > (range_.w * range_.h);
+			}
+			constexpr bool operator>=(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h) >= (range_.w * range_.h);
+			}
+			constexpr bool operator<(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h) < (range_.w * range_.h);
+			}
+			constexpr bool operator<=(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h) <= (range_.w * range_.h);
+			}
+
 		};
 		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<::dtl::type::size>;
 
