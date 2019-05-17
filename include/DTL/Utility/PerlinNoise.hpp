@@ -134,18 +134,21 @@ namespace dtl {
 
 		public:
 
+			//オクターブ無しノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
 			double noise(const Args... args_) const noexcept {
 				return this->setNoise(args_...)* 0.5 + 0.5;
 			}
 
+			//オクターブ有りノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
 			double octaveNoise(const Pint octaves_, const Args... args_) const noexcept {
 				return this->setOctaveNoise(octaves_, args_...)* 0.5 + 0.5;
 			}
 
+			//SEED値を設定する
 			void setSeed(const std::uint_fast32_t seed_) {
 				for (::dtl::type::size i{}; i < 256; ++i)
 					this->p[i] = static_cast<Pint>(i);
@@ -157,6 +160,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
+			constexpr PerlinNoise() = default;
 			explicit PerlinNoise(const std::uint_fast32_t seed_) {
 				this->setSeed(seed_);
 			}
