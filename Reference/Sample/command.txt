@@ -1,2 +1,0 @@
-﻿clang++ shape_MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../include/ -std=c++17
-g++ shape_MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../include/ -std=c++17
