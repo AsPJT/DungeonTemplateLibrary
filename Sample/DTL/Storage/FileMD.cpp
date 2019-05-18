@@ -1,5 +1,4 @@
 ﻿#include <DTL.hpp>
-#include <DTL/ImageWrite.hpp>
 #include <cstdint>
 #include <array>
 
@@ -10,7 +9,7 @@ int main() {
 
 	dtl::CellularAutomatonMixIsland<shape_t>(5, 0, 1, 2, 3, 4).draw(matrix);
 
-	dtl::storage::FileMD<shape_t>("file_sample.txt").write(matrix);
+	dtl::storage::FileMD<shape_t>("file_sample.md").write(matrix);
 
 	return 0;
 }
