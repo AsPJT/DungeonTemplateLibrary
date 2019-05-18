@@ -1,5 +1,5 @@
 ﻿#include <DTL.hpp>
-#include <Dungeon/ImageWrite.hpp>
+#include <DTL/ImageWrite.hpp>
 #include <cstdint>
 #include <array>
 
