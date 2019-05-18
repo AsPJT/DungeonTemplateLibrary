@@ -80,7 +80,6 @@ foreach(src IN LISTS standalone_src)
   add_executable(${target} ${src})
   string(REGEX REPLACE "File([A-Z]+)" "file_sample.\\1" output_name_base ${target})
   string(TOLOWER ${output_name_base} output_name)
-  file(REMOVE ${output_name})
   #
   # add Run task
   #
