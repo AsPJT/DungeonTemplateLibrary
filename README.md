@@ -8,19 +8,19 @@
 
 [**>> SDK Downloads**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[**>> Web Trial (~0.2.4)**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
+[**>> Web Trial**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 ## Overview
 
 ### [**Version 0.4.7**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
 
-|Compiler|C++17|C++14|
-|:---|:---|:---|
-|MSVC|14.10-passing|14.10-passing|
-|GCC|unknown|5.1.0-passing|
-|Clang|5.0.0-passing|3.8.1-passing|
-|Zapcc|unknown|1.0.1-passing|unknown|
-|ICC|unknown|unknown|
+|Compiler|C++17|C++14|C++11|
+|:---|:---|:---|:---|
+|MSVC|14.10-passing|14.10-passing|unknown|
+|GCC|5.1.0-passing|4.9.0-passing|4.8.1-passing|
+|Clang|5.0.0-passing|3.8.1-passing|3.8.1-passing|
+|Zapcc|unknown|1.0.1-passing|1.0.1-passing|
+|ICC|unknown|unknown|unknown|
 
 |Support Game Engine|DTL Version|
 |:---|:---|
