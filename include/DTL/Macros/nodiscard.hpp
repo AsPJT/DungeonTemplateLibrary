@@ -12,28 +12,32 @@
 
 ///// DTL_VERSIONING_CPP17_NODISCARDがない場合 /////
 #ifndef DTL_VERSIONING_CPP17_NODISCARD
-#ifdef __has_cpp_attribute
+# if defined(__has_cpp_attribute) && 201402 < __cplusplus
 
-#if __has_cpp_attribute(nodiscard)
-#define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
-#endif
+#   if __has_cpp_attribute(nodiscard)
+#     define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
+#   endif
 
-#elif defined(__clang__)
-#define DTL_VERSIONING_CPP17_NODISCARD __attribute__((warn_unused_result))
+# elif defined(__clang__) || defined(__GNUC__)
+#   define DTL_VERSIONING_CPP17_NODISCARD __attribute__((warn_unused_result))
 
-#elif defined(_MSC_VER)
+# elif defined(_MSC_VER)
+#   if 1911 <= _MSC_VER && 201402 < _MSVC_LANG
+#     define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
+#   else
 // _Must_inspect_result_ expands into this
-#define DTL_VERSIONING_CPP17_NODISCARD                                                                                                                                                                                                                                                                                                \
-  __declspec("SAL_name"                                                                                                                                                                                                                                                                                                        \
-             "("                                                                                                                                                                                                                                                                                                               \
-             "\"_Must_inspect_result_\""                                                                                                                                                                                                                                                                                       \
-             ","                                                                                                                                                                                                                                                                                                               \
-             "\"\""                                                                                                                                                                                                                                                                                                            \
-             ","                                                                                                                                                                                                                                                                                                               \
-             "\"2\""                                                                                                                                                                                                                                                                                                           \
-             ")") __declspec("SAL_begin") __declspec("SAL_post") __declspec("SAL_mustInspect") __declspec("SAL_post") __declspec("SAL_checkReturn") __declspec("SAL_end")
+#     define DTL_VERSIONING_CPP17_NODISCARD                                                                                                                                                                                                                                                                                                \
+      __declspec( "SAL_name"                                                                                                                                                                                                                                                                                                        \
+                  "("                                                                                                                                                                                                                                                                                                               \
+                  "\"_Must_inspect_result_\""                                                                                                                                                                                                                                                                                       \
+                  ","                                                                                                                                                                                                                                                                                                               \
+                  "\"\""                                                                                                                                                                                                                                                                                                            \
+                  ","                                                                                                                                                                                                                                                                                                               \
+                  "\"2\""                                                                                                                                                                                                                                                                                                           \
+                  ")") __declspec("SAL_begin") __declspec("SAL_post") __declspec("SAL_mustInspect") __declspec("SAL_post") __declspec("SAL_checkReturn") __declspec("SAL_end")
+#   endif
 
-#endif
+# endif
 #endif
 
 ///// もしDTL_VERSIONING_CPP17_NODISCARDが無かったらつくる /////
