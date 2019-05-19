@@ -641,7 +641,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr SimpleRogueLike() noexcept = default;
+			constexpr SimpleRogueLike() = default;
 			constexpr explicit SimpleRogueLike(const Matrix_Int_& room_value_) noexcept
 				:room_value(room_value_) {}
 			constexpr explicit SimpleRogueLike(const Matrix_Int_& room_value_, const Matrix_Int_& road_value_) noexcept

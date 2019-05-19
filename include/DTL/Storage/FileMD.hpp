@@ -435,7 +435,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileMD() noexcept = default;
+			constexpr FileMD() = default;
 			constexpr explicit FileMD(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 

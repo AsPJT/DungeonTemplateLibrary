@@ -447,7 +447,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr MixRect() noexcept = default;
+			constexpr MixRect() = default;
 			template<typename ...Args_>
 			explicit MixRect(const Matrix_Int_ & first_, const Args_ & ... args_) noexcept {
 				this->string_String(first_, args_...);

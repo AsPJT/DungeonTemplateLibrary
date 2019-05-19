@@ -295,7 +295,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr CellularAutomatonMixIsland() noexcept = default;
+			constexpr CellularAutomatonMixIsland() = default;
 			template<typename ...Args_>
 			explicit CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:border(first_), mixRect(first_, args_...), loop_num(loop_num_) {}

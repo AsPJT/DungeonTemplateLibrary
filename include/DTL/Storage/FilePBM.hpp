@@ -445,7 +445,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FilePBM() noexcept = default;
+			constexpr FilePBM() = default;
 			constexpr explicit FilePBM(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 

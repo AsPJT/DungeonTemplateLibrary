@@ -399,7 +399,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 			
-			constexpr OutputNumber() noexcept = default;
+			constexpr OutputNumber() = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
 				:after_string(draw_string_) {}
 			constexpr explicit OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept

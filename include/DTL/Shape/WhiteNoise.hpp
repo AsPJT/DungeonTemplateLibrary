@@ -429,7 +429,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr WhiteNoise() noexcept = default;
+			constexpr WhiteNoise() = default;
 			constexpr explicit WhiteNoise(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit WhiteNoise(const ::dtl::base::MatrixRange & matrix_range_) noexcept

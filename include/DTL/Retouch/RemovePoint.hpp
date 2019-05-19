@@ -377,7 +377,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr RemovePoint() noexcept = default;
+			constexpr RemovePoint() = default;
 			constexpr explicit RemovePoint(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}

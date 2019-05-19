@@ -207,7 +207,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr RectBaseWithValue() noexcept = default;
+			constexpr RectBaseWithValue() = default;
 			constexpr explicit RectBaseWithValue(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit RectBaseWithValue(const ::dtl::base::MatrixRange & matrix_range_) noexcept

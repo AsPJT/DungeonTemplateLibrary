@@ -403,7 +403,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileTerrainOBJ() noexcept = default;
+			constexpr FileTerrainOBJ() = default;
 			constexpr explicit FileTerrainOBJ(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_) noexcept

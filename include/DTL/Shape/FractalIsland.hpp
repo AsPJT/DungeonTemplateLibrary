@@ -354,7 +354,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FractalIsland() noexcept = default;
+			constexpr FractalIsland() = default;
 			constexpr explicit FractalIsland(const Matrix_Int_ & min_value_) noexcept
 				:min_value(min_value_) {}
 			constexpr explicit FractalIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept

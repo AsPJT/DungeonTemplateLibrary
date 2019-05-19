@@ -439,7 +439,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr ReplaceAll() noexcept = default;
+			constexpr ReplaceAll() = default;
 			constexpr explicit ReplaceAll(const Matrix_Int_ & after_value_) noexcept
 				:after_value(after_value_) {}
 			template<typename ...Args_>

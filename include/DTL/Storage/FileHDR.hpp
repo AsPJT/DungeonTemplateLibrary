@@ -309,7 +309,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileHDR() noexcept = default;
+			constexpr FileHDR() = default;
 			constexpr explicit FileHDR(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileHDR(const std::string & write_value_, const ::dtl::type::size color_num_) noexcept

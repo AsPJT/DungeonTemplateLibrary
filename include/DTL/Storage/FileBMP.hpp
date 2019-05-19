@@ -309,7 +309,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileBMP() noexcept = default;
+			constexpr FileBMP() = default;
 			constexpr explicit FileBMP(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileBMP(const std::string & write_value_, const ::dtl::type::size color_num_) noexcept

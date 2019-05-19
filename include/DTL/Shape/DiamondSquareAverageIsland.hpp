@@ -311,7 +311,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr DiamondSquareAverageIsland() noexcept = default;
+			constexpr DiamondSquareAverageIsland() = default;
 			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_) noexcept
 				:min_value(min_value_) {}
 			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept

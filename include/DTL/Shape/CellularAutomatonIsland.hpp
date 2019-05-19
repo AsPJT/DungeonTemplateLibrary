@@ -295,7 +295,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr CellularAutomatonIsland() noexcept = default;
+			constexpr CellularAutomatonIsland() = default;
 			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_) noexcept
 				:randomRect(draw_value_) {}
 

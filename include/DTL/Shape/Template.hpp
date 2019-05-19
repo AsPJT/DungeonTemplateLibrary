@@ -365,7 +365,7 @@ namespace dtl {
 
 			/* 非範囲指定版 */
 
-			constexpr SampleDungeon() noexcept = default; //これは固定
+			constexpr SampleDungeon() = default; //これは固定
 
 			constexpr explicit SampleDungeon(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
