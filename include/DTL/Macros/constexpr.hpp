@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_MACROS_CONSTEXPR_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_MACROS_CONSTEXPR_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #ifndef DTL_VERSIONING_CPP14_CONSTEXPR
 
 #if defined(_MSC_VER)

@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_BOOL_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_BOOL_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>

@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_Diamond_CREATE_DIAMOND_SQARE_AVERAGE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_Diamond_CREATE_DIAMOND_SQARE_AVERAGE_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/SizeT.hpp>

@@ -9,9 +9,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ROGUE_LIKE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ROGUE_LIKE_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
-
 #include <cstdint>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Utility/Binarization.hpp>

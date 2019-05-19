@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_PERLIN_NOISE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_PERLIN_NOISE_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <cmath>
 #include <cstdint>
 #include <algorithm>

@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : not checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <DTL/Macros/nodiscard.hpp>
 
 namespace dtl {

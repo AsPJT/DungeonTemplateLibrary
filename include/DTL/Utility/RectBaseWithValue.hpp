@@ -9,9 +9,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_WITH_VALUE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_WITH_VALUE_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : not checked */
-
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>

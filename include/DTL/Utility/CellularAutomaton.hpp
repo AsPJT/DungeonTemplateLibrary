@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_CELLULAR_AUTOMATON_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_CELLULAR_AUTOMATON_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>

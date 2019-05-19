@@ -1,4 +1,13 @@
-﻿/*
+﻿/*#######################################################################################
+	Copyright (c) 2017-2019 Kasugaccho
+	Copyright (c) 2018-2019 As Project
+	https://github.com/Kasugaccho/DungeonTemplateLibrary
+	wanotaitei@gmail.com
+
+	Distributed under the Boost Software License, Version 1.0. (See accompanying
+	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#######################################################################################*/
+/*
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
@@ -96,10 +105,6 @@ namespace dtl {
 	日本語リファレンス (Reference-JP)
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::Border-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
-
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
 
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/nodiscard.hpp>

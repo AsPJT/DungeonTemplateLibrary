@@ -10,8 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_BINARIZATION_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_BINARIZATION_HPP
 
-/* Character Code : UTF-8 (BOM) */
-
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>

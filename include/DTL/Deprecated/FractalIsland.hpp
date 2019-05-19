@@ -9,9 +9,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FRACTAL_ISLAND_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FRACTAL_ISLAND_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* [2019/03/08] Android NDK Compile (Clang 5.0) : already checked */
-
 #include <cstdint>
 #include <array>
 #include <DTL/Random/MersenneTwister32bit.hpp>

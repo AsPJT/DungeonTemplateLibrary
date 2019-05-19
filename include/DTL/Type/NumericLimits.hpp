@@ -10,10 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_TYPE_NUMERIC_LIMITS_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_TYPE_NUMERIC_LIMITS_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #ifndef DTL_TYPE_NUMERIC_LIMITS
 
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4

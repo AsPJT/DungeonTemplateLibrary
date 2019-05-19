@@ -1,4 +1,4 @@
-/*#######################################################################################
+Ôªø/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
@@ -10,7 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_MACROS_NODISCARD_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_MACROS_NODISCARD_HPP
 
-///// DTL_VERSIONING_CPP17_NODISCARDÇ™Ç»Ç¢èÍçá /////
+///// DTL_VERSIONING_CPP17_NODISCARD„Åå„Å™„ÅÑÂ†¥Âêà /////
 #ifndef DTL_VERSIONING_CPP17_NODISCARD
 #ifdef __has_cpp_attribute
 
@@ -36,7 +36,7 @@
 #endif
 #endif
 
-///// Ç‡ÇµDTL_VERSIONING_CPP17_NODISCARDÇ™ñ≥Ç©Ç¡ÇΩÇÁÇ¬Ç≠ÇÈ /////
+///// „ÇÇ„ÅóDTL_VERSIONING_CPP17_NODISCARD„ÅåÁÑ°„Åã„Å£„Åü„Çâ„Å§„Åè„Çã /////
 #ifndef DTL_VERSIONING_CPP17_NODISCARD
 #define DTL_VERSIONING_CPP17_NODISCARD
 #endif

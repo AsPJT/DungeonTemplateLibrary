@@ -10,9 +10,6 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_MATRIX_WRAPPER_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_MATRIX_WRAPPER_HPP
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : not checked */
-
 #include <cassert>
 #include <cstddef>
 #include <array>

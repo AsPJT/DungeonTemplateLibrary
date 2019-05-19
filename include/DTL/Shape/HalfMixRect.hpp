@@ -15,10 +15,6 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::HalfMixRect-(形状クラス)/
 #######################################################################################*/
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>

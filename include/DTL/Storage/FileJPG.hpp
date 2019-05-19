@@ -15,10 +15,6 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileJPG-(ストレージクラス)/
 #######################################################################################*/
 
-/* Character Code : UTF-8 (BOM) */
-/* Bug Check : already checked */
-/* Android NDK Compile (Clang 5.0) : already checked */
-
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
