@@ -449,7 +449,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr HalfMixRect() noexcept = default;
+			constexpr HalfMixRect() = default;
 			template<typename ...Args_>
 			explicit HalfMixRect(const Matrix_Int_ & first_, const Args_ & ... args_) noexcept {
 				this->string_String(first_, args_...);
