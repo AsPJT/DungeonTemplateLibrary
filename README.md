@@ -8,7 +8,7 @@
 
 [**>> SDK Downloads**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
-[**>> Web Trial (~0.2.4)**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
+[**>> Web Trial**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
 ## Overview
 
