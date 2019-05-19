@@ -183,7 +183,7 @@ namespace dtl {
 					this->counter = 0;
 				}
 				else ++(this->counter);
-				const auto tmp{ this->random_num & 3 };
+				const std::uint_fast64_t tmp{ this->random_num & 3 };
 				this->random_num >>= 2;
 				return static_cast<Random_Int_>(tmp);
 			}
