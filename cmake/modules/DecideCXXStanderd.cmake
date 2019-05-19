@@ -1,9 +1,8 @@
 function(DECIDE_CXX_STANDERD)
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+        # MSVC before 14.10 doesn't support to specify C++ standard version so that CMAKE_CXX_STANDARD has no effect
         if(MSVC_VERSION GREATER_EQUAL 1910)
             set(STRING_SPLIT_DEFAULT_CXX_STANDARD 17)
-        else()
-            set(STRING_SPLIT_DEFAULT_CXX_STANDARD 14)
         endif()
     elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 5.0)
