@@ -42,6 +42,7 @@ LICENSE
 #ifndef INCLUDE_STB_IMAGE_WRITE_H
 #define INCLUDE_STB_IMAGE_WRITE_H
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <cstdlib>
 #include <DTL/Type/SizeT.hpp>
 

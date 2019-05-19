@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
