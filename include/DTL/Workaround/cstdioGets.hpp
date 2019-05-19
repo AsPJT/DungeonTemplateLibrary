@@ -1,1 +1,1 @@
-﻿char *gets(char *s);
+﻿extern "C" char *gets(char *s);
