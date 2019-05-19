@@ -1,5 +1,5 @@
 function(DECIDE_CXX_STANDERD)
-    if(MSVC)
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
         if(MSVC_VERSION GREATER_EQUAL 1910)
             set(STRING_SPLIT_DEFAULT_CXX_STANDARD 17)
         else()
