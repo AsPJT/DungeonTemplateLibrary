@@ -53,6 +53,15 @@ cmake ..
 make ci
 ```
 
+### For Windows
+
+```
+mkdir build
+cd build
+cmake .. -G"Visual Studio 15 2017 Win64"
+MSBuild DTL.sln /p:Configuration=Release
+```
+
 ## [License](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
 
 Copyright (c) 2017-2019 Kasugaccho.
