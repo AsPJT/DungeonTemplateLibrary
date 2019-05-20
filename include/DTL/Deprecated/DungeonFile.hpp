@@ -9,7 +9,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DUNGEON_FILE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DUNGEON_FILE_HPP
 
-#include <DTL/Workaround/cstdioGets.hpp>
+#include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2
+
 #include <cstdint>
 #include <fstream>
 #include <string>

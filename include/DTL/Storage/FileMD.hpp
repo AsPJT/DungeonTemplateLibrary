@@ -15,7 +15,8 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileMD-(ストレージクラス)/
 #######################################################################################*/
 
-#include <DTL/Workaround/cstdioGets.hpp>
+#include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2
+
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
