@@ -49,7 +49,7 @@ namespace dtl {
 			class Point {
 			private:
 			public:
-				constexpr Point() noexcept = default;
+				constexpr Point() = default;
 				template<typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
 					void draw(Matrix_& matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_) const noexcept {
@@ -122,7 +122,7 @@ namespace dtl {
 			class Point {
 			private:
 			public:
-				constexpr Point() noexcept = default;
+				constexpr Point() = default;
 
 			};
 

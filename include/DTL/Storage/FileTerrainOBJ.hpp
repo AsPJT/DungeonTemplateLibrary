@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_STORAGE_FILE_TERRAIN_OBJ_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_STORAGE_FILE_TERRAIN_OBJ_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -402,7 +403,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileTerrainOBJ() noexcept = default;
+			constexpr FileTerrainOBJ() = default;
 			constexpr explicit FileTerrainOBJ(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_) noexcept

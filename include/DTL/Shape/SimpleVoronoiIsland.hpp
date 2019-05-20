@@ -290,7 +290,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr SimpleVoronoiIsland() noexcept = default;
+			constexpr SimpleVoronoiIsland() = default;
 			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_) noexcept
 				:voronoiDiagram(voronoi_num_) {}
 			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept

@@ -9,6 +9,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DUNGEON_NOISE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DUNGEON_NOISE_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Macros/constexpr.hpp>

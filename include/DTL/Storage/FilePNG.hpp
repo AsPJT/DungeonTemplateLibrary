@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FilePNG-(ストレージクラス)/
 #######################################################################################*/
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -309,7 +310,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FilePNG() noexcept = default;
+			constexpr FilePNG() = default;
 			constexpr explicit FilePNG(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FilePNG(const std::string& write_value_, const ::dtl::type::size color_num_) noexcept

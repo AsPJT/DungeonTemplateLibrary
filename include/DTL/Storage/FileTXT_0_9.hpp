@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileTXT_0_9-(ストレージクラス)/
 #######################################################################################*/
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -390,7 +391,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileTXT_0_9() noexcept = default;
+			constexpr FileTXT_0_9() = default;
 			constexpr explicit FileTXT_0_9(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 

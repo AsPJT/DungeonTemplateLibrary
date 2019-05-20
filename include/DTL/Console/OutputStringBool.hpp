@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_BOOL_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_BOOL_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -454,7 +455,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr OutputStringBool() noexcept = default;
+			constexpr OutputStringBool() = default;
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_) noexcept
 				:true_string(true_string_) {}
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept

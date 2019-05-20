@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_BOARD_WRITE_NUMBER_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_BOARD_WRITE_NUMBER_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <sstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -371,7 +372,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr WriteNumber() noexcept = default;
+			constexpr WriteNumber() = default;
 
 			constexpr explicit WriteNumber(const OutputString_& new_line_string_) noexcept
 				:new_line_string(new_line_string_) {}

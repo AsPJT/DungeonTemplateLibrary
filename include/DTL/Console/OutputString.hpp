@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_STRING_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -386,7 +387,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 			
-			constexpr OutputString() noexcept = default;
+			constexpr OutputString() = default;
 			template<typename ...Args_>
 			explicit OutputString(const OutputStringName_ & first_, const Args_ & ... args_) noexcept {
 				this->string_String(first_, args_...);

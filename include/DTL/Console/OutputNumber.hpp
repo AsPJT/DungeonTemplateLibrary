@@ -10,6 +10,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_NUMBER_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_OUTPUT_NUMBER_HPP
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -398,7 +399,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 			
-			constexpr OutputNumber() noexcept = default;
+			constexpr OutputNumber() = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
 				:after_string(draw_string_) {}
 			constexpr explicit OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept

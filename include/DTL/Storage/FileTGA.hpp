@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileTGA-(ストレージクラス)/
 #######################################################################################*/
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -308,7 +309,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileTGA() noexcept = default;
+			constexpr FileTGA() = default;
 			constexpr explicit FileTGA(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileTGA(const std::string & write_value_, const ::dtl::type::size color_num_) noexcept

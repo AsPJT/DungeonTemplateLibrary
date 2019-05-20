@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FileJPG-(ストレージクラス)/
 #######################################################################################*/
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -309,7 +310,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FileJPG() noexcept = default;
+			constexpr FileJPG() = default;
 			constexpr explicit FileJPG(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 			constexpr explicit FileJPG(const std::string & write_value_, const ::dtl::type::size color_num_) noexcept

@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FilePBM-(ストレージクラス)/
 #######################################################################################*/
 
+#include <DTL/Workaround/cstdioGets.hpp>
 #include <fstream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
@@ -444,7 +445,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FilePBM() noexcept = default;
+			constexpr FilePBM() = default;
 			constexpr explicit FilePBM(const std::string & write_value_) noexcept
 				:str(write_value_) {}
 

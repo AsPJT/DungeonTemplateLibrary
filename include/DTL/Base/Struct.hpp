@@ -19,7 +19,7 @@ namespace dtl {
 		template<typename Int_>
 		struct Coordinate1Dimensional {
 			Int_ x{};
-			constexpr Coordinate1Dimensional() noexcept = default;
+			constexpr Coordinate1Dimensional() = default;
 			constexpr Coordinate1Dimensional(const Int_& x_) noexcept :x(x_) {};
 		};
 
@@ -27,7 +27,7 @@ namespace dtl {
 		struct Coordinate2Dimensional {
 			Int_ x{};
 			Int_ y{};
-			constexpr Coordinate2Dimensional() noexcept = default;
+			constexpr Coordinate2Dimensional() = default;
 			constexpr Coordinate2Dimensional(const Int_& x_, const Int_& y_) noexcept :x(x_), y(y_) {};
 
 			constexpr bool operator==(const ::dtl::base::Coordinate2Dimensional<Int_>& vec2_) const noexcept {
@@ -46,7 +46,7 @@ namespace dtl {
 			Int_ y{};
 			Int_ w{};
 			Int_ h{};
-			constexpr Coordinate2DimensionalAndLength2Dimensional() noexcept = default;
+			constexpr Coordinate2DimensionalAndLength2Dimensional() = default;
 			constexpr Coordinate2DimensionalAndLength2Dimensional(const Int_& x_, const Int_& y_) noexcept
 				:x(x_), y(y_) {};
 			constexpr Coordinate2DimensionalAndLength2Dimensional(const Int_& x_, const Int_& y_, const Int_& l_) noexcept

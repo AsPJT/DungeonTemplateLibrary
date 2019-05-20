@@ -290,7 +290,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr PointGridAndSomeBlocksWithBorder() noexcept = default;
+			constexpr PointGridAndSomeBlocksWithBorder() = default;
 			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_) noexcept
 				:randomRect(draw_value_), borderOdd(draw_value_), pointGrid(draw_value_) {}
 			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept

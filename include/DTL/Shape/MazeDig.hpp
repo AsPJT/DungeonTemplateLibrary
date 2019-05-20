@@ -493,7 +493,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr MazeDig() noexcept = default;
+			constexpr MazeDig() = default;
 			constexpr explicit MazeDig(const Matrix_Int_ & empty_value_) noexcept
 				:empty_value(empty_value_) {}
 			constexpr explicit MazeDig(const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept

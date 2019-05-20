@@ -248,7 +248,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr AbsoluteMemberRect() noexcept = default;
+			constexpr AbsoluteMemberRect() = default;
 			constexpr explicit AbsoluteMemberRect(const Matrix_Int_& draw_value_) noexcept
 				:absoluteRect(draw_value_) {}
 			constexpr explicit AbsoluteMemberRect(const ::dtl::base::MatrixRange& matrix_range_) noexcept
