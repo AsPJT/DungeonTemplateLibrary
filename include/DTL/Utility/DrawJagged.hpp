@@ -42,51 +42,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_));
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, Function_ && function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_), function_);
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_), function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, layer_));
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, layer_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, layer_), function_);
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, layer_), function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, max_x_, max_y_));
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, max_x_, max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, max_x_, max_y_), function_);
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, max_x_, max_y_), function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, layer_, max_x_, max_y_));
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, layer_, max_x_, max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, layer_, max_x_, max_y_), function_);
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, layer_, max_x_, max_y_), function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, max_x_, max_y_));
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, max_x_, max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(makeWrapper(matrix_, max_x_, max_y_), function_);
+				return static_cast<const Derived*>(this)->drawNormal(makeWrapper<Matrix_Int_>(matrix_, max_x_, max_y_), function_);
 			}
 
 
