@@ -15,6 +15,10 @@
 	Miutsuru kariya (@kariya-mitsuru)
 	yumetodo (@yumetodo)
 
+	[[UE4 Supporter]]
+
+	ai (@ai2playgame)
+
 #######################################################################################*/
 
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DTL_HPP
@@ -27,7 +31,7 @@
 
 /* バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190515L)
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190521L)
 #endif
 
 

@@ -1,4 +1,4 @@
-Ôªø/*#######################################################################################
+/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
@@ -7,24 +7,24 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_WITH_VALUE_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_WITH_VALUE_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_RECT_BASE_HPP
 
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/SizeT.hpp>
 
-//ÂÖ±Êúâ„Éá„Éº„Çø
+//ã§óLÉfÅ[É^
 namespace dtl {
 	inline namespace utility {
 
-		//ÂõõËßíÂΩ¢„ÇØ„É©„Çπ
+		//éläpå`ÉNÉâÉX
 		template<typename Derived_, typename Matrix_Int_>
-		class RectBaseWithValue {
+		class RectBase {
 		private:
 
-			///// „Ç®„Ç§„É™„Ç¢„Çπ /////
+			///// ÉGÉCÉäÉAÉX /////
 
 			using Index_Size = ::dtl::type::size;
 
@@ -32,7 +32,7 @@ namespace dtl {
 		protected:
 
 
-			///// „É°„É≥„ÉêÂ§âÊï∞ /////
+			///// ÉÅÉìÉoïœêî /////
 
 			Index_Size start_x{};
 			Index_Size start_y{};
@@ -41,7 +41,7 @@ namespace dtl {
 			Matrix_Int_ draw_value{};
 
 
-			///// Ë®àÁÆóË£úÂä© /////
+			///// åvéZï‚èï /////
 
 			constexpr Index_Size calcEndX(const Index_Size max_x_) const noexcept {
 				return (this->width == 0 || this->start_x + this->width >= max_x_)
@@ -59,71 +59,60 @@ namespace dtl {
 		public:
 
 
-			///// ÊÉÖÂ†±ÂèñÂæó /////
+			///// èÓïÒéÊìæ /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
+				constexpr Index_Size getPointX() const noexcept {
 				return this->start_x;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
+				constexpr Index_Size getPointY() const noexcept {
 				return this->start_y;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
+				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
+				constexpr Index_Size getHeight() const noexcept {
 				return this->height;
 			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
-				return this->draw_value;
-			}
 
 
-			///// Ê∂àÂéª /////
+			///// è¡ãé /////
 
-			//ÂßãÁÇπÂ∫ßÊ®ôX„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//énì_ç¿ïWXÇèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPointX() noexcept {
 				this->start_x = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//ÂßãÁÇπÂ∫ßÊ®ôY„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//énì_ç¿ïWYÇèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPointY() noexcept {
 				this->start_y = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//ÁØÑÂõ≤„ÅÆÂ§ß„Åç„Åï(XËª∏ÊñπÂêë)„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//îÕàÕÇÃëÂÇ´Ç≥(Xé≤ï˚å¸)Çèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearWidth() noexcept {
 				this->width = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//ÁØÑÂõ≤„ÅÆÂ§ß„Åç„Åï(YËª∏ÊñπÂêë)„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//îÕàÕÇÃëÂÇ´Ç≥(Yé≤ï˚å¸)Çèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearHeight() noexcept {
 				this->height = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//Â°ó„ÇäÂÄ§„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
-				this->draw_value = new_draw_value;
-				return static_cast<Derived_&>(*this);
-			}
-			//ÂßãÁÇπÂ∫ßÊ®ô(X,Y)„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//énì_ç¿ïW(X,Y)Çèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPoint() noexcept {
 				this->clearPointX();
 				this->clearPointY();
 				return static_cast<Derived_&>(*this);
 			}
-			//ÊèèÁîªÁØÑÂõ≤„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//ï`âÊîÕàÕÇèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearRange() noexcept {
 				this->clearPointX();
@@ -132,16 +121,15 @@ namespace dtl {
 				this->clearHeight();
 				return static_cast<Derived_&>(*this);
 			}
-			//ÂÖ®„Å¶„ÅÆÂÄ§„ÇíÂàùÊúüÂÄ§„Å´Êàª„Åô
+			//ëSÇƒÇÃílÇèâä˙ílÇ…ñﬂÇ∑
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clear() noexcept {
 				this->clearRange();
-				this->clearValue();
 				return static_cast<Derived_&>(*this);
 			}
 
 
-			///// ‰ª£ÂÖ• /////
+			///// ë„ì¸ /////
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setPointX(const Index_Size start_x_) noexcept {
@@ -161,11 +149,6 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
-				return static_cast<Derived_&>(*this);
-			}
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setValue(const Matrix_Int_& draw_value_) noexcept {
-				this->draw_value = draw_value_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -197,7 +180,7 @@ namespace dtl {
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setRange(const ::dtl::base::MatrixRange& matrix_range_) noexcept {
+				Derived_& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
 				this->start_y = matrix_range_.y;
 				this->width = matrix_range_.w;
@@ -206,25 +189,15 @@ namespace dtl {
 			}
 
 
-			///// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø /////
+			///// ÉRÉìÉXÉgÉâÉNÉ^ /////
 
-			constexpr RectBaseWithValue() = default;
-			constexpr explicit RectBaseWithValue(const Matrix_Int_ & draw_value_) noexcept
-				:draw_value(draw_value_) {}
-			constexpr explicit RectBaseWithValue(const ::dtl::base::MatrixRange & matrix_range_) noexcept
+			constexpr RectBase() = default;
+			constexpr explicit RectBase(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit RectBaseWithValue(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				draw_value(draw_value_) {}
-			constexpr explicit RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr explicit RectBase(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
-				:start_x(start_x_), start_y(start_y_),
-				width(width_), height(height_),
-				draw_value(draw_value_) {}
 		};
 	}
 }
