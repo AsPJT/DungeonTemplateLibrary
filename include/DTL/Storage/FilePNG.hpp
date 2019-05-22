@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::storage::FilePNG-(ストレージクラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::storage::FilePNG-(ストレージクラス)/
 #######################################################################################*/
 
 #include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2

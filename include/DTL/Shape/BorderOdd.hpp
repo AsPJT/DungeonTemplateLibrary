@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/::dtl::shape::BorderOdd-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::BorderOdd-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
@@ -27,14 +27,14 @@ namespace dtl {
 
 		//四角形の生成
 		template<typename Matrix_Int_>
-		class BorderOdd : public RectBaseWithValue<BorderOdd<Matrix_Int_>, Matrix_Int_> {
+		class BorderOdd : public ::dtl::utility::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = RectBaseWithValue<BorderOdd<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::utility::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_>;
 
 
 			///// 代入処理 /////
@@ -226,51 +226,51 @@ namespace dtl {
 			//STL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), this->calcEndY(matrix_.size())) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size())) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(std::forward<Matrix_>(matrix_), this->calcEndY(matrix_.size()), function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size()), function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size())) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()));
+				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size())) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(std::forward<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size()), function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
+				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size()), function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_));
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(std::forward<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_));
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(std::forward<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(std::forward<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_, function_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_, function_);
 			}
 
 

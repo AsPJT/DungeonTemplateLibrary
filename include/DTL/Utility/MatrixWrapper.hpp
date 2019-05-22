@@ -15,6 +15,7 @@
 #include <array>
 #include <type_traits>
 #include <DTL/Macros/constexpr.hpp>
+#include <DTL/Type/Forward.hpp>
 
 //共有データ
 namespace dtl {
@@ -266,7 +267,7 @@ namespace dtl {
 
 		template<typename Matrix_, typename... Args_>
 		constexpr MatrixWrapper<typename std::remove_reference<Matrix_>::type> makeWrapper(Matrix_&& mat, Args_&&... args_) {
-			return MatrixWrapper<typename std::remove_reference<Matrix_>::type>(mat, std::forward<Args_>(args_)...);
+			return MatrixWrapper<typename std::remove_reference<Matrix_>::type>(mat, DTL_TYPE_FORWARD<Args_>(args_)...);
 		}
 	}
 }

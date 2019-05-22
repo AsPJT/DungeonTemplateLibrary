@@ -20,7 +20,7 @@ namespace dtl {
 	inline namespace utility {
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Int_>
+		template<typename Derived_>
 		class RectBase {
 		private:
 
@@ -38,7 +38,6 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			Matrix_Int_ draw_value{};
 
 
 			///// 計算補助 /////
