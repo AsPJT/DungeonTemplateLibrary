@@ -39,7 +39,7 @@ namespace dtl {
 			constexpr Clock_ get() const noexcept { return this->clock; }
 
 		};
-		static thread_local Time<double, std::chrono::nanoseconds> system_time(1.0e-09);
+		//static thread_local Time<double, std::chrono::nanoseconds> system_time(1.0e-09);
 
 	}
 }
