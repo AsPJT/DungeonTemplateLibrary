@@ -16,7 +16,7 @@
 #define DTL_TYPE_MIN (::sprout::min)
 #else
 #include <algorithm>
-#define DTL_TYPE_MIN (std::min)
+#define DTL_TYPE_MIN (::std::min)
 #endif
 
 #endif

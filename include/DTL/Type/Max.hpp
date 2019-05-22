@@ -16,7 +16,7 @@
 #define DTL_TYPE_MAX (::sprout::max)
 #else
 #include <algorithm>
-#define DTL_TYPE_MAX (std::max)
+#define DTL_TYPE_MAX (::std::max)
 #endif
 
 #endif

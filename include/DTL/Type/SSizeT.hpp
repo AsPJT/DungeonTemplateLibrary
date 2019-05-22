@@ -14,7 +14,7 @@
 namespace dtl { namespace type { using ssize = ::SSIZE_T; } }
 #else
 #include <cstddef>
-namespace dtl { namespace type { using ssize = std::ptrdiff_t; } }
+namespace dtl { namespace type { using ssize = ::std::ptrdiff_t; } }
 #endif
 
 #endif //Included Dungeon Template Library

@@ -14,7 +14,7 @@
 namespace dtl { namespace type { using size = ::SIZE_T; } }
 #else
 #include <cstddef>
-namespace dtl { namespace type { using size = std::size_t; } }
+namespace dtl { namespace type { using size = ::std::size_t; } }
 #endif
 
 #endif //Included Dungeon Template Library

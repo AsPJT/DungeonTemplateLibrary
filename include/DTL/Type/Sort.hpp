@@ -16,7 +16,7 @@
 #define DTL_TYPE_SORT (::sprout::sort)
 #else
 #include <algorithm>
-#define DTL_TYPE_SORT (std::sort)
+#define DTL_TYPE_SORT (::std::sort)
 #endif
 
 #endif

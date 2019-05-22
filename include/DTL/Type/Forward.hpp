@@ -16,7 +16,7 @@
 #define DTL_TYPE_FORWARD ::Forward
 #else
 #include <utility>
-#define DTL_TYPE_FORWARD std::forward
+#define DTL_TYPE_FORWARD ::std::forward
 #endif
 
 #endif

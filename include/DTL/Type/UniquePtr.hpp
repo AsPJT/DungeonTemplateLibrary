@@ -16,7 +16,7 @@
 #define DTL_TYPE_UNIQUE_PTR ::TUniquePtr
 #else
 #include <memory>
-#define DTL_TYPE_UNIQUE_PTR std::unique_ptr
+#define DTL_TYPE_UNIQUE_PTR ::std::unique_ptr
 #endif
 
 #endif

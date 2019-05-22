@@ -16,7 +16,7 @@
 #define DTL_TYPE_NUMERIC_LIMITS ::TNumericLimits
 #else
 #include <limits>
-#define DTL_TYPE_NUMERIC_LIMITS std::numeric_limits
+#define DTL_TYPE_NUMERIC_LIMITS ::std::numeric_limits
 #endif
 
 #endif

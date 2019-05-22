@@ -13,7 +13,7 @@
 #ifndef DTL_TYPE_NEW
 
 #include <new>
-#define DTL_TYPE_NEW new(std::nothrow)
+#define DTL_TYPE_NEW new(::std::nothrow)
 
 #endif
 
