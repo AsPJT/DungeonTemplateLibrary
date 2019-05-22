@@ -16,11 +16,17 @@
 
 |Compiler|C++17|C++14|C++11|
 |:---|:---|:---|:---|
-|MSVC|14.10-passing|14.10-passing|unknown|
+|MSVC|14.0-passing|14.0-passing|14.0-passing|
 |GCC|5.1.0-passing|4.9.0-passing|4.8.1-passing|
 |Clang|5.0.0-passing|3.6.0-passing|3.6.0-passing|
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
+
+|Support IDE|
+|:---:|
+|Visual Studio 2019 version 16.0.0~|
+|Visual Studio 2017 version 15.0.0~|
+|Visual Studio 2015 Update 3|
 
 |Support Game Engine|
 |:---:|
