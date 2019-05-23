@@ -39,16 +39,16 @@ namespace dtl {
 
 
 			template<typename Matrix_>
-			constexpr bool isMinSize(const Matrix_& matrix_) noexcept {
+			constexpr bool isMinSize(const Matrix_& matrix_) const noexcept {
 				return (matrix_.size() <= 2 || matrix_[0].size() <= 2 || matrix_[0][0].size() <= 2);
 			}
 			template<typename Matrix_>
-			constexpr bool isInRange(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) noexcept {
+			constexpr bool isInRange(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) const noexcept {
 				return (pos_z >= 0 && pos_y >= 0 && pos_x >= 0 &&
 					pos_z < matrix_.size() && pos_y < matrix_[pos_z].size() && pos_x < matrix_[pos_z][pos_y].size());
 			}
 			template<typename Matrix_>
-			vectuple getCanDiggingDirs(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) {
+			vectuple getCanDiggingDirs(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) const {
 				vectuple result{};
 				constexpr ::dtl::Coordinate3Dimensional<Index_SSize> dirs[6]{ {-1,0,0},{1,0,0},{0,-1,0},{0,1,0},{0,0,-1},{0,0,1} };
 				for (const auto& dir : dirs) {
@@ -62,7 +62,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			vectuple getCanRespawnSeedPositions(const Matrix_ & matrix_) {
+			vectuple getCanRespawnSeedPositions(const Matrix_ & matrix_) const {
 				vectuple result{};
 				for (Index_Size z{}; z < matrix_.size() / 2; ++z)
 					for (Index_Size y{}; y < matrix_[z * 2].size() / 2; ++y)
@@ -80,7 +80,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			void setMazeChip(Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z, const Matrix_Int_ new_state) {
+			void setMazeChip(Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z, const Matrix_Int_ new_state) const {
 				if (this->isInRange(matrix_, pos_x, pos_y, pos_z)) matrix_[pos_z][pos_y][pos_x] = new_state;
 			}
 
@@ -89,7 +89,7 @@ namespace dtl {
 
 			//3D迷路を生成
 			template<typename Matrix_>
-			void draw(Matrix_ & matrix_) {
+			void draw(Matrix_ & matrix_) const {
 				if (this->isMinSize(matrix_)) return;
 
 				Index_Size seed_x{ 1 };

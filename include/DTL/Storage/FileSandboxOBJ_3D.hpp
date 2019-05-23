@@ -41,7 +41,7 @@ namespace dtl {
 
 			std::string str{};
 
-			void write_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) noexcept {
+			void write_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) const noexcept {
 				ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << '\n';
 				ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << '\n';
 				ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << '\n';
@@ -49,7 +49,7 @@ namespace dtl {
 				ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << '\n';
 				ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << '\n';
 			}
-			void write_objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) noexcept {
+			void write_objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) const noexcept {
 				ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << '\n';
 				ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << '\n';
 				ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << '\n';
@@ -64,7 +64,7 @@ namespace dtl {
 		public:
 
 			template<typename Matrix_>
-			bool draw(const Matrix_& matrix_) noexcept {
+			bool draw(const Matrix_& matrix_) const noexcept {
 				if (matrix_.size() == 0 || matrix_[0].size() == 0 || matrix_[0][0].size() == 0) return false;
 				std::ofstream ofs(this->str);
 				if (ofs.fail()) return false;
