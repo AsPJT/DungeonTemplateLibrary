@@ -15,6 +15,7 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::cuboid::MazeDig3D-(立体クラス)/
 #######################################################################################*/
 
+#include <array>
 #include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
@@ -36,7 +37,7 @@ namespace dtl {
 			using Index_SSize = ::dtl::type::ssize;
 			using stuple = ::dtl::base::MatrixVec3;
 			using vectuple = std::vector<stuple>;
-
+			using sstuple = ::dtl::Coordinate3Dimensional<Index_SSize>;
 
 			template<typename Matrix_>
 			constexpr bool isMinSize(const Matrix_& matrix_) const noexcept {
@@ -50,7 +51,7 @@ namespace dtl {
 			template<typename Matrix_>
 			vectuple getCanDiggingDirs(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) const {
 				vectuple result{};
-				constexpr ::dtl::Coordinate3Dimensional<Index_SSize> dirs[6]{ {-1,0,0},{1,0,0},{0,-1,0},{0,1,0},{0,0,-1},{0,0,1} };
+				constexpr std::array<sstuple, 6> dirs{ { sstuple(-1,0,0),sstuple(1,0,0), sstuple(0,-1,0), sstuple(0,1,0), sstuple(0,0,-1), sstuple(0,0,1) } };
 				for (const auto& dir : dirs) {
 					const Index_Size check_x{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_x) + dir.x * 2) };
 					const Index_Size check_y{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_y) + dir.y * 2) };
