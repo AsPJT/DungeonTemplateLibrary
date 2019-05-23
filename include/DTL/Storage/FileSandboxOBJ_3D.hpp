@@ -70,10 +70,10 @@ namespace dtl {
 				if (ofs.fail()) return false;
 
 				for (std::size_t square_count{}, z{}; z < matrix_.size(); ++z)
-					for (std::size_t row{}; row < matrix_[z].size(); ++row)
-						for (std::size_t col{}; col < matrix_[z][row].size(); ++col) {
-							if (!matrix_[z][row][col]) continue;
-							this->write_objOutputCube(ofs, (std::int_fast32_t)col, (std::int_fast32_t)z, (std::int_fast32_t)row, 1, 1, 1, square_count);
+					for (std::size_t y{}; y < matrix_[z].size(); ++y)
+						for (std::size_t x{}; x < matrix_[z][y].size(); ++x) {
+							if (!matrix_[z][y][x]) continue;
+							this->write_objOutputCube(ofs, (std::int_fast32_t)x, (std::int_fast32_t)z, (std::int_fast32_t)y, 1, 1, 1, square_count);
 							++square_count;
 						}
 				return true;
