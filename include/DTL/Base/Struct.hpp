@@ -39,6 +39,23 @@ namespace dtl {
 		};
 		using MatrixVec2 = Coordinate2Dimensional<::dtl::type::size>;
 
+		template<typename Int_>
+		struct Coordinate3Dimensional {
+			Int_ x{};
+			Int_ y{};
+			Int_ z{};
+			constexpr Coordinate3Dimensional() = default;
+			constexpr Coordinate3Dimensional(const Int_& x_, const Int_& y_, const Int_& z_) noexcept :x(x_), y(y_), z(z_) {};
+
+			constexpr bool operator==(const ::dtl::base::Coordinate3Dimensional<Int_>& vec3_) const noexcept {
+				return vec3_.x == this->x && vec3_.y == this->y && vec3_.z == this->z;
+			}
+			constexpr bool operator!=(const ::dtl::base::Coordinate3Dimensional<Int_>& vec3_) const noexcept {
+				return vec3_.x != this->x || vec3_.y != this->y || vec3_.z != this->z;
+			}
+		};
+		using MatrixVec3 = Coordinate3Dimensional<::dtl::type::size>;
+
 		//座標と幅
 		template<typename Int_>
 		struct Coordinate2DimensionalAndLength2Dimensional {

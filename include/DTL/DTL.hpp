@@ -55,6 +55,10 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CONSOLE_HPP
 #include <DTL/Console.hpp>
 
+/* 立体ライブラリ (::dtl::cuboid) */
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CUBOID_HPP
+#include <DTL/Cuboid.hpp>
+
 /* 実体ライブラリ (::dtl::entity) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ENTITY_HPP
 #include <DTL/Entity.hpp>
