@@ -18,6 +18,7 @@
 
 #include <DTL/Storage/FileMD.hpp>
 #include <DTL/Storage/FilePBM.hpp>
+#include <DTL/Storage/FileSandboxOBJ_3D.hpp>
 #include <DTL/Storage/FileTerrainOBJ.hpp>
 #include <DTL/Storage/FileTXT_0_9.hpp>
 
