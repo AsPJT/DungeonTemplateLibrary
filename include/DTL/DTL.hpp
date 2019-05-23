@@ -18,6 +18,7 @@
 	[[UE4 Supporter]]
 
 	ai (@ai2playgame)
+	motty01 (@motty01)
 
 #######################################################################################*/
 
@@ -31,7 +32,7 @@
 
 /* バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190521L)
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190523L)
 #endif
 
 
