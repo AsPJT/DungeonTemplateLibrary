@@ -18,17 +18,17 @@
 
 //共有データ
 namespace dtl {
-	inline namespace utility {
+	inline namespace range {
 
 		//四角形クラス
 		template<typename Derived_, typename Matrix_Int_>
-		class RectBaseWithValue : public ::dtl::utility::BasicRect<Derived_> {
+		class RectBaseWithValue : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using RectBase_t = ::dtl::utility::BasicRect<Derived_>;
+			using RectBase_t = ::dtl::range::BasicRect<Derived_>;
 
 
 		protected:

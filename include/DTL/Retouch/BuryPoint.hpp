@@ -27,14 +27,14 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>
-		class BuryPoint : public ::dtl::utility::RectBase< ::dtl::retouch::BuryPoint<Matrix_Int_>> {
+		class BuryPoint : public ::dtl::range::RectBase< ::dtl::retouch::BuryPoint<Matrix_Int_>> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::utility::RectBase< ::dtl::retouch::BuryPoint<Matrix_Int_>>;
+			using ShapeBase_t = ::dtl::range::RectBase< ::dtl::retouch::BuryPoint<Matrix_Int_>>;
 
 
 			///// 代入処理 /////

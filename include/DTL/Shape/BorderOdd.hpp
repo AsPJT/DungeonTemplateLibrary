@@ -27,14 +27,14 @@ namespace dtl {
 
 		//四角形の生成
 		template<typename Matrix_Int_>
-		class BorderOdd : public ::dtl::utility::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_> {
+		class BorderOdd : public ::dtl::range::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::utility::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_>;
 
 
 			///// 代入処理 /////

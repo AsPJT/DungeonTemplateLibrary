@@ -17,7 +17,7 @@
 
 //共有データ
 namespace dtl {
-	inline namespace utility {
+	inline namespace range {
 
 		//四角形クラス
 		template<typename Derived_>

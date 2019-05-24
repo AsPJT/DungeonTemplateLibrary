@@ -27,14 +27,14 @@ namespace dtl {
 
 		//偶数マスを指定した数値で埋める
 		template<typename Matrix_Int_>
-		class PointGrid : public ::dtl::utility::RectBaseWithValue< ::dtl::shape::PointGrid<Matrix_Int_>, Matrix_Int_> {
+		class PointGrid : public ::dtl::range::RectBaseWithValue< ::dtl::shape::PointGrid<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::utility::RectBaseWithValue< ::dtl::shape::PointGrid<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue< ::dtl::shape::PointGrid<Matrix_Int_>, Matrix_Int_>;
 
 
 			///// 代入処理 /////
