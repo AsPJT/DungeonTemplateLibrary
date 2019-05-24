@@ -20,7 +20,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Utility/RectBaseWithValue.hpp>
+#include <DTL/Range/RectBaseWithValue.hpp>
 
 namespace dtl {
 	inline namespace shape {

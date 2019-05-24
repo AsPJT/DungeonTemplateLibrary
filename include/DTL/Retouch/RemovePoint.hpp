@@ -20,7 +20,7 @@
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Utility/RectBase.hpp>
+#include <DTL/Range/RectBase.hpp>
 
 namespace dtl {
 	inline namespace retouch {

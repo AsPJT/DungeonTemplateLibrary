@@ -97,6 +97,49 @@ namespace dtl {
 		};
 		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<::dtl::type::size>;
 
+		//座標と幅
+		template<typename Int_>
+		struct Coordinate3DimensionalAndLength3Dimensional {
+			Int_ x{};
+			Int_ y{};
+			Int_ z{};
+			Int_ w{};
+			Int_ h{};
+			Int_ d{};
+			constexpr Coordinate3DimensionalAndLength3Dimensional() = default;
+			constexpr Coordinate3DimensionalAndLength3Dimensional(const Int_& x_, const Int_& y_, const Int_& z_) noexcept
+				:x(x_), y(y_), z(z_) {};
+			constexpr Coordinate3DimensionalAndLength3Dimensional(const Int_& x_, const Int_& y_, const Int_& z_, const Int_& l_) noexcept
+				:x(x_), y(y_), z(z_), w(l_), h(l_), d(l_) {};
+			constexpr Coordinate3DimensionalAndLength3Dimensional(const Int_& x_, const Int_& y_, const Int_& z_, const Int_& w_, const Int_& h_, const Int_& d_) noexcept
+				:x(x_), y(y_), z(z_), w(w_), h(h_), d(d_) {};
+
+			//中身が一致しているか調べる
+			constexpr bool operator==(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return range_.x == this->x && range_.y == this->y && range_.z == this->z && range_.w == this->w && range_.h == this->h && range_.d == this->d;
+			}
+			//中身が不一致か調べる
+			constexpr bool operator!=(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return range_.x != this->x || range_.y != this->y || range_.z != this->z || range_.w != this->w || range_.h != this->h || range_.d != this->d;
+			}
+
+			//面積比較
+			constexpr bool operator>(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h * this->d) > (range_.w * range_.h * range_.d);
+			}
+			constexpr bool operator>=(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h * this->d) >= (range_.w * range_.h * range_.d);
+			}
+			constexpr bool operator<(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h * this->d) < (range_.w * range_.h * range_.d);
+			}
+			constexpr bool operator<=(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
+				return (this->w * this->h * this->d) <= (range_.w * range_.h * range_.d);
+			}
+
+		};
+		using MatrixRange3D = Coordinate3DimensionalAndLength3Dimensional<::dtl::type::size>;
+
 	}
 }
 

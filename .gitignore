@@ -266,3 +266,5 @@ __pycache__/
 *.ini
 [Ss]ave/
 build*/
+
+*-*.txt

@@ -7,8 +7,8 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_BASIC_RECT_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_BASIC_RECT_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANGE_BASIC_RECT_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANGE_BASIC_RECT_HPP
 
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
