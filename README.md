@@ -59,7 +59,7 @@ cmake ..
 make ci
 ```
 
-### For Windows
+### For Windows (VS2017)
 
 ```
 mkdir build
