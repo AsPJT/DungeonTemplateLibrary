@@ -16,7 +16,6 @@
 #######################################################################################*/
 
 #include <array>
-#include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
@@ -25,6 +24,7 @@
 #include <DTL/Type/NumericLimits.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
+#include <DTL/Type/Vector.hpp>
 
 namespace dtl {
 	inline namespace shape {
@@ -58,7 +58,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			
+			using StartEnd = DTL_TYPE_VECTOR<StartEndArray>;
 
 
 			///// メンバ変数 /////
@@ -88,11 +88,11 @@ namespace dtl {
 				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				StartEnd dungeon_room{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
-				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
+				StartEnd dungeon_road{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 
 				dungeon_division[0][0] = end_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = end_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -116,11 +116,11 @@ namespace dtl {
 				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				StartEnd dungeon_room{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
-				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
+				StartEnd dungeon_road{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 
 				dungeon_division[0][0] = end_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = end_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -143,11 +143,11 @@ namespace dtl {
 				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_division(mapDivCount, StartEndArray());
+				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				std::vector<StartEndArray> dungeon_room(mapDivCount, StartEndArray());
+				StartEnd dungeon_room{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
-				std::vector<StartEndArray> dungeon_road(mapDivCount, StartEndArray());
+				StartEnd dungeon_road{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
 
 				dungeon_division[0][0] = end_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
 				dungeon_division[0][1] = end_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
@@ -163,7 +163,7 @@ namespace dtl {
 				return true;
 			}
 
-			void createDivision(std::vector<StartEndArray>& dungeon_road,std::vector<StartEndArray>& dungeon_division, const ::dtl::type::size mapDivCount) const noexcept {
+			void createDivision(StartEnd& dungeon_road,StartEnd& dungeon_division, const ::dtl::type::size mapDivCount) const noexcept {
 
 				//マップを区分けしていく処理(区域を分割する処理)
 				::dtl::type::size division_After{};
@@ -215,7 +215,7 @@ namespace dtl {
 
 			}
 
-			void createRoom(std::vector<StartEndArray>& dungeon_room,const std::vector<StartEndArray>& dungeon_division, const ::dtl::type::size mapDivCount) const noexcept {
+			void createRoom(StartEnd& dungeon_room,const StartEnd& dungeon_division, const ::dtl::type::size mapDivCount) const noexcept {
 
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i) {//区分け
@@ -256,7 +256,7 @@ namespace dtl {
 			}
 
 			template <typename Matrix_>
-			void substitutionRoom(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
+			void substitutionRoom(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -264,7 +264,7 @@ namespace dtl {
 							matrix_[j][k] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomLayer(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
+			void substitutionRoomLayer(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -272,7 +272,7 @@ namespace dtl {
 							matrix_[j][k][layer_] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomArray(const std::vector<StartEndArray>& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
+			void substitutionRoomArray(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -289,7 +289,7 @@ namespace dtl {
 			//最後に前と後の通路を繋げる。
 
 			template <typename Matrix_>
-			void createRoad(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
+			void createRoad(StartEnd& dungeon_road, const StartEnd& dungeon_room, const StartEnd& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
 				for (::dtl::type::size roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路
@@ -328,7 +328,7 @@ namespace dtl {
 				}
 			}
 			template <typename Matrix_>
-			void createRoadLayer(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
+			void createRoadLayer(StartEnd& dungeon_road, const StartEnd& dungeon_room, const StartEnd& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
 				for (::dtl::type::size roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路
@@ -367,7 +367,7 @@ namespace dtl {
 				}
 			}
 			template <typename Matrix_>
-			void createRoadArray(std::vector<StartEndArray>& dungeon_road, const std::vector<StartEndArray>& dungeon_room, const std::vector<StartEndArray>& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
+			void createRoadArray(StartEnd& dungeon_road, const StartEnd& dungeon_room, const StartEnd& dungeon_division, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
 				for (::dtl::type::size roomBefore{}, roomAfter{}; roomBefore < mapDivCount; ++roomBefore) {
 					roomAfter = dungeon_road[roomBefore][0];
 					//X座標の通路

@@ -14,12 +14,12 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
+#include <DTL/Type/Vector.hpp>
 
 namespace dtl {
 	inline namespace console {
@@ -42,7 +42,7 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			std::vector<OutputStringName_> string_vector{};
+			DTL_TYPE_VECTOR<OutputStringName_> string_vector{};
 
 
 			//
@@ -52,7 +52,7 @@ namespace dtl {
 			template<typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void string_String(const OutputStringName_& first_, const Args_& ... args_) noexcept {
-				this->string_vector.emplace_back(first_);
+				this->string_vector.DTL_TYPE_VEMPLACE(first_);
 				this->string_String(args_...);
 			}
 
@@ -88,7 +88,7 @@ namespace dtl {
 			bool drawSTL(const Matrix_ & matrix_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col) {
-						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
@@ -99,7 +99,7 @@ namespace dtl {
 			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col) {
-						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
@@ -112,7 +112,7 @@ namespace dtl {
 			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
@@ -123,7 +123,7 @@ namespace dtl {
 			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
@@ -136,7 +136,7 @@ namespace dtl {
 			bool drawNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-						if (this->outputSTL(matrix_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
 					std::cout << '\n';
@@ -149,7 +149,7 @@ namespace dtl {
 			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.size()) continue;
+						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
 					std::cout << '\n';
@@ -162,7 +162,7 @@ namespace dtl {
 			bool drawArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-						if (this->outputArray(matrix_, col, row, max_x_) >= this->string_vector.size()) continue;
+						if (this->outputArray(matrix_, col, row, max_x_) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
 						std::cout << this->string_vector[this->outputArray(matrix_, col, row, max_x_)];
 					}
 					std::cout << '\n';

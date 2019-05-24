@@ -16,11 +16,11 @@
 #######################################################################################*/
 
 #include <array>
-#include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
+#include <DTL/Type/Vector.hpp>
 
 
 namespace dtl {
@@ -36,7 +36,7 @@ namespace dtl {
 			using Index_Size = ::dtl::type::size;
 			using Index_SSize = ::dtl::type::ssize;
 			using stuple = ::dtl::base::MatrixVec3;
-			using vectuple = std::vector<stuple>;
+			using vectuple = DTL_TYPE_VECTOR<stuple>;
 			using sstuple = ::dtl::Coordinate3Dimensional<Index_SSize>;
 
 			template<typename Matrix_>
@@ -57,7 +57,7 @@ namespace dtl {
 					const Index_Size check_y{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_y) + dir.y * 2) };
 					const Index_Size check_z{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_z) + dir.z * 2) };
 					if (!this->isInRange(matrix_, check_x, check_y, check_z) || !(static_cast<Matrix_Int_>(matrix_[check_z][check_y][check_x]) == this->wall_value)) continue;
-					result.emplace_back(static_cast<Index_Size>(dir.x), static_cast<Index_Size>(dir.y), static_cast<Index_Size>(dir.z));
+					result.DTL_TYPE_VEMPLACE(static_cast<Index_Size>(dir.x), static_cast<Index_Size>(dir.y), static_cast<Index_Size>(dir.z));
 				}
 				return result;
 			}
@@ -73,8 +73,8 @@ namespace dtl {
 							const Index_Size check_z{ z * 2 + 1 };
 							if (this->isInRange(matrix_, check_x, check_y, check_z) &&
 								(static_cast<Matrix_Int_>(matrix_[check_z][check_y][check_x]) == this->empty_value) &&
-								this->getCanDiggingDirs(matrix_, check_x, check_y, check_z).size()) {
-								result.emplace_back(check_x, check_y, check_z);
+								this->getCanDiggingDirs(matrix_, check_x, check_y, check_z).DTL_TYPE_VSIZE()) {
+								result.DTL_TYPE_VEMPLACE(check_x, check_y, check_z);
 							}
 						}
 				return result;
@@ -101,8 +101,8 @@ namespace dtl {
 				bool finish_flag{ false };
 				while (!finish_flag) {
 					const vectuple can_digging_dirs{ this->getCanDiggingDirs(matrix_, seed_x, seed_y, seed_z) };
-					if (can_digging_dirs.size()) {
-						const stuple digging_dir{ can_digging_dirs[::dtl::random::mt32bit.get<Index_Size>(can_digging_dirs.size())] };
+					if (can_digging_dirs.DTL_TYPE_VSIZE()) {
+						const stuple digging_dir{ can_digging_dirs[::dtl::random::mt32bit.get<Index_Size>(can_digging_dirs.DTL_TYPE_VSIZE())] };
 						const Index_Size dir_x{ digging_dir.x };
 						const Index_Size dir_y{ digging_dir.y };
 						const Index_Size dir_z{ digging_dir.z };
@@ -114,8 +114,8 @@ namespace dtl {
 					}
 					else {
 						const vectuple can_respawn_seed_positions{ this->getCanRespawnSeedPositions(matrix_) };
-						if (can_respawn_seed_positions.size()) {
-							const stuple respawn_pos{ can_respawn_seed_positions[::dtl::random::mt32bit.get<Index_Size>(can_respawn_seed_positions.size())] };
+						if (can_respawn_seed_positions.DTL_TYPE_VSIZE()) {
+							const stuple respawn_pos{ can_respawn_seed_positions[::dtl::random::mt32bit.get<Index_Size>(can_respawn_seed_positions.DTL_TYPE_VSIZE())] };
 							seed_x = respawn_pos.x;
 							seed_y = respawn_pos.y;
 							seed_z = respawn_pos.z;
