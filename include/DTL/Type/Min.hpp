@@ -14,6 +14,8 @@
 
 #if defined(SPROUT_ALGORITHM_MIN_HPP) //Sprout
 #define DTL_TYPE_MIN (::sprout::min)
+#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+#define DTL_TYPE_MIN (::FGenericPlatformMath::Min)
 #else
 #include <algorithm>
 #define DTL_TYPE_MIN (::std::min)

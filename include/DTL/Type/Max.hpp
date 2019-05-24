@@ -14,6 +14,8 @@
 
 #if defined(SPROUT_ALGORITHM_MAX_HPP) //Sprout
 #define DTL_TYPE_MAX (::sprout::max)
+#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+#define DTL_TYPE_MAX (::FGenericPlatformMath::Max)
 #else
 #include <algorithm>
 #define DTL_TYPE_MAX (::std::max)
