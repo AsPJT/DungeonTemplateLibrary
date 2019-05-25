@@ -126,7 +126,7 @@ namespace dtl {
 						chunk_matrix[0][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[::dtl::shape::fli_chunk_size][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
-						createWorldMapSimple(chunk_matrix, args_...);
+						this->createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
 						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fli_chunk_size; ++row2)
 							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fli_chunk_size; ++col2)
@@ -174,7 +174,7 @@ namespace dtl {
 						chunk_matrix[0][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[::dtl::shape::fli_chunk_size][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
-						createWorldMapSimple(chunk_matrix, args_...);
+						this->createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
 						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fli_chunk_size; ++row2)
 							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fli_chunk_size; ++col2)
@@ -222,7 +222,7 @@ namespace dtl {
 						chunk_matrix[0][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_up[col + 1]);
 						chunk_matrix[::dtl::shape::fli_chunk_size][::dtl::shape::fli_chunk_size] = static_cast<Matrix_Int_>(rand_down[col + 1]);
 						//チャンク生成
-						createWorldMapSimple(chunk_matrix, args_...);
+						this->createWorldMapSimple(chunk_matrix, args_...);
 						//生成したチャンクをワールドマップにコピペ
 						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fli_chunk_size; ++row2)
 							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fli_chunk_size; ++col2)
