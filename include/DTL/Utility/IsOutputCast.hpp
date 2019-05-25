@@ -10,6 +10,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 
+///// DTL Only /////
+
 #include <DTL/Macros/nodiscard.hpp>
 
 namespace dtl {

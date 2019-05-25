@@ -10,15 +10,16 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_REPLACE_ALL_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_REPLACE_ALL_HPP
 
-#include <cstdint>
-#include <vector>
+///// DTL Only /////
+
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/Sort.hpp>
-
+#include <DTL/Type/SSizeT.hpp>
+#include <DTL/Type/Vector.hpp>
 
 namespace dtl {
 	inline namespace utility {
@@ -32,6 +33,7 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
+			using Index_SSize = ::dtl::type::ssize;
 			
 
 
@@ -59,39 +61,39 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_][point_x_]) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_]) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_]) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_ * max_x_ + point_x_]) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_]) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_][layer_]) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
@@ -99,39 +101,39 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_][point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_ * max_x_ + point_x_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
-				for (std::int_fast32_t high_value{ static_cast<std::int_fast32_t>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
+				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
-					if (this->before_value[mid_value] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
+					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
 						matrix_[point_y_][point_x_] = this->after_value;
 						return;
 					}
-					else if (this->before_value[mid_value] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
+					else if (this->before_value[static_cast<Index_Size>(mid_value)] < matrix_[point_y_][point_x_][layer_]) low_value = mid_value + 1;
 					else high_value = mid_value - 1;
 				}
 			}

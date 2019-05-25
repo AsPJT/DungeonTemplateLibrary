@@ -27,6 +27,9 @@
 #ifndef DTL_TYPE_VPUSH
 #define DTL_TYPE_VPUSH Add
 #endif
+#ifndef DTL_TYPE_VSHRINK
+#define DTL_TYPE_VSHRINK Shrink
+#endif
 
 namespace dtl {
 	namespace type {
@@ -52,6 +55,9 @@ namespace dtl {
 #endif
 #ifndef DTL_TYPE_VPUSH
 #define DTL_TYPE_VPUSH push_back
+#endif
+#ifndef DTL_TYPE_VSHRINK
+#define DTL_TYPE_VSHRINK shrink_to_fit
 #endif
 
 namespace dtl {

@@ -15,6 +15,8 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::utility::Init-(実用クラス)/
 #######################################################################################*/
 
+///// DTL Only /////
+
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>

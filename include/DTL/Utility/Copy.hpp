@@ -9,6 +9,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_COPY_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_COPY_HPP
 
+///// DTL Only /////
+
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Type/SizeT.hpp>
 
