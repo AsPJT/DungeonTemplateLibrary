@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
@@ -16,16 +16,16 @@
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Range/BasicRectangular.hpp>
 
-//‹¤—Lƒf[ƒ^
+//å…±æœ‰ãƒ‡ãƒ¼ã‚¿
 namespace dtl {
 	inline namespace range {
 
-		//lŠpŒ`ƒNƒ‰ƒX
+		//å››è§’å½¢ã‚¯ãƒ©ã‚¹
 		template<typename Derived_>
 		class RectangularBase : public ::dtl::range::BasicRectangular<Derived_> {
 		private:
 
-			///// ƒGƒCƒŠƒAƒX /////
+			///// ã‚¨ã‚¤ãƒªã‚¢ã‚¹ /////
 
 			using Index_Size = ::dtl::type::size;
 			using RectBase_t = ::dtl::range::BasicRectangular<Derived_>;
@@ -34,9 +34,9 @@ namespace dtl {
 		public:
 
 
-			///// Á‹ /////
+			///// æ¶ˆå» /////
 
-			//‘S‚Ä‚Ì’l‚ğ‰Šú’l‚É–ß‚·
+			//å…¨ã¦ã®å€¤ã‚’åˆæœŸå€¤ã«æˆ»ã™
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clear() noexcept {
 				this->clearRange();
@@ -44,7 +44,7 @@ namespace dtl {
 			}
 
 
-			///// ƒRƒ“ƒXƒgƒ‰ƒNƒ^ /////
+			///// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ /////
 
 			constexpr RectangularBase() = default;
 			constexpr explicit RectangularBase(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept
