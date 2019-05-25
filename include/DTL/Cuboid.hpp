@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
@@ -8,7 +8,7 @@
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
 
-///// ///// ///// —§‘Ì ///// ///// /////
+///// ///// ///// ç«‹ä½“ ///// ///// /////
 
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CUBOID_HPP
 #ifndef NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_CUBOID_HPP

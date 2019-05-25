@@ -14,9 +14,33 @@
 
 #if defined(SPROUT_ALGORITHM_SORT_HPP) //Sprout
 #define DTL_TYPE_SORT (::sprout::sort)
+#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+
+#include <algorithm> //todo
+#define DTL_TYPE_SORT (::std::sort)
+
+namespace dtl {
+	namespace type {
+		template<typename Vector_>
+		void sortVector(Vector_& vector_) noexcept {
+			vector_.Sort();
+		}
+	}
+}
+
 #else
 #include <algorithm>
 #define DTL_TYPE_SORT (::std::sort)
+
+namespace dtl {
+	namespace type {
+		template<typename Vector_>
+		void sortVector(Vector_& vector_) noexcept {
+			DTL_TYPE_SORT(vector_.begin(), vector_.end());
+		}
+	}
+}
+
 #endif
 
 #endif

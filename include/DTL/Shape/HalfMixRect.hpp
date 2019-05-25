@@ -15,14 +15,13 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::HalfMixRect-(形状クラス)/
 #######################################################################################*/
 
-#include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
-
+#include <DTL/Type/Vector.hpp>
 namespace dtl {
 	inline namespace shape {
 
@@ -44,14 +43,14 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			std::vector<Matrix_Int_> draw_value{};
+			DTL_TYPE_VECTOR<Matrix_Int_> draw_value{};
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void string_String() const noexcept {}
 			template<typename Int_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void string_String(const Int_& first_, const Args_& ... args_) noexcept {
-				this->draw_value.emplace_back(static_cast<Matrix_Int_>(first_));
+				this->draw_value.DTL_TYPE_VEMPLACE(static_cast<Matrix_Int_>(first_));
 				this->string_String(args_...);
 			}
 
@@ -61,43 +60,43 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				matrix_[end_y_][end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				matrix_[end_y_ * max_x_ + end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				matrix_[end_y_ * max_x_ + end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_][layer_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				matrix_[end_y_][end_x_][layer_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_) const noexcept {
-				matrix_ = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				matrix_ = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 			template<typename Matrix_Value_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void substitutionList(Matrix_Value_&& matrix_, Function_&& function_) const noexcept {
-				if (function_(matrix_)) matrix_ = ((::dtl::random::mt32bit.probability()) ? this->draw_value.front() : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.size())]);
+				if (function_(matrix_)) matrix_ = ((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(draw_value.DTL_TYPE_VSIZE())]);
 			}
 
 
@@ -212,7 +211,7 @@ namespace dtl {
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				std::vector<Matrix_Int_> getValue() const noexcept {
+				DTL_TYPE_VECTOR<Matrix_Int_> getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -347,7 +346,7 @@ namespace dtl {
 			//塗り値を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				HalfMixRect& clearValue() noexcept {
-				std::vector<Matrix_Int_> new_draw_value{};
+				DTL_TYPE_VECTOR<Matrix_Int_> new_draw_value{};
 				this->draw_value = std::move(new_draw_value);
 				return *this;
 			}
@@ -399,7 +398,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				HalfMixRect& setValue(const std::vector<Matrix_Int_>& draw_value_) noexcept {
+				HalfMixRect& setValue(const DTL_TYPE_VECTOR<Matrix_Int_>& draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
