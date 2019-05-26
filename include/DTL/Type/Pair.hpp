@@ -16,6 +16,13 @@
 
 #define DTL_TYPE_PAIR ::TPair
 
+#ifndef DTL_TYPE_PFIRST
+#define DTL_TYPE_PFIRST Get<0>()
+#endif
+#ifndef DTL_TYPE_PSECOND
+#define DTL_TYPE_PSECOND Get<1>()
+#endif
+
 namespace dtl {
 	namespace type {
 		template<typename Value1_, typename Value2_>
@@ -29,6 +36,13 @@ namespace dtl {
 #else
 #include <utility>
 #define DTL_TYPE_PAIR ::std::pair
+
+#ifndef DTL_TYPE_PFIRST
+#define DTL_TYPE_PFIRST first
+#endif
+#ifndef DTL_TYPE_PSECOND
+#define DTL_TYPE_PSECOND second
+#endif
 
 namespace dtl {
 	namespace type {

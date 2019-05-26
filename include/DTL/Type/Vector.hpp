@@ -41,9 +41,18 @@ namespace dtl {
 		}
 	}
 }
+namespace dtl {
+	namespace type {
+		template<typename Vector_, typename Value_>
+		void removeVector(Vector_& vector_, const Value_ value_) noexcept {
+			vector_.Remove(value_);
+		}
+	}
+}
 
 #else
 
+#include <algorithm>
 #include <vector>
 #include <DTL/Type/SizeT.hpp>
 #define DTL_TYPE_VECTOR ::std::vector
@@ -65,6 +74,14 @@ namespace dtl {
 		template<typename Int_>
 		DTL_TYPE_VECTOR<Int_> makeVector(const ::dtl::type::size size_, const Int_& int_) noexcept {
 			return DTL_TYPE_VECTOR<Int_>(size_, int_);
+		}
+	}
+}
+namespace dtl {
+	namespace type {
+		template<typename Vector_,typename Value_>
+		void removeVector(Vector_& vector_, const Value_ value_) noexcept {
+			vector_.erase(::std::remove(vector_.begin(), vector_.end(), value_), vector_.end());
 		}
 	}
 }

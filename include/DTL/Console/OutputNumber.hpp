@@ -12,11 +12,11 @@
 
 #include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2
 
-#include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/Cout.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Utility/IsOutputCast.hpp>
@@ -51,22 +51,22 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->after_string;
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputList(const Matrix_Value_& matrix_) const noexcept {
-				std::cout << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->after_string;
 			}
 
 
@@ -78,8 +78,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->outputSTL(matrix_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_>
@@ -87,8 +88,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->outputSTL(matrix_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -98,8 +100,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
 						this->outputLayer(matrix_, layer_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_>
@@ -107,8 +110,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
 						this->outputLayer(matrix_, layer_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -118,8 +122,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputSTL(matrix_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -129,8 +134,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputLayer(matrix_, layer_, col, row);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -140,8 +146,9 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						this->outputArray(matrix_, col, row, max_x_);
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -160,8 +167,9 @@ namespace dtl {
 						if (end_x_ != 1 && col_count >= end_x_) break;
 						this->outputList(col);
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 

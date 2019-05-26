@@ -12,11 +12,11 @@
 
 #include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2
 
-#include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/Cout.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/Vector.hpp>
@@ -89,10 +89,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col) {
 						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_>
@@ -100,10 +101,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col) {
 						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -113,10 +115,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col) {
 						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_>
@@ -124,10 +127,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col) {
 						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -137,10 +141,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 						if (this->outputSTL(matrix_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputSTL(matrix_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputSTL(matrix_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -150,10 +155,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 						if (this->outputLayer(matrix_, layer_, col, row) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
+						DTL_TYPE_COUT << this->string_vector[this->outputLayer(matrix_, layer_, col, row)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -163,10 +169,11 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
 						if (this->outputArray(matrix_, col, row, max_x_) >= this->string_vector.DTL_TYPE_VSIZE()) continue;
-						std::cout << this->string_vector[this->outputArray(matrix_, col, row, max_x_)];
+						DTL_TYPE_COUT << this->string_vector[this->outputArray(matrix_, col, row, max_x_)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -183,10 +190,11 @@ namespace dtl {
 						++col_count;
 						if (col_count <= this->start_x) continue;
 						if (end_x_ != 1 && col_count >= end_x_) break;
-						std::cout << this->string_vector[this->outputList(col)];
+						DTL_TYPE_COUT << this->string_vector[this->outputList(col)];
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 

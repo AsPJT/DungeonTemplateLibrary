@@ -133,6 +133,7 @@ namespace dtl {
 				createDivision(dungeon_road,dungeon_division, mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
 				this->substitutionRoomLayer(dungeon_room, matrix_, mapDivCount, layer_);
+				createRoadLayer(dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, layer_);
 				return true;
 			}
 
@@ -160,6 +161,7 @@ namespace dtl {
 				createDivision(dungeon_road,dungeon_division,mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
 				this->substitutionRoomArray(dungeon_room, matrix_, mapDivCount, max_x_);
+				createRoadArray(dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, max_x_);
 				return true;
 			}
 

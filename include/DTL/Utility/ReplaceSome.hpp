@@ -157,14 +157,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end()); //todo
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -184,14 +184,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -213,14 +213,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second][layer_] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND][layer_] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND][layer_] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -240,21 +240,21 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second][layer_] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND][layer_] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND][layer_] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -276,14 +276,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -305,14 +305,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first][i.second][layer_] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST][i.DTL_TYPE_PSECOND][layer_] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first][value_pairs[index].second][layer_] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST][value_pairs[index].DTL_TYPE_PSECOND][layer_] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;
@@ -334,14 +334,14 @@ namespace dtl {
 
 				if (this->replace_num >= value_pairs.DTL_TYPE_VSIZE()) {
 					for (const auto& i : value_pairs)
-						matrix_[i.first * max_x_ + i.second] = this->after_value;
+						matrix_[i.DTL_TYPE_PFIRST * max_x_ + i.DTL_TYPE_PSECOND] = this->after_value;
 					return true;
 				}
 
 				for (::dtl::type::size modify_count{}, index{}; modify_count < this->replace_num; ++modify_count) {
 					index = ::dtl::random::mt32bit.get<::dtl::type::size>(value_pairs.DTL_TYPE_VSIZE());
-					matrix_[value_pairs[index].first * max_x_ + value_pairs[index].second] = this->after_value;
-					value_pairs.erase(std::remove(value_pairs.begin(), value_pairs.end(), value_pairs[index]), value_pairs.end());
+					matrix_[value_pairs[index].DTL_TYPE_PFIRST * max_x_ + value_pairs[index].DTL_TYPE_PSECOND] = this->after_value;
+					::dtl::type::removeVector(value_pairs, value_pairs[index]);
 					if (value_pairs.DTL_TYPE_VSIZE() == 0) break;
 				}
 				return true;

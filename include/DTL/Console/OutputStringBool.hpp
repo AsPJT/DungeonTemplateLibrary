@@ -12,11 +12,11 @@
 
 #include <DTL/Workaround/cstdioGets.hpp> //Support Clang 3.4.2
 
-#include <iostream>
 #include <string>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/Cout.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 
@@ -97,18 +97,20 @@ namespace dtl {
 			bool drawSTL(const Matrix_ & matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
-						std::cout << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool drawWidthSTL(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
-						std::cout << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -117,18 +119,20 @@ namespace dtl {
 			bool drawLayerSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
-						std::cout << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			bool drawLayerWidthSTL(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
-						std::cout << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -137,9 +141,10 @@ namespace dtl {
 			bool drawNormal(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						std::cout << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputSTL(matrix_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -148,9 +153,10 @@ namespace dtl {
 			bool drawLayerNormal(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						std::cout << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputLayer(matrix_, layer_, col, row, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -159,9 +165,10 @@ namespace dtl {
 			bool drawArray(const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						std::cout << ((this->outputArray(matrix_, col, row, max_x_, args_...)) ? this->true_string : this->false_string);
-					std::cout << '\n';
+						DTL_TYPE_COUT << ((this->outputArray(matrix_, col, row, max_x_, args_...)) ? this->true_string : this->false_string);
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
@@ -178,10 +185,11 @@ namespace dtl {
 						++col_count;
 						if (col_count <= this->start_x) continue;
 						if (end_x_ != 1 && col_count >= end_x_) break;
-						std::cout << ((this->outputList(col, args_...)) ? this->true_string : this->false_string);
+						DTL_TYPE_COUT << ((this->outputList(col, args_...)) ? this->true_string : this->false_string);
 					}
-					std::cout << '\n';
+					DTL_TYPE_COUT << '\n';
 				}
+				DTL_TYPE_COUT_END
 				return true;
 			}
 
