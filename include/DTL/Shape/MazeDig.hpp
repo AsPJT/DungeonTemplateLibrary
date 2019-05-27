@@ -116,7 +116,11 @@ namespace dtl {
 					case 3:dx = 2; dy = 0; break;
 					default:dx = 0; dy = 0; break;
 					}
-					if (x_ + dx <= static_cast<::dtl::type::ssize>(start_x) || y_ + dy <= static_cast<::dtl::type::ssize>(start_y) || (x_ + dx) >= j_max || (y_ + dy) >= i_max || matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
+					if (static_cast<::dtl::type::ssize>(x_ + dx) <= static_cast<::dtl::type::ssize>(start_x) ||
+						static_cast<::dtl::type::ssize>(y_ + dy) <= static_cast<::dtl::type::ssize>(start_y) ||
+						(x_ + dx) >= j_max || 
+						(y_ + dy) >= i_max || 
+						matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[(y_ + dy) * max_x_ + x_ + dx] == this->wall_value) {

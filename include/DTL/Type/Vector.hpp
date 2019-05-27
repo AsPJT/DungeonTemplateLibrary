@@ -44,6 +44,7 @@ namespace dtl {
 namespace dtl {
 	namespace type {
 		template<typename Vector_, typename Value_>
+		DTL_VERSIONING_CPP14_CONSTEXPR
 		void removeVector(Vector_& vector_, const Value_ value_) noexcept {
 			vector_.Remove(value_);
 		}
@@ -80,6 +81,7 @@ namespace dtl {
 namespace dtl {
 	namespace type {
 		template<typename Vector_,typename Value_>
+		DTL_VERSIONING_CPP14_CONSTEXPR
 		void removeVector(Vector_& vector_, const Value_ value_) noexcept {
 			vector_.erase(::std::remove(vector_.begin(), vector_.end(), value_), vector_.end());
 		}
