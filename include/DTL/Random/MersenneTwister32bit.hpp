@@ -23,9 +23,9 @@ namespace dtl {
 		class MersenneTwister_64bit {
 		private:
 			//64ビット版メルセンヌ・ツイスタ
-			std::mt19937_64 mt;
+			::std::mt19937_64 mt;
 			//非決定論的な乱数
-			std::random_device rd;
+			::std::random_device rd;
 
 		public:
 			//コンストラクタ(初期化)
@@ -35,13 +35,13 @@ namespace dtl {
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
-			template<typename Random_Int_ = std::uint_fast64_t>
+			template<typename Random_Int_ = ::std::uint_fast64_t>
 			void seed(const Random_Int_ seed_) noexcept {
-				this->mt.seed(static_cast<std::uint_fast64_t>(seed_));
+				this->mt.seed(static_cast< ::std::uint_fast64_t>(seed_));
 			}
 
 			//通常の乱数
-			template<typename Random_Int_ = std::uint_fast64_t>
+			template<typename Random_Int_ = ::std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(this->mt());
@@ -54,7 +54,7 @@ namespace dtl {
 		class MT64bit_1 {
 		private:
 			::dtl::type::size counter{ mt64_bit_counter_num_1 };
-			std::uint_fast64_t random_num{};
+			::std::uint_fast64_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool get() noexcept {
@@ -77,12 +77,12 @@ namespace dtl {
 		class MersenneTwister_32bit {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
-			std::mt19937 mt;
+			::std::mt19937 mt;
 			//非決定論的な乱数
-			std::random_device rd;
+			::std::random_device rd;
 
 			::dtl::type::size counter_bit1{ mt32_bit_counter_num_1 };
-			std::uint_fast32_t random_num_bit1{};
+			::std::uint_fast32_t random_num_bit1{};
 
 			DTL_VERSIONING_CPP17_NODISCARD
 				bool getBit1() noexcept {
@@ -105,36 +105,36 @@ namespace dtl {
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
-			template<typename Random_Int_ = std::uint_fast32_t>
+			template<typename Random_Int_ = ::std::uint_fast32_t>
 			void seed(const Random_Int_ seed_) noexcept {
-				this->mt.seed(static_cast<std::uint_fast32_t>(seed_));
+				this->mt.seed(static_cast< ::std::uint_fast32_t>(seed_));
 			}
 
 			//通常の乱数
-			template<typename Random_Int_ = std::uint_fast32_t>
+			template<typename Random_Int_ = ::std::uint_fast32_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(this->mt());
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
-			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_>
+			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ max_) noexcept {
-				if (static_cast<std::int_fast32_t>(max_) <= 1) return 0;
-				std::uniform_int_distribution<> uid(0, static_cast<std::int_fast32_t>(max_) - 1);
+				if (static_cast< ::std::int_fast32_t>(max_) <= 1) return 0;
+				::std::uniform_int_distribution<> uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 			//最小値～最大値
-			template<typename Random_Int_ = std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
+			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
-				std::uniform_int_distribution<> uid(static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast<std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
+				::std::uniform_int_distribution<> uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 			//確率
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability(const double probability_) noexcept {
-				std::bernoulli_distribution uid(probability_);
+				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
 			//1/2の確率
@@ -150,7 +150,7 @@ namespace dtl {
 		class MT32bit_1 {
 		private:
 			::dtl::type::size counter{ mt32_bit_counter_num_1 };
-			std::uint_fast32_t random_num{};
+			::std::uint_fast32_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
 				bool get() noexcept {
@@ -173,9 +173,9 @@ namespace dtl {
 		class MT64bit_4 {
 		private:
 			::dtl::type::size counter{ counter_num_2 };
-			std::uint_fast64_t random_num{};
+			::std::uint_fast64_t random_num{};
 		public:
-			template<typename Random_Int_ = std::uint_fast64_t>
+			template<typename Random_Int_ = ::std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
 				if (this->counter >= counter_num_2) {
@@ -183,7 +183,7 @@ namespace dtl {
 					this->counter = 0;
 				}
 				else ++(this->counter);
-				const std::uint_fast64_t tmp{ this->random_num & 3 };
+				const ::std::uint_fast64_t tmp{ this->random_num & 3 };
 				this->random_num >>= 2;
 				return static_cast<Random_Int_>(tmp);
 			}
@@ -194,9 +194,9 @@ namespace dtl {
 		class MersenneTwister32bit {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
-			std::mt19937 mt;
+			::std::mt19937 mt;
 			//非決定論的な乱数
-			std::random_device rd;
+			::std::random_device rd;
 
 		public:
 			//コンストラクタ(初期化)
@@ -206,38 +206,38 @@ namespace dtl {
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
-			void seed(const std::uint_fast32_t seed_) noexcept {
+			void seed(const ::std::uint_fast32_t seed_) noexcept {
 				this->mt.seed(seed_);
 			}
 
 			//通常の乱数
 			DTL_VERSIONING_CPP17_NODISCARD
-			std::uint_fast32_t operator()() noexcept {
+			::std::uint_fast32_t operator()() noexcept {
 				return this->mt();
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
 			DTL_VERSIONING_CPP17_NODISCARD
-			std::int_fast32_t operator()(const std::int_fast32_t max_) noexcept {
+			::std::int_fast32_t operator()(const ::std::int_fast32_t max_) noexcept {
 				if (max_ <= 1) return 0;
-				std::uniform_int_distribution<> uid(0, max_ - 1);
+				::std::uniform_int_distribution<> uid(0, max_ - 1);
 				return uid(this->mt);
 			}
 			//最小値～最大値
 			DTL_VERSIONING_CPP17_NODISCARD
-			std::int_fast32_t operator()(const std::int_fast32_t min_, const std::int_fast32_t max_) noexcept {
-				std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
+			::std::int_fast32_t operator()(const ::std::int_fast32_t min_, const ::std::int_fast32_t max_) noexcept {
+				::std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 				return uid(this->mt);
 			}
 			//確率
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability(const double probability_) noexcept {
-				std::bernoulli_distribution uid(probability_);
+				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
 			//1/2の確率
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability() noexcept {
-				std::uniform_int_distribution<> uid(0, 1);
+				::std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(this->mt)) ? true : false);
 			}
 

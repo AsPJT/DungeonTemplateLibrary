@@ -20,8 +20,8 @@ namespace dtl {
 		class Time {
 
 			Clock_ mul_value{};
-			std::chrono::system_clock::time_point sc{ std::chrono::system_clock::now() };
-			std::chrono::system_clock::time_point old_sc{};
+			::std::chrono::system_clock::time_point sc{ ::std::chrono::system_clock::now() };
+			::std::chrono::system_clock::time_point old_sc{};
 			Clock_ clock{};
 
 		public:
@@ -30,8 +30,8 @@ namespace dtl {
 
 			Time& update() noexcept {
 				this->old_sc = this->sc;
-				this->sc = std::chrono::system_clock::now();
-				this->clock = static_cast<Clock_>(std::chrono::duration_cast<Duration_>(this->sc - this->old_sc).count()) * this->mul_value;
+				this->sc = ::std::chrono::system_clock::now();
+				this->clock = static_cast<Clock_>( ::std::chrono::duration_cast<Duration_>(this->sc - this->old_sc).count()) * this->mul_value;
 				return *this;
 			}
 
@@ -39,7 +39,7 @@ namespace dtl {
 			constexpr Clock_ get() const noexcept { return this->clock; }
 
 		};
-		//static thread_local Time<double, std::chrono::nanoseconds> system_time(1.0e-09);
+		//static thread_local Time<double, ::std::chrono::nanoseconds> system_time(1.0e-09);
 
 	}
 }

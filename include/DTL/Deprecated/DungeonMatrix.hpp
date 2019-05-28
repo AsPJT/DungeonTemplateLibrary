@@ -17,7 +17,7 @@ namespace dtl {
 	inline namespace utility {
 		namespace stl {
 
-			//サイズ変更(std::vector, std::deque等)
+			//サイズ変更( ::std::vector, ::std::deque等)
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void resize(Matrix_& matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept {
@@ -104,7 +104,7 @@ namespace dtl {
 						for (::dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							const auto&& tmp{ (matrix_[row][col] + 0) };
 							matrix_[row][col] = matrix_[row2][col];
-							matrix_[row2][col] = std::move(tmp);
+							matrix_[row2][col] = ::std::move(tmp);
 						}
 					}
 				}
@@ -117,7 +117,7 @@ namespace dtl {
 							if (col >= col2) break;
 							const auto && tmp{ (matrix_[row][col] + 0) };
 							matrix_[row][col] = matrix_[row][col2];
-							matrix_[row][col2] = std::move(tmp);
+							matrix_[row][col2] = ::std::move(tmp);
 						}
 				}
 

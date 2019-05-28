@@ -30,7 +30,7 @@ namespace dtl {
 	inline namespace utility {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR< ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class VoronoiDiagram {
 		private:
 
@@ -49,7 +49,7 @@ namespace dtl {
 			Index_Size height{};
 			::dtl::type::size draw_value{};
 
-			using Point_Pair_ = std::pair<::dtl::type::ssize, ::dtl::type::ssize>;
+			using Point_Pair_ = ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>;
 
 			//原点の場所と陸地を決定する
 			template<typename Function_>

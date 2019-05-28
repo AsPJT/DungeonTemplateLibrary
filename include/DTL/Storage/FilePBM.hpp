@@ -29,7 +29,7 @@ namespace dtl {
 	inline namespace storage {
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = std::ofstream>
+		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = ::std::ofstream>
 		class FilePBM {
 		private:
 
@@ -46,7 +46,7 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			std::string str{};
+			::std::string str{};
 
 
 			///// 基本処理 /////
@@ -240,7 +240,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				std::string getString() const noexcept {
+				::std::string getString() const noexcept {
 				return this->str;
 			}
 
@@ -447,13 +447,13 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr FilePBM() = default;
-			constexpr explicit FilePBM(const std::string & write_value_) noexcept
+			constexpr explicit FilePBM(const ::std::string & write_value_) noexcept
 				:str(write_value_) {}
 
 			constexpr explicit FilePBM(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FilePBM(const ::dtl::base::MatrixRange & matrix_range_, const std::string & write_value_) noexcept
+			constexpr explicit FilePBM(const ::dtl::base::MatrixRange & matrix_range_, const ::std::string & write_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				str(write_value_) {}
@@ -461,7 +461,7 @@ namespace dtl {
 			constexpr explicit FilePBM(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit FilePBM(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const std::string & write_value_) noexcept
+			constexpr explicit FilePBM(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string & write_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				str(write_value_) {}

@@ -66,7 +66,7 @@ namespace dtl {
 					biome_size
 				};
 
-				std::array<std::uint_fast32_t, biome_size> biome_color{
+				::std::array< ::std::uint_fast32_t, biome_size> biome_color{
 					{
 						0x29289f,
 						0x65a338,

@@ -37,7 +37,7 @@ namespace dtl {
 				return vec2_.x != this->x || vec2_.y != this->y;
 			}
 		};
-		using MatrixVec2 = Coordinate2Dimensional<::dtl::type::size>;
+		using MatrixVec2 = ::dtl::base::Coordinate2Dimensional<::dtl::type::size>;
 
 		template<typename Int_>
 		struct Coordinate3Dimensional {
@@ -54,7 +54,7 @@ namespace dtl {
 				return vec3_.x != this->x || vec3_.y != this->y || vec3_.z != this->z;
 			}
 		};
-		using MatrixVec3 = Coordinate3Dimensional<::dtl::type::size>;
+		using MatrixVec3 = ::dtl::base::Coordinate3Dimensional<::dtl::type::size>;
 
 		//座標と幅
 		template<typename Int_>
@@ -95,7 +95,7 @@ namespace dtl {
 			}
 
 		};
-		using MatrixRange = Coordinate2DimensionalAndLength2Dimensional<::dtl::type::size>;
+		using MatrixRange = ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<::dtl::type::size>;
 
 		//座標と幅
 		template<typename Int_>
@@ -138,7 +138,7 @@ namespace dtl {
 			}
 
 		};
-		using MatrixRange3D = Coordinate3DimensionalAndLength3Dimensional<::dtl::type::size>;
+		using MatrixRange3D = ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<::dtl::type::size>;
 
 	}
 }

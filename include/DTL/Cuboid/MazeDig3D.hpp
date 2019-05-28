@@ -51,7 +51,7 @@ namespace dtl {
 			template<typename Matrix_>
 			vectuple getCanDiggingDirs(const Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z) const {
 				vectuple result{};
-				constexpr std::array<sstuple, 6> dirs{ { sstuple(-1,0,0),sstuple(1,0,0), sstuple(0,-1,0), sstuple(0,1,0), sstuple(0,0,-1), sstuple(0,0,1) } };
+				constexpr ::std::array<sstuple, 6> dirs{ { sstuple(-1,0,0),sstuple(1,0,0), sstuple(0,-1,0), sstuple(0,1,0), sstuple(0,0,-1), sstuple(0,0,1) } };
 				for (const auto& dir : dirs) {
 					const Index_Size check_x{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_x) + dir.x * 2) };
 					const Index_Size check_y{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_y) + dir.y * 2) };

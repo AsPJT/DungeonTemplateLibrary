@@ -53,7 +53,7 @@ namespace dtl {
 //部屋のY座標の最小サイズ
 //部屋のY座標のサイズ加算
 
-			using StartEndArray = std::array<::dtl::type::size, 4>;
+			using StartEndArray = ::std::array<::dtl::type::size, 4>;
 
 			///// エイリアス /////
 

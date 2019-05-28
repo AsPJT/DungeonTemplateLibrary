@@ -203,7 +203,7 @@ namespace dtl {
 		}
 
 		//WolfオートタイルのConsole出力用文字
-		constexpr std::array<char[3], 20> wolf_auto_tile_string{ {
+		constexpr ::std::array<char[3], 20> wolf_auto_tile_string{ {
 	"|-","-|","|_","_|",
 	"| "," |","| "," |",
 	"--","--","__","__",
@@ -243,21 +243,21 @@ namespace dtl {
 					//上方向のオートタイルを描画
 					for (::dtl::type::size x{}; x < matrix_[y].size(); ++x) {
 						if (matrix_[y][x]) {
-							std::cout << ::dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
-							std::cout << ::dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, matrix_[y].size() - 1, 0);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, matrix_[y].size() - 1, 0);
 						}
-						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+						else ::std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << '\n';
+					::std::cout << '\n';
 					//下方向のオートタイルを描画
 					for (::dtl::type::size x{}; x < matrix_[y].size(); ++x) {
 						if (matrix_[y][x]) {
-							std::cout << ::dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, matrix_.size() - 1);
-							std::cout << ::dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, matrix_[y].size() - 1, matrix_.size() - 1);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, matrix_.size() - 1);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, matrix_[y].size() - 1, matrix_.size() - 1);
 						}
-						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+						else ::std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << '\n';
+					::std::cout << '\n';
 				}
 			}
 
@@ -273,21 +273,21 @@ namespace dtl {
 					//上方向のオートタイルを描画
 					for (::dtl::type::size x{}; x < x_; ++x) {
 						if (matrix_[y][x]) {
-							std::cout << ::dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
-							std::cout << ::dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, x_ - 1, 0);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringUpperLeft(matrix_, x, y, 0, 0);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringUpperRight(matrix_, x, y, x_ - 1, 0);
 						}
-						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+						else ::std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << '\n';
+					::std::cout << '\n';
 					//下方向のオートタイルを描画
 					for (::dtl::type::size x{}; x < x_; ++x) {
 						if (matrix_[y][x]) {
-							std::cout << ::dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, y_ - 1);
-							std::cout << ::dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, x_ - 1, y_ - 1);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringLowerLeft(matrix_, x, y, 0, y_ - 1);
+							::std::cout << ::dtl::tile::getWolfAutoTileStringLowerRight(matrix_, x, y, x_ - 1, y_ - 1);
 						}
-						else std::cout << space_char_ << space_char_ << space_char_ << space_char_;
+						else ::std::cout << space_char_ << space_char_ << space_char_ << space_char_;
 					}
-					std::cout << '\n';
+					::std::cout << '\n';
 				}
 			}
 

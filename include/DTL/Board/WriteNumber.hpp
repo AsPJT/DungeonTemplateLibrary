@@ -33,8 +33,8 @@ namespace dtl {
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using OutputString_ = std::basic_string<OutputChar_>;
-			using OutputStream_ = std::basic_stringstream<OutputChar_>;
+			using OutputString_ = ::std::basic_string<OutputChar_>;
+			using OutputStream_ = ::std::basic_stringstream<OutputChar_>;
 
 
 			///// メンバ変数 /////

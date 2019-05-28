@@ -25,7 +25,7 @@ namespace dtl {
 	inline namespace console {
 
 		//四角形の生成
-		template<typename Matrix_Int_, typename OutputStringName_ = std::string>
+		template<typename Matrix_Int_, typename OutputStringName_ = ::std::string>
 		class OutputString {
 		private:
 

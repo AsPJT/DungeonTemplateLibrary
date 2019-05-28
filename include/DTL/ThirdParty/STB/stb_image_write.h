@@ -100,9 +100,9 @@ typedef void stbi_write_func(void* context, void* data, int size);
 #endif
 
 #ifndef STBIW_MALLOC
-#define STBIW_MALLOC(sz)        std::malloc(sz)
-#define STBIW_REALLOC(p,newsz)  std::realloc(p,newsz)
-#define STBIW_FREE(p)           std::free(p)
+#define STBIW_MALLOC(sz)        ::std::malloc(sz)
+#define STBIW_REALLOC(p,newsz)  ::std::realloc(p,newsz)
+#define STBIW_FREE(p)           ::std::free(p)
 #endif
 
 #ifndef STBIW_REALLOC_SIZED
@@ -111,7 +111,7 @@ typedef void stbi_write_func(void* context, void* data, int size);
 
 
 #ifndef STBIW_MEMMOVE
-#define STBIW_MEMMOVE(a,b,sz) std::memmove(a,b,sz)
+#define STBIW_MEMMOVE(a,b,sz) ::std::memmove(a,b,sz)
 #endif
 
 
@@ -145,7 +145,7 @@ static void stbi__start_write_callbacks(stbi__write_context* s_, stbi_write_func
 #ifndef STBI_WRITE_NO_STDIO
 
 static void stbi__stdio_write(void* context_, void* data_, int size_) {
-	std::fwrite(data_, 1, size_, (FILE*)context_);
+	::std::fwrite(data_, 1, size_, (FILE*)context_);
 }
 
 #if defined(_MSC_VER) && defined(STBI_WINDOWS_UTF8)
@@ -184,7 +184,7 @@ static FILE* stbiw__fopen(char const* filename, char const* mode) {///
 	if (0 != fopen_s(&f, filename, mode))
 		f = 0;
 #else
-	f = std::fopen(filename, mode);
+	f = ::std::fopen(filename, mode);
 #endif
 	return f;
 }
@@ -196,7 +196,7 @@ static int stbi__start_write_file(stbi__write_context * s, const char* filename)
 }
 
 static void stbi__end_write_file(stbi__write_context * s) {
-	std::fclose((FILE*)s->context);
+	::std::fclose((FILE*)s->context);
 }
 
 #endif // !STBI_WRITE_NO_STDIO
@@ -875,7 +875,7 @@ static void stbiw__wpcrc(unsigned char** data, int len) {///
 }
 
 static unsigned char stbiw__paeth(int a, int b, int c) {
-	int p{ a + b - c }, pa{ std::abs(p - a) }, pb{ std::abs(p - b) }, pc{ std::abs(p - c) };
+	int p{ a + b - c }, pa{ ::std::abs(p - a) }, pb{ ::std::abs(p - b) }, pc{ ::std::abs(p - c) };
 	if (pa <= pb && pa <= pc) return STBIW_UCHAR(a);
 	if (pb <= pc) return STBIW_UCHAR(b);
 	return STBIW_UCHAR(c);
@@ -948,7 +948,7 @@ static void stbiw__encode_png_line(unsigned char* pixels, int stride_bytes, int 
 				// Estimate the entropy of the line using this filter; the less, the better.
 				est = 0;
 				for (i = 0; i < x * n; ++i) {
-					est += std::abs((signed char)line_buffer[i]);
+					est += ::std::abs((signed char)line_buffer[i]);
 				}
 				if (est < best_filter_val) {
 					best_filter_val = est;
@@ -1012,8 +1012,8 @@ static void stbiw__encode_png_line(unsigned char* pixels, int stride_bytes, int 
 
 	 f = stbiw__fopen(filename, "wb");
 	 if (!f) { STBIW_FREE(png); return 0; }
-	 std::fwrite(png, 1, len, f);
-	 std::fclose(f);
+	 ::std::fwrite(png, 1, len, f);
+	 ::std::fclose(f);
 	 STBIW_FREE(png);
 	 return 1;
  }
@@ -1376,8 +1376,8 @@ static int stbi_write_jpg_core(stbi__write_context * s, int width, int height, i
 /*
 ------------------------------------------------------------------------------
 Public Domain (www.unlicense.org)
-This is std::free and unencumbered software released into the public domain.
-Anyone is std::free to copy, modify, publish, use, compile, sell, or distribute this
+This is ::std::free and unencumbered software released into the public domain.
+Anyone is ::std::free to copy, modify, publish, use, compile, sell, or distribute this
 software, either in source code form or as a compiled binary, for any purpose,
 commercial or non-commercial, and by any means.
 In jurisdictions that recognize copyright laws, the author or authors of this

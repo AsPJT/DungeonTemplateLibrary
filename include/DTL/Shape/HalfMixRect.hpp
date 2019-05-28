@@ -347,7 +347,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				HalfMixRect& clearValue() noexcept {
 				DTL_TYPE_VECTOR<Matrix_Int_> new_draw_value{};
-				this->draw_value = std::move(new_draw_value);
+				this->draw_value = ::std::move(new_draw_value);
 				return *this;
 			}
 			//始点座標(X,Y)を初期値に戻す

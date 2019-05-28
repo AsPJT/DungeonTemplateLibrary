@@ -38,7 +38,7 @@ namespace dtl {
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Int_>, Matrix_Int_>;
 
-			std::size_t getLoopMaxValue(const std::size_t start_, const std::size_t size_, const std::size_t msize_) const noexcept {
+			::std::size_t getLoopMaxValue(const ::std::size_t start_, const ::std::size_t size_, const ::std::size_t msize_) const noexcept {
 				return ((size_ <= 0) ? msize_ : DTL_TYPE_MIN(start_ + size_, msize_));
 			}
 
@@ -46,21 +46,21 @@ namespace dtl {
 
 			template<typename Matrix_>
 			bool draw(Matrix_& matrix_) const {
-				for (std::size_t z{ this->start_z }, max_z{ this->getLoopMaxValue(this->start_z , this->size_z , matrix_.size()) }; z < max_z; ++z)
-					for (std::size_t y{ this->start_y }, max_y{ this->getLoopMaxValue(this->start_y , this->size_y , matrix_[z].size()) }; y < max_y; ++y)
-						for (std::size_t x{ this->start_x }, max_x{ this->getLoopMaxValue(this->start_x , this->size_x , matrix_[z][y].size()) }; x < max_x; ++x)
+				for ( ::std::size_t z{ this->start_z }, max_z{ this->getLoopMaxValue(this->start_z , this->size_z , matrix_.size()) }; z < max_z; ++z)
+					for ( ::std::size_t y{ this->start_y }, max_y{ this->getLoopMaxValue(this->start_y , this->size_y , matrix_[z].size()) }; y < max_y; ++y)
+						for ( ::std::size_t x{ this->start_x }, max_x{ this->getLoopMaxValue(this->start_x , this->size_x , matrix_[z][y].size()) }; x < max_x; ++x)
 							matrix_[z][y][x] = this->draw_value;
 				return true;
 			}
 			template<typename Matrix_>
-			bool draw(Matrix_& matrix_, const std::size_t size_x_, const std::size_t size_y_, const std::size_t size_z_) const {
-				const std::size_t max_x{ this->getLoopMaxValue(this->start_x , this->size_x , size_x_) };
-				const std::size_t max_y{ this->getLoopMaxValue(this->start_y , this->size_y , size_y_) };
-				const std::size_t max_z{ this->getLoopMaxValue(this->start_z , this->size_z , size_z_) };
+			bool draw(Matrix_& matrix_, const ::std::size_t size_x_, const ::std::size_t size_y_, const ::std::size_t size_z_) const {
+				const ::std::size_t max_x{ this->getLoopMaxValue(this->start_x , this->size_x , size_x_) };
+				const ::std::size_t max_y{ this->getLoopMaxValue(this->start_y , this->size_y , size_y_) };
+				const ::std::size_t max_z{ this->getLoopMaxValue(this->start_z , this->size_z , size_z_) };
 				if (this->start_x >= max_x || this->start_y >= max_y || this->start_z >= max_z) return false;
-				for (std::size_t z{ this->start_z }; z < max_z; ++z)
-					for (std::size_t y{ this->start_y }; y < max_y; ++y)
-						for (std::size_t x{ this->start_x }; x < max_x; ++x)
+				for ( ::std::size_t z{ this->start_z }; z < max_z; ++z)
+					for ( ::std::size_t y{ this->start_y }; y < max_y; ++y)
+						for ( ::std::size_t x{ this->start_x }; x < max_x; ++x)
 							matrix_[z][y][x] = this->draw_value;
 				return true;
 			}

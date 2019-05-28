@@ -39,9 +39,9 @@ namespace dtl {
 
 			///// メンバ変数 /////
 
-			std::string str{};
+			::std::string str{};
 
-			void write_objOutputId(std::ofstream& ofs_, const std::size_t id_ = 0) const noexcept {
+			void write_objOutputId( ::std::ofstream& ofs_, const ::std::size_t id_ = 0) const noexcept {
 				ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << '\n';
 				ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << '\n';
 				ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << '\n';
@@ -49,7 +49,7 @@ namespace dtl {
 				ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << '\n';
 				ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << '\n';
 			}
-			void write_objOutputCube(std::ofstream& ofs_, std::int_fast32_t start_x, std::int_fast32_t start_y, std::int_fast32_t start_z, std::int_fast32_t size_x, std::int_fast32_t size_y, std::int_fast32_t size_z, std::size_t id_ = 0) const noexcept {
+			void write_objOutputCube( ::std::ofstream& ofs_, ::std::int_fast32_t start_x, ::std::int_fast32_t start_y, ::std::int_fast32_t start_z, ::std::int_fast32_t size_x, ::std::int_fast32_t size_y, ::std::int_fast32_t size_z, ::std::size_t id_ = 0) const noexcept {
 				ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << '\n';
 				ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << '\n';
 				ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << '\n';
@@ -66,14 +66,14 @@ namespace dtl {
 			template<typename Matrix_>
 			bool draw(const Matrix_& matrix_) const noexcept {
 				if (matrix_.size() == 0 || matrix_[0].size() == 0 || matrix_[0][0].size() == 0) return false;
-				std::ofstream ofs(this->str);
+				::std::ofstream ofs(this->str);
 				if (ofs.fail()) return false;
 
-				for (std::size_t square_count{}, z{}; z < matrix_.size(); ++z)
-					for (std::size_t y{}; y < matrix_[z].size(); ++y)
-						for (std::size_t x{}; x < matrix_[z][y].size(); ++x) {
+				for ( ::std::size_t square_count{}, z{}; z < matrix_.size(); ++z)
+					for ( ::std::size_t y{}; y < matrix_[z].size(); ++y)
+						for ( ::std::size_t x{}; x < matrix_[z][y].size(); ++x) {
 							if (!matrix_[z][y][x]) continue;
-							this->write_objOutputCube(ofs, (std::int_fast32_t)x, (std::int_fast32_t)z, (std::int_fast32_t)y, 1, 1, 1, square_count);
+							this->write_objOutputCube(ofs, ( ::std::int_fast32_t)x, ( ::std::int_fast32_t)z, ( ::std::int_fast32_t)y, 1, 1, 1, square_count);
 							++square_count;
 						}
 				return true;
@@ -82,7 +82,7 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr FileSandboxOBJ_3D() = default;
-			constexpr explicit FileSandboxOBJ_3D(const std::string & write_value_) noexcept
+			constexpr explicit FileSandboxOBJ_3D(const ::std::string & write_value_) noexcept
 				:str(write_value_) {}
 
 		};

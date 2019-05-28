@@ -21,13 +21,13 @@
 namespace dtl {
 	inline namespace utility {
 
-		// ネストした std::array 用別名
+		// ネストした ::std::array 用別名
 
-		template<typename Matrix_Int_, std::size_t max_x_, std::size_t max_y_>
-		using array2D = std::array<std::array<Matrix_Int_, max_x_>, max_y_>;
+		template<typename Matrix_Int_, ::std::size_t max_x_, ::std::size_t max_y_>
+		using array2D = ::std::array< ::std::array<Matrix_Int_, max_x_>, max_y_>;
 
-		template<typename Matrix_Int_, std::size_t max_l_, std::size_t max_x_, std::size_t max_y_>
-		using array3D = std::array<std::array<std::array<Matrix_Int_, max_l_>, max_x_>, max_y_>;
+		template<typename Matrix_Int_, ::std::size_t max_l_, ::std::size_t max_x_, ::std::size_t max_y_>
+		using array3D = ::std::array< ::std::array< ::std::array<Matrix_Int_, max_l_>, max_x_>, max_y_>;
 
 
 		// Detection Ideom 用ユーティリティ
@@ -41,36 +41,36 @@ namespace dtl {
 		using void_t = typename voidHelper<Types...>::type;
 
 
-		// ネストした std::array 判別用トレイツ
+		// ネストした ::std::array 判別用トレイツ
 
 		template<typename Matrix_>
-		struct is_Array2D : std::false_type {};
+		struct is_Array2D : ::std::false_type {};
 
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_>
-		struct is_Array2D<array2D<Matrix_Int_, max_x_, max_y_>> : std::true_type {};
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_>
+		struct is_Array2D<array2D<Matrix_Int_, max_x_, max_y_>> : ::std::true_type {};
 
 		template<typename Matrix_>
-		struct is_Array3D : std::false_type {};
+		struct is_Array3D : ::std::false_type {};
 
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_, std::size_t max_l_>
-		struct is_Array3D<array3D<Matrix_Int_, max_l_, max_x_, max_y_>> : std::true_type {};
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_, ::std::size_t max_l_>
+		struct is_Array3D<array3D<Matrix_Int_, max_l_, max_x_, max_y_>> : ::std::true_type {};
 
 
-		// std::array 以外の STL コンテナ判別用トレイツ
+		// ::std::array 以外の STL コンテナ判別用トレイツ
 
 		template<typename Matrix_, typename = void>
-		struct is_STL2D : std::false_type {};
+		struct is_STL2D : ::std::false_type {};
 
 		template<typename Matrix_>
 		struct is_STL2D<Matrix_, void_t<typename Matrix_::value_type::value_type>>
-		: std::conditional<is_Array2D<Matrix_>::value, std::false_type, std::is_integral<typename Matrix_::value_type::value_type>>::type {};
+		: ::std::conditional<is_Array2D<Matrix_>::value, ::std::false_type, ::std::is_integral<typename Matrix_::value_type::value_type>>::type {};
 
 		template<typename Matrix_, typename = void>
-		struct is_STL3D : std::false_type {};
+		struct is_STL3D : ::std::false_type {};
 
 		template<typename Matrix_>
 		struct is_STL3D<Matrix_, void_t<typename Matrix_::value_type::value_type::value_type>>
-		: std::conditional<is_Array3D<Matrix_>::value, std::false_type, std::is_integral<typename Matrix_::value_type::value_type::value_type>>::type {};
+		: ::std::conditional<is_Array3D<Matrix_>::value, ::std::false_type, ::std::is_integral<typename Matrix_::value_type::value_type::value_type>>::type {};
 
 
 		// 要素アクセス用ベースクラス
@@ -96,13 +96,13 @@ namespace dtl {
 		struct MatrixWrapper;
 
 		// 2次元配列
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_>
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_>
 		struct MatrixWrapper<Matrix_Int_[max_y_][max_x_]>
-			: MatrixBase<MatrixWrapper<Matrix_Int_[max_y_][max_x_]>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_[max_y_][max_x_]>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_[max_y_][max_x_];
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			constexpr MatrixWrapper(Matrix& mat) noexcept : mat(mat) {}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 			MatrixWrapper(Matrix& mat, const Index_Size max_x, const Index_Size max_y) : mat(mat) { assert(max_x_ == max_x); assert(max_y_ == max_y); }
@@ -113,13 +113,13 @@ namespace dtl {
 		};
 
 		// 2次元配列(サイズ不明)
-		template<typename Matrix_Int_, std::size_t max_x_>
+		template<typename Matrix_Int_, ::std::size_t max_x_>
 		struct MatrixWrapper<Matrix_Int_(*)[max_x_]>
-			: MatrixBase<MatrixWrapper<Matrix_Int_(*)[max_x_]>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_(*)[max_x_]>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_(*)[max_x_];
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix mat;
 			Index_Size max_y_;
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -130,13 +130,13 @@ namespace dtl {
 		};
 
 		// 3次元配列
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_, std::size_t max_l_>
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_, ::std::size_t max_l_>
 		struct MatrixWrapper<Matrix_Int_[max_y_][max_x_][max_l_]>
-			: MatrixBase<MatrixWrapper<Matrix_Int_[max_y_][max_x_][max_l_]>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_[max_y_][max_x_][max_l_]>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_[max_y_][max_x_][max_l_];
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix& mat;
 			Index_Size layer_;
 			constexpr MatrixWrapper(Matrix& mat, const Index_Size layer) noexcept : mat(mat), layer_(layer) {}
@@ -148,13 +148,13 @@ namespace dtl {
 		};
 
 		// 3次元配列(サイズ不明)
-		template<typename Matrix_Int_, std::size_t max_x_, std::size_t max_l_>
+		template<typename Matrix_Int_, ::std::size_t max_x_, ::std::size_t max_l_>
 		struct MatrixWrapper<Matrix_Int_(*)[max_x_][max_l_]>
-			: MatrixBase<MatrixWrapper<Matrix_Int_(*)[max_x_][max_l_]>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_(*)[max_x_][max_l_]>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_(*)[max_x_][max_l_];
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix mat;
 			Index_Size layer_;
 			Index_Size max_y_;
@@ -165,14 +165,14 @@ namespace dtl {
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x][layer_]; }
 		};
 
-		// 2次元 std::array
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_>
+		// 2次元 ::std::array
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_>
 		struct MatrixWrapper<array2D<Matrix_Int_, max_x_, max_y_>>
-			: MatrixBase<MatrixWrapper<array2D<Matrix_Int_, max_x_, max_y_>>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<array2D<Matrix_Int_, max_x_, max_y_>>, Matrix_Int_, ::std::size_t> {
 			using Matrix = array2D<Matrix_Int_, max_x_, max_y_>;
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix& mat;
 			constexpr MatrixWrapper(Matrix& mat) noexcept : mat(mat) {}
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -182,14 +182,14 @@ namespace dtl {
 			Matrix_Int& operator()(Index_Size x, Index_Size y) noexcept { return mat[y][x]; }
 		};
 
-		// 3次元 std::array
-		template<typename Matrix_Int_, std::size_t max_y_, std::size_t max_x_, std::size_t max_l_>
+		// 3次元 ::std::array
+		template<typename Matrix_Int_, ::std::size_t max_y_, ::std::size_t max_x_, ::std::size_t max_l_>
 		struct MatrixWrapper<array3D<Matrix_Int_, max_l_, max_x_, max_y_>>
-			: MatrixBase<MatrixWrapper<array3D<Matrix_Int_, max_l_, max_x_, max_y_>>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<array3D<Matrix_Int_, max_l_, max_x_, max_y_>>, Matrix_Int_, ::std::size_t> {
 			using Matrix = array3D<Matrix_Int_, max_l_, max_x_, max_y_>;
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix& mat;
 			Index_Size layer_;
 			constexpr MatrixWrapper(Matrix& mat, const Index_Size layer) noexcept : mat(mat), layer_(layer) {}
@@ -199,13 +199,13 @@ namespace dtl {
 		};
 
 		// 1次元配列
-		template<typename Matrix_Int_, std::size_t max_len_>
+		template<typename Matrix_Int_, ::std::size_t max_len_>
 		struct MatrixWrapper<Matrix_Int_[max_len_]>
-			: MatrixBase<MatrixWrapper<Matrix_Int_[max_len_]>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_[max_len_]>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_[max_len_];
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix& mat;
 			Index_Size max_x_;
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -218,11 +218,11 @@ namespace dtl {
 		// 1次元配列(サイズ不明)
 		template<typename Matrix_Int_>
 		struct MatrixWrapper<Matrix_Int_*>
-			: MatrixBase<MatrixWrapper<Matrix_Int_*>, Matrix_Int_, std::size_t> {
+			: MatrixBase<MatrixWrapper<Matrix_Int_*>, Matrix_Int_, ::std::size_t> {
 			using Matrix = Matrix_Int_*;
 			using Matrix_Int = Matrix_Int_;
-			using Index_Size = std::size_t;
-			using is_jagged = std::false_type;
+			using Index_Size = ::std::size_t;
+			using is_jagged = ::std::false_type;
 			Matrix mat;
 			Index_Size max_x_;
 			Index_Size max_y_;
@@ -234,12 +234,12 @@ namespace dtl {
 
 		// 2次元 STL コンテナ
 		template<typename Matrix_>
-		struct MatrixWrapper<Matrix_, typename std::enable_if<is_STL2D<Matrix_>::value>::type>
-			: MatrixBase<MatrixWrapper<Matrix_, typename std::enable_if<is_STL2D<Matrix_>::value>::type>, typename Matrix_::value_type::value_type, typename Matrix_::size_type> {
+		struct MatrixWrapper<Matrix_, typename ::std::enable_if<is_STL2D<Matrix_>::value>::type>
+			: MatrixBase<MatrixWrapper<Matrix_, typename ::std::enable_if<is_STL2D<Matrix_>::value>::type>, typename Matrix_::value_type::value_type, typename Matrix_::size_type> {
 			using Matrix = Matrix_;
 			using Matrix_Int = typename Matrix_::value_type::value_type;
 			using Index_Size = typename Matrix_::size_type;
-			using is_jagged = std::true_type;
+			using is_jagged = ::std::true_type;
 			Matrix& mat;
 			constexpr MatrixWrapper(Matrix& mat) noexcept : mat(mat) {}
 			constexpr Index_Size getX() const noexcept { return mat.size() == 0 ? 0 : mat[0].size(); }
@@ -250,12 +250,12 @@ namespace dtl {
 
 		// 3次元 STL コンテナ
 		template<typename Matrix_>
-			struct MatrixWrapper<Matrix_, typename std::enable_if<is_STL3D<Matrix_>::value>::type>
-			: MatrixBase<MatrixWrapper<Matrix_, typename std::enable_if<is_STL3D<Matrix_>::value>::type>, typename Matrix_::value_type::value_type, typename Matrix_::size_type> {
+			struct MatrixWrapper<Matrix_, typename ::std::enable_if<is_STL3D<Matrix_>::value>::type>
+			: MatrixBase<MatrixWrapper<Matrix_, typename ::std::enable_if<is_STL3D<Matrix_>::value>::type>, typename Matrix_::value_type::value_type, typename Matrix_::size_type> {
 			using Matrix = Matrix_;
 			using Matrix_Int = typename Matrix_::value_type::value_type::value_type;
 			using Index_Size = typename Matrix::size_type;
-			using is_jagged = std::true_type;
+			using is_jagged = ::std::true_type;
 			Matrix& mat;
 			Index_Size layer_;
 			constexpr MatrixWrapper(Matrix& mat, const Index_Size layer) noexcept : mat(mat), layer_(layer) {}
@@ -266,8 +266,8 @@ namespace dtl {
 		};
 
 		template<typename Matrix_, typename... Args_>
-		constexpr MatrixWrapper<typename std::remove_reference<Matrix_>::type> makeWrapper(Matrix_&& mat, Args_&&... args_) {
-			return MatrixWrapper<typename std::remove_reference<Matrix_>::type>(mat, DTL_TYPE_FORWARD<Args_>(args_)...);
+		constexpr MatrixWrapper<typename ::std::remove_reference<Matrix_>::type> makeWrapper(Matrix_&& mat, Args_&&... args_) {
+			return MatrixWrapper<typename ::std::remove_reference<Matrix_>::type>(mat, DTL_TYPE_FORWARD<Args_>(args_)...);
 		}
 	}
 }

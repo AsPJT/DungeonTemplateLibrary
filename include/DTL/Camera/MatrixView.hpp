@@ -19,10 +19,10 @@ namespace dtl {
 
 		struct MatrixViewRect {
 			constexpr MatrixViewRect() = default;
-			std::int_fast32_t start_x{};
-			std::int_fast32_t start_y{};
-			std::int_fast32_t end_x{};
-			std::int_fast32_t end_y{};
+			::std::int_fast32_t start_x{};
+			::std::int_fast32_t start_y{};
+			::std::int_fast32_t end_x{};
+			::std::int_fast32_t end_y{};
 		};
 
 		class SampleMatrixViewDraw {
@@ -30,26 +30,26 @@ namespace dtl {
 			constexpr SampleMatrixViewDraw() = default;
 			template<typename Matrix_> //maybe_unused
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void draw(const Matrix_&, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t, const std::int_fast32_t) const noexcept {}
+				void draw(const Matrix_&, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t) const noexcept {}
 		};
 
 		class MatrixView {
 		private:
 			//画面の幅・高さ
-			std::int_fast32_t window_width{};
-			std::int_fast32_t window_height{};
+			::std::int_fast32_t window_width{};
+			::std::int_fast32_t window_height{};
 			//画面の始点座標
-			std::int_fast32_t window_start_x{};
-			std::int_fast32_t window_start_y{};
+			::std::int_fast32_t window_start_x{};
+			::std::int_fast32_t window_start_y{};
 			//画面の終点座標
-			std::int_fast32_t window_end_x{};
-			std::int_fast32_t window_end_y{};
+			::std::int_fast32_t window_end_x{};
+			::std::int_fast32_t window_end_y{};
 			//画面の中心座標
-			std::int_fast32_t window_center_x{};
-			std::int_fast32_t window_center_y{};
+			::std::int_fast32_t window_center_x{};
+			::std::int_fast32_t window_center_y{};
 			//1マスのピクセル数
-			std::int_fast32_t pixel_width{};
-			std::int_fast32_t pixel_height{};
+			::std::int_fast32_t pixel_width{};
+			::std::int_fast32_t pixel_height{};
 			//画面内のマスの数
 			double cell_width{};
 			double cell_height{};
@@ -80,7 +80,7 @@ namespace dtl {
 
 			//コンストラクタ
 			constexpr MatrixView() = default;
-			constexpr MatrixView(const std::int_fast32_t window_width_, const std::int_fast32_t window_height_, const std::int_fast32_t pixel_width_, const std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept
+			constexpr MatrixView(const ::std::int_fast32_t window_width_, const ::std::int_fast32_t window_height_, const ::std::int_fast32_t pixel_width_, const ::std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept
 				:window_width(window_width_),
 				window_height(window_height_),
 				window_start_x(0),
@@ -95,7 +95,7 @@ namespace dtl {
 				cell_height(window_height_ / static_cast<double>(pixel_height_)),
 				target_x(target_x_),
 				target_y(target_y_) {}
-			void setInit(const std::int_fast32_t window_width_, const std::int_fast32_t window_height_, const std::int_fast32_t pixel_width_, const std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept {
+			void setInit(const ::std::int_fast32_t window_width_, const ::std::int_fast32_t window_height_, const ::std::int_fast32_t pixel_width_, const ::std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept {
 				this->window_width = window_width_;
 				this->window_height = window_height_;
 				this->window_start_x = 0;
@@ -115,18 +115,18 @@ namespace dtl {
 
 			template<typename Matrix_, typename View_Class_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
+				MatrixViewRect draw(Matrix_ && matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, View_Class_ && view_class_) const noexcept {
 				if (x_ == 0 || y_ == 0) {
 					return {};
 				}
-				const std::int_fast32_t target_int_x{ static_cast<std::int_fast32_t>(this->target_x) };
-				const std::int_fast32_t target_int_y{ static_cast<std::int_fast32_t>(this->target_y) };
-				const std::int_fast32_t draw_position_x{ (this->target_x == static_cast<double>(target_int_x)) ? this->window_center_x : this->window_center_x - static_cast<std::int_fast32_t>((this->target_x - static_cast<double>(target_int_x)) * static_cast<double>(this->pixel_width)) };
-				const std::int_fast32_t draw_position_y{ (this->target_y == static_cast<double>(target_int_y)) ? this->window_center_y : this->window_center_y - static_cast<std::int_fast32_t>((this->target_y - static_cast<double>(target_int_y)) * static_cast<double>(this->pixel_height)) };
+				const ::std::int_fast32_t target_int_x{ static_cast< ::std::int_fast32_t>(this->target_x) };
+				const ::std::int_fast32_t target_int_y{ static_cast< ::std::int_fast32_t>(this->target_y) };
+				const ::std::int_fast32_t draw_position_x{ (this->target_x == static_cast<double>(target_int_x)) ? this->window_center_x : this->window_center_x - static_cast< ::std::int_fast32_t>((this->target_x - static_cast<double>(target_int_x)) * static_cast<double>(this->pixel_width)) };
+				const ::std::int_fast32_t draw_position_y{ (this->target_y == static_cast<double>(target_int_y)) ? this->window_center_y : this->window_center_y - static_cast< ::std::int_fast32_t>((this->target_y - static_cast<double>(target_int_y)) * static_cast<double>(this->pixel_height)) };
 
 				MatrixViewRect rect{};
 
-				for (std::int_fast32_t i{ draw_position_y }, draw_y{ target_int_y };; i -= this->pixel_height, --draw_y) {
+				for ( ::std::int_fast32_t i{ draw_position_y }, draw_y{ target_int_y };; i -= this->pixel_height, --draw_y) {
 					if (i <= (this->window_start_y - this->pixel_height)) {
 						rect.start_y = draw_y;
 						break;
@@ -134,7 +134,7 @@ namespace dtl {
 					while (draw_y < 0) draw_y += y_;
 					if (draw_y >= y_) draw_y %= y_;
 					//左上
-					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x };; j -= this->pixel_width, --draw_x) {
+					for ( ::std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x };; j -= this->pixel_width, --draw_x) {
 						if (j <= (this->window_start_x - this->pixel_width)) {
 							rect.start_x = draw_x;
 							break;
@@ -144,13 +144,13 @@ namespace dtl {
 						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 					//右上
-					for (std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 }; j < this->window_end_x; j += this->pixel_width, ++draw_x) {
+					for ( ::std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 }; j < this->window_end_x; j += this->pixel_width, ++draw_x) {
 						if (draw_x >= x_) draw_x %= x_;
 						while (draw_x < 0) draw_x += x_;
 						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 				}
-				for (std::int_fast32_t i{ draw_position_y + this->pixel_height }, draw_y{ target_int_y + 1 };; i += this->pixel_height, ++draw_y) {
+				for ( ::std::int_fast32_t i{ draw_position_y + this->pixel_height }, draw_y{ target_int_y + 1 };; i += this->pixel_height, ++draw_y) {
 					if (i >= this->window_end_y) {
 						rect.end_y = draw_y;
 						break;
@@ -158,13 +158,13 @@ namespace dtl {
 					if (draw_y >= y_) draw_y %= y_;
 					while (draw_y < 0) draw_y += y_;
 					//左下
-					for (std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x }; j > (this->window_start_x - this->pixel_width); j -= this->pixel_width, --draw_x) {
+					for ( ::std::int_fast32_t j{ draw_position_x }, draw_x{ target_int_x }; j > (this->window_start_x - this->pixel_width); j -= this->pixel_width, --draw_x) {
 						while (draw_x < 0) draw_x += x_;
 						if (draw_x >= x_) draw_x %= x_;
 						view_class_(matrix_, x_, y_, draw_x, draw_y, j, i, this->pixel_width, this->pixel_height);
 					}
 					//右下
-					for (std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 };; j += this->pixel_width, ++draw_x) {
+					for ( ::std::int_fast32_t j{ draw_position_x + this->pixel_width }, draw_x{ target_int_x + 1 };; j += this->pixel_width, ++draw_x) {
 						if (j >= this->window_end_x) {
 							rect.end_x = draw_x;
 							break;
@@ -177,7 +177,7 @@ namespace dtl {
 				return rect;
 			}
 			template<typename Matrix_>
-			constexpr inline MatrixViewRect draw(Matrix_ && matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
+			constexpr inline MatrixViewRect draw(Matrix_ && matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) const noexcept {
 				return this->draw(matrix_, x_, y_, SampleMatrixViewDraw());
 			}
 

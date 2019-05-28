@@ -94,7 +94,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				::std::array< ::std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 
@@ -140,7 +140,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				::std::array< ::std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 
@@ -186,7 +186,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				std::array<std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
+				::std::array< ::std::array<Matrix_Int_, ::dtl::shape::fi_chunk_size + 1>, ::dtl::shape::fi_chunk_size + 1> chunk_matrix{ {} };
 				const ::dtl::type::size chunk_x{ ((end_x_ - this->start_x) / ::dtl::shape::fi_chunk_size) };
 				const ::dtl::type::size chunk_y{ ((end_y_ - this->start_y) / ::dtl::shape::fi_chunk_size) };
 

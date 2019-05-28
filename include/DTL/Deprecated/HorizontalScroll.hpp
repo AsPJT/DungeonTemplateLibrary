@@ -21,12 +21,12 @@ namespace dtl {
 			namespace stl {
 
 				template<typename Matrix_Int_, typename Matrix_>
-				void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const std::int_fast32_t rand_value_) noexcept {
+				void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const ::std::int_fast32_t rand_value_) noexcept {
 					//if (::dtl::utility::tool::isMatrixEmpty(matrix_)) return;
 
-					std::int_fast32_t y{ static_cast<std::int_fast32_t>(matrix_.size() - 1) };
+					::std::int_fast32_t y{ static_cast< ::std::int_fast32_t>(matrix_.size() - 1) };
 
-					std::int_fast32_t matrix_height_value{};
+					::std::int_fast32_t matrix_height_value{};
 					matrix_[static_cast<::dtl::type::size>(matrix_height_value = ::dtl::random::mersenne_twister_32bit(1, y))][0] = value_;
 
 					for (::dtl::type::size i{ 1 }; i < matrix_[0].size(); ++i) {

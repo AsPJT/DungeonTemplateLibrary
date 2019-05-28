@@ -29,7 +29,7 @@ namespace dtl {
 	inline namespace shape {
 
 		//マップの外枠を指定した数値で埋め、偶数マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR<std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
+		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR< ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
 		class RandomVoronoi {
 		private:
 
@@ -81,7 +81,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
-					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
+					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
 						if (::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -91,7 +91,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
-					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
+					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
 						if (::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -101,7 +101,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
-					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
+					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
 						if (::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -111,7 +111,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
-					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
+					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
 						if (::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});
@@ -121,7 +121,7 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
-					[this](const std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
+					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>&, Matrix_Int_ & color_, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize, const ::dtl::type::ssize) {
 						if (::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->true_color;
 						else color_ = this->false_color;
 					});

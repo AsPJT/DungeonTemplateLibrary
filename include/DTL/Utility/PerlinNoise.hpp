@@ -27,12 +27,12 @@ namespace dtl {
 
 			///// エイリアス /////
 
-			using Pint = std::uint_fast8_t;
+			using Pint = ::std::uint_fast8_t;
 
 
 			///// メンバ変数 /////
 
-			std::array<Pint, 512> p{ {} };
+			::std::array<Pint, 512> p{ {} };
 
 
 			///// メンバ関数 /////
@@ -64,12 +64,12 @@ namespace dtl {
 
 			DTL_VERSIONING_CPP17_NODISCARD
 			double setNoise(double x_ = 0.0, double y_ = 0.0, double z_ = 0.0) const noexcept {
-				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(std::floor(x_)) & 255) };
-				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(std::floor(y_)) & 255) };
-				const ::dtl::type::size z_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(std::floor(z_)) & 255) };
-				x_ -= std::floor(x_);
-				y_ -= std::floor(y_);
-				z_ -= std::floor(z_);
+				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(x_)) & 255) };
+				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(y_)) & 255) };
+				const ::dtl::type::size z_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(z_)) & 255) };
+				x_ -= ::std::floor(x_);
+				y_ -= ::std::floor(y_);
+				z_ -= ::std::floor(z_);
 				const double u{ this->getFade(x_) };
 				const double v{ this->getFade(y_) };
 				const double w{ this->getFade(z_) };
@@ -90,10 +90,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const std::size_t octaves_, double x_) const noexcept {
+			double setOctaveNoise(const ::std::size_t octaves_, double x_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (std::size_t i{}; i < octaves_; ++i) {
+				for ( ::std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_) * amp;
 					x_ *= 2.0;
 					amp *= 0.5;
@@ -102,10 +102,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const std::size_t octaves_, double x_, double y_) const noexcept {
+			double setOctaveNoise(const ::std::size_t octaves_, double x_, double y_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (std::size_t i{}; i < octaves_; ++i) {
+				for ( ::std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_) * amp;
 					x_ *= 2.0;
 					y_ *= 2.0;
@@ -115,10 +115,10 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const std::size_t octaves_, double x_, double y_, double z_) const noexcept {
+			double setOctaveNoise(const ::std::size_t octaves_, double x_, double y_, double z_) const noexcept {
 				double noise_value{};
 				double amp{ 1.0 };
-				for (std::size_t i{}; i < octaves_; ++i) {
+				for ( ::std::size_t i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_, z_) * amp;
 					x_ *= 2.0;
 					y_ *= 2.0;
@@ -140,15 +140,15 @@ namespace dtl {
 			//オクターブ有りノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
-			double octaveNoise(const std::size_t octaves_, const Args... args_) const noexcept {
+			double octaveNoise(const ::std::size_t octaves_, const Args... args_) const noexcept {
 				return this->setOctaveNoise(octaves_, args_...)* 0.5 + 0.5;
 			}
 
 			//SEED値を設定する
-			void setSeed(const std::uint_fast32_t seed_) {
+			void setSeed(const ::std::uint_fast32_t seed_) {
 				for (::dtl::type::size i{}; i < 256; ++i)
 					this->p[i] = static_cast<Pint>(i);
-				std::shuffle(this->p.begin(), this->p.begin() + 256, std::default_random_engine(seed_));
+				::std::shuffle(this->p.begin(), this->p.begin() + 256, ::std::default_random_engine(seed_));
 				for (::dtl::type::size i{}; i < 256; ++i)
 					this->p[256 + i] = this->p[i];
 			}
@@ -157,7 +157,7 @@ namespace dtl {
 			///// コンストラクタ /////
 
 			constexpr PerlinNoise() = default;
-			explicit PerlinNoise(const std::uint_fast32_t seed_) {
+			explicit PerlinNoise(const ::std::uint_fast32_t seed_) {
 				this->setSeed(seed_);
 			}
 

@@ -65,11 +65,11 @@ namespace dtl {
 						using ::dtl::random::mersenne_twister_32bit;
 
 						//部屋の位置情報
-						std::vector<RogueLikeOutputNumber<std::int_fast32_t>> room_rect;
+						::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> room_rect;
 						//部屋または通路の生成可能な面の位置情報
-						std::vector<RogueLikeOutputNumber<std::int_fast32_t>> branch_point;
+						::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> branch_point;
 						//最初の部屋を生成
-						if (!makeRoom(matrix_, room_rect, branch_point, (std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, (std::int_fast32_t)(matrix_.size()) / 2, (::dtl::type::size)mersenne_twister_32bit(4))) return;
+						if (!makeRoom(matrix_, room_rect, branch_point, ( ::std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) / 2, ( ::std::int_fast32_t)(matrix_.size()) / 2, (::dtl::type::size)mersenne_twister_32bit(4))) return;
 						//機能配置
 						for (::dtl::type::size i{ 1 }; i < way_max_; ++i)
 							if (!createNext(matrix_, room_rect, branch_point)) break;
@@ -80,7 +80,7 @@ namespace dtl {
 					//タイルを取得
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						Matrix_Int_ getTileType(const Matrix_ & matrix_, const std::int_fast32_t x_, const std::int_fast32_t y_) const noexcept {
+						Matrix_Int_ getTileType(const Matrix_ & matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) const noexcept {
 						if (static_cast<::dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<::dtl::type::size>(0) : matrix_[0].size()) || static_cast<::dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
 						return matrix_[y_][x_];
 					}
@@ -92,7 +92,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point) const noexcept {
+						bool createNext(Matrix_ & matrix_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & branch_point) const noexcept {
 
 						using ::dtl::random::mersenne_twister_32bit;
 
@@ -100,7 +100,7 @@ namespace dtl {
 							if (branch_point.empty()) break;
 
 							//部屋か通路の乱数面を選択
-							r = (::dtl::type::size)mersenne_twister_32bit((std::int_fast32_t)branch_point.size());
+							r = (::dtl::type::size)mersenne_twister_32bit(( ::std::int_fast32_t)branch_point.size());
 							const auto& x{ mersenne_twister_32bit(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
 							const auto& y{ mersenne_twister_32bit(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
@@ -115,12 +115,12 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool createNext(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x, const std::int_fast32_t y, const ::dtl::type::size dir_) const noexcept {
+						bool createNext(Matrix_ & matrix_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & branch_point, const ::std::int_fast32_t x, const ::std::int_fast32_t y, const ::dtl::type::size dir_) const noexcept {
 
 						using ::dtl::random::mersenne_twister_32bit;
 
-						std::int_fast32_t dx{};
-						std::int_fast32_t dy{};
+						::std::int_fast32_t dx{};
+						::std::int_fast32_t dy{};
 						switch (dir_)
 						{
 						case direction_north:dy = 1; break;
@@ -149,14 +149,14 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool makeRoom(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & room_rect_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
+						bool makeRoom(Matrix_ & matrix_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & branch_point, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
 
 						using ::dtl::random::mersenne_twister_32bit;
 
-						constexpr std::int_fast32_t minRoomSize{ 3 };
-						constexpr std::int_fast32_t maxRoomSize{ 6 };
+						constexpr ::std::int_fast32_t minRoomSize{ 3 };
+						constexpr ::std::int_fast32_t maxRoomSize{ 6 };
 
-						RogueLikeOutputNumber<std::int_fast32_t> room;
+						RogueLikeOutputNumber< ::std::int_fast32_t> room;
 						room.w = mersenne_twister_32bit(minRoomSize, maxRoomSize);
 						room.h = mersenne_twister_32bit(minRoomSize, maxRoomSize);
 
@@ -182,27 +182,27 @@ namespace dtl {
 						if (placeOutputNumber(matrix_, room, room_id)) {
 							room_rect_.emplace_back(room);
 							if (dir_ != direction_south || firstRoom_) //上
-								branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
+								branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
 							if (dir_ != direction_north || firstRoom_) //下
-								branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
+								branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
 							if (dir_ != direction_east || firstRoom_) //左
-								branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
+								branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
 							if (dir_ != direction_west || firstRoom_) //右
-								branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
+								branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
 							return true;
 						}
 						return false;
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool makeWay(Matrix_ & matrix_, std::vector<RogueLikeOutputNumber<std::int_fast32_t>> & branch_point, const std::int_fast32_t x_, const std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
+						bool makeWay(Matrix_ & matrix_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> & branch_point, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
 
 						using ::dtl::random::mersenne_twister_32bit;
 
-						constexpr std::int_fast32_t minWayLength{ 3 };
-						constexpr std::int_fast32_t maxWayLength{ 15 };
+						constexpr ::std::int_fast32_t minWayLength{ 3 };
+						constexpr ::std::int_fast32_t maxWayLength{ 15 };
 
-						RogueLikeOutputNumber<std::int_fast32_t> way;
+						RogueLikeOutputNumber< ::std::int_fast32_t> way;
 						way.x = x_;
 						way.y = y_;
 
@@ -249,25 +249,25 @@ namespace dtl {
 						}
 						if (!placeOutputNumber(matrix_, way, way_id)) return false;
 						if (dir_ != direction_south && way.w != 1)//上
-							branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ way.x, way.y - 1, way.w, 1 });
+							branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ way.x, way.y - 1, way.w, 1 });
 						if (dir_ != direction_north && way.w != 1)//下
-							branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ way.x, way.y + way.h, way.w, 1 });
+							branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ way.x, way.y + way.h, way.w, 1 });
 						if (dir_ != direction_east && way.h != 1)//左
-							branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ way.x - 1, way.y, 1, way.h });
+							branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ way.x - 1, way.y, 1, way.h });
 						if (dir_ != direction_west && way.h != 1)//右
-							branch_point.emplace_back(RogueLikeOutputNumber<std::int_fast32_t>{ way.x + way.w, way.y, 1, way.h });
+							branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ way.x + way.w, way.y, 1, way.h });
 						return true;
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool placeOutputNumber(Matrix_& matrix_, const RogueLikeOutputNumber<std::int_fast32_t>& rect, const Matrix_Int_ tile_) const noexcept {
-						if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >(std::int_fast32_t)(matrix_.size()) - 1)
+						bool placeOutputNumber(Matrix_& matrix_, const RogueLikeOutputNumber< ::std::int_fast32_t>& rect, const Matrix_Int_ tile_) const noexcept {
+						if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >( ::std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >( ::std::int_fast32_t)(matrix_.size()) - 1)
 							return false;
-						for (std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
-							for (std::int_fast32_t x = rect.x; x < rect.x + rect.w; ++x)
+						for ( ::std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
+							for ( ::std::int_fast32_t x = rect.x; x < rect.x + rect.w; ++x)
 								if (getTileType(matrix_, x, y) != outside_wall_id) return false;
-						for (std::int_fast32_t y = rect.y - 1; y < rect.y + rect.h + 1; ++y)
-							for (std::int_fast32_t x = rect.x - 1; x < rect.x + rect.w + 1; ++x) {
+						for ( ::std::int_fast32_t y = rect.y - 1; y < rect.y + rect.h + 1; ++y)
+							for ( ::std::int_fast32_t x = rect.x - 1; x < rect.x + rect.w + 1; ++x) {
 								if (x == rect.x - 1 || y == rect.y - 1 || x == rect.x + rect.w || y == rect.y + rect.h)
 									setTileType(matrix_, x, y, inside_wall_id);
 								else setTileType(matrix_, x, y, tile_);
