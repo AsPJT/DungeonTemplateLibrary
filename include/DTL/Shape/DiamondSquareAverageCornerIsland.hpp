@@ -69,7 +69,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
+				inline void assignSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->start_y][this->start_x] = this->min_value + this->altitude;
 				matrix_[this->start_y][this->start_x + map_size_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
 				matrix_[this->start_y + map_size_][this->start_x] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
@@ -78,7 +78,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void assignArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				matrix_[(this->start_y)* max_x_ + (this->start_x)] = this->min_value + this->altitude;
 				matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_)] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
 				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
@@ -87,7 +87,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
+				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->start_y][this->start_x][layer_] = this->min_value + this->altitude;
 				matrix_[this->start_y][this->start_x + map_size_][layer_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
 				matrix_[this->start_y + map_size_][this->start_x][layer_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Int_>(this->altitude);
@@ -97,18 +97,18 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_ && matrix_, const Index_Size map_size_) const noexcept {
-				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
+				inline void assignSTL(Matrix_ && matrix_, const Index_Size map_size_) const noexcept {
+				this->assignSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_) const noexcept {
-				this->substitutionArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), max_x_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
+				inline void assignArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_) const noexcept {
+				this->assignArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), max_x_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_) const noexcept {
-				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
+				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_) const noexcept {
+				this->assignLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, map_size_, [](const Matrix_Int_ & value_) {return value_ / 2; });
 			}
 
 
@@ -119,14 +119,14 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -135,14 +135,14 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > matrix_[0].size()) ? matrix_[0].size() : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > DTL_TYPE_MIN(matrix_[0].size(), end_x_)) ? DTL_TYPE_MIN(matrix_[0].size(), end_x_) : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -151,7 +151,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -160,7 +160,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignLayer(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -169,7 +169,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (this->altitude < 2) return false;
-				this->substitutionArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), max_x_, DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->assignArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), getMatrixSize((end_y_ > end_x_) ? end_x_ : end_y_), max_x_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 

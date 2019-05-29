@@ -41,33 +41,33 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
+				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
 				matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void assignLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 
@@ -80,7 +80,7 @@ namespace dtl {
 				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); col += 2)
-						this->substitutionSTL(matrix_, col, row, args_...);
+						this->assignSTL(matrix_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
@@ -88,7 +88,7 @@ namespace dtl {
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; col += 2)
-						this->substitutionSTL(matrix_, col, row, args_...);
+						this->assignSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
@@ -98,7 +98,7 @@ namespace dtl {
 				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); col += 2)
-						this->substitutionLayer(matrix_, layer_, col, row, args_...);
+						this->assignLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
@@ -106,7 +106,7 @@ namespace dtl {
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; col += 2)
-						this->substitutionLayer(matrix_, layer_, col, row, args_...);
+						this->assignLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
@@ -116,7 +116,7 @@ namespace dtl {
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < end_x_; col += 2)
-						this->substitutionSTL(matrix_, col, row, args_...);
+						this->assignSTL(matrix_, col, row, args_...);
 				return true;
 			}
 
@@ -126,7 +126,7 @@ namespace dtl {
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < end_x_; col += 2)
-						this->substitutionLayer(matrix_, layer_, col, row, args_...);
+						this->assignLayer(matrix_, layer_, col, row, args_...);
 				return true;
 			}
 
@@ -136,7 +136,7 @@ namespace dtl {
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < end_x_; col += 2)
-						this->substitutionArray(matrix_, col, row, max_x_, args_...);
+						this->assignArray(matrix_, col, row, max_x_, args_...);
 				return true;
 			}
 

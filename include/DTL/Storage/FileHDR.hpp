@@ -62,17 +62,17 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(const ::dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void assignSTL(const ::dtl::type::size point_max_x_, UniquePtr_& data_, const Matrix_& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				function_(matrix_[end_y_][end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(const ::dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void assignArray(const ::dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_ * max_x_ + end_x_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(const ::dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void assignLayer(const ::dtl::type::size point_max_x_, UniquePtr_ & data_, const Matrix_ & matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				function_(matrix_[end_y_][end_x_][layer_], &data_[((end_y_ - this->start_y) * (point_max_x_ - this->start_x) + (end_x_ - this->start_x)) * this->color_num]);
 			}
 
@@ -85,7 +85,7 @@ namespace dtl {
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionSTL(end_x_, data, matrix_, col, row, args_...);
+						this->assignSTL(end_x_, data, matrix_, col, row, args_...);
 				::stbi_write_hdr(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}
@@ -97,7 +97,7 @@ namespace dtl {
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionLayer(end_x_, data, matrix_, layer_, col, row, args_...);
+						this->assignLayer(end_x_, data, matrix_, layer_, col, row, args_...);
 				::stbi_write_hdr(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}
@@ -109,7 +109,7 @@ namespace dtl {
 				if (!data) return false;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionArray(end_x_, data, matrix_, col, row, max_x_, args_...);
+						this->assignArray(end_x_, data, matrix_, col, row, max_x_, args_...);
 				::stbi_write_hdr(this->str.c_str(), static_cast<int>(end_x_ - this->start_x), static_cast<int>(end_y_ - this->start_y), static_cast<int>(this->color_num), data.get());
 				return true;
 			}

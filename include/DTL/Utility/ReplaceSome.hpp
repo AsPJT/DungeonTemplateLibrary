@@ -60,7 +60,7 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				inline void assignSTL(Matrix_&& matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_]) {
@@ -73,7 +73,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+				inline void assignArray(Matrix_&& matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_ * max_x_ + point_x_]) {
@@ -86,7 +86,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+				inline void assignLayer(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_][layer_]) {
@@ -100,7 +100,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				inline void assignSTL(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_] && function_(matrix_[point_y_][point_x_])) {
@@ -113,7 +113,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
+				inline void assignArray(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_ * max_x_ + point_x_] && function_(matrix_[point_y_ * max_x_ + point_x_])) {
@@ -126,7 +126,7 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+				inline void assignLayer(Matrix_ && matrix_, DTL_TYPE_VECTOR<DTL_TYPE_PAIR<::dtl::type::size, ::dtl::type::size>>& value_pairs, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				for (Index_SSize high_value{ static_cast<Index_SSize>(this->before_value.DTL_TYPE_VSIZE()) - 1 }, low_value{}, mid_value{}; low_value <= high_value;) {
 					mid_value = (low_value + high_value) / 2;
 					if (this->before_value[static_cast<Index_Size>(mid_value)] == matrix_[point_y_][point_x_][layer_] && function_(matrix_[point_y_][point_x_][layer_])) {
@@ -151,7 +151,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
-						this->substitutionSTL(matrix_, value_pairs, col, row, args_...);
+						this->assignSTL(matrix_, value_pairs, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -178,7 +178,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
-						this->substitutionSTL(matrix_, value_pairs, col, row, args_...);
+						this->assignSTL(matrix_, value_pairs, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -207,7 +207,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size(); ++col)
-						this->substitutionLayer(matrix_, value_pairs, layer_, col, row, args_...);
+						this->assignLayer(matrix_, value_pairs, layer_, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -234,7 +234,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < matrix_[row].size() && col < end_x_; ++col)
-						this->substitutionLayer(matrix_, value_pairs, layer_, col, row, args_...);
+						this->assignLayer(matrix_, value_pairs, layer_, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -270,7 +270,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionSTL(matrix_, value_pairs, col, row, args_...);
+						this->assignSTL(matrix_, value_pairs, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -299,7 +299,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionLayer(matrix_, value_pairs, layer_, col, row, args_...);
+						this->assignLayer(matrix_, value_pairs, layer_, col, row, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 
@@ -328,7 +328,7 @@ namespace dtl {
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						this->substitutionArray(matrix_, value_pairs, col, row, max_x_, args_...);
+						this->assignArray(matrix_, value_pairs, col, row, max_x_, args_...);
 				if (value_pairs.DTL_TYPE_VSIZE() == 0) return false;
 				value_pairs.DTL_TYPE_VSHRINK();
 

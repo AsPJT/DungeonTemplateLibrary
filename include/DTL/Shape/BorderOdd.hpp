@@ -41,33 +41,33 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
+				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
 				matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
+				inline void assignLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
 				matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 
@@ -80,16 +80,16 @@ namespace dtl {
 				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ == 0) return true;
 				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
-					this->substitutionSTL(matrix_, col, this->start_y, args_...);
+					this->assignSTL(matrix_, col, this->start_y, args_...);
 				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col) {
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionSTL(matrix_, col, end_y_ - 2, args_...);
-					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignSTL(matrix_, col, end_y_ - 2, args_...);
+					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() == 0) continue;
-					this->substitutionSTL(matrix_, this->start_x, row, args_...);
-					if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row, args_...);
-					this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+					this->assignSTL(matrix_, this->start_x, row, args_...);
+					if ((matrix_[row].size() - this->start_x) % 2 == 0) this->assignSTL(matrix_, matrix_[row].size() - 2, row, args_...);
+					this->assignSTL(matrix_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 				}
 				return true;
 			}
@@ -98,22 +98,22 @@ namespace dtl {
 				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
-					this->substitutionSTL(matrix_, col, this->start_y, args_...);
+					this->assignSTL(matrix_, col, this->start_y, args_...);
 				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col) {
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionSTL(matrix_, col, end_y_ - 2, args_...);
-					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignSTL(matrix_, col, end_y_ - 2, args_...);
+					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
 				}
 				if (end_x_ < 2) return true;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() == 0) continue;
-					this->substitutionSTL(matrix_, this->start_x, row, args_...);
+					this->assignSTL(matrix_, this->start_x, row, args_...);
 					if (matrix_[row].size() <= end_x_) {
-						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, matrix_[row].size() - 2, row, args_...);
-						this->substitutionSTL(matrix_, matrix_[row].size() - 1, row, args_...);
+						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->assignSTL(matrix_, matrix_[row].size() - 2, row, args_...);
+						this->assignSTL(matrix_, matrix_[row].size() - 1, row, args_...);
 					}
 					else {
-						if ((end_x_ - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, end_x_ - 2, row, args_...);
-						this->substitutionSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+						if ((end_x_ - this->start_x) % 2 == 0) this->assignSTL(matrix_, end_x_ - 2, row, args_...);
+						this->assignSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 					}
 				}
 				return true;
@@ -125,16 +125,16 @@ namespace dtl {
 				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
-					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
+					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
 				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col) {
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, end_y_ - 2, args_...);
-					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignLayer(matrix_, layer_, col, end_y_ - 2, args_...);
+					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() < 2) continue;
-					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
-					if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
-					this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
+					if ((matrix_[row].size() - this->start_x) % 2 == 0) this->assignLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
+					this->assignLayer(matrix_, layer_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 				}
 				return true;
 			}
@@ -143,22 +143,22 @@ namespace dtl {
 				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
-					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
+					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
 				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col) {
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, end_y_ - 2, args_...);
-					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignLayer(matrix_, layer_, col, end_y_ - 2, args_...);
+					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				}
 				if (end_x_ < 2) return true;
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					if (matrix_[row].size() == 0) continue;
-					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
+					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
 					if (matrix_[row].size() <= end_x_) {
-						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
-						this->substitutionLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
+						if ((matrix_[row].size() - this->start_x) % 2 == 0) this->assignLayer(matrix_, layer_, matrix_[row].size() - 2, row, args_...);
+						this->assignLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
 					}
 					else {
-						if ((end_x_ - this->start_x) % 2 == 0) this->substitutionLayer(matrix_, layer_, end_x_ - 2, row, args_...);
-						this->substitutionLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+						if ((end_x_ - this->start_x) % 2 == 0) this->assignLayer(matrix_, layer_, end_x_ - 2, row, args_...);
+						this->assignLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 					}
 				}
 				return true;
@@ -170,14 +170,14 @@ namespace dtl {
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_x_ < 2 || end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->substitutionSTL(matrix_, col, this->start_y, args_...);
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionSTL(matrix_, col, end_y_ - 2, args_...);
-					this->substitutionSTL(matrix_, col, end_y_ - 1, args_...);
+					this->assignSTL(matrix_, col, this->start_y, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignSTL(matrix_, col, end_y_ - 2, args_...);
+					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->substitutionSTL(matrix_, this->start_x, row, args_...);
-					if ((end_x_ - this->start_x) % 2 == 0) this->substitutionSTL(matrix_, end_x_ - 2, row, args_...);
-					this->substitutionSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+					this->assignSTL(matrix_, this->start_x, row, args_...);
+					if ((end_x_ - this->start_x) % 2 == 0) this->assignSTL(matrix_, end_x_ - 2, row, args_...);
+					this->assignSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 				}
 				return true;
 			}
@@ -188,14 +188,14 @@ namespace dtl {
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
 				if (end_x_ < 2 || end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->substitutionLayer(matrix_, layer_, col, this->start_y, args_...);
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, col, end_y_ - 2, args_...);
-					this->substitutionLayer(matrix_, layer_, col, end_y_ - 1, args_...);
+					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignLayer(matrix_, layer_, col, end_y_ - 2, args_...);
+					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->substitutionLayer(matrix_, layer_, this->start_x, row, args_...);
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionLayer(matrix_, layer_, end_x_ - 2, row, args_...);
-					this->substitutionLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignLayer(matrix_, layer_, end_x_ - 2, row, args_...);
+					this->assignLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
 				}
 				return true;
 			}
@@ -206,14 +206,14 @@ namespace dtl {
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
 				if (end_x_ < 2 || end_y_ < 2) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->substitutionArray(matrix_, col, this->start_y, max_x_, args_...);
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionArray(matrix_, col, end_y_ - 2, max_x_, args_...);
-					this->substitutionArray(matrix_, col, end_y_ - 1, max_x_, args_...);
+					this->assignArray(matrix_, col, this->start_y, max_x_, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignArray(matrix_, col, end_y_ - 2, max_x_, args_...);
+					this->assignArray(matrix_, col, end_y_ - 1, max_x_, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->substitutionArray(matrix_, this->start_x, row, max_x_, args_...);
-					if ((end_y_ - this->start_y) % 2 == 0) this->substitutionArray(matrix_, end_x_ - 2, row, max_x_, args_...);
-					this->substitutionArray(matrix_, end_x_ - 1, row, max_x_, DTL_TYPE_FORWARD<Args_>(args_)...);
+					this->assignArray(matrix_, this->start_x, row, max_x_, args_...);
+					if ((end_y_ - this->start_y) % 2 == 0) this->assignArray(matrix_, end_x_ - 2, row, max_x_, args_...);
+					this->assignArray(matrix_, end_x_ - 1, row, max_x_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				}
 				return true;
 			}

@@ -104,7 +104,7 @@ namespace dtl {
 
 				createDivision(dungeon_road,dungeon_division, mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
-				this->substitutionRoom(dungeon_room, matrix_, mapDivCount);
+				this->assignRoom(dungeon_room, matrix_, mapDivCount);
 				createRoad(dungeon_road,dungeon_room, dungeon_division, matrix_, mapDivCount);
 				return true;
 			}
@@ -132,7 +132,7 @@ namespace dtl {
 
 				createDivision(dungeon_road,dungeon_division, mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
-				this->substitutionRoomLayer(dungeon_room, matrix_, mapDivCount, layer_);
+				this->assignRoomLayer(dungeon_room, matrix_, mapDivCount, layer_);
 				createRoadLayer(dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, layer_);
 				return true;
 			}
@@ -160,7 +160,7 @@ namespace dtl {
 
 				createDivision(dungeon_road,dungeon_division,mapDivCount);
 				createRoom(dungeon_room, dungeon_division,mapDivCount);
-				this->substitutionRoomArray(dungeon_room, matrix_, mapDivCount, max_x_);
+				this->assignRoomArray(dungeon_room, matrix_, mapDivCount, max_x_);
 				createRoadArray(dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, max_x_);
 				return true;
 			}
@@ -258,7 +258,7 @@ namespace dtl {
 			}
 
 			template <typename Matrix_>
-			void substitutionRoom(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
+			void assignRoom(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -266,7 +266,7 @@ namespace dtl {
 							matrix_[j][k] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomLayer(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
+			void assignRoomLayer(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size layer_) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)
@@ -274,7 +274,7 @@ namespace dtl {
 							matrix_[j][k][layer_] = this->room_value;
 			}
 			template <typename Matrix_>
-			void substitutionRoomArray(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
+			void assignRoomArray(const StartEnd& dungeon_room, Matrix_&& matrix_, const ::dtl::type::size mapDivCount, const Index_Size max_x_) const noexcept {
 				//部屋を生成する処理
 				for (::dtl::type::size i{}; i < mapDivCount; ++i)
 					for (::dtl::type::size j{ dungeon_room[i][2] }; j < dungeon_room[i][0]; ++j)

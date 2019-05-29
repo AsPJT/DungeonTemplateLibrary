@@ -114,7 +114,7 @@ namespace dtl {
 			///// 代入処理 /////
 
 			template<typename Matrix_, typename Function_>
-			inline void substitutionSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
+			inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
@@ -125,7 +125,7 @@ namespace dtl {
 				createSites(point, color, matrix_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
-			inline void substitutionArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
@@ -136,7 +136,7 @@ namespace dtl {
 				createSitesArray(point, color, matrix_, max_x_, end_x_, end_y_);
 			}
 			template<typename Matrix_, typename Function_>
-			inline void substitutionLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
+			inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
@@ -154,7 +154,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				this->substitutionSTL(matrix_, end_x_, end_y_, args_...);
+				this->assignSTL(matrix_, end_x_, end_y_, args_...);
 				return true;
 			}
 
@@ -162,7 +162,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawLayerNormal(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_&& ... args_) const noexcept {
-				this->substitutionLayer(matrix_, layer_, end_x_, end_y_, args_...);
+				this->assignLayer(matrix_, layer_, end_x_, end_y_, args_...);
 				return true;
 			}
 
@@ -170,7 +170,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_&& ... args_) const noexcept {
-				this->substitutionArray(matrix_, end_x_, end_y_, max_x_, args_...);
+				this->assignArray(matrix_, end_x_, end_y_, max_x_, args_...);
 				return true;
 			}
 

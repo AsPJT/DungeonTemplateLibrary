@@ -64,6 +64,10 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ENTITY_HPP
 #include <DTL/Entity.hpp>
 
+/* 高速ライブラリ (::dtl::fast) */
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FAST_HPP
+#include <DTL/Fast.hpp>
+
 /* 乱数ライブラリ (::dtl::random) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_HPP
 #include <DTL/Random.hpp>
