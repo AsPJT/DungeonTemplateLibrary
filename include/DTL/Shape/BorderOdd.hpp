@@ -25,7 +25,10 @@
 namespace dtl {
 	inline namespace shape {
 
-		//四角形の生成
+/*#######################################################################################
+	[概要] BorderOddとは "Matrixの描画範囲の周囲1マスに描画値を設置し、描画範囲の列数が偶数の時[列数-2列目]のマスに描画値を設置し、
+			行数が偶数の時[行数-2行目]のマスに描画値を設置する(※行/列は0から数える)" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_>
 		class BorderOdd : public ::dtl::range::RectBaseWithValue< ::dtl::shape::BorderOdd<Matrix_Int_>, Matrix_Int_> {
 		private:

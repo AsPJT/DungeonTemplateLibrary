@@ -25,7 +25,9 @@
 namespace dtl {
 	inline namespace shape {
 
-		//マップの外枠を指定した数値で埋める
+/*#######################################################################################
+	[概要] Borderとは "Matrixの描画範囲の周囲1マスに描画値を設置する" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_>
 		class Border : public ::dtl::range::RectBaseWithValue< ::dtl::shape::Border<Matrix_Int_>, Matrix_Int_> {
 		private:

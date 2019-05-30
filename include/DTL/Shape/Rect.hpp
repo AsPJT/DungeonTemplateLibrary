@@ -25,7 +25,9 @@
 namespace dtl {
 	inline namespace shape {
 
-		//マスを指定した数値で埋める
+/*#######################################################################################
+	[概要] Rectとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_>
 		class Rect : public ::dtl::range::RectBaseWithValue< ::dtl::shape::Rect<Matrix_Int_>, Matrix_Int_> {
 		private:

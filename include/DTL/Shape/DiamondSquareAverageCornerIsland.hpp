@@ -27,8 +27,10 @@
 namespace dtl {
 	inline namespace shape {
 
-
-		//マスを指定した数値で埋める
+/*#######################################################################################
+	[概要] DiamondSquareAverageCornerIslandとは 
+			"Matrixの描画範囲にダイヤモンドスクエア法に従って描画値を設置する" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_>
 		class DiamondSquareAverageCornerIsland {
 		private:
