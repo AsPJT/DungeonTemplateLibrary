@@ -29,7 +29,9 @@
 namespace dtl {
 	inline namespace storage {
 
-		//マスを指定した数値で埋める
+/*#######################################################################################
+	[概要] FileMDとは "Markdown形式のテキストファイルを出力する" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = ::std::ofstream>
 		class FileMD {
 		private:

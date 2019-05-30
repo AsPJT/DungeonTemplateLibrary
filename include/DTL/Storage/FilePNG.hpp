@@ -36,7 +36,9 @@
 namespace dtl {
 	inline namespace storage {
 
-		//マスを指定した数値で埋める
+/*#######################################################################################
+	[概要] FilePNGとは "PNG形式の画像ファイルを出力する" 機能を持つクラスである。
+#######################################################################################*/
 		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<unsigned char[]>>
 		class FilePNG {
 		private:
