@@ -23,7 +23,7 @@
 #include <DTL/Range/RectBaseWithValue.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 /*#######################################################################################
 	[概要] BorderOddとは "Matrixの描画範囲の周囲1マスに描画値を設置し、描画範囲の列数が偶数の時[列数-2列目]のマスに描画値を設置し、

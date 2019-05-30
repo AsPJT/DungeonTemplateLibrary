@@ -25,7 +25,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 /*#######################################################################################
 	[概要] DiamondSquareAverageCornerIslandとは 

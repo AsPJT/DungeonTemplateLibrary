@@ -24,7 +24,7 @@
 #include <DTL/Range/RectBaseWithValue.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 /*#######################################################################################
 	[概要] AbsoluteRectとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。

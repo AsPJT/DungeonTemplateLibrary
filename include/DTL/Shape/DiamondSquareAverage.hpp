@@ -15,7 +15,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//Diamond Square (Average)
 		//ダイヤモンド・スクエア法(平均値)

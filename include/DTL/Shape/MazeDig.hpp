@@ -26,7 +26,7 @@
 #include <DTL/Type/UniquePtr.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>

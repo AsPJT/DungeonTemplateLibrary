@@ -28,7 +28,7 @@
 #include <DTL/Type/UniquePtr.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		constexpr ::dtl::type::size fli_chunk_size{ 16 };
 

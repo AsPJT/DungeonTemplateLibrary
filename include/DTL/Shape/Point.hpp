@@ -14,7 +14,7 @@
 
 //STLデータ
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 		namespace stl {
 
 			template<typename Matrix_>
@@ -67,7 +67,7 @@ namespace dtl {
 }
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 		namespace normal {
 
 			template<typename Matrix_>
@@ -131,7 +131,7 @@ namespace dtl {
 }
 
 namespace  dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 		namespace array {
 
 			template<typename Matrix_>
@@ -173,7 +173,7 @@ namespace  dtl {
 }
 
 namespace  dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 		namespace layer {
 			namespace stl {
 
@@ -212,7 +212,7 @@ namespace  dtl {
 }
 
 namespace  dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 		namespace layer {
 			namespace normal {
 

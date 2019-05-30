@@ -26,7 +26,7 @@
 #include <DTL/Utility/VoronoiDiagram.hpp>
 
 namespace dtl {
-	inline namespace shape {
+	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マップの外枠を指定した数値で埋め、偶数マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR< ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
