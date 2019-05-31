@@ -180,6 +180,12 @@ namespace dtl {
 
 			///// 情報取得 /////
 
+/*#######################################################################################
+	[概要] 描画始点座標Xを取得する。
+	[戻り値] 戻り値の型は std::size_t である。
+	[Summary] Gets the drawing start point coordinate X.
+	[Return value] The return type is std::size_t.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Index_Size getPointX() const noexcept {
 				return this->start_x;
