@@ -63,6 +63,13 @@ namespace dtl {
 				constexpr Index_Size getPointX() const noexcept {
 				return this->voronoiDiagram.getPointX();
 			}
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを取得する。
+	[戻り値] 戻り値の型は std::size_t である。
+	[Summary] Gets the drawing start point coordinate Y.
+	[Return value] The return type is std::size_t.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getPointY() const noexcept {
 				return this->voronoiDiagram.getPointY();
