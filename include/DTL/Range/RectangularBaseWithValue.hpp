@@ -59,7 +59,7 @@ namespace dtl {
 				this->draw_value = new_draw_value;
 				return static_cast<Derived_&>(*this);
 			}
-			//全ての値を初期値に戻す
+//全ての値を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clear() noexcept {
 				this->clearRange();

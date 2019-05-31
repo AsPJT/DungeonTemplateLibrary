@@ -143,25 +143,43 @@ namespace dtl {
 				this->start_z = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//範囲の大きさ(X軸方向)を初期値に戻す
+
+/*#######################################################################################
+	[概要] 範囲の大きさ(X軸方向)を初期値に戻す(描画横幅Wを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the width of the range (X axis direction) to the initial value (deletes the drawing width).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearSizeX() noexcept {
 				this->size_x = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//範囲の大きさ(Y軸方向)を初期値に戻す
+
+/*#######################################################################################
+	[概要] 範囲の大きさ(Y軸方向)を初期値に戻す(描画縦幅Hを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the height of the range (Y axis direction) to the initial value (deletes the drawing height).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearSizeY() noexcept {
 				this->size_y = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//範囲の大きさ(Y軸方向)を初期値に戻す
+
+/*#######################################################################################
+	[概要] 範囲の大きさ(Z軸方向)を初期値に戻す(描画奥幅Dを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the depth of the range (Z axis direction) to the initial value (deletes the drawing depth).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearSizeZ() noexcept {
 				this->size_z = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//始点座標(X,Y)を初期値に戻す
+//始点座標(X,Y)を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPoint() noexcept {
 				this->clearPointX();
@@ -169,7 +187,7 @@ namespace dtl {
 				this->clearPointZ();
 				return static_cast<Derived_&>(*this);
 			}
-			//描画範囲を初期値に戻す
+//描画範囲を初期値に戻す
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearRange() noexcept {
 				this->clearPointX();
