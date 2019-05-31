@@ -262,7 +262,13 @@ namespace dtl {
 				this->clearPointY();
 				return *this;
 			}
-//描画範囲を初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画範囲を初期値に戻す(描画範囲(X,Y,W,H)を消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Resets the drawing range to the initial value (deletes the drawing range (X, Y, W, H)).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				FileTGA& clearRange() noexcept {
 				this->clearPointX();
