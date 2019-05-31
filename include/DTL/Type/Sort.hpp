@@ -20,7 +20,7 @@
 #define DTL_TYPE_SORT (::std::sort)
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_>
 		void sortVector(Vector_& vector_) noexcept {
 			vector_.Sort();
@@ -33,7 +33,7 @@ namespace dtl {
 #define DTL_TYPE_SORT (::std::sort)
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_>
 		void sortVector(Vector_& vector_) noexcept {
 			DTL_TYPE_SORT(vector_.begin(), vector_.end());

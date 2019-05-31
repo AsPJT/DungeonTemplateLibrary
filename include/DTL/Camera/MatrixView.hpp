@@ -15,7 +15,7 @@
 #include <DTL/Type/Forward.hpp>
 
 namespace dtl {
-	inline namespace camera {
+	inline namespace camera { //"dtl::camera"名前空間に属する
 
 		struct MatrixViewRect {
 			constexpr MatrixViewRect() = default;

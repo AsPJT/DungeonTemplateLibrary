@@ -22,7 +22,7 @@
 #include <DTL/Utility/IsOutputCast.hpp>
 
 namespace dtl {
-	inline namespace storage {
+	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = ::std::ofstream>
@@ -294,13 +294,24 @@ namespace dtl {
 
 			///// 消去 /////
 
-			//始点座標Xを初期値に戻す
+/*#######################################################################################
+	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				FileTerrainOBJ& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
-			//始点座標Yを初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを初期値に戻す(描画始点座標Yを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				FileTerrainOBJ& clearPointY() noexcept {
 				this->start_y = 0;

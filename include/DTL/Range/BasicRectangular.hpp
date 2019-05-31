@@ -17,7 +17,7 @@
 
 //共有データ
 namespace dtl {
-	inline namespace range {
+	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
 		template<typename Derived_>
@@ -108,19 +108,36 @@ namespace dtl {
 
 			///// 消去 /////
 
-			//始点座標Xを初期値に戻す
+/*#######################################################################################
+	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPointX() noexcept {
 				this->start_x = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//始点座標Yを初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを初期値に戻す(描画始点座標Yを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPointY() noexcept {
 				this->start_y = 0;
 				return static_cast<Derived_&>(*this);
 			}
-			//始点座標Yを初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画始点座標Zを初期値に戻す(描画始点座標Zを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate Z to the initial value (deletes the drawing start coordinate Z).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearPointZ() noexcept {
 				this->start_z = 0;

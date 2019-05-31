@@ -23,7 +23,7 @@
 #include <DTL/Range/RectBase.hpp>
 
 namespace dtl {
-	inline namespace retouch {
+	inline namespace retouch { //"dtl::retouch"名前空間に属する
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>

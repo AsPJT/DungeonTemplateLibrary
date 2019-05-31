@@ -18,7 +18,7 @@
 #include <DTL/Utility/MatrixWrapper.hpp>
 
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マップの外枠を指定した数値で埋める
 		template<typename Derived, typename Matrix_Int_>

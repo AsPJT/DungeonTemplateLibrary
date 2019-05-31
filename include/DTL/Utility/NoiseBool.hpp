@@ -18,7 +18,7 @@
 
 //STLデータ
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace stl {
 
 			//1/2の確率でマップデータの値をbit反転させる

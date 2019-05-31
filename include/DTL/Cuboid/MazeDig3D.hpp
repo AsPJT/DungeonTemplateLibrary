@@ -24,7 +24,7 @@
 
 
 namespace dtl {
-	inline namespace cuboid {
+	inline namespace cuboid { //"dtl::cuboid"名前空間に属する
 
 		template<class Matrix_Int_>
 		class MazeDig3D {

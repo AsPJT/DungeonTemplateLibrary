@@ -22,7 +22,7 @@
 #include <DTL/Utility/IsOutputCast.hpp>
 
 namespace dtl {
-	inline namespace board {
+	inline namespace board { //"dtl::board"名前空間に属する
 
 		//四角形の生成
 		template<typename Matrix_Int_, typename OutputChar_ = char>
@@ -263,13 +263,24 @@ namespace dtl {
 
 			///// 消去 /////
 
-			//始点座標Xを初期値に戻す
+/*#######################################################################################
+	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				WriteNumber& clearPointX() noexcept {
 				this->start_x = 0;
 				return *this;
 			}
-			//始点座標Yを初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを初期値に戻す(描画始点座標Yを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				WriteNumber& clearPointY() noexcept {
 				this->start_y = 0;

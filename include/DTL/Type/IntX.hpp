@@ -12,7 +12,7 @@
 
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 
 		using int8 = ::int8;
 		using int16 = ::int16;
@@ -46,7 +46,7 @@ namespace dtl {
 #else
 #include <cstdint>
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 
 #ifdef INT8_MAX
 		using int8 = ::std::int8_t;

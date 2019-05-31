@@ -24,7 +24,7 @@
 #endif
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Value1_, typename Value2_>
 		DTL_TYPE_PAIR<Value1_, Value2_> makePair(const Value1_& value1_, const Value2_& value2_) noexcept {
 			DTL_TYPE_PAIR<Value1_, Value2_> pair(value1_, value2_);
@@ -45,7 +45,7 @@ namespace dtl {
 #endif
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Value1_, typename Value2_>
 		DTL_TYPE_PAIR<Value1_, Value2_> makePair(const Value1_& value1_, const Value2_& value2_) noexcept {
 			return ::std::make_pair(value1_, value2_);

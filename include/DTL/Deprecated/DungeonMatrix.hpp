@@ -14,7 +14,7 @@
 
 //Dungeon Template Library Namespace
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace stl {
 
 			//サイズ変更( ::std::vector, ::std::deque等)
@@ -40,7 +40,7 @@ namespace dtl {
 	}
 }
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace layer {
 			namespace stl {
 
@@ -91,7 +91,7 @@ namespace dtl {
 }
 
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace stl {
 			namespace tool {
 
@@ -127,7 +127,7 @@ namespace dtl {
 }
 
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace tool {
 
 			template<typename Matrix_, typename Matrix2_>

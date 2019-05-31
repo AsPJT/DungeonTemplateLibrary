@@ -13,7 +13,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace base {
+	inline namespace base { //"dtl::base"名前空間に属する
 
 
 		template<typename Int_>

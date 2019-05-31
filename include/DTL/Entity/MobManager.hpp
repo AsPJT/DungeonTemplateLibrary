@@ -16,7 +16,7 @@
 #include <DTL/Macros/nodiscard.hpp>
 
 namespace dtl {
-	inline namespace entity {
+	inline namespace entity { //"dtl::entity"名前空間に属する
 
 		//プレイヤーの向き
 		enum :std::uint_fast8_t {

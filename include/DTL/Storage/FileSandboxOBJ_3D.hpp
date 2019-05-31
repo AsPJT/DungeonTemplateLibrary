@@ -23,7 +23,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace storage {
+	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>

@@ -18,7 +18,7 @@
 
 //共有データ
 namespace dtl {
-	inline namespace range {
+	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
 		template<typename Derived_, typename Matrix_Int_>

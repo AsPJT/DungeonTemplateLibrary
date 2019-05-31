@@ -16,7 +16,7 @@
 
 #include <sstream>
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		class CoutUE4 {
 		public:
 			::std::stringstream ue4_sstream{};

@@ -154,7 +154,12 @@ namespace dtl {
 
 			///// 消去 /////
 
-			//始点座標Xを初期値に戻す
+/*#######################################################################################
+	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				CellularAutomatonMixIsland& clearPointX() noexcept {
 				this->mixRect.clearPointX();
@@ -162,7 +167,13 @@ namespace dtl {
 				this->cellularAutomation.clearPointX();
 				return *this;
 			}
-			//始点座標Yを初期値に戻す
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを初期値に戻す(描画始点座標Yを消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Returns the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				CellularAutomatonMixIsland& clearPointY() noexcept {
 				this->mixRect.clearPointY();

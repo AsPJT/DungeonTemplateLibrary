@@ -14,7 +14,7 @@
 #include <DTL/Macros/nodiscard.hpp>
 
 namespace dtl {
-	inline namespace chrono {
+	inline namespace chrono { //"dtl::chrono"名前空間に属する
 
 		template<typename Clock_, typename Duration_>
 		class Time {

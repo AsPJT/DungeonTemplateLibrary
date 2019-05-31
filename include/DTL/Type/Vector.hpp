@@ -32,7 +32,7 @@
 #endif
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Int_>
 		DTL_TYPE_VECTOR<Int_> makeVector(const ::dtl::type::size size_, const Int_& int_) noexcept {
 			DTL_TYPE_VECTOR<Int_> mv{};
@@ -42,7 +42,7 @@ namespace dtl {
 	}
 }
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_, typename Value_>
 		DTL_VERSIONING_CPP14_CONSTEXPR
 		void removeVector(Vector_& vector_, const Value_ value_) noexcept {
@@ -71,7 +71,7 @@ namespace dtl {
 #endif
 
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Int_>
 		DTL_TYPE_VECTOR<Int_> makeVector(const ::dtl::type::size size_, const Int_& int_) noexcept {
 			return DTL_TYPE_VECTOR<Int_>(size_, int_);
@@ -79,7 +79,7 @@ namespace dtl {
 	}
 }
 namespace dtl {
-	namespace type {
+	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_,typename Value_>
 		DTL_VERSIONING_CPP14_CONSTEXPR
 		void removeVector(Vector_& vector_, const Value_ value_) noexcept {

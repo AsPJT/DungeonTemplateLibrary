@@ -19,7 +19,7 @@
 
 //共有データ
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		// ネストした ::std::array 用別名
 

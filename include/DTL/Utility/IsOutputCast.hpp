@@ -15,7 +15,7 @@
 #include <DTL/Macros/nodiscard.hpp>
 
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		template<typename Int_>
 		DTL_VERSIONING_CPP17_NODISCARD

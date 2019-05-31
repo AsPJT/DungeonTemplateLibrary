@@ -26,7 +26,7 @@
 
 
 namespace dtl {
-	inline namespace cuboid {
+	inline namespace cuboid { //"dtl::cuboid"名前空間に属する
 
 		template<class Matrix_Int_>
 		class Rectangular : public ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Int_>, Matrix_Int_> {

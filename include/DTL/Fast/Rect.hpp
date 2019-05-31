@@ -15,7 +15,7 @@
 #include <DTL/Utility/Assign.hpp>
 
 namespace dtl {
-	inline namespace fast {
+	inline namespace fast { //"dtl::fast"名前空間に属する
 
 		template<typename Matrix_Int_, typename Matrix_>
 		DTL_VERSIONING_CPP14_CONSTEXPR

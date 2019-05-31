@@ -17,7 +17,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace random {
+	inline namespace random { //"dtl::random"名前空間に属する
 
 		//乱数(64ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister_64bit {

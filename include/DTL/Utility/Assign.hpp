@@ -14,7 +14,7 @@
 #include <DTL/Type/SizeT.hpp>
 
 namespace dtl {
-	inline namespace utility {
+	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		template<typename Matrix_Int_, typename Matrix_, typename Loop_Int_ = ::dtl::type::size, typename Array_Int_ = ::dtl::type::size>
 		DTL_VERSIONING_CPP14_CONSTEXPR
