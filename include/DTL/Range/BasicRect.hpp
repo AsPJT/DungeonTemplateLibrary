@@ -90,6 +90,13 @@ namespace dtl {
 				constexpr Index_Size getPointY() const noexcept {
 				return this->start_y;
 			}
+
+/*#######################################################################################
+	[概要] 描画横幅Wを取得する。
+	[戻り値] 戻り値の型は std::size_t である。
+	[Summary] Gets the drawing width.
+	[Return value] The return type is std::size_t.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getWidth() const noexcept {
 				return this->width;
