@@ -418,7 +418,13 @@ namespace dtl {
 				this->clearFalseString();
 				return *this;
 			}
-//全ての値を初期値に戻す
+
+/*#######################################################################################
+	[概要] 全ての値を初期値に戻す。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Reset all values to their initial values.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				OutputStringBool& clear() noexcept {
 				this->clearRange();
