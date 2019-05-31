@@ -52,7 +52,13 @@ namespace dtl {
 
 			///// 消去 /////
 
-			//塗り値を初期値に戻す
+
+/*#######################################################################################
+	[概要] 塗り値を初期値に戻す(描画値を消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Resets the drawing value to the initial value (deletes the drawing value).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
 				const Matrix_Int_ new_draw_value{};

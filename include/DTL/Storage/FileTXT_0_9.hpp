@@ -285,7 +285,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
 	[戻り値] 戻り値の型は 当クラスの参照値 である。
-	[Summary] Returns the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
+	[Summary] Resets the drawing start coordinate X to the initial value (deletes the drawing start coordinate X).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -297,7 +297,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] 描画始点座標Yを初期値に戻す(描画始点座標Yを消去する)。
 	[戻り値] 戻り値の型は 当クラスの参照値 である。
-	[Summary] Returns the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
+	[Summary] Resets the drawing start coordinate Y to the initial value (deletes the drawing start coordinate Y).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -309,7 +309,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] 範囲の大きさ(X軸方向)を初期値に戻す(描画横幅Wを消去する)。
 	[戻り値] 戻り値の型は 当クラスの参照値 である。
-	[Summary] Returns the width of the range (X axis direction) to the initial value (deletes the drawing width).
+	[Summary] Resets the width of the range (X axis direction) to the initial value (deletes the drawing width).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -321,7 +321,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] 範囲の大きさ(Y軸方向)を初期値に戻す(描画縦幅Hを消去する)。
 	[戻り値] 戻り値の型は 当クラスの参照値 である。
-	[Summary] Returns the height of the range (Y axis direction) to the initial value (deletes the drawing height).
+	[Summary] Resets the height of the range (Y axis direction) to the initial value (deletes the drawing height).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
