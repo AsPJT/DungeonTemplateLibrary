@@ -195,38 +195,86 @@ namespace dtl {
 
 			///// 代入 /////
 
+/*#######################################################################################
+	[概要] 描画始点座標Xを設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing start point coordinate X.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setPointX(const Index_Size start_x_) noexcept {
 				this->start_x = start_x_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing start point coordinate Y.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setPointY(const Index_Size start_y_) noexcept {
 				this->start_y = start_y_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画横幅Wを設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing width.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setWidth(const Index_Size width_) noexcept {
 				this->width = width_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画縦幅Hを設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing height.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setHeight(const Index_Size height_) noexcept {
 				this->height = height_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画始点座標(X,Y)を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing start point coordinates (X, Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setPoint(const Index_Size point_) noexcept {
 				this->start_x = point_;
 				this->start_y = point_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画始点座標(X,Y)を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing start point coordinates (X, Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setPoint(const Index_Size start_x_, const Index_Size start_y_) noexcept {
 				this->start_x = start_x_;
 				this->start_y = start_y_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画範囲(X,Y,W,H)を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing range (X, Y, W, H).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size length_) noexcept {
 				this->start_x = start_x_;
@@ -235,6 +283,13 @@ namespace dtl {
 				this->height = length_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画範囲(X,Y,W,H)を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing range (X, Y, W, H).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setRange(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept {
 				this->start_x = start_x_;
@@ -243,6 +298,13 @@ namespace dtl {
 				this->height = height_;
 				return static_cast<Derived_&>(*this);
 			}
+
+/*#######################################################################################
+	[概要] 描画範囲(X,Y,W,H)を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing range (X, Y, W, H).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setRange(const ::dtl::base::MatrixRange & matrix_range_) noexcept {
 				this->start_x = matrix_range_.x;
