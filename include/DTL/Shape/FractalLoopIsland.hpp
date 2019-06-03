@@ -20,6 +20,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Range/RectBaseFractal.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/New.hpp>
@@ -34,24 +35,14 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::ssize[]>>
-		class FractalLoopIsland {
+		class FractalLoopIsland : public ::dtl::range::RectBaseFractal< ::dtl::shape::FractalLoopIsland<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-
-
-			///// メンバ変数 /////
-
-			Index_Size start_x{};
-			Index_Size start_y{};
-			Index_Size width{};
-			Index_Size height{};
-			Matrix_Int_ min_value{};
-			Matrix_Int_ altitude{};
-			Matrix_Int_ add_altitude{};
+			using ShapeBase_t = ::dtl::range::RectBaseFractal< ::dtl::shape::FractalLoopIsland<Matrix_Int_>, Matrix_Int_>;
 
 
 			///// 基本処理 /////
@@ -237,65 +228,6 @@ namespace dtl {
 		public:
 
 
-			///// 情報取得 /////
-
-/*#######################################################################################
-	[概要] 描画始点座標Xを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing start point coordinate X.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
-				return this->start_x;
-			}
-
-/*#######################################################################################
-	[概要] 描画始点座標Yを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing start point coordinate Y.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
-				return this->start_y;
-			}
-
-/*#######################################################################################
-	[概要] 描画横幅Wを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing width.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
-				return this->width;
-			}
-
-/*#######################################################################################
-	[概要] 描画縦幅Hを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing height.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
-				return this->height;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getMinValue() const noexcept {
-				return this->min_value;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getAltitude() const noexcept {
-				return this->altitude;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getAddAltitude() const noexcept {
-				return this->add_altitude;
-			}
-
-
 			///// 生成呼び出し /////
 
 			//STL
@@ -387,43 +319,7 @@ namespace dtl {
 
 			///// コンストラクタ /////
 
-			constexpr FractalLoopIsland() = default;
-			constexpr explicit FractalLoopIsland(const Matrix_Int_ & min_value_) noexcept
-				:min_value(min_value_) {}
-			constexpr explicit FractalLoopIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit FractalLoopIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit FractalLoopIsland(const ::dtl::base::MatrixRange & matrix_range_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit FractalLoopIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_) {}
-			constexpr explicit FractalLoopIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit FractalLoopIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit FractalLoopIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_) {}
-			constexpr explicit FractalLoopIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_) {}
-			constexpr explicit FractalLoopIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit FractalLoopIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
+			using ShapeBase_t::ShapeBase_t;
 		};
 
 	} //namespace

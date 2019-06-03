@@ -19,6 +19,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Range/RectBaseFractal.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/Min.hpp>
@@ -32,25 +33,14 @@ namespace dtl {
 			"Matrixの描画範囲にダイヤモンドスクエア法に従って描画値を設置する" 機能を持つクラスである。
 #######################################################################################*/
 		template<typename Matrix_Int_>
-		class DiamondSquareAverageIsland {
+		class DiamondSquareAverageIsland : public ::dtl::range::RectBaseFractal< ::dtl::shape::DiamondSquareAverageIsland<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			
-
-
-			///// メンバ変数 /////
-
-			Index_Size start_x{};
-			Index_Size start_y{};
-			Index_Size width{};
-			Index_Size height{};
-			Matrix_Int_ min_value{};
-			Matrix_Int_ altitude{};
-			Matrix_Int_ add_altitude{};
+			using ShapeBase_t = ::dtl::range::RectBaseFractal< ::dtl::shape::DiamondSquareAverageIsland<Matrix_Int_>, Matrix_Int_>;
 
 
 			///// サイズ取得 /////
@@ -72,10 +62,10 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
-				matrix_[this->start_y][this->start_x] = matrix_[this->start_y + map_size_ / 2][this->start_x] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y][this->start_x + map_size_] = matrix_[this->start_y][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y + map_size_][this->start_x] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y + map_size_][this->start_x + map_size_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y][this->start_x] = matrix_[this->start_y + map_size_ / 2][this->start_x] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y][this->start_x + map_size_] = matrix_[this->start_y][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
 				matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2] = this->min_value + this->altitude;
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x], matrix_[this->start_y + map_size_ / 2][this->start_x], matrix_[this->start_y][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
 				createDiamondSquareAverageSTL<Matrix_Int_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x], matrix_[this->start_y + map_size_][this->start_x], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2], this->min_value + this->altitude, this->add_altitude, function_);
@@ -85,10 +75,10 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
-				matrix_[(this->start_y)* max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[(this->start_y)* max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)] = matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
 				matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)] = this->min_value + this->altitude;
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[(this->start_y)* max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)], matrix_[(this->start_y)* max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
 				createDiamondSquareAverageArray<Matrix_Int_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_ / 2) * max_x_ + (this->start_x + map_size_ / 2)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_ / 2)], this->min_value + this->altitude, this->add_altitude, function_);
@@ -98,10 +88,10 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
-				matrix_[this->start_y][this->start_x][layer_] = matrix_[this->start_y + map_size_ / 2][this->start_x][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y][this->start_x + map_size_][layer_] = matrix_[this->start_y][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y + map_size_][this->start_x][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
-				matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(min_value, min_value + altitude / 2);
+				matrix_[this->start_y][this->start_x][layer_] = matrix_[this->start_y + map_size_ / 2][this->start_x][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y][this->start_x + map_size_][layer_] = matrix_[this->start_y][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_] = matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_] = ::dtl::random::mt32bit.get<Matrix_Int_>(this->min_value, this->min_value + this->altitude / 2);
 				matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_] = this->min_value + this->altitude;
 				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ / 4, map_size_ / 4, map_size_ / 4, matrix_[this->start_y][this->start_x][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x][layer_], matrix_[this->start_y][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
 				createDiamondSquareAverageLayer<Matrix_Int_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ / 4, map_size_ * 3 / 4, map_size_ / 4, matrix_[this->start_y + map_size_ / 2][this->start_x][layer_], matrix_[this->start_y + map_size_][this->start_x][layer_], matrix_[this->start_y + map_size_ / 2][this->start_x + map_size_ / 2][layer_], matrix_[this->start_y + map_size_][this->start_x + map_size_ / 2][layer_], this->min_value + this->altitude, this->add_altitude, function_);
@@ -190,122 +180,63 @@ namespace dtl {
 		public:
 
 
-			///// 情報取得 /////
-
-/*#######################################################################################
-	[概要] 描画始点座標Xを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing start point coordinate X.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointX() const noexcept {
-				return this->start_x;
-			}
-
-/*#######################################################################################
-	[概要] 描画始点座標Yを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing start point coordinate Y.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getPointY() const noexcept {
-				return this->start_y;
-			}
-
-/*#######################################################################################
-	[概要] 描画横幅Wを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing width.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getWidth() const noexcept {
-				return this->width;
-			}
-
-/*#######################################################################################
-	[概要] 描画縦幅Hを取得する。
-	[戻り値] 戻り値の型は std::size_t である。
-	[Summary] Gets the drawing height.
-	[Return value] The return type is std::size_t.
-#######################################################################################*/
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Index_Size getHeight() const noexcept {
-				return this->height;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getMinValue() const noexcept {
-				return this->min_value;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getAltitude() const noexcept {
-				return this->altitude;
-			}
-			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getAddAltitude() const noexcept {
-				return this->add_altitude;
-			}
-
-
 			///// 生成呼び出し /////
 
 			//STL
 			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height) : this->drawWidthSTL(matrix_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
+			constexpr bool draw(Matrix_&& matrix_) const noexcept {
+				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size())) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
+				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size()), function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//LayerSTL
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height);
+				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size())) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= matrix_.size()) ? matrix_.size() : this->start_y + this->height, function_);
+				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size()), function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
 			}
 
 			//Normal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
 			}
 
 			//LayerNormal
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_));
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, function_);
+				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
 			}
 
 			//Array
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_);
 			}
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), (this->width == 0 || this->start_x + this->width >= max_x_) ? max_x_ : this->start_x + this->width, (this->height == 0 || this->start_y + this->height >= max_y_) ? max_y_ : this->start_y + this->height, max_x_, function_);
+				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_, function_);
 			}
 
 
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
 				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
@@ -337,46 +268,9 @@ namespace dtl {
 				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
-
 			///// コンストラクタ /////
 
-			constexpr DiamondSquareAverageIsland() = default;
-			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_) noexcept
-				:min_value(min_value_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const ::dtl::base::MatrixRange & matrix_range_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit DiamondSquareAverageIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_) {}
-			constexpr explicit DiamondSquareAverageIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:start_x(matrix_range_.x), start_y(matrix_range_.y),
-				width(matrix_range_.w), height(matrix_range_.h),
-				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_), altitude(altitude_) {}
-			constexpr explicit DiamondSquareAverageIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & min_value_, const Matrix_Int_ & altitude_, const Matrix_Int_ & add_altitude_) noexcept
-				:start_x(end_x_), start_y(end_y_),
-				width(width_), height(height_),
-				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
+			using ShapeBase_t::ShapeBase_t;
 		};
 
 	} //namespace
