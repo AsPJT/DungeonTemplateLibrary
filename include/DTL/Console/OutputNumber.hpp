@@ -21,6 +21,10 @@
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Utility/IsOutputCast.hpp>
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	inline namespace console { //"dtl::console"名前空間に属する
 

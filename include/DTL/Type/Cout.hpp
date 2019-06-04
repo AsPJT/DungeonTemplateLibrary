@@ -15,6 +15,11 @@
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
 
 #include <sstream>
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		class CoutUE4 {

@@ -12,6 +12,10 @@
 
 #include <DTL/Type/SizeT.hpp>
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	inline namespace base { //"dtl::base"名前空間に属する
 
@@ -103,6 +107,28 @@ namespace dtl {
 
 			DrawMatrixLayer() :drawMatrixType(draw_type_layer, 0) {}
 			DrawMatrixLayer(const ::dtl::type::size value_) :drawMatrixType(draw_type_layer, value_) {}
+		};
+
+
+
+		template<typename Matrix_Int_>
+		class BaseMatrixNormal {
+		public:
+
+			template<typename Matrix_>
+			void set(Matrix_& matrix_, const ::dtl::type::size row_, const ::dtl::type::size col_, const Matrix_Int_& value_) const noexcept {
+				matrix_[row_][col_] = value_;
+			}
+			template<typename Matrix_>
+			Matrix_Int_ get(const Matrix_& matrix_, const ::dtl::type::size row_, const ::dtl::type::size col_) const noexcept {
+				return matrix_[row_][col_];
+			}
+			template<typename Matrix_>
+			bool getBool(const Matrix_& matrix_, const ::dtl::type::size row_, const ::dtl::type::size col_) const noexcept {
+				return static_cast<bool>(matrix_[row_][col_]);
+			}
+
+
 		};
 
 	}

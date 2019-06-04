@@ -23,6 +23,10 @@
 #define DTL_TYPE_PSECOND Get<1>()
 #endif
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Value1_, typename Value2_>
@@ -44,6 +48,10 @@ namespace dtl {
 #define DTL_TYPE_PSECOND second
 #endif
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Value1_, typename Value2_>

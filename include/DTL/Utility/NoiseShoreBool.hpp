@@ -16,7 +16,10 @@
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Type/SizeT.hpp>
 
-//共有データ
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace tool {

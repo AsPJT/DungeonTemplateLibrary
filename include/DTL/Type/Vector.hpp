@@ -31,6 +31,10 @@
 #define DTL_TYPE_VSHRINK Shrink
 #endif
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Int_>
@@ -41,6 +45,11 @@ namespace dtl {
 		}
 	}
 }
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_, typename Value_>
@@ -70,6 +79,10 @@ namespace dtl {
 #define DTL_TYPE_VSHRINK shrink_to_fit
 #endif
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Int_>
@@ -78,6 +91,11 @@ namespace dtl {
 		}
 	}
 }
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	namespace type { //"dtl::type"名前空間に属する
 		template<typename Vector_,typename Value_>

@@ -24,7 +24,10 @@
 #include <DTL/Range/RectangularBaseWithValue.hpp>
 #include <DTL/Type/Min.hpp>
 
-
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	inline namespace cuboid { //"dtl::cuboid"名前空間に属する
 

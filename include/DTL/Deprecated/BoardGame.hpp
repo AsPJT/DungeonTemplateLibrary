@@ -392,6 +392,10 @@ namespace dtl {
 #include <DTL/Type/New.hpp>
 #include <DTL/Type/Sort.hpp>
 
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl {
 	inline namespace generator {
 		namespace puzzle {

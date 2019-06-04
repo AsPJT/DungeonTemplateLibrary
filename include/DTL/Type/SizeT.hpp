@@ -11,9 +11,19 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_TYPE_SIZE_T_HPP
 
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl { namespace type { using size = ::SIZE_T; } }
 #else
 #include <cstddef>
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
 namespace dtl { namespace type { using size = ::std::size_t; } }
 #endif
 
