@@ -6,7 +6,5 @@ jobs:
     steps:
       - checkout
       - run: ls
-      - run: mkdir build
-      - run: cd build
-      - run: cmake ..
-      - run: make ci
+      - cd Sample/DTL/Shape/
+      - g++ MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11
