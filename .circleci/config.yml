@@ -7,4 +7,5 @@ jobs:
       - checkout
       - run: ls
       - run: cd Sample/DTL/Shape/
-      - run: g++ MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11
+      - run: ls
+      - run: g++ Border.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11
