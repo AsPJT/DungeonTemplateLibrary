@@ -34,11 +34,11 @@ namespace dtl {
 		// Detection Ideom 用ユーティリティ
 		template<typename...>
 		struct void_helper {
-		  using type = void;
+			using type = void;
 		};
 
 		template<typename... Ts>
-		using void_t = typename void_helper<Ts...>::type;
+		using void_t = typename ::dtl::utility::void_helper<Ts...>::type;
 
 
 		// 型リスト保持用クラステンプレート
@@ -53,20 +53,20 @@ namespace dtl {
 		};
 
 		template<typename T>
-		struct to_element<T, void_t<decltype(std::declval<T&>()[0])>> {
+		struct to_element<T, ::dtl::utility::void_t<decltype(::std::declval<T&>()[0])>> {
 			static constexpr bool value = true;
-			using type = typename std::remove_reference<decltype(std::declval<T&>()[0])>::type;
+			using type = typename ::std::remove_reference<decltype(::std::declval<T&>()[0])>::type;
 		};
 
 		template<typename T>
-		using to_element_t = typename to_element<T>::type;
+		using to_element_t = typename ::dtl::utility::to_element<T>::type;
 
 
 		// Matrix のカテゴリ
 		// サイズはコンストラクタ引数で決定(メンバ変数に保持)
 		template<typename T>
 		struct mcat_fixed {
-			using is_jagged = std::false_type;
+			using is_jagged = ::std::false_type;
 
 			constexpr ::dtl::type::size get(const T&) const noexcept { return max_; }
 			constexpr mcat_fixed(::dtl::type::size max_) noexcept : max_(max_) {}
@@ -78,15 +78,15 @@ namespace dtl {
 		// サイズはコンパイル時に決定
 		template<typename T, ::dtl::type::size N>
 		struct mcat_const {
-			using is_jagged = std::false_type;
+			using is_jagged = ::std::false_type;
 
-			constexpr ::dtl::type::size get(const T &) const noexcept { return N; }
+			constexpr ::dtl::type::size get(const T&) const noexcept { return N; }
 		};
 
 		// サイズはMatrixのメンバ関数で取得
 		template<typename T>
 		struct mcat_memfn {
-			using is_jagged = std::true_type;
+			using is_jagged = ::std::true_type;
 
 			constexpr ::dtl::type::size get(const T& v) const noexcept(noexcept(v.size())) { return v.size(); }
 		};
@@ -102,22 +102,22 @@ namespace dtl {
 			constexpr MatrixWrapperCommon(M& mat) noexcept : mat(mat) {}
 
 			constexpr Index_Size getX(const Index_Size pos = 0) const
-				noexcept(noexcept(std::declval<MatrixWrapperCommon>().getY()) && noexcept(std::declval<TX>().get(std::declval<M&>()[0]))) {
-				return is_jagged::value && getY() <= pos ? 0 : TX::get(mat[pos]);
+				noexcept(noexcept(::std::declval<MatrixWrapperCommon>().getY()) && noexcept(::std::declval<TX>().get(::std::declval<M&>()[0]))) {
+				return is_jagged::value&& getY() <= pos ? 0 : TX::get(mat[pos]);
 			}
-			constexpr Index_Size getY() const noexcept(noexcept(std::declval<TY>().get(std::declval<M&>()))) {
+			constexpr Index_Size getY() const noexcept(noexcept(::std::declval<TY>().get(::std::declval<M&>()))) {
 				return TY::get(mat);
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-			void set(const Index_Size point_x_, const Index_Size point_y_, V value_)
-			noexcept(noexcept(std::declval<B&>()(0, 0) = 0)) {
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_)
+				noexcept(noexcept(::std::declval<B&>()(0, 0) = 0)) {
 				static_cast<B&>(*this)(point_x_, point_y_) = value_;
 			}
 			template<typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-			void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_)
-				noexcept(noexcept(function_(std::declval<B&>()(0, 0))) && noexcept(std::declval<B&>()(0, 0) = 0)) {
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_)
+				noexcept(noexcept(function_(::std::declval<B&>()(0, 0))) && noexcept(::std::declval<B&>()(0, 0) = 0)) {
 				if (function_(static_cast<B&>(*this)(point_x_, point_y_)))
 					static_cast<B&>(*this)(point_x_, point_y_) = value_;
 			}
@@ -128,34 +128,34 @@ namespace dtl {
 
 
 		// MatrixWrapperの1次元用基底クラステンプレート
-		template<typename V, typename M, typename = void_t<decltype(std::declval<M&>()[0] = std::declval<V>())>>
-		struct MatrixWrapperBase1 : MatrixWrapperCommon<MatrixWrapperBase1<V, M>, V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>> {
-			using Base_t = MatrixWrapperCommon<MatrixWrapperBase1, V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>>;
+		template<typename V, typename M, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0] = ::std::declval<V>())>>
+		struct MatrixWrapperBase1 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase1<V, M>, V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>> {
+			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase1, V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>>;
 			using Index_Size = typename Base_t::Index_Size;
 
 			using Base_t::Base_t;
-			decltype(std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
+			decltype(::std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
 		};
 
 		// MatrixWrapperの2次元用基底クラステンプレート
-		template<typename V, typename M, typename TY, typename TX, typename = void_t<decltype(std::declval<M&>()[0][0] = std::declval<V>())>>
-		struct MatrixWrapperBase2 : MatrixWrapperCommon<MatrixWrapperBase2<V, M, TY, TX>, V, M, TY, TX> {
-			using Base_t = MatrixWrapperCommon<MatrixWrapperBase2, V, M, TY, TX>;
+		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0][0] = ::std::declval<V>())>>
+		struct MatrixWrapperBase2 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase2<V, M, TY, TX>, V, M, TY, TX> {
+			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase2, V, M, TY, TX>;
 			using Index_Size = typename Base_t::Index_Size;
 
 			using Base_t::Base_t;
-			decltype(std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
+			decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
 		};
 
 		// MatrixWrapperの3次元用基底クラステンプレート
-		template<typename V, typename M, typename TY, typename TX, typename = void_t<decltype(std::declval<M&>()[0][0][0] = std::declval<V>())>>
-		struct MatrixWrapperBase3 : MatrixWrapperCommon<MatrixWrapperBase3<V, M, TY, TX>, V, M, TY, TX> {
-			using Base_t = MatrixWrapperCommon<MatrixWrapperBase3, V, M, TY, TX>;
+		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0][0][0] = ::std::declval<V>())>>
+		struct MatrixWrapperBase3 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase3<V, M, TY, TX>, V, M, TY, TX> {
+			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase3, V, M, TY, TX>;
 			using Index_Size = typename Base_t::Index_Size;
 
-			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer, Index_Size max_x, Index_Size max_y) noexcept: Base_t(mat, max_x, max_y), draw_layer_(draw_layer)  {}
+			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer, Index_Size max_x, Index_Size max_y) noexcept : Base_t(mat, max_x, max_y), draw_layer_(draw_layer) {}
 			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer) noexcept : Base_t(mat), draw_layer_(draw_layer) {}
-			decltype(std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
+			decltype(::std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
 
 		private:
 			Index_Size draw_layer_;
@@ -169,74 +169,74 @@ namespace dtl {
 
 		// ポインタ
 		template<typename E, typename... Ts>
-		struct MatrixWrapperImpl<E*, TList<Ts...>, void_t<to_element_t<E*>>> : MatrixWrapperImpl<E, TList<Ts..., mcat_fixed<E*>>> {};
+		struct MatrixWrapperImpl<E*, TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<E*>>> : MatrixWrapperImpl<E, TList<Ts..., ::dtl::utility::mcat_fixed<E*>>> {};
 
 		// 配列
 		template<typename E, ::dtl::type::size N, typename... Ts>
-		struct MatrixWrapperImpl<E[N], TList<Ts...>, void_t<to_element_t<E[N]>>> : MatrixWrapperImpl<E, TList<Ts..., mcat_const<E[N], N>>> {};
+		struct MatrixWrapperImpl<E[N], TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<E[N]>>> : MatrixWrapperImpl<E, TList<Ts..., ::dtl::utility::mcat_const<E[N], N>>> {};
 
 		// std::array
 		template<typename E, ::dtl::type::size N, typename... Ts>
-		struct MatrixWrapperImpl<std::array<E, N>, TList<Ts...>, void_t<to_element_t<std::array<E, N>>>> : MatrixWrapperImpl<E, TList<Ts..., mcat_const<std::array<E, N>, N>>> {};
+		struct MatrixWrapperImpl<::std::array<E, N>, TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<::std::array<E, N>>>> : MatrixWrapperImpl<E, TList<Ts..., ::dtl::utility::mcat_const<::std::array<E, N>, N>>> {};
 
 #ifdef DTL_USE_BOOST_ARRAY
 		// boost::array
 		template<typename E, ::dtl::type::size N, typename... Ts>
-		struct MatrixWrapperImpl<boost::array<E, N>, TList<Ts...>, void_t<to_element_t<boost::array<E, N>>>> : MatrixWrapperImpl<E, TList<Ts..., mcat_const<boost::array<E, N>, N>>> {};
+		struct MatrixWrapperImpl<boost::array<E, N>, TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<boost::array<E, N>>>> : MatrixWrapperImpl<E, TList<Ts..., ::dtl::utility::mcat_const<boost::array<E, N>, N>>> {};
 #endif
 
 		// std::bitset
 		template<::dtl::type::size N, typename... Ts>
-		struct MatrixWrapperImpl<std::bitset<N>, TList<Ts...>, void_t<to_element_t<std::bitset<N>>>> : MatrixWrapperImpl<bool, TList<Ts..., mcat_const<std::bitset<N>, N>>> {};
+		struct MatrixWrapperImpl<::std::bitset<N>, TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<::std::bitset<N>>>> : MatrixWrapperImpl<bool, TList<Ts..., ::dtl::utility::mcat_const<::std::bitset<N>, N>>> {};
 
 		// 上記以外
 		template<typename T, typename... Ts>
-		struct MatrixWrapperImpl<T, TList<Ts...>, void_t<to_element_t<T>>> : MatrixWrapperImpl<to_element_t<T>, TList<Ts..., mcat_memfn<T>>> {};
+		struct MatrixWrapperImpl<T, TList<Ts...>, ::dtl::utility::void_t<::dtl::utility::to_element_t<T>>> : MatrixWrapperImpl<::dtl::utility::to_element_t<T>, TList<Ts..., ::dtl::utility::mcat_memfn<T>>> {};
 
 		// 1次元
 		template<typename T, typename TX>
-		struct MatrixWrapperImpl<T, TList<TX>, typename std::enable_if<!to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TX>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
 			template<typename V, typename M>
-			using Base_t = MatrixWrapperBase1<V, M>;
+			using Base_t = ::dtl::utility::MatrixWrapperBase1<V, M>;
 		};
 
 		// 2次元
 		template<typename T, typename TY, typename TX>
-		struct MatrixWrapperImpl<T, TList<TY, TX>, typename std::enable_if<!to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TY, TX>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
 			template<typename V, typename M>
-			using Base_t = MatrixWrapperBase2<V, M, TY, TX>;
+			using Base_t = ::dtl::utility::MatrixWrapperBase2<V, M, TY, TX>;
 		};
 
 		// 3次元
 		template<typename T, typename TY, typename TX, typename TL>
-		struct MatrixWrapperImpl<T, TList<TY, TX, TL>, typename std::enable_if<!to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TY, TX, TL>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
 			template<typename V, typename M>
-			using Base_t = MatrixWrapperBase3<V, M, TY, TX>;
+			using Base_t = ::dtl::utility::MatrixWrapperBase3<V, M, TY, TX>;
 		};
 
 
 		// MatrixWrapperのプライマリテンプレート。2 or 3次元用。MatrixWrapperImpl::Base_tに委譲
 		template<typename V, typename M, ::dtl::type::size N, typename = void>
-		struct MatrixWrapper : MatrixWrapperImpl<M>::template Base_t<V, M> {
-			using Base_t = typename MatrixWrapperImpl<M>::template Base_t<V, M>;
+		struct MatrixWrapper : ::dtl::utility::MatrixWrapperImpl<M>::template Base_t<V, M> {
+			using Base_t = typename ::dtl::utility::MatrixWrapperImpl<M>::template Base_t<V, M>;
 
 			using Base_t::Base_t;
 		};
 
 		// 引数2個、1次元用。MatrixWrapperBase1に委譲
 		template<typename V, typename M>
-		struct MatrixWrapper<V, M, 2, typename std::enable_if<!to_element<to_element_t<M>>::value>::type>
-		: MatrixWrapperBase1<V, M> {
-			using Base_t = MatrixWrapperBase1<V, M>;
+		struct MatrixWrapper<V, M, 2, typename ::std::enable_if<!::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::type>
+			: ::dtl::utility::MatrixWrapperBase1<V, M> {
+			using Base_t = ::dtl::utility::MatrixWrapperBase1<V, M>;
 
 			using Base_t::Base_t;
 		};
 
 		// 引数2個、2次元用。MatrixWrapperBase2に委譲
 		template<typename V, typename M>
-		struct MatrixWrapper<V, M, 2, typename std::enable_if<to_element<to_element_t<M>>::value>::type>
-		: MatrixWrapperBase2<V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>> {
-			using Base_t = MatrixWrapperBase2<V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>>;
+		struct MatrixWrapper<V, M, 2, typename ::std::enable_if<::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::type>
+			: ::dtl::utility::MatrixWrapperBase2<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>> {
+			using Base_t = ::dtl::utility::MatrixWrapperBase2<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>>;
 
 			using Base_t::Base_t;
 		};
@@ -244,8 +244,8 @@ namespace dtl {
 		// 引数3個、3次元用。MatrixWrapperBase3に委譲
 		template<typename V, typename M>
 		struct MatrixWrapper<V, M, 3>
-		: MatrixWrapperBase3<V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>> {
-			using Base_t = MatrixWrapperBase3<V, M, mcat_fixed<M>, mcat_fixed<to_element_t<M>>>;
+			: ::dtl::utility::MatrixWrapperBase3<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>> {
+			using Base_t = ::dtl::utility::MatrixWrapperBase3<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>>;
 
 			using Base_t::Base_t;
 		};
@@ -253,8 +253,8 @@ namespace dtl {
 
 		// MatrixWrapper生成用ユーティリティ関数
 		template<typename V, typename M, typename... Args>
-		constexpr MatrixWrapper<V, typename std::remove_reference<M>::type, sizeof...(Args)> makeWrapper(M&& mat, Args&&... args) {
-			return MatrixWrapper<V, typename std::remove_reference<M>::type, sizeof...(Args)>(mat, DTL_TYPE_FORWARD<Args>(args)...);
+		constexpr MatrixWrapper<V, typename ::std::remove_reference<M>::type, sizeof...(Args)> makeWrapper(M&& mat, Args&& ... args) {
+			return MatrixWrapper<V, typename ::std::remove_reference<M>::type, sizeof...(Args)>(mat, DTL_TYPE_FORWARD<Args>(args)...);
 		}
 	}
 }
