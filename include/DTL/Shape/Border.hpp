@@ -16,11 +16,12 @@
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
-#include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Macros/constexpr.hpp>
+#include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Range/RectBaseWithValue.hpp>
+#include <DTL/Utility/DrawJagged.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -33,49 +34,18 @@ namespace dtl {
 	[概要] Borderとは "Matrixの描画範囲の周囲1マスに描画値を設置する" 機能を持つクラスである。
 #######################################################################################*/
 		template<typename Matrix_Int_>
-		class Border : public ::dtl::range::RectBaseWithValue< ::dtl::shape::Border<Matrix_Int_>, Matrix_Int_> {
+		class Border : public ::dtl::range::RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>,
+		               public ::dtl::utility::DrawJagged<Border<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue< ::dtl::shape::Border<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Border<Matrix_Int_>, Matrix_Int_>;
 
-
-			///// 代入処理 /////
-
-			template<typename Matrix_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_] = this->draw_value;
-			}
-			template<typename Matrix_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
-			}
-			template<typename Matrix_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				matrix_[end_y_][end_x_][layer_] = this->draw_value;
-			}
-
-			template<typename Matrix_, typename Function_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_])) matrix_[end_y_][end_x_] = this->draw_value;
-			}
-			template<typename Matrix_, typename Function_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_ * max_x_ + end_x_])) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
-			}
-			template<typename Matrix_, typename Function_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_][layer_])) matrix_[end_y_][end_x_][layer_] = this->draw_value;
-			}
+			friend DrawBase_t;
 
 
 			///// 基本処理 /////
@@ -83,67 +53,21 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawSTL(Matrix_ && matrix_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
-					this->assignSTL(matrix_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col)
-					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
+				typename std::enable_if<Matrix_::is_jagged::value, bool>::type
+				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				if (end_y_ <= this->start_y) return true;
+				const Index_Size last_x1 = this->calcEndX(matrix_.getX(this->start_y));
+				for (Index_Size col{ this->start_x }; col < last_x1; ++col)
+					matrix_.set(col, this->start_y, this->draw_value, args_...);
+				const Index_Size last_x2 = this->calcEndX(matrix_.getX(end_y_ - 1));
+				for (Index_Size col{ this->start_x }; col < last_x2; ++col)
+					matrix_.set(col, end_y_ - 1, this->draw_value, args_...);
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
-					this->assignSTL(matrix_, this->start_x, row, args_...);
-					this->assignSTL(matrix_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
-				}
-				return true;
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawWidthSTL(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
-					this->assignSTL(matrix_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col)
-					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
-				if (end_x_ == 0) return true;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
-					this->assignSTL(matrix_, this->start_x, row, args_...);
-					if (matrix_[row].size() <= end_x_) this->assignSTL(matrix_, matrix_[row].size() - 1, row, args_...);
-					else this->assignSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
-				}
-				return true;
-			}
-
-			//LayerSTL
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < matrix_[this->start_y].size(); ++col)
-					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < matrix_[end_y_ - 1].size(); ++col)
-					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
-					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
-					this->assignLayer(matrix_, layer_, matrix_[row].size() - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
-				}
-				return true;
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerWidthSTL(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[this->start_y].size(); ++col)
-					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
-				for (Index_Size col{ this->start_x }; col < end_x_ && col < matrix_[end_y_ - 1].size(); ++col)
-					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
-				if (end_x_ == 0) return true;
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					if (matrix_[row].size() == 0) continue;
-					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
-					if (matrix_[row].size() <= end_x_) this->assignLayer(matrix_, layer_, matrix_[row].size() - 1, row, args_...);
-					else this->assignLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
+					const Index_Size last_x3 = this->calcEndX(matrix_.getX(row));
+					if (last_x3 <= this->start_x) continue;
+					matrix_.set(this->start_x, row, this->draw_value, args_...);
+					matrix_.set(last_x3 - 1, row, this->draw_value, args_...);
 				}
 				return true;
 			}
@@ -151,141 +75,24 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
+				typename std::enable_if<!Matrix_::is_jagged::value, bool>::type
+				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
+				const Index_Size end_x_ = this->calcEndX(matrix_.getX());
+				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				if (end_x_ <= this->start_x || end_y_ <= this->start_y) return true;
 				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->assignSTL(matrix_, col, this->start_y, args_...);
-					this->assignSTL(matrix_, col, end_y_ - 1, args_...);
+					matrix_.set(col, this->start_y, this->draw_value, args_...);
+					matrix_.set(col, end_y_ - 1, this->draw_value, args_...);
 				}
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->assignSTL(matrix_, this->start_x, row, args_...);
-					this->assignSTL(matrix_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
-				}
-				return true;
-			}
-
-			//LayerNormal
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->assignLayer(matrix_, layer_, col, this->start_y, args_...);
-					this->assignLayer(matrix_, layer_, col, end_y_ - 1, args_...);
-				}
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->assignLayer(matrix_, layer_, this->start_x, row, args_...);
-					this->assignLayer(matrix_, layer_, end_x_ - 1, row, DTL_TYPE_FORWARD<Args_>(args_)...);
-				}
-				return true;
-			}
-
-			//Array
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ... args_) const noexcept {
-				if (end_x_ == 0 || end_y_ == 0) return true;
-				for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-					this->assignArray(matrix_, col, this->start_y, max_x_, args_...);
-					this->assignArray(matrix_, col, end_y_ - 1, max_x_, args_...);
-				}
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					this->assignArray(matrix_, this->start_x, row, max_x_, args_...);
-					this->assignArray(matrix_, end_x_ - 1, row, max_x_, DTL_TYPE_FORWARD<Args_>(args_)...);
+					matrix_.set(this->start_x, row, this->draw_value, args_...);
+					matrix_.set(end_x_ - 1, row, this->draw_value, args_...);
 				}
 				return true;
 			}
 
 		public:
 
-
-			///// 生成呼び出し /////
-
-			//STL
-			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size())) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()));
-			}
-			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndY(matrix_.size()), function_) : this->drawWidthSTL(matrix_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
-			}
-
-			//LayerSTL
-			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size())) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()));
-			}
-			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, Function_ && function_) const noexcept {
-				return (this->width == 0) ? this->drawLayerSTL(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndY(matrix_.size()), function_) : this->drawLayerWidthSTL(matrix_, layer_, this->start_x + this->width, this->calcEndY(matrix_.size()), function_);
-			}
-
-			//Normal
-			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_));
-			}
-			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
-			}
-
-			//LayerNormal
-			template<typename Matrix_>
-			constexpr bool draw(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_));
-			}
-			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperator(Matrix_ && matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawLayerNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), layer_, this->calcEndX(max_x_), this->calcEndY(max_y_), function_);
-			}
-
-			//Array
-			template<typename Matrix_>
-			constexpr bool drawArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
-				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_);
-			}
-			template<typename Matrix_, typename Function_>
-			constexpr bool drawOperatorArray(Matrix_ && matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_ && function_) const noexcept {
-				return this->drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), this->calcEndX(max_x_), this->calcEndY(max_y_), max_x_, function_);
-			}
-
-
-			///// 生成呼び出しファンクタ /////
-
-			template<typename Matrix_, typename ...Args_>
-			constexpr bool operator()(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
-			}
-
-
-			///// ダンジョン行列生成 /////
-
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Matrix_&& create(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
-				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Matrix_&& createArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
-				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Matrix_&& createOperator(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperator(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
-				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
-			}
-			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				Matrix_&& createOperatorArray(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				this->drawOperatorArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
-				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
-			}
 
 			///// コンストラクタ /////
 
