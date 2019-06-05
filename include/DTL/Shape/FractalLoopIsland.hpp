@@ -221,7 +221,7 @@ namespace dtl {
 						//生成したチャンクをワールドマップにコピペ
 						for (::dtl::type::size row2{}; row2 < ::dtl::shape::fli_chunk_size; ++row2)
 							for (::dtl::type::size col2{}; col2 < ::dtl::shape::fli_chunk_size; ++col2)
-								matrix_[(this->start_y + row * ::dtl::shape::fli_chunk_size + row2) * max_x_ + start_x + col * ::dtl::shape::fli_chunk_size + col2] = chunk_matrix[row2][col2];
+								matrix_[(this->start_y + row * ::dtl::shape::fli_chunk_size + row2) * max_x_ + this->start_x + col * ::dtl::shape::fli_chunk_size + col2] = chunk_matrix[row2][col2];
 					}
 					for (::dtl::type::size col{}; col <= chunk_x; ++col)
 						rand_up[col] = rand_down[col];
