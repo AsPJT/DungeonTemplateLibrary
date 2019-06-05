@@ -6,5 +6,5 @@ jobs:
     steps:
       - checkout
       - run: ls
-      - cd Sample/DTL/Shape/
-      - g++ MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11
+      - run: cd Sample/DTL/Shape/
+      - run: g++ MazeDig.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11
