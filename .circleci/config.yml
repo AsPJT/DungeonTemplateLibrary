@@ -6,3 +6,7 @@ jobs:
     steps:
       - checkout
       - run: ls
+      - run: mkdir build
+      - run: cd build
+      - run: cmake ..
+      - run: make ci
