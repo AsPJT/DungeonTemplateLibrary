@@ -39,7 +39,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			
@@ -289,7 +289,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
@@ -458,7 +458,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr VoronoiDiagram() = default;
 			constexpr explicit VoronoiDiagram(const ::dtl::type::size draw_value_) noexcept

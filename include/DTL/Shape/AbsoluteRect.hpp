@@ -39,7 +39,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = RectBaseWithValue<AbsoluteRect<Matrix_Int_>, Matrix_Int_>;
@@ -65,7 +65,7 @@ namespace dtl {
 		public:
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			using ShapeBase_t::ShapeBase_t;
 		};

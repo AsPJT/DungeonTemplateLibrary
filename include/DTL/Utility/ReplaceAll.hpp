@@ -34,7 +34,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using Index_SSize = ::dtl::type::ssize;
@@ -361,7 +361,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
@@ -512,7 +512,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr ReplaceAll() = default;
 			constexpr explicit ReplaceAll(const Matrix_Int_ & after_value_) noexcept

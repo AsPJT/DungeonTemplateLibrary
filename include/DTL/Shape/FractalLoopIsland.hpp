@@ -43,7 +43,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBaseFractal< ::dtl::shape::FractalLoopIsland<Matrix_Int_>, Matrix_Int_>;
@@ -321,7 +321,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			using ShapeBase_t::ShapeBase_t;
 		};

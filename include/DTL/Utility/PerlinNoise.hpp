@@ -29,7 +29,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Pint = ::std::uint_fast8_t;
 
@@ -158,7 +158,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr PerlinNoise() = default;
 			explicit PerlinNoise(const ::std::uint_fast32_t seed_) {

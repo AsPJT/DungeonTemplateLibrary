@@ -28,7 +28,7 @@ namespace dtl {
 		class RectBaseWithValue : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using RectBase_t = ::dtl::range::BasicRect<Derived_>;
@@ -53,7 +53,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 
 /*#######################################################################################
@@ -92,7 +92,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr RectBaseWithValue() = default;
 			constexpr explicit RectBaseWithValue(const Matrix_Int_ & draw_value_) noexcept

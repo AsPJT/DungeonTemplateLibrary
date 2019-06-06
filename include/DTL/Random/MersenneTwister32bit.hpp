@@ -23,10 +23,14 @@
 namespace dtl {
 	inline namespace random { //"dtl::random"名前空間に属する
 
-		//乱数(64ビット版メルセンヌ・ツイスタ)
+
+/*#######################################################################################
+	[概要] 乱数 (64ビット版メルセンヌ・ツイスタ)
+	[Summary] Random number (64-bit version Mersenne Twister)
+#######################################################################################*/
 		class MersenneTwister_64bit {
 		private:
-			//64ビット版メルセンヌ・ツイスタ
+			//64ビット版メルセンヌ・ツイスタ (64-bit version Mersenne Twister)
 			::std::mt19937_64 mt;
 			//非決定論的な乱数
 			::std::random_device rd;
@@ -35,16 +39,32 @@ namespace dtl {
 			//コンストラクタ(初期化)
 			explicit MersenneTwister_64bit() noexcept { this->mt.seed(this->rd()); }
 
-			//初期値
+
+/*#######################################################################################
+	[概要] 自動的に乱数値をSEED値に設定する。
+	[Summary] Set the random value to the SEED value.
+#######################################################################################*/
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
+
+
+/*#######################################################################################
+	[概要] 指定した値をSEED値に設定する。
+	[Summary] Set the argument value to the SEED value.
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast64_t>
 			void seed(const Random_Int_ seed_) noexcept {
 				this->mt.seed(static_cast< ::std::uint_fast64_t>(seed_));
 			}
 
-			//通常の乱数
+
+/*#######################################################################################
+	[概要] 乱数を取得する。
+	[戻り値] 戻り値の型は Random_Int_(デフォルトはstd::uint_fast64_t) である。
+	[Summary] Get a random number.
+	[Return value] The return type is Random_Int_ (default is std::uint_fast64_t).
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
@@ -77,7 +97,11 @@ namespace dtl {
 
 		constexpr ::dtl::type::size mt32_bit_counter_num_1{ 32 };
 
-		//乱数(32ビット版メルセンヌ・ツイスタ)
+
+/*#######################################################################################
+	[概要] 乱数 (32ビット版メルセンヌ・ツイスタ)
+	[Summary] Random number (32-bit version Mersenne Twister)
+#######################################################################################*/
 		class MersenneTwister_32bit {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
@@ -105,22 +129,45 @@ namespace dtl {
 			//コンストラクタ(初期化)
 			explicit MersenneTwister_32bit() noexcept { this->mt.seed(this->rd()); }
 
-			//初期値
+
+/*#######################################################################################
+	[概要] 自動的に乱数値をSEED値に設定する。
+	[Summary] Set the random value to the SEED value.
+#######################################################################################*/
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
+
+
+/*#######################################################################################
+	[概要] 引数の値をSEED値に設定する。
+	[Summary] Set the argument value to the SEED value.
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast32_t>
 			void seed(const Random_Int_ seed_) noexcept {
 				this->mt.seed(static_cast< ::std::uint_fast32_t>(seed_));
 			}
 
-			//通常の乱数
+
+/*#######################################################################################
+	[概要] 乱数を取得する。
+	[戻り値] 戻り値の型は Random_Int_(デフォルトはstd::uint_fast32_t) である。
+	[Summary] Get a random number.
+	[Return value] The return type is Random_Int_ (default is std::uint_fast32_t).
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast32_t>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() noexcept {
 				return static_cast<Random_Int_>(this->mt());
 			}
-			//0～最大値-1 (余りの範囲の一様分布乱数)
+
+
+/*#######################################################################################
+	[概要] "0"から"引数の値-1"まで(余りの範囲の一様分布乱数)の範囲の乱数を取得する。
+	[戻り値] 戻り値の型は Random_Int_(デフォルトはstd::int_fast32_t) である。
+	[Summary] Get a random number in the range of 0 to argument value - 1.
+	[Return value] The return type is Random_Int_ (default is std::int_fast32_t).
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ max_) noexcept {
@@ -128,20 +175,41 @@ namespace dtl {
 				::std::uniform_int_distribution<> uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
-			//最小値～最大値
+
+
+/*#######################################################################################
+	[概要] "第一引数の値"から"第二引数の値"までの範囲の乱数を取得する。
+	[戻り値] 戻り値の型は Random_Int_(デフォルトはstd::int_fast32_t) である。
+	[Summary] Gets a random number in the range of the first argument value to the second argument value.
+	[Return value] The return type is Random_Int_ (default is std::int_fast32_t).
+#######################################################################################*/
 			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
 				::std::uniform_int_distribution<> uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
-			//確率
+
+
+/*#######################################################################################
+	[概要] 引数の値(0.0から1.0)の確率で"true"を返し、その他の確率で"false"を返す。
+	[戻り値] 戻り値の型は bool である。
+	[Summary] Returns "true" with probability of argument value (0.0 to 1.0) and "false" with other probability.
+	[Return value] The return type is bool.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability(const double probability_) noexcept {
 				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
-			//1/2の確率
+
+
+/*#######################################################################################
+	[概要] 50%の確率で"true"を返し、50%の確率で"false"を返す。
+	[戻り値] 戻り値の型は bool である。
+	[Summary] It returns "true" with a 50% probability, and returns "false" with a 50% probability.
+	[Return value] The return type is bool.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability() noexcept {
 				return this->getBit1();
@@ -206,10 +274,19 @@ namespace dtl {
 			//コンストラクタ(初期化)
 			explicit MersenneTwister32bit() noexcept { this->mt.seed(this->rd()); }
 
-			//初期値
+
+/*#######################################################################################
+	[概要] 自動的に乱数値をSEED値に設定する。
+	[Summary] Set the random value to the SEED value.
+#######################################################################################*/
 			void seed() noexcept {
 				this->mt.seed(this->rd());
 			}
+
+/*#######################################################################################
+	[概要] 指定した値をSEED値に設定する。
+	[Summary] Set the argument value to the SEED value.
+#######################################################################################*/
 			void seed(const ::std::uint_fast32_t seed_) noexcept {
 				this->mt.seed(seed_);
 			}
@@ -232,13 +309,27 @@ namespace dtl {
 				::std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 				return uid(this->mt);
 			}
-			//確率
+
+
+/*#######################################################################################
+	[概要] 引数の値(0.0から1.0)の確率で"true"を返し、その他の確率で"false"を返す。
+	[戻り値] 戻り値の型は bool である。
+	[Summary] Returns "true" with probability of argument value (0.0 to 1.0) and "false" with other probability.
+	[Return value] The return type is bool.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability(const double probability_) noexcept {
 				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
-			//1/2の確率
+
+
+/*#######################################################################################
+	[概要] 50%の確率で"true"を返し、50%の確率で"false"を返す。
+	[戻り値] 戻り値の型は bool である。
+	[Summary] It returns "true" with a 50% probability, and returns "false" with a 50% probability.
+	[Return value] The return type is bool.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability() noexcept {
 				::std::uniform_int_distribution<> uid(0, 1);

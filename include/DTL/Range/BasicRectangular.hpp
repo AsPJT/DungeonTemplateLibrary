@@ -27,7 +27,7 @@ namespace dtl {
 		class BasicRectangular {
 		private:
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 
@@ -65,7 +65,7 @@ namespace dtl {
 					: this->start_z + this->size_z;
 			}
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr BasicRectangular() = default;
 			constexpr explicit BasicRectangular(const ::dtl::base::MatrixRange3D & matrix_range_) noexcept
@@ -122,7 +122,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。

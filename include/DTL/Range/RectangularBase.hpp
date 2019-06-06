@@ -28,7 +28,7 @@ namespace dtl {
 		class RectangularBase : public ::dtl::range::BasicRectangular<Derived_> {
 		private:
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using RectBase_t = ::dtl::range::BasicRectangular<Derived_>;
@@ -37,7 +37,7 @@ namespace dtl {
 		public:
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 
 /*#######################################################################################
@@ -53,7 +53,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr RectangularBase() = default;
 			constexpr explicit RectangularBase(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept

@@ -28,7 +28,7 @@ namespace dtl {
 		class RectBaseFractal : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using RectBase_t = ::dtl::range::BasicRect<Derived_>;
@@ -67,7 +67,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearMinValue() noexcept {
@@ -125,7 +125,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr RectBaseFractal() = default;
 			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_) noexcept

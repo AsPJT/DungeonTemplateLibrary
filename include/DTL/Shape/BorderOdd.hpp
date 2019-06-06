@@ -33,6 +33,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] BorderOddとは "Matrixの描画範囲の周囲1マスに描画値を設置し、描画範囲の列数が偶数の時[列数-2列目]のマスに描画値を設置し、
 			行数が偶数の時[行数-2行目]のマスに描画値を設置する(※行/列は0から数える)" 機能を持つクラスである。
+	[Summary] BorderOdd is a class that sets the drawing value in one square around the drawing area of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Int_>
 		class BorderOdd : public ::dtl::range::RectBaseWithValue<BorderOdd<Matrix_Int_>, Matrix_Int_>,
@@ -40,7 +41,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBaseWithValue<BorderOdd<Matrix_Int_>, Matrix_Int_>;
@@ -100,7 +101,7 @@ namespace dtl {
 		public:
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			using ShapeBase_t::ShapeBase_t;
 		};

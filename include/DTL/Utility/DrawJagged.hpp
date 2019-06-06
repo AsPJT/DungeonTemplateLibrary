@@ -29,7 +29,7 @@ namespace dtl {
 		class DrawJagged {
 		private:
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 

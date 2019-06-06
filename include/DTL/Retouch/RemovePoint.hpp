@@ -35,7 +35,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBase< ::dtl::retouch::RemovePoint<Matrix_Int_>>;
@@ -241,7 +241,7 @@ namespace dtl {
 				return DTL_TYPE_FORWARD<Matrix_>(matrix_);
 			}
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			using ShapeBase_t::ShapeBase_t;
 		};

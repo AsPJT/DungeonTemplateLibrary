@@ -32,6 +32,7 @@ namespace dtl {
 
 /*#######################################################################################
 	[概要] Borderとは "Matrixの描画範囲の周囲1マスに描画値を設置する" 機能を持つクラスである。
+	[Summary] Border is a class that sets the drawing value in one square around the drawing area of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Int_>
 		class Border : public ::dtl::range::RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>,
@@ -39,7 +40,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>;
@@ -94,7 +95,7 @@ namespace dtl {
 		public:
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			using ShapeBase_t::ShapeBase_t;
 		};

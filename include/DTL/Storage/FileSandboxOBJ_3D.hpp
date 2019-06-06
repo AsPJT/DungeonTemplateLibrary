@@ -35,7 +35,7 @@ namespace dtl {
 		private:
 
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 
@@ -83,7 +83,7 @@ namespace dtl {
 				return true;
 			}
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr FileSandboxOBJ_3D() = default;
 			constexpr explicit FileSandboxOBJ_3D(const ::std::string & write_value_) noexcept

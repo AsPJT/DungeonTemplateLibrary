@@ -59,7 +59,7 @@ namespace dtl {
 
 			using StartEndArray = ::std::array<::dtl::type::size, 4>;
 
-			///// エイリアス /////
+			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
 			using StartEnd = DTL_TYPE_VECTOR<StartEndArray>;
@@ -551,7 +551,7 @@ namespace dtl {
 			}
 
 
-			///// 消去 /////
+			///// 消去 (Clear) /////
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを初期値に戻す(描画始点座標Xを消去する)。
@@ -713,7 +713,7 @@ namespace dtl {
 			}
 
 
-			///// コンストラクタ /////
+			///// コンストラクタ (Constructor) /////
 
 			constexpr SimpleRogueLike() = default;
 			constexpr explicit SimpleRogueLike(const Matrix_Int_& room_value_) noexcept
