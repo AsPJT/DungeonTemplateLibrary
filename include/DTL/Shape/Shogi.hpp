@@ -12,7 +12,7 @@
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Shogi-(%E5%BD%A2%E7%8A%B6%E3%82%AF%E3%83%A9%E3%82%B9)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::Shogi-(形状クラス)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
@@ -31,8 +31,8 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 /*#######################################################################################
-	[概要] Shogiとは "Matrixの描画範囲の周囲1マスに描画値を設置する" 機能を持つクラスである。
-	[Summary] Shogi is a class that sets the drawing value in one square around the drawing area of Matrix.
+	[概要] Shogiとは "Matrixの描画範囲に将棋の駒を初期位置に設置する" 機能を持つクラスである。
+	[Summary] Shogi is a class that generates Shogi, a Japanese game, in the drawing range of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Int_>
 		class Shogi : public ::dtl::range::RectBaseShogi<Shogi<Matrix_Int_>, Matrix_Int_>,

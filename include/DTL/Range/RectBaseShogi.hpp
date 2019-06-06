@@ -197,8 +197,8 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
-				this->shogiList.fuhyo_1 = new_draw_value;
+				const ::dtl::range::ShogiList<Matrix_Int_> new_draw_value{};
+				this->shogiList = new_draw_value;
 				return static_cast<Derived_&>(*this);
 			}
 
@@ -219,8 +219,8 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setValue(const Matrix_Int_& draw_value_) noexcept {
-				this->shogiList.fuhyo_1 = draw_value_;
+				Derived_& setValue(const ::dtl::range::ShogiList<Matrix_Int_>& draw_value_) noexcept {
+				this->shogiList = draw_value_;
 				return static_cast<Derived_&>(*this);
 			}
 
