@@ -1,4 +1,4 @@
-# DTL (Dungeon Template Library) [![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
+# DTL (Dungeon Template Library) [![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt) [![CircleCI](https://circleci.com/gh/Kasugaccho/DungeonTemplateLibrary.svg?style=svg)](https://circleci.com/gh/Kasugaccho/DungeonTemplateLibrary)
 
 [![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color800_2.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
