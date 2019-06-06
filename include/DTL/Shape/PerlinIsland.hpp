@@ -23,6 +23,7 @@
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Range/RectBasePerlin.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
+#include <DTL/Utility/PerlinNoise.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
