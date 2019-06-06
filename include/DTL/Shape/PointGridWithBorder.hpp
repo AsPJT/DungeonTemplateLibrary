@@ -106,32 +106,32 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool draw(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				bool draw(Matrix_& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.draw(matrix_, args_...);
-				this->borderOdd.draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->borderOdd.draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawOperator(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				bool drawOperator(Matrix_& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawOperator(matrix_, args_...);
-				this->borderOdd.drawOperator(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawOperator(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
 			//Array
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				bool drawArray(Matrix_& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawArray(matrix_, args_...);
-				this->borderOdd.drawArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawOperatorArray(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				bool drawOperatorArray(Matrix_& matrix_, Args_&& ... args_) const noexcept {
 				this->pointGrid.drawOperatorArray(matrix_, args_...);
-				this->borderOdd.drawOperatorArray(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->borderOdd.drawOperatorArray(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 				return true;
 			}
 
@@ -139,8 +139,8 @@ namespace dtl {
 			///// 生成呼び出しファンクタ /////
 
 			template<typename Matrix_, typename ...Args_>
-			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				return this->draw(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Args_>(args_)...);
+			constexpr bool operator()(Matrix_& matrix_, Args_&& ... args_) const noexcept {
+				return this->draw(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
