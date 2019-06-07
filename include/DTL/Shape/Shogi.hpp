@@ -56,11 +56,11 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 				if (end_y_ <= this->start_y + 2) return true;
-				const Index_Size end_x_ = this->calcEndX(matrix_.getX(this->start_y));
+				const Index_Size end_x_ { this->calcEndX(matrix_.getX(this->start_y))};
 				if (end_x_ <= this->start_x + 3) return true;
-				const Index_Size end_x2_ = this->calcEndX(matrix_.getX(end_y_ - 1));
+				const Index_Size end_x2_ { this->calcEndX(matrix_.getX(end_y_ - 1))};
 				if (end_x2_ <= this->start_x + 3) return true;
 
 				//桂馬
@@ -114,8 +114,8 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_x_ = this->calcEndX(matrix_.getX());
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_x_ { this->calcEndX(matrix_.getX())};
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 				if (end_x_ <= this->start_x + 3 || end_y_ <= this->start_y + 2) return true;
 				//桂馬
 				matrix_.set(this->start_x + 1, this->start_y, this->shogiList.keima_1, args_...);

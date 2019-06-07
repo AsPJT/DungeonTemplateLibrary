@@ -58,13 +58,13 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 
 				const dtl::utility::PerlinNoise perlin(::dtl::random::mt32bit.get<std::uint_fast32_t>());
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					const Index_Size end_x_ = this->calcEndX(matrix_.getX(row));
+					const Index_Size end_x_ { this->calcEndX(matrix_.getX(row))};
 					const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 					for (std::size_t col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row, static_cast<Matrix_Int_>(this->max_height * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
@@ -77,8 +77,8 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_x_ = this->calcEndX(matrix_.getX());
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_x_ { this->calcEndX(matrix_.getX())};
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 
 				const dtl::utility::PerlinNoise perlin(::dtl::random::mt32bit.get<std::uint_fast32_t>());
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };

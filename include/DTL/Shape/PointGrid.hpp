@@ -56,9 +56,9 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2) {
-					const Index_Size end_x_ = this->calcEndX(matrix_.getX(row));
+					const Index_Size end_x_ { this->calcEndX(matrix_.getX(row))};
 					for (Index_Size col{ this->start_x }; col < end_x_; col += 2)
 						matrix_.set(col, row, this->draw_value, args_...);
 				}
@@ -70,8 +70,8 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const noexcept {
-				const Index_Size end_x_ = this->calcEndX(matrix_.getX());
-				const Index_Size end_y_ = this->calcEndY(matrix_.getY());
+				const Index_Size end_x_ { this->calcEndX(matrix_.getX())};
+				const Index_Size end_y_ { this->calcEndY(matrix_.getY())};
 				for (Index_Size row{ this->start_y }; row < end_y_; row += 2)
 					for (Index_Size col{ this->start_x }; col < end_x_; col += 2)
 						matrix_.set(col, row, this->draw_value, args_...);
