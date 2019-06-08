@@ -37,14 +37,14 @@ namespace dtl {
 			"Matrixの描画範囲にダイヤモンドスクエア法に従って描画値を設置する" 機能を持つクラスである。
 #######################################################################################*/
 		template<typename Matrix_Int_>
-		class DiamondSquareAverageCornerIsland : public ::dtl::range::RectBaseFractal< ::dtl::shape::DiamondSquareAverageCornerIsland<Matrix_Int_>, Matrix_Int_> {
+		class DiamondSquareAverageCornerIsland : public ::dtl::range::RectBaseFractal<DiamondSquareAverageCornerIsland<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseFractal< ::dtl::shape::DiamondSquareAverageCornerIsland<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseFractal<DiamondSquareAverageCornerIsland, Matrix_Int_>;
 
 
 			///// サイズ取得 /////

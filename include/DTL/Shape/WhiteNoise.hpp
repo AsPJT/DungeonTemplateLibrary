@@ -32,14 +32,14 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_>
-		class WhiteNoise : public ::dtl::range::RectBaseWithValue< ::dtl::shape::WhiteNoise<Matrix_Int_>, Matrix_Int_> {
+		class WhiteNoise : public ::dtl::range::RectBaseWithValue<WhiteNoise<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue< ::dtl::shape::WhiteNoise<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<WhiteNoise, Matrix_Int_>;
 
 
 			///// 代入処理 /////

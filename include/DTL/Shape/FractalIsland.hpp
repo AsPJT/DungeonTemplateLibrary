@@ -39,14 +39,14 @@ namespace dtl {
 
 		//マスを指定した数値で埋める
 		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::ssize[]>>
-		class FractalIsland : public ::dtl::range::RectBaseFractal< ::dtl::shape::FractalIsland<Matrix_Int_>, Matrix_Int_> {
+		class FractalIsland : public ::dtl::range::RectBaseFractal<FractalIsland<Matrix_Int_, UniquePtr_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseFractal< ::dtl::shape::FractalIsland<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseFractal<FractalIsland, Matrix_Int_>;
 
 
 			///// 基本処理 /////
