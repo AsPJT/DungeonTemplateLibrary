@@ -168,6 +168,19 @@ namespace dtl {
 			}
 
 /*#######################################################################################
+	[概要] 範囲の大きさ(Width, Height)を初期値に戻す(描画幅(W,H)を消去する)。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Reset the drawing range length (Width, Height) to the initial value (delete the drawing length (W, H)).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearLength() noexcept {
+				this->clearWidth();
+				this->clearHeight();
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
 	[概要] 描画始点座標(X,Y)を初期値に戻す(描画始点座標(X,Y)を消去する)。
 	[戻り値] 戻り値の型は 当クラスの参照値 である。
 	[Summary] Resets the drawing start coordinate (X, Y) to the initial value (deletes the drawing start coordinate (X, Y)).
