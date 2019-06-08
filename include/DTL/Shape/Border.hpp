@@ -43,8 +43,8 @@ namespace dtl {
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Border<Matrix_Int_>, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Border<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Border, Matrix_Int_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Border, Matrix_Int_>;
 
 			friend DrawBase_t;
 
