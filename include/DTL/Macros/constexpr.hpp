@@ -19,7 +19,10 @@
 
 #elif defined(_MSC_VER) && defined(_MSVC_LANG)
 #if (_MSVC_LANG >= 201402L)
-//"constexpr"のマクロ
+/*#######################################################################################
+	[概要] constexpr (C++14) のバージョン分けマクロ。
+	[Summary] Versioning macros for constexpr (C++14).
+#######################################################################################*/
 #define DTL_VERSIONING_CPP14_CONSTEXPR constexpr
 #endif
 #endif
@@ -27,6 +30,10 @@
 #elif defined(__cplusplus)
 
 #if (__cplusplus >= 201402L)
+/*#######################################################################################
+	[概要] constexpr (C++14) のバージョン分けマクロ。
+	[Summary] Versioning macros for constexpr (C++14).
+#######################################################################################*/
 #define DTL_VERSIONING_CPP14_CONSTEXPR constexpr
 #endif
 
@@ -37,6 +44,10 @@
 ///// もしDTL_VERSIONING_CPP14_CONSTEXPRが無かったらつくる /////
 
 #ifndef DTL_VERSIONING_CPP14_CONSTEXPR
+/*#######################################################################################
+	[概要] constexpr (C++14) のバージョン分けマクロ。
+	[Summary] Versioning macros for constexpr (C++14).
+#######################################################################################*/
 #define DTL_VERSIONING_CPP14_CONSTEXPR
 #endif
 

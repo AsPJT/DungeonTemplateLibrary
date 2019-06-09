@@ -11,18 +11,31 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_MACROS_NODISCARD_HPP
 
 ///// DTL_VERSIONING_CPP17_NODISCARDがない場合 /////
+
 #ifndef DTL_VERSIONING_CPP17_NODISCARD
 # if defined(__has_cpp_attribute) && 201402 < __cplusplus
 
 #   if __has_cpp_attribute(nodiscard)
+/*#######################################################################################
+	[概要] [[nodiscard]] (C++17) のバージョン分けマクロ。
+	[Summary] Versioning macros for [[nodiscard]] (C++17).
+#######################################################################################*/
 #     define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
 #   endif
 
 # elif defined(__clang__) || defined(__GNUC__)
+/*#######################################################################################
+	[概要] [[nodiscard]] (C++17) のバージョン分けマクロ。
+	[Summary] Versioning macros for [[nodiscard]] (C++17).
+#######################################################################################*/
 #   define DTL_VERSIONING_CPP17_NODISCARD __attribute__((warn_unused_result))
 
 # elif defined(_MSC_VER)
 #   if 1911 <= _MSC_VER && 201402 < _MSVC_LANG
+/*#######################################################################################
+	[概要] [[nodiscard]] (C++17) のバージョン分けマクロ。
+	[Summary] Versioning macros for [[nodiscard]] (C++17).
+#######################################################################################*/
 #     define DTL_VERSIONING_CPP17_NODISCARD [[nodiscard]]
 #   else
 // _Must_inspect_result_ expands into this
@@ -41,7 +54,12 @@
 #endif
 
 ///// もしDTL_VERSIONING_CPP17_NODISCARDが無かったらつくる /////
+
 #ifndef DTL_VERSIONING_CPP17_NODISCARD
+/*#######################################################################################
+	[概要] [[nodiscard]] (C++17) のバージョン分けマクロ。
+	[Summary] Versioning macros for [[nodiscard]] (C++17).
+#######################################################################################*/
 #define DTL_VERSIONING_CPP17_NODISCARD
 #endif
 
