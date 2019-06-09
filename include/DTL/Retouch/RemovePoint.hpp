@@ -58,7 +58,7 @@ namespace dtl {
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				static void assign(Matrix_ && matrix_, const Index_Size col, const Index_Size row, Function_ && function_)
-				noexcept(noexcept(function_(matrix_(0, 0))) && noexcept(this->assign(matrix_, 0, 0))) {
+				noexcept(noexcept(function_(matrix_(0, 0))) && noexcept(assign(matrix_, 0, 0))) {
 				if (function_(matrix_(col, row)))
 					this->assign(matrix_, col, row);
 			}
@@ -71,7 +71,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const
-				noexcept(noexcept(matrix_.getX()) && noexcept(matrix_.getY()) && noexcept(this->assign(matrix_, 0, 0, args_...))) {
+				noexcept(noexcept(matrix_.getX()) && noexcept(matrix_.getY()) && noexcept(assign(matrix_, 0, 0, args_...))) {
 				const Index_Size end_y_ = this->calcEndY(matrix_.getY()) - 1;
 				for (Index_Size row{ this->start_y + 1 }; row < end_y_; ++row) {
 					const Index_Size end_x_ = this->calcEndX(matrix_.getX(row)) - 1;
@@ -86,7 +86,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_ && matrix_, Args_ && ... args_) const
-				noexcept(noexcept(matrix_.getX()) && noexcept(matrix_.getY()) && noexcept(this->assign(matrix_, 0, 0, args_...))) {
+				noexcept(noexcept(matrix_.getX()) && noexcept(matrix_.getY()) && noexcept(assign(matrix_, 0, 0, args_...))) {
 				const Index_Size end_x_ = this->calcEndX(matrix_.getX()) - 1;
 				const Index_Size end_y_ = this->calcEndY(matrix_.getY()) - 1;
 				for (Index_Size row{ this->start_y + 1 }; row < end_y_; ++row)
