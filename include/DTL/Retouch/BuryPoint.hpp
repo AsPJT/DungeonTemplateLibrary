@@ -61,7 +61,7 @@ namespace dtl {
 				static void assign(Matrix_ && matrix_, const Index_Size col, const Index_Size row, Function_ && function_)
 				noexcept(noexcept(function_(matrix_(0, 0))) && noexcept(assign(matrix_, 0, 0))) {
 				if (function_(matrix_(col, row)))
-					this->assign(matrix_, col, row);
+					assign(matrix_, col, row);
 			}
 
 
@@ -77,7 +77,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y + 1 }; row < end_y_; ++row) {
 					const Index_Size end_x_ = this->calcENdX(matrix_.getX(row)) - 1;
 					for (Index_Size col{ this->start_x + 1 }; col < end_x_; ++col)
-						this->assign(matrix_, col, row, args_...);
+						assign(matrix_, col, row, args_...);
 				}
 				return true;
 			}
@@ -92,7 +92,7 @@ namespace dtl {
 				const Index_Size end_y_ = this->calcEndY(matrix_.getY()) - 1;
 				for (Index_Size row{ this->start_y + 1 }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x + 1 }; col < end_x_; ++col)
-						this->assign(matrix_, col, row, args_...);
+						assign(matrix_, col, row, args_...);
 				return true;
 			}
 
