@@ -41,7 +41,7 @@ namespace dtl {
 
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			::std::string str{};
 

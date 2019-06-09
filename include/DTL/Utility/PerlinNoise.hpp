@@ -34,7 +34,7 @@ namespace dtl {
 			using Pint = ::std::uint_fast8_t;
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			::std::array<Pint, 512> p{ {} };
 

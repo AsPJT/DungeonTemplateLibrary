@@ -44,7 +44,7 @@ namespace dtl {
 			
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			::dtl::shape::Border<Matrix_Int_> border{};
 			::dtl::shape::HalfMixRect<Matrix_Int_> mixRect{};
@@ -54,7 +54,7 @@ namespace dtl {
 		public:
 
 
-			///// 情報取得 /////
+			///// メンバ変数の値を取得 (Get Value) /////
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを取得する。
@@ -105,7 +105,7 @@ namespace dtl {
 			}
 
 
-			///// 生成呼び出し /////
+			///// 生成呼び出し (Drawing Function Call) /////
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -147,7 +147,7 @@ namespace dtl {
 			}
 
 
-			///// 生成呼び出しファンクタ /////
+			///// 生成呼び出しファンクタ (Drawing Functor) /////
 
 			template<typename Matrix_, typename ...Args_>
 			constexpr bool operator()(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
@@ -155,7 +155,7 @@ namespace dtl {
 			}
 
 
-			///// ダンジョン行列生成 /////
+			///// ダンジョン行列生成 (Create Dungeon Matrix) /////
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR

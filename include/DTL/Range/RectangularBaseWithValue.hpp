@@ -37,7 +37,7 @@ namespace dtl {
 		protected:
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			Matrix_Int_ draw_value{};
 
@@ -45,7 +45,7 @@ namespace dtl {
 		public:
 
 
-			///// 情報取得 /////
+			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Matrix_Int_ getValue() const noexcept {

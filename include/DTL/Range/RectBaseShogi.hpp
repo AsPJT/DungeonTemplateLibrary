@@ -171,14 +171,14 @@ namespace dtl {
 		protected:
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			::dtl::range::ShogiList<Matrix_Int_> shogiList{};
 
 		public:
 
 
-			///// 情報取得 /////
+			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr ::dtl::range::ShogiList<Matrix_Int_> getValue() const noexcept {

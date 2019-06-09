@@ -19,6 +19,7 @@
 
 #elif defined(_MSC_VER) && defined(_MSVC_LANG)
 #if (_MSVC_LANG >= 201402L)
+//"constexpr"のマクロ
 #define DTL_VERSIONING_CPP14_CONSTEXPR constexpr
 #endif
 #endif
@@ -34,6 +35,7 @@
 #endif
 
 ///// もしDTL_VERSIONING_CPP14_CONSTEXPRが無かったらつくる /////
+
 #ifndef DTL_VERSIONING_CPP14_CONSTEXPR
 #define DTL_VERSIONING_CPP14_CONSTEXPR
 #endif

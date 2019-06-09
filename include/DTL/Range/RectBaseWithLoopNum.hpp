@@ -37,7 +37,7 @@ namespace dtl {
 		protected:
 
 
-			///// メンバ変数 /////
+			///// メンバ変数 (Member Variable) /////
 
 			Index_Size loop_num{};
 
@@ -45,7 +45,7 @@ namespace dtl {
 		public:
 
 
-			///// 情報取得 /////
+			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Index_Size getValue() const noexcept {
