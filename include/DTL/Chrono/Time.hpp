@@ -12,6 +12,7 @@
 
 #include <chrono>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/ThreadLocal.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -43,7 +44,7 @@ namespace dtl {
 			constexpr Clock_ get() const noexcept { return this->clock; }
 
 		};
-		//static thread_local Time<double, ::std::chrono::nanoseconds> system_time(1.0e-09);
+		//static DTL_TYPE_THREAD_LOCAL Time<double, ::std::chrono::nanoseconds> system_time(1.0e-09);
 
 	}
 }

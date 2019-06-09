@@ -15,6 +15,7 @@
 #include <random>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/SizeT.hpp>
+#include <DTL/Type/ThreadLocal.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -72,7 +73,7 @@ namespace dtl {
 			}
 
 		};
-		static thread_local ::dtl::random::MersenneTwister_64bit mt64bit;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MersenneTwister_64bit mt64bit;
 
 		constexpr ::dtl::type::size mt64_bit_counter_num_1{ 64 };
 		class MT64bit_1 {
@@ -93,7 +94,7 @@ namespace dtl {
 				return tmp;
 			}
 		};
-		static thread_local ::dtl::random::MT64bit_1 mt64bit_1;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MT64bit_1 mt64bit_1;
 
 		constexpr ::dtl::type::size mt32_bit_counter_num_1{ 32 };
 
@@ -216,7 +217,7 @@ namespace dtl {
 			}
 
 		};
-		static thread_local ::dtl::random::MersenneTwister_32bit mt32bit;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MersenneTwister_32bit mt32bit;
 
 		
 		class MT32bit_1 {
@@ -237,7 +238,7 @@ namespace dtl {
 				return tmp;
 			}
 		};
-		static thread_local ::dtl::random::MT32bit_1 mt32bit_1;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MT32bit_1 mt32bit_1;
 
 
 		constexpr ::dtl::type::size counter_num_2{ 32 };
@@ -260,7 +261,7 @@ namespace dtl {
 				return static_cast<Random_Int_>(tmp);
 			}
 		};
-		static thread_local ::dtl::random::MT64bit_4 mt64bit_4;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MT64bit_4 mt64bit_4;
 
 		//乱数(32ビット版メルセンヌ・ツイスタ)
 		class MersenneTwister32bit {
@@ -337,7 +338,7 @@ namespace dtl {
 			}
 
 		};
-		static thread_local ::dtl::random::MersenneTwister32bit mersenne_twister_32bit;
+		static DTL_TYPE_THREAD_LOCAL::dtl::random::MersenneTwister32bit mersenne_twister_32bit;
 
 	} //namespace
 }
