@@ -133,7 +133,7 @@ namespace dtl {
 				this->randomRect.drawArray(matrix_, args_...);
 				this->border.drawArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					this->cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.drawArray(matrix_, args_...);
 				return true;
 			}
 			template<typename Matrix_, typename ...Args_>
@@ -142,7 +142,7 @@ namespace dtl {
 				this->randomRect.drawOperatorArray(matrix_, args_...);
 				this->border.drawOperatorArray(matrix_, args_...);
 				for (Index_Size i{}; i < loop_num; ++i)
-					this->cellularAutomation.draw(matrix_, args_...);
+					this->cellularAutomation.drawArray(matrix_, args_...);
 				return true;
 			}
 
