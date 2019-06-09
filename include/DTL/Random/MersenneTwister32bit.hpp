@@ -37,14 +37,14 @@ namespace dtl {
 
 		public:
 			//コンストラクタ(初期化)
-			explicit MersenneTwister_64bit() noexcept { this->mt.seed(this->rd()); }
+			explicit MersenneTwister_64bit() { this->mt.seed(this->rd()); }
 
 
 /*#######################################################################################
 	[概要] 自動的に乱数値をSEED値に設定する。
 	[Summary] Set the random value to the SEED value.
 #######################################################################################*/
-			void seed() noexcept {
+			void seed() {
 				this->mt.seed(this->rd());
 			}
 
@@ -54,7 +54,7 @@ namespace dtl {
 	[Summary] Set the argument value to the SEED value.
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast64_t>
-			void seed(const Random_Int_ seed_) noexcept {
+			void seed(const Random_Int_ seed_) {
 				this->mt.seed(static_cast< ::std::uint_fast64_t>(seed_));
 			}
 
@@ -67,7 +67,7 @@ namespace dtl {
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
-			Random_Int_ get() noexcept {
+			Random_Int_ get() {
 				return static_cast<Random_Int_>(this->mt());
 			}
 
@@ -81,7 +81,7 @@ namespace dtl {
 			::std::uint_fast64_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
-			bool get() noexcept {
+			bool get() {
 				if (this->counter >= mt64_bit_counter_num_1) {
 					this->random_num = ::dtl::random::mt64bit.get();
 					this->counter = 0;
@@ -113,7 +113,7 @@ namespace dtl {
 			::std::uint_fast32_t random_num_bit1{};
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				bool getBit1() noexcept {
+				bool getBit1() {
 				if (counter_bit1 >= mt32_bit_counter_num_1) {
 					random_num_bit1 = this->get();
 					counter_bit1 = 0;
@@ -127,14 +127,14 @@ namespace dtl {
 
 		public:
 			//コンストラクタ(初期化)
-			explicit MersenneTwister_32bit() noexcept { this->mt.seed(this->rd()); }
+			explicit MersenneTwister_32bit() { this->mt.seed(this->rd()); }
 
 
 /*#######################################################################################
 	[概要] 自動的に乱数値をSEED値に設定する。
 	[Summary] Set the random value to the SEED value.
 #######################################################################################*/
-			void seed() noexcept {
+			void seed() {
 				this->mt.seed(this->rd());
 			}
 
@@ -144,7 +144,7 @@ namespace dtl {
 	[Summary] Set the argument value to the SEED value.
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast32_t>
-			void seed(const Random_Int_ seed_) noexcept {
+			void seed(const Random_Int_ seed_) {
 				this->mt.seed(static_cast< ::std::uint_fast32_t>(seed_));
 			}
 
@@ -157,7 +157,7 @@ namespace dtl {
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::uint_fast32_t>
 			DTL_VERSIONING_CPP17_NODISCARD
-			Random_Int_ get() noexcept {
+			Random_Int_ get() {
 				return static_cast<Random_Int_>(this->mt());
 			}
 
@@ -170,7 +170,7 @@ namespace dtl {
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			Random_Int_ get(const Random_Int2_ max_) noexcept {
+			Random_Int_ get(const Random_Int2_ max_) {
 				if (static_cast< ::std::int_fast32_t>(max_) <= 1) return 0;
 				::std::uniform_int_distribution<> uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
 				return static_cast<Random_Int_>(uid(this->mt));
@@ -185,7 +185,7 @@ namespace dtl {
 #######################################################################################*/
 			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) noexcept {
+			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) {
 				::std::uniform_int_distribution<> uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
@@ -198,7 +198,7 @@ namespace dtl {
 	[Return value] The return type is bool.
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
-			bool probability(const double probability_) noexcept {
+			bool probability(const double probability_) {
 				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
@@ -211,7 +211,7 @@ namespace dtl {
 	[Return value] The return type is bool.
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
-			bool probability() noexcept {
+			bool probability() {
 				return this->getBit1();
 			}
 
@@ -225,7 +225,7 @@ namespace dtl {
 			::std::uint_fast32_t random_num{};
 		public:
 			DTL_VERSIONING_CPP17_NODISCARD
-				bool get() noexcept {
+				bool get() {
 				if (counter >= mt32_bit_counter_num_1) {
 					random_num = ::dtl::random::mt32bit.get();
 					counter = 0;
@@ -249,7 +249,7 @@ namespace dtl {
 		public:
 			template<typename Random_Int_ = ::std::uint_fast64_t>
 			DTL_VERSIONING_CPP17_NODISCARD
-			Random_Int_ get() noexcept {
+			Random_Int_ get() {
 				if (this->counter >= counter_num_2) {
 					this->random_num = ::dtl::random::mt64bit.get();
 					this->counter = 0;
@@ -272,14 +272,14 @@ namespace dtl {
 
 		public:
 			//コンストラクタ(初期化)
-			explicit MersenneTwister32bit() noexcept { this->mt.seed(this->rd()); }
+			explicit MersenneTwister32bit() { this->mt.seed(this->rd()); }
 
 
 /*#######################################################################################
 	[概要] 自動的に乱数値をSEED値に設定する。
 	[Summary] Set the random value to the SEED value.
 #######################################################################################*/
-			void seed() noexcept {
+			void seed() {
 				this->mt.seed(this->rd());
 			}
 
@@ -287,25 +287,25 @@ namespace dtl {
 	[概要] 指定した値をSEED値に設定する。
 	[Summary] Set the argument value to the SEED value.
 #######################################################################################*/
-			void seed(const ::std::uint_fast32_t seed_) noexcept {
+			void seed(const ::std::uint_fast32_t seed_) {
 				this->mt.seed(seed_);
 			}
 
 			//通常の乱数
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::uint_fast32_t operator()() noexcept {
+			::std::uint_fast32_t operator()() {
 				return this->mt();
 			}
 			//0～最大値-1 (余りの範囲の一様分布乱数)
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::int_fast32_t operator()(const ::std::int_fast32_t max_) noexcept {
+			::std::int_fast32_t operator()(const ::std::int_fast32_t max_) {
 				if (max_ <= 1) return 0;
 				::std::uniform_int_distribution<> uid(0, max_ - 1);
 				return uid(this->mt);
 			}
 			//最小値～最大値
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::int_fast32_t operator()(const ::std::int_fast32_t min_, const ::std::int_fast32_t max_) noexcept {
+			::std::int_fast32_t operator()(const ::std::int_fast32_t min_, const ::std::int_fast32_t max_) {
 				::std::uniform_int_distribution<> uid((min_ <= max_) ? min_ : max_, (min_ <= max_) ? max_ : min_);
 				return uid(this->mt);
 			}
@@ -318,7 +318,7 @@ namespace dtl {
 	[Return value] The return type is bool.
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
-			bool probability(const double probability_) noexcept {
+			bool probability(const double probability_) {
 				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
@@ -331,7 +331,7 @@ namespace dtl {
 	[Return value] The return type is bool.
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
-			bool probability() noexcept {
+			bool probability() {
 				::std::uniform_int_distribution<> uid(0, 1);
 				return ((uid(this->mt)) ? true : false);
 			}
