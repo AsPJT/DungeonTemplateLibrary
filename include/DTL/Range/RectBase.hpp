@@ -55,11 +55,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr RectBase() = default;
-			constexpr explicit RectBase(const ::dtl::base::MatrixRange& matrix_range_) noexcept
-				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectBase(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:RectBase_t(start_x_, start_y_, width_, height_) {}
+			using RectBase_t::RectBase_t;
 		};
 	}
 }
