@@ -24,6 +24,7 @@
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Shape/DiamondSquareAverageCornerIsland.hpp>
 #include <DTL/Shape/DiamondSquareAverageIsland.hpp>
+#include <DTL/Shape/DobutsuShogi.hpp>
 #include <DTL/Shape/FractalIsland.hpp>
 #include <DTL/Shape/FractalLoopIsland.hpp>
 #include <DTL/Shape/MazeDig.hpp>
