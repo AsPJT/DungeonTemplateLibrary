@@ -10,6 +10,8 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 
+#include <type_traits>
+
 ///// DTL Only /////
 
 #include <DTL/Macros/nodiscard.hpp>
@@ -40,6 +42,19 @@ namespace dtl {
 		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr bool isOutputCast<unsigned char>() noexcept {
 			return true;
+		}
+
+		template<typename Int_>
+		DTL_VERSIONING_CPP17_NODISCARD
+		constexpr typename ::std::enable_if<isOutputCast<Int_>(), int>::type
+		CastForOutput(const Int_ v) noexcept(noexcept(static_cast<int>(v))) {
+			return static_cast<int>(v);
+		}
+		template<typename Int_>
+		DTL_VERSIONING_CPP17_NODISCARD
+		constexpr typename ::std::enable_if<!isOutputCast<Int_>(), Int_>::type
+		CastForOutput(const Int_ v) noexcept {
+			return v;
 		}
 
 	}
