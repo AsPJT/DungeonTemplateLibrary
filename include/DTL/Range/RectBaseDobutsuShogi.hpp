@@ -201,7 +201,7 @@ namespace dtl {
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearLion1() noexcept {
-				const Matrix_Int_ lion_{}
+				const Matrix_Int_ lion_{};
 				return this->dobutsuShogiList.lion_1 = lion_;
 				return static_cast<Derived_&>(*this);
 			}
