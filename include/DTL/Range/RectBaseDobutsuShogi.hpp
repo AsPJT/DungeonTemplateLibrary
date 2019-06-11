@@ -100,6 +100,47 @@ namespace dtl {
 			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getChick1() const noexcept {
+				return this->dobutsuShogiList.chick_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getChick2() const noexcept {
+				return this->dobutsuShogiList.chick_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getElephant1() const noexcept {
+				return this->dobutsuShogiList.elephant_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getElephant2() const noexcept {
+				return this->dobutsuShogiList.elephant_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getGiraffe1() const noexcept {
+				return this->dobutsuShogiList.giraffe_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getGiraffe2() const noexcept {
+				return this->dobutsuShogiList.giraffe_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getHen1() const noexcept {
+				return this->dobutsuShogiList.hen_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getHen2() const noexcept {
+				return this->dobutsuShogiList.hen_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getLion1() const noexcept {
+				return this->dobutsuShogiList.lion_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getLion2() const noexcept {
+				return this->dobutsuShogiList.lion_2;
+			}
+
+			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr ::dtl::range::DobutsuShogiList<Matrix_Int_> getValue() const noexcept {
 				return this->dobutsuShogiList;
 			}
@@ -108,12 +149,73 @@ namespace dtl {
 			///// 消去 (Clear) /////
 
 
-/*#######################################################################################
-	[概要] 塗り値を初期値に戻す(描画値を消去する)。
-	[戻り値] 戻り値の型は 当クラスの参照値 である。
-	[Summary] Resets the drawing value to the initial value (deletes the drawing value).
-	[Return value] The return type is a reference value of this class.
-#######################################################################################*/
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearChick1() noexcept {
+				const Matrix_Int_ chick_{};
+				return this->dobutsuShogiList.chick_1 = chick_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearChick2() noexcept {
+				const Matrix_Int_ chick_{};
+				return this->dobutsuShogiList.chick_2 = chick_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearElephant1() noexcept {
+				const Matrix_Int_ elephant_{};
+				return this->dobutsuShogiList.elephant_1 = elephant_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearElephant2() noexcept {
+				const Matrix_Int_ elephant_{};
+				return this->dobutsuShogiList.elephant_2 = elephant_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearGiraffe1() noexcept {
+				const Matrix_Int_ giraffe_{};
+				return this->dobutsuShogiList.giraffe_1 = giraffe_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearGiraffe2() noexcept {
+				const Matrix_Int_ giraffe_{};
+				return this->dobutsuShogiList.giraffe_2 = giraffe_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearHen1() noexcept {
+				const Matrix_Int_ hen_{};
+				return this->dobutsuShogiList.hen_1 = hen_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearHen2() noexcept {
+				const Matrix_Int_ hen_{};
+				return this->dobutsuShogiList.hen_2 = hen_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearLion1() noexcept {
+				const Matrix_Int_ lion_{}
+				return this->dobutsuShogiList.lion_1 = lion_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& clearLion2() noexcept {
+				const Matrix_Int_ lion_{};
+				return this->dobutsuShogiList.lion_2 = lion_;
+				return static_cast<Derived_&>(*this);
+			}
+
+			/*#######################################################################################
+				[概要] 塗り値を初期値に戻す(描画値を消去する)。
+				[戻り値] 戻り値の型は 当クラスの参照値 である。
+				[Summary] Resets the drawing value to the initial value (deletes the drawing value).
+				[Return value] The return type is a reference value of this class.
+			#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
 				const ::dtl::range::DobutsuShogiList<Matrix_Int_> new_draw_value{};
@@ -136,6 +238,57 @@ namespace dtl {
 
 
 			///// 代入 /////
+
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setChick1(const Matrix_Int_& chick_) noexcept {
+				return this->dobutsuShogiList.chick_1 = chick_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setChick2(const Matrix_Int_& chick_) noexcept {
+				return this->dobutsuShogiList.chick_2 = chick_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setElephant1(const Matrix_Int_& elephant_) noexcept {
+				return this->dobutsuShogiList.elephant_1 = elephant_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setElephant2(const Matrix_Int_& elephant_) noexcept {
+				return this->dobutsuShogiList.elephant_2 = elephant_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setGiraffe1(const Matrix_Int_& giraffe_) noexcept {
+				return this->dobutsuShogiList.giraffe_1 = giraffe_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setGiraffe2(const Matrix_Int_& giraffe_) noexcept {
+				return this->dobutsuShogiList.giraffe_2 = giraffe_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setHen1(const Matrix_Int_& hen_) noexcept {
+				return this->dobutsuShogiList.hen_1 = hen_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setHen2(const Matrix_Int_& hen_) noexcept {
+				return this->dobutsuShogiList.hen_2 = hen_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setLion1(const Matrix_Int_& lion_) noexcept {
+				return this->dobutsuShogiList.lion_1 = lion_;
+				return static_cast<Derived_&>(*this);
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& setLion2(const Matrix_Int_& lion_) noexcept {
+				return this->dobutsuShogiList.lion_2 = lion_;
+				return static_cast<Derived_&>(*this);
+			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setValue(const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept {
