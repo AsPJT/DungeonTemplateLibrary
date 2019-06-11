@@ -57,6 +57,8 @@ namespace dtl {
 					: this->start_y + this->height;
 			}
 
+		public:
+
 			///// コンストラクタ (Constructor) /////
 
 			constexpr BasicRect() = default;
@@ -66,8 +68,6 @@ namespace dtl {
 			constexpr explicit BasicRect(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-
-		public:
 
 
 			///// メンバ変数の値を取得 (Get Value) /////

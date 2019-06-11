@@ -93,16 +93,13 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr RectBaseWithLoopNum() = default;
+			using RectBase_t::RectBase_t;
+
 			constexpr explicit RectBaseWithLoopNum(const Index_Size& loop_num_) noexcept
 				:loop_num(loop_num_) {}
-			constexpr explicit RectBaseWithLoopNum(const ::dtl::base::MatrixRange& matrix_range_) noexcept
-				:RectBase_t(matrix_range_) {}
 			constexpr explicit RectBaseWithLoopNum(const ::dtl::base::MatrixRange& matrix_range_, const Index_Size& loop_num_) noexcept
 				:RectBase_t(matrix_range_),
 				loop_num(loop_num_) {}
-			constexpr explicit RectBaseWithLoopNum(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:RectBase_t(start_x_, start_y_, width_, height_) {}
 			constexpr explicit RectBaseWithLoopNum(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Index_Size& loop_num_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				loop_num(loop_num_) {}

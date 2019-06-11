@@ -127,15 +127,15 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr RectBaseFractal() = default;
+			using RectBase_t::RectBase_t;
+
 			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_) noexcept
 				:min_value(min_value_) {}
 			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_, const Matrix_Int_& altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_) {}
 			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_, const Matrix_Int_& altitude_, const Matrix_Int_& add_altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_) noexcept
-				:RectBase_t(matrix_range_) {}
+
 			constexpr explicit RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& min_value_) noexcept
 				:RectBase_t(matrix_range_),
 				min_value(min_value_) {}
@@ -145,8 +145,7 @@ namespace dtl {
 			constexpr explicit RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& min_value_, const Matrix_Int_& altitude_, const Matrix_Int_& add_altitude_) noexcept
 				:RectBase_t(matrix_range_),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
-			constexpr explicit RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
-				:RectBase_t(start_x_, start_y_, width_, height_) {}
+
 			constexpr explicit RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& min_value_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				min_value(min_value_) {}
