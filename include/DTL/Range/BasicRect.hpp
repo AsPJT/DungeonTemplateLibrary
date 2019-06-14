@@ -61,16 +61,83 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
+/*#######################################################################################
+	[概要] デフォルトのコンストラクタ
+#######################################################################################*/
 			constexpr BasicRect() = default;
+
+/*#######################################################################################
+	[概要] 描画範囲指定のコンストラクタ
+#######################################################################################*/
 			constexpr explicit BasicRect(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
+
+/*#######################################################################################
+	[概要] 描画範囲指定のコンストラクタ
+#######################################################################################*/
 			constexpr explicit BasicRect(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
 
 
 			///// メンバ変数の値を取得 (Get Value) /////
+
+/*#######################################################################################
+	[概要] 描画始点座標Xを取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getPointX-(形状描画)/
+	[Summary] Gets the drawing start point coordinate X.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getPointX(Matrix_Int_& value_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->start_x);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画始点座標Yを取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getPointY-(形状描画)/
+	[Summary] Gets the drawing start point coordinate Y.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getPointY(Matrix_Int_& value_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->start_y);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画横幅Wを取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getWidth-(形状描画)/
+	[Summary] Gets the drawing width.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getWidth(Matrix_Int_& value_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->width);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画縦幅Hを取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getHeight-(形状描画)/
+	[Summary] Gets the drawing height.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getHeight(Matrix_Int_& value_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->height);
+				return static_cast<Derived_&>(*this);
+			}
 
 /*#######################################################################################
 	[概要] 描画始点座標Xを取得する。
