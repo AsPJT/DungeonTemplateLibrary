@@ -140,6 +140,69 @@ namespace dtl {
 			}
 
 /*#######################################################################################
+	[概要] 描画始点座標(X,Y)を取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getPoint-(形状描画)/
+	[Summary] Gets the drawing start coordinate (X, Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getPoint(Matrix_Int_& value_) noexcept {
+				const Matrix_Int_ value{ this->start_x ,this->start_y };
+				value_ = value;
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画始点座標(X,Y)を取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getPoint-(形状描画)/
+	[Summary] Gets the drawing start coordinate (X, Y).
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_, typename Matrix_Int2_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getPoint(Matrix_Int_& value_, Matrix_Int2_& value2_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->start_x);
+				value2_ = static_cast<Matrix_Int2_>(this->start_y);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画範囲(X,Y,W,H)を取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getRange-(形状描画)/
+	[Summary] Gets the drawing range.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getRange(Matrix_Int_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_, Matrix_Int4_& value4_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->start_x);
+				value2_ = static_cast<Matrix_Int2_>(this->start_y);
+				value3_ = static_cast<Matrix_Int3_>(this->width);
+				value4_ = static_cast<Matrix_Int4_>(this->height);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画範囲(X,Y,W)を取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getRange-(形状描画)/
+	[Summary] Gets the drawing range.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getRange(Matrix_Int_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_) noexcept {
+				value_ = static_cast<Matrix_Int_>(this->start_x);
+				value2_ = static_cast<Matrix_Int2_>(this->start_y);
+				value3_ = static_cast<Matrix_Int3_>(this->width);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
 	[概要] 描画始点座標Xを取得する。
 	[戻り値] 戻り値の型は std::size_t である。
 	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getPointX-(形状描画)/

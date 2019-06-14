@@ -47,6 +47,13 @@ namespace dtl {
 
 			///// メンバ変数の値を取得 (Get Value) /////
 
+/*#######################################################################################
+	[概要] 描画値を取得する。
+	[戻り値] 戻り値の型は Matrix_Int_ である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getValue-(形状描画)/
+	[Summary] Gets the drawing value.
+	[Return value] The return type is Matrix_Int_.
+#######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr Matrix_Int_ getValue() const noexcept {
 				return this->draw_value;
