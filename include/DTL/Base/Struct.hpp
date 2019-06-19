@@ -84,16 +84,35 @@ namespace dtl {
 				return range_.x != this->x || range_.y != this->y || range_.w != this->w || range_.h != this->h;
 			}
 
-			//面積比較
+/*#######################################################################################
+	[概要] 面積を比較する。(左の面積値 > 右の面積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator>(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h) > (range_.w * range_.h);
 			}
+/*#######################################################################################
+	[概要] 面積を比較する。(左の面積値 >= 右の面積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator>=(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h) >= (range_.w * range_.h);
 			}
+/*#######################################################################################
+	[概要] 面積を比較する。(左の面積値 < 右の面積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator<(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h) < (range_.w * range_.h);
 			}
+/*#######################################################################################
+	[概要] 面積を比較する。(左の面積値 <= 右の面積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator<=(const ::dtl::base::Coordinate2DimensionalAndLength2Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h) <= (range_.w * range_.h);
 			}
@@ -127,16 +146,35 @@ namespace dtl {
 				return range_.x != this->x || range_.y != this->y || range_.z != this->z || range_.w != this->w || range_.h != this->h || range_.d != this->d;
 			}
 
-			//面積比較
+/*#######################################################################################
+	[概要] 体積を比較する。(左の体積値 > 右の体積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator>(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h * this->d) > (range_.w * range_.h * range_.d);
 			}
+/*#######################################################################################
+	[概要] 体積を比較する。(左の体積値 >= 右の体積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator>=(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h * this->d) >= (range_.w * range_.h * range_.d);
 			}
+/*#######################################################################################
+	[概要] 体積を比較する。(左の体積値 < 右の体積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator<(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h * this->d) < (range_.w * range_.h * range_.d);
 			}
+/*#######################################################################################
+	[概要] 体積を比較する。(左の体積値 <= 右の体積値)
+	[戻り値] 戻り値の型は bool である。
+	[Return value] The return type is bool.
+#######################################################################################*/
 			constexpr bool operator<=(const ::dtl::base::Coordinate3DimensionalAndLength3Dimensional<Int_>& range_) const noexcept {
 				return (this->w * this->h * this->d) <= (range_.w * range_.h * range_.d);
 			}

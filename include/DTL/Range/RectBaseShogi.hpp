@@ -183,6 +183,119 @@ namespace dtl {
 			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getFuhyo1() const noexcept {
+				return this->shogiList.fuhyo_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getFuhyo2() const noexcept {
+				return this->shogiList.fuhyo_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getTokin1() const noexcept {
+				return this->shogiList.tokin_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getTokin2() const noexcept {
+				return this->shogiList.tokin_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKyosha1() const noexcept {
+				return this->shogiList.kyosha_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKyosha2() const noexcept {
+				return this->shogiList.kyosha_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarikyo1() const noexcept {
+				return this->shogiList.narikyo_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarikyo2() const noexcept {
+				return this->shogiList.narikyo_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKeima1() const noexcept {
+				return this->shogiList.keima_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKeima2() const noexcept {
+				return this->shogiList.keima_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarikei1() const noexcept {
+				return this->shogiList.narikei_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarikei2() const noexcept {
+				return this->shogiList.narikei_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getGinsho1() const noexcept {
+				return this->shogiList.ginsho_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getGinsho2() const noexcept {
+				return this->shogiList.ginsho_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarigin1() const noexcept {
+				return this->shogiList.narigin_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getNarigin2() const noexcept {
+				return this->shogiList.narigin_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getHisha1() const noexcept {
+				return this->shogiList.hisha_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getHisha2() const noexcept {
+				return this->shogiList.hisha_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getRyuo1() const noexcept {
+				return this->shogiList.ryuo_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getRyuo2() const noexcept {
+				return this->shogiList.ryuo_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKakugyo1() const noexcept {
+				return this->shogiList.kakugyo_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKakugyo2() const noexcept {
+				return this->shogiList.kakugyo_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getRyuma1() const noexcept {
+				return this->shogiList.ryuma_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getRyuma2() const noexcept {
+				return this->shogiList.ryuma_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKinsho1() const noexcept {
+				return this->shogiList.kinsho_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getKinsho2() const noexcept {
+				return this->shogiList.kinsho_2;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getOsho() const noexcept {
+				return this->shogiList.osho_1;
+			}
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr Matrix_Int_ getGyokusho() const noexcept {
+				return this->shogiList.gyokusho_2;
+			}
+
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr ::dtl::range::ShogiList<Matrix_Int_> getValue() const noexcept {
 				return this->shogiList;
 			}
@@ -234,6 +347,7 @@ namespace dtl {
 			constexpr explicit RectBaseShogi(const ::dtl::range::ShogiList<Matrix_Int_>& draw_value_) noexcept
 				:shogiList(draw_value_) {}
 
+			//28
 			constexpr explicit RectBaseShogi(
 				const Matrix_Int_& fuhyo_1_, const Matrix_Int_& fuhyo_2_,
 				const Matrix_Int_& tokin_1_, const Matrix_Int_& tokin_2_,
@@ -252,6 +366,7 @@ namespace dtl {
 				shogiList(fuhyo_1_, fuhyo_2_, tokin_1_, tokin_2_, kyosha_1_, kyosha_2_, narikyo_1_, narikyo_2_, keima_1_, keima_2_, narikei_1_, narikei_2_, ginsho_1_, ginsho_2_,
 					narigin_1_, narigin_2_, hisha_1_, hisha_2_, ryuo_1_, ryuo_2_, kakugyo_1_, kakugyo_2_, ryuma_1_, ryuma_2_, kinsho_1_, kinsho_2_, osho_, gyokusho_) {}
 
+			//14
 			constexpr explicit RectBaseShogi(
 				const Matrix_Int_& fuhyo_, const Matrix_Int_& tokin_,
 				const Matrix_Int_& kyosha_, const Matrix_Int_& narikyo_,

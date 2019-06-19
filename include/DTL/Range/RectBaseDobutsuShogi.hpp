@@ -101,6 +101,67 @@ namespace dtl {
 
 			///// メンバ変数の値を取得 (Get Value) /////
 
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getChick1(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.chick_1);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getChick2(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.chick_2);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getElephant1(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.elephant_1);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getElephant2(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.elephant_2);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getGiraffe1(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.giraffe_1);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getGiraffe2(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.giraffe_2);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getHen1(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.hen_1);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getHen2(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.hen_2);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getLion1(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.lion_1);
+				return static_cast<Derived_&>(*this);
+			}
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getLion2(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->dobutsuShogiList.lion_2);
+				return static_cast<Derived_&>(*this);
+			}
+
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr Matrix_Int_ getChick1() const noexcept {
 				return this->dobutsuShogiList.chick_1;

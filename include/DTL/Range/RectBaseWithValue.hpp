@@ -49,6 +49,20 @@ namespace dtl {
 
 /*#######################################################################################
 	[概要] 描画値を取得する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getValue-(形状描画)/
+	[Summary] Gets the drawing value.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
+			template<typename Matrix_Int1_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				Derived_& getValue(Matrix_Int1_& value_) noexcept {
+				value_ = static_cast<Matrix_Int1_>(this->draw_value);
+				return static_cast<Derived_&>(*this);
+			}
+
+/*#######################################################################################
+	[概要] 描画値を取得する。
 	[戻り値] 戻り値の型は Matrix_Int_ である。
 	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getValue-(形状描画)/
 	[Summary] Gets the drawing value.
@@ -92,6 +106,12 @@ namespace dtl {
 
 			///// 代入 /////
 
+/*#######################################################################################
+	[概要] 描画値を設定する。
+	[戻り値] 戻り値の型は 当クラスの参照値 である。
+	[Summary] Set the drawing value.
+	[Return value] The return type is a reference value of this class.
+#######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& setValue(const Matrix_Int_& draw_value_) noexcept {
 				this->draw_value = draw_value_;
