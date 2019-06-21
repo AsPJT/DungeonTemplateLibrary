@@ -27,7 +27,10 @@
 namespace dtl {
 	inline namespace console { //"dtl::console"名前空間に属する
 
-		//四角形の生成
+/*#######################################################################################
+	[概要] OutputStringBoolとは "Matrixの描画範囲の値を指定した文字列で出力する" 機能を持つクラスである。
+	[Summary] OutputStringBool is a class that outputs Matrix values as strings.
+#######################################################################################*/
 		template<typename Matrix_Int_, typename OutputString_ = ::std::string>
 		class OutputStringBool {
 		private:

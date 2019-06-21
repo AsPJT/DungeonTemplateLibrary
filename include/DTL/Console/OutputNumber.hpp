@@ -28,7 +28,10 @@
 namespace dtl {
 	inline namespace console { //"dtl::console"名前空間に属する
 
-		//四角形の生成
+/*#######################################################################################
+	[概要] OutputNumberとは "Matrixの描画範囲の値を出力する" 機能を持つクラスである。
+	[Summary] OutputNumber is a class that outputs Matrix values.
+#######################################################################################*/
 		template<typename Matrix_Int_, typename OutputString_ = ::std::string>
 		class OutputNumber {
 		private:
