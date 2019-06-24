@@ -27,7 +27,10 @@
 namespace dtl {
 	inline namespace console { //"dtl::console"名前空間に属する
 
-		//四角形の生成
+/*#######################################################################################
+	[概要] OutputViewとは "Matrixの描画範囲の値をァンクタに渡す" 機能を持つクラスである。
+	[Summary] OutputView is a class that passes Matrix values to functors.
+#######################################################################################*/
 		template<typename Matrix_Int_, typename OutputView_ = ::dtl::type::size>
 		class OutputView {
 		private:
