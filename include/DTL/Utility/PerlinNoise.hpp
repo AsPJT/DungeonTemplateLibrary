@@ -138,14 +138,16 @@ namespace dtl {
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
 			double noise(const Args... args_) const noexcept {
-				return this->setNoise(args_...)* 0.5 + 0.5;
+				const double noise_value{ this->setNoise(args_...) * 0.5 + 0.5 };
+				return ((noise_value >= 1.0) ? 1.0 : ((noise_value <= 0.0) ? 0.0 : noise_value));
 			}
 
 			//オクターブ有りノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
 			double octaveNoise(const ::std::size_t octaves_, const Args... args_) const noexcept {
-				return this->setOctaveNoise(octaves_, args_...)* 0.5 + 0.5;
+				const double noise_value{ this->setOctaveNoise(octaves_, args_...) * 0.5 + 0.5 };
+				return ((noise_value >= 1.0) ? 1.0 : ((noise_value <= 0.0) ? 0.0 : noise_value));
 			}
 
 			//SEED値を設定する
