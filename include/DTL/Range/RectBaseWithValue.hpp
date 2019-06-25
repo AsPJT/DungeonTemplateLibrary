@@ -121,7 +121,11 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			using RectBase_t::RectBase_t;
+			RectBaseWithValue() = default;
+			constexpr explicit RectBaseWithValue(const ::dtl::base::MatrixRange& matrix_range_) noexcept
+				:RectBase_t(matrix_range_)  {}
+			constexpr explicit RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseWithValue(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}

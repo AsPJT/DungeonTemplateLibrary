@@ -362,7 +362,11 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			using RectBase_t::RectBase_t;
+			RectBaseDobutsuShogi() = default;
+			constexpr explicit RectBaseDobutsuShogi(const ::dtl::base::MatrixRange& matrix_range_) noexcept
+				:RectBase_t(matrix_range_) {}
+			constexpr explicit RectBaseDobutsuShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseDobutsuShogi(const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
 				:dobutsuShogiList(draw_value_) {}

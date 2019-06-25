@@ -342,7 +342,11 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			using RectBase_t::RectBase_t;
+			RectBaseShogi() = default;
+			constexpr explicit RectBaseShogi(const ::dtl::base::MatrixRange& matrix_range_) noexcept
+				:RectBase_t(matrix_range_) {}
+			constexpr explicit RectBaseShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseShogi(const ::dtl::range::ShogiList<Matrix_Int_>& draw_value_) noexcept
 				:shogiList(draw_value_) {}
