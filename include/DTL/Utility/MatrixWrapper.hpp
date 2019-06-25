@@ -128,27 +128,29 @@ namespace dtl {
 
 
 		// MatrixWrapperの1次元用基底クラステンプレート
-		template<typename V, typename M, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0] = ::std::declval<V>())>>
+		template<typename V, typename M, typename = ::dtl::utility::void_t<decltype(static_cast<V>(::std::declval<M&>()[0]))>>
 		struct MatrixWrapperBase1 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase1<V, M>, V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>> {
 			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase1, V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>>;
 			using Index_Size = typename Base_t::Index_Size;
 
 			using Base_t::Base_t;
 			decltype(::std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
+			const decltype(::std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
 		};
 
 		// MatrixWrapperの2次元用基底クラステンプレート
-		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0][0] = ::std::declval<V>())>>
+		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(static_cast<V>(::std::declval<M&>()[0][0]))>>
 		struct MatrixWrapperBase2 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase2<V, M, TY, TX>, V, M, TY, TX> {
 			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase2, V, M, TY, TX>;
 			using Index_Size = typename Base_t::Index_Size;
 
 			using Base_t::Base_t;
 			decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
+			const decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
 		};
 
 		// MatrixWrapperの3次元用基底クラステンプレート
-		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(::std::declval<M&>()[0][0][0] = ::std::declval<V>())>>
+		template<typename V, typename M, typename TY, typename TX, typename = ::dtl::utility::void_t<decltype(static_cast<V>(::std::declval<M&>()[0][0][0]))>>
 		struct MatrixWrapperBase3 : ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase3<V, M, TY, TX>, V, M, TY, TX> {
 			using Base_t = ::dtl::utility::MatrixWrapperCommon<MatrixWrapperBase3, V, M, TY, TX>;
 			using Index_Size = typename Base_t::Index_Size;
@@ -156,6 +158,7 @@ namespace dtl {
 			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer, Index_Size max_x, Index_Size max_y) noexcept : Base_t(mat, max_x, max_y), draw_layer_(draw_layer) {}
 			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer) noexcept : Base_t(mat), draw_layer_(draw_layer) {}
 			decltype(::std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
+			const decltype(::std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
 
 		private:
 			Index_Size draw_layer_;
