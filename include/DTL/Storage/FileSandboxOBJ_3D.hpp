@@ -45,29 +45,30 @@ namespace dtl {
 
 			::std::string str{};
 
-			static void write_objOutputId( ::std::ofstream& ofs_, const ::std::size_t id_) {
-				ofs_ << "f " << (1 + id_) << ' ' << (3 + id_) << ' ' << (4 + id_) << ' ' << (2 + id_) << "\n"
-				        "f " << (1 + id_) << ' ' << (5 + id_) << ' ' << (7 + id_) << ' ' << (3 + id_) << "\n"
-				        "f " << (2 + id_) << ' ' << (4 + id_) << ' ' << (8 + id_) << ' ' << (6 + id_) << "\n"
-				        "f " << (1 + id_) << ' ' << (2 + id_) << ' ' << (6 + id_) << ' ' << (5 + id_) << "\n"
-				        "f " << (3 + id_) << ' ' << (7 + id_) << ' ' << (8 + id_) << ' ' << (4 + id_) << "\n"
-				        "f " << (5 + id_) << ' ' << (6 + id_) << ' ' << (8 + id_) << ' ' << (7 + id_) << '\n';
+			void write_objOutputId( ::std::ofstream& ofs_, const ::std::size_t id_ = 0) const noexcept {
+				ofs_ << "f " << (1 + id_ * 8) << " " << (3 + id_ * 8) << " " << (4 + id_ * 8) << " " << (2 + id_ * 8) << '\n';
+				ofs_ << "f " << (1 + id_ * 8) << " " << (5 + id_ * 8) << " " << (7 + id_ * 8) << " " << (3 + id_ * 8) << '\n';
+				ofs_ << "f " << (2 + id_ * 8) << " " << (4 + id_ * 8) << " " << (8 + id_ * 8) << " " << (6 + id_ * 8) << '\n';
+				ofs_ << "f " << (1 + id_ * 8) << " " << (2 + id_ * 8) << " " << (6 + id_ * 8) << " " << (5 + id_ * 8) << '\n';
+				ofs_ << "f " << (3 + id_ * 8) << " " << (7 + id_ * 8) << " " << (8 + id_ * 8) << " " << (4 + id_ * 8) << '\n';
+				ofs_ << "f " << (5 + id_ * 8) << " " << (6 + id_ * 8) << " " << (8 + id_ * 8) << " " << (7 + id_ * 8) << '\n';
 			}
-			static void write_objOutputCube( ::std::ofstream& ofs_, ::std::int_fast32_t start_x, ::std::int_fast32_t start_y, ::std::int_fast32_t start_z) {
-				ofs_ << "v " << start_x     << ' ' << start_y     << ' ' << start_z     << "\n"
-				        "v " << start_x + 1 << ' ' << start_y     << ' ' << start_z     << "\n"
-				        "v " << start_x     << ' ' << start_y + 1 << ' ' << start_z     << "\n"
-				        "v " << start_x + 1 << ' ' << start_y + 1 << ' ' << start_z     << "\n"
-				        "v " << start_x     << ' ' << start_y     << ' ' << start_z + 1 << "\n"
-				        "v " << start_x + 1 << ' ' << start_y     << ' ' << start_z + 1 << "\n"
-				        "v " << start_x     << ' ' << start_y + 1 << ' ' << start_z + 1 << "\n"
-				        "v " << start_x + 1 << ' ' << start_y + 1 << ' ' << start_z + 1 << '\n';
+			void write_objOutputCube( ::std::ofstream& ofs_, ::std::int_fast32_t start_x, ::std::int_fast32_t start_y, ::std::int_fast32_t start_z, ::std::int_fast32_t size_x, ::std::int_fast32_t size_y, ::std::int_fast32_t size_z, ::std::size_t id_ = 0) const noexcept {
+				ofs_ << "v " << start_x << " " << start_y << " " << start_z << " " << '\n';
+				ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z << " " << '\n';
+				ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z << " " << '\n';
+				ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z << " " << '\n';
+				ofs_ << "v " << start_x << " " << start_y << " " << start_z + size_z << " " << '\n';
+				ofs_ << "v " << start_x + size_x << " " << start_y << " " << start_z + size_z << " " << '\n';
+				ofs_ << "v " << start_x << " " << start_y + size_y << " " << start_z + size_z << " " << '\n';
+				ofs_ << "v " << start_x + size_x << " " << start_y + size_y << " " << start_z + size_z << " " << '\n';
+				this->write_objOutputId(ofs_, id_);
 			}
 
 		public:
 
 			template<typename Matrix_>
-			bool draw(const Matrix_& matrix_) const {
+			bool draw(const Matrix_& matrix_) const noexcept {
 				if (matrix_.size() == 0 || matrix_[0].size() == 0 || matrix_[0][0].size() == 0) return false;
 				::std::ofstream ofs(this->str);
 				if (ofs.fail()) return false;
@@ -76,8 +77,7 @@ namespace dtl {
 					for ( ::std::size_t y{}; y < matrix_[z].size(); ++y)
 						for ( ::std::size_t x{}; x < matrix_[z][y].size(); ++x) {
 							if (!matrix_[z][y][x]) continue;
-							write_objOutputCube(ofs, ( ::std::int_fast32_t)x, ( ::std::int_fast32_t)z, ( ::std::int_fast32_t)y);
-							write_objOutputId(ofs, square_count * 8);
+							this->write_objOutputCube(ofs, ( ::std::int_fast32_t)x, ( ::std::int_fast32_t)z, ( ::std::int_fast32_t)y, 1, 1, 1, square_count);
 							++square_count;
 						}
 				return true;
@@ -86,7 +86,7 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			constexpr FileSandboxOBJ_3D() = default;
-			constexpr explicit FileSandboxOBJ_3D(const ::std::string & write_value_)
+			constexpr explicit FileSandboxOBJ_3D(const ::std::string & write_value_) noexcept
 				:str(write_value_) {}
 
 		};
