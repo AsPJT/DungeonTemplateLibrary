@@ -135,7 +135,7 @@ namespace dtl {
 
 			using Base_t::Base_t;
 			decltype(::std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
-			const decltype(::std::declval<M&>()[0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
+			typename std::add_const<decltype(::std::declval<M&>()[0])>::type operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0])) { return Base_t::mat[y * Base_t::getX() + x]; }
 		};
 
 		// MatrixWrapperの2次元用基底クラステンプレート
@@ -146,7 +146,7 @@ namespace dtl {
 
 			using Base_t::Base_t;
 			decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
-			const decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
+			typename std::add_const<decltype(::std::declval<M&>()[0][0])>::type operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
 		};
 
 		// MatrixWrapperの3次元用基底クラステンプレート
@@ -158,7 +158,7 @@ namespace dtl {
 			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer, Index_Size max_x, Index_Size max_y) noexcept : Base_t(mat, max_x, max_y), draw_layer_(draw_layer) {}
 			constexpr MatrixWrapperBase3(M& mat, Index_Size draw_layer) noexcept : Base_t(mat), draw_layer_(draw_layer) {}
 			decltype(::std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
-			const decltype(::std::declval<M&>()[0][0][0]) operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
+			typename std::add_const<decltype(::std::declval<M&>()[0][0][0])>::type operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0][0])) { return Base_t::mat[y][x][draw_layer_]; }
 
 		private:
 			Index_Size draw_layer_;
