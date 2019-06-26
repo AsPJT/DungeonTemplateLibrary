@@ -52,13 +52,23 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double makeGrad(const Pint hash_, const double u_, const double v_) const noexcept {
+			constexpr double makeGradUV(const Pint hash_, const double u_, const double v_) const noexcept {
 				return (((hash_ & 1) == 0) ? u_ : -u_) + (((hash_ & 2) == 0) ? v_ : -v_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr double makeGrad(const Pint hash_, const double x_, const double y_) const noexcept {
+				return this->makeGradUV(hash_, hash_ < 8 ? x_ : y_, hash_ < 4 ? y_ : hash_ == 12 || hash_ == 14 ? x_ : 0.0);
+			}
+
+			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr double makeGrad(const Pint hash_, const double x_, const double y_, const double z_) const noexcept {
-				return this->makeGrad(hash_, hash_ < 8 ? x_ : y_, hash_ < 4 ? y_ : hash_ == 12 || hash_ == 14 ? x_ : z_);
+				return this->makeGradUV(hash_, hash_ < 8 ? x_ : y_, hash_ < 4 ? y_ : hash_ == 12 || hash_ == 14 ? x_ : z_);
+			}
+
+			DTL_VERSIONING_CPP17_NODISCARD
+				constexpr double getGrad(const Pint hash_, const double x_, const double y_) const noexcept {
+				return this->makeGrad(hash_ & 15, x_, y_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -67,7 +77,27 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setNoise(double x_ = 0.0, double y_ = 0.0, double z_ = 0.0) const noexcept {
+				double setNoise(double x_ = 0.0, double y_ = 0.0) const noexcept {
+				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(::std::floor(x_)) & 255) };
+				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(::std::floor(y_)) & 255) };
+				x_ -= ::std::floor(x_);
+				y_ -= ::std::floor(y_);
+				const double u{ this->getFade(x_) };
+				const double v{ this->getFade(y_) };
+				const ::dtl::type::size a0{ static_cast<::dtl::type::size>(this->p[x_int] + y_int) };
+				const ::dtl::type::size a1{ static_cast<::dtl::type::size>(this->p[a0]) };
+				const ::dtl::type::size a2{ static_cast<::dtl::type::size>(this->p[a0 + 1]) };
+				const ::dtl::type::size b0{ static_cast<::dtl::type::size>(this->p[x_int + 1] + y_int) };
+				const ::dtl::type::size b1{ static_cast<::dtl::type::size>(this->p[b0]) };
+				const ::dtl::type::size b2{ static_cast<::dtl::type::size>(this->p[b0 + 1]) };
+
+				return this->getLerp(v,
+						this->getLerp(u, this->getGrad(this->p[a1], x_, y_), this->getGrad(this->p[b1], x_ - 1, y_)),
+						this->getLerp(u, this->getGrad(this->p[a2], x_, y_ - 1), this->getGrad(this->p[b2], x_ - 1, y_ - 1)));
+			}
+
+			DTL_VERSIONING_CPP17_NODISCARD
+			double setNoise(double x_, double y_, double z_) const noexcept {
 				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(x_)) & 255) };
 				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(y_)) & 255) };
 				const ::dtl::type::size z_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(z_)) & 255) };
