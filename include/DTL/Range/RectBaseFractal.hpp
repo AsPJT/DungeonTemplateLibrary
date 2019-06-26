@@ -127,7 +127,11 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			using RectBase_t::RectBase_t;
+			RectBaseFractal() = default;
+			constexpr explicit RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_) noexcept
+				:RectBase_t(matrix_range_) {}
+			constexpr explicit RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_) noexcept
 				:min_value(min_value_) {}
