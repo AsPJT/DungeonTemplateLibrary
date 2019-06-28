@@ -58,12 +58,12 @@ namespace dtl {
 
 			DTL_VERSIONING_CPP17_NODISCARD
 				constexpr double makeGrad(const Pint hash_, const double x_, const double y_) const noexcept {
-				return this->makeGradUV(hash_, hash_ < 8 ? x_ : y_, hash_ < 4 ? y_ : hash_ == 12 || hash_ == 14 ? x_ : 0.0);
+				return this->makeGradUV(hash_, (hash_ < 8) ? x_ : y_, (hash_ < 4) ? y_ : hash_ == 12 || hash_ == 14 ? x_ : 0.0);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr double makeGrad(const Pint hash_, const double x_, const double y_, const double z_) const noexcept {
-				return this->makeGradUV(hash_, hash_ < 8 ? x_ : y_, hash_ < 4 ? y_ : hash_ == 12 || hash_ == 14 ? x_ : z_);
+				return this->makeGradUV(hash_, (hash_ < 8) ? x_ : y_, (hash_ < 4) ? y_ : hash_ == 12 || hash_ == 14 ? x_ : z_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
