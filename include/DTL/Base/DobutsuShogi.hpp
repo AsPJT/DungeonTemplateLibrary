@@ -1,4 +1,4 @@
-/*#######################################################################################
+ï»¿/*#######################################################################################
 	Copyright (c) 2017-2019 Kasugaccho
 	Copyright (c) 2018-2019 As Project
 	https://github.com/Kasugaccho/DungeonTemplateLibrary
@@ -11,11 +11,11 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_BASE_DOBUTSU_SHOGI_HPP
 
 /*#######################################################################################
-	[ŠT—v] "dtl–¼‘O‹óŠÔ"‚Æ‚Í"DungeonTemplateLibrary"‚Ì‘S‚Ä‚Ì‹@”\‚ªŠÜ‚Ü‚ê‚é–¼‘O‹óŠÔ‚Å‚ ‚éB
+	[æ¦‚è¦] "dtlåå‰ç©ºé–“"ã¨ã¯"DungeonTemplateLibrary"ã®å…¨ã¦ã®æ©Ÿèƒ½ãŒå«ã¾ã‚Œã‚‹åå‰ç©ºé–“ã§ã‚ã‚‹ã€‚
 	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
 #######################################################################################*/
 namespace dtl {
-	inline namespace base { //"dtl::base"–¼‘O‹óŠÔ‚É‘®‚·‚é
+	inline namespace base { //"dtl::base"åå‰ç©ºé–“ã«å±ã™ã‚‹
 
 		template<typename Matrix_Int_>
 		struct DobutsuShogiList {
