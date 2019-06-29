@@ -428,7 +428,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr OutputView() = default;
+			OutputView() = default;
 			constexpr explicit OutputView(const OutputView_& view_) noexcept
 				:view_width(view_), view_height(view_) {}
 			constexpr explicit OutputView(const OutputView_& view_width_, const OutputView_& view_height_) noexcept

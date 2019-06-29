@@ -539,7 +539,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr OutputStringBool() = default;
+			OutputStringBool() = default;
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_) noexcept
 				:true_string(true_string_) {}
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept

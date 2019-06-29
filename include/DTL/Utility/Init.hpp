@@ -469,7 +469,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr Init() = default;
+			Init() = default;
 			constexpr explicit Init(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit Init(const ::dtl::base::MatrixRange & matrix_range_) noexcept

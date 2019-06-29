@@ -85,7 +85,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr FileSandboxOBJ_3D() = default;
+			FileSandboxOBJ_3D() = default;
 			constexpr explicit FileSandboxOBJ_3D(const ::std::string & write_value_)
 				:str(write_value_) {}
 

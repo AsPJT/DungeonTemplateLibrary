@@ -446,7 +446,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr Binarization() = default;
+			Binarization() = default;
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_) noexcept
 				:true_value(true_value_) {}
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept

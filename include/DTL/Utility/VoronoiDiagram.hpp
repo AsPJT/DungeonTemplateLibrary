@@ -460,7 +460,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr VoronoiDiagram() = default;
+			VoronoiDiagram() = default;
 			constexpr explicit VoronoiDiagram(const ::dtl::type::size draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_) noexcept

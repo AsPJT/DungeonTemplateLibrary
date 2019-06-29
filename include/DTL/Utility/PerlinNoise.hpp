@@ -192,7 +192,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr PerlinNoise() = default;
+			PerlinNoise() = default;
 			explicit PerlinNoise(const ::std::uint_fast32_t seed_) {
 				this->setSeed(seed_);
 			}

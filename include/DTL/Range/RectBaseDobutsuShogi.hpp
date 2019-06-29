@@ -36,7 +36,7 @@ namespace dtl {
 			Matrix_Int_ lion_1{};
 			Matrix_Int_ lion_2{};
 
-			constexpr DobutsuShogiList() = default;
+			DobutsuShogiList() = default;
 
 			constexpr explicit DobutsuShogiList(
 				const Matrix_Int_& chick_1_,

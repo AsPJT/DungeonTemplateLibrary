@@ -489,7 +489,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr Reversi() = default;
+			Reversi() = default;
 			constexpr explicit Reversi(const Matrix_Int_ & black_value_) noexcept
 				:black_value(black_value_) {}
 			constexpr explicit Reversi(const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept

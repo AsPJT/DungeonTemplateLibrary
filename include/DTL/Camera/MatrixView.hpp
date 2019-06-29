@@ -22,7 +22,7 @@ namespace dtl {
 	inline namespace camera { //"dtl::camera"名前空間に属する
 
 		struct MatrixViewRect {
-			constexpr MatrixViewRect() = default;
+			MatrixViewRect() = default;
 			::std::int_fast32_t start_x{};
 			::std::int_fast32_t start_y{};
 			::std::int_fast32_t end_x{};
@@ -31,7 +31,7 @@ namespace dtl {
 
 		class SampleMatrixViewDraw {
 		public:
-			constexpr SampleMatrixViewDraw() = default;
+			SampleMatrixViewDraw() = default;
 			template<typename Matrix_> //maybe_unused
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void draw(const Matrix_&, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t, const ::std::int_fast32_t) const noexcept {}
@@ -83,7 +83,7 @@ namespace dtl {
 			}
 
 			//コンストラクタ
-			constexpr MatrixView() = default;
+			MatrixView() = default;
 			constexpr MatrixView(const ::std::int_fast32_t window_width_, const ::std::int_fast32_t window_height_, const ::std::int_fast32_t pixel_width_, const ::std::int_fast32_t pixel_height_, const double target_x_, const double target_y_) noexcept
 				:window_width(window_width_),
 				window_height(window_height_),

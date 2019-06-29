@@ -130,7 +130,7 @@ namespace dtl {
 			}
 
 			//コンストラクタ
-			constexpr MazeDig3D() = default;
+			MazeDig3D() = default;
 			constexpr MazeDig3D(const Matrix_Int_ & empty_value_)
 				:empty_value(empty_value_) {}
 			constexpr MazeDig3D(const Matrix_Int_ & empty_value_, const Matrix_Int_ & wall_value_)

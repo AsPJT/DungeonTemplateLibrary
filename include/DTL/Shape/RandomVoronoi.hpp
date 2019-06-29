@@ -363,7 +363,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr RandomVoronoi() = default;
+			RandomVoronoi() = default;
 			constexpr explicit RandomVoronoi(const ::dtl::type::size draw_value_) noexcept
 				:voronoiDiagram(draw_value_) {}
 			constexpr explicit RandomVoronoi(const ::dtl::type::size draw_value_, const double probability_value_) noexcept

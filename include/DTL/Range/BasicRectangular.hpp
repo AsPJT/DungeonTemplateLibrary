@@ -67,7 +67,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr BasicRectangular() = default;
+			BasicRectangular() = default;
 			constexpr explicit BasicRectangular(const ::dtl::base::MatrixRange3D & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y), start_z(matrix_range_.z),
 				size_x(matrix_range_.w), size_y(matrix_range_.h), size_z(matrix_range_.d) {}

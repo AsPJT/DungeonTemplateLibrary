@@ -471,7 +471,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 			
-			constexpr OutputString() = default;
+			OutputString() = default;
 			template<typename ...Args_>
 			explicit OutputString(const OutputStringName_ & first_, const Args_ & ... args_) noexcept {
 				this->string_String(first_, args_...);

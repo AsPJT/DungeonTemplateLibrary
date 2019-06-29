@@ -28,7 +28,7 @@ namespace dtl {
 				//四角形の位置と大きさ
 				template<typename Matrix_Int_>
 				struct RogueLikeOutputNumber {
-					constexpr RogueLikeOutputNumber() = default;
+					RogueLikeOutputNumber() = default;
 					//位置
 					Matrix_Int_ x{}, y{};
 					//大きさ
@@ -55,7 +55,7 @@ namespace dtl {
 				class RogueLike {
 				public:
 					//コンストラクタ
-					constexpr RogueLike() = default;
+					RogueLike() = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
 						explicit RogueLike(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
@@ -285,7 +285,7 @@ namespace dtl {
 				class RogueLikeCave {
 				public:
 					//コンストラクタ
-					constexpr RogueLikeCave() = default;
+					RogueLikeCave() = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
 						explicit RogueLikeCave(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {

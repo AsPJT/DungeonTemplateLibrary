@@ -85,7 +85,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr RectangularBaseWithValue() = default;
+			RectangularBaseWithValue() = default;
 			constexpr explicit RectangularBaseWithValue(const Matrix_Int_& draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept

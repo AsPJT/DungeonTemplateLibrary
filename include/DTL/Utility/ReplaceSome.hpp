@@ -647,7 +647,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr ReplaceSome() = default;
+			ReplaceSome() = default;
 			constexpr explicit ReplaceSome(const ::dtl::type::size replace_num_) noexcept
 				:replace_num(replace_num_) {}
 			constexpr explicit ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_& after_value) noexcept

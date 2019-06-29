@@ -445,7 +445,7 @@ namespace dtl {
 
 			///// コンストラクタ (Constructor) /////
 
-			constexpr WriteNumber() = default;
+			WriteNumber() = default;
 
 			constexpr explicit WriteNumber(const OutputString_& new_line_string_) noexcept
 				:new_line_string(new_line_string_) {}
