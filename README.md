@@ -12,13 +12,13 @@
 
 ## Overview
 
-### [**Version 0.4.9**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
+### [**Version 0.4.10**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
 
 |Compiler|C++17|C++14|C++11|
 |:---|:---|:---|:---|
 |MSVC|14.0-passing|14.0-passing|14.0-passing|
 |GCC|5.1.0-passing|4.9.0-passing|4.8.1-passing|
-|Clang|5.0.0-passing|3.6.0-passing|3.6.0-passing|
+|Clang|5.0.0-passing|3.6.0-passing|3.4.0-passing|
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
 
