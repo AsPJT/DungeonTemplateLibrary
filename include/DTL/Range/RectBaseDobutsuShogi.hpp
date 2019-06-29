@@ -38,7 +38,7 @@ namespace dtl {
 
 			DobutsuShogiList() = default;
 
-			constexpr explicit DobutsuShogiList(
+			constexpr DobutsuShogiList(
 				const Matrix_Int_& chick_1_,
 				const Matrix_Int_& chick_2_,
 				const Matrix_Int_& hen_1_,
@@ -60,7 +60,7 @@ namespace dtl {
 				lion_1(lion_1_),
 				lion_2(lion_2_) {}
 
-			constexpr explicit DobutsuShogiList(
+			constexpr DobutsuShogiList(
 				const Matrix_Int_& chick_,
 				const Matrix_Int_& hen_,
 				const Matrix_Int_& giraffe_,
@@ -365,13 +365,13 @@ namespace dtl {
 			RectBaseDobutsuShogi() = default;
 			constexpr explicit RectBaseDobutsuShogi(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectBaseDobutsuShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr RectBaseDobutsuShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseDobutsuShogi(const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
 				:dobutsuShogiList(draw_value_) {}
 
-			constexpr explicit RectBaseDobutsuShogi(
+			constexpr RectBaseDobutsuShogi(
 				const Matrix_Int_& chick_1_, const Matrix_Int_& chick_2_,
 				const Matrix_Int_& hen_1_, const Matrix_Int_& hen_2_,
 				const Matrix_Int_& giraffe_1_, const Matrix_Int_& giraffe_2_,
@@ -379,15 +379,15 @@ namespace dtl {
 				const Matrix_Int_& lion_1_, const Matrix_Int_& lion_2_) noexcept :
 				dobutsuShogiList(chick_1_, chick_2_, hen_1_, hen_2_, giraffe_1_, giraffe_2_, elephant_1_, elephant_2_, lion_1_, lion_2_) {}
 
-			constexpr explicit RectBaseDobutsuShogi(
+			constexpr RectBaseDobutsuShogi(
 				const Matrix_Int_& chick_, const Matrix_Int_& hen_,
 				const Matrix_Int_& giraffe_, const Matrix_Int_& elephant_, const Matrix_Int_& lion_) noexcept :
 				dobutsuShogiList(chick_, chick_, hen_, hen_, giraffe_, giraffe_, elephant_, elephant_, lion_, lion_) {}
 
-			constexpr explicit RectBaseDobutsuShogi(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
+			constexpr RectBaseDobutsuShogi(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
 				:RectBase_t(matrix_range_),
 				dobutsuShogiList(draw_value_) {}
-			constexpr explicit RectBaseDobutsuShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
+			constexpr RectBaseDobutsuShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::range::DobutsuShogiList<Matrix_Int_>& draw_value_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				dobutsuShogiList(draw_value_) {}
 		};

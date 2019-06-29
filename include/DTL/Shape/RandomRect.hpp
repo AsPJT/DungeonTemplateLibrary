@@ -511,27 +511,27 @@ namespace dtl {
 			RandomRect() = default;
 			constexpr explicit RandomRect(const Matrix_Int_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr explicit RandomRect(const Matrix_Int_ & draw_value_, const double probability_) noexcept
+			constexpr RandomRect(const Matrix_Int_ & draw_value_, const double probability_) noexcept
 				:draw_value(draw_value_), probability_value(probability_) {}
 			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
-			constexpr explicit RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
+			constexpr RandomRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_), probability_value(probability_) {}
-			constexpr explicit RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}
-			constexpr explicit RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
+			constexpr RandomRect(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_, const double probability_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_), probability_value(probability_) {}

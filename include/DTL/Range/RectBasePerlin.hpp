@@ -161,41 +161,41 @@ namespace dtl {
 			RectBasePerlin() = default;
 			constexpr explicit RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBasePerlin(const double frequency_) noexcept
 				:frequency(frequency_) {}
-			constexpr explicit RectBasePerlin(const double frequency_, const Index_Size octaves_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_) noexcept
 				:frequency(frequency_), octaves(octaves_) {}
-			constexpr explicit RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr explicit RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
-			constexpr explicit RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_) {}
-			constexpr explicit RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_) {}
-			constexpr explicit RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr explicit RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
-			constexpr explicit RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_) {}
-			constexpr explicit RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_) {}
-			constexpr explicit RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr explicit RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 		};

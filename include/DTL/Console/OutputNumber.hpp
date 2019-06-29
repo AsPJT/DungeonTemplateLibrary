@@ -486,27 +486,27 @@ namespace dtl {
 			OutputNumber() = default;
 			constexpr explicit OutputNumber(const OutputString_ & draw_string_) noexcept
 				:after_string(draw_string_) {}
-			constexpr explicit OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+			constexpr OutputNumber(const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:after_string(draw_string_), before_string(before_draw_string_) {}
 
-			constexpr OutputNumber(const ::dtl::base::MatrixRange& matrix_range_)
+			constexpr explicit OutputNumber(const ::dtl::base::MatrixRange& matrix_range_)
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& draw_string_) noexcept
+			constexpr OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), after_string(draw_string_) {}
-			constexpr explicit OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& before_draw_string_, const OutputString_& draw_string_) noexcept
+			constexpr OutputNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& before_draw_string_, const OutputString_& draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), after_string(draw_string_), before_string(before_draw_string_) {}
 
-			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
+			constexpr OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				after_string(draw_string_) {}
-			constexpr explicit OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+			constexpr OutputNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				after_string(draw_string_), before_string(before_draw_string_) {}

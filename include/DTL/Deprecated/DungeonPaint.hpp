@@ -38,7 +38,7 @@ namespace dtl {
 			Bucket() = default;
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				explicit Bucket(Matrix_& matrix_, const ::std::int_fast32_t col_, const ::std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
+				Bucket(Matrix_& matrix_, const ::std::int_fast32_t col_, const ::std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
 				paint(matrix_, col_, row_, paint_value_);
 			}
 		private:

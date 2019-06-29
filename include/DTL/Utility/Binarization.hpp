@@ -449,29 +449,29 @@ namespace dtl {
 			Binarization() = default;
 			constexpr explicit Binarization(const Matrix_Int_ & true_value_) noexcept
 				:true_value(true_value_) {}
-			constexpr explicit Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
+			constexpr Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
 				:true_value(true_value_), false_value(false_value_) {}
 
 			constexpr explicit Binarization(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
+			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_) {}
-			constexpr explicit Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
+			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_), false_value(false_value_) {}
 
-			constexpr explicit Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_) noexcept
+			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_value(true_value_) {}
-			constexpr explicit Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
+			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_value(true_value_), false_value(false_value_) {}

@@ -354,18 +354,18 @@ namespace dtl {
 			PointGridWithBorder() = default;
 			constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(draw_value_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			constexpr PointGridWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(draw_value2_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:borderOdd(end_x_, end_y_, width_, height_), pointGrid(end_x_, end_y_, width_, height_) {}
-			constexpr explicit PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
+			constexpr PointGridWithBorder(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(end_x_, end_y_, width_, height_, draw_value_), pointGrid(end_x_, end_y_, width_, height_, draw_value_) {}
 
 			constexpr explicit PointGridWithBorder(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:borderOdd(matrix_range_), pointGrid(matrix_range_) {}
-			constexpr explicit PointGridWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr PointGridWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:borderOdd(matrix_range_, draw_value_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			constexpr PointGridWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
 		};
 	}

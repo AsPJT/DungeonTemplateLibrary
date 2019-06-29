@@ -542,29 +542,29 @@ namespace dtl {
 			OutputStringBool() = default;
 			constexpr explicit OutputStringBool(const OutputString_ & true_string_) noexcept
 				:true_string(true_string_) {}
-			constexpr explicit OutputStringBool(const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
+			constexpr OutputStringBool(const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
 				:false_string(false_string_), true_string(true_string_) {}
 
-			constexpr OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_)
+			constexpr explicit OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_)
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_) noexcept
+			constexpr OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_string(true_string_) {}
-			constexpr explicit OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
+			constexpr OutputStringBool(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& true_string_, const OutputString_& false_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				false_string(false_string_), true_string(true_string_) {}
 
-			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_) noexcept
+			constexpr OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_string(true_string_) {}
-			constexpr explicit OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
+			constexpr OutputStringBool(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_ & true_string_, const OutputString_ & false_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				false_string(false_string_), true_string(true_string_) {}

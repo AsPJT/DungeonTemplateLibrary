@@ -76,7 +76,7 @@ namespace dtl {
 /*#######################################################################################
 	[概要] 描画範囲指定のコンストラクタ
 #######################################################################################*/
-			constexpr explicit BasicRect(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr BasicRect(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
 

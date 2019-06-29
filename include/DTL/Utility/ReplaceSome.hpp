@@ -650,10 +650,10 @@ namespace dtl {
 			ReplaceSome() = default;
 			constexpr explicit ReplaceSome(const ::dtl::type::size replace_num_) noexcept
 				:replace_num(replace_num_) {}
-			constexpr explicit ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_& after_value) noexcept
+			constexpr ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_& after_value) noexcept
 				:after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			explicit ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value), replace_num(replace_num_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
 				::dtl::type::sortVector(before_value);
@@ -661,16 +661,16 @@ namespace dtl {
 			constexpr explicit ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit ReplaceSome(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size replace_num_) noexcept
+			constexpr ReplaceSome(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size replace_num_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				replace_num(replace_num_) {}
-			constexpr explicit ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value) noexcept
+			constexpr ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			explicit ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {

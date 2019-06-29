@@ -466,14 +466,14 @@ namespace dtl {
 			constexpr explicit VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size draw_value_) noexcept
+			constexpr VoronoiDiagram(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::type::size draw_value_) noexcept
+			constexpr VoronoiDiagram(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::type::size draw_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}

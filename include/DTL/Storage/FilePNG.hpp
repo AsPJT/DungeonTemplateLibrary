@@ -65,13 +65,13 @@ namespace dtl {
 
 			using FileBase_t::FileBase_t;
 
-			constexpr explicit FilePNG(const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
+			constexpr FilePNG(const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
 				:FileBase_t(write_value_, color_num_), stride_in_bytes(stride_in_bytes_) {}
 
-			constexpr explicit FilePNG(const ::dtl::base::MatrixRange& matrix_range_, const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
+			constexpr FilePNG(const ::dtl::base::MatrixRange& matrix_range_, const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
 				:FileBase_t(matrix_range_, write_value_, color_num_), stride_in_bytes(stride_in_bytes_) {}
 
-			constexpr explicit FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
+			constexpr FilePNG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string& write_value_, const ::dtl::type::size color_num_, const int stride_in_bytes_)
 				:FileBase_t(end_x_, end_y_, width_, height_, write_value_, color_num_), stride_in_bytes(stride_in_bytes_) {}
 		};
 	}

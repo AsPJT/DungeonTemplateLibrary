@@ -371,22 +371,22 @@ namespace dtl {
 			SimpleVoronoiIsland() = default;
 			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_) noexcept
 				:voronoiDiagram(voronoi_num_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_), land_value(land_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
 				:voronoiDiagram(voronoi_num_), probability_value(probability_value_), land_value(land_value_), sea_value(sea_value_) {}
 
 			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:voronoiDiagram(matrix_range_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_), land_value(land_value_) {}
-			constexpr explicit SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
+			constexpr SimpleVoronoiIsland(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::type::size voronoi_num_, const double probability_value_, const Matrix_Int_& land_value_, const Matrix_Int_& sea_value_) noexcept
 				:voronoiDiagram(matrix_range_, voronoi_num_), probability_value(probability_value_), land_value(land_value_), sea_value(sea_value_) {}
 		};
 	}

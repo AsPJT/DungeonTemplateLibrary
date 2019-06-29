@@ -65,13 +65,13 @@ namespace dtl {
 
 			using FileBase_t::FileBase_t;
 
-			constexpr explicit FileJPG(const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
+			constexpr FileJPG(const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
 				:FileBase_t(write_value_, color_num_), quality(quality_) {}
 
-			constexpr explicit FileJPG(const ::dtl::base::MatrixRange & matrix_range_, const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
+			constexpr FileJPG(const ::dtl::base::MatrixRange & matrix_range_, const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
 				:FileBase_t(matrix_range_, write_value_, color_num_), quality(quality_) {}
 
-			constexpr explicit FileJPG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
+			constexpr FileJPG(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string & write_value_, const ::dtl::type::size color_num_, const int quality_)
 				:FileBase_t(end_x_, end_y_, width_, height_, write_value_, color_num_), quality(quality_) {}
 		};
 	}

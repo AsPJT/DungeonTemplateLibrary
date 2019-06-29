@@ -492,29 +492,29 @@ namespace dtl {
 			Reversi() = default;
 			constexpr explicit Reversi(const Matrix_Int_ & black_value_) noexcept
 				:black_value(black_value_) {}
-			constexpr explicit Reversi(const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
 				:black_value(black_value_), white_value(white_value_) {}
 
 			constexpr explicit Reversi(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit Reversi(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & black_value_) noexcept
+			constexpr Reversi(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & black_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_) {}
-			constexpr explicit Reversi(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_), white_value(white_value_) {}
 
-			constexpr explicit Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr explicit Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & black_value_) noexcept
+			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & black_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				black_value(black_value_) {}
-			constexpr explicit Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				black_value(black_value_), white_value(white_value_) {}

@@ -536,7 +536,7 @@ namespace dtl {
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
 			template<typename ...Args_>
-			explicit HalfMixRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			HalfMixRect(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {
 				this->string_String(first_, args_...);

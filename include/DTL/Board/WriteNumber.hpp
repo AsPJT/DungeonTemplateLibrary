@@ -449,36 +449,36 @@ namespace dtl {
 
 			constexpr explicit WriteNumber(const OutputString_& new_line_string_) noexcept
 				:new_line_string(new_line_string_) {}
-			constexpr explicit WriteNumber(const OutputString_& new_line_string_, const OutputString_& draw_string_) noexcept
+			constexpr WriteNumber(const OutputString_& new_line_string_, const OutputString_& draw_string_) noexcept
 				:new_line_string(new_line_string_), draw_string(draw_string_) {}
-			constexpr explicit WriteNumber(const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+			constexpr WriteNumber(const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:new_line_string(new_line_string_), draw_string(draw_string_), before_draw_string(before_draw_string_) {}
 
-			constexpr WriteNumber(const ::dtl::base::MatrixRange & matrix_range_)
+			constexpr explicit WriteNumber(const ::dtl::base::MatrixRange & matrix_range_)
 				: start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit WriteNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& new_line_string_) noexcept
+			constexpr WriteNumber(const ::dtl::base::MatrixRange& matrix_range_, const OutputString_& new_line_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), new_line_string(new_line_string_) {}
-			constexpr explicit WriteNumber(const ::dtl::base::MatrixRange & matrix_range_, const OutputString_& new_line_string_, const OutputString_ & draw_string_) noexcept
+			constexpr WriteNumber(const ::dtl::base::MatrixRange & matrix_range_, const OutputString_& new_line_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), new_line_string(new_line_string_), draw_string(draw_string_) {}
-			constexpr explicit WriteNumber(const ::dtl::base::MatrixRange & matrix_range_, const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+			constexpr WriteNumber(const ::dtl::base::MatrixRange & matrix_range_, const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h), new_line_string(new_line_string_), draw_string(draw_string_), before_draw_string(before_draw_string_) {}
 
-			constexpr explicit WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_) noexcept
+			constexpr WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				new_line_string(new_line_string_) {}
-			constexpr explicit WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_, const OutputString_ & draw_string_) noexcept
+			constexpr WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				new_line_string(new_line_string_), draw_string(draw_string_) {}
-			constexpr explicit WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
+			constexpr WriteNumber(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputString_& new_line_string_, const OutputString_ & before_draw_string_, const OutputString_ & draw_string_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				new_line_string(new_line_string_), draw_string(draw_string_), before_draw_string(before_draw_string_) {}

@@ -209,14 +209,14 @@ namespace dtl {
 			RectBaseShogi() = default;
 			constexpr explicit RectBaseShogi(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectBaseShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr RectBaseShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
 			constexpr explicit RectBaseShogi(const ::dtl::base::ShogiList<Matrix_Int_>& draw_value_) noexcept
 				:shogiList(draw_value_) {}
 
 			//28
-			constexpr explicit RectBaseShogi(
+			constexpr RectBaseShogi(
 				const Matrix_Int_& fuhyo_1_, const Matrix_Int_& fuhyo_2_,
 				const Matrix_Int_& tokin_1_, const Matrix_Int_& tokin_2_,
 				const Matrix_Int_& kyosha_1_, const Matrix_Int_& kyosha_2_,
@@ -235,7 +235,7 @@ namespace dtl {
 					narigin_1_, narigin_2_, hisha_1_, hisha_2_, ryuo_1_, ryuo_2_, kakugyo_1_, kakugyo_2_, ryuma_1_, ryuma_2_, kinsho_1_, kinsho_2_, osho_, gyokusho_) {}
 
 			//14
-			constexpr explicit RectBaseShogi(
+			constexpr RectBaseShogi(
 				const Matrix_Int_& fuhyo_, const Matrix_Int_& tokin_,
 				const Matrix_Int_& kyosha_, const Matrix_Int_& narikyo_,
 				const Matrix_Int_& keima_, const Matrix_Int_& narikei_,
@@ -246,10 +246,10 @@ namespace dtl {
 				shogiList(fuhyo_, fuhyo_, tokin_, tokin_, kyosha_, kyosha_, narikyo_, narikyo_, keima_, keima_, narikei_, narikei_, ginsho_, ginsho_,
 					narigin_, narigin_, hisha_, hisha_, ryuo_, ryuo_, kakugyo_, kakugyo_, ryuma_, ryuma_, kinsho_, kinsho_, osho_, osho_) {}
 
-			constexpr explicit RectBaseShogi(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::base::ShogiList<Matrix_Int_>& draw_value_) noexcept
+			constexpr RectBaseShogi(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::base::ShogiList<Matrix_Int_>& draw_value_) noexcept
 				:RectBase_t(matrix_range_),
 				shogiList(draw_value_) {}
-			constexpr explicit RectBaseShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::base::ShogiList<Matrix_Int_>& draw_value_) noexcept
+			constexpr RectBaseShogi(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::base::ShogiList<Matrix_Int_>& draw_value_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				shogiList(draw_value_) {}
 		};

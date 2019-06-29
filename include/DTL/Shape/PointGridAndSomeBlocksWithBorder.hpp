@@ -371,23 +371,23 @@ namespace dtl {
 			PointGridAndSomeBlocksWithBorder() = default;
 			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_) noexcept
 				:randomRect(draw_value_), borderOdd(draw_value_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(draw_value2_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
 				:randomRect(draw_value3_), borderOdd(draw_value2_), pointGrid(draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
 				:randomRect(draw_value3_, probability_), borderOdd(draw_value2_), pointGrid(draw_value_) {}
 
 
 			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_) noexcept
 				:randomRect(matrix_range_), borderOdd(matrix_range_), pointGrid(matrix_range_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:randomRect(matrix_range_, draw_value_), borderOdd(matrix_range_, draw_value_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_) noexcept
 				:borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_) noexcept
 				:randomRect(matrix_range_, draw_value3_), borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
-			constexpr explicit PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
+			constexpr PointGridAndSomeBlocksWithBorder(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& draw_value_, const Matrix_Int_& draw_value2_, const Matrix_Int_& draw_value3_, const double probability_) noexcept
 				:randomRect(matrix_range_, draw_value3_, probability_), borderOdd(matrix_range_, draw_value2_), pointGrid(matrix_range_, draw_value_) {}
 
 		};

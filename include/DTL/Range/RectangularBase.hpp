@@ -58,7 +58,7 @@ namespace dtl {
 			RectangularBase() = default;
 			constexpr explicit RectangularBase(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectangularBase(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
+			constexpr RectangularBase(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
 				:RectBase_t(start_x_, start_y_, start_z_, size_x_, size_y_, size_z_) {}
 		};
 	}

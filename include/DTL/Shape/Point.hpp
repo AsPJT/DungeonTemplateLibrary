@@ -39,8 +39,8 @@ namespace dtl {
 				::dtl::type::size x{}, y{};
 				Matrix_Int_ value{ 1 };
 			public:
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
 
 				template<typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
@@ -102,8 +102,8 @@ namespace dtl {
 				::dtl::type::size x{}, y{};
 				Matrix_Int_ value{ 1 };
 			public:
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
 
 				template<typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
@@ -156,8 +156,8 @@ namespace  dtl {
 				::dtl::type::size x{}, y{};
 				Matrix_Int_ value{ 1 };
 			public:
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
-				constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
+				constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
 
 				template<typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
@@ -199,8 +199,8 @@ namespace  dtl {
 					::dtl::type::size x{}, y{};
 					Matrix_Int_ value{ 1 };
 				public:
-					constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
-					constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+					constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
+					constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
 
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
@@ -248,8 +248,8 @@ namespace  dtl {
 					::dtl::type::size x{}, y{};
 					Matrix_Int_ value{ 1 };
 				public:
-					constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
-					constexpr explicit PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
+					constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept :x(x_), y(y_) {}
+					constexpr PointUnique(const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept :x(x_), y(y_), value(value_) {}
 
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR

@@ -375,10 +375,10 @@ namespace dtl {
 
 			CellularAutomatonMixIsland() = default;
 			template<typename ...Args_>
-			explicit CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:border(first_), mixRect(first_, args_...), loop_num(loop_num_) {}
 			template<typename ...Args_>
-			constexpr explicit CellularAutomatonMixIsland(const ::dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			constexpr CellularAutomatonMixIsland(const ::dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
 				:border(matrix_range_, first_), mixRect(matrix_range_, first_, args_...), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
 		};
 	}

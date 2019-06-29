@@ -90,11 +90,11 @@ namespace dtl {
 				:draw_value(draw_value_) {}
 			constexpr explicit RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr explicit RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_, const Matrix_Int_& draw_value_) noexcept
 				:RectBase_t(matrix_range_), draw_value(draw_value_) {}
-			constexpr explicit RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
+			constexpr RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
 				:RectBase_t(start_x_, start_y_, start_z_, size_x_, size_y_, size_z_) {}
-			constexpr explicit RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_, const Matrix_Int_& draw_value_) noexcept
+			constexpr RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_, const Matrix_Int_& draw_value_) noexcept
 				:RectBase_t(start_x_, start_y_, start_z_, size_x_, size_y_, size_z_), draw_value(draw_value_) {}
 		};
 	}

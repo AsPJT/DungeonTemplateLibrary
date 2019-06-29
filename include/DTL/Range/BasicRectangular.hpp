@@ -71,10 +71,10 @@ namespace dtl {
 			constexpr explicit BasicRectangular(const ::dtl::base::MatrixRange3D & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y), start_z(matrix_range_.z),
 				size_x(matrix_range_.w), size_y(matrix_range_.h), size_z(matrix_range_.d) {}
-			constexpr explicit BasicRectangular(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
+			constexpr BasicRectangular(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
 				:start_x(start_x_), start_y(start_y_), start_z(start_z_),
 				size_x(size_x_), size_y(size_y_), size_z(size_z_) {}
-			constexpr explicit BasicRectangular(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size length_) noexcept
+			constexpr BasicRectangular(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size length_) noexcept
 				:start_x(start_x_), start_y(start_y_), start_z(start_z_),
 				size_x(length_), size_y(length_), size_z(length_) {}
 

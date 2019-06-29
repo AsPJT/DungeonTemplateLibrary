@@ -363,7 +363,7 @@ namespace dtl {
 					Chess() = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						explicit Chess(Matrix_& matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept {
+						Chess(Matrix_& matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_) noexcept {
 						create(matrix_, x_, y_);
 					}
 					template<typename Matrix_>
@@ -406,7 +406,7 @@ namespace dtl {
 					bool visited{};
 					::std::vector< ::std::shared_ptr<KnightTourNode>> next{};
 
-					explicit KnightTourNode(const ::std::int_fast32_t row_, const ::std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
+					KnightTourNode(const ::std::int_fast32_t row_, const ::std::int_fast32_t col_) noexcept : row(row_), col(col_), visited(false) {}
 				};
 
 				class KnightTourIsUnvisited {
@@ -552,7 +552,7 @@ namespace dtl {
 					//コンストラクタ
 					KnightTour() = default;
 					template<typename Matrix_>
-					explicit KnightTour(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) noexcept {
+					KnightTour(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) noexcept {
 						create(matrix_, x_, y_, start_x_, start_y_, is_closed_, mod_value_);
 					}
 

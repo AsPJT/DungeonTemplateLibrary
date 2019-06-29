@@ -431,16 +431,16 @@ namespace dtl {
 			OutputView() = default;
 			constexpr explicit OutputView(const OutputView_& view_) noexcept
 				:view_width(view_), view_height(view_) {}
-			constexpr explicit OutputView(const OutputView_& view_width_, const OutputView_& view_height_) noexcept
+			constexpr OutputView(const OutputView_& view_width_, const OutputView_& view_height_) noexcept
 				:view_width(view_width_), view_height(view_height_) {}
-			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
+			constexpr OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				view_width(view_), view_height(view_) {}
-			constexpr explicit OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
+			constexpr OutputView(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputView_& view_width_, const OutputView_& view_height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				view_width(view_width_), view_height(view_height_) {}

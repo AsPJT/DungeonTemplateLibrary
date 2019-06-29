@@ -106,17 +106,17 @@ namespace dtl {
 
 			using FileBase_t::FileBase_t;
 
-			constexpr explicit FileTerrainOBJ(const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
+			constexpr FileTerrainOBJ(const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
 				:FileBase_t(write_value_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
 
-			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
+			constexpr FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
 				:FileBase_t(matrix_range_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
+			constexpr FileTerrainOBJ(const ::dtl::base::MatrixRange & matrix_range_, const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
 				:FileBase_t(matrix_range_, write_value_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
 
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
+			constexpr FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
 				:FileBase_t(end_x_, end_y_, width_, height_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
-			constexpr explicit FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
+			constexpr FileTerrainOBJ(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const ::std::string & write_value_, const Value_Int_ & value_x_, const Value_Int_ & value_y_, const Value_Int_ & value_z_)
 				:FileBase_t(end_x_, end_y_, width_, height_, write_value_), value_x(value_x_), value_y(value_y_), value_z(value_z_) {}
 		};
 	}

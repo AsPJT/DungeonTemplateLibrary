@@ -377,28 +377,28 @@ namespace dtl {
 			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_) noexcept
 				:randomRect(draw_value_) {}
 
-			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
+			constexpr CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
 				:border(draw_value2_), randomRect(draw_value_) {}
-			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_) noexcept
+			constexpr CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_) noexcept
 				:border(draw_value2_), randomRect(draw_value_), loop_num(loop_num_) {}
-			constexpr explicit CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_, const double probability_) noexcept
+			constexpr CellularAutomatonIsland(const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_, const double probability_) noexcept
 				:border(draw_value2_), randomRect(draw_value_, probability_), loop_num(loop_num_) {}
 
-			constexpr explicit CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:border(end_x_, end_y_, width_, height_), randomRect(end_x_, end_y_, width_, height_) {}
-			constexpr explicit CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr CellularAutomatonIsland(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
 				:border(end_x_, end_y_, width_, height_), randomRect(end_x_, end_y_, width_, height_, draw_value_) {}
 
 			constexpr explicit CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:border(matrix_range_), randomRect(matrix_range_), cellularAutomation(matrix_range_) {}
-			constexpr explicit CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
 				:randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_) {}
 
-			constexpr explicit CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
+			constexpr CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_) noexcept
 				:border(matrix_range_, draw_value2_), randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_) {}
-			constexpr explicit CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_) noexcept
+			constexpr CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_) noexcept
 				:border(matrix_range_, draw_value2_), randomRect(matrix_range_, draw_value_), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
-			constexpr explicit CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_, const double probability_) noexcept
+			constexpr CellularAutomatonIsland(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_, const Matrix_Int_ & draw_value2_, const Index_Size & loop_num_, const double probability_) noexcept
 				:border(matrix_range_, draw_value2_), randomRect(matrix_range_, draw_value_, probability_), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
 		};
 	}

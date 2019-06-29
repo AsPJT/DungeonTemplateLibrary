@@ -58,7 +58,7 @@ namespace dtl {
 					RogueLike() = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						explicit RogueLike(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
+						RogueLike(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
 					//マップ生成
@@ -288,7 +288,7 @@ namespace dtl {
 					RogueLikeCave() = default;
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						explicit RogueLikeCave(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
+						RogueLikeCave(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) noexcept {
 						create(matrix_, way_max_);
 					}
 					//ワールドマップ生成

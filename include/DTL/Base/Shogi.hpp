@@ -50,7 +50,7 @@ namespace dtl {
 
 			ShogiList() = default;
 
-			constexpr explicit ShogiList(
+			constexpr ShogiList(
 				const Matrix_Int_& fuhyo_1_,
 				const Matrix_Int_& fuhyo_2_,
 				const Matrix_Int_& tokin_1_,
@@ -108,7 +108,7 @@ namespace dtl {
 				osho(osho_),
 				gyokusho(gyokusho_) {}
 
-			constexpr explicit ShogiList(
+			constexpr ShogiList(
 				const Matrix_Int_& fuhyo_,
 				const Matrix_Int_& tokin_,
 				const Matrix_Int_& kyosha_,

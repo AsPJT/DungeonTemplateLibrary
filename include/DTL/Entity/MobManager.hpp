@@ -77,8 +77,8 @@ namespace dtl {
 
 		public:
 			constexpr explicit MobManager() noexcept :can_walk_direction(0xFF) {}
-			constexpr explicit MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) noexcept :x(x_), y(y_), can_walk_direction(0xFF) {}
-			constexpr explicit MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const double walk_speed_) noexcept
+			constexpr MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) noexcept :x(x_), y(y_), can_walk_direction(0xFF) {}
+			constexpr MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0xFF) {}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR

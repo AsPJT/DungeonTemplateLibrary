@@ -518,7 +518,7 @@ namespace dtl {
 			constexpr explicit ReplaceAll(const Matrix_Int_ & after_value_) noexcept
 				:after_value(after_value_) {}
 			template<typename ...Args_>
-			explicit ReplaceAll(const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
+			ReplaceAll(const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
 				::dtl::type::sortVector(before_value);
@@ -526,12 +526,12 @@ namespace dtl {
 			constexpr explicit ReplaceAll(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr explicit ReplaceAll(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
+			constexpr ReplaceAll(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & after_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {}
 			template<typename ...Args_>
-			explicit ReplaceAll(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
+			ReplaceAll(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& after_value_, const Matrix_Int_& first_before_value_, const Args_& ... second_and_subsequent_before_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value_) {

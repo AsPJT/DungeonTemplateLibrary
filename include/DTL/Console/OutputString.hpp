@@ -483,19 +483,19 @@ namespace dtl {
 				width(matrix_range_.w), height(matrix_range_.h) {}
 
 			template<typename ...Args_>
-			explicit OutputString(const ::dtl::base::MatrixRange& matrix_range_, const OutputStringName_& first_, const Args_& ... args_) noexcept
+			OutputString(const ::dtl::base::MatrixRange& matrix_range_, const OutputStringName_& first_, const Args_& ... args_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {
 				this->string_String(first_, args_...);
 			}
 
 			template<typename ...Args_>
-			constexpr explicit OutputString(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
+			constexpr OutputString(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
 
 			template<typename ...Args_>
-			explicit OutputString(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
+			OutputString(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const OutputStringName_ & first_, const Args_ & ... args_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {
 				this->string_String(first_, args_...);
