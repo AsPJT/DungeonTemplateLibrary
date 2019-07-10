@@ -26,15 +26,9 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DTL_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_DTL_HPP
 
-/* DTL宣言マクロ */
-#ifndef DUNGEON_TEMPLATE_LIBRARY
-#define DUNGEON_TEMPLATE_LIBRARY
-#endif
+/* DTLマクロ一覧 */
+#include <DTL/Version/Version.hpp>
 
-/* バージョン */
-#ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20190710L)
-#endif
 
 
 /* 基本クラスライブラリ (::dtl::base) */
