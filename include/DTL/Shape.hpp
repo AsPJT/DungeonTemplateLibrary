@@ -16,6 +16,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_HPP
 
+#include <DTL/Shape/AscendingOrder.hpp>
 #include <DTL/Shape/Border.hpp>
 //Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
 #include <DTL/Shape/BorderOdd.hpp>
