@@ -7,12 +7,12 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_DIVISION_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_DIVISION_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_SUBTRACTION_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_SUBTRACTION_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::retouch::Division-(修正クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::retouch::Subtraction-(修正クラス)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
@@ -31,20 +31,20 @@ namespace dtl {
 	inline namespace retouch { //"dtl::retouch"名前空間に属する
 
 /*#######################################################################################
-	[概要] Divisionとは "Matrixの描画範囲を指定値で割り算する" 機能を持つクラスである。
-	[Summary] Division is a class that divides the drawing range of Matrix.
+	[概要] Subtractionとは "Matrixの描画範囲を指定値で引き算する" 機能を持つクラスである。
+	[Summary] Subtraction is a class that subtracts the drawing range of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Int_>
-		class Division : public ::dtl::range::RectBaseWithValue<Division<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<Division<Matrix_Int_>, Matrix_Int_> {
+		class Subtraction : public ::dtl::range::RectBaseWithValue<Subtraction<Matrix_Int_>, Matrix_Int_>,
+			public ::dtl::utility::DrawJagged<Subtraction<Matrix_Int_>, Matrix_Int_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Division, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Division, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Subtraction, Matrix_Int_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Subtraction, Matrix_Int_>;
 
 			friend DrawBase_t;
 
@@ -62,7 +62,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.div(col, row, this->draw_value, args_...);
+						matrix_.sub(col, row, this->draw_value, args_...);
 				}
 				return true;
 			}
@@ -78,7 +78,7 @@ namespace dtl {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.div(col, row, this->draw_value, args_...);
+						matrix_.sub(col, row, this->draw_value, args_...);
 				return true;
 			}
 
