@@ -16,6 +16,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
 
+#include <DTL/Retouch/Addition.hpp>
 #include <DTL/Retouch/BuryPoint.hpp>
 #include <DTL/Retouch/Division.hpp>
 #include <DTL/Retouch/Modulo.hpp>
