@@ -17,6 +17,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
 
 #include <DTL/Retouch/BuryPoint.hpp>
+#include <DTL/Retouch/Division.hpp>
 #include <DTL/Retouch/RemovePoint.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
