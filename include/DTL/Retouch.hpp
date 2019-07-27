@@ -18,6 +18,7 @@
 
 #include <DTL/Retouch/BuryPoint.hpp>
 #include <DTL/Retouch/Division.hpp>
+#include <DTL/Retouch/Modulo.hpp>
 #include <DTL/Retouch/RemovePoint.hpp>
 #include <DTL/Retouch/Subtraction.hpp>
 

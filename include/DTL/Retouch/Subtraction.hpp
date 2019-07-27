@@ -57,7 +57,7 @@ namespace dtl {
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Matrix_Int_ init{};
-				if (this->draw_value == init) return false;
+				if (this->draw_value == init) return true;
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
@@ -73,7 +73,7 @@ namespace dtl {
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Matrix_Int_ init{};
-				if (this->draw_value == init) return false;
+				if (this->draw_value == init) return true;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
