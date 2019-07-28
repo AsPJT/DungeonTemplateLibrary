@@ -37,17 +37,17 @@
 
 /* 補助バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_MINOR
-#define DUNGEON_TEMPLATE_LIBRARY_MINOR (10)
+#define DUNGEON_TEMPLATE_LIBRARY_MINOR (11)
 #endif
 
 /* 微修正バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_PATCHLEVEL
-#define DUNGEON_TEMPLATE_LIBRARY_PATCHLEVEL (1)
+#define DUNGEON_TEMPLATE_LIBRARY_PATCHLEVEL (0)
 #endif
 
 /* バージョン名 */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME "4.0.4.10.1 (https://github.com/Kasugaccho/DungeonTemplateLibrary)"
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME "4.0.4.11.0 (https://github.com/Kasugaccho/DungeonTemplateLibrary)"
 #endif
 
 #endif //Included Dungeon Template Library
