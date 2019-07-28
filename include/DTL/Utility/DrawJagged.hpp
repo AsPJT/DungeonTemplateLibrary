@@ -24,7 +24,6 @@
 namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
-		//マップの外枠を指定した数値で埋める
 		template<typename Derived, typename Matrix_Int_>
 		class DrawJagged {
 		private:
