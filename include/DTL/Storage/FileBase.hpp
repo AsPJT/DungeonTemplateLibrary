@@ -27,7 +27,7 @@
 namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
-		template<typename Derived, typename Matrix_Int_>
+		template<typename Derived, typename Matrix_Var_>
 		class FileBase : public ::dtl::range::RectBase<Derived> {
 
 

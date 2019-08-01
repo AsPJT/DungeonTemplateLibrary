@@ -26,7 +26,7 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class Binarization {
 		private:
 
@@ -43,8 +43,8 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			Matrix_Int_ true_value{};
-			Matrix_Int_ false_value{};
+			Matrix_Var_ true_value{};
+			Matrix_Var_ false_value{};
 
 
 			///// 代入処理 /////
@@ -199,7 +199,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->true_value;
 			}
 
@@ -447,19 +447,19 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			Binarization() = default;
-			constexpr explicit Binarization(const Matrix_Int_ & true_value_) noexcept
+			constexpr explicit Binarization(const Matrix_Var_ & true_value_) noexcept
 				:true_value(true_value_) {}
-			constexpr Binarization(const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
+			constexpr Binarization(const Matrix_Var_ & true_value_, const Matrix_Var_ & false_value_) noexcept
 				:true_value(true_value_), false_value(false_value_) {}
 
 			constexpr explicit Binarization(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_) noexcept
+			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& true_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_) {}
-			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& true_value_, const Matrix_Int_& false_value_) noexcept
+			constexpr Binarization(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& true_value_, const Matrix_Var_& false_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				true_value(true_value_), false_value(false_value_) {}
@@ -467,11 +467,11 @@ namespace dtl {
 			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_) noexcept
+			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_ & true_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_value(true_value_) {}
-			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & true_value_, const Matrix_Int_ & false_value_) noexcept
+			constexpr Binarization(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_ & true_value_, const Matrix_Var_ & false_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				true_value(true_value_), false_value(false_value_) {}

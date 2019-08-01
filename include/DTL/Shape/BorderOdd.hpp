@@ -35,17 +35,17 @@ namespace dtl {
 			行数が偶数の時[行数-2行目]のマスに描画値を設置する(※行/列は0から数える)" 機能を持つクラスである。
 	[Summary] BorderOdd is a class that sets the drawing value in one square around the drawing area of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class BorderOdd : public ::dtl::range::RectBaseWithValue<BorderOdd<Matrix_Int_>, Matrix_Int_>,
-		                  public ::dtl::utility::DrawJagged<BorderOdd<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class BorderOdd : public ::dtl::range::RectBaseWithValue<BorderOdd<Matrix_Var_>, Matrix_Var_>,
+		                  public ::dtl::utility::DrawJagged<BorderOdd<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<BorderOdd, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<BorderOdd, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<BorderOdd, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<BorderOdd, Matrix_Var_>;
 
 			friend DrawBase_t;
 

@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] Shogiとは "Matrixの描画範囲に将棋の駒を初期位置に設置する" 機能を持つクラスである。
 	[Summary] Shogi is a class that generates Shogi, a Japanese game, in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class Shogi : public ::dtl::range::RectBaseShogi<Shogi<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<Shogi<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class Shogi : public ::dtl::range::RectBaseShogi<Shogi<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<Shogi<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseShogi<Shogi, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Shogi, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseShogi<Shogi, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Shogi, Matrix_Var_>;
 
 			friend DrawBase_t;
 

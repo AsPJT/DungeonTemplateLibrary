@@ -33,7 +33,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
+		template<typename Matrix_Var_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
 		class MazeDig {
 		private:
 
@@ -50,8 +50,8 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 
-			Matrix_Int_ empty_value{};
-			Matrix_Int_ wall_value{};
+			Matrix_Var_ empty_value{};
+			Matrix_Var_ wall_value{};
 
 			//穴掘り
 			template<typename Matrix_>
@@ -68,7 +68,7 @@ namespace dtl {
 					}
 					if (static_cast<::dtl::type::ssize>(x_ + dx) <= static_cast<::dtl::type::ssize>(start_x) || 
 						static_cast<::dtl::type::ssize>(y_ + dy) <= static_cast<::dtl::type::ssize>(start_y) || 
-						(x_ + dx) >= j_max || (y_ + dy) >= i_max || static_cast<Matrix_Int_>(matrix_[y_ + dy][x_ + dx]) == this->empty_value) {
+						(x_ + dx) >= j_max || (y_ + dy) >= i_max || static_cast<Matrix_Var_>(matrix_[y_ + dy][x_ + dx]) == this->empty_value) {
 						++counter;
 					}
 					else if (matrix_[y_ + dy][x_ + dx] == this->wall_value) {
@@ -570,29 +570,29 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			MazeDig() = default;
-			constexpr explicit MazeDig(const Matrix_Int_ & empty_value_) noexcept
+			constexpr explicit MazeDig(const Matrix_Var_ & empty_value_) noexcept
 				:empty_value(empty_value_) {}
-			constexpr MazeDig(const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
+			constexpr MazeDig(const Matrix_Var_& empty_value_, const Matrix_Var_& wall_value_) noexcept
 				:empty_value(empty_value_), wall_value(wall_value_) {}
 			constexpr explicit MazeDig(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr MazeDig(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & empty_value_) noexcept
+			constexpr MazeDig(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Var_ & empty_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				empty_value(empty_value_) {}
-			constexpr MazeDig(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
+			constexpr MazeDig(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& empty_value_, const Matrix_Var_& wall_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				empty_value(empty_value_), wall_value(wall_value_) {}
 			constexpr MazeDig(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr MazeDig(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& empty_value_) noexcept
+			constexpr MazeDig(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& empty_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				empty_value(empty_value_) {}
-			constexpr MazeDig(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& empty_value_, const Matrix_Int_& wall_value_) noexcept
+			constexpr MazeDig(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& empty_value_, const Matrix_Var_& wall_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				empty_value(empty_value_), wall_value(wall_value_) {}

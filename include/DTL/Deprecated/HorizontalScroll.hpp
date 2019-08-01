@@ -23,8 +23,8 @@ namespace dtl {
 		namespace horizontalScroll {
 			namespace stl {
 
-				template<typename Matrix_Int_, typename Matrix_>
-				void createMountain(Matrix_& matrix_, const Matrix_Int_ value_, const ::std::int_fast32_t rand_value_) noexcept {
+				template<typename Matrix_Var_, typename Matrix_>
+				void createMountain(Matrix_& matrix_, const Matrix_Var_ value_, const ::std::int_fast32_t rand_value_) noexcept {
 					//if (::dtl::utility::tool::isMatrixEmpty(matrix_)) return;
 
 					::std::int_fast32_t y{ static_cast< ::std::int_fast32_t>(matrix_.size() - 1) };

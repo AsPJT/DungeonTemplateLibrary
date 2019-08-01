@@ -32,7 +32,7 @@ namespace dtl {
 	[概要] OutputStringとは "Matrixの描画範囲の値を指定した文字列で出力する" 機能を持つクラスである。
 	[Summary] OutputString is a class that outputs Matrix values as strings.
 #######################################################################################*/
-		template<typename Matrix_Int_, typename OutputStringName_ = ::std::string>
+		template<typename Matrix_Var_, typename OutputStringName_ = ::std::string>
 		class OutputString {
 		private:
 

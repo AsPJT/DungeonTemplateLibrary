@@ -28,7 +28,7 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class ReplaceSome {
 		private:
 
@@ -46,8 +46,8 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			Matrix_Int_ after_value{};
-			DTL_TYPE_VECTOR<Matrix_Int_> before_value{};
+			Matrix_Var_ after_value{};
+			DTL_TYPE_VECTOR<Matrix_Var_> before_value{};
 			::dtl::type::size replace_num{};
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
@@ -55,7 +55,7 @@ namespace dtl {
 			template<typename Int_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void string_String(const Int_& first_, const Args_& ... args_) noexcept {
-				this->before_value.DTL_TYPE_VEMPLACE(static_cast<Matrix_Int_>(first_));
+				this->before_value.DTL_TYPE_VEMPLACE(static_cast<Matrix_Var_>(first_));
 				this->string_String(args_...);
 			}
 
@@ -400,7 +400,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->after_value;
 			}
 
@@ -650,10 +650,10 @@ namespace dtl {
 			ReplaceSome() = default;
 			constexpr explicit ReplaceSome(const ::dtl::type::size replace_num_) noexcept
 				:replace_num(replace_num_) {}
-			constexpr ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_& after_value) noexcept
+			constexpr ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Var_& after_value) noexcept
 				:after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			ReplaceSome(const ::dtl::type::size replace_num_, const Matrix_Var_ & after_value, const Matrix_Var_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:after_value(after_value), replace_num(replace_num_) {
 				this->string_String(first_before_value_, second_and_subsequent_before_value_...);
 				::dtl::type::sortVector(before_value);
@@ -665,12 +665,12 @@ namespace dtl {
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				replace_num(replace_num_) {}
-			constexpr ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value) noexcept
+			constexpr ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Var_ & after_value) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {}
 			template<typename ...Args_>
-			ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Int_ & after_value, const Matrix_Int_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
+			ReplaceSome(const ::dtl::base::MatrixRange & matrix_range_, const ::dtl::type::size replace_num_, const Matrix_Var_ & after_value, const Matrix_Var_ & first_before_value_, const Args_ & ... second_and_subsequent_before_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				after_value(after_value), replace_num(replace_num_) {

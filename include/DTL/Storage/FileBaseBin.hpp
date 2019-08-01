@@ -27,14 +27,14 @@
 namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
-		template<typename Derived, typename Matrix_Int_, typename UniquePtr_>
-		class FileBaseBin : public ::dtl::storage::FileBase<Derived, Matrix_Int_> {
+		template<typename Derived, typename Matrix_Var_, typename UniquePtr_>
+		class FileBaseBin : public ::dtl::storage::FileBase<Derived, Matrix_Var_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBase<Derived, Matrix_Int_>;
+			using FileBase_t = ::dtl::storage::FileBase<Derived, Matrix_Var_>;
 
 			friend FileBase_t;
 
@@ -73,31 +73,31 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename Function_>
 			bool write(const Matrix_& matrix, Function_&& function) const {
-				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Int_>(matrix), function);
+				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix), function);
 			}
 
 			//LayerSTL
 			template<typename Matrix_, typename Function_>
 			bool write(const Matrix_& matrix, const Index_Size layer, Function_&& function) const {
-				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Int_>(matrix, layer), function);
+				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix, layer), function);
 			}
 
 			//Normal
 			template<typename Matrix_, typename Function_>
 			bool write(const Matrix_& matrix, const Index_Size max_x, const Index_Size max_y, Function_&& function) const {
-				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Int_>(matrix, max_x, max_y), function);
+				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix, max_x, max_y), function);
 			}
 
 			//LayerNormal
 			template<typename Matrix_, typename Function_>
 			bool write(const Matrix_& matrix, const Index_Size layer, const Index_Size max_x, const Index_Size max_y, Function_&& function) const {
-				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Int_>(matrix, layer, max_x, max_y), function);
+				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix, layer, max_x, max_y), function);
 			}
 
 			//Array
 			template<typename Matrix_, typename Function_>
 			bool writeArray(const Matrix_& matrix, const Index_Size max_x, const Index_Size max_y, Function_&& function) const {
-				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Int_>(matrix, max_x, max_y), function);
+				return this->writeNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix, max_x, max_y), function);
 			}
 
 

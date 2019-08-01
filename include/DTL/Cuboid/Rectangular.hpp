@@ -31,15 +31,15 @@
 namespace dtl {
 	inline namespace cuboid { //"dtl::cuboid"名前空間に属する
 
-		template<class Matrix_Int_>
-		class Rectangular : public ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Int_>, Matrix_Int_> {
+		template<class Matrix_Var_>
+		class Rectangular : public ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Int_>, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectangularBaseWithValue< ::dtl::cuboid::Rectangular<Matrix_Var_>, Matrix_Var_>;
 
 			::std::size_t getLoopMaxValue(const ::std::size_t start_, const ::std::size_t size_, const ::std::size_t msize_) const noexcept {
 				return ((size_ <= 0) ? msize_ : DTL_TYPE_MIN(start_ + size_, msize_));

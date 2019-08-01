@@ -22,8 +22,8 @@ namespace dtl {
 	inline namespace ai {
 
 		//指定した場所に駒を置く
-		template<typename Matrix_Int_, typename Matrix_>
-		::dtl::type::size reversiPutPiece(Matrix_& matrix_, const ::dtl::type::size  col_, const ::dtl::type::size row_, const Matrix_Int_ turn_, const bool is_put_ = true) noexcept {
+		template<typename Matrix_Var_, typename Matrix_>
+		::dtl::type::size reversiPutPiece(Matrix_& matrix_, const ::dtl::type::size  col_, const ::dtl::type::size row_, const Matrix_Var_ turn_, const bool is_put_ = true) noexcept {
 			if (matrix_.size() == 0) return 0;
 			::dtl::type::size piece_turn_num{};
 			if (matrix_[row_][col_] > 0) return 0;
@@ -56,9 +56,9 @@ namespace dtl {
 		}
 
 		//パスの有無
-		template<typename Matrix_Int_, typename Matrix_>
+		template<typename Matrix_Var_, typename Matrix_>
 		DTL_VERSIONING_CPP14_CONSTEXPR
-			bool reversiIsPass(Matrix_ & matrix_, const Matrix_Int_ turn_) noexcept {
+			bool reversiIsPass(Matrix_ & matrix_, const Matrix_Var_ turn_) noexcept {
 			for (::dtl::type::size row{}; row < matrix_.size(); ++row)
 				for (::dtl::type::size col{}; col < matrix_[row].size(); ++col)
 					if (::dtl::ai::reversiPutPiece(matrix_, col, row, turn_, false)) return false;
@@ -67,9 +67,9 @@ namespace dtl {
 		//最初に見つけた置ける場所を選ぶ
 		class ReversiSimple {
 		public:
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				bool operator()(Matrix_& matrix_, const Matrix_Var_ turn_) const noexcept {
 				for (::dtl::type::size row{}; row < matrix_.size(); ++row)
 					for (::dtl::type::size col{}; col < matrix_[row].size(); ++col)
 						if (::dtl::ai::reversiPutPiece(matrix_, col, row, turn_, true)) return true;
@@ -79,9 +79,9 @@ namespace dtl {
 		//最も多くの駒が取れる場所を選ぶ
 		class ReversiGreed {
 		public:
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				bool operator()(Matrix_& matrix_, const Matrix_Var_ turn_) const noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -103,9 +103,9 @@ namespace dtl {
 		//最も少なく駒が取れる場所を選ぶ
 		class ReversiUnselfishness {
 		public:
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool operator()(Matrix_& matrix_, const Matrix_Int_ turn_) const noexcept {
+				bool operator()(Matrix_& matrix_, const Matrix_Var_ turn_) const noexcept {
 				::dtl::type::size piece_turn_min{ (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)() };
 				::dtl::type::size put_piece_x{}, put_piece_y{};
 				for (::dtl::type::size row{}; row < matrix_.size(); ++row)
@@ -141,9 +141,9 @@ namespace dtl {
 				constexpr ::std::array<uint_fast8_t, 16> check_point{ { 0,6,2,1,6,6,5,4,2,6,2,3,1,4,3,3 } };
 				return check_point[y_ * 4 + x_];
 			}
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool operator()(Matrix_ & matrix_, const Matrix_Int_ turn_) const noexcept {
+				bool operator()(Matrix_ & matrix_, const Matrix_Var_ turn_) const noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -165,12 +165,12 @@ namespace dtl {
 			}
 		};
 		//AI同士をまとめる関数
-		template<typename Matrix_Int_, typename Matrix_, typename Black_, typename White_>
-		constexpr bool reversiAI(Matrix_& matrix_, const Matrix_Int_ turn_, Black_&& black_ai_, White_&& white_ai_, const bool is_black_ai_) noexcept {
+		template<typename Matrix_Var_, typename Matrix_, typename Black_, typename White_>
+		constexpr bool reversiAI(Matrix_& matrix_, const Matrix_Var_ turn_, Black_&& black_ai_, White_&& white_ai_, const bool is_black_ai_) noexcept {
 			return (is_black_ai_) ? black_ai_(matrix_, turn_) : white_ai_(matrix_, turn_);
 		}
 
-		template<typename Matrix_Int_, typename Matrix_>
+		template<typename Matrix_Var_, typename Matrix_>
 		DTL_VERSIONING_CPP14_CONSTEXPR
 			::std::int_fast32_t reversiCheckResult(Matrix_& matrix_) noexcept {
 			::std::array< ::std::int_fast32_t, 2> piece_num{ {} };
@@ -178,7 +178,7 @@ namespace dtl {
 			for (::dtl::type::size row{}; row < matrix_.size(); ++row)
 				for (::dtl::type::size col{}; col < matrix_[row].size(); ++col)
 					if (matrix_[row][col] > 0) ++piece_num[matrix_[row][col] - 1];
-			if (::dtl::ai::reversiIsPass(matrix_, (Matrix_Int_)1) && ::dtl::ai::reversiIsPass(matrix_, (Matrix_Int_)2)) {
+			if (::dtl::ai::reversiIsPass(matrix_, (Matrix_Var_)1) && ::dtl::ai::reversiIsPass(matrix_, (Matrix_Var_)2)) {
 				if (piece_num[0] > piece_num[1]) result = 1;
 				else if (piece_num[0] < piece_num[1]) result = 2;
 				else result = 3;
@@ -245,9 +245,9 @@ namespace dtl {
 					shogi_tokin2
 				};
 
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					bool isShogiNarikin(const Matrix_Int_ koma_) noexcept {
+					bool isShogiNarikin(const Matrix_Var_ koma_) noexcept {
 					if (koma_ >= shogi_ginsho1 && shogi_narigin1 % 2 == koma_ % 2) return true;
 					return false;
 				}
@@ -308,7 +308,7 @@ namespace dtl {
 					matrix_[matrix_.size() - 1][3] = ::dtl::generator::boardGame::data::chess_queen1;
 					matrix_[matrix_.size() - 1][matrix_[matrix_.size() - 1].size() - 4] = ::dtl::generator::boardGame::data::chess_king1;
 				}
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				class Chess {
 				public:
 					//コンストラクタ
@@ -356,7 +356,7 @@ namespace dtl {
 					matrix_[y_ - 1][3] = ::dtl::generator::boardGame::data::chess_queen1;
 					matrix_[y_ - 1][x_ - 4] = ::dtl::generator::boardGame::data::chess_king1;
 				}
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				class Chess {
 				public:
 					//コンストラクタ
@@ -448,7 +448,7 @@ namespace dtl {
 
 
 				//騎士の巡歴
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				class KnightTour {
 				private:
 
@@ -522,8 +522,8 @@ namespace dtl {
 					}
 					//巡歴をマップ上に記録する
 					template<typename Matrix_>
-					void setTour(Matrix_ & matrix_, ::std::vector< ::std::shared_ptr<::dtl::generator::puzzle::tool::KnightTourNode>> & best_tour_, const Matrix_Int_ mod_value_ = 0) const noexcept {
-						Matrix_Int_ counter{};
+					void setTour(Matrix_ & matrix_, ::std::vector< ::std::shared_ptr<::dtl::generator::puzzle::tool::KnightTourNode>> & best_tour_, const Matrix_Var_ mod_value_ = 0) const noexcept {
+						Matrix_Var_ counter{};
 						if (mod_value_ < 2)
 							for (const auto& i : best_tour_) {
 								if (i == nullptr) continue;
@@ -541,7 +541,7 @@ namespace dtl {
 				public:
 					//生成
 					template<typename Matrix_>
-					bool create(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) const noexcept {
+					bool create(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Var_ mod_value_ = 0) const noexcept {
 						::std::vector< ::std::shared_ptr<::dtl::generator::puzzle::tool::KnightTourNode>> nodes;
 						::std::vector< ::std::shared_ptr<::dtl::generator::puzzle::tool::KnightTourNode>> best_tour;
 
@@ -552,7 +552,7 @@ namespace dtl {
 					//コンストラクタ
 					KnightTour() = default;
 					template<typename Matrix_>
-					KnightTour(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Int_ mod_value_ = 0) noexcept {
+					KnightTour(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size start_x_ = 0, const ::dtl::type::size start_y_ = 0, const bool is_closed_ = false, const Matrix_Var_ mod_value_ = 0) noexcept {
 						create(matrix_, x_, y_, start_x_, start_y_, is_closed_, mod_value_);
 					}
 

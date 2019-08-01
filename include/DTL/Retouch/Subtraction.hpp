@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] Subtractionとは "Matrixの描画範囲を指定値で引き算する" 機能を持つクラスである。
 	[Summary] Subtraction is a class that subtracts the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class Subtraction : public ::dtl::range::RectBaseWithValue<Subtraction<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<Subtraction<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class Subtraction : public ::dtl::range::RectBaseWithValue<Subtraction<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<Subtraction<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Subtraction, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Subtraction, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Subtraction, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Subtraction, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -56,7 +56,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Matrix_Int_ init{};
+				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -72,7 +72,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Matrix_Int_ init{};
+				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };

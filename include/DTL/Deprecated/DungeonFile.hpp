@@ -163,7 +163,7 @@ namespace dtl {
 
 				}
 
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				bool objSandbox(const Matrix_& matrix_, const ::std::string& str_) noexcept {
 					if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 					::std::ofstream ofs(str_);
@@ -204,8 +204,8 @@ namespace dtl {
 					return true;
 				}
 
-				template<typename Matrix_Int_, typename Matrix_>
-				bool objBoard(const Matrix_ & matrix_, const ::std::string & str_, const ::std::int_fast32_t block_size_ = 1, const Matrix_Int_ output_id_ = 1) noexcept {
+				template<typename Matrix_Var_, typename Matrix_>
+				bool objBoard(const Matrix_ & matrix_, const ::std::string & str_, const ::std::int_fast32_t block_size_ = 1, const Matrix_Var_ output_id_ = 1) noexcept {
 					if (matrix_.size() == 0 || matrix_[0].size() == 0) return false;
 					::std::ofstream ofs(str_);
 					if (ofs.fail()) return false;

@@ -30,7 +30,7 @@ namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class FileSandboxOBJ_3D {
 		private:
 

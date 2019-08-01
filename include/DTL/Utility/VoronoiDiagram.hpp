@@ -34,7 +34,7 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR< ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Int_[]>>
+		template<typename Matrix_Var_, typename UniquePair_ = DTL_TYPE_UNIQUE_PTR< ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>[]>, typename UniqueInt_ = DTL_TYPE_UNIQUE_PTR<Matrix_Var_[]>>
 		class VoronoiDiagram {
 		private:
 
@@ -122,7 +122,7 @@ namespace dtl {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Var_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
@@ -133,7 +133,7 @@ namespace dtl {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Var_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);
@@ -144,7 +144,7 @@ namespace dtl {
 				//原点の座標と各面の色(もしくは地形データ)を記録する変数
 				UniquePair_ point{ DTL_TYPE_NEW Point_Pair_[this->draw_value] };
 				if (!point) return;
-				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Int_[this->draw_value] };
+				UniqueInt_ color{ DTL_TYPE_NEW Matrix_Var_[this->draw_value] };
 				if (!color) return;
 
 				createPoint(point, color, static_cast<::dtl::type::ssize>(end_x_), static_cast<::dtl::type::ssize>(end_y_), function_);

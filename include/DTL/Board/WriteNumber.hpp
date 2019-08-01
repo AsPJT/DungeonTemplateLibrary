@@ -29,7 +29,7 @@ namespace dtl {
 	inline namespace board { //"dtl::board"名前空間に属する
 
 		//四角形の生成
-		template<typename Matrix_Int_, typename OutputChar_ = char>
+		template<typename Matrix_Var_, typename OutputChar_ = char>
 		class WriteNumber {
 		private:
 
@@ -58,28 +58,28 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, OutputString_& string_) const noexcept {
 				OutputStream_ stream_{};
-				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
+				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->draw_string;
 				string_ += stream_.str();
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, OutputString_& string_) const noexcept {
 				OutputStream_ stream_{};
-				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
+				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->draw_string;
 				string_ += stream_.str();
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, OutputString_& string_) const noexcept {
 				OutputStream_ stream_{};
-				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
+				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->draw_string;
 				string_ += stream_.str();
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputList(const Matrix_Value_& matrix_, OutputString_& string_) const noexcept {
 				OutputStream_ stream_{};
-				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->draw_string;
+				stream_ << this->before_draw_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_) : matrix_) << this->draw_string;
 				string_ += stream_.str();
 			}
 

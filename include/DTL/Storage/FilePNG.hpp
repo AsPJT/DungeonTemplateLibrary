@@ -35,14 +35,14 @@ namespace dtl {
 /*#######################################################################################
 	[概要] FilePNGとは "PNG形式の画像ファイルを出力する" 機能を持つクラスである。
 #######################################################################################*/
-		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<unsigned char[]>>
-		class FilePNG : public ::dtl::storage::FileBaseBin<FilePNG<Matrix_Int_, UniquePtr_>, Matrix_Int_, UniquePtr_> {
+		template<typename Matrix_Var_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<unsigned char[]>>
+		class FilePNG : public ::dtl::storage::FileBaseBin<FilePNG<Matrix_Var_, UniquePtr_>, Matrix_Var_, UniquePtr_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBaseBin<FilePNG, Matrix_Int_, UniquePtr_>;
+			using FileBase_t = ::dtl::storage::FileBaseBin<FilePNG, Matrix_Var_, UniquePtr_>;
 
 			friend FileBase_t;
 

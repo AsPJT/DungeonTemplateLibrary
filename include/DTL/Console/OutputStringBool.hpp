@@ -31,7 +31,7 @@ namespace dtl {
 	[概要] OutputStringBoolとは "Matrixの描画範囲の値を指定した文字列で出力する" 機能を持つクラスである。
 	[Summary] OutputStringBool is a class that outputs Matrix values as strings.
 #######################################################################################*/
-		template<typename Matrix_Int_, typename OutputString_ = ::std::string>
+		template<typename Matrix_Var_, typename OutputString_ = ::std::string>
 		class OutputStringBool {
 		private:
 
@@ -56,43 +56,43 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			constexpr inline Matrix_Var_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return matrix_[point_y_][point_x_];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
+			constexpr inline Matrix_Var_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
 				return matrix_[point_y_ * max_x_ + point_x_];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
+			constexpr inline Matrix_Var_ outputLayer(const Matrix_& matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
 				return matrix_[point_y_][point_x_][layer_];
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr inline Matrix_Int_ outputList(const Matrix_& matrix_) const noexcept {
+				constexpr inline Matrix_Var_ outputList(const Matrix_& matrix_) const noexcept {
 				return matrix_;
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
+			constexpr inline Matrix_Var_ outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, Function_&& function_) const noexcept {
 				return function_(matrix_[point_y_][point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
+			constexpr inline Matrix_Var_ outputArray(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
 				return function_(matrix_[point_y_ * max_x_ + point_x_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr inline Matrix_Int_ outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
+			constexpr inline Matrix_Var_ outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_, Function_ && function_) const noexcept {
 				return function_(matrix_[point_y_][point_x_][layer_]);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr inline Matrix_Int_ outputList(const Matrix_& matrix_, Function_&& function_) const noexcept {
+				constexpr inline Matrix_Var_ outputList(const Matrix_& matrix_, Function_&& function_) const noexcept {
 				return function_(matrix_);
 			}
 

@@ -17,32 +17,32 @@
 namespace dtl {
 	inline namespace base { //"dtl::base"名前空間に属する
 
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		struct DobutsuShogiList {
-			Matrix_Int_ chick_1{};
-			Matrix_Int_ chick_2{};
-			Matrix_Int_ hen_1{};
-			Matrix_Int_ hen_2{};
-			Matrix_Int_ giraffe_1{};
-			Matrix_Int_ giraffe_2{};
-			Matrix_Int_ elephant_1{};
-			Matrix_Int_ elephant_2{};
-			Matrix_Int_ lion_1{};
-			Matrix_Int_ lion_2{};
+			Matrix_Var_ chick_1{};
+			Matrix_Var_ chick_2{};
+			Matrix_Var_ hen_1{};
+			Matrix_Var_ hen_2{};
+			Matrix_Var_ giraffe_1{};
+			Matrix_Var_ giraffe_2{};
+			Matrix_Var_ elephant_1{};
+			Matrix_Var_ elephant_2{};
+			Matrix_Var_ lion_1{};
+			Matrix_Var_ lion_2{};
 
 			DobutsuShogiList() = default;
 
 			constexpr DobutsuShogiList(
-				const Matrix_Int_& chick_1_,
-				const Matrix_Int_& chick_2_,
-				const Matrix_Int_& hen_1_,
-				const Matrix_Int_& hen_2_,
-				const Matrix_Int_& giraffe_1_,
-				const Matrix_Int_& giraffe_2_,
-				const Matrix_Int_& elephant_1_,
-				const Matrix_Int_& elephant_2_,
-				const Matrix_Int_& lion_1_,
-				const Matrix_Int_& lion_2_) noexcept :
+				const Matrix_Var_& chick_1_,
+				const Matrix_Var_& chick_2_,
+				const Matrix_Var_& hen_1_,
+				const Matrix_Var_& hen_2_,
+				const Matrix_Var_& giraffe_1_,
+				const Matrix_Var_& giraffe_2_,
+				const Matrix_Var_& elephant_1_,
+				const Matrix_Var_& elephant_2_,
+				const Matrix_Var_& lion_1_,
+				const Matrix_Var_& lion_2_) noexcept :
 				chick_1(chick_1_),
 				chick_2(chick_2_),
 				hen_1(hen_1_),
@@ -55,11 +55,11 @@ namespace dtl {
 				lion_2(lion_2_) {}
 
 			constexpr DobutsuShogiList(
-				const Matrix_Int_& chick_,
-				const Matrix_Int_& hen_,
-				const Matrix_Int_& giraffe_,
-				const Matrix_Int_& elephant_,
-				const Matrix_Int_& lion_) noexcept :
+				const Matrix_Var_& chick_,
+				const Matrix_Var_& hen_,
+				const Matrix_Var_& giraffe_,
+				const Matrix_Var_& elephant_,
+				const Matrix_Var_& lion_) noexcept :
 				chick_1(chick_),
 				chick_2(chick_),
 				hen_1(hen_),

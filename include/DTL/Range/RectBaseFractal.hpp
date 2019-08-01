@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Int_>
+		template<typename Derived_, typename Matrix_Var_>
 		class RectBaseFractal : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,9 +39,9 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Int_ min_value{};
-			Matrix_Int_ altitude{};
-			Matrix_Int_ add_altitude{};
+			Matrix_Var_ min_value{};
+			Matrix_Var_ altitude{};
+			Matrix_Var_ add_altitude{};
 
 
 		public:
@@ -50,19 +50,19 @@ namespace dtl {
 			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->altitude;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getMinValue() const noexcept {
+				constexpr Matrix_Var_ getMinValue() const noexcept {
 				return this->min_value;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getAltitude() const noexcept {
+				constexpr Matrix_Var_ getAltitude() const noexcept {
 				return this->altitude;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getAddAltitude() const noexcept {
+				constexpr Matrix_Var_ getAddAltitude() const noexcept {
 				return this->add_altitude;
 			}
 
@@ -71,19 +71,19 @@ namespace dtl {
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearMinValue() noexcept {
-				const Matrix_Int_ new_min_value{};
+				const Matrix_Var_ new_min_value{};
 				this->min_value = new_min_value;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearAltitude() noexcept {
-				const Matrix_Int_ new_altitude{};
+				const Matrix_Var_ new_altitude{};
 				this->altitude = new_altitude;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearAddAltitude() noexcept {
-				const Matrix_Int_ new_add_altitude{};
+				const Matrix_Var_ new_add_altitude{};
 				this->add_altitude = new_add_altitude;
 				return static_cast<Derived_&>(*this);
 			}
@@ -119,7 +119,7 @@ namespace dtl {
 			///// 代入 /////
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setValue(const Matrix_Int_& altitude_) noexcept {
+				Derived_& setValue(const Matrix_Var_& altitude_) noexcept {
 				this->altitude = altitude_;
 				return static_cast<Derived_&>(*this);
 			}
@@ -133,30 +133,30 @@ namespace dtl {
 			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
-			constexpr explicit RectBaseFractal(const Matrix_Int_& min_value_) noexcept
+			constexpr explicit RectBaseFractal(const Matrix_Var_& min_value_) noexcept
 				:min_value(min_value_) {}
-			constexpr RectBaseFractal(const Matrix_Int_& min_value_, const Matrix_Int_& altitude_) noexcept
+			constexpr RectBaseFractal(const Matrix_Var_& min_value_, const Matrix_Var_& altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_) {}
-			constexpr RectBaseFractal(const Matrix_Int_& min_value_, const Matrix_Int_& altitude_, const Matrix_Int_& add_altitude_) noexcept
+			constexpr RectBaseFractal(const Matrix_Var_& min_value_, const Matrix_Var_& altitude_, const Matrix_Var_& add_altitude_) noexcept
 				:min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 
-			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& min_value_) noexcept
+			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& min_value_) noexcept
 				:RectBase_t(matrix_range_),
 				min_value(min_value_) {}
-			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& min_value_, const Matrix_Int_& altitude_) noexcept
+			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& min_value_, const Matrix_Var_& altitude_) noexcept
 				:RectBase_t(matrix_range_),
 				min_value(min_value_), altitude(altitude_) {}
-			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& min_value_, const Matrix_Int_& altitude_, const Matrix_Int_& add_altitude_) noexcept
+			constexpr RectBaseFractal(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& min_value_, const Matrix_Var_& altitude_, const Matrix_Var_& add_altitude_) noexcept
 				:RectBase_t(matrix_range_),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 
-			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& min_value_) noexcept
+			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& min_value_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				min_value(min_value_) {}
-			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& min_value_, const Matrix_Int_& altitude_) noexcept
+			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& min_value_, const Matrix_Var_& altitude_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				min_value(min_value_), altitude(altitude_) {}
-			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& min_value_, const Matrix_Int_& altitude_, const Matrix_Int_& add_altitude_) noexcept
+			constexpr RectBaseFractal(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& min_value_, const Matrix_Var_& altitude_, const Matrix_Var_& add_altitude_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				min_value(min_value_), altitude(altitude_), add_altitude(add_altitude_) {}
 		};

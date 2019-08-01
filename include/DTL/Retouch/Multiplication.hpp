@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] Multiplicationとは "Matrixの描画範囲を指定値で掛け算する" 機能を持つクラスである。
 	[Summary] Multiplication is a class that multiplies the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class Multiplication : public ::dtl::range::RectBaseWithValue<Multiplication<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<Multiplication<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class Multiplication : public ::dtl::range::RectBaseWithValue<Multiplication<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<Multiplication<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Multiplication, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Multiplication, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Multiplication, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Multiplication, Matrix_Var_>;
 
 			friend DrawBase_t;
 

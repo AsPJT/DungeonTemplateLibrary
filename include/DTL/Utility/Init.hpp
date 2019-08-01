@@ -31,7 +31,7 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class Init {
 		private:
 
@@ -48,7 +48,7 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			Matrix_Int_ draw_value{};
+			Matrix_Var_ draw_value{};
 
 
 			///// 代入処理 /////
@@ -203,7 +203,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -355,7 +355,7 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Init& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
+				const Matrix_Var_ new_draw_value{};
 				this->draw_value = new_draw_value;
 				return *this;
 			}
@@ -425,7 +425,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Init& setValue(const Matrix_Int_ & draw_value_) noexcept {
+				Init& setValue(const Matrix_Var_ & draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return *this;
 			}
@@ -470,19 +470,19 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			Init() = default;
-			constexpr explicit Init(const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit Init(const Matrix_Var_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit Init(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr Init(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr Init(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Var_ & draw_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				draw_value(draw_value_) {}
 			constexpr Init(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_) {}
-			constexpr Init(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr Init(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_ & draw_value_) noexcept
 				:start_x(start_x_), start_y(start_y_),
 				width(width_), height(height_),
 				draw_value(draw_value_) {}

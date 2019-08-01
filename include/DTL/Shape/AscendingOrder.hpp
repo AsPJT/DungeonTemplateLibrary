@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] AscendingOrderとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
 	[Summary] AscendingOrder is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class AscendingOrder : public ::dtl::range::RectBaseWithValue<AscendingOrder<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<AscendingOrder<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class AscendingOrder : public ::dtl::range::RectBaseWithValue<AscendingOrder<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<AscendingOrder<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<AscendingOrder, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<AscendingOrder, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<AscendingOrder, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<AscendingOrder, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -56,7 +56,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				Matrix_Int_ value{ this->draw_value };
+				Matrix_Var_ value{ this->draw_value };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
@@ -71,7 +71,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				Matrix_Int_ value{ this->draw_value };
+				Matrix_Var_ value{ this->draw_value };
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)

@@ -29,12 +29,12 @@
 namespace dtl {
 	inline namespace cuboid { //"dtl::cuboid"名前空間に属する
 
-		template<class Matrix_Int_>
+		template<class Matrix_Var_>
 		class MazeDig3D {
 		private:
 
-			Matrix_Int_ empty_value{};
-			Matrix_Int_ wall_value{};
+			Matrix_Var_ empty_value{};
+			Matrix_Var_ wall_value{};
 
 			using Index_Size = ::dtl::type::size;
 			using Index_SSize = ::dtl::type::ssize;
@@ -59,7 +59,7 @@ namespace dtl {
 					const Index_Size check_x{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_x) + dir.x * 2) };
 					const Index_Size check_y{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_y) + dir.y * 2) };
 					const Index_Size check_z{ static_cast<Index_Size>(static_cast<Index_SSize>(pos_z) + dir.z * 2) };
-					if (!this->isInRange(matrix_, check_x, check_y, check_z) || !(static_cast<Matrix_Int_>(matrix_[check_z][check_y][check_x]) == this->wall_value)) continue;
+					if (!this->isInRange(matrix_, check_x, check_y, check_z) || !(static_cast<Matrix_Var_>(matrix_[check_z][check_y][check_x]) == this->wall_value)) continue;
 					result.DTL_TYPE_VEMPLACE(static_cast<Index_Size>(dir.x), static_cast<Index_Size>(dir.y), static_cast<Index_Size>(dir.z));
 				}
 				return result;
@@ -75,7 +75,7 @@ namespace dtl {
 							const Index_Size check_y{ y * 2 + 1 };
 							const Index_Size check_z{ z * 2 + 1 };
 							if (this->isInRange(matrix_, check_x, check_y, check_z) &&
-								(static_cast<Matrix_Int_>(matrix_[check_z][check_y][check_x]) == this->empty_value) &&
+								(static_cast<Matrix_Var_>(matrix_[check_z][check_y][check_x]) == this->empty_value) &&
 								this->getCanDiggingDirs(matrix_, check_x, check_y, check_z).DTL_TYPE_VSIZE()) {
 								result.DTL_TYPE_VEMPLACE(check_x, check_y, check_z);
 							}
@@ -84,7 +84,7 @@ namespace dtl {
 			}
 
 			template<typename Matrix_>
-			void setMazeChip(Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z, const Matrix_Int_ new_state) const {
+			void setMazeChip(Matrix_ & matrix_, const Index_Size pos_x, const Index_Size pos_y, const Index_Size pos_z, const Matrix_Var_ new_state) const {
 				if (this->isInRange(matrix_, pos_x, pos_y, pos_z)) matrix_[pos_z][pos_y][pos_x] = new_state;
 			}
 
@@ -131,9 +131,9 @@ namespace dtl {
 
 			//コンストラクタ
 			MazeDig3D() = default;
-			constexpr MazeDig3D(const Matrix_Int_ & empty_value_)
+			constexpr MazeDig3D(const Matrix_Var_ & empty_value_)
 				:empty_value(empty_value_) {}
-			constexpr MazeDig3D(const Matrix_Int_ & empty_value_, const Matrix_Int_ & wall_value_)
+			constexpr MazeDig3D(const Matrix_Var_ & empty_value_, const Matrix_Var_ & wall_value_)
 				: empty_value(empty_value_), wall_value(wall_value_) {}
 
 		};

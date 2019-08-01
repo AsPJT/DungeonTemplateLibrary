@@ -32,7 +32,7 @@ namespace dtl {
 	[概要] OutputNumberとは "Matrixの描画範囲の値を出力する" 機能を持つクラスである。
 	[Summary] OutputNumber is a class that outputs Matrix values.
 #######################################################################################*/
-		template<typename Matrix_Int_, typename OutputString_ = ::std::string>
+		template<typename Matrix_Var_, typename OutputString_ = ::std::string>
 		class OutputNumber {
 		private:
 
@@ -58,22 +58,22 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputSTL(const Matrix_& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_][point_x_]) : matrix_[point_y_][point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputArray(const Matrix_ & matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_ * max_x_ + point_x_]) : matrix_[point_y_ * max_x_ + point_x_]) << this->after_string;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputLayer(const Matrix_ & matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_[point_y_][point_x_][layer_]) : matrix_[point_y_][point_x_][layer_]) << this->after_string;
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void outputList(const Matrix_Value_& matrix_) const noexcept {
-				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Int_>()) ? static_cast<int>(matrix_) : matrix_) << this->after_string;
+				DTL_TYPE_COUT << this->before_string << ((::dtl::utility::isOutputCast<Matrix_Var_>()) ? static_cast<int>(matrix_) : matrix_) << this->after_string;
 			}
 
 

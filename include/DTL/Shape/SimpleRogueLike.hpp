@@ -34,7 +34,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class SimpleRogueLike {
 		private:
 
@@ -72,8 +72,8 @@ namespace dtl {
 			Index_Size width{};
 			Index_Size height{};
 
-			Matrix_Int_ room_value{};
-			Matrix_Int_ road_value{};
+			Matrix_Var_ room_value{};
+			Matrix_Var_ road_value{};
 
 			::dtl::type::size division_min{ 3 };
 			::dtl::type::size division_rand_max{ 4 };
@@ -716,12 +716,12 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			SimpleRogueLike() = default;
-			constexpr explicit SimpleRogueLike(const Matrix_Int_& room_value_) noexcept
+			constexpr explicit SimpleRogueLike(const Matrix_Var_& room_value_) noexcept
 				:room_value(room_value_) {}
-			constexpr SimpleRogueLike(const Matrix_Int_& room_value_, const Matrix_Int_& road_value_) noexcept
+			constexpr SimpleRogueLike(const Matrix_Var_& room_value_, const Matrix_Var_& road_value_) noexcept
 				:room_value(room_value_), road_value(road_value_) {}
 
-			constexpr SimpleRogueLike(const Matrix_Int_& room_value_, const Matrix_Int_& road_value_, const ::dtl::type::size division_min_, const ::dtl::type::size division_rand_max_, const ::dtl::type::size room_min_x_, const ::dtl::type::size room_rand_max_x_, const ::dtl::type::size room_min_y_, const ::dtl::type::size room_rand_max_y_) noexcept
+			constexpr SimpleRogueLike(const Matrix_Var_& room_value_, const Matrix_Var_& road_value_, const ::dtl::type::size division_min_, const ::dtl::type::size division_rand_max_, const ::dtl::type::size room_min_x_, const ::dtl::type::size room_rand_max_x_, const ::dtl::type::size room_min_y_, const ::dtl::type::size room_rand_max_y_) noexcept
 				:room_value(room_value_), road_value(road_value_),
 				division_min(division_min_),
 				division_rand_max(division_rand_max_),
@@ -733,16 +733,16 @@ namespace dtl {
 			constexpr explicit SimpleRogueLike(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& room_value_) noexcept
+			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& room_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				room_value(room_value_) {}
-			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& room_value_, const Matrix_Int_& road_value_) noexcept
+			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& room_value_, const Matrix_Var_& road_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				room_value(room_value_), road_value(road_value_) {}
 
-			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& room_value_, const Matrix_Int_& road_value_, const ::dtl::type::size division_min_, const ::dtl::type::size division_rand_max_, const ::dtl::type::size room_min_x_, const ::dtl::type::size room_rand_max_x_, const ::dtl::type::size room_min_y_, const ::dtl::type::size room_rand_max_y_) noexcept
+			constexpr SimpleRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& room_value_, const Matrix_Var_& road_value_, const ::dtl::type::size division_min_, const ::dtl::type::size division_rand_max_, const ::dtl::type::size room_min_x_, const ::dtl::type::size room_rand_max_x_, const ::dtl::type::size room_min_y_, const ::dtl::type::size room_rand_max_y_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				room_value(room_value_), road_value(road_value_),

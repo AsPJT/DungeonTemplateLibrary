@@ -17,68 +17,68 @@
 namespace dtl {
 	inline namespace base { //"dtl::base"名前空間に属する
 
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		struct ShogiList {
-			Matrix_Int_ fuhyo_1{};
-			Matrix_Int_ fuhyo_2{};
-			Matrix_Int_ tokin_1{};
-			Matrix_Int_ tokin_2{};
-			Matrix_Int_ kyosha_1{};
-			Matrix_Int_ kyosha_2{};
-			Matrix_Int_ narikyo_1{};
-			Matrix_Int_ narikyo_2{};
-			Matrix_Int_ keima_1{};
-			Matrix_Int_ keima_2{};
-			Matrix_Int_ narikei_1{};
-			Matrix_Int_ narikei_2{};
-			Matrix_Int_ ginsho_1{};
-			Matrix_Int_ ginsho_2{};
-			Matrix_Int_ narigin_1{};
-			Matrix_Int_ narigin_2{};
-			Matrix_Int_ hisha_1{};
-			Matrix_Int_ hisha_2{};
-			Matrix_Int_ ryuo_1{};
-			Matrix_Int_ ryuo_2{};
-			Matrix_Int_ kakugyo_1{};
-			Matrix_Int_ kakugyo_2{};
-			Matrix_Int_ ryuma_1{};
-			Matrix_Int_ ryuma_2{};
-			Matrix_Int_ kinsho_1{};
-			Matrix_Int_ kinsho_2{};
-			Matrix_Int_ osho{};
-			Matrix_Int_ gyokusho{};
+			Matrix_Var_ fuhyo_1{};
+			Matrix_Var_ fuhyo_2{};
+			Matrix_Var_ tokin_1{};
+			Matrix_Var_ tokin_2{};
+			Matrix_Var_ kyosha_1{};
+			Matrix_Var_ kyosha_2{};
+			Matrix_Var_ narikyo_1{};
+			Matrix_Var_ narikyo_2{};
+			Matrix_Var_ keima_1{};
+			Matrix_Var_ keima_2{};
+			Matrix_Var_ narikei_1{};
+			Matrix_Var_ narikei_2{};
+			Matrix_Var_ ginsho_1{};
+			Matrix_Var_ ginsho_2{};
+			Matrix_Var_ narigin_1{};
+			Matrix_Var_ narigin_2{};
+			Matrix_Var_ hisha_1{};
+			Matrix_Var_ hisha_2{};
+			Matrix_Var_ ryuo_1{};
+			Matrix_Var_ ryuo_2{};
+			Matrix_Var_ kakugyo_1{};
+			Matrix_Var_ kakugyo_2{};
+			Matrix_Var_ ryuma_1{};
+			Matrix_Var_ ryuma_2{};
+			Matrix_Var_ kinsho_1{};
+			Matrix_Var_ kinsho_2{};
+			Matrix_Var_ osho{};
+			Matrix_Var_ gyokusho{};
 
 			ShogiList() = default;
 
 			constexpr ShogiList(
-				const Matrix_Int_& fuhyo_1_,
-				const Matrix_Int_& fuhyo_2_,
-				const Matrix_Int_& tokin_1_,
-				const Matrix_Int_& tokin_2_,
-				const Matrix_Int_& kyosha_1_,
-				const Matrix_Int_& kyosha_2_,
-				const Matrix_Int_& narikyo_1_,
-				const Matrix_Int_& narikyo_2_,
-				const Matrix_Int_& keima_1_,
-				const Matrix_Int_& keima_2_,
-				const Matrix_Int_& narikei_1_,
-				const Matrix_Int_& narikei_2_,
-				const Matrix_Int_& ginsho_1_,
-				const Matrix_Int_& ginsho_2_,
-				const Matrix_Int_& narigin_1_,
-				const Matrix_Int_& narigin_2_,
-				const Matrix_Int_& hisha_1_,
-				const Matrix_Int_& hisha_2_,
-				const Matrix_Int_& ryuo_1_,
-				const Matrix_Int_& ryuo_2_,
-				const Matrix_Int_& kakugyo_1_,
-				const Matrix_Int_& kakugyo_2_,
-				const Matrix_Int_& ryuma_1_,
-				const Matrix_Int_& ryuma_2_,
-				const Matrix_Int_& kinsho_1_,
-				const Matrix_Int_& kinsho_2_,
-				const Matrix_Int_& osho_,
-				const Matrix_Int_& gyokusho_) noexcept :
+				const Matrix_Var_& fuhyo_1_,
+				const Matrix_Var_& fuhyo_2_,
+				const Matrix_Var_& tokin_1_,
+				const Matrix_Var_& tokin_2_,
+				const Matrix_Var_& kyosha_1_,
+				const Matrix_Var_& kyosha_2_,
+				const Matrix_Var_& narikyo_1_,
+				const Matrix_Var_& narikyo_2_,
+				const Matrix_Var_& keima_1_,
+				const Matrix_Var_& keima_2_,
+				const Matrix_Var_& narikei_1_,
+				const Matrix_Var_& narikei_2_,
+				const Matrix_Var_& ginsho_1_,
+				const Matrix_Var_& ginsho_2_,
+				const Matrix_Var_& narigin_1_,
+				const Matrix_Var_& narigin_2_,
+				const Matrix_Var_& hisha_1_,
+				const Matrix_Var_& hisha_2_,
+				const Matrix_Var_& ryuo_1_,
+				const Matrix_Var_& ryuo_2_,
+				const Matrix_Var_& kakugyo_1_,
+				const Matrix_Var_& kakugyo_2_,
+				const Matrix_Var_& ryuma_1_,
+				const Matrix_Var_& ryuma_2_,
+				const Matrix_Var_& kinsho_1_,
+				const Matrix_Var_& kinsho_2_,
+				const Matrix_Var_& osho_,
+				const Matrix_Var_& gyokusho_) noexcept :
 				fuhyo_1(fuhyo_1_),
 				fuhyo_2(fuhyo_2_),
 				tokin_1(tokin_1_),
@@ -109,20 +109,20 @@ namespace dtl {
 				gyokusho(gyokusho_) {}
 
 			constexpr ShogiList(
-				const Matrix_Int_& fuhyo_,
-				const Matrix_Int_& tokin_,
-				const Matrix_Int_& kyosha_,
-				const Matrix_Int_& narikyo_,
-				const Matrix_Int_& keima_,
-				const Matrix_Int_& narikei_,
-				const Matrix_Int_& ginsho_,
-				const Matrix_Int_& narigin_,
-				const Matrix_Int_& hisha_,
-				const Matrix_Int_& ryuo_,
-				const Matrix_Int_& kakugyo_,
-				const Matrix_Int_& ryuma_,
-				const Matrix_Int_& kinsho_,
-				const Matrix_Int_& osho_) noexcept :
+				const Matrix_Var_& fuhyo_,
+				const Matrix_Var_& tokin_,
+				const Matrix_Var_& kyosha_,
+				const Matrix_Var_& narikyo_,
+				const Matrix_Var_& keima_,
+				const Matrix_Var_& narikei_,
+				const Matrix_Var_& ginsho_,
+				const Matrix_Var_& narigin_,
+				const Matrix_Var_& hisha_,
+				const Matrix_Var_& ryuo_,
+				const Matrix_Var_& kakugyo_,
+				const Matrix_Var_& ryuma_,
+				const Matrix_Var_& kinsho_,
+				const Matrix_Var_& osho_) noexcept :
 				fuhyo_1(fuhyo_),
 				fuhyo_2(fuhyo_),
 				tokin_1(tokin_),

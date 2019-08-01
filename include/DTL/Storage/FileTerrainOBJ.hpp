@@ -27,14 +27,14 @@ namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename Value_Int_ = Matrix_Int_, typename Ofstream_ = ::std::ofstream>
-		class FileTerrainOBJ : public ::dtl::storage::FileBaseTxt<FileTerrainOBJ<Matrix_Int_, Value_Int_, Ofstream_>, Matrix_Int_, Ofstream_> {
+		template<typename Matrix_Var_, typename Value_Int_ = Matrix_Var_, typename Ofstream_ = ::std::ofstream>
+		class FileTerrainOBJ : public ::dtl::storage::FileBaseTxt<FileTerrainOBJ<Matrix_Var_, Value_Int_, Ofstream_>, Matrix_Var_, Ofstream_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBaseTxt<FileTerrainOBJ, Matrix_Int_, Ofstream_>;
+			using FileBase_t = ::dtl::storage::FileBaseTxt<FileTerrainOBJ, Matrix_Var_, Ofstream_>;
 
 			friend FileBase_t;
 
@@ -60,7 +60,7 @@ namespace dtl {
 			template<typename Matrix_>
 			void writeVertex(Ofstream_& ofs, const Matrix_& matrix, const Index_Size col, const Index_Size row) const {
 				ofs << "v " << (this->value_x * col)
-				    << ' '  << (this->value_z * ::dtl::utility::CastForOutput<Matrix_Int_>(matrix(col, row)))
+				    << ' '  << (this->value_z * ::dtl::utility::CastForOutput<Matrix_Var_>(matrix(col, row)))
 				    << ' '  << (this->value_y * row) << '\n';
 			}
 

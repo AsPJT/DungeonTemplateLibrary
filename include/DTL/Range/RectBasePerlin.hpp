@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Int_>
+		template<typename Derived_, typename Matrix_Var_>
 		class RectBasePerlin : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -41,8 +41,8 @@ namespace dtl {
 
 			double frequency{};
 			Index_Size octaves{};
-			Matrix_Int_ min_height{};
-			Matrix_Int_ max_height{};
+			Matrix_Var_ min_height{};
+			Matrix_Var_ max_height{};
 
 
 		public:
@@ -63,11 +63,11 @@ namespace dtl {
 				return this->octaves;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getMinHeight() const noexcept {
+				constexpr Matrix_Var_ getMinHeight() const noexcept {
 				return this->min_height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getMaxHeight() const noexcept {
+				constexpr Matrix_Var_ getMaxHeight() const noexcept {
 				return this->max_height;
 			}
 
@@ -84,9 +84,9 @@ namespace dtl {
 				Derived_& clearValue() noexcept {
 				this->frequency = 0.0;
 				this->octaves = 0;
-				const Matrix_Int_ clear_max_height{};
+				const Matrix_Var_ clear_max_height{};
 				this->max_height = clear_max_height;
-				const Matrix_Int_ clear_min_height{};
+				const Matrix_Var_ clear_min_height{};
 				this->min_height = clear_min_height;
 				return static_cast<Derived_&>(*this);
 			}
@@ -102,13 +102,13 @@ namespace dtl {
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearMinHeight() noexcept {
-				const Matrix_Int_ clear_min_height{};
+				const Matrix_Var_ clear_min_height{};
 				this->min_height = clear_min_height;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearMaxHeight() noexcept {
-				const Matrix_Int_ clear_max_height{};
+				const Matrix_Var_ clear_max_height{};
 				this->max_height = clear_max_height;
 				return static_cast<Derived_&>(*this);
 			}
@@ -145,12 +145,12 @@ namespace dtl {
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setMinHeight(const Matrix_Int_& min_height_) noexcept {
+				Derived_& setMinHeight(const Matrix_Var_& min_height_) noexcept {
 				this->min_height = min_height_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setMaxHeight(const Matrix_Int_& max_height_) noexcept {
+				Derived_& setMaxHeight(const Matrix_Var_& max_height_) noexcept {
 				this->max_height = max_height_;
 				return static_cast<Derived_&>(*this);
 			}
@@ -168,9 +168,9 @@ namespace dtl {
 				:frequency(frequency_) {}
 			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_) noexcept
 				:frequency(frequency_), octaves(octaves_) {}
-			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
 			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_) noexcept
@@ -179,10 +179,10 @@ namespace dtl {
 			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_) {}
-			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
@@ -192,10 +192,10 @@ namespace dtl {
 			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_) {}
-			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Int_& min_height_, const Matrix_Int_& max_height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 		};

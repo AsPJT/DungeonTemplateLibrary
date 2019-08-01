@@ -27,7 +27,7 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class CellularAutomation {
 		private:
 
@@ -241,7 +241,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+			constexpr Matrix_Var_ getValue() const noexcept {
 				return this->draw_value;
 			}
 

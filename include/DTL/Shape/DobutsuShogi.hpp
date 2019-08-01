@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] DobutsuShogiとは "Matrixの描画範囲に どうぶつしょうぎ の駒を初期位置に設置する" 機能を持つクラスである。
 	[Summary] DobutsuShogi is a class that generates Dobutsu Shogi, a Japanese game, in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class DobutsuShogi : public ::dtl::range::RectBaseDobutsuShogi<DobutsuShogi<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<DobutsuShogi<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class DobutsuShogi : public ::dtl::range::RectBaseDobutsuShogi<DobutsuShogi<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<DobutsuShogi<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseDobutsuShogi<DobutsuShogi, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<DobutsuShogi, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseDobutsuShogi<DobutsuShogi, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<DobutsuShogi, Matrix_Var_>;
 
 			friend DrawBase_t;
 

@@ -25,18 +25,18 @@ namespace dtl {
 		namespace tool {
 
 			//noiseShoreBool関数から取得したマップデータの値を1/2の確率でノイズさせるか判定する
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_) noexcept {
+			constexpr bool isNoise_noiseShoreBool(const Matrix_Var_ value_, const Matrix_Var_ value2_, const Matrix_Var_ value3_) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
 				return (value_ != value2_ || value_ != value3_) && mersenne_twister_32bit.probability();
 			}
 			//noiseShoreBool関数から取得したマップデータの値を[rbool_]の確率でノイズさせるか判定する
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr bool isNoise_noiseShoreBool(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const double rbool_) noexcept {
+			constexpr bool isNoise_noiseShoreBool(const Matrix_Var_ value_, const Matrix_Var_ value2_, const Matrix_Var_ value3_, const double rbool_) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -83,9 +83,9 @@ namespace dtl {
 			}
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void noiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void noiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -134,9 +134,9 @@ namespace dtl {
 			}
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void rnoiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void rnoiseShoreBool(Matrix_ & matrix_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -231,9 +231,9 @@ namespace dtl {
 			}
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -282,9 +282,9 @@ namespace dtl {
 			}
 
 			//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -379,9 +379,9 @@ namespace dtl {
 			}
 
 			//[(rbool_)]の確率でマップデータの値がtrueの場合は[(true_tile_)]、falseの場合は[(false_tile_)]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -430,9 +430,9 @@ namespace dtl {
 			}
 
 			//[(rbool_)]の確率でマップデータの値がtrueの場合は[(true_tile_)]、falseの場合は[(false_tile_)]を代入する
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 				using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -528,9 +528,9 @@ namespace dtl {
 				}
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+					void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 					using ::dtl::random::mersenne_twister_32bit;
 					using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -579,9 +579,9 @@ namespace dtl {
 				}
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+					void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 					using ::dtl::random::mersenne_twister_32bit;
 					using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -678,9 +678,9 @@ namespace dtl {
 				}
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+					void noiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 					using ::dtl::random::mersenne_twister_32bit;
 					using ::dtl::utility::tool::isNoise_noiseShoreBool;
@@ -729,9 +729,9 @@ namespace dtl {
 				}
 
 				//[rbool_]の確率でマップデータの値がtrueの場合は[true_tile_]、falseの場合は[false_tile_]を代入する
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Int_ true_tile_, const Matrix_Int_ false_tile_ = 0) noexcept {
+					void rnoiseShoreBool(Matrix_ & matrix_, const ::dtl::type::size layer_, const ::dtl::type::size x_, const ::dtl::type::size y_, const double rbool_, const Matrix_Var_ true_tile_, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 					using ::dtl::random::mersenne_twister_32bit;
 					using ::dtl::utility::tool::isNoise_noiseShoreBool;

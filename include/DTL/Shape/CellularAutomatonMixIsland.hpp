@@ -32,7 +32,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マップの外枠を指定した数値で埋め、偶数マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class CellularAutomatonMixIsland {
 		private:
 
@@ -46,9 +46,9 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			::dtl::shape::Border<Matrix_Int_> border{};
-			::dtl::shape::HalfMixRect<Matrix_Int_> mixRect{};
-			::dtl::utility::CellularAutomation<Matrix_Int_> cellularAutomation{};
+			::dtl::shape::Border<Matrix_Var_> border{};
+			::dtl::shape::HalfMixRect<Matrix_Var_> mixRect{};
+			::dtl::utility::CellularAutomation<Matrix_Var_> cellularAutomation{};
 			Index_Size loop_num{ 1 };
 
 		public:
@@ -100,7 +100,7 @@ namespace dtl {
 				return this->border.getHeight();
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+			constexpr Matrix_Var_ getValue() const noexcept {
 				return this->border.getValue();
 			}
 
@@ -328,7 +328,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				CellularAutomatonMixIsland& setValue(const Matrix_Int_& draw_value_) noexcept {
+				CellularAutomatonMixIsland& setValue(const Matrix_Var_& draw_value_) noexcept {
 				this->mixRect.setValue(draw_value_);
 				this->border.setValue(draw_value_);
 				this->cellularAutomation.setValue(draw_value_);
@@ -375,10 +375,10 @@ namespace dtl {
 
 			CellularAutomatonMixIsland() = default;
 			template<typename ...Args_>
-			CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			CellularAutomatonMixIsland(const Index_Size & loop_num_, const Matrix_Var_ & first_, const Args_ & ... args_) noexcept
 				:border(first_), mixRect(first_, args_...), loop_num(loop_num_) {}
 			template<typename ...Args_>
-			constexpr CellularAutomatonMixIsland(const ::dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Int_ & first_, const Args_ & ... args_) noexcept
+			constexpr CellularAutomatonMixIsland(const ::dtl::base::MatrixRange & matrix_range_, const Index_Size & loop_num_, const Matrix_Var_ & first_, const Args_ & ... args_) noexcept
 				:border(matrix_range_, first_), mixRect(matrix_range_, first_, args_...), cellularAutomation(matrix_range_), loop_num(loop_num_) {}
 		};
 	}

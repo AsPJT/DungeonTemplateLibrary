@@ -36,17 +36,17 @@ namespace dtl {
 	[概要] PerlinLoopIslandとは "Matrixの描画範囲にパーリンノイズを使用して地形を生成する" 機能を持つクラスである。
 	[Summary] PerlinLoopIsland is a class that generates terrain using perlin noise in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class PerlinLoopIsland : public ::dtl::range::RectBasePerlin<PerlinLoopIsland<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<PerlinLoopIsland<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class PerlinLoopIsland : public ::dtl::range::RectBasePerlin<PerlinLoopIsland<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<PerlinLoopIsland<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBasePerlin<PerlinLoopIsland, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<PerlinLoopIsland, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBasePerlin<PerlinLoopIsland, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<PerlinLoopIsland, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -70,11 +70,11 @@ namespace dtl {
 					const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 					for (std::size_t col{ this->start_x }; col < mid_x_; ++col)
 						matrix_.set(col, row,
-							this->min_height + static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
+							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 					for (std::size_t col{ mid_x_ }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, row / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}
@@ -85,14 +85,14 @@ namespace dtl {
 					for (std::size_t col{ this->start_x }; col < mid_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(row - mid_y_) / (end_y_ - mid_y_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(row - mid_y_) / (end_y_ - mid_y_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(row - mid_y_) / (end_y_ - mid_y_)))
 							, args_...);
 
 					for (std::size_t col{ mid_x_ }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}
@@ -116,11 +116,11 @@ namespace dtl {
 				for (std::size_t row{ this->start_y }; row < mid_y_; ++row) {
 					for (std::size_t col{ this->start_x }; col < mid_x_; ++col)
 						matrix_.set(col, row,
-							this->min_height + static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
+							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 					for (std::size_t col{ mid_x_ }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, row / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}
@@ -128,14 +128,14 @@ namespace dtl {
 					for (std::size_t col{ this->start_x }; col < mid_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(row - mid_y_) / (end_y_ - mid_y_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(row - mid_y_) / (end_y_ - mid_y_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(row - mid_y_) / (end_y_ - mid_y_)))
 							, args_...);
 
 					for (std::size_t col{ mid_x_ }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
-							static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
+							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
 							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}

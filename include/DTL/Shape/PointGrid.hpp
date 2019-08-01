@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] PointGridとは "Matrixの描画範囲の偶数マスに描画値を設置する" 機能を持つクラスである。
 	[Summary] PointGrid is a class that sets drawing values to even-numbered matrix drawing ranges.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class PointGrid : public ::dtl::range::RectBaseWithValue<PointGrid<Matrix_Int_>, Matrix_Int_>,
-		                  public ::dtl::utility::DrawJagged<PointGrid<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class PointGrid : public ::dtl::range::RectBaseWithValue<PointGrid<Matrix_Var_>, Matrix_Var_>,
+		                  public ::dtl::utility::DrawJagged<PointGrid<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<PointGrid, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<PointGrid, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<PointGrid, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<PointGrid, Matrix_Var_>;
 
 			friend DrawBase_t;
 

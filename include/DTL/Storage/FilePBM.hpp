@@ -29,14 +29,14 @@ namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename Ofstream_ = ::std::ofstream>
-		class FilePBM : public ::dtl::storage::FileBaseTxt<FilePBM<Matrix_Int_, Ofstream_>, Matrix_Int_, Ofstream_> {
+		template<typename Matrix_Var_, typename Ofstream_ = ::std::ofstream>
+		class FilePBM : public ::dtl::storage::FileBaseTxt<FilePBM<Matrix_Var_, Ofstream_>, Matrix_Var_, Ofstream_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBaseTxt<FilePBM, Matrix_Int_, Ofstream_>;
+			using FileBase_t = ::dtl::storage::FileBaseTxt<FilePBM, Matrix_Var_, Ofstream_>;
 
 			friend FileBase_t;
 

@@ -32,14 +32,14 @@ namespace dtl {
 /*#######################################################################################
 	[概要] FileMDとは "Markdown形式のテキストファイルを出力する" 機能を持つクラスである。
 #######################################################################################*/
-		template<typename Matrix_Int_, typename Ofstream_ = ::std::ofstream>
-		class FileMD : public ::dtl::storage::FileBaseTxt<FileMD<Matrix_Int_, Ofstream_>, Matrix_Int_, Ofstream_> {
+		template<typename Matrix_Var_, typename Ofstream_ = ::std::ofstream>
+		class FileMD : public ::dtl::storage::FileBaseTxt<FileMD<Matrix_Var_, Ofstream_>, Matrix_Var_, Ofstream_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBaseTxt<FileMD, Matrix_Int_, Ofstream_>;
+			using FileBase_t = ::dtl::storage::FileBaseTxt<FileMD, Matrix_Var_, Ofstream_>;
 
 			friend FileBase_t;
 
@@ -59,7 +59,7 @@ namespace dtl {
 			static void writeRow(Ofstream_& ofs, const Matrix_& matrix, const Index_Size row, const Index_Size start_x, const Index_Size end_x) {
 				for (Index_Size col{ start_x }; col < end_x; ++col)
 					ofs << '|'
-						 << ::dtl::utility::CastForOutput<Matrix_Int_>(matrix(col, row));
+						 << ::dtl::utility::CastForOutput<Matrix_Var_>(matrix(col, row));
 				ofs << "|\n";
 			}
 

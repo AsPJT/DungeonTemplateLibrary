@@ -24,10 +24,10 @@ namespace dtl {
 		namespace tool {
 
 			//キャストしてコピー
-			template<typename Matrix_Int_, typename Value_Int_>
+			template<typename Matrix_Var_, typename Value_Int_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void castCopyValue(Matrix_Int_& value_, const Value_Int_& value2_) noexcept {
-				value_ = static_cast<Matrix_Int_>(value2_);
+				void castCopyValue(Matrix_Var_& value_, const Value_Int_& value2_) noexcept {
+				value_ = static_cast<Matrix_Var_>(value2_);
 			}
 
 			template<typename Matrix_>

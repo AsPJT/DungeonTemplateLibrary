@@ -29,7 +29,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class Reversi {
 		private:
 
@@ -46,8 +46,8 @@ namespace dtl {
 			Index_Size start_y{};
 			Index_Size width{};
 			Index_Size height{};
-			Matrix_Int_ black_value{};
-			Matrix_Int_ white_value{};
+			Matrix_Var_ black_value{};
+			Matrix_Var_ white_value{};
 
 
 			///// 代入処理 /////
@@ -223,7 +223,7 @@ namespace dtl {
 				return this->height;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->black_value;
 			}
 
@@ -375,7 +375,7 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Reversi& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
+				const Matrix_Var_ new_draw_value{};
 				this->black_value = new_draw_value;
 				return *this;
 			}
@@ -445,7 +445,7 @@ namespace dtl {
 				return *this;
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Reversi& setValue(const Matrix_Int_ & black_value_) noexcept {
+				Reversi& setValue(const Matrix_Var_ & black_value_) noexcept {
 				this->black_value = black_value_;
 				return *this;
 			}
@@ -490,19 +490,19 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			Reversi() = default;
-			constexpr explicit Reversi(const Matrix_Int_ & black_value_) noexcept
+			constexpr explicit Reversi(const Matrix_Var_ & black_value_) noexcept
 				:black_value(black_value_) {}
-			constexpr Reversi(const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const Matrix_Var_& black_value_, const Matrix_Var_& white_value_) noexcept
 				:black_value(black_value_), white_value(white_value_) {}
 
 			constexpr explicit Reversi(const ::dtl::base::MatrixRange & matrix_range_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h) {}
-			constexpr Reversi(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & black_value_) noexcept
+			constexpr Reversi(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Var_ & black_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_) {}
-			constexpr Reversi(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const ::dtl::base::MatrixRange& matrix_range_, const Matrix_Var_& black_value_, const Matrix_Var_& white_value_) noexcept
 				:start_x(matrix_range_.x), start_y(matrix_range_.y),
 				width(matrix_range_.w), height(matrix_range_.h),
 				black_value(black_value_), white_value(white_value_) {}
@@ -510,11 +510,11 @@ namespace dtl {
 			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_) {}
-			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & black_value_) noexcept
+			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_ & black_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				black_value(black_value_) {}
-			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_& black_value_, const Matrix_Int_& white_value_) noexcept
+			constexpr Reversi(const Index_Size end_x_, const Index_Size end_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_& black_value_, const Matrix_Var_& white_value_) noexcept
 				:start_x(end_x_), start_y(end_y_),
 				width(width_), height(height_),
 				black_value(black_value_), white_value(white_value_) {}

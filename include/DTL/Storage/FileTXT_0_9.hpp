@@ -31,14 +31,14 @@ namespace dtl {
 	inline namespace storage { //"dtl::storage"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_, typename Ofstream_ = ::std::ofstream>
-		class FileTXT_0_9 : public ::dtl::storage::FileBaseTxt<FileTXT_0_9<Matrix_Int_, Ofstream_>, Matrix_Int_, Ofstream_> {
+		template<typename Matrix_Var_, typename Ofstream_ = ::std::ofstream>
+		class FileTXT_0_9 : public ::dtl::storage::FileBaseTxt<FileTXT_0_9<Matrix_Var_, Ofstream_>, Matrix_Var_, Ofstream_> {
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using FileBase_t = ::dtl::storage::FileBaseTxt<FileTXT_0_9, Matrix_Int_, Ofstream_>;
+			using FileBase_t = ::dtl::storage::FileBaseTxt<FileTXT_0_9, Matrix_Var_, Ofstream_>;
 
 			friend FileBase_t;
 
@@ -48,7 +48,7 @@ namespace dtl {
 			template<typename Matrix_>
 			static void writeRow(Ofstream_& ofs, const Matrix_& matrix, const Index_Size row, const Index_Size start_x, const Index_Size end_x) {
 				for (Index_Size col{ start_x }; col < end_x; ++col)
-					ofs << ::dtl::utility::CastForOutput<Matrix_Int_>((::std::min)((::std::max)(matrix(col, row), 0), 9));
+					ofs << ::dtl::utility::CastForOutput<Matrix_Var_>((::std::min)((::std::max)(matrix(col, row), 0), 9));
 				ofs << '\n';
 			}
 

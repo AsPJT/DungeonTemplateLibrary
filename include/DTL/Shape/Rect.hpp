@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] Rectとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
 	[Summary] Rect is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class Rect : public ::dtl::range::RectBaseWithValue<Rect<Matrix_Int_>, Matrix_Int_>,
-		             public ::dtl::utility::DrawJagged<Rect<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class Rect : public ::dtl::range::RectBaseWithValue<Rect<Matrix_Var_>, Matrix_Var_>,
+		             public ::dtl::utility::DrawJagged<Rect<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Rect, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Rect, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Rect, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Rect, Matrix_Var_>;
 
 			friend DrawBase_t;
 

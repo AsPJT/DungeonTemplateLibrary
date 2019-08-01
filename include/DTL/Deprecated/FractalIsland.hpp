@@ -114,12 +114,12 @@ namespace dtl {
 					}
 				};
 
-				template<typename Matrix_Int_>
-				constexpr bool isLandBiome(const Matrix_Int_ value_) noexcept {
+				template<typename Matrix_Var_>
+				constexpr bool isLandBiome(const Matrix_Var_ value_) noexcept {
 					return (value_ == biome_plains || value_ == biome_forest);
 				}
-				template<typename Matrix_Int_>
-				constexpr bool isForestBiome(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const Matrix_Int_ value4_) noexcept {
+				template<typename Matrix_Var_>
+				constexpr bool isForestBiome(const Matrix_Var_ value_, const Matrix_Var_ value2_, const Matrix_Var_ value3_, const Matrix_Var_ value4_) noexcept {
 					return (((value_ == biome_forest) ? 1 : 0) + ((value2_ == biome_forest) ? 1 : 0) + ((value3_ == biome_forest) ? 1 : 0) + ((value4_ == biome_forest) ? 1 : 0)) >= 2;
 				}
 
@@ -150,12 +150,12 @@ namespace dtl {
 							}
 				}
 
-				template<typename Matrix_Int_>
-				constexpr bool isOceanBiome(const Matrix_Int_ value_) noexcept {
+				template<typename Matrix_Var_>
+				constexpr bool isOceanBiome(const Matrix_Var_ value_) noexcept {
 					return (value_ == biome_ocean || value_ == biome_deep_ocean);
 				}
-				template<typename Matrix_Int_>
-				constexpr bool isDeepOceanBiome(const Matrix_Int_ value_, const Matrix_Int_ value2_, const Matrix_Int_ value3_, const Matrix_Int_ value4_) noexcept {
+				template<typename Matrix_Var_>
+				constexpr bool isDeepOceanBiome(const Matrix_Var_ value_, const Matrix_Var_ value2_, const Matrix_Var_ value3_, const Matrix_Var_ value4_) noexcept {
 					return (((value_ == biome_deep_ocean) ? 1 : 0) + ((value2_ == biome_deep_ocean) ? 1 : 0) + ((value3_ == biome_deep_ocean) ? 1 : 0) + ((value4_ == biome_deep_ocean) ? 1 : 0)) >= 3;
 				}
 

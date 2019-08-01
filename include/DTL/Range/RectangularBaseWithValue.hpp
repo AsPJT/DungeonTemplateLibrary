@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Int_>
+		template<typename Derived_, typename Matrix_Var_>
 		class RectangularBaseWithValue : public ::dtl::range::BasicRectangular<Derived_> {
 		private:
 
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Int_ draw_value{};
+			Matrix_Var_ draw_value{};
 
 
 		public:
@@ -48,7 +48,7 @@ namespace dtl {
 			///// メンバ変数の値を取得 (Get Value) /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr Matrix_Int_ getValue() const noexcept {
+				constexpr Matrix_Var_ getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -64,7 +64,7 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
+				const Matrix_Var_ new_draw_value{};
 				this->draw_value = new_draw_value;
 				return static_cast<Derived_&>(*this);
 			}
@@ -86,15 +86,15 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			RectangularBaseWithValue() = default;
-			constexpr explicit RectangularBaseWithValue(const Matrix_Int_& draw_value_) noexcept
+			constexpr explicit RectangularBaseWithValue(const Matrix_Var_& draw_value_) noexcept
 				:draw_value(draw_value_) {}
 			constexpr explicit RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_) noexcept
 				:RectBase_t(matrix_range_) {}
-			constexpr RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_, const Matrix_Int_& draw_value_) noexcept
+			constexpr RectangularBaseWithValue(const ::dtl::base::MatrixRange3D& matrix_range_, const Matrix_Var_& draw_value_) noexcept
 				:RectBase_t(matrix_range_), draw_value(draw_value_) {}
 			constexpr RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_) noexcept
 				:RectBase_t(start_x_, start_y_, start_z_, size_x_, size_y_, size_z_) {}
-			constexpr RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_, const Matrix_Int_& draw_value_) noexcept
+			constexpr RectangularBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size start_z_, const Index_Size size_x_, const Index_Size size_y_, const Index_Size size_z_, const Matrix_Var_& draw_value_) noexcept
 				:RectBase_t(start_x_, start_y_, start_z_, size_x_, size_y_, size_z_), draw_value(draw_value_) {}
 		};
 	}

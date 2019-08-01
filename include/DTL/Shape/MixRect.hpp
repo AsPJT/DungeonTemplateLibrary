@@ -33,17 +33,17 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Int_>
-		class MixRect : public ::dtl::range::RectBaseWithVector<MixRect<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<MixRect<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class MixRect : public ::dtl::range::RectBaseWithVector<MixRect<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<MixRect<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithVector<MixRect, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<MixRect, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithVector<MixRect, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<MixRect, Matrix_Var_>;
 
 			friend DrawBase_t;
 

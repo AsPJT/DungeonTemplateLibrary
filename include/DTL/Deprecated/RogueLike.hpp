@@ -26,13 +26,13 @@ namespace dtl {
 			namespace stl {
 
 				//四角形の位置と大きさ
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				struct RogueLikeOutputNumber {
 					RogueLikeOutputNumber() = default;
 					//位置
-					Matrix_Int_ x{}, y{};
+					Matrix_Var_ x{}, y{};
 					//大きさ
-					Matrix_Int_ w{}, h{};
+					Matrix_Var_ w{}, h{};
 				};
 				//タイルID
 				enum : ::dtl::type::size {
@@ -51,7 +51,7 @@ namespace dtl {
 					direction_count,
 				};
 				//ローグライク生成クラス
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				class RogueLike {
 				public:
 					//コンストラクタ
@@ -83,14 +83,14 @@ namespace dtl {
 					//タイルを取得
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						Matrix_Int_ getTileType(const Matrix_ & matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) const noexcept {
-						if (static_cast<::dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<::dtl::type::size>(0) : matrix_[0].size()) || static_cast<::dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Int_)outside_wall_id;
+						Matrix_Var_ getTileType(const Matrix_ & matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) const noexcept {
+						if (static_cast<::dtl::type::size>(x_) >= ((matrix_.size() == 0) ? static_cast<::dtl::type::size>(0) : matrix_[0].size()) || static_cast<::dtl::type::size>(y_) >= (matrix_.size())) return (Matrix_Var_)outside_wall_id;
 						return matrix_[y_][x_];
 					}
 					//タイルを置く
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						void setTileType(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ tile_) const noexcept {
+						void setTileType(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Var_ tile_) const noexcept {
 						matrix_[y_][x_] = tile_;
 					}
 					template<typename Matrix_>
@@ -263,7 +263,7 @@ namespace dtl {
 					}
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
-						bool placeOutputNumber(Matrix_& matrix_, const RogueLikeOutputNumber< ::std::int_fast32_t>& rect, const Matrix_Int_ tile_) const noexcept {
+						bool placeOutputNumber(Matrix_& matrix_, const RogueLikeOutputNumber< ::std::int_fast32_t>& rect, const Matrix_Var_ tile_) const noexcept {
 						if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >( ::std::int_fast32_t)((matrix_.size() == 0) ? 0 : matrix_[0].size()) - 1 || rect.y + rect.h >( ::std::int_fast32_t)(matrix_.size()) - 1)
 							return false;
 						for ( ::std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
@@ -281,7 +281,7 @@ namespace dtl {
 				};
 
 				//ローグライク洞窟
-				template<typename Matrix_Int_>
+				template<typename Matrix_Var_>
 				class RogueLikeCave {
 				public:
 					//コンストラクタ
@@ -295,10 +295,10 @@ namespace dtl {
 					template<typename Matrix_>
 					DTL_VERSIONING_CPP14_CONSTEXPR
 						void create(Matrix_& matrix_, const ::dtl::type::size way_max_ = 20) const noexcept {
-						::dtl::generator::dungeon::stl::RogueLike<Matrix_Int_> fractal_island_stl2(matrix_, way_max_);
+						::dtl::generator::dungeon::stl::RogueLike<Matrix_Var_> fractal_island_stl2(matrix_, way_max_);
 						//::dtl::utility::stl::binarizationOver(matrix_, 1);
 
-						::dtl::utility::Binarization<Matrix_Int_>(1, 0).drawOperator(matrix_, [](const Matrix_Int_ & value_) {return value_ >= 1; });
+						::dtl::utility::Binarization<Matrix_Var_>(1, 0).drawOperator(matrix_, [](const Matrix_Var_ & value_) {return value_ >= 1; });
 
 						::dtl::utility::stl::noiseShoreBothBool(matrix_, 0.1);
 					}

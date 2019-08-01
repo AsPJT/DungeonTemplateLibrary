@@ -28,9 +28,9 @@ namespace dtl {
 				for (::dtl::type::size row{}; row < y_; ++row)
 					matrix_[row].resize(x_);
 			}
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void resize(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Int_ value_) noexcept {
+				void resize(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const Matrix_Var_ value_) noexcept {
 				matrix_.resize(y_);
 				for (::dtl::type::size row{}; row < y_; ++row) {
 					matrix_[row].resize(x_);
@@ -57,9 +57,9 @@ namespace dtl {
 							matrix_[row][col].resize(layer_);
 					}
 				}
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void resize(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
+					void resize(Matrix_ & matrix_, const ::dtl::type::size x_, const ::dtl::type::size y_, const ::dtl::type::size layer_, const Matrix_Var_ value_) noexcept {
 					matrix_.resize(y_);
 					for (::dtl::type::size row{}; row < y_; ++row) {
 						matrix_[row].resize(x_);
@@ -77,9 +77,9 @@ namespace dtl {
 						for (::dtl::type::size col{}; col < matrix_[row].size(); ++col)
 							matrix_[row][col].resize(layer_);
 				}
-				template<typename Matrix_Int_, typename Matrix_>
+				template<typename Matrix_Var_, typename Matrix_>
 				DTL_VERSIONING_CPP14_CONSTEXPR
-					void resize(Matrix_ & matrix_, const ::dtl::type::size layer_, const Matrix_Int_ value_) noexcept {
+					void resize(Matrix_ & matrix_, const ::dtl::type::size layer_, const Matrix_Var_ value_) noexcept {
 					for (::dtl::type::size row{}; row < matrix_.size(); ++row)
 						for (::dtl::type::size col{}; col < matrix_[row].size(); ++col) {
 							matrix_[row][col].resize(layer_);

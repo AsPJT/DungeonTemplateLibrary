@@ -24,9 +24,9 @@ namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 		namespace stl {
 
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void noiseShore(Matrix_& matrix_, const double rbool_, const Matrix_Var_ true_tile_ = 1, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -37,9 +37,9 @@ namespace dtl {
 						else matrix_[row][col] = true_tile_;
 					}
 			}
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void rnoiseShore(Matrix_ & matrix_, const double rbool_, const Matrix_Var_ true_tile_ = 1, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -51,9 +51,9 @@ namespace dtl {
 					}
 			}
 
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void noiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Var_ true_tile_ = 1, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -64,9 +64,9 @@ namespace dtl {
 						else matrix_[row][col] = true_tile_;
 					}
 			}
-			template<typename Matrix_Int_, typename Matrix_>
+			template<typename Matrix_Var_, typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Int_ true_tile_ = 1, const Matrix_Int_ false_tile_ = 0) noexcept {
+				void rnoiseShoreOver(Matrix_ & matrix_, const double rbool_, const Matrix_Var_ true_tile_ = 1, const Matrix_Var_ false_tile_ = 0) noexcept {
 
 				using ::dtl::random::mersenne_twister_32bit;
 
@@ -115,9 +115,9 @@ namespace dtl {
 		};
 
 		//Wolfオートタイル形式の地形タイプを返す
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		DTL_VERSIONING_CPP17_NODISCARD
-		constexpr ::dtl::type::size getWolfAutoTileType(const Matrix_Int_ center_, const Matrix_Int_ next1_, const Matrix_Int_ next2_, const Matrix_Int_ next3_) noexcept {
+		constexpr ::dtl::type::size getWolfAutoTileType(const Matrix_Var_ center_, const Matrix_Var_ next1_, const Matrix_Var_ next2_, const Matrix_Var_ next3_) noexcept {
 			return (center_ == next1_) ?
 				((center_ == next2_) ?
 				((center_ == next3_) ? wolf_auto_tile_type_all : wolf_auto_tile_type_cross)

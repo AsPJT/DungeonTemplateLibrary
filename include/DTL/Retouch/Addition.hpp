@@ -34,17 +34,17 @@ namespace dtl {
 	[概要] Additionとは "Matrixの描画範囲を指定値で足し算する" 機能を持つクラスである。
 	[Summary] Addition is a class that adds the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class Addition : public ::dtl::range::RectBaseWithValue<Addition<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<Addition<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class Addition : public ::dtl::range::RectBaseWithValue<Addition<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<Addition<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Addition, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Addition, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Addition, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Addition, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -56,7 +56,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Matrix_Int_ init{};
+				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -72,7 +72,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
-				const Matrix_Int_ init{};
+				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };

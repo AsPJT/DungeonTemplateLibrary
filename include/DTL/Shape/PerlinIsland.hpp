@@ -36,17 +36,17 @@ namespace dtl {
 	[概要] PerlinIslandとは "Matrixの描画範囲にパーリンノイズを使用して地形を生成する" 機能を持つクラスである。
 	[Summary] PerlinIsland is a class that generates terrain using perlin noise in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Int_>
-		class PerlinIsland : public ::dtl::range::RectBasePerlin<PerlinIsland<Matrix_Int_>, Matrix_Int_>,
-			public ::dtl::utility::DrawJagged<PerlinIsland<Matrix_Int_>, Matrix_Int_> {
+		template<typename Matrix_Var_>
+		class PerlinIsland : public ::dtl::range::RectBasePerlin<PerlinIsland<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<PerlinIsland<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBasePerlin<PerlinIsland, Matrix_Int_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<PerlinIsland, Matrix_Int_>;
+			using ShapeBase_t = ::dtl::range::RectBasePerlin<PerlinIsland, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<PerlinIsland, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -68,7 +68,7 @@ namespace dtl {
 					const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 					for (std::size_t col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row,
-							this->min_height + static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
+							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 				}
 				return true;
 			}
@@ -88,7 +88,7 @@ namespace dtl {
 				for (std::size_t row{ this->start_y }; row < end_y_; ++row)
 					for (std::size_t col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row,
-							this->min_height + static_cast<Matrix_Int_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
+							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 				return true;
 			}
 

@@ -33,13 +33,13 @@ namespace dtl {
 /*#######################################################################################
 	[概要] FileHDRとは "HDR形式の画像ファイルを出力する" 機能を持つクラスである。
 #######################################################################################*/
-		template<typename Matrix_Int_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<float[]>>
-		class FileHDR : public ::dtl::storage::FileBaseBin<FileHDR<Matrix_Int_, UniquePtr_>, Matrix_Int_, UniquePtr_> {
+		template<typename Matrix_Var_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<float[]>>
+		class FileHDR : public ::dtl::storage::FileBaseBin<FileHDR<Matrix_Var_, UniquePtr_>, Matrix_Var_, UniquePtr_> {
 
 
 			///// エイリアス (Alias) /////
 
-			using FileBase_t = ::dtl::storage::FileBaseBin<FileHDR, Matrix_Int_, UniquePtr_>;
+			using FileBase_t = ::dtl::storage::FileBaseBin<FileHDR, Matrix_Var_, UniquePtr_>;
 
 			friend FileBase_t;
 

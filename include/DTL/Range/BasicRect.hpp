@@ -90,10 +90,10 @@ namespace dtl {
 	[Summary] Gets the drawing start point coordinate X.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getPointX(Matrix_Int_& value_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->start_x);
+				Derived_& getPointX(Matrix_Var_& value_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->start_x);
 				return static_cast<Derived_&>(*this);
 			}
 
@@ -104,10 +104,10 @@ namespace dtl {
 	[Summary] Gets the drawing start point coordinate Y.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getPointY(Matrix_Int_& value_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->start_y);
+				Derived_& getPointY(Matrix_Var_& value_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->start_y);
 				return static_cast<Derived_&>(*this);
 			}
 
@@ -118,10 +118,10 @@ namespace dtl {
 	[Summary] Gets the drawing width.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getWidth(Matrix_Int_& value_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->width);
+				Derived_& getWidth(Matrix_Var_& value_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->width);
 				return static_cast<Derived_&>(*this);
 			}
 
@@ -132,10 +132,10 @@ namespace dtl {
 	[Summary] Gets the drawing height.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getHeight(Matrix_Int_& value_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->height);
+				Derived_& getHeight(Matrix_Var_& value_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->height);
 				return static_cast<Derived_&>(*this);
 			}
 
@@ -146,10 +146,10 @@ namespace dtl {
 	[Summary] Gets the drawing start coordinate (X, Y).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_>
+			template<typename Matrix_Var_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getPoint(Matrix_Int_& value_) noexcept {
-				const Matrix_Int_ value{ this->start_x ,this->start_y };
+				Derived_& getPoint(Matrix_Var_& value_) noexcept {
+				const Matrix_Var_ value{ this->start_x ,this->start_y };
 				value_ = value;
 				return static_cast<Derived_&>(*this);
 			}
@@ -161,10 +161,10 @@ namespace dtl {
 	[Summary] Gets the drawing start coordinate (X, Y).
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_, typename Matrix_Int2_>
+			template<typename Matrix_Var_, typename Matrix_Int2_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getPoint(Matrix_Int_& value_, Matrix_Int2_& value2_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->start_x);
+				Derived_& getPoint(Matrix_Var_& value_, Matrix_Int2_& value2_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->start_x);
 				value2_ = static_cast<Matrix_Int2_>(this->start_y);
 				return static_cast<Derived_&>(*this);
 			}
@@ -176,10 +176,10 @@ namespace dtl {
 	[Summary] Gets the drawing range.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
+			template<typename Matrix_Var_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getRange(Matrix_Int_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_, Matrix_Int4_& value4_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->start_x);
+				Derived_& getRange(Matrix_Var_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_, Matrix_Int4_& value4_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->start_x);
 				value2_ = static_cast<Matrix_Int2_>(this->start_y);
 				value3_ = static_cast<Matrix_Int3_>(this->width);
 				value4_ = static_cast<Matrix_Int4_>(this->height);
@@ -193,10 +193,10 @@ namespace dtl {
 	[Summary] Gets the drawing range.
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
-			template<typename Matrix_Int_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
+			template<typename Matrix_Var_, typename Matrix_Int2_, typename Matrix_Int3_, typename Matrix_Int4_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& getRange(Matrix_Int_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_) noexcept {
-				value_ = static_cast<Matrix_Int_>(this->start_x);
+				Derived_& getRange(Matrix_Var_& value_, Matrix_Int2_& value2_, Matrix_Int3_& value3_) noexcept {
+				value_ = static_cast<Matrix_Var_>(this->start_x);
 				value2_ = static_cast<Matrix_Int2_>(this->start_y);
 				value3_ = static_cast<Matrix_Int3_>(this->width);
 				return static_cast<Derived_&>(*this);

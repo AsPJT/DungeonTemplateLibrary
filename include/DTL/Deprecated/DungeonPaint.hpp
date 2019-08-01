@@ -31,30 +31,30 @@ namespace dtl {
 
 		//Flood Fill Algorithm
 		//塗りツール
-		template<typename Matrix_Int_>
+		template<typename Matrix_Var_>
 		class Bucket {
 		public:
 			//コンストラクタ
 			Bucket() = default;
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Bucket(Matrix_& matrix_, const ::std::int_fast32_t col_, const ::std::int_fast32_t row_, const Matrix_Int_ paint_value_) noexcept {
+				Bucket(Matrix_& matrix_, const ::std::int_fast32_t col_, const ::std::int_fast32_t row_, const Matrix_Var_ paint_value_) noexcept {
 				paint(matrix_, col_, row_, paint_value_);
 			}
 		private:
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void setPoint(Matrix_& matrix_, const ::dtl::type::size col_, const ::dtl::type::size row_, const Matrix_Int_ value_) const noexcept {
+				void setPoint(Matrix_& matrix_, const ::dtl::type::size col_, const ::dtl::type::size row_, const Matrix_Var_ value_) const noexcept {
 				matrix_[row_][col_] = value_;
 			}
 			template<typename Matrix_>
-			constexpr Matrix_Int_ getPoint(const Matrix_& matrix_, const ::dtl::type::size col_, const ::dtl::type::size row_) const noexcept {
+			constexpr Matrix_Var_ getPoint(const Matrix_& matrix_, const ::dtl::type::size col_, const ::dtl::type::size row_) const noexcept {
 				return matrix_[row_][col_];
 			}
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void scanLine(const Matrix_& matrix_, ::std::unique_ptr<BucketBuffer[]>& buffer_, ::dtl::type::size& end_n_, ::std::int_fast32_t left_x_, const ::std::int_fast32_t right_x_, const ::std::int_fast32_t y_, const ::std::int_fast32_t old_y_, const Matrix_Int_ value_) const noexcept {
+				void scanLine(const Matrix_& matrix_, ::std::unique_ptr<BucketBuffer[]>& buffer_, ::dtl::type::size& end_n_, ::std::int_fast32_t left_x_, const ::std::int_fast32_t right_x_, const ::std::int_fast32_t y_, const ::std::int_fast32_t old_y_, const Matrix_Var_ value_) const noexcept {
 				while (left_x_ <= right_x_) {
 
 					for (; left_x_ < right_x_; ++left_x_)
@@ -76,14 +76,14 @@ namespace dtl {
 
 		public:
 			template<typename Matrix_>
-			void paint(Matrix_ & matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const Matrix_Int_ paint_value_) const noexcept {
+			void paint(Matrix_ & matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const Matrix_Var_ paint_value_) const noexcept {
 				if (matrix_.size() == 0 || matrix_[0].size() == 0) return;
 				::std::int_fast32_t left_x{};
 				::std::int_fast32_t right_x{};
 				::std::int_fast32_t old_y{};
 				::std::int_fast32_t paint_y{};
 
-				const Matrix_Int_ value{ getPoint(matrix_, x_, y_) };
+				const Matrix_Var_ value{ getPoint(matrix_, x_, y_) };
 				if (value == paint_value_) return;
 
 				const ::std::int_fast32_t size_max_x{ static_cast< ::std::int_fast32_t>(matrix_[0].size() - 1) };

@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Int_>
+		template<typename Derived_, typename Matrix_Var_>
 		class RectBaseWithValue : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Int_ draw_value{};
+			Matrix_Var_ draw_value{};
 
 
 		public:
@@ -63,13 +63,13 @@ namespace dtl {
 
 /*#######################################################################################
 	[概要] 描画値を取得する。
-	[戻り値] 戻り値の型は Matrix_Int_ である。
+	[戻り値] 戻り値の型は Matrix_Var_ である。
 	[参考ページ] https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::XX::YY::getValue-(形状描画)/
 	[Summary] Gets the drawing value.
-	[Return value] The return type is Matrix_Int_.
+	[Return value] The return type is Matrix_Var_.
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr Matrix_Int_ getValue() const noexcept {
+			constexpr Matrix_Var_ getValue() const noexcept {
 				return this->draw_value;
 			}
 
@@ -85,7 +85,7 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
-				const Matrix_Int_ new_draw_value{};
+				const Matrix_Var_ new_draw_value{};
 				this->draw_value = new_draw_value;
 				return static_cast<Derived_&>(*this);
 			}
@@ -113,7 +113,7 @@ namespace dtl {
 	[Return value] The return type is a reference value of this class.
 #######################################################################################*/
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				Derived_& setValue(const Matrix_Int_& draw_value_) noexcept {
+				Derived_& setValue(const Matrix_Var_& draw_value_) noexcept {
 				this->draw_value = draw_value_;
 				return static_cast<Derived_&>(*this);
 			}
@@ -127,12 +127,12 @@ namespace dtl {
 			constexpr RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_) {}
 
-			constexpr explicit RectBaseWithValue(const Matrix_Int_ & draw_value_) noexcept
+			constexpr explicit RectBaseWithValue(const Matrix_Var_ & draw_value_) noexcept
 				:draw_value(draw_value_) {}
-			constexpr RectBaseWithValue(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr RectBaseWithValue(const ::dtl::base::MatrixRange & matrix_range_, const Matrix_Var_ & draw_value_) noexcept
 				:RectBase_t(matrix_range_),
 				draw_value(draw_value_) {}
-			constexpr RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Int_ & draw_value_) noexcept
+			constexpr RectBaseWithValue(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const Matrix_Var_ & draw_value_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				draw_value(draw_value_) {}
 		};
