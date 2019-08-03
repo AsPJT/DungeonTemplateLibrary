@@ -13,6 +13,7 @@
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PerlinIsland-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::PerlinIsland-in-Unreal-Engine-(形状クラス)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
