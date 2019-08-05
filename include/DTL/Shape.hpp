@@ -17,6 +17,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_HPP
 
 #include <DTL/Shape/AscendingOrder.hpp>
+#include <DTL/Shape/AscendingOrder2.hpp>
 #include <DTL/Shape/Border.hpp>
 //Shape_Border + また、指定マスの列数が偶数の時[列数-2列目]を設置し、行数が偶数の時[行数-2行目]のマスに任意の値(1)を設置する(※行/列は0から数える)。
 #include <DTL/Shape/BorderOdd.hpp>
@@ -46,6 +47,7 @@
 #include <DTL/Shape/Rect.hpp>
 #include <DTL/Shape/Reversi.hpp>
 #include <DTL/Shape/Shogi.hpp>
+#include <DTL/Shape/SimplePyramid.hpp>
 #include <DTL/Shape/SimpleRogueLike.hpp>
 #include <DTL/Shape/SimpleVoronoiIsland.hpp>
 #include <DTL/Shape/WhiteNoise.hpp>
