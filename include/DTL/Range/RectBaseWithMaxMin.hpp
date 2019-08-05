@@ -123,7 +123,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearValue() noexcept {
 				this->clearMaxValue();
-				this->clearMinValue()
+				this->clearMinValue();
 				return static_cast<Derived_&>(*this);
 			}
 
