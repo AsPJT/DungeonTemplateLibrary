@@ -49,6 +49,7 @@
 #include <DTL/Shape/Shogi.hpp>
 #include <DTL/Shape/SimplePyramid.hpp>
 #include <DTL/Shape/SimpleRogueLike.hpp>
+#include <DTL/Shape/SimpleTruncatedSquarePyramid.hpp>
 #include <DTL/Shape/SimpleVoronoiIsland.hpp>
 #include <DTL/Shape/WhiteNoise.hpp>
 

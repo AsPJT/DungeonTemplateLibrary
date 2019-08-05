@@ -7,12 +7,12 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_SIMPLE_PYRAMID_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_SIMPLE_PYRAMID_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_SIMPLE_TRUNCATED_SQUARE_PYRAMID_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_SIMPLE_TRUNCATED_SQUARE_PYRAMID_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::SimplePyramid-(形状クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::SimpleTruncatedSquarePyramid-(形状クラス)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
@@ -21,7 +21,7 @@
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/Min.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Range/RectBaseWithMaxMin.hpp>
+#include <DTL/Range/RectBaseWithValueMaxMin.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
 
 /*#######################################################################################
@@ -32,20 +32,20 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 /*#######################################################################################
-	[概要] SimplePyramidとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
-	[Summary] SimplePyramid is a class that sets drawing values in the drawing range of Matrix.
+	[概要] SimpleTruncatedSquarePyramidとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
+	[Summary] SimpleTruncatedSquarePyramid is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Var_>
-		class SimplePyramid : public ::dtl::range::RectBaseWithMaxMin<SimplePyramid<Matrix_Var_>, Matrix_Var_>,
-			public ::dtl::utility::DrawJagged<SimplePyramid<Matrix_Var_>, Matrix_Var_> {
+		class SimpleTruncatedSquarePyramid : public ::dtl::range::RectBaseWithValueMaxMin<SimpleTruncatedSquarePyramid<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<SimpleTruncatedSquarePyramid<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithMaxMin<SimplePyramid, Matrix_Var_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<SimplePyramid, Matrix_Var_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValueMaxMin<SimpleTruncatedSquarePyramid, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<SimpleTruncatedSquarePyramid, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -66,10 +66,11 @@ namespace dtl {
 					const Index_Size mid_x_{ end_x_ / 2 };
 					for (Index_Size col{}; col < end_x_; ++col) {
 						Index_Size col2{ (col > mid_x_) ? end_x_ - col - 1 : col };
-						matrix_.set(col + this->start_x, row + this->start_y, this->min_value +
+						const Matrix_Var_ set_value{ static_cast<Matrix_Var_>(this->min_value +
 							static_cast<Matrix_Var_>(DTL_TYPE_MIN(
 								static_cast<double>(this->max_value - this->min_value) * row2 / mid_y_,
-								static_cast<double>(this->max_value - this->min_value) * col2 / mid_x_)), args_...);
+								static_cast<double>(this->max_value - this->min_value) * col2 / mid_x_))) };
+						matrix_.set(col + this->start_x, row + this->start_y, (set_value > this->draw_value) ? this->draw_value : set_value, args_...);
 					}
 				}
 				return true;
@@ -89,10 +90,11 @@ namespace dtl {
 					Index_Size row2{ (row > mid_y_) ? end_y_ - row - 1 : row };
 					for (Index_Size col{}; col < end_x_; ++col) {
 						Index_Size col2{ (col > mid_x_) ? end_x_ - col - 1 : col };
-						matrix_.set(col + this->start_x, row + this->start_y, this->min_value +
+						const Matrix_Var_ set_value{ static_cast<Matrix_Var_>(this->min_value +
 							static_cast<Matrix_Var_>(DTL_TYPE_MIN(
 								static_cast<double>(this->max_value - this->min_value) * row2 / mid_y_,
-								static_cast<double>(this->max_value - this->min_value) * col2 / mid_x_)), args_...);
+								static_cast<double>(this->max_value - this->min_value) * col2 / mid_x_))) };
+						matrix_.set(col + this->start_x, row + this->start_y, (set_value > this->draw_value) ? this->draw_value : set_value, args_...);
 					}
 				}
 				return true;

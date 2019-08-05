@@ -109,23 +109,6 @@ namespace dtl {
 				return TY::get(mat);
 			}
 
-			template<typename MatrixAdd_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<MatrixAdd_::is_jagged::value, bool>::type
-				setAdd(const Index_Size point_x_, const Index_Size point_y_, V value_)
-				noexcept(noexcept(::std::declval<B&>()(0, 0) = {})) {
-				static_cast<B&>(*this)(point_x_, point_y_) = value_;
-				return true;
-			}
-			template<typename MatrixAdd_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<!MatrixAdd_::is_jagged::value, bool>::type
-				setAdd(const Index_Size point_x_, const Index_Size point_y_, V value_)
-				noexcept(noexcept(::std::declval<B&>()(0, 0) = {})) {
-				static_cast<B&>(*this)(point_x_, point_y_) += value_;
-				return true;
-			}
-
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void set(const Index_Size point_x_, const Index_Size point_y_, V value_)
 				noexcept(noexcept(::std::declval<B&>()(0, 0) = {})) {
@@ -137,6 +120,11 @@ namespace dtl {
 				noexcept(noexcept(function_(::std::declval<B&>()(0, 0))) && noexcept(::std::declval<B&>()(0, 0) = {})) {
 				if (function_(static_cast<B&>(*this)(point_x_, point_y_)))
 					static_cast<B&>(*this)(point_x_, point_y_) = value_;
+			}
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, int, int, int, int)
+				noexcept(noexcept(::std::declval<B&>()(0, 0) = {})) {
+				static_cast<B&>(*this)(point_x_, point_y_) += value_;
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
