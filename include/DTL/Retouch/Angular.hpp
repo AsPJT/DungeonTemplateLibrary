@@ -7,17 +7,20 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_AVERAGE_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_AVERAGE_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_ANGULAR_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_ANGULAR_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::retouch::Average-(修正クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::retouch::Angular-(修正クラス)/
 #######################################################################################*/
 
+#include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
+#include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Range/RectBase.hpp>
+#include <DTL/Range/RectBaseWithValue.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
 
 /*#######################################################################################
@@ -25,20 +28,23 @@
 	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
 #######################################################################################*/
 namespace dtl {
-	inline namespace retouch { //"dtl::retouch"名前空間に属する
+	inline namespace retouch { //"dtl::shape"名前空間に属する
 
-		//マスを指定した数値で埋める
+/*#######################################################################################
+	[概要] Angularとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
+	[Summary] Angular is a class that sets drawing values in the drawing range of Matrix.
+#######################################################################################*/
 		template<typename Matrix_Var_>
-		class Average : public ::dtl::range::RectBase<Average<Matrix_Var_>>,
-			public ::dtl::utility::DrawJagged<Average<Matrix_Var_>, Matrix_Var_> {
+		class Angular : public ::dtl::range::RectBaseWithValue<Angular<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<Angular<Matrix_Var_>, Matrix_Var_> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBase<Average>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<Average, Matrix_Var_>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<Angular, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<Angular, Matrix_Var_>;
 
 			friend DrawBase_t;
 
@@ -50,26 +56,12 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				if (this->draw_value == 0) return false;
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
-
-				if ((end_y_ - this->start_y) <= 0.0) return true;
-				const double index_size{};
-				double sum_value{};
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
-					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
-					for (Index_Size col{ this->start_x }; col < end_x_; ++col) {
-						index_size += 1.0;
-						sum_value += static_cast<double>(matrix_.get(col, row));
-					}
-				}
-
-				if (index_size <= 0.0) return true;
-				const Matrix_Var_ average_value{ static_cast<Matrix_Var_>(sum_value / index_size) };
-
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.set(col, row, average_value, args_...);
+						matrix_.sub(col, row, matrix_.get(col, row) % this->draw_value, args_...);
 				}
 				return true;
 			}
@@ -79,21 +71,12 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				if (this->draw_value == 0) return false;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
-
-				const double index_size{ static_cast<double>((end_x_ - this->start_x) * (end_y_ - this->start_y)) };
-				if (index_size <= 0.0) return true;
-				double sum_value{};
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						sum_value += static_cast<double>(matrix_.get(col, row));
-
-				const Matrix_Var_ average_value{ static_cast<Matrix_Var_>(sum_value / index_size) };
-
-				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
-					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.set(col, row, average_value, args_...);
+						matrix_.sub(col, row, matrix_.get(col, row) % this->draw_value, args_...);
 				return true;
 			}
 
