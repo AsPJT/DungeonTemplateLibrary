@@ -121,23 +121,32 @@ namespace dtl {
 				if (function_(static_cast<B&>(*this)(point_x_, point_y_)))
 					static_cast<B&>(*this)(point_x_, point_y_) = value_;
 			}
+			//4 Add
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, int, int, int, int)
 				noexcept(noexcept(::std::declval<B&>()(0, 0) = {})) {
 				static_cast<B&>(*this)(point_x_, point_y_) += value_;
 			}
+			//4 Add (Func)
 			template<typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_, int, int, int, int)
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_, int, int, int)
 				noexcept(noexcept(function_(::std::declval<B&>()(0, 0))) && noexcept(::std::declval<B&>()(0, 0) = {})) {
 				if (function_(static_cast<B&>(*this)(point_x_, point_y_)))
 					static_cast<B&>(*this)(point_x_, point_y_) += value_;
 			}
+			//5 Func (Func)
 			template<typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_, int, int, int, int, int, int, int, int)
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Function_&& function_, int, int, int, int)
 				noexcept(noexcept(function_(::std::declval<B&>()(0, 0), {})) && noexcept(::std::declval<B&>()(0, 0) = {})) {
 				function_(static_cast<B&>(*this)(point_x_, point_y_), value_);
+			}
+			//6 Other
+			template<typename Matrix_, typename Matrix_Var2_>
+			DTL_VERSIONING_CPP14_CONSTEXPR
+				void set(const Index_Size point_x_, const Index_Size point_y_, V value_, Matrix_&& matrix_, Matrix_Var2_, int, int, int, int) {
+				matrix_.set(point_x_, point_y_, static_cast<Matrix_Var2_>(value_));
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR

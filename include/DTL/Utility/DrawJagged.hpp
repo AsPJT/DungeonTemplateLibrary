@@ -49,6 +49,30 @@ namespace dtl {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_));
 			}
 
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), ::dtl::utility::makeWrapper<Matrix_Var_>(matrix2_)
+					, Matrix_Var_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_Var2_, typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), ::dtl::utility::makeWrapper<Matrix_Var2_>(matrix2_)
+					, Matrix_Var2_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
 /*#######################################################################################
 	[概要] Matrixに描画する。
 	[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
@@ -68,7 +92,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawFunction(Matrix_& matrix_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), function_, 0, 0, 0, 0, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), function_, 0, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -90,7 +114,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawAddOperator(Matrix_& matrix_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), function_, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_), function_, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -102,6 +126,30 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_) const noexcept {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_));
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size layer_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), ::dtl::utility::makeWrapper<Matrix_Var_>(matrix2_, layer_)
+					, Matrix_Var_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_Var2_, typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size layer_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), ::dtl::utility::makeWrapper<Matrix_Var2_>(matrix2_, layer_)
+					, Matrix_Var2_{}, 0, 0, 0, 0); //10*4 Copy
 			}
 
 /*#######################################################################################
@@ -123,7 +171,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawFunction(Matrix_& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), function_, 0, 0, 0, 0, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), function_, 0, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -145,7 +193,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawAddOperator(Matrix_& matrix_, const Index_Size layer_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), function_, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_), function_, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -157,6 +205,30 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_));
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var_>(matrix2_, max_x_, max_y_)
+					, Matrix_Var_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_Var2_, typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var2_>(matrix2_, max_x_, max_y_)
+					, Matrix_Var2_{}, 0, 0, 0, 0); //10*4 Copy
 			}
 
 /*#######################################################################################
@@ -178,7 +250,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawFunction(Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -200,7 +272,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawAddOperator(Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -212,6 +284,30 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool draw(Matrix_ & matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_));
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var_>(matrix2_, layer_, max_x_, max_y_)
+					, Matrix_Var_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_Var2_, typename Matrix_, typename Matrix2_>
+			constexpr bool drawOther(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var2_>(matrix2_, layer_, max_x_, max_y_)
+					, Matrix_Var2_{}, 0, 0, 0, 0); //10*4 Copy
 			}
 
 /*#######################################################################################
@@ -233,7 +329,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawFunction(Matrix_& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), function_, 0, 0, 0, 0, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), function_, 0, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -255,7 +351,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawAddOperator(Matrix_& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), function_, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, layer_, max_x_, max_y_), function_, 0, 0, 0);
 			}
 
 /*#######################################################################################
@@ -267,6 +363,30 @@ namespace dtl {
 			template<typename Matrix_>
 			constexpr bool drawArray(Matrix_ & matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_));
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_, typename Matrix2_>
+			constexpr bool drawOtherArray(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var_>(matrix2_, max_x_, max_y_)
+					, Matrix_Var_{}, 0, 0, 0, 0); //10*4 Copy
+			}
+
+			/*#######################################################################################
+				[概要] Matrixに描画する。
+				[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+				[Summary] Draw on Matrix.
+				[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+			#######################################################################################*/
+			template<typename Matrix_Var2_, typename Matrix_, typename Matrix2_>
+			constexpr bool drawOtherArray(Matrix_& matrix_, Matrix2_& matrix2_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), ::dtl::utility::makeWrapper<Matrix_Var2_>(matrix2_, max_x_, max_y_)
+					, Matrix_Var2_{}, 0, 0, 0, 0); //10*4 Copy
 			}
 
 /*#######################################################################################
@@ -288,7 +408,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawFunctionArray(Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0);
 			}
 
 			/*#######################################################################################
@@ -299,7 +419,7 @@ namespace dtl {
 			#######################################################################################*/
 			template<typename Matrix_, typename Function_>
 			constexpr bool drawAddOperatorArray(Matrix_& matrix_, const Index_Size max_x_, const Index_Size max_y_, Function_&& function_) const noexcept {
-				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0, 0);
+				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, max_x_, max_y_), function_, 0, 0, 0);
 			}
 
 /*#######################################################################################
