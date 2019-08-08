@@ -10,11 +10,10 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_IS_OUTPUT_CAST_HPP
 
-#include <type_traits>
-
 ///// DTL Only /////
 
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/EnableIf.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -46,13 +45,13 @@ namespace dtl {
 
 		template<typename Int_>
 		DTL_VERSIONING_CPP17_NODISCARD
-		constexpr typename ::std::enable_if<isOutputCast<Int_>(), int>::type
+		constexpr typename DTL_TYPE_ENABLE_IF<isOutputCast<Int_>(), int>::DTL_TYPE_EITYPE
 		CastForOutput(const Int_ v) noexcept(noexcept(static_cast<int>(v))) {
 			return static_cast<int>(v);
 		}
 		template<typename Int_>
 		DTL_VERSIONING_CPP17_NODISCARD
-		constexpr typename ::std::enable_if<!isOutputCast<Int_>(), Int_>::type
+		constexpr typename DTL_TYPE_ENABLE_IF<!isOutputCast<Int_>(), Int_>::DTL_TYPE_EITYPE
 		CastForOutput(const Int_ v) noexcept {
 			return v;
 		}

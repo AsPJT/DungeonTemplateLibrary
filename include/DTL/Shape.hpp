@@ -33,6 +33,7 @@
 #include <DTL/Shape/MixRect.hpp>
 #include <DTL/Shape/PerlinIsland.hpp>
 #include <DTL/Shape/PerlinLoopIsland.hpp>
+#include <DTL/Shape/PerlinSolitaryIsland.hpp>
 #include <DTL/Shape/Point.hpp>
 //指定マスの偶数列目かつ偶数行目に任意の値(1)を設置する。
 #include <DTL/Shape/PointGrid.hpp>

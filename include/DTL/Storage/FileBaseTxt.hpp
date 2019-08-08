@@ -44,7 +44,7 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename... Args_>
-			typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
+			typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 			writeNormal(const Matrix_& matrix, Args_&&... args) const {
 				const Index_Size end_y = this->calcEndY(matrix.getY());
 				Ofstream_ ofs(this->getString());
@@ -54,7 +54,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename... Args_>
-			typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
+			typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 			writeNormal(const Matrix_& matrix, Args_&&... args) const {
 				const Index_Size end_x = this->calcEndX(matrix.getX());
 				const Index_Size end_y = this->calcEndY(matrix.getY());

@@ -17,6 +17,7 @@
 #include <type_traits>
 #include <utility>
 #include <DTL/Macros/constexpr.hpp>
+#include <DTL/Type/EnableIf.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 
@@ -303,21 +304,21 @@ namespace dtl {
 
 		// 1次元
 		template<typename T, typename TX>
-		struct MatrixWrapperImpl<T, TList<TX>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TX>, typename DTL_TYPE_ENABLE_IF<!::dtl::utility::to_element<T>::value>::DTL_TYPE_EITYPE> {
 			template<typename V, typename M>
 			using Base_t = ::dtl::utility::MatrixWrapperBase1<V, M>;
 		};
 
 		// 2次元
 		template<typename T, typename TY, typename TX>
-		struct MatrixWrapperImpl<T, TList<TY, TX>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TY, TX>, typename DTL_TYPE_ENABLE_IF<!::dtl::utility::to_element<T>::value>::DTL_TYPE_EITYPE> {
 			template<typename V, typename M>
 			using Base_t = ::dtl::utility::MatrixWrapperBase2<V, M, TY, TX>;
 		};
 
 		// 3次元
 		template<typename T, typename TY, typename TX, typename TL>
-		struct MatrixWrapperImpl<T, TList<TY, TX, TL>, typename ::std::enable_if<!::dtl::utility::to_element<T>::value>::type> {
+		struct MatrixWrapperImpl<T, TList<TY, TX, TL>, typename DTL_TYPE_ENABLE_IF<!::dtl::utility::to_element<T>::value>::DTL_TYPE_EITYPE> {
 			template<typename V, typename M>
 			using Base_t = ::dtl::utility::MatrixWrapperBase3<V, M, TY, TX>;
 		};
@@ -333,7 +334,7 @@ namespace dtl {
 
 		// 引数2個、1次元用。MatrixWrapperBase1に委譲
 		template<typename V, typename M>
-		struct MatrixWrapper<V, M, 2, typename ::std::enable_if<!::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::type>
+		struct MatrixWrapper<V, M, 2, typename DTL_TYPE_ENABLE_IF<!::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::DTL_TYPE_EITYPE>
 			: ::dtl::utility::MatrixWrapperBase1<V, M> {
 			using Base_t = ::dtl::utility::MatrixWrapperBase1<V, M>;
 
@@ -342,7 +343,7 @@ namespace dtl {
 
 		// 引数2個、2次元用。MatrixWrapperBase2に委譲
 		template<typename V, typename M>
-		struct MatrixWrapper<V, M, 2, typename ::std::enable_if<::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::type>
+		struct MatrixWrapper<V, M, 2, typename DTL_TYPE_ENABLE_IF<::dtl::utility::to_element<::dtl::utility::to_element_t<M>>::value>::DTL_TYPE_EITYPE>
 			: ::dtl::utility::MatrixWrapperBase2<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>> {
 			using Base_t = ::dtl::utility::MatrixWrapperBase2<V, M, ::dtl::utility::mcat_fixed<M>, ::dtl::utility::mcat_fixed<::dtl::utility::to_element_t<M>>>;
 

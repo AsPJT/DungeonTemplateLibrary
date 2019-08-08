@@ -55,7 +55,7 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
+				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) - this->start_y };
 				const Index_Size mid_y_{ end_y_ / 2 };
@@ -78,7 +78,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
+				typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) - this->start_x };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) - this->start_y };

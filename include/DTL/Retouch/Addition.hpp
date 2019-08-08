@@ -54,7 +54,7 @@ namespace dtl {
 			//STL
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<Matrix_::is_jagged::value, bool>::type
+				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
@@ -70,7 +70,7 @@ namespace dtl {
 			//Normal
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				typename ::std::enable_if<!Matrix_::is_jagged::value, bool>::type
+				typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Matrix_Var_ init{};
 				if (this->draw_value == init) return true;
