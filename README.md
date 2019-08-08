@@ -77,6 +77,8 @@ MSBuild DTL.sln /p:Configuration=Release
 
 ## [License 💳](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
 
+[>> View License 💳](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt)
+
 Copyright (c) 2017-2019 Kasugaccho.
 Copyright (c) 2018-2019 As Project.
 
