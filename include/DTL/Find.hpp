@@ -16,6 +16,7 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_HPP
 
+#include <DTL/Find/AroundSum.hpp>
 #include <DTL/Find/Highest.hpp>
 #include <DTL/Find/Highest4Way.hpp>
 
