@@ -26,7 +26,7 @@
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
 
-|Support IDE|
+|Support IDE ⚙|
 |:---:|
 |Visual Studio 2019 version 16.0.0~|
 |Visual Studio 2017 version 15.0.0~|
