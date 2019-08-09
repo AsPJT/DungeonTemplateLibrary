@@ -206,7 +206,7 @@ namespace dtl {
 				:truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_) {}
 			constexpr RectBasePerlinSolitary(const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlinSolitary(const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlinSolitary(const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
 			constexpr RectBasePerlinSolitary(const ::dtl::base::MatrixRange& matrix_range_, const double truncated_proportion_) noexcept
@@ -224,7 +224,7 @@ namespace dtl {
 			constexpr RectBasePerlinSolitary(const ::dtl::base::MatrixRange& matrix_range_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlinSolitary(const ::dtl::base::MatrixRange& matrix_range_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlinSolitary(const ::dtl::base::MatrixRange& matrix_range_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:RectBase_t(matrix_range_),
 				truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
@@ -243,7 +243,7 @@ namespace dtl {
 			constexpr RectBasePerlinSolitary(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlinSolitary(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlinSolitary(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double truncated_proportion_, const double mountain_proportion_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				truncated_proportion(truncated_proportion_), mountain_proportion(mountain_proportion_), frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 		};

@@ -170,7 +170,7 @@ namespace dtl {
 				:frequency(frequency_), octaves(octaves_) {}
 			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlin(const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
 			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_) noexcept
@@ -182,7 +182,7 @@ namespace dtl {
 			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlin(const ::dtl::base::MatrixRange& matrix_range_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:RectBase_t(matrix_range_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 
@@ -195,7 +195,7 @@ namespace dtl {
 			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), max_height(max_height_) {}
-			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& min_height_, const Matrix_Var_& max_height_) noexcept
+			constexpr RectBasePerlin(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const double frequency_, const Index_Size octaves_, const Matrix_Var_& max_height_, const Matrix_Var_& min_height_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				frequency(frequency_), octaves(octaves_), min_height(min_height_), max_height(max_height_) {}
 		};
