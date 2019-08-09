@@ -40,6 +40,8 @@
 
 [**>> API reference 📚**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
+[**>> Version History 📜**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Version-History)
+
 [**>> Roadmap 🏛**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Roadmap)
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
