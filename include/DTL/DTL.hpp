@@ -16,10 +16,14 @@
 	Miutsuru kariya (@kariya-mitsuru)
 	yumetodo (@yumetodo)
 
-	[[UE4 Supporter]]
+	[[UE4 Supporters]]
 
 	ai (@ai2playgame)
 	motty01 (@motty01)
+
+	[[Developer]]
+
+	mitsu (@mitsu1119)
 
 #######################################################################################*/
 

@@ -23,6 +23,7 @@
 #include <DTL/Shape/BorderOdd.hpp>
 #include <DTL/Shape/CellularAutomatonIsland.hpp>
 #include <DTL/Shape/CellularAutomatonMixIsland.hpp>
+#include <DTL/Shape/ClusteringMaze.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Shape/DiamondSquareAverageCornerIsland.hpp>
 #include <DTL/Shape/DiamondSquareAverageIsland.hpp>
