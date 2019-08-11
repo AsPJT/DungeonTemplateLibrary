@@ -48,7 +48,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchSTL(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				switch (::dtl::random::mt64bit_4.get()) {
+				switch (DTL_RANDOM_ENGINE.get()) {
 				case 0:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ - 1]; break;
 				case 1:matrix_[point_y_][point_x_] = matrix_[point_y_][point_x_ + 1]; break;
 				case 2:matrix_[point_y_][point_x_] = matrix_[point_y_ - 1][point_x_]; break;
@@ -58,7 +58,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchArray(Matrix_&& matrix_, const Index_Size point_x_, const Index_Size point_y_, const Index_Size max_x_) const noexcept {
-				switch (::dtl::random::mt64bit_4.get()) {
+				switch (DTL_RANDOM_ENGINE.get()) {
 				case 0:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ - 1]; break;
 				case 1:matrix_[point_y_ * max_x_ + point_x_] = matrix_[point_y_ * max_x_ + point_x_ + 1]; break;
 				case 2:matrix_[point_y_ * max_x_ + point_x_] = matrix_[(point_y_ - 1) * max_x_ + point_x_]; break;
@@ -68,7 +68,7 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void switchLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size point_x_, const Index_Size point_y_) const noexcept {
-				switch (::dtl::random::mt64bit_4.get()) {
+				switch (DTL_RANDOM_ENGINE.get()) {
 				case 0:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ - 1][layer_]; break;
 				case 1:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_][point_x_ + 1][layer_]; break;
 				case 2:matrix_[point_y_][point_x_][layer_] = matrix_[point_y_ - 1][point_x_][layer_]; break;
