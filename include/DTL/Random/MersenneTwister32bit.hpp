@@ -53,13 +53,15 @@ namespace dtl {
 
 			::dtl::type::size bit_num{};
 
-			::dtl::type::size counter_bit1{ bit_num };
+			::dtl::type::size counter_bit1{};
+			::dtl::type::size counter_bit2{};
 			::std::uint_fast32_t random_num_bit1{};
+			::std::uint_fast32_t random_num_bit2{};
 
 			template<typename T>
 			DTL_VERSIONING_CPP17_NODISCARD
 			constexpr ::dtl::type::size bitInit2(T) const noexcept {
-				return ::dtl::random::bitCheck((DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)());
+				return ::dtl::random::bitCheck((DTL_TYPE_NUMERIC_LIMITS<T>::DTL_TYPE_NUMERIC_LIMITS_MAX)());
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
 			::dtl::type::size bitInit() noexcept {
@@ -80,11 +82,24 @@ namespace dtl {
 			}
 
 		public:
+				template<typename Random_Int_ = ::dtl::type::size>
+				DTL_VERSIONING_CPP17_NODISCARD
+					Random_Int_ getBit2() {
+					if (this->counter_bit2 >= bit_num / 2) {
+						this->random_num_bit2 = this->get();
+						this->counter_bit2 = 0;
+					}
+					else ++counter_bit2;
+					const ::std::uint_fast32_t tmp{ this->random_num_bit2 & 3 };
+					this->random_num_bit2 >>= 2;
+					return static_cast<Random_Int_>(tmp);
+				}
+
 			//コンストラクタ(初期化)
-			Random() :mt(DTL_RANDOM_INIT_SEED), bit_num(this->bitInit()) {}
+			Random() :mt(DTL_RANDOM_INIT_SEED), bit_num(this->bitInit()), counter_bit1(bit_num), counter_bit2(bit_num / 2) {}
 
 			template<typename Seed_, typename ...Args_>
-			Random(Seed_&& seed_, Args_&& ... args_) :mt(seed_, args_...), bit_num(this->bitInit()) {}
+			Random(Seed_&& seed_, Args_&& ... args_) :mt(seed_, args_...), bit_num(this->bitInit()), counter_bit1(bit_num), counter_bit2(bit_num / 2) {}
 
 
 /*#######################################################################################

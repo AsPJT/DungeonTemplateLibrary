@@ -19,8 +19,6 @@
 #include <DTL/Utility/Binarization.hpp>
 #include <DTL/Utility/Copy.hpp>
 #include <DTL/Utility/Init.hpp>
-#include <DTL/Utility/NoiseBool.hpp>
-#include <DTL/Utility/NoiseShoreBool.hpp>
 #include <DTL/Utility/PerlinNoise.hpp>
 #include <DTL/Utility/ReplaceAll.hpp>
 #include <DTL/Utility/ReplaceSome.hpp>
