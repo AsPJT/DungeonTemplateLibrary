@@ -59,7 +59,7 @@ namespace dtl {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row, 
-						((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())]), args_...);
+						((DTL_RANDOM_ENGINE.probability()) ? this->draw_value[0] : this->draw_value[DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())]), args_...);
 				}
 				return true;
 			}
@@ -74,7 +74,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row, 
-						((::dtl::random::mt32bit.probability()) ? this->draw_value[0] : this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())]), args_...);
+						((DTL_RANDOM_ENGINE.probability()) ? this->draw_value[0] : this->draw_value[DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())]), args_...);
 				return true;
 			}
 

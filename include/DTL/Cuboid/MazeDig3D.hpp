@@ -105,7 +105,7 @@ namespace dtl {
 				while (!finish_flag) {
 					const vectuple can_digging_dirs{ this->getCanDiggingDirs(matrix_, seed_x, seed_y, seed_z) };
 					if (can_digging_dirs.DTL_TYPE_VSIZE()) {
-						const stuple digging_dir{ can_digging_dirs[::dtl::random::mt32bit.get<Index_Size>(can_digging_dirs.DTL_TYPE_VSIZE())] };
+						const stuple digging_dir{ can_digging_dirs[DTL_RANDOM_ENGINE.get<Index_Size>(can_digging_dirs.DTL_TYPE_VSIZE())] };
 						const Index_Size dir_x{ digging_dir.x };
 						const Index_Size dir_y{ digging_dir.y };
 						const Index_Size dir_z{ digging_dir.z };
@@ -118,7 +118,7 @@ namespace dtl {
 					else {
 						const vectuple can_respawn_seed_positions{ this->getCanRespawnSeedPositions(matrix_) };
 						if (can_respawn_seed_positions.DTL_TYPE_VSIZE()) {
-							const stuple respawn_pos{ can_respawn_seed_positions[::dtl::random::mt32bit.get<Index_Size>(can_respawn_seed_positions.DTL_TYPE_VSIZE())] };
+							const stuple respawn_pos{ can_respawn_seed_positions[DTL_RANDOM_ENGINE.get<Index_Size>(can_respawn_seed_positions.DTL_TYPE_VSIZE())] };
 							seed_x = respawn_pos.x;
 							seed_y = respawn_pos.y;
 							seed_z = respawn_pos.z;

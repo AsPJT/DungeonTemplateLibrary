@@ -118,7 +118,7 @@ namespace dtl {
 			constexpr bool draw(Matrix_&& matrix_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_,
 					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize> & point_, Matrix_Var_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && DTL_RANDOM_ENGINE.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -128,7 +128,7 @@ namespace dtl {
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_,
 					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Var_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && DTL_RANDOM_ENGINE.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -138,7 +138,7 @@ namespace dtl {
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, max_x_, max_y_,
 					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Var_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && DTL_RANDOM_ENGINE.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -148,7 +148,7 @@ namespace dtl {
 			constexpr bool draw(Matrix_&& matrix_, const Index_Size layer_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.draw(matrix_, layer_, max_x_, max_y_,
 					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Var_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && DTL_RANDOM_ENGINE.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}
@@ -158,7 +158,7 @@ namespace dtl {
 			constexpr bool drawArray(Matrix_&& matrix_, const Index_Size max_x_, const Index_Size max_y_) const noexcept {
 				return this->voronoiDiagram.drawArray(matrix_, max_x_, max_y_,
 					[this](const ::std::pair<::dtl::type::ssize, ::dtl::type::ssize>& point_, Matrix_Var_ & color_, const ::dtl::type::ssize sx_, const ::dtl::type::ssize sy_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_) {
-						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && ::dtl::random::mt32bit.probability(this->probability_value)) color_ = this->land_value;
+						if ((this->isIsland(point_, sx_, sy_, w_, h_, 2, 5) || this->isIsland(point_, sx_, sy_, w_, h_, 1, 5)) && DTL_RANDOM_ENGINE.probability(this->probability_value)) color_ = this->land_value;
 						else color_ = this->sea_value;
 					});
 			}

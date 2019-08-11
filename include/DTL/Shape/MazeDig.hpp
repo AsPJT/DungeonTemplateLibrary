@@ -56,7 +56,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void mazeDig_Dig(Matrix_&& matrix_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_, Args_&& ... args_) const noexcept {
 				::dtl::type::ssize dx{}, dy{};
-				for (::dtl::type::size random{ ::dtl::random::mt32bit.get<::dtl::type::size>() }, counter{}; counter < 4;) {
+				for (::dtl::type::size random{ DTL_RANDOM_ENGINE.get<::dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -75,7 +75,7 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = ::dtl::random::mt32bit.get<::dtl::type::size>();
+						random = DTL_RANDOM_ENGINE.get<::dtl::type::size>();
 					}
 				}
 				return;
@@ -126,7 +126,7 @@ namespace dtl {
 				for (::dtl::type::size select_id{};;) {
 					select_id = mazeDig_CreateLoop(matrix_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = ::dtl::random::mt32bit.get<::dtl::type::size>(select_id);
+					select_id = DTL_RANDOM_ENGINE.get<::dtl::type::size>(select_id);
 					mazeDig_Dig(matrix_, j_max, i_max, select_x[select_id], select_y[select_id], args_...);
 				}
 				return true;

@@ -101,7 +101,7 @@ namespace dtl {
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {
-					rand_up[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+					rand_up[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 					rand_first_row[col] = rand_up[col];
 				}
 				rand_first_row[chunk_x] = rand_up[chunk_x] = rand_up[0];
@@ -111,7 +111,7 @@ namespace dtl {
 					if ((row + 1) == chunk_y) rand_down = ::std::move(rand_first_row);
 					else {
 						for (::dtl::type::size col{}; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (::dtl::type::size col{}; col < chunk_x; ++col) {
@@ -149,7 +149,7 @@ namespace dtl {
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {
-					rand_up[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+					rand_up[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 					rand_first_row[col] = rand_up[col];
 				}
 				rand_first_row[chunk_x] = rand_up[chunk_x] = rand_up[0];
@@ -159,7 +159,7 @@ namespace dtl {
 					if ((row + 1) == chunk_y) rand_down = ::std::move(rand_first_row);
 					else {
 						for (::dtl::type::size col{}; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (::dtl::type::size col{}; col < chunk_x; ++col) {
@@ -197,7 +197,7 @@ namespace dtl {
 				if (!rand_first_row) return false;
 
 				for (::dtl::type::size col{}; col < chunk_x; ++col) {
-					rand_up[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+					rand_up[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 					rand_first_row[col] = rand_up[col];
 				}
 				rand_first_row[chunk_x] = rand_up[chunk_x] = rand_up[0];
@@ -207,7 +207,7 @@ namespace dtl {
 					if ((row + 1) == chunk_y) rand_down = ::std::move(rand_first_row);
 					else {
 						for (::dtl::type::size col{}; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[chunk_x] = rand_down[0];
 					}
 					for (::dtl::type::size col{}; col < chunk_x; ++col) {

@@ -67,27 +67,27 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignSTL(Matrix_ && matrix_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->start_y][this->start_x] = this->min_value + this->altitude;
-				matrix_[this->start_y][this->start_x + map_size_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[this->start_y + map_size_][this->start_x] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[this->start_y + map_size_][this->start_x + map_size_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y][this->start_x + map_size_] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y + map_size_][this->start_x] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
 				createDiamondSquareAverageSTL<Matrix_Var_, Matrix_>(matrix_, this->start_x, this->start_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[this->start_y][this->start_x], matrix_[this->start_y + map_size_][this->start_x], matrix_[this->start_y][this->start_x + map_size_], matrix_[this->start_y + map_size_][this->start_x + map_size_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignArray(Matrix_ && matrix_, const Index_Size map_size_, const Index_Size max_x_, Function_ && function_) const noexcept {
 				matrix_[(this->start_y) * max_x_ + (this->start_x)] = this->min_value + this->altitude;
-				matrix_[(this->start_y) * max_x_ + (this->start_x + map_size_)] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
+				matrix_[(this->start_y) * max_x_ + (this->start_x + map_size_)] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
 				createDiamondSquareAverageArray<Matrix_Var_, Matrix_>(matrix_, max_x_, this->start_x, this->start_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[(this->start_y) * max_x_ + (this->start_x)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x)], matrix_[(this->start_y) * max_x_ + (this->start_x + map_size_)], matrix_[(this->start_y + map_size_) * max_x_ + (this->start_x + map_size_)], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size map_size_, Function_ && function_) const noexcept {
 				matrix_[this->start_y][this->start_x][layer_] = this->min_value + this->altitude;
-				matrix_[this->start_y][this->start_x + map_size_][layer_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[this->start_y + map_size_][this->start_x][layer_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
-				matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_] = this->min_value + ::dtl::random::mt32bit.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y][this->start_x + map_size_][layer_] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y + map_size_][this->start_x][layer_] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
+				matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_] = this->min_value + DTL_RANDOM_ENGINE.get<Matrix_Var_>(this->altitude);
 				createDiamondSquareAverageLayer<Matrix_Var_, Matrix_>(matrix_, layer_, this->start_x, this->start_y, map_size_ / 2, map_size_ / 2, map_size_ / 2, matrix_[this->start_y][this->start_x][layer_], matrix_[this->start_y + map_size_][this->start_x][layer_], matrix_[this->start_y][this->start_x + map_size_][layer_], matrix_[this->start_y + map_size_][this->start_x + map_size_][layer_], this->min_value + this->altitude, this->add_altitude, function_);
 			}
 

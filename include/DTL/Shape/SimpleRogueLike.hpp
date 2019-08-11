@@ -89,7 +89,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 				bool drawNormal(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const ::dtl::type::size mapDivCount{ this->division_min + DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
 				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
@@ -117,7 +117,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 				bool drawLayerNormal(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const ::dtl::type::size mapDivCount{ this->division_min + DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
 				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
@@ -145,7 +145,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 				bool drawArray(Matrix_ && matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Args_ && ...) const noexcept {
 				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const ::dtl::type::size mapDivCount{ this->division_min + ::dtl::random::mt32bit.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+				const ::dtl::type::size mapDivCount{ this->division_min + DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->division_rand_max) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
 
 				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
 				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
@@ -177,7 +177,7 @@ namespace dtl {
 				for (::dtl::type::size i{ 1 }; i < mapDivCount; ++i) {
 
 					//今まで作った区分けをランダムに指定(指定した区域をさらに区分けする)
-					division_After = ::dtl::random::mt32bit.get<::dtl::type::size>(i);
+					division_After = DTL_RANDOM_ENGINE.get<::dtl::type::size>(i);
 
 					//指定した区域のXとYの長さによって、分割する向きを決める(長いほうを分割する)
 					if (dungeon_division[division_After][0] - dungeon_division[division_After][2] > dungeon_division[division_After][1] - dungeon_division[division_After][3]) count = RL_COUNT_X;
@@ -209,7 +209,7 @@ namespace dtl {
 					//0.軸の右端(iR)の座標(division_After*R/3~2division_After*R/3)
 					dungeon_division[i][count] = dungeon_division[division_After][count + 2]
 						+ ((dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3)
-						+ ::dtl::random::mt32bit.get<::dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
+						+ DTL_RANDOM_ENGINE.get<::dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
 
 					dungeon_division[i][count + 2] = dungeon_division[division_After][count + 2]; //0.軸の左端(iL)の座標(division_AfterL)
 					dungeon_division[division_After][count + 2] = dungeon_division[i][count]; //division_After軸の左端(division_AfterL)の座標(iR)
@@ -229,7 +229,7 @@ namespace dtl {
 					dungeon_room[i][3] = dungeon_division[i][3]; //区分けY始点をマップY始点へ代入
 
 					//X座標の部屋の長さを指定
-					dungeon_room[i][0] = dungeon_division[i][2] + this->room_min_y + ::dtl::random::mt32bit.get<::dtl::type::size>(this->room_rand_max_x);
+					dungeon_room[i][0] = dungeon_division[i][2] + this->room_min_y + DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->room_rand_max_x);
 					if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
 						dungeon_room[i][0] = dungeon_division[i][0] - 4;
 						if (dungeon_division[i][0] - dungeon_division[i][2] < dungeon_room[i][0] - dungeon_room[i][2] + 5) {
@@ -237,7 +237,7 @@ namespace dtl {
 						}
 					}
 
-					dungeon_room[i][1] = dungeon_division[i][3] + this->room_min_x + ::dtl::random::mt32bit.get<::dtl::type::size>(this->room_rand_max_y);
+					dungeon_room[i][1] = dungeon_division[i][3] + this->room_min_x + DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->room_rand_max_y);
 					if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {
 						dungeon_room[i][1] = dungeon_division[i][1] - 4;
 						if (dungeon_division[i][1] - dungeon_division[i][3] < dungeon_room[i][1] - dungeon_room[i][3] + 5) {
@@ -249,8 +249,8 @@ namespace dtl {
 						dungeon_room[i][0] = dungeon_division[i][2] + 1;
 						dungeon_room[i][1] = dungeon_division[i][3] + 1;
 					}
-					const ::dtl::type::size l{ ::dtl::random::mt32bit.get<::dtl::type::size>(1,dungeon_division[i][0] - dungeon_room[i][0] - 5) + 2 };
-					const ::dtl::type::size n{ ::dtl::random::mt32bit.get<::dtl::type::size>(1,dungeon_division[i][1] - dungeon_room[i][1] - 5) + 2 };
+					const ::dtl::type::size l{ DTL_RANDOM_ENGINE.get<::dtl::type::size>(1,dungeon_division[i][0] - dungeon_room[i][0] - 5) + 2 };
+					const ::dtl::type::size n{ DTL_RANDOM_ENGINE.get<::dtl::type::size>(1,dungeon_division[i][1] - dungeon_room[i][1] - 5) + 2 };
 					dungeon_room[i][0] += l;
 					dungeon_room[i][2] += l;
 					dungeon_room[i][1] += n;
@@ -301,8 +301,8 @@ namespace dtl {
 					//X座標の通路
 					switch (dungeon_road[roomBefore][1]) {
 					case RL_COUNT_X:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
 							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = this->road_value; //通路をマップチップに線画
@@ -316,8 +316,8 @@ namespace dtl {
 							matrix_[dungeon_division[roomBefore][0]][j] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
 							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j] = this->road_value; //通路をマップチップに線画
@@ -340,8 +340,8 @@ namespace dtl {
 					//X座標の通路
 					switch (dungeon_road[roomBefore][1]) {
 					case RL_COUNT_X:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
 							matrix_[j][dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]][layer_] = this->road_value; //通路をマップチップに線画
@@ -355,8 +355,8 @@ namespace dtl {
 							matrix_[dungeon_division[roomBefore][0]][j][layer_] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
 							matrix_[dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]][j][layer_] = this->road_value; //通路をマップチップに線画
@@ -379,8 +379,8 @@ namespace dtl {
 					//X座標の通路
 					switch (dungeon_road[roomBefore][1]) {
 					case RL_COUNT_X:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][1] - dungeon_room[roomBefore][3] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][1] - dungeon_room[roomAfter][3] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][0] }; j < dungeon_division[roomBefore][0]; ++j)
 							matrix_[j * max_x_ + dungeon_road[roomBefore][2] + dungeon_room[roomBefore][3]] = this->road_value; //通路をマップチップに線画
@@ -394,8 +394,8 @@ namespace dtl {
 							matrix_[dungeon_division[roomBefore][0] * max_x_ + j] = this->road_value; //通路をマップチップに線画 5から2(下から上)
 						break;
 					case RL_COUNT_Y:
-						dungeon_road[roomBefore][2] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
-						dungeon_road[roomBefore][3] = ::dtl::random::mt32bit.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
+						dungeon_road[roomBefore][2] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomBefore][0] - dungeon_room[roomBefore][2] - 1); //前側の通路の位置
+						dungeon_road[roomBefore][3] = DTL_RANDOM_ENGINE.get<::dtl::type::size>(dungeon_room[roomAfter][0] - dungeon_room[roomAfter][2] - 1); //後側の通路の位置
 						//前の通路
 						for (::dtl::type::size j{ dungeon_room[roomBefore][1] }; j < dungeon_division[roomBefore][1]; ++j)
 							matrix_[(dungeon_road[roomBefore][2] + dungeon_room[roomBefore][2]) * max_x_ + j] = this->road_value; //通路をマップチップに線画

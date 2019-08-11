@@ -59,7 +59,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.set(col, row, this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())], args_...);
+						matrix_.set(col, row, this->draw_value[DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())], args_...);
 				}
 				return true;
 			}
@@ -73,7 +73,7 @@ namespace dtl {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						matrix_.set(col, row, this->draw_value[::dtl::random::mt32bit.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())], args_...);
+						matrix_.set(col, row, this->draw_value[DTL_RANDOM_ENGINE.get<::dtl::type::size>(this->draw_value.DTL_TYPE_VSIZE())], args_...);
 				return true;
 			}
 

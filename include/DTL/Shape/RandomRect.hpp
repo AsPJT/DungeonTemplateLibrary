@@ -55,43 +55,43 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
+				if (DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_) const noexcept {
-				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
+				if (DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignLayer(Matrix_&& matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_) const noexcept {
-				if (::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
+				if (DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 			template<typename Matrix_Value_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignList(Matrix_Value_&& matrix_) const noexcept {
-				if (::dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
+				if (DTL_RANDOM_ENGINE.probability(probability_value)) matrix_ = this->draw_value;
 			}
 
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignSTL(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
+				if (function_(matrix_[end_y_][end_x_]) && DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_][end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignArray(Matrix_&& matrix_, const Index_Size end_x_, const Index_Size end_y_, const Index_Size max_x_, Function_&& function_) const noexcept {
-				if (function_(matrix_[end_y_ * max_x_ + end_x_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
+				if (function_(matrix_[end_y_ * max_x_ + end_x_]) && DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_ * max_x_ + end_x_] = this->draw_value;
 			}
 			template<typename Matrix_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignLayer(Matrix_ && matrix_, const Index_Size layer_, const Index_Size end_x_, const Index_Size end_y_, Function_ && function_) const noexcept {
-				if (function_(matrix_[end_y_][end_x_][layer_]) && ::dtl::random::mt32bit.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
+				if (function_(matrix_[end_y_][end_x_][layer_]) && DTL_RANDOM_ENGINE.probability(probability_value)) matrix_[end_y_][end_x_][layer_] = this->draw_value;
 			}
 			template<typename Matrix_Value_, typename Function_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				inline void assignList(Matrix_Value_&& matrix_, Function_&& function_) const noexcept {
-				if (function_(matrix_) && ::dtl::random::mt32bit.probability(probability_value)) matrix_ = this->draw_value;
+				if (function_(matrix_) && DTL_RANDOM_ENGINE.probability(probability_value)) matrix_ = this->draw_value;
 			}
 
 

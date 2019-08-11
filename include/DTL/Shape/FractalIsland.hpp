@@ -108,7 +108,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
@@ -154,7 +154,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}
@@ -200,7 +200,7 @@ namespace dtl {
 							rand_down[col] = 0;
 					else {
 						for (::dtl::type::size col{ 1 }; col < chunk_x; ++col)
-							rand_down[col] = ::dtl::random::mt32bit.get<::dtl::type::ssize>(this->altitude);
+							rand_down[col] = DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(this->altitude);
 						rand_down[0] = 0;
 						rand_down[chunk_x] = rand_down[0];
 					}

@@ -60,7 +60,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void createPoint(UniquePair_& point_, UniqueInt_& color_, const ::dtl::type::ssize w_, const ::dtl::type::ssize h_, Function_&& function_) const noexcept {
 				for (::dtl::type::size i{}, array_num{}; i < this->draw_value; ++i, ++array_num) {
-					point_[array_num] = Point_Pair_(::dtl::random::mt32bit.get<::dtl::type::ssize>(w_), ::dtl::random::mt32bit.get<::dtl::type::ssize>(h_));
+					point_[array_num] = Point_Pair_(DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(w_), DTL_RANDOM_ENGINE.get<::dtl::type::ssize>(h_));
 					function_(point_[array_num], color_[array_num], static_cast<::dtl::type::ssize>(start_x), static_cast<::dtl::type::ssize>(start_x), w_, h_);
 				}
 			}
