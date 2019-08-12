@@ -100,7 +100,7 @@ namespace dtl {
 			Random() :mt(DTL_RANDOM_INIT_SEED), bit_num(this->bitInit()), counter_bit1(bit_num), counter_bit2(bit_num / 2) {}
 
 			template<typename Seed_, typename ...Args_>
-			Random(Seed_&& seed_, Args_&& ... args_) :mt(DTL_TYPE_FORWARD<Args_>(seed_), DTL_TYPE_FORWARD<Args_>(args_)...),
+			Random(Seed_&& seed_, Args_&& ... args_) :mt(DTL_TYPE_FORWARD<Seed_>(seed_), DTL_TYPE_FORWARD<Args_>(args_)...),
 				bit_num(this->bitInit()), counter_bit1(bit_num), counter_bit2(bit_num / 2) {}
 
 
@@ -119,7 +119,7 @@ namespace dtl {
 #######################################################################################*/
 			template<typename Seed_, typename ...Args_>
 			void seed(Seed_&& seed_, Args_&& ... args_) {
-				this->mt.seed(DTL_TYPE_FORWARD<Args_>(seed_), DTL_TYPE_FORWARD<Args_>(args_)...);
+				this->mt.seed(DTL_TYPE_FORWARD<Seed_>(seed_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 
