@@ -12,7 +12,7 @@
 
 ---
 
-## Overview 💬
+# Overview 💬
 
 ### [**Version 0.4.12**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
 
@@ -23,12 +23,6 @@
 |Clang|5.0.0-passing|3.6.0-passing|3.4.0-passing|
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
-
-|Support IDE ⚙|
-|:---:|
-|Visual Studio 2019 version 16.0.0~|
-|Visual Studio 2017 version 15.0.0~|
-|Visual Studio 2015 Update 3|
 
 ---
 
@@ -41,6 +35,16 @@
 [**>> Roadmap 🏛**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Roadmap)
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
+
+---
+
+## Support IDE ⚙
+
+|Visual Studio 🆚|
+|:---:|
+|Visual Studio 2019 version 16.0.0~|
+|Visual Studio 2017 version 15.0.0~|
+|Visual Studio 2015 Update 3|
 
 ---
 
