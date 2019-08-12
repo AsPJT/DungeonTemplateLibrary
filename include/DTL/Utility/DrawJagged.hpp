@@ -35,6 +35,28 @@ namespace dtl {
 
 		public:
 
+/*#######################################################################################
+	[概要] Matrixに描画する。
+	[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+	[Summary] Draw on Matrix.
+	[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+#######################################################################################*/
+			template<typename Matrix_, typename ...Args_>
+			constexpr bool make(Matrix_& matrix_, Args_&& ... args_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(matrix_, DTL_TYPE_FORWARD<Args_>(args_)...);
+			}
+
+/*#######################################################################################
+	[概要] Matrixに描画する。
+	[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+	[Summary] Draw on Matrix.
+	[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+#######################################################################################*/
+			template<typename Matrix_>
+			constexpr bool makeAdd(Matrix_& matrix_) const noexcept {
+				return static_cast<const Derived*>(this)->drawNormal(matrix_, 0, 0, 0, 0);
+			}
+
 
 			///// 生成呼び出し (Drawing Function Call) /////
 

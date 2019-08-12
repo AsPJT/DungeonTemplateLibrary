@@ -38,11 +38,17 @@
 namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
+		struct ClusteringMazeCM {
+			std::uint_fast32_t operator()() {
+				return DTL_RANDOM_ENGINE.get();
+			}
+		};
+
 /*#######################################################################################
 	[概要] ClusteringMazeとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
 	[Summary] ClusteringMaze is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Var_>
+		template<typename Matrix_Var_, typename Random_Engine_ = ::std::mt19937, typename Random_Seed_ = ClusteringMazeCM>
 		class ClusteringMaze : public ::dtl::range::RectBaseWithValue<ClusteringMaze<Matrix_Var_>, Matrix_Var_>,
 			public ::dtl::utility::DrawJagged<ClusteringMaze<Matrix_Var_>, Matrix_Var_> {
 		private:
@@ -102,19 +108,19 @@ namespace dtl {
 			}
 
 			// Find a different tag cell adjacent to a tag that contains a cell with coordinates (x, y).
-			std::int_fast32_t findDifNeighbor(const std::uint_fast32_t seed_, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
+			std::int_fast32_t findDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
 				std::vector<Index_Size> sameTags{};
 				const Index_Size cellind{ y * m_width + x };
 				for (Index_Size i{}; i < m_size; ++i)
 					if (this->same(data_, cellind, i)) sameTags.emplace_back(i);
-				std::shuffle(sameTags.begin(), sameTags.end(), std::default_random_engine(seed_));
+				::std::shuffle(sameTags.begin(), sameTags.end(), randomEngine);
 
 				Index_Size cell1X{}, cell1Y{}, cell2X{}, cell2Y{}, cell2ind{};
 				std::array<Direction, 4> dirs{ { UP_DIR, RIGHT_DIR, DOWN_DIR, LEFT_DIR } };
 				for (auto cell1ind : sameTags) {
 					cell1X = cell1ind % m_width;
 					cell1Y = cell1ind / m_width;
-					std::shuffle(dirs.begin(), dirs.end(), std::default_random_engine(seed_));
+					::std::shuffle(dirs.begin(), dirs.end(), randomEngine);
 					for (auto dir : dirs) {
 						if ((dirDx(dir) < 0 && cell1X == 0) || (dirDx(dir) > 0 && cell1X == m_width - 1)) continue;
 						cell2X = cell1X + dirDx(dir);
@@ -133,10 +139,10 @@ namespace dtl {
 			}
 
 			// findDifneighbor() and unite
-			void uniteDifNeighbor(const std::uint_fast32_t seed_, std::vector<Index_Size>& data_, std::vector<Index_Size>& rank_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
+			void uniteDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, std::vector<Index_Size>& rank_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
 				Index_Size oX{}, oY{};
 				Direction oDir{};
-				if (this->findDifNeighbor(seed_, data_, m_width, m_height, m_size, x, y, oX, oY, oDir) != -1) this->unite(data_, rank_, y * m_width + x, oY * m_width + oX);
+				if (this->findDifNeighbor(randomEngine, data_, m_width, m_height, m_size, x, y, oX, oY, oDir) != -1) this->unite(data_, rank_, y * m_width + x, oY * m_width + oX);
 				outX = oX;
 				outY = oY;
 				outDir = oDir;
@@ -166,7 +172,7 @@ namespace dtl {
 						matrix_.set(this->start_x + (2 * i + 1), this->start_y + (2 * j + 1), this->draw_value, args_...);
 
 
-				std::mt19937 randomEngine{ std::random_device()() };
+				Random_Engine_ randomEngine{ Random_Seed_()() };
 
 				const Index_Size m_width{ width3 / 2 }, m_height{ height3 / 2 }, m_size{ m_width * m_height };
 
@@ -182,7 +188,7 @@ namespace dtl {
 					randCellX = randomEngine() % (width3 / 2);
 					randCellY = randomEngine() % (height3 / 2);
 
-					this->uniteDifNeighbor(randomEngine(), data, rank, m_width, m_height, m_size, randCellX, randCellY, outX, outY, outDir);
+					this->uniteDifNeighbor(randomEngine, data, rank, m_width, m_height, m_size, randCellX, randCellY, outX, outY, outDir);
 
 					// break wall
 					matrix_.set(this->start_x + (2 * outX + 1 - this->dirDx(outDir)), this->start_y + (2 * outY + 1 - this->dirDy(outDir)), this->draw_value, args_...);
