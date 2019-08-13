@@ -48,6 +48,7 @@
 //指定マスの全てに任意の値(1)を設置する。
 #include <DTL/Shape/Rect.hpp>
 #include <DTL/Shape/Reversi.hpp>
+#include <DTL/Shape/RogueLike.hpp>
 #include <DTL/Shape/Shogi.hpp>
 #include <DTL/Shape/SimplePyramid.hpp>
 #include <DTL/Shape/SimpleRogueLike.hpp>

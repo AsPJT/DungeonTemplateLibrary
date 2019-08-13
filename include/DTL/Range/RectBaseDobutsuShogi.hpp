@@ -160,61 +160,61 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearChick1() noexcept {
 				const Matrix_Var_ chick_{};
-				return this->dobutsuShogiList.chick_1 = chick_;
+				this->dobutsuShogiList.chick_1 = chick_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearChick2() noexcept {
 				const Matrix_Var_ chick_{};
-				return this->dobutsuShogiList.chick_2 = chick_;
+				this->dobutsuShogiList.chick_2 = chick_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearElephant1() noexcept {
 				const Matrix_Var_ elephant_{};
-				return this->dobutsuShogiList.elephant_1 = elephant_;
+				this->dobutsuShogiList.elephant_1 = elephant_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearElephant2() noexcept {
 				const Matrix_Var_ elephant_{};
-				return this->dobutsuShogiList.elephant_2 = elephant_;
+				this->dobutsuShogiList.elephant_2 = elephant_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearGiraffe1() noexcept {
 				const Matrix_Var_ giraffe_{};
-				return this->dobutsuShogiList.giraffe_1 = giraffe_;
+				this->dobutsuShogiList.giraffe_1 = giraffe_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearGiraffe2() noexcept {
 				const Matrix_Var_ giraffe_{};
-				return this->dobutsuShogiList.giraffe_2 = giraffe_;
+				this->dobutsuShogiList.giraffe_2 = giraffe_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearHen1() noexcept {
 				const Matrix_Var_ hen_{};
-				return this->dobutsuShogiList.hen_1 = hen_;
+				this->dobutsuShogiList.hen_1 = hen_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearHen2() noexcept {
 				const Matrix_Var_ hen_{};
-				return this->dobutsuShogiList.hen_2 = hen_;
+				this->dobutsuShogiList.hen_2 = hen_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearLion1() noexcept {
 				const Matrix_Var_ lion_{};
-				return this->dobutsuShogiList.lion_1 = lion_;
+				this->dobutsuShogiList.lion_1 = lion_;
 				return static_cast<Derived_&>(*this);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				Derived_& clearLion2() noexcept {
 				const Matrix_Var_ lion_{};
-				return this->dobutsuShogiList.lion_2 = lion_;
+				this->dobutsuShogiList.lion_2 = lion_;
 				return static_cast<Derived_&>(*this);
 			}
 
