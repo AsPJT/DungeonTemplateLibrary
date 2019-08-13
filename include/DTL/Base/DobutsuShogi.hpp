@@ -72,6 +72,11 @@ namespace dtl {
 				lion_2(lion_) {}
 		};
 
+		template<typename Matrix_Var_>
+		constexpr ::dtl::base::DobutsuShogiList<Matrix_Var_> defaultDobutsuShogiList() noexcept {
+			return ::dtl::base::DobutsuShogiList<Matrix_Var_>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		}
+
 	}
 }
 

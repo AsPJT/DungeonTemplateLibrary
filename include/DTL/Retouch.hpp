@@ -19,6 +19,7 @@
 #include <DTL/Retouch/Addition.hpp>
 #include <DTL/Retouch/Angular.hpp>
 #include <DTL/Retouch/Average.hpp>
+#include <DTL/Retouch/Bucket.hpp>
 #include <DTL/Retouch/BuryPoint.hpp>
 #include <DTL/Retouch/Division.hpp>
 #include <DTL/Retouch/Modulo.hpp>
