@@ -4,27 +4,17 @@
 
 ---
 
+# Overview 💬
+
+### [**Version 0.4.12**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
+
+---
+
 ## [Download 📥](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 [**>> SDK Downloads 📥**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 [**>> Web Trial 🏷**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
-
----
-
-# Overview 💬
-
-### [**Version 0.4.12**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) [ C++11/14/17 ]
-
-## Support Compiler 🔧
-
-|Compiler|C++17|C++14|C++11|
-|:---|:---|:---|:---|
-|MSVC|14.0-passing|14.0-passing|14.0-passing|
-|GCC|5.1.0-passing|4.9.0-passing|4.8.1-passing|
-|Clang|5.0.0-passing|3.6.0-passing|3.4.0-passing|
-|Zapcc|unknown|1.0.1-passing|1.0.1-passing|
-|ICC|unknown|unknown|unknown|
 
 ---
 
@@ -37,6 +27,18 @@
 [**>> Roadmap 🏛**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Roadmap)
 
 [![API reference](https://Kasugaccho.github.io/DungeonPicture/Picture/3D/diamond_sqare_ai.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
+
+---
+
+## Support Compiler 🔧
+
+|Compiler|C++17|C++14|C++11|
+|:---|:---|:---|:---|
+|MSVC|14.0-passing|14.0-passing|14.0-passing|
+|GCC|5.1.0-passing|4.9.0-passing|4.8.1-passing|
+|Clang|5.0.0-passing|3.6.0-passing|3.4.0-passing|
+|Zapcc|unknown|1.0.1-passing|1.0.1-passing|
+|ICC|unknown|unknown|unknown|
 
 ---
 
