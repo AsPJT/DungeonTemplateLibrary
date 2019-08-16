@@ -46,14 +46,6 @@ namespace dtl {
 				const Matrix_Var_ w_,
 				const Matrix_Var_ h_) noexcept :x(x_), y(y_), w(w_), h(h_) {}
 		};
-		//方角
-		enum : ::dtl::type::size {
-			direction_north,
-			direction_south,
-			direction_west,
-			direction_east,
-			direction_count,
-		};
 
 		/*#######################################################################################
 			[概要] RogueLikeとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
@@ -71,32 +63,47 @@ namespace dtl {
 			using ShapeBase_t = ::dtl::range::RectBaseRogueLike<RogueLike, Matrix_Var_>;
 			using DrawBase_t = ::dtl::utility::DrawJagged<RogueLike, Matrix_Var_>;
 
+			using Range_ = RogueLikeOutputNumber< ::std::int_fast32_t>;
+			using VRange_ = ::std::vector<Range_>;
+
+			using VBool_ = ::std::vector<bool>;
+
 			friend DrawBase_t;
 
-			template<typename Matrix_>
+			//方角
+			enum : ::dtl::type::size {
+				direction_north,
+				direction_south,
+				direction_west,
+				direction_east,
+				direction_count,
+			};
+
+			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool createNext(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& branch_point) const noexcept {
+				bool createNext2(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_way_, Args_&& ... args_) const noexcept {
 
 				for (::dtl::type::size i{}, r{}; i < (::dtl::type::size)0xffff; ++i) {
 					if (branch_point.empty()) break;
 
 					//部屋か通路の乱数面を選択
-					r = DTL_RANDOM_ENGINE.get<::dtl::type::size>((::std::int_fast32_t)branch_point.size());
+					r = DTL_RANDOM_ENGINE.get<::dtl::type::size>(branch_point.size());
 					const ::std::int_fast32_t x{ DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
 					const ::std::int_fast32_t y{ DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
 					//方角カウンタ
 					for (::dtl::type::size j{}; j < direction_count; ++j) {
-						if (!this->createNext(matrix_, size_x, size_y, room_rect_, branch_point, x, y, j)) continue;
+						if (!this->createNext(matrix_, size_x, size_y, room_rect_, branch_point, is_way_, is_way_[r], x, y, j, args_...)) continue;
 						branch_point.erase(branch_point.begin() + r);
+						is_way_.erase(is_way_.begin() + r);
 						return true;
 					}
 				}
 				return false;
 			}
-			template<typename Matrix_>
+			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool createNext(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& branch_point, const ::std::int_fast32_t x, const ::std::int_fast32_t y, const ::dtl::type::size dir_) const noexcept {
+				bool createNext(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_v_way_, const bool is_way_, const ::std::int_fast32_t x, const ::std::int_fast32_t y, const ::dtl::type::size dir_, Args_&& ... args_) const noexcept {
 
 				::std::int_fast32_t dx{};
 				::std::int_fast32_t dy{};
@@ -110,30 +117,38 @@ namespace dtl {
 				//エラー
 				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.room_id && matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.way_id) return false;
 
+				if (!is_way_) {
+					//通路を生成
+					if (!makeWay(matrix_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
+					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
+					else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
+					return true;
+				}
+
 				//2分の1の確率
 				if (DTL_RANDOM_ENGINE.probability()) {
 					//部屋を生成
-					if (!makeRoom(matrix_, size_x, size_y, room_rect_, branch_point, x, y, dir_)) return false;
-					matrix_.set(x, y, this->rogueLikeList.entrance_id);
+					if (!makeRoom(matrix_, size_x, size_y, room_rect_, branch_point, is_v_way_, x, y, dir_)) return false;
+					matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
 					return true;
 				}
 				else {
 					//通路を生成
-					if (!makeWay(matrix_, size_x, size_y, branch_point, x, y, dir_)) return false;
-					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id);
-					else matrix_.set(x, y, this->rogueLikeList.way_id);
+					if (!makeWay(matrix_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
+					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
+					else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
 					return true;
 				}
 				return false;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool makeRoom(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& room_rect_, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& branch_point, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
+				bool makeRoom(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_way_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
 
 				constexpr ::std::int_fast32_t minRoomSize{ 3 };
 				constexpr ::std::int_fast32_t maxRoomSize{ 6 };
 
-				RogueLikeOutputNumber< ::std::int_fast32_t> room;
+				Range_ room;
 				room.w = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minRoomSize, maxRoomSize);
 				room.h = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minRoomSize, maxRoomSize);
 
@@ -156,28 +171,36 @@ namespace dtl {
 					room.y = y_ - room.h / 2;
 					break;
 				}
-				if (placeOutputNumber(matrix_, size_x, size_y, room, this->rogueLikeList.room_id)) {
+				if (this->placeOutputNumber(matrix_, size_x, size_y, room, this->rogueLikeList.room_id)) {
 					room_rect_.emplace_back(room);
-					if (dir_ != direction_south || firstRoom_) //上
-						branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x, room.y - 1, room.w, 1 });
-					if (dir_ != direction_north || firstRoom_) //下
-						branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x, room.y + room.h, room.w, 1 });
-					if (dir_ != direction_east || firstRoom_) //左
-						branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x - 1, room.y, 1, room.h });
-					if (dir_ != direction_west || firstRoom_) //右
-						branch_point.emplace_back(RogueLikeOutputNumber< ::std::int_fast32_t>{ room.x + room.w, room.y, 1, room.h });
+					if (dir_ != direction_south || firstRoom_) { //上
+						branch_point.emplace_back(Range_{ room.x, room.y - 1, room.w, 1 });
+						is_way_.emplace_back(false);
+					}
+					if (dir_ != direction_north || firstRoom_) { //下
+						branch_point.emplace_back(Range_{ room.x, room.y + room.h, room.w, 1 });
+						is_way_.emplace_back(false);
+					}
+					if (dir_ != direction_east || firstRoom_) { //左
+						branch_point.emplace_back(Range_{ room.x - 1, room.y, 1, room.h });
+						is_way_.emplace_back(false);
+					}
+					if (dir_ != direction_west || firstRoom_) { //右
+						branch_point.emplace_back(Range_{ room.x + room.w, room.y, 1, room.h });
+						is_way_.emplace_back(false);
+					}
 					return true;
 				}
 				return false;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool makeWay(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, ::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>>& branch_point, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
+				bool makeWay(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& branch_point, VBool_& is_way_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
 
 				constexpr ::std::int_fast32_t minWayLength{ 3 };
 				constexpr ::std::int_fast32_t maxWayLength{ 15 };
 
-				RogueLikeOutputNumber< ::std::int_fast32_t> way;
+				Range_ way{};
 				way.x = x_;
 				way.y = y_;
 
@@ -222,20 +245,28 @@ namespace dtl {
 							way.y = y_ - way.h + 1;
 					}
 				}
-				if (!placeOutputNumber(matrix_, size_x, size_y, way, this->rogueLikeList.way_id)) return false;
-				if (dir_ != direction_south && way.w != 1)//上
-					branch_point.emplace_back( way.x, way.y - 1, way.w, 1 );
-				if (dir_ != direction_north && way.w != 1)//下
-					branch_point.emplace_back( way.x, way.y + way.h, way.w, 1 );
-				if (dir_ != direction_east && way.h != 1)//左
-					branch_point.emplace_back( way.x - 1, way.y, 1, way.h );
-				if (dir_ != direction_west && way.h != 1)//右
-					branch_point.emplace_back( way.x + way.w, way.y, 1, way.h );
+				if (!this->placeOutputNumber(matrix_, size_x, size_y, way, this->rogueLikeList.way_id)) return false;
+				if (dir_ != direction_south && way.w != 1) {//上
+					branch_point.emplace_back(way.x, way.y - 1, way.w, 1);
+					is_way_.emplace_back(true);
+				}
+				if (dir_ != direction_north && way.w != 1) {//下
+					branch_point.emplace_back(way.x, way.y + way.h, way.w, 1);
+					is_way_.emplace_back(true);
+				}
+				if (dir_ != direction_east && way.h != 1) {//左
+					branch_point.emplace_back(way.x - 1, way.y, 1, way.h);
+					is_way_.emplace_back(true);
+				}
+				if (dir_ != direction_west && way.h != 1) {//右
+					branch_point.emplace_back(way.x + way.w, way.y, 1, way.h);
+					is_way_.emplace_back(true);
+				}
 				return true;
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool placeOutputNumber(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, const RogueLikeOutputNumber< ::std::int_fast32_t>& rect, const Matrix_Var_ tile_) const noexcept {
+				bool placeOutputNumber(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, const Range_& rect, const Matrix_Var_ tile_) const noexcept {
 				if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(::std::int_fast32_t)(size_x) - 1 || rect.y + rect.h >(::std::int_fast32_t)(size_y) - 1)
 					return false;
 				for (::std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
@@ -259,22 +290,21 @@ namespace dtl {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
-				//for (Index_Size row{ this->start_y }; row < end_y_; ++row)
-				//	for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-				//		matrix_.set(col, row, this->rogueLikeList.this->rogueLikeList.outside_wall_id, args_...);
-
 				const Index_Size size_x{ end_x_ - this->start_x };
 				const Index_Size size_y{ end_y_ - this->start_y };
 
 				//部屋の位置情報
-				::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> room_rect;
+				VRange_ room_rect{};
 				//部屋または通路の生成可能な面の位置情報
-				::std::vector<RogueLikeOutputNumber< ::std::int_fast32_t>> branch_point;
+				VRange_ branch_point{};
+
+				VBool_ is_way{};
+
 				//最初の部屋を生成
-				if (!this->makeRoom(matrix_, size_x, size_y, room_rect, branch_point, (::std::int_fast32_t)(size_x) / 2, (::std::int_fast32_t)(size_y) / 2, DTL_RANDOM_ENGINE.getBit2<::dtl::type::size>())) return false;
+				if (!this->makeRoom(matrix_, size_x, size_y, room_rect, branch_point, is_way, (::std::int_fast32_t)(size_x) / 2, (::std::int_fast32_t)(size_y) / 2, DTL_RANDOM_ENGINE.getBit2<::dtl::type::size>())) return false;
 				//機能配置
 				for (::dtl::type::size i{ 1 }; i < this->max_way; ++i)
-					if (!this->createNext(matrix_, size_x, size_y, room_rect, branch_point)) break;
+					if (!this->createNext2(matrix_, size_x, size_y, room_rect, branch_point, is_way, args_...)) break;
 
 
 				return true;

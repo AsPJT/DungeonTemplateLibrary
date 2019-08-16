@@ -48,12 +48,13 @@ namespace dtl {
 
 #include <iostream>
 #define DTL_TYPE_COUT ::std::cout
+
+#endif
+
+#endif
+
 #ifndef DTL_TYPE_COUT_END
 #define DTL_TYPE_COUT_END
-#endif
-
-#endif
-
 #endif
 
 #endif //Included Dungeon Template Library

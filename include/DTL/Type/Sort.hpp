@@ -14,6 +14,20 @@
 
 #if defined(SPROUT_ALGORITHM_SORT_HPP) //Sprout
 #define DTL_TYPE_SORT (::sprout::sort)
+
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
+namespace dtl {
+	namespace type { //"dtl::type"名前空間に属する
+		template<typename Vector_>
+		void sortVector(Vector_& vector_) noexcept {
+			DTL_TYPE_SORT(vector_.begin(), vector_.end());
+		}
+	}
+}
+
 #elif defined(UE_BUILD_FINAL_RELEASE) //UE4
 
 #include <algorithm> //todo
