@@ -19,6 +19,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Range/RectBaseRogueLike.hpp>
@@ -63,7 +64,7 @@ namespace dtl {
 			using ShapeBase_t = ::dtl::range::RectBaseRogueLike<RogueLike, Matrix_Var_>;
 			using DrawBase_t = ::dtl::utility::DrawJagged<RogueLike, Matrix_Var_>;
 
-			using Range_ = RogueLikeOutputNumber< ::std::int_fast32_t>;
+			using Range_ = RogueLikeOutputNumber< ::dtl::type::int_fast32>;
 			using VRange_ = ::std::vector<Range_>;
 
 			using VBool_ = ::std::vector<bool>;
@@ -88,8 +89,8 @@ namespace dtl {
 
 					//部屋か通路の乱数面を選択
 					r = DTL_RANDOM_ENGINE.get<::dtl::type::size>(branch_point.size());
-					const ::std::int_fast32_t x{ DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
-					const ::std::int_fast32_t y{ DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
+					const ::dtl::type::int_fast32 x{ DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(branch_point[r].x, branch_point[r].x + branch_point[r].w - 1) };
+					const ::dtl::type::int_fast32 y{ DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(branch_point[r].y, branch_point[r].y + branch_point[r].h - 1) };
 
 					//方角カウンタ
 					for (::dtl::type::size j{}; j < direction_count; ++j) {
@@ -103,10 +104,10 @@ namespace dtl {
 			}
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool createNext(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_v_way_, const bool is_way_, const ::std::int_fast32_t x, const ::std::int_fast32_t y, const ::dtl::type::size dir_, Args_&& ... args_) const noexcept {
+				bool createNext(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_v_way_, const bool is_way_, const ::dtl::type::int_fast32 x, const ::dtl::type::int_fast32 y, const ::dtl::type::size dir_, Args_&& ... args_) const noexcept {
 
-				::std::int_fast32_t dx{};
-				::std::int_fast32_t dy{};
+				::dtl::type::int_fast32 dx{};
+				::dtl::type::int_fast32 dy{};
 				switch (dir_)
 				{
 				case direction_north:dy = 1; break;
@@ -143,14 +144,11 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool makeRoom(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_way_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
-
-				constexpr ::std::int_fast32_t minRoomSize{ 3 };
-				constexpr ::std::int_fast32_t maxRoomSize{ 6 };
+				bool makeRoom(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_way_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {
 
 				Range_ room;
-				room.w = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minRoomSize, maxRoomSize);
-				room.h = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minRoomSize, maxRoomSize);
+				room.w = DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(this->roomRange.x, this->roomRange.x + this->roomRange.w - 1);
+				room.h = DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(this->roomRange.y, this->roomRange.y + this->roomRange.h - 1);
 
 				switch (dir_)
 				{
@@ -195,10 +193,7 @@ namespace dtl {
 			}
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				bool makeWay(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& branch_point, VBool_& is_way_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const ::dtl::type::size dir_) const noexcept {
-
-				constexpr ::std::int_fast32_t minWayLength{ 3 };
-				constexpr ::std::int_fast32_t maxWayLength{ 15 };
+				bool makeWay(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& branch_point, VBool_& is_way_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, const ::dtl::type::size dir_) const noexcept {
 
 				Range_ way{};
 				way.x = x_;
@@ -206,7 +201,7 @@ namespace dtl {
 
 				//左右
 				if (DTL_RANDOM_ENGINE.probability()) {
-					way.w = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minWayLength, maxWayLength);
+					way.w = DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(this->wayRange.x, this->wayRange.x + this->wayRange.w - 1);
 					way.h = 1;
 					switch (dir_)
 					{
@@ -229,7 +224,7 @@ namespace dtl {
 				//上下
 				else {
 					way.w = 1;
-					way.h = DTL_RANDOM_ENGINE.get<::std::int_fast32_t>(minWayLength, maxWayLength);
+					way.h = DTL_RANDOM_ENGINE.get<::dtl::type::int_fast32>(this->wayRange.y, this->wayRange.y + this->wayRange.h - 1);
 					if (dir_ == direction_north)
 						way.y = y_ - way.h;
 					else if (dir_ == direction_south)
@@ -267,13 +262,13 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool placeOutputNumber(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, const Range_& rect, const Matrix_Var_ tile_) const noexcept {
-				if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(::std::int_fast32_t)(size_x) - 1 || rect.y + rect.h >(::std::int_fast32_t)(size_y) - 1)
+				if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(::dtl::type::int_fast32)(size_x) - 1 || rect.y + rect.h >(::dtl::type::int_fast32)(size_y) - 1)
 					return false;
-				for (::std::int_fast32_t y = rect.y; y < rect.y + rect.h; ++y)
-					for (::std::int_fast32_t x = rect.x; x < rect.x + rect.w; ++x)
+				for (::dtl::type::int_fast32 y = rect.y; y < rect.y + rect.h; ++y)
+					for (::dtl::type::int_fast32 x = rect.x; x < rect.x + rect.w; ++x)
 						if (matrix_.get(this->start_x + x, this->start_y + y) != this->rogueLikeList.outside_wall_id) return false;
-				for (::std::int_fast32_t y = rect.y - 1; y < rect.y + rect.h + 1; ++y)
-					for (::std::int_fast32_t x = rect.x - 1; x < rect.x + rect.w + 1; ++x) {
+				for (::dtl::type::int_fast32 y = rect.y - 1; y < rect.y + rect.h + 1; ++y)
+					for (::dtl::type::int_fast32 x = rect.x - 1; x < rect.x + rect.w + 1; ++x) {
 						if (x == rect.x - 1 || y == rect.y - 1 || x == rect.x + rect.w || y == rect.y + rect.h)
 							matrix_.set(x, y, this->rogueLikeList.inside_wall_id);
 						else matrix_.set(x, y, tile_);
@@ -287,6 +282,7 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				if (this->roomRange.w < 1 || this->roomRange.h < 1 || this->wayRange.w < 1 || this->wayRange.h < 1) return false;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
@@ -301,7 +297,7 @@ namespace dtl {
 				VBool_ is_way{};
 
 				//最初の部屋を生成
-				if (!this->makeRoom(matrix_, size_x, size_y, room_rect, branch_point, is_way, (::std::int_fast32_t)(size_x) / 2, (::std::int_fast32_t)(size_y) / 2, DTL_RANDOM_ENGINE.getBit2<::dtl::type::size>())) return false;
+				if (!this->makeRoom(matrix_, size_x, size_y, room_rect, branch_point, is_way, (::dtl::type::int_fast32)(size_x) / 2, (::dtl::type::int_fast32)(size_y) / 2, DTL_RANDOM_ENGINE.getBit2<::dtl::type::size>())) return false;
 				//機能配置
 				for (::dtl::type::size i{ 1 }; i < this->max_way; ++i)
 					if (!this->createNext2(matrix_, size_x, size_y, room_rect, branch_point, is_way, args_...)) break;

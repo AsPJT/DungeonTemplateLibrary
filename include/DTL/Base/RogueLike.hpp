@@ -72,7 +72,7 @@ namespace dtl {
 
 		template<typename Matrix_Var_>
 		constexpr ::dtl::base::RogueLikeList<Matrix_Var_> defaultRogueLikeList() noexcept {
-			return ::dtl::base::RogueLikeList<Matrix_Var_>(1, 2, 3, 4, 5);
+			return ::dtl::base::RogueLikeList<Matrix_Var_>(0, 1, 2, 3, 4);
 		}
 
 	}

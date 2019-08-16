@@ -41,6 +41,8 @@ namespace dtl {
 
 			::dtl::base::RogueLikeList<Matrix_Var_> rogueLikeList{};
 			Index_Size max_way{ 20 };
+			::dtl::base::MatrixRange roomRange{ 3,3,3,3 };
+			::dtl::base::MatrixRange wayRange{ 3,3,12,12 };
 
 		public:
 
@@ -257,6 +259,12 @@ namespace dtl {
 			constexpr explicit RectBaseRogueLike(const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_) noexcept
 				:rogueLikeList(draw_value_), max_way(max_way_) {}
 
+			constexpr explicit RectBaseRogueLike(const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_) noexcept
+				:rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_) {}
+
+			constexpr explicit RectBaseRogueLike(const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_, const ::dtl::base::MatrixRange& wayRange_) noexcept
+				:rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_), wayRange(wayRange_) {}
+
 			constexpr RectBaseRogueLike(
 				const Matrix_Var_& outside_wall_id_,
 				const Matrix_Var_& inside_wall_id_,
@@ -281,12 +289,49 @@ namespace dtl {
 				const Matrix_Var_& max_way_) noexcept :
 				rogueLikeList(outside_wall_id_, inside_wall_id_, room_id_, entrance_id_, way_id_), max_way(max_way_) {}
 
+			constexpr RectBaseRogueLike(
+				const Matrix_Var_& outside_wall_id_,
+				const Matrix_Var_& inside_wall_id_,
+				const Matrix_Var_& room_id_,
+				const Matrix_Var_& entrance_id_,
+				const Matrix_Var_& way_id_,
+				const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_) noexcept :
+				rogueLikeList(outside_wall_id_, inside_wall_id_, room_id_, entrance_id_, way_id_), max_way(max_way_), roomRange(roomRange_) {}
+
+			constexpr RectBaseRogueLike(
+				const Matrix_Var_& outside_wall_id_,
+				const Matrix_Var_& inside_wall_id_,
+				const Matrix_Var_& room_id_,
+				const Matrix_Var_& entrance_id_,
+				const Matrix_Var_& way_id_,
+				const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_, const ::dtl::base::MatrixRange& wayRange_) noexcept :
+				rogueLikeList(outside_wall_id_, inside_wall_id_, room_id_, entrance_id_, way_id_), max_way(max_way_), roomRange(roomRange_), wayRange(wayRange_) {}
+
 			constexpr RectBaseRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_) noexcept
 				:RectBase_t(matrix_range_),
 				rogueLikeList(draw_value_), max_way(max_way_) {}
+
+			constexpr explicit RectBaseRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_) noexcept
+				:RectBase_t(matrix_range_),
+				rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_) {}
+
+			constexpr explicit RectBaseRogueLike(const ::dtl::base::MatrixRange& matrix_range_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_, const ::dtl::base::MatrixRange& wayRange_) noexcept
+				:RectBase_t(matrix_range_),
+				rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_), wayRange(wayRange_) {}
+
 			constexpr RectBaseRogueLike(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_) noexcept
 				:RectBase_t(start_x_, start_y_, width_, height_),
 				rogueLikeList(draw_value_), max_way(max_way_) {}
+
+			constexpr explicit RectBaseRogueLike(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_),
+				rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_) {}
+
+			constexpr explicit RectBaseRogueLike(const Index_Size start_x_, const Index_Size start_y_, const Index_Size width_, const Index_Size height_, const ::dtl::base::RogueLikeList<Matrix_Var_>& draw_value_, const Matrix_Var_& max_way_, const ::dtl::base::MatrixRange& roomRange_, const ::dtl::base::MatrixRange& wayRange_) noexcept
+				:RectBase_t(start_x_, start_y_, width_, height_),
+				rogueLikeList(draw_value_), max_way(max_way_), roomRange(roomRange_), wayRange(wayRange_) {}
+
+			//::dtl::base::MatrixRange roomRange
 		};
 	}
 }
