@@ -52,6 +52,8 @@ namespace dtl {
 				return static_cast<Derived_&>(*this);
 			}
 
+			
+			RectBase() = default;
 
 			///// コンストラクタ (Constructor) /////
 

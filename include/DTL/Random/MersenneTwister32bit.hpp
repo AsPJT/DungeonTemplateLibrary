@@ -96,6 +96,13 @@ namespace dtl {
 					return static_cast<Random_Int_>(tmp);
 				}
 
+				void clear() noexcept {
+					counter_bit1 = bit_num;
+					counter_bit2 = bit_num / 2;
+					random_num_bit1 = 0;
+					random_num_bit2 = 0;
+				}
+
 			//コンストラクタ(初期化)
 			Random() :mt(DTL_RANDOM_INIT_SEED), bit_num(this->bitInit()), counter_bit1(bit_num), counter_bit2(bit_num / 2) {}
 

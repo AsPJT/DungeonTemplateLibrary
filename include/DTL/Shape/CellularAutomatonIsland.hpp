@@ -22,7 +22,7 @@
 #include <DTL/Shape/RandomRect.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Utility/CellularAutomaton.hpp>
+#include <DTL/Retouch/CellularAutomaton.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -48,7 +48,7 @@ namespace dtl {
 
 			::dtl::shape::Border<Matrix_Var_> border{};
 			::dtl::shape::RandomRect<Matrix_Var_> randomRect{};
-			::dtl::utility::CellularAutomation<Matrix_Var_> cellularAutomation{};
+			::dtl::retouch::CellularAutomaton<Matrix_Var_> cellularAutomation{};
 			Index_Size loop_num{ 1 };
 
 		public:
