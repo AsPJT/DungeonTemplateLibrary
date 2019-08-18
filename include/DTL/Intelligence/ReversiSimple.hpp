@@ -19,14 +19,13 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Range/RectBaseWithBattle.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
 
-#include <cstdint>
 #include <memory>
-
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -55,17 +54,17 @@ namespace dtl {
 
 			//指定した場所に駒を置く
 			template<typename Matrix_, typename ...Args_>
-			Index_Size reversiPutPiece(Matrix_& matrix_, const Index_Size  col_, const Index_Size row_, ::std::unique_ptr< ::std::int_fast32_t[]>& stl_tmp_x, ::std::unique_ptr< ::std::int_fast32_t[]>& stl_tmp_y, const Index_Size w_, const Index_Size h_, Args_&& ... args_) const noexcept {
+			Index_Size reversiPutPiece(Matrix_& matrix_, const Index_Size  col_, const Index_Size row_, ::std::unique_ptr< ::dtl::type::int_fast32[]>& stl_tmp_x, ::std::unique_ptr< ::dtl::type::int_fast32[]>& stl_tmp_y, const Index_Size w_, const Index_Size h_, Args_&& ... args_) const noexcept {
 				Index_Size piece_turn_num{};
 				if (matrix_.get(col_, row_) != this->empty_value) return 0;
 
-				for (::std::int_fast32_t y{ -1 }; y <= 1; ++y)
-					for (::std::int_fast32_t x{ -1 }; x <= 1; ++x) {
+				for (::dtl::type::int_fast32 y{ -1 }; y <= 1; ++y)
+					for (::dtl::type::int_fast32 x{ -1 }; x <= 1; ++x) {
 						for (Index_Size i{}; i < w_; ++i) stl_tmp_x[i] = 0;
 						for (Index_Size i{}; i < h_; ++i) stl_tmp_y[i] = 0;
 						for (Index_Size turn_tmp_id{};; ++turn_tmp_id) {
-							::std::int_fast32_t turn_x{ static_cast<::std::int_fast32_t>(col_) + x * (static_cast<::std::int_fast32_t>(turn_tmp_id) + 1) };
-							::std::int_fast32_t turn_y{ static_cast<::std::int_fast32_t>(row_) + y * (static_cast<::std::int_fast32_t>(turn_tmp_id) + 1) };
+							::dtl::type::int_fast32 turn_x{ static_cast<::dtl::type::int_fast32>(col_) + x * (static_cast<::dtl::type::int_fast32>(turn_tmp_id) + 1) };
+							::dtl::type::int_fast32 turn_y{ static_cast<::dtl::type::int_fast32>(row_) + y * (static_cast<::dtl::type::int_fast32>(turn_tmp_id) + 1) };
 							if (turn_x < 0 || turn_x >= w_ || turn_y < 0 || turn_y >= h_ || matrix_.get(turn_x, turn_y) == this->empty_value) break;
 							if (matrix_.get(turn_x, turn_y) == this->friend_value) {
 								for (Index_Size i{}; i < turn_tmp_id; ++i)
@@ -93,9 +92,9 @@ namespace dtl {
 				const Index_Size h_{ end_y_ - this->start_y };
 				if (h_ == 0) return 0;
 
-				::std::unique_ptr< ::std::int_fast32_t[]> stl_tmp_x{ DTL_TYPE_NEW::std::int_fast32_t[w_] };
+				::std::unique_ptr< ::dtl::type::int_fast32[]> stl_tmp_x{ DTL_TYPE_NEW::dtl::type::int_fast32[w_] };
 				if (!stl_tmp_x) return 0;
-				::std::unique_ptr< ::std::int_fast32_t[]> stl_tmp_y{ DTL_TYPE_NEW::std::int_fast32_t[h_] };
+				::std::unique_ptr< ::dtl::type::int_fast32[]> stl_tmp_y{ DTL_TYPE_NEW::dtl::type::int_fast32[h_] };
 				if (!stl_tmp_y) return 0;
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
