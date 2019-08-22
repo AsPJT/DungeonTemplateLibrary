@@ -17,6 +17,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_HPP
 
 #include <DTL/Find/AroundSum.hpp>
+#include <DTL/Find/GetLargestSquareArea.hpp>
 #include <DTL/Find/Highest.hpp>
 #include <DTL/Find/Highest4Way.hpp>
 #include <DTL/Find/Is1Bit.hpp>
