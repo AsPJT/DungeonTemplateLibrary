@@ -18,6 +18,7 @@
 
 #include <DTL/Find/AroundSum.hpp>
 #include <DTL/Find/GetLargestSquareArea.hpp>
+#include <DTL/Find/GetLargestSquareAreaSize.hpp>
 #include <DTL/Find/Highest.hpp>
 #include <DTL/Find/Highest4Way.hpp>
 #include <DTL/Find/Is1Bit.hpp>

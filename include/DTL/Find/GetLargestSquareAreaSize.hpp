@@ -7,12 +7,12 @@
 	Distributed under the Boost Software License, Version 1.0. (See accompanying
 	file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #######################################################################################*/
-#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_GET_LARGEST_SQUARE_AREA_HPP
-#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_GET_LARGEST_SQUARE_AREA_HPP
+#ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_GET_LARGEST_SQUARE_AREA_SIZE_HPP
+#define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_GET_LARGEST_SQUARE_AREA_SIZE_HPP
 
 /*#######################################################################################
 	日本語リファレンス (Reference-JP)
-	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::find::GetLargestSquareArea-(発見クラス)/
+	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::find::GetLargestSquareAreaSize-(発見クラス)/
 #######################################################################################*/
 
 #include <DTL/Base/Struct.hpp>
@@ -34,20 +34,20 @@ namespace dtl {
 	inline namespace find { //"dtl::find"名前空間に属する
 
 /*#######################################################################################
-	[概要] GetLargestSquareAreaとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
-	[Summary] GetLargestSquareArea is a class that sets drawing values in the drawing range of Matrix.
+	[概要] GetLargestSquareAreaSizeとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
+	[Summary] GetLargestSquareAreaSize is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
 		template<typename Matrix_Var_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
-		class GetLargestSquareArea : public ::dtl::range::RectBaseWithValue<GetLargestSquareArea<Matrix_Var_>, Matrix_Var_>,
-			public ::dtl::utility::DrawJagged<GetLargestSquareArea<Matrix_Var_>, Matrix_Var_, ::dtl::base::MatrixRange> {
+		class GetLargestSquareAreaSize : public ::dtl::range::RectBaseWithValue<GetLargestSquareAreaSize<Matrix_Var_>, Matrix_Var_>,
+			public ::dtl::utility::DrawJagged<GetLargestSquareAreaSize<Matrix_Var_>, Matrix_Var_, ::dtl::type::size> {
 		private:
 
 
 			///// エイリアス (Alias) /////
 
 			using Index_Size = ::dtl::type::size;
-			using ShapeBase_t = ::dtl::range::RectBaseWithValue<GetLargestSquareArea, Matrix_Var_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<GetLargestSquareArea, Matrix_Var_, ::dtl::base::MatrixRange>;
+			using ShapeBase_t = ::dtl::range::RectBaseWithValue<GetLargestSquareAreaSize, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJagged<GetLargestSquareAreaSize, Matrix_Var_, ::dtl::type::size>;
 
 			friend DrawBase_t;
 
@@ -55,16 +55,15 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				::dtl::base::MatrixRange drawNormal(Matrix_&& matrix_) const noexcept {
+				::dtl::type::size drawNormal(Matrix_&& matrix_) const noexcept {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
 				const Index_Size width{ end_x_ - this->start_x };
 				const Index_Size height{ end_y_ - this->start_y };
 
-				::dtl::base::MatrixRange range{};
 				UniquePtr_ dp(DTL_TYPE_NEW Index_Size[width * height]);
-				if (!dp) return range;
+				if (!dp) return 0;
 
 				for (Index_Size hi{}; hi < height; ++hi)
 					dp[hi * width] = ((matrix_.get(this->start_x, this->start_y + hi) == this->draw_value) ? 1 : 0);
@@ -81,12 +80,8 @@ namespace dtl {
 						dp[hi * width + wi] = DTL_TYPE_MIN(DTL_TYPE_MIN(dp[(hi - 1) * width + wi - 1], dp[hi * width + wi - 1]), dp[(hi - 1) * width + wi]) + 1;
 						if (resArea >= dp[hi * width + wi]) continue;
 						resArea = dp[hi * width + wi];
-						range.x = this->start_x + wi + 1 - resArea;
-						range.y = this->start_y + hi + 1 - resArea;
-						range.w = resArea;
-						range.h = resArea;
 					}
-				return range;
+				return resArea * resArea;
 			}
 
 		public:
