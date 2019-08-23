@@ -165,7 +165,6 @@ namespace dtl {
 
 				const Index_Size width3{ (width % 2 == 0) ? width - 1 : width };
 				const Index_Size height3{ (height % 2 == 0) ? height - 1 : height };
-				const Index_Size size{ width * height };
 
 				for (Index_Size i{}; i < width3 / 2; ++i)
 					for (Index_Size j{}; j < height3 / 2; ++j)

@@ -173,19 +173,19 @@ namespace dtl {
 					room_rect_.emplace_back(room);
 					if (dir_ != direction_south || firstRoom_) { //上
 						branch_point.emplace_back(Range_{ room.x, room.y - 1, room.w, 1 });
-						is_way_.emplace_back(false);
+						is_way_.push_back(false);
 					}
 					if (dir_ != direction_north || firstRoom_) { //下
 						branch_point.emplace_back(Range_{ room.x, room.y + room.h, room.w, 1 });
-						is_way_.emplace_back(false);
+						is_way_.push_back(false);
 					}
 					if (dir_ != direction_east || firstRoom_) { //左
 						branch_point.emplace_back(Range_{ room.x - 1, room.y, 1, room.h });
-						is_way_.emplace_back(false);
+						is_way_.push_back(false);
 					}
 					if (dir_ != direction_west || firstRoom_) { //右
 						branch_point.emplace_back(Range_{ room.x + room.w, room.y, 1, room.h });
-						is_way_.emplace_back(false);
+						is_way_.push_back(false);
 					}
 					return true;
 				}
@@ -243,19 +243,19 @@ namespace dtl {
 				if (!this->placeOutputNumber(matrix_, size_x, size_y, way, this->rogueLikeList.way_id)) return false;
 				if (dir_ != direction_south && way.w != 1) {//上
 					branch_point.emplace_back(way.x, way.y - 1, way.w, 1);
-					is_way_.emplace_back(true);
+					is_way_.push_back(true);
 				}
 				if (dir_ != direction_north && way.w != 1) {//下
 					branch_point.emplace_back(way.x, way.y + way.h, way.w, 1);
-					is_way_.emplace_back(true);
+					is_way_.push_back(true);
 				}
 				if (dir_ != direction_east && way.h != 1) {//左
 					branch_point.emplace_back(way.x - 1, way.y, 1, way.h);
-					is_way_.emplace_back(true);
+					is_way_.push_back(true);
 				}
 				if (dir_ != direction_west && way.h != 1) {//右
 					branch_point.emplace_back(way.x + way.w, way.y, 1, way.h);
-					is_way_.emplace_back(true);
+					is_way_.push_back(true);
 				}
 				return true;
 			}
