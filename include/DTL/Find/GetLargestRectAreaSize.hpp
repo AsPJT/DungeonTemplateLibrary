@@ -94,7 +94,7 @@ namespace dtl {
 						else if (st.top().first > currentRect.first) {
 							Index_Size target{ wi };
 							while (!st.empty() && st.top().first >= currentRect.first) {
-								auto stackTop{ st.top() };
+								::std::pair< Index_Size, Index_Size > stackTop{ st.top() };
 								st.pop();
 								const Index_Size rect2{ (stackTop.first) * (wi - stackTop.second) };
 								if (rect < rect2) rect = rect2;
