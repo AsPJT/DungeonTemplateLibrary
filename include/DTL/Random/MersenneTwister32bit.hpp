@@ -44,7 +44,7 @@ namespace dtl {
 	[概要] 乱数 (32ビット版メルセンヌ・ツイスタ)
 	[Summary] Random number (32-bit version Mersenne Twister)
 #######################################################################################*/
-		template<typename Random_Engine_, typename BitVar_, typename UniformDistribution_, typename ProbabilityDistribution_>
+		template<typename Random_Engine_ = ::std::mt19937>
 		class Random {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
@@ -56,8 +56,8 @@ namespace dtl {
 
 			::dtl::type::size counter_bit1{};
 			::dtl::type::size counter_bit2{};
-			BitVar_ random_num_bit1{};
-			BitVar_ random_num_bit2{};
+			::std::uint_fast32_t random_num_bit1{};
+			::std::uint_fast32_t random_num_bit2{};
 
 			template<typename T>
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -72,7 +72,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP17_NODISCARD
 				bool getBit1() {
 				if (counter_bit1 >= bit_num) {
-					random_num_bit1 = static_cast<BitVar_>(this->get());
+					random_num_bit1 = this->get();
 					counter_bit1 = 0;
 				}
 				else ++counter_bit1;
@@ -87,7 +87,7 @@ namespace dtl {
 				DTL_VERSIONING_CPP17_NODISCARD
 					Random_Int_ getBit2() {
 					if (this->counter_bit2 >= bit_num / 2) {
-						this->random_num_bit2 = static_cast<BitVar_>(this->get());
+						this->random_num_bit2 = this->get();
 						this->counter_bit2 = 0;
 					}
 					else ++counter_bit2;
@@ -152,7 +152,7 @@ namespace dtl {
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ max_) {
 				if (static_cast< ::std::int_fast32_t>(max_) <= 1) return 0;
-				UniformDistribution_ uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
+				::std::uniform_int_distribution<> uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 
@@ -166,7 +166,7 @@ namespace dtl {
 			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) {
-				UniformDistribution_ uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
+				::std::uniform_int_distribution<> uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 
@@ -179,7 +179,7 @@ namespace dtl {
 #######################################################################################*/
 			DTL_VERSIONING_CPP17_NODISCARD
 			bool probability(const double probability_) {
-				ProbabilityDistribution_ uid(probability_);
+				::std::bernoulli_distribution uid(probability_);
 				return uid(this->mt);
 			}
 
@@ -196,15 +196,13 @@ namespace dtl {
 			}
 
 		};
-		template<typename T, typename T2, typename T3, typename T4>
+		template<typename T>
 		struct RandClass {
-			static DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T, T2, T3, T4> random_engine;
+			static DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T> random_engine;
 		};
-		template<typename T, typename T2, typename T3, typename T4>
-		DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T, T2, T3, T4> RandClass<T, T2, T3, T4>::random_engine;
-		using RandClassMT = RandClass<::std::mt19937, ::std::uint_fast32_t, ::std::uniform_int_distribution<>, ::std::bernoulli_distribution>;
-
-		using DefaultRandom = ::dtl::random::Random<::std::mt19937, ::std::uint_fast32_t, ::std::uniform_int_distribution<>, ::std::bernoulli_distribution>;
+		template<typename T>
+		DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T> RandClass<T>::random_engine;
+		using RandClassMT = RandClass<::std::mt19937>;
 
 	} //namespace
 }

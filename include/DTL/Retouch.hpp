@@ -26,7 +26,6 @@
 #include <DTL/Retouch/Modulo.hpp>
 #include <DTL/Retouch/Multiplication.hpp>
 #include <DTL/Retouch/RemovePoint.hpp>
-#include <DTL/Retouch/Smooth.hpp>
 #include <DTL/Retouch/Subtraction.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RETOUCH_HPP
