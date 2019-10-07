@@ -31,7 +31,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		//マスを指定した数値で埋める
-		template<typename Matrix_Var_>
+		template<typename Matrix_Var_, typename RandomEngine_ = DefaultRandom>
 		class WhiteNoise : public ::dtl::range::RectBaseWithValue<WhiteNoise<Matrix_Var_>, Matrix_Var_>,
 			public ::dtl::utility::DrawJagged<WhiteNoise<Matrix_Var_>, Matrix_Var_> {
 		private:
@@ -53,11 +53,14 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+
+				RandomEngine_ random_engine(DTL_RANDOM_ENGINE.get());
+
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						if (DTL_RANDOM_ENGINE.probability()) matrix_.set(col, row, this->draw_value, args_...);
+						if (random_engine.probability()) matrix_.set(col, row, this->draw_value, args_...);
 				}
 				return true;
 			}
@@ -67,11 +70,14 @@ namespace dtl {
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+
+				RandomEngine_ random_engine(DTL_RANDOM_ENGINE.get());
+
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
 					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
-						if (DTL_RANDOM_ENGINE.probability()) matrix_.set(col, row, this->draw_value, args_...);
+						if (random_engine.probability()) matrix_.set(col, row, this->draw_value, args_...);
 				return true;
 			}
 
