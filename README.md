@@ -10,11 +10,17 @@
 
 ---
 
-## [Download 📥](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+## [SDK Downloads 📥](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 [**>> SDK Downloads 📥**](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
 
 [**>> Web Trial 🏷**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
+
+## Image Viewer Download 📥
+
+[**>> Viewer Downloads (Windows x86) 📥**](https://www.dropbox.com/s/g0a1zifwf2nprl4/DungeonTemplateLibraryViewer%28x86%29.exe?dl=1)
+
+[**>> Viewer Downloads (Windows x64) 📥**](https://www.dropbox.com/s/xqplksy0oa0jc0m/DungeonTemplateLibraryViewer%28x64%29.exe?dl=1)
 
 ---
 
