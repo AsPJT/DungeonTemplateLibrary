@@ -49,6 +49,8 @@ namespace dtl {
 	}
 }
 #else
+
+#ifndef DTL_DOES_NOT_INCLUDE_CSTDDEF
 #include <cstdint>
 
 /*#######################################################################################
@@ -119,6 +121,44 @@ namespace dtl {
 
 	}
 }
+#else
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
+namespace dtl {
+	namespace type { //"dtl::type"名前空間に属する
+
+		using int8 = signed char;
+		using int16 = short;
+		using int32 = long;
+		using int64 = long long;
+		using uint8 = unsigned char;
+		using uint16 = unsigned short;
+		using uint32 = unsigned long;
+		using uint64 = unsigned long long;
+
+		using int_fast8 = signed char;
+		using int_fast16 = int;
+		using int_fast32 = long;
+		using int_fast64 = long long;
+		using uint_fast8 = unsigned char;
+		using uint_fast16 = unsigned int;
+		using uint_fast32 = unsigned long;
+		using uint_fast64 = unsigned long long;
+
+		using int_least8 = signed char;
+		using int_least16 = short;
+		using int_least32 = long;
+		using int_least64 = long long;
+		using uint_least8 = unsigned char;
+		using uint_least16 = unsigned short;
+		using uint_least32 = unsigned long;
+		using uint_least64 = unsigned long long;
+
+	}
+}
+#endif
 
 #endif
 
