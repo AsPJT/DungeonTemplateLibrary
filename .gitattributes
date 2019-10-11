@@ -41,6 +41,7 @@
 # image files are treated as binary by default.
 ###############################################################################
 #*.jpg   binary
+#*.jpeg   binary
 #*.png   binary
 #*.gif   binary
 
