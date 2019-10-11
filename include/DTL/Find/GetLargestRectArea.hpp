@@ -57,7 +57,7 @@ namespace dtl {
 			///// 基本処理 /////
 
 			template<typename Matrix_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				::dtl::base::MatrixRange drawNormal(Matrix_&& matrix_) const noexcept {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };

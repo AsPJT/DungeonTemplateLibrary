@@ -280,7 +280,7 @@ namespace dtl {
 			///// 基本処理 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				if (this->roomRange.w < 1 || this->roomRange.h < 1 || this->wayRange.w < 1 || this->wayRange.h < 1) return false;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };

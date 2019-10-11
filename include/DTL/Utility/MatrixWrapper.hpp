@@ -251,7 +251,7 @@ namespace dtl {
 			using Index_Size = typename Base_t::Index_Size;
 
 			using Base_t::Base_t;
-			decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
+			decltype(::std::declval<M&>()[0][0]) operator()(Index_Size x, Index_Size y) noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; } //todo
 			typename std::add_const<decltype(::std::declval<M&>()[0][0])>::type operator()(Index_Size x, Index_Size y) const noexcept(noexcept(::std::declval<M&>()[0][0])) { return Base_t::mat[y][x]; }
 		};
 

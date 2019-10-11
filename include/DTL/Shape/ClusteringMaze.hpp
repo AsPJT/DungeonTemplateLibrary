@@ -158,7 +158,7 @@ namespace dtl {
 			///// 基本処理 /////
 
 			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
 				const Index_Size width{ (this->calcEndX(matrix_.getX()) - this->start_x) };
 				const Index_Size height{ (this->calcEndY(matrix_.getY()) - this->start_y) };
