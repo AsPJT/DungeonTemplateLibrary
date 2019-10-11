@@ -28,7 +28,7 @@ namespace dtl {
 			void createDiamondSquareAverageSTL(Matrix_&& matrix_, const ::dtl::type::size start_x_, const ::dtl::type::size start_y_, const ::dtl::type::size x_, const ::dtl::type::size y_, ::dtl::type::size size_, const Matrix_Var_& t1_, const Matrix_Var_& t2_, const Matrix_Var_& t3_, const Matrix_Var_& t4_, const Matrix_Var_& max_value_, const Matrix_Var_& add_altitude_, Function_&& func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
-			const Matrix_Var_ & vertex_rand{ DTL_RANDOM_ENGINE.get<Matrix_Var_>(add_altitude_) };
+			const Matrix_Var_ vertex_rand{ DTL_RANDOM_ENGINE.get<Matrix_Var_>(add_altitude_) };
 			//頂点の高さを決める
 			const Matrix_Var_ & vertex_height{ static_cast<Matrix_Var_>((t1_ / 4 + t2_ / 4 + t3_ / 4 + t4_ / 4)) };
 			//matrix_[start_y_ + y_][start_x_ + x_] = ((vertex_height > max_value_ - vertex_rand) ? max_value_ : (vertex_height + vertex_rand));
@@ -57,7 +57,7 @@ namespace dtl {
 			void createDiamondSquareAverageArray(Matrix_ && matrix_, const ::dtl::type::size max_x_, const ::dtl::type::size start_x_, const ::dtl::type::size start_y_, const ::dtl::type::size x_, const ::dtl::type::size y_, ::dtl::type::size size_, const Matrix_Var_ & t1_, const Matrix_Var_ & t2_, const Matrix_Var_ & t3_, const Matrix_Var_ & t4_, const Matrix_Var_ & max_value_, const Matrix_Var_ & add_altitude_, Function_ && func_) noexcept {
 			//再起の終了処理
 			if (size_ == 0) return;
-			const Matrix_Var_ & vertex_rand{ DTL_RANDOM_ENGINE.get<Matrix_Var_>(add_altitude_) };
+			const Matrix_Var_ vertex_rand{ DTL_RANDOM_ENGINE.get<Matrix_Var_>(add_altitude_) };
 			//頂点の高さを決める
 			const Matrix_Var_ & vertex_height{ static_cast<Matrix_Var_>((t1_ / 4 + t2_ / 4 + t3_ / 4 + t4_ / 4)) };
 			//matrix_[(start_y_ + y_) * max_x_ + (start_x_ + x_)] = ((vertex_height > max_value_ - vertex_rand) ? max_value_ : (vertex_height + vertex_rand));

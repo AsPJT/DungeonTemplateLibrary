@@ -27,6 +27,10 @@
 #define DTL_RANDOM_ENGINE ::dtl::random::RandClassMT::random_engine
 #endif
 
+#ifndef DTL_RANDOM_DEFAULT_RANDOM
+#define DTL_RANDOM_DEFAULT_RANDOM ::dtl::random::DefaultRandom
+#endif
+
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
 	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".

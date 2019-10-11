@@ -17,8 +17,22 @@
 #elif defined(UE_BUILD_FINAL_RELEASE) //UE4
 #define DTL_TYPE_MAX (::FGenericPlatformMath::Max)
 #else
+
+#ifndef DTL_DOES_NOT_INCLUDE_ALGORITHM
 #include <algorithm>
 #define DTL_TYPE_MAX (::std::max)
+#else
+namespace dtl {
+	namespace algo {
+		template <typename T_>
+		constexpr const T_& max(const T_& a_, const T_& b_) noexcept {
+			return (a_ < b_) ? b_ : a_;
+		}
+	}
+}
+#define DTL_TYPE_MAX (::dtl::algo::max)
+#endif
+
 #endif
 
 #endif

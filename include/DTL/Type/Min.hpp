@@ -17,8 +17,22 @@
 #elif defined(UE_BUILD_FINAL_RELEASE) //UE4
 #define DTL_TYPE_MIN (::FGenericPlatformMath::Min)
 #else
+
+#ifndef DTL_DOES_NOT_INCLUDE_ALGORITHM
 #include <algorithm>
 #define DTL_TYPE_MIN (::std::min)
+#else
+namespace dtl {
+	namespace algo {
+		template <typename T_>
+		constexpr const T_& min(const T_& a_, const T_& b_) noexcept {
+			return (a_ < b_) ? a_ : b_;
+		}
+	}
+}
+#define DTL_TYPE_MIN (::dtl::algo::min)
+#endif
+
 #endif
 
 #endif

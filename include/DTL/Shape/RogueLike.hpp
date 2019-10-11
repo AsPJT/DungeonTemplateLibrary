@@ -133,15 +133,13 @@ namespace dtl {
 					matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
 					return true;
 				}
-				else {
-					//通路を生成
-					if (!makeWay(matrix_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
-					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
-					else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
-					return true;
-				}
-				return false;
+				//通路を生成
+				if (!makeWay(matrix_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
+				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
+				else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
+				return true;
 			}
+
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool makeRoom(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, VRange_& room_rect_, VRange_& branch_point, VBool_& is_way_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, const ::dtl::type::size dir_, const bool firstRoom_ = false) const noexcept {

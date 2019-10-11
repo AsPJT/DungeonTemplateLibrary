@@ -15,8 +15,14 @@
 #if defined(UE_BUILD_FINAL_RELEASE) //UE4
 #define DTL_TYPE_NEW new
 #else
+
+#ifndef DTL_DOES_NOT_INCLUDE_NEW
 #include <new>
 #define DTL_TYPE_NEW new(::std::nothrow)
+#else
+#define DTL_TYPE_NEW new
+#endif
+
 #endif
 
 #endif
