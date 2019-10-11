@@ -68,7 +68,7 @@ namespace dtl {
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
 					const Index_Size end_x_{ this->calcEndX(matrix_.getX(row)) };
 					const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
-					for (std::size_t col{ this->start_x }; col < end_x_; ++col)
+					for (::dtl::type::size col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 				}
@@ -87,8 +87,8 @@ namespace dtl {
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
-				for (std::size_t row{ this->start_y }; row < end_y_; ++row)
-					for (std::size_t col{ this->start_x }; col < end_x_; ++col)
+				for (::dtl::type::size row{ this->start_y }; row < end_y_; ++row)
+					for (::dtl::type::size col{ this->start_x }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height + static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y)), args_...);
 				return true;

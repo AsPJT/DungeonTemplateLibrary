@@ -16,6 +16,7 @@
 #######################################################################################*/
 
 #include <array>
+#include <utility>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>

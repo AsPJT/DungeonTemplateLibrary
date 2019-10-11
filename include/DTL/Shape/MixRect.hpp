@@ -15,7 +15,6 @@
 	https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/dtl::shape::MixRect-(形状クラス)/
 #######################################################################################*/
 
-#include <vector>
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
