@@ -11,7 +11,6 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_MATRIX_WRAPPER_HPP
 
 #include <cassert>
-#include <cstddef>
 #include <array>
 #include <bitset>
 #include <type_traits>

@@ -18,6 +18,8 @@
 #######################################################################################*/
 namespace dtl { namespace type { using size = ::SIZE_T; } }
 #else
+
+#ifndef DTL_DOES_NOT_INCLUDE_CSTDDEF
 #include <cstddef>
 
 /*#######################################################################################
@@ -25,6 +27,14 @@ namespace dtl { namespace type { using size = ::SIZE_T; } }
 	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
 #######################################################################################*/
 namespace dtl { namespace type { using size = ::std::size_t; } }
+#else
+/*#######################################################################################
+	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
+	[Summary] The "dtl" is a namespace that contains all the functions of "DungeonTemplateLibrary".
+#######################################################################################*/
+namespace dtl { namespace type { using size = unsigned long long; } }
+#endif
+
 #endif
 
 #endif //Included Dungeon Template Library
