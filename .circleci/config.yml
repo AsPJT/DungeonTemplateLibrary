@@ -5,4 +5,4 @@ jobs:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
-      - run: ls && cd Sample/DTL/Shape/ && ls && gcc --version && g++ Border.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11 && g++ Border.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++14
+      - run: ls && cd Sample/DTL/Shape/ && ls && gcc --version && g++ All.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++11 && g++ All.cpp -Wall -Wextra -O2 -march=native -I../../../include/ -std=c++14
