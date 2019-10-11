@@ -10,11 +10,11 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_MERSENNE_TWISTER_32_BIT_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_MERSENNE_TWISTER_32_BIT_HPP
 
-#include <cstdint>
 #include <bitset>
 #include <random>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/NumericLimits.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/ThreadLocal.hpp>
@@ -56,8 +56,8 @@ namespace dtl {
 
 			::dtl::type::size counter_bit1{};
 			::dtl::type::size counter_bit2{};
-			::std::uint_fast32_t random_num_bit1{};
-			::std::uint_fast32_t random_num_bit2{};
+			::dtl::type::uint_fast32 random_num_bit1{};
+			::dtl::type::uint_fast32 random_num_bit2{};
 
 			template<typename T>
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -91,7 +91,7 @@ namespace dtl {
 						this->counter_bit2 = 0;
 					}
 					else ++counter_bit2;
-					const ::std::uint_fast32_t tmp{ this->random_num_bit2 & 3 };
+					const ::dtl::type::uint_fast32 tmp{ this->random_num_bit2 & 3 };
 					this->random_num_bit2 >>= 2;
 					return static_cast<Random_Int_>(tmp);
 				}
@@ -136,7 +136,7 @@ namespace dtl {
 	[Summary] Get a random number.
 	[Return value] The return type is Random_Int_ (default is std::uint_fast32_t).
 #######################################################################################*/
-			template<typename Random_Int_ = ::std::uint_fast32_t>
+			template<typename Random_Int_ = ::dtl::type::uint_fast32>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get() {
 				return static_cast<Random_Int_>(this->mt());
@@ -148,11 +148,11 @@ namespace dtl {
 	[Summary] Get a random number in the range of 0 to argument value - 1.
 	[Return value] The return type is Random_Int_ (default is std::int_fast32_t).
 #######################################################################################*/
-			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_>
+			template<typename Random_Int_ = ::dtl::type::int_fast32, typename Random_Int2_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ max_) {
-				if (static_cast< ::std::int_fast32_t>(max_) <= 1) return 0;
-				::std::uniform_int_distribution<> uid(0, static_cast< ::std::int_fast32_t>(max_) - 1);
+				if (static_cast< ::dtl::type::int_fast32>(max_) <= 1) return 0;
+				::std::uniform_int_distribution<> uid(0, static_cast< ::dtl::type::int_fast32>(max_) - 1);
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 
@@ -163,10 +163,10 @@ namespace dtl {
 	[Summary] Gets a random number in the range of the first argument value to the second argument value.
 	[Return value] The return type is Random_Int_ (default is std::int_fast32_t).
 #######################################################################################*/
-			template<typename Random_Int_ = ::std::int_fast32_t, typename Random_Int2_, typename Random_Int3_>
+			template<typename Random_Int_ = ::dtl::type::int_fast32, typename Random_Int2_, typename Random_Int3_>
 			DTL_VERSIONING_CPP17_NODISCARD
 			Random_Int_ get(const Random_Int2_ min_, const Random_Int3_ max_) {
-				::std::uniform_int_distribution<> uid(static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::std::int_fast32_t>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
+				::std::uniform_int_distribution<> uid(static_cast< ::dtl::type::int_fast32>((min_ <= static_cast<Random_Int2_>(max_)) ? min_ : static_cast<Random_Int2_>(max_)), static_cast< ::dtl::type::int_fast32>((min_ <= static_cast<Random_Int2_>(max_)) ? static_cast<Random_Int2_>(max_) : min_));
 				return static_cast<Random_Int_>(uid(this->mt));
 			}
 

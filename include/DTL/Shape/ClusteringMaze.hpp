@@ -22,6 +22,7 @@
 #include <DTL/Range/RectBaseWithValue.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/New.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
@@ -39,7 +40,7 @@ namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
 		struct ClusteringMazeCM {
-			std::uint_fast32_t operator()() {
+			::dtl::type::uint_fast32 operator()() {
 				return DTL_RANDOM_ENGINE.get();
 			}
 		};
@@ -62,11 +63,11 @@ namespace dtl {
 
 			friend DrawBase_t;
 
-			enum Direction : std::uint_fast8_t {
+			enum Direction : ::dtl::type::uint_fast8 {
 				UP_DIR, RIGHT_DIR, DOWN_DIR, LEFT_DIR
 			};
 
-			std::int_fast32_t dirDx(Direction dir) const noexcept {
+			::dtl::type::int_fast32 dirDx(Direction dir) const noexcept {
 				switch (dir) {
 				case UP_DIR:
 				case DOWN_DIR:return 0;
@@ -75,7 +76,7 @@ namespace dtl {
 				}
 				return 0;
 			}
-			std::int_fast32_t dirDy(Direction dir) const noexcept {
+			::dtl::type::int_fast32 dirDy(Direction dir) const noexcept {
 				switch (dir) {
 				case RIGHT_DIR:
 				case LEFT_DIR:return 0;
@@ -108,7 +109,7 @@ namespace dtl {
 			}
 
 			// Find a different tag cell adjacent to a tag that contains a cell with coordinates (x, y).
-			std::int_fast32_t findDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
+			::dtl::type::int_fast32 findDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
 				std::vector<Index_Size> sameTags{};
 				const Index_Size cellind{ y * m_width + x };
 				for (Index_Size i{}; i < m_size; ++i)

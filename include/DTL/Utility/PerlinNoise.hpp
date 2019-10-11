@@ -11,11 +11,11 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_PERLIN_NOISE_HPP
 
 #include <cmath>
-#include <cstdint>
 #include <algorithm>
 #include <array>
 #include <random>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
 
 /*#######################################################################################
@@ -31,7 +31,7 @@ namespace dtl {
 
 			///// エイリアス (Alias) /////
 
-			using Pint = ::std::uint_fast8_t;
+			using Pint = ::dtl::type::uint_fast8;
 
 
 			///// メンバ変数 (Member Variable) /////
@@ -181,7 +181,7 @@ namespace dtl {
 			}
 
 			//SEED値を設定する
-			void setSeed(const ::std::uint_fast32_t seed_) {
+			void setSeed(const ::dtl::type::uint_fast32 seed_) {
 				for (::dtl::type::size i{}; i < 256; ++i)
 					this->p[i] = static_cast<Pint>(i);
 				::std::shuffle(this->p.begin(), this->p.begin() + 256, ::std::default_random_engine(seed_));
@@ -193,7 +193,7 @@ namespace dtl {
 			///// コンストラクタ (Constructor) /////
 
 			PerlinNoise() = default;
-			explicit PerlinNoise(const ::std::uint_fast32_t seed_) {
+			explicit PerlinNoise(const ::dtl::type::uint_fast32 seed_) {
 				this->setSeed(seed_);
 			}
 

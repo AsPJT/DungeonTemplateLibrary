@@ -50,7 +50,7 @@ namespace dtl {
 }
 #else
 
-#ifndef DTL_DOES_NOT_INCLUDE_CSTDDEF
+#ifndef DTL_DOES_NOT_INCLUDE_CSTDINT
 #include <cstdint>
 
 /*#######################################################################################

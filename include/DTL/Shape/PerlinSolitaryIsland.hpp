@@ -19,6 +19,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/Min.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
@@ -68,7 +69,7 @@ namespace dtl {
 				const Matrix_Var_ truncated_height{ static_cast<Matrix_Var_>((this->max_height - this->min_height) * (this->mountain_proportion)) };
 				const Matrix_Var_ pyramid_height{ static_cast<Matrix_Var_>(truncated_height / this->truncated_proportion) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<std::uint_fast32_t>());
+				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -107,7 +108,7 @@ namespace dtl {
 				const Matrix_Var_ truncated_height{ static_cast<Matrix_Var_>((this->max_height - this->min_height) * (this->mountain_proportion)) };
 				const Matrix_Var_ pyramid_height{ static_cast<Matrix_Var_>(truncated_height / this->truncated_proportion) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<std::uint_fast32_t>());
+				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 

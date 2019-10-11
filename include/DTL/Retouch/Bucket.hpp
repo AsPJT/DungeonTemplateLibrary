@@ -19,12 +19,12 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/New.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Range/RectBaseWithValuePos.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
 
-#include <cstdint>
 #include <memory>
 
 /*#######################################################################################
@@ -35,10 +35,10 @@ namespace dtl {
 	inline namespace retouch { //"dtl::retouch"名前空間に属する
 
 		struct BucketBuffer {
-			::std::int_fast32_t left_x{};
-			::std::int_fast32_t right_x{};
-			::std::int_fast32_t old_y{};
-			::std::int_fast32_t y{};
+			::dtl::type::int_fast32 left_x{};
+			::dtl::type::int_fast32 right_x{};
+			::dtl::type::int_fast32 old_y{};
+			::dtl::type::int_fast32 y{};
 		};
 
 /*#######################################################################################
@@ -61,7 +61,7 @@ namespace dtl {
 
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void scanLine(Matrix_& matrix_, const Index_Size size_x_, ::std::unique_ptr<BucketBuffer[]>& buffer_, ::dtl::type::size& end_n_, ::std::int_fast32_t left_x_, const ::std::int_fast32_t right_x_, const ::std::int_fast32_t y_, const ::std::int_fast32_t old_y_, const Matrix_Var_ value_) const noexcept {
+				void scanLine(Matrix_& matrix_, const Index_Size size_x_, ::std::unique_ptr<BucketBuffer[]>& buffer_, ::dtl::type::size& end_n_, ::dtl::type::int_fast32 left_x_, const ::dtl::type::int_fast32 right_x_, const ::dtl::type::int_fast32 y_, const ::dtl::type::int_fast32 old_y_, const Matrix_Var_ value_) const noexcept {
 				while (left_x_ <= right_x_) {
 
 					for (; left_x_ < right_x_; ++left_x_)
@@ -93,26 +93,26 @@ namespace dtl {
 				const Index_Size size_x_{ end_x_ - this->start_x };
 				const Index_Size size_y_{ end_y_ - this->start_y };
 
-				::std::int_fast32_t left_x{};
-				::std::int_fast32_t right_x{};
-				::std::int_fast32_t old_y{};
-				::std::int_fast32_t paint_y{};
+				::dtl::type::int_fast32 left_x{};
+				::dtl::type::int_fast32 right_x{};
+				::dtl::type::int_fast32 old_y{};
+				::dtl::type::int_fast32 paint_y{};
 
 				const Matrix_Var_ value{ matrix_.get(this->start_x + this->x_value, this->start_y + this->y_value) };
 				if (value == this->draw_value) return true;
 
-				const ::std::int_fast32_t size_max_x{ static_cast<::std::int_fast32_t>(size_x_ - 1) };
-				const ::std::int_fast32_t size_max_y{ static_cast<::std::int_fast32_t>(size_y_ - 1) };
+				const ::dtl::type::int_fast32 size_max_x{ static_cast<::dtl::type::int_fast32>(size_x_ - 1) };
+				const ::dtl::type::int_fast32 size_max_y{ static_cast<::dtl::type::int_fast32>(size_y_ - 1) };
 
 				::std::unique_ptr<BucketBuffer[]> buffer{ DTL_TYPE_NEW BucketBuffer[size_x_] };
 				if (!buffer) return false;
 
 				::dtl::type::size start_n{};
 				::dtl::type::size end_n{ 1 };
-				::std::int_fast32_t left_x_sub_1{};
-				::std::int_fast32_t right_x_add_1{};
-				buffer[start_n].left_x = buffer[start_n].right_x = static_cast<::std::int_fast32_t>(this->x_value);
-				buffer[start_n].y = buffer[start_n].old_y = static_cast<::std::int_fast32_t>(this->y_value);
+				::dtl::type::int_fast32 left_x_sub_1{};
+				::dtl::type::int_fast32 right_x_add_1{};
+				buffer[start_n].left_x = buffer[start_n].right_x = static_cast<::dtl::type::int_fast32>(this->x_value);
+				buffer[start_n].y = buffer[start_n].old_y = static_cast<::dtl::type::int_fast32>(this->y_value);
 
 				do {
 					left_x = buffer[start_n].left_x;
@@ -135,7 +135,7 @@ namespace dtl {
 						--left_x;
 					}
 
-					for (::std::int_fast32_t i{ left_x }; i <= right_x; ++i)
+					for (::dtl::type::int_fast32 i{ left_x }; i <= right_x; ++i)
 						matrix_.set(i, paint_y, this->draw_value, args_...);
 
 					if (paint_y - 1 >= 0) {

@@ -19,6 +19,7 @@
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
 #include <DTL/Type/Forward.hpp>
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Range/RectBasePerlin.hpp>
@@ -61,7 +62,7 @@ namespace dtl {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				const Index_Size mid_y_{ this->start_y + ((end_y_ - this->start_y) / 2) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<std::uint_fast32_t>());
+				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < mid_y_; ++row) {
@@ -109,7 +110,7 @@ namespace dtl {
 				const Index_Size mid_x_{ this->start_x + ((end_x_ - this->start_x) / 2) };
 				const Index_Size mid_y_{ this->start_y + ((end_y_ - this->start_y) / 2) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<std::uint_fast32_t>());
+				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 

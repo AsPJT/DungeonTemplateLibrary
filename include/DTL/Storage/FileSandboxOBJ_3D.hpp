@@ -20,6 +20,7 @@
 #include <fstream>
 #include <string>
 
+#include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
 
 /*#######################################################################################
@@ -53,7 +54,7 @@ namespace dtl {
 				        "f " << (3 + id_) << ' ' << (7 + id_) << ' ' << (8 + id_) << ' ' << (4 + id_) << "\n"
 				        "f " << (5 + id_) << ' ' << (6 + id_) << ' ' << (8 + id_) << ' ' << (7 + id_) << '\n';
 			}
-			static void write_objOutputCube( ::std::ofstream& ofs_, ::std::int_fast32_t start_x, ::std::int_fast32_t start_y, ::std::int_fast32_t start_z) {
+			static void write_objOutputCube( ::std::ofstream& ofs_, ::dtl::type::int_fast32 start_x, ::dtl::type::int_fast32 start_y, ::dtl::type::int_fast32 start_z) {
 				ofs_ << "v " << start_x     << ' ' << start_y     << ' ' << start_z     << "\n"
 				        "v " << start_x + 1 << ' ' << start_y     << ' ' << start_z     << "\n"
 				        "v " << start_x     << ' ' << start_y + 1 << ' ' << start_z     << "\n"
@@ -76,7 +77,7 @@ namespace dtl {
 					for ( ::dtl::type::size y{}; y < matrix_[z].size(); ++y)
 						for ( ::dtl::type::size x{}; x < matrix_[z][y].size(); ++x) {
 							if (!matrix_[z][y][x]) continue;
-							write_objOutputCube(ofs, ( ::std::int_fast32_t)x, ( ::std::int_fast32_t)z, ( ::std::int_fast32_t)y);
+							write_objOutputCube(ofs, ( ::dtl::type::int_fast32)x, ( ::dtl::type::int_fast32)z, ( ::dtl::type::int_fast32)y);
 							write_objOutputId(ofs, square_count * 8);
 							++square_count;
 						}

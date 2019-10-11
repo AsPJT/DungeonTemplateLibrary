@@ -10,10 +10,10 @@
 #ifndef INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ENTITY_MOB_MANAGER_HPP
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_ENTITY_MOB_MANAGER_HPP
 
-#include <cstdint>
 #include <bitset>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
+#include <DTL/Type/IntX.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -23,14 +23,14 @@ namespace dtl {
 	inline namespace entity { //"dtl::entity"名前空間に属する
 
 		//プレイヤーの向き
-		enum :std::uint_fast8_t {
+		enum : ::dtl::type::uint_fast8 {
 			player_status_stay,
 			player_status_1,
 			player_status_2
 		};
 
 		//方向(配列型)
-		enum :std::uint_fast8_t {
+		enum : ::dtl::type::uint_fast8 {
 			direction_array_up,
 			direction_array_down,
 			direction_array_left,
@@ -42,7 +42,7 @@ namespace dtl {
 		};
 
 		//方向
-		enum :std::uint_fast8_t {
+		enum : ::dtl::type::uint_fast8 {
 			direction_empty,
 			direction_up,
 			direction_down,
@@ -60,29 +60,29 @@ namespace dtl {
 		constexpr inline double getDSeconds(const double fps_ = 60.0) noexcept {
 			return ((fps_ == 0.0) ? 0.0 : 1.0 / fps_);
 		}
-		constexpr inline ::std::uint_fast64_t getMicroseconds(const double m_fps_, const double fps_ = 60.0) noexcept {
-			return ((fps_ == 0.0) ? 0 : static_cast< ::std::uint_fast64_t>(m_fps_ / fps_ * 1000000.0 + 0.5));
+		constexpr inline ::dtl::type::uint_fast64 getMicroseconds(const double m_fps_, const double fps_ = 60.0) noexcept {
+			return ((fps_ == 0.0) ? 0 : static_cast<::dtl::type::uint_fast64>(m_fps_ / fps_ * 1000000.0 + 0.5));
 		}
 
 		class MobManager {
 		private:
 
-			::std::int_fast32_t x{}, y{};
+			::dtl::type::int_fast32 x{}, y{};
 			double small_x{}, small_y{}, walk_speed{ 0.1 };
-			::std::uint_fast8_t status_x{ player_status_stay }, status_y{ player_status_stay };
+			::dtl::type::uint_fast8 status_x{ player_status_stay }, status_y{ player_status_stay };
 			//向いている方角
-			::std::uint_fast8_t direction_array{ direction_array_down };
+			::dtl::type::uint_fast8 direction_array{ direction_array_down };
 			//動くことの出来る方向
 			::std::bitset<8> can_walk_direction{ {} };
 
 		public:
 			constexpr explicit MobManager() noexcept :can_walk_direction(0xFF) {}
-			constexpr MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) noexcept :x(x_), y(y_), can_walk_direction(0xFF) {}
-			constexpr MobManager(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const double walk_speed_) noexcept
+			constexpr MobManager(const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_) noexcept :x(x_), y(y_), can_walk_direction(0xFF) {}
+			constexpr MobManager(const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, const double walk_speed_) noexcept
 				:x(x_), y(y_), walk_speed((walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)))), can_walk_direction(0xFF) {}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void setInit(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, const double walk_speed_) noexcept {
+				void setInit(const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, const double walk_speed_) noexcept {
 				this->x = x_;
 				this->y = y_;
 				this->walk_speed = (walk_speed_ <= 0.0) ? 0.1 : (1.0 / static_cast<double>(static_cast<int>(1.0 / walk_speed_)));
@@ -96,11 +96,11 @@ namespace dtl {
 			template<typename Pair_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				void setPosition(const Pair_ & pair_) noexcept {
-				this->x = static_cast< ::std::int_fast32_t>(pair_.first);
-				this->y = static_cast< ::std::int_fast32_t>(pair_.second);
+				this->x = static_cast< ::dtl::type::int_fast32>(pair_.first);
+				this->y = static_cast< ::dtl::type::int_fast32>(pair_.second);
 			}
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void setPosition(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) noexcept {
+				void setPosition(const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_) noexcept {
 				this->x = x_;
 				this->y = y_;
 			}
@@ -111,7 +111,7 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void setInner(const ::std::int_fast32_t x_, const ::std::int_fast32_t y_) noexcept {
+				void setInner(const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_) noexcept {
 				while (this->x < 0) this->x += x_;
 				while (this->y < 0) this->y += x_;
 				if (this->x >= x_) this->x %= x_;
@@ -149,15 +149,15 @@ namespace dtl {
 
 			//方向
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr ::std::uint_fast8_t walkDirectionY(const bool is_up_touch_, const bool is_down_touch_) const noexcept {
+			constexpr ::dtl::type::uint_fast8 walkDirectionY(const bool is_up_touch_, const bool is_down_touch_) const noexcept {
 				return (is_up_touch_) ? ((is_down_touch_) ? direction_empty : direction_up) : ((is_down_touch_) ? direction_down : direction_empty);
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr ::std::uint_fast8_t walkDirectionX(const bool is_left_touch_, const bool is_right_touch_) const noexcept {
+			constexpr ::dtl::type::uint_fast8 walkDirectionX(const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (is_left_touch_) ? ((is_right_touch_) ? direction_empty : direction_left) : ((is_right_touch_) ? direction_right : direction_empty);
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr ::std::uint_fast8_t walkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
+			constexpr ::dtl::type::uint_fast8 walkDirection(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
 				return (walkDirectionX(is_left_touch_, is_right_touch_)) ? (walkDirectionY(is_up_touch_, is_down_touch_) * 2 + walkDirectionX(is_left_touch_, is_right_touch_)) : (walkDirectionY(is_up_touch_, is_down_touch_));
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -166,13 +166,13 @@ namespace dtl {
 					((this->can_walk_direction[walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) - 1] == false) ? false : true);
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr bool isWalkDirection(const ::std::uint_fast8_t walk_direction_) const noexcept {
+			constexpr bool isWalkDirection(const ::dtl::type::uint_fast8 walk_direction_) const noexcept {
 				return (walk_direction_ == 0) ? false : ((this->can_walk_direction[walk_direction_ - 1] == false) ? false : true);
 			}
 
 			//あたり判定
 			template<typename Matrix_, typename Set_>
-			void setCanWalkDirection(Matrix_ && matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, Set_ && set_) noexcept {
+			void setCanWalkDirection(Matrix_ && matrix_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, Set_ && set_) noexcept {
 				set_(matrix_, x_, y_, this->can_walk_direction, this->x, this->y);
 			}
 			template<typename Matrix_, typename Set_>
@@ -186,8 +186,8 @@ namespace dtl {
 
 			DTL_VERSIONING_CPP17_NODISCARD
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				::std::uint_fast8_t getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
-				::std::uint_fast8_t walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
+				::dtl::type::uint_fast8 getWalkDirectionOblique(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) const noexcept {
+				::dtl::type::uint_fast8 walk_direction{ walkDirection(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return 0;
 				if (this->can_walk_direction[walk_direction - 1] == false) {
 					if (walk_direction <= direction_right) return 0;
@@ -233,7 +233,7 @@ namespace dtl {
 
 			void manualWalk(const bool is_up_touch_, const bool is_down_touch_, const bool is_left_touch_, const bool is_right_touch_) noexcept {
 				if (isWalk()) return;
-				const ::std::uint_fast8_t walk_direction{ getWalkDirectionOblique(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
+				const ::dtl::type::uint_fast8 walk_direction{ getWalkDirectionOblique(is_up_touch_, is_down_touch_, is_left_touch_, is_right_touch_) };
 				if (walk_direction == 0) return;
 
 				switch (walk_direction) {
@@ -280,11 +280,11 @@ namespace dtl {
 				}
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::int_fast32_t getX() const noexcept {
+			::dtl::type::int_fast32 getX() const noexcept {
 				return this->x;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::int_fast32_t getY() const noexcept {
+			::dtl::type::int_fast32 getY() const noexcept {
 				return this->y;
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
@@ -296,7 +296,7 @@ namespace dtl {
 				return this->y + 0.5 + ((this->status_y == player_status_1) ? (-(this->small_y)) : (this->small_y));
 			}
 			DTL_VERSIONING_CPP17_NODISCARD
-			::std::int_fast32_t getDirection() const noexcept {
+			::dtl::type::int_fast32 getDirection() const noexcept {
 				return this->direction_array;
 			}
 
@@ -305,7 +305,7 @@ namespace dtl {
 		class CollisionDetectionTrue {
 		public:
 			template<typename Matrix_> //maybe_unused
-			void operator()(const Matrix_&, const ::std::int_fast32_t, const ::std::int_fast32_t, ::std::bitset<8>& dir_, const ::std::int_fast32_t, const ::std::int_fast32_t) const noexcept {
+			void operator()(const Matrix_&, const ::dtl::type::int_fast32, const ::dtl::type::int_fast32, ::std::bitset<8>& dir_, const ::dtl::type::int_fast32, const ::dtl::type::int_fast32) const noexcept {
 				dir_[direction_array_down] = true;
 				dir_[direction_array_up] = true;
 				dir_[direction_array_left] = true;
@@ -320,7 +320,7 @@ namespace dtl {
 		class CollisionDetectionBinarization {
 		public:
 			template<typename Matrix_>
-			void operator()(const Matrix_& matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, ::std::bitset<8>& dir_, const ::std::int_fast32_t mob_x_, const ::std::int_fast32_t mob_y_) const noexcept {
+			void operator()(const Matrix_& matrix_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, ::std::bitset<8>& dir_, const ::dtl::type::int_fast32 mob_x_, const ::dtl::type::int_fast32 mob_y_) const noexcept {
 				if (x_ < 2 || y_ < 2) return;
 				dir_[direction_array_down] = ((matrix_[(mob_y_ + 1) % y_][mob_x_]) ? true : false);
 				dir_[direction_array_up] = ((matrix_[(mob_y_ - 1 + y_) % y_][mob_x_]) ? true : false);
@@ -335,7 +335,7 @@ namespace dtl {
 		class CollisionDetectionBinarizationWall {
 		public:
 			template<typename Matrix_>
-			void operator()(const Matrix_& matrix_, const ::std::int_fast32_t x_, const ::std::int_fast32_t y_, ::std::bitset<8>& dir_, const ::std::int_fast32_t mob_x_, const ::std::int_fast32_t mob_y_) const noexcept {
+			void operator()(const Matrix_& matrix_, const ::dtl::type::int_fast32 x_, const ::dtl::type::int_fast32 y_, ::std::bitset<8>& dir_, const ::dtl::type::int_fast32 mob_x_, const ::dtl::type::int_fast32 mob_y_) const noexcept {
 				if (x_ < 2 || y_ < 2) return;
 				dir_[direction_array_down] = ((matrix_[(mob_y_ + 1) % y_][mob_x_]) ? true : false);
 				dir_[direction_array_up] = ((matrix_[(mob_y_ - 1 + y_) % y_][mob_x_]) ? true : false);
