@@ -62,7 +62,7 @@ namespace dtl {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 				const Index_Size mid_y_{ this->start_y + ((end_y_ - this->start_y) / 2) };
 
-				const ::dtl::utility::PerlinNoise perlin(random_engine_.get<::dtl::type::uint_fast32>());
+				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < mid_y_; ++row) {
@@ -110,7 +110,7 @@ namespace dtl {
 				const Index_Size mid_x_{ this->start_x + ((end_x_ - this->start_x) / 2) };
 				const Index_Size mid_y_{ this->start_y + ((end_y_ - this->start_y) / 2) };
 
-				const ::dtl::utility::PerlinNoise perlin(random_engine_.get<::dtl::type::uint_fast32>());
+				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
