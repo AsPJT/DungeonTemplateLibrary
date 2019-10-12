@@ -24,7 +24,7 @@
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Random/MersenneTwister32bit.hpp>
 #include <DTL/Range/RectBasePerlin.hpp>
-#include <DTL/Utility/DrawJagged.hpp>
+#include <DTL/Utility/DrawJaggedRandom.hpp>
 #include <DTL/Utility/PerlinNoise.hpp>
 
 /*#######################################################################################
@@ -38,9 +38,9 @@ namespace dtl {
 	[概要] PerlinIslandとは "Matrixの描画範囲にパーリンノイズを使用して地形を生成する" 機能を持つクラスである。
 	[Summary] PerlinIsland is a class that generates terrain using perlin noise in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Var_>
+		template<typename Matrix_Var_, typename Random_Engine_ = DTL_RANDOM_DEFAULT_RANDOM>
 		class PerlinIsland : public ::dtl::range::RectBasePerlin<PerlinIsland<Matrix_Var_>, Matrix_Var_>,
-			public ::dtl::utility::DrawJagged<PerlinIsland<Matrix_Var_>, Matrix_Var_> {
+			public ::dtl::utility::DrawJaggedRandom<PerlinIsland<Matrix_Var_>, Matrix_Var_, Random_Engine_> {
 		private:
 
 
@@ -48,7 +48,7 @@ namespace dtl {
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBasePerlin<PerlinIsland, Matrix_Var_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<PerlinIsland, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJaggedRandom<PerlinIsland, Matrix_Var_, Random_Engine_>;
 
 			friend DrawBase_t;
 
@@ -59,10 +59,10 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
-				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
+				const ::dtl::utility::PerlinNoise perlin(random_engine_.get<::dtl::type::uint_fast32>());
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -79,11 +79,11 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
-				drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
-				const ::dtl::utility::PerlinNoise perlin(DTL_RANDOM_ENGINE.get<::dtl::type::uint_fast32>());
+				const ::dtl::utility::PerlinNoise perlin(random_engine_.get<::dtl::type::uint_fast32>());
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 

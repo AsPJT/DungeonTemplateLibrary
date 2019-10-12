@@ -25,6 +25,7 @@
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
+#include <DTL/Utility/DrawJaggedRandom.hpp>
 
 /*#######################################################################################
 	[概要] "dtl名前空間"とは"DungeonTemplateLibrary"の全ての機能が含まれる名前空間である。
@@ -37,9 +38,9 @@ namespace dtl {
 	[概要] MazeDigとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
 	[Summary] MazeDig is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Var_, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
+		template<typename Matrix_Var_, typename Random_Engine_ = DTL_RANDOM_DEFAULT_RANDOM, typename UniquePtr_ = DTL_TYPE_UNIQUE_PTR<::dtl::type::size[]>>
 		class MazeDig : public ::dtl::range::RectBaseMaze<MazeDig<Matrix_Var_>, Matrix_Var_>,
-			public ::dtl::utility::DrawJagged<MazeDig<Matrix_Var_>, Matrix_Var_> {
+			public ::dtl::utility::DrawJaggedRandom<MazeDig<Matrix_Var_>, Matrix_Var_, Random_Engine_> {
 		private:
 
 
@@ -47,16 +48,16 @@ namespace dtl {
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBaseMaze<MazeDig, Matrix_Var_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<MazeDig, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJaggedRandom<MazeDig, Matrix_Var_, Random_Engine_>;
 
 			friend DrawBase_t;
 
 			//穴掘り
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-				void mazeDig_Dig(Matrix_&& matrix_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_, Args_&& ... args_) const noexcept {
+				void mazeDig_Dig(Matrix_&& matrix_, Random_Engine_& random_engine_, const ::dtl::type::size j_max, const ::dtl::type::size i_max, ::dtl::type::size x_, ::dtl::type::size y_, Args_&& ... args_) const noexcept {
 				::dtl::type::ssize dx{}, dy{};
-				for (::dtl::type::size random{ DTL_RANDOM_ENGINE.get<::dtl::type::size>() }, counter{}; counter < 4;) {
+				for (::dtl::type::size random{ random_engine_.get<::dtl::type::size>() }, counter{}; counter < 4;) {
 					switch ((random + counter) & 3) {
 					case 0:dx = 0; dy = -2; break;
 					case 1:dx = -2; dy = 0; break;
@@ -75,7 +76,7 @@ namespace dtl {
 						x_ += dx;
 						y_ += dy;
 						counter = 0;
-						random = DTL_RANDOM_ENGINE.get<::dtl::type::size>();
+						random = random_engine_.get<::dtl::type::size>();
 					}
 				}
 				return;
@@ -108,15 +109,15 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
-			bool drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+			bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
 				matrix_.set(this->start_x + 1, this->start_y + 1, this->empty_value, args_...);
 
-				UniquePtr_ select_x{ DTL_TYPE_NEW::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
+				UniquePtr_ select_x{ DTL_TYPE_NEW ::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
 				if (!select_x) return false;
-				UniquePtr_ select_y{ DTL_TYPE_NEW::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
+				UniquePtr_ select_y{ DTL_TYPE_NEW ::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
 				if (!select_y) return false;
 
 				const ::dtl::type::size i_max{ ((((end_y_ - this->start_y) & 1) == 0) ? end_y_ - 2 : end_y_ - 1) };
@@ -124,10 +125,10 @@ namespace dtl {
 
 				//座標を選ぶ
 				for (::dtl::type::size select_id{};;) {
-					select_id = mazeDig_CreateLoop(matrix_, j_max, i_max, select_x, select_y);
+					select_id = this->mazeDig_CreateLoop(matrix_, j_max, i_max, select_x, select_y);
 					if (select_id == 0) break;
-					select_id = DTL_RANDOM_ENGINE.get<::dtl::type::size>(select_id);
-					mazeDig_Dig(matrix_, j_max, i_max, select_x[select_id], select_y[select_id], args_...);
+					select_id = random_engine_.get<::dtl::type::size>(select_id);
+					this->mazeDig_Dig(matrix_, random_engine_, j_max, i_max, select_x[select_id], select_y[select_id], args_...);
 				}
 				return true;
 			}
