@@ -26,10 +26,10 @@
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/UniquePtr.hpp>
+#include <DTL/Utility/DrawJaggedRandom.hpp>
 
 #include <array>
 #include <vector>
-#include <random>
 #include <algorithm>
 
 /*#######################################################################################
@@ -39,19 +39,13 @@
 namespace dtl {
 	inline namespace shape { //"dtl::shape"名前空間に属する
 
-		struct ClusteringMazeCM {
-			::dtl::type::uint_fast32 operator()() {
-				return DTL_RANDOM_ENGINE.get();
-			}
-		};
-
 /*#######################################################################################
 	[概要] ClusteringMazeとは "Matrixの描画範囲に描画値を設置する" 機能を持つクラスである。
 	[Summary] ClusteringMaze is a class that sets drawing values in the drawing range of Matrix.
 #######################################################################################*/
-		template<typename Matrix_Var_, typename Random_Engine_ = ::std::mt19937, typename Random_Seed_ = ClusteringMazeCM>
+		template<typename Matrix_Var_, typename Random_Engine_ = DTL_RANDOM_DEFAULT_RANDOM>
 		class ClusteringMaze : public ::dtl::range::RectBaseWithValue<ClusteringMaze<Matrix_Var_>, Matrix_Var_>,
-			public ::dtl::utility::DrawJagged<ClusteringMaze<Matrix_Var_>, Matrix_Var_> {
+			public ::dtl::utility::DrawJaggedRandom<ClusteringMaze<Matrix_Var_>, Matrix_Var_, Random_Engine_> {
 		private:
 
 
@@ -59,7 +53,7 @@ namespace dtl {
 
 			using Index_Size = ::dtl::type::size;
 			using ShapeBase_t = ::dtl::range::RectBaseWithValue<ClusteringMaze, Matrix_Var_>;
-			using DrawBase_t = ::dtl::utility::DrawJagged<ClusteringMaze, Matrix_Var_>;
+			using DrawBase_t = ::dtl::utility::DrawJaggedRandom<ClusteringMaze, Matrix_Var_, Random_Engine_>;
 
 			friend DrawBase_t;
 
@@ -109,19 +103,19 @@ namespace dtl {
 			}
 
 			// Find a different tag cell adjacent to a tag that contains a cell with coordinates (x, y).
-			::dtl::type::int_fast32 findDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
+			::dtl::type::int_fast32 findDifNeighbor(Random_Engine_& random_engine_, std::vector<Index_Size>& data_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
 				std::vector<Index_Size> sameTags{};
 				const Index_Size cellind{ y * m_width + x };
 				for (Index_Size i{}; i < m_size; ++i)
 					if (this->same(data_, cellind, i)) sameTags.emplace_back(i);
-				::std::shuffle(sameTags.begin(), sameTags.end(), randomEngine);
+				::std::shuffle(sameTags.begin(), sameTags.end(), random_engine_.getEngine());
 
 				Index_Size cell1X{}, cell1Y{}, cell2X{}, cell2Y{}, cell2ind{};
 				std::array<Direction, 4> dirs{ { UP_DIR, RIGHT_DIR, DOWN_DIR, LEFT_DIR } };
 				for (auto cell1ind : sameTags) {
 					cell1X = cell1ind % m_width;
 					cell1Y = cell1ind / m_width;
-					::std::shuffle(dirs.begin(), dirs.end(), randomEngine);
+					::std::shuffle(dirs.begin(), dirs.end(), random_engine_.getEngine());
 					for (auto dir : dirs) {
 						if ((dirDx(dir) < 0 && cell1X == 0) || (dirDx(dir) > 0 && cell1X == m_width - 1)) continue;
 						cell2X = cell1X + dirDx(dir);
@@ -140,10 +134,10 @@ namespace dtl {
 			}
 
 			// findDifneighbor() and unite
-			void uniteDifNeighbor(Random_Engine_& randomEngine, std::vector<Index_Size>& data_, std::vector<Index_Size>& rank_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
+			void uniteDifNeighbor(Random_Engine_& random_engine_, std::vector<Index_Size>& data_, std::vector<Index_Size>& rank_, const Index_Size m_width, const Index_Size m_height, const Index_Size m_size, const Index_Size x, const Index_Size y, Index_Size& outX, Index_Size& outY, Direction& outDir) const {
 				Index_Size oX{}, oY{};
 				Direction oDir{};
-				if (this->findDifNeighbor(randomEngine, data_, m_width, m_height, m_size, x, y, oX, oY, oDir) != -1) this->unite(data_, rank_, y * m_width + x, oY * m_width + oX);
+				if (this->findDifNeighbor(random_engine_, data_, m_width, m_height, m_size, x, y, oX, oY, oDir) != -1) this->unite(data_, rank_, y * m_width + x, oY * m_width + oX);
 				outX = oX;
 				outY = oY;
 				outDir = oDir;
@@ -160,7 +154,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			//DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_&& matrix_, Args_&& ... args_) const noexcept {
+				bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				const Index_Size width{ (this->calcEndX(matrix_.getX()) - this->start_x) };
 				const Index_Size height{ (this->calcEndY(matrix_.getY()) - this->start_y) };
 
@@ -170,9 +164,6 @@ namespace dtl {
 				for (Index_Size i{}; i < width3 / 2; ++i)
 					for (Index_Size j{}; j < height3 / 2; ++j)
 						matrix_.set(this->start_x + (2 * i + 1), this->start_y + (2 * j + 1), this->draw_value, args_...);
-
-
-				Random_Engine_ randomEngine{ Random_Seed_()() };
 
 				const Index_Size m_width{ width3 / 2 }, m_height{ height3 / 2 }, m_size{ m_width * m_height };
 
@@ -185,19 +176,14 @@ namespace dtl {
 				Index_Size outX{}, outY{};
 				Direction outDir{};
 				while (!this->isAllSame(data, data.size())) {
-					randCellX = randomEngine() % (width3 / 2);
-					randCellY = randomEngine() % (height3 / 2);
+					randCellX = static_cast<::dtl::type::uint_fast32>(random_engine_.get()) % (width3 / 2);
+					randCellY = static_cast<::dtl::type::uint_fast32>(random_engine_.get()) % (height3 / 2);
 
-					this->uniteDifNeighbor(randomEngine, data, rank, m_width, m_height, m_size, randCellX, randCellY, outX, outY, outDir);
+					this->uniteDifNeighbor(random_engine_, data, rank, m_width, m_height, m_size, randCellX, randCellY, outX, outY, outDir);
 
 					// break wall
 					matrix_.set(this->start_x + (2 * outX + 1 - this->dirDx(outDir)), this->start_y + (2 * outY + 1 - this->dirDy(outDir)), this->draw_value, args_...);
 				}
-
-				//UniquePtr_ select_x{ DTL_TYPE_NEW::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
-				//if (!select_x) return false;
-				//UniquePtr_ select_y{ DTL_TYPE_NEW::dtl::type::size[(end_x_ - this->start_x) * (end_y_ - this->start_y)] };
-				//if (!select_y) return false;
 
 				return true;
 			}

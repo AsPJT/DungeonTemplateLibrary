@@ -258,6 +258,10 @@ namespace dtl {
 				return this->getBit1();
 			}
 
+			Random_Engine_& getEngine() {
+				return this->mt;
+			}
+
 		};
 		template<typename T, typename T2, typename T3, typename T4>
 		struct RandClass {
