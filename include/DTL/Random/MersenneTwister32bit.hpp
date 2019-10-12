@@ -38,6 +38,67 @@
 namespace dtl {
 	inline namespace random { //"dtl::random"名前空間に属する
 
+
+		class xor128 {
+		private:
+			::dtl::type::uint_fast32 x{ static_cast<::dtl::type::uint_fast32>(123456789ul) };
+			::dtl::type::uint_fast32 y{ static_cast<::dtl::type::uint_fast32>(362436069ul) };
+			::dtl::type::uint_fast32 z{ static_cast<::dtl::type::uint_fast32>(521288629ul) };
+			::dtl::type::uint_fast32 w{};
+		public:
+			static constexpr ::dtl::type::uint_fast32 min() {
+				return ::std::numeric_limits<::dtl::type::uint_fast32>::min();
+			}
+			static constexpr ::dtl::type::uint_fast32 max() {
+				return ::std::numeric_limits<::dtl::type::uint_fast32>::max();
+			}
+			::dtl::type::uint_fast32 operator()() noexcept {
+				const ::dtl::type::uint_fast32 t{ static_cast<::dtl::type::uint_fast32>(x ^ (x << 11)) };
+				x = y;
+				y = z;
+				z = w;
+				return w = static_cast<::dtl::type::uint_fast32>((w ^ (w >> 19)) ^ (t ^ (t >> 8)));
+			}
+			xor128() noexcept {
+				w = static_cast<::dtl::type::uint_fast32>(::std::random_device()());
+			}
+			xor128(::dtl::type::uint_fast32 s_) noexcept :w(s_) {}
+		};
+
+		class xor32 {
+		private:
+			::dtl::type::uint_fast8 w{};
+		public:
+			static constexpr ::dtl::type::uint_fast8 min() {
+				return ::std::numeric_limits<::dtl::type::uint_fast8>::min();
+			}
+			static constexpr ::dtl::type::uint_fast8 max() {
+				return ::std::numeric_limits<::dtl::type::uint_fast8>::max();
+			}
+			::dtl::type::uint_fast8 operator()() noexcept {
+				w ^= w >> 1;
+				w ^= w << 1;
+				w ^= w >> 2;
+				return w;
+			}
+			xor32() noexcept {
+				w = static_cast<::dtl::type::uint_fast8>(::std::random_device()());
+			}
+			xor32(::dtl::type::uint_fast8 s_) noexcept :w(s_) {}
+		};
+
+		class SimpleProbabilityDistribution {
+		private:
+			double probability{};
+		public:
+			template<typename T_>
+			bool operator()(T_& t_) noexcept {
+				return (static_cast<double>(t_()) - static_cast<double>(t_.min())) / (static_cast<double>(t_.max()) - static_cast<double>(t_.min())) < probability;
+			}
+			SimpleProbabilityDistribution(const double s_) noexcept :probability(s_) {}
+		};
+
+
 		template<typename T>
 		DTL_VERSIONING_CPP17_NODISCARD
 		constexpr ::dtl::type::size bitCheck(const T value_, const ::dtl::type::size bit_ = 0) noexcept {
@@ -53,8 +114,6 @@ namespace dtl {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
 			Random_Engine_ mt;
-			//非決定論的な乱数
-			//::std::random_device rd;
 
 			::dtl::type::size bit_num{};
 
