@@ -30,6 +30,7 @@
 #include <DTL/Shape/DobutsuShogi.hpp> //No STD
 #include <DTL/Shape/FractalIsland.hpp>
 #include <DTL/Shape/FractalLoopIsland.hpp>
+#include <DTL/Shape/MazeBar.hpp>
 #include <DTL/Shape/MazeDig.hpp> //No STD
 #include <DTL/Shape/MixRect.hpp> //No STD
 #include <DTL/Shape/PerlinIsland.hpp> //No STD

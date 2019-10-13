@@ -23,6 +23,7 @@
 
 	[[Developers]]
 
+	Jin (@Jin3004)
 	mitsu (@mitsu1119)
 	task4233 (@task4233)
 
