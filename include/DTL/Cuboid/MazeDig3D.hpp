@@ -17,7 +17,7 @@
 
 #include <array>
 #include <DTL/Base/Struct.hpp>
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Type/SSizeT.hpp>
 #include <DTL/Type/Vector.hpp>

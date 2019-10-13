@@ -18,7 +18,7 @@
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/SizeT.hpp>
 #include <DTL/Range/RectBaseWithValue.hpp>

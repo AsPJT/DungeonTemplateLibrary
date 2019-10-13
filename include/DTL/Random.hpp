@@ -17,7 +17,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_HPP
 
 //乱数生成
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_HPP
 #endif //NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_RANDOM_HPP

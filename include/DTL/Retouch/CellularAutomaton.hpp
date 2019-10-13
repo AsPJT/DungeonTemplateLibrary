@@ -17,7 +17,7 @@
 
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 #include <DTL/Range/RectBase.hpp>
 #include <DTL/Utility/DrawJagged.hpp>
 

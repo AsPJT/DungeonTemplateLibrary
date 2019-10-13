@@ -19,7 +19,7 @@
 #include <DTL/Base/Struct.hpp>
 #include <DTL/Macros/constexpr.hpp>
 #include <DTL/Macros/nodiscard.hpp>
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 #include <DTL/Range/RectBaseFractal.hpp>
 #include <DTL/Shape/DiamondSquareAverage.hpp>
 #include <DTL/Type/Forward.hpp>

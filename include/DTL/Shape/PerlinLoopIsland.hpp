@@ -21,7 +21,7 @@
 #include <DTL/Type/Forward.hpp>
 #include <DTL/Type/IntX.hpp>
 #include <DTL/Type/SizeT.hpp>
-#include <DTL/Random/MersenneTwister32bit.hpp>
+#include <DTL/Random/RandomEngine.hpp>
 #include <DTL/Range/RectBasePerlin.hpp>
 #include <DTL/Utility/DrawJaggedRandom.hpp>
 #include <DTL/Utility/PerlinNoise.hpp>
