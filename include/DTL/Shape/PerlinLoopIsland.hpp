@@ -122,7 +122,7 @@ namespace dtl {
 						matrix_.set(col, row,
 							this->min_height +
 							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
-							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, row / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
+							(static_cast<double>(this->max_height) - static_cast<double>(this->min_height)) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, row / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}
 				for (std::size_t row{ mid_y_ }; row < end_y_; ++row) {
@@ -130,14 +130,14 @@ namespace dtl {
 						matrix_.set(col, row,
 							this->min_height +
 							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(row - mid_y_) / (end_y_ - mid_y_)) +
-							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(row - mid_y_) / (end_y_ - mid_y_)))
+							(static_cast<double>(this->max_height) - static_cast<double>(this->min_height)) * perlin.octaveNoise(this->octaves, col / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(row - mid_y_) / (end_y_ - mid_y_)))
 							, args_...);
 
 					for (std::size_t col{ mid_x_ }; col < end_x_; ++col)
 						matrix_.set(col, row,
 							this->min_height +
 							static_cast<Matrix_Var_>((this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, col / frequency_x, row / frequency_y) * (1.0 - (double)(col - mid_x_) / (end_x_ - mid_x_)) +
-							(this->max_height - this->min_height) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
+							(static_cast<double>(this->max_height) - static_cast<double>(this->min_height)) * perlin.octaveNoise(this->octaves, (static_cast<double>(col) - (mid_x_ - this->start_x) * 2) / frequency_x, (static_cast<double>(row) - (mid_y_ - this->start_y) * 2) / frequency_y) * ((double)(col - mid_x_) / (end_x_ - mid_x_)))
 							, args_...);
 				}
 				return true;

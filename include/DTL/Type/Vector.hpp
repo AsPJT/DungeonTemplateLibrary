@@ -14,7 +14,7 @@
 #ifndef DTL_TYPE_VECTOR
 
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 
 #include <DTL/Type/SizeT.hpp>
 #define DTL_TYPE_VECTOR ::TArray
@@ -60,7 +60,7 @@ namespace dtl {
 	}
 }
 
-#else
+#else //Platform Default
 
 #include <algorithm>
 #include <vector>
@@ -106,7 +106,7 @@ namespace dtl {
 	}
 }
 
-#endif
+#endif //Platform
 
 
 #endif

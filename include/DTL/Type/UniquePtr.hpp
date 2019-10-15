@@ -12,12 +12,12 @@
 
 #ifndef DTL_TYPE_UNIQUE_PTR
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_UNIQUE_PTR ::TUniquePtr
-#else
+#else //Platform Default
 #include <memory>
 #define DTL_TYPE_UNIQUE_PTR ::std::unique_ptr
-#endif
+#endif //Platform
 
 #endif
 

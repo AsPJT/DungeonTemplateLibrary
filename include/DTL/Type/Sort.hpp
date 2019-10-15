@@ -12,7 +12,7 @@
 
 #ifndef DTL_TYPE_SORT
 
-#if defined(SPROUT_ALGORITHM_SORT_HPP) //Sprout
+#if defined(SPROUT_ALGORITHM_SORT_HPP) //Platform Sprout
 #define DTL_TYPE_SORT (::sprout::sort)
 
 /*#######################################################################################
@@ -28,7 +28,7 @@ namespace dtl {
 	}
 }
 
-#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+#elif defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 
 #include <algorithm> //todo
 #define DTL_TYPE_SORT (::std::sort)
@@ -46,7 +46,7 @@ namespace dtl {
 	}
 }
 
-#else
+#else //Platform Default
 #include <algorithm>
 #define DTL_TYPE_SORT (::std::sort)
 
@@ -63,7 +63,7 @@ namespace dtl {
 	}
 }
 
-#endif
+#endif //Platform
 
 #endif
 

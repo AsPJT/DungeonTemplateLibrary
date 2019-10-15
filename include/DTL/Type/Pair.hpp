@@ -12,7 +12,7 @@
 
 #ifndef DTL_TYPE_PAIR
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 
 #define DTL_TYPE_PAIR ::TPair
 
@@ -36,7 +36,7 @@ namespace dtl {
 	}
 }
 
-#else
+#else //Platform Default
 #include <utility>
 #define DTL_TYPE_PAIR ::std::pair
 
@@ -60,7 +60,7 @@ namespace dtl {
 	}
 }
 
-#endif
+#endif //Platform
 
 #endif
 

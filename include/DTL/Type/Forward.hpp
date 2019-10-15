@@ -12,12 +12,12 @@
 
 #ifndef DTL_TYPE_FORWARD
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_FORWARD ::Forward
-#else
+#else //Platform Default
 #include <utility>
 #define DTL_TYPE_FORWARD ::std::forward
-#endif
+#endif //Platform
 
 #endif
 

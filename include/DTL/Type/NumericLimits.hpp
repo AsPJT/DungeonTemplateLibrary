@@ -12,34 +12,34 @@
 
 #ifndef DTL_TYPE_NUMERIC_LIMITS
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_NUMERIC_LIMITS ::TNumericLimits
-#else
+#else //Platform Default
 #include <limits>
 #define DTL_TYPE_NUMERIC_LIMITS ::std::numeric_limits
-#endif
+#endif //Platform
 
 #endif
 
 
 #ifndef DTL_TYPE_NUMERIC_LIMITS_MIN
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_NUMERIC_LIMITS_MIN Min
-#else
+#else //Platform Default
 #define DTL_TYPE_NUMERIC_LIMITS_MIN min
-#endif
+#endif //Platform
 
 #endif
 
 
 #ifndef DTL_TYPE_NUMERIC_LIMITS_MAX
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_NUMERIC_LIMITS_MAX Max
-#else
+#else //Platform Default
 #define DTL_TYPE_NUMERIC_LIMITS_MAX max
-#endif
+#endif //Platform
 
 #endif
 

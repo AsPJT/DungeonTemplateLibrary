@@ -91,8 +91,8 @@ namespace dtl {
 						Index_Size col2{ (col > mid_x_) ? end_x_ - col - 1 : col };
 						matrix_.set(col + this->start_x, row + this->start_y, this->min_value +
 							static_cast<Matrix_Var_>(DTL_TYPE_MIN(
-								static_cast<double>(this->max_value - this->min_value) * row2 / mid_y_,
-								static_cast<double>(this->max_value - this->min_value) * col2 / mid_x_)), args_...);
+								(static_cast<double>(this->max_value) - static_cast<double>(this->min_value)) * row2 / mid_y_,
+								(static_cast<double>(this->max_value) - static_cast<double>(this->min_value)) * col2 / mid_x_)), args_...);
 					}
 				}
 				return true;

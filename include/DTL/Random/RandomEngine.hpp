@@ -109,7 +109,13 @@ namespace dtl {
 	[概要] 乱数 (32ビット版メルセンヌ・ツイスタ)
 	[Summary] Random number (32-bit version Mersenne Twister)
 #######################################################################################*/
-		template<typename Random_Engine_, typename BitVar_, typename UniformDistribution_, typename ProbabilityDistribution_>
+		template<
+			//乱数エンジンと型
+			typename Random_Engine_, typename BitVar_, 
+			//一様分布
+			typename UniformDistribution_, 
+			//確率分布
+			typename ProbabilityDistribution_>
 		class Random {
 		private:
 			//32ビット版メルセンヌ・ツイスタ
@@ -146,6 +152,17 @@ namespace dtl {
 			}
 
 		public:
+
+			template<typename... Args_>
+			constexpr UniformDistribution_ makeUniformDistribution(Args_&& ... args_) const noexcept {
+				return UniformDistribution_(DTL_TYPE_FORWARD<Args_>(args_)...);
+			}
+
+			template<typename... Args_>
+			constexpr ProbabilityDistribution_ makeProbabilityDistribution(Args_&& ... args_) const noexcept {
+				return ProbabilityDistribution_(DTL_TYPE_FORWARD<Args_>(args_)...);
+			}
+
 				template<typename Random_Int_ = ::dtl::type::size>
 				DTL_VERSIONING_CPP17_NODISCARD
 					Random_Int_ getBit2() {

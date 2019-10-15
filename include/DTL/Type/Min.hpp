@@ -12,11 +12,11 @@
 
 #ifndef DTL_TYPE_MIN
 
-#if defined(SPROUT_ALGORITHM_MIN_HPP) //Sprout
+#if defined(SPROUT_ALGORITHM_MIN_HPP) //Platform Sprout
 #define DTL_TYPE_MIN (::sprout::min)
-#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+#elif defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_MIN (::FGenericPlatformMath::Min)
-#else
+#else //Platform Default
 
 #ifndef DTL_DOES_NOT_INCLUDE_ALGORITHM
 #include <algorithm>
@@ -33,7 +33,7 @@ namespace dtl {
 #define DTL_TYPE_MIN (::dtl::algo::min)
 #endif
 
-#endif
+#endif //Platform
 
 #endif
 

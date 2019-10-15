@@ -83,10 +83,15 @@ namespace dtl {
 				::std::array<::dtl::type::ssize, 4> dx{ { 1, 0, -1, 0 } };
 				::std::array<::dtl::type::ssize, 4> dy{ { 0, 1, 0, -1 } };
 
+				//乱数エンジンを構築
+				auto&& random_range_0to3{ random_engine_.makeUniformDistribution(0, 3) };
+				auto&& random_range_0to2{ random_engine_.makeUniformDistribution(0, 2) };
+				auto&& re{ random_engine_.getEngine() };
+
 				for (::dtl::type::size y{ 2 }; y < size_y - 2; y += 2)
 					for (::dtl::type::size x{ 2 }; x < size_x - 2; x += 2)
 						for (::dtl::type::size i{}; i < 4; ++i) {
-							::dtl::type::size direction{ (y == 2) ? static_cast<::dtl::type::size>(random_engine_.get(0,3)) : static_cast<::dtl::type::size>(random_engine_.get(0,2)) };
+							::dtl::type::size direction{ (y == 2) ? static_cast<::dtl::type::size>(random_range_0to3(re)) : static_cast<::dtl::type::size>(random_range_0to2(re)) };
 							if (matrix_.get(this->start_x + x + dx[direction], this->start_y + y + dy[direction]) == this->empty_value) {
 								matrix_.set(this->start_x + x + dx[direction], this->start_y + y + dy[direction], this->wall_value, args_...);
 								break;

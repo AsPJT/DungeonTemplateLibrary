@@ -12,11 +12,11 @@
 
 #ifndef DTL_TYPE_MAX
 
-#if defined(SPROUT_ALGORITHM_MAX_HPP) //Sprout
+#if defined(SPROUT_ALGORITHM_MAX_HPP) //Platform Sprout
 #define DTL_TYPE_MAX (::sprout::max)
-#elif defined(UE_BUILD_FINAL_RELEASE) //UE4
+#elif defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_MAX (::FGenericPlatformMath::Max)
-#else
+#else //Platform Default
 
 #ifndef DTL_DOES_NOT_INCLUDE_ALGORITHM
 #include <algorithm>
@@ -33,7 +33,7 @@ namespace dtl {
 #define DTL_TYPE_MAX (::dtl::algo::max)
 #endif
 
-#endif
+#endif //Platform
 
 #endif
 

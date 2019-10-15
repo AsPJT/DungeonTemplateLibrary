@@ -207,10 +207,9 @@ namespace dtl {
 
 					//count軸の設定
 					//0.軸の右端(iR)の座標(division_After*R/3~2division_After*R/3)
-					dungeon_division[i][count] = 
-						dungeon_division[division_After][count + 2]
-						+ ((dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3)
-						+ DTL_RANDOM_ENGINE.get<::dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
+					dungeon_division[i][count] = dungeon_division[division_After][count + 2];
+					dungeon_division[i][count] += ((dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
+					dungeon_division[i][count] += DTL_RANDOM_ENGINE.get<::dtl::type::size>(1, (dungeon_division[division_After][count] - dungeon_division[division_After][count + 2]) / 3);
 
 					dungeon_division[i][count + 2] = dungeon_division[division_After][count + 2]; //0.軸の左端(iL)の座標(division_AfterL)
 					dungeon_division[division_After][count + 2] = dungeon_division[i][count]; //division_After軸の左端(division_AfterL)の座標(iR)

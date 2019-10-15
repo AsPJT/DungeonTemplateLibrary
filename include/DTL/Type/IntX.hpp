@@ -48,7 +48,7 @@ namespace dtl {
 
 	}
 }
-#else
+#else //Platform Default
 
 #ifndef DTL_DOES_NOT_INCLUDE_CSTDINT
 #include <cstdint>
@@ -160,6 +160,6 @@ namespace dtl {
 }
 #endif
 
-#endif
+#endif //Platform
 
 #endif //Included Dungeon Template Library

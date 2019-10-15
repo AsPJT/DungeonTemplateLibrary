@@ -12,9 +12,9 @@
 
 #ifndef DTL_TYPE_NEW
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_NEW new
-#else
+#else //Platform Default
 
 #ifndef DTL_DOES_NOT_INCLUDE_NEW
 #include <new>
@@ -23,7 +23,7 @@
 #define DTL_TYPE_NEW new
 #endif
 
-#endif
+#endif //Platform
 
 #endif
 

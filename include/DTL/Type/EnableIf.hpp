@@ -12,14 +12,14 @@
 
 #ifndef DTL_TYPE_ENABLE_IF
 
-#if defined(UE_BUILD_FINAL_RELEASE) //UE4
+#if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_ENABLE_IF ::TEnableIf
 
 #ifndef DTL_TYPE_EITYPE
 #define DTL_TYPE_EITYPE Type
 #endif
 
-#else
+#else //Platform Default
 #include <type_traits>
 #define DTL_TYPE_ENABLE_IF ::std::enable_if
 
@@ -27,7 +27,7 @@
 #define DTL_TYPE_EITYPE type
 #endif
 
-#endif
+#endif //Platform
 
 #endif
 
