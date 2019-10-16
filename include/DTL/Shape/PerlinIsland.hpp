@@ -57,12 +57,12 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
-				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
+				const ::dtl::utility::PerlinNoise<double> perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -83,7 +83,7 @@ namespace dtl {
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
 
-				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
+				const ::dtl::utility::PerlinNoise<double> perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 

@@ -25,6 +25,7 @@
 namespace dtl {
 	inline namespace utility { //"dtl::utility"名前空間に属する
 
+		template<typename Double_ = double>
 		class PerlinNoise {
 		private:
 
@@ -42,48 +43,48 @@ namespace dtl {
 			///// メンバ関数 /////
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double getFade(const double t_) const noexcept {
+			constexpr Double_ getFade(const Double_ t_) const noexcept {
 				return t_ * t_* t_* (t_ * (t_ * 6 - 15) + 10);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double getLerp(const double t_, const double a_, const double b_) const noexcept {
+			constexpr Double_ getLerp(const Double_ t_, const Double_ a_, const Double_ b_) const noexcept {
 				return a_ + t_ * (b_ - a_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double makeGradUV(const Pint hash_, const double u_, const double v_) const noexcept {
+			constexpr Double_ makeGradUV(const Pint hash_, const Double_ u_, const Double_ v_) const noexcept {
 				return (((hash_ & 1) == 0) ? u_ : -u_) + (((hash_ & 2) == 0) ? v_ : -v_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr double makeGrad(const Pint hash_, const double x_, const double y_) const noexcept {
+				constexpr Double_ makeGrad(const Pint hash_, const Double_ x_, const Double_ y_) const noexcept {
 				return this->makeGradUV(hash_, (hash_ < 8) ? x_ : y_, (hash_ < 4) ? y_ : hash_ == 12 || hash_ == 14 ? x_ : 0.0);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double makeGrad(const Pint hash_, const double x_, const double y_, const double z_) const noexcept {
+			constexpr Double_ makeGrad(const Pint hash_, const Double_ x_, const Double_ y_, const Double_ z_) const noexcept {
 				return this->makeGradUV(hash_, (hash_ < 8) ? x_ : y_, (hash_ < 4) ? y_ : hash_ == 12 || hash_ == 14 ? x_ : z_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				constexpr double getGrad(const Pint hash_, const double x_, const double y_) const noexcept {
+				constexpr Double_ getGrad(const Pint hash_, const Double_ x_, const Double_ y_) const noexcept {
 				return this->makeGrad(hash_ & 15, x_, y_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			constexpr double getGrad(const Pint hash_, const double x_, const double y_, const double z_) const noexcept {
+			constexpr Double_ getGrad(const Pint hash_, const Double_ x_, const Double_ y_, const Double_ z_) const noexcept {
 				return this->makeGrad(hash_ & 15, x_, y_, z_);
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-				double setNoise(double x_ = 0.0, double y_ = 0.0) const noexcept {
+				Double_ setNoise(Double_ x_ = 0.0, Double_ y_ = 0.0) const noexcept {
 				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(::std::floor(x_)) & 255) };
 				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>(::std::floor(y_)) & 255) };
 				x_ -= ::std::floor(x_);
 				y_ -= ::std::floor(y_);
-				const double u{ this->getFade(x_) };
-				const double v{ this->getFade(y_) };
+				const Double_ u{ this->getFade(x_) };
+				const Double_ v{ this->getFade(y_) };
 				const ::dtl::type::size a0{ static_cast<::dtl::type::size>(this->p[x_int] + y_int) };
 				const ::dtl::type::size a1{ static_cast<::dtl::type::size>(this->p[a0]) };
 				const ::dtl::type::size a2{ static_cast<::dtl::type::size>(this->p[a0 + 1]) };
@@ -97,16 +98,16 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setNoise(double x_, double y_, double z_) const noexcept {
+			Double_ setNoise(Double_ x_, Double_ y_, Double_ z_) const noexcept {
 				const ::dtl::type::size x_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(x_)) & 255) };
 				const ::dtl::type::size y_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(y_)) & 255) };
 				const ::dtl::type::size z_int{ static_cast<::dtl::type::size>(static_cast<::dtl::type::size>( ::std::floor(z_)) & 255) };
 				x_ -= ::std::floor(x_);
 				y_ -= ::std::floor(y_);
 				z_ -= ::std::floor(z_);
-				const double u{ this->getFade(x_) };
-				const double v{ this->getFade(y_) };
-				const double w{ this->getFade(z_) };
+				const Double_ u{ this->getFade(x_) };
+				const Double_ v{ this->getFade(y_) };
+				const Double_ w{ this->getFade(z_) };
 				const ::dtl::type::size a0{ static_cast<::dtl::type::size>(this->p[x_int] + y_int) };
 				const ::dtl::type::size a1{ static_cast<::dtl::type::size>(this->p[a0] + z_int) };
 				const ::dtl::type::size a2{ static_cast<::dtl::type::size>(this->p[a0 + 1] + z_int) };
@@ -124,9 +125,9 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const ::dtl::type::size octaves_, double x_) const noexcept {
-				double noise_value{};
-				double amp{ 1.0 };
+			Double_ setOctaveNoise(const ::dtl::type::size octaves_, Double_ x_) const noexcept {
+				Double_ noise_value{};
+				Double_ amp{ 1.0 };
 				for ( ::dtl::type::size i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_) * amp;
 					x_ *= 2.0;
@@ -136,9 +137,9 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const ::dtl::type::size octaves_, double x_, double y_) const noexcept {
-				double noise_value{};
-				double amp{ 1.0 };
+			Double_ setOctaveNoise(const ::dtl::type::size octaves_, Double_ x_, Double_ y_) const noexcept {
+				Double_ noise_value{};
+				Double_ amp{ 1.0 };
 				for ( ::dtl::type::size i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_) * amp;
 					x_ *= 2.0;
@@ -149,9 +150,9 @@ namespace dtl {
 			}
 
 			DTL_VERSIONING_CPP17_NODISCARD
-			double setOctaveNoise(const ::dtl::type::size octaves_, double x_, double y_, double z_) const noexcept {
-				double noise_value{};
-				double amp{ 1.0 };
+			Double_ setOctaveNoise(const ::dtl::type::size octaves_, Double_ x_, Double_ y_, Double_ z_) const noexcept {
+				Double_ noise_value{};
+				Double_ amp{ 1.0 };
 				for ( ::dtl::type::size i{}; i < octaves_; ++i) {
 					noise_value += this->setNoise(x_, y_, z_) * amp;
 					x_ *= 2.0;
@@ -167,16 +168,16 @@ namespace dtl {
 			//オクターブ無しノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
-			double noise(const Args... args_) const noexcept {
-				const double noise_value{ this->setNoise(args_...) * 0.5 + 0.5 };
+			Double_ noise(const Args... args_) const noexcept {
+				const Double_ noise_value{ this->setNoise(args_...) * 0.5 + 0.5 };
 				return ((noise_value >= 1.0) ? 1.0 : ((noise_value <= 0.0) ? 0.0 : noise_value));
 			}
 
 			//オクターブ有りノイズを取得する
 			template <typename... Args>
 			DTL_VERSIONING_CPP17_NODISCARD
-			double octaveNoise(const ::dtl::type::size octaves_, const Args... args_) const noexcept {
-				const double noise_value{ this->setOctaveNoise(octaves_, args_...) * 0.5 + 0.5 };
+			Double_ octaveNoise(const ::dtl::type::size octaves_, const Args... args_) const noexcept {
+				const Double_ noise_value{ this->setOctaveNoise(octaves_, args_...) * 0.5 + 0.5 };
 				return ((noise_value >= 1.0) ? 1.0 : ((noise_value <= 0.0) ? 0.0 : noise_value));
 			}
 

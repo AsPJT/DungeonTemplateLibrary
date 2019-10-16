@@ -57,7 +57,7 @@ namespace dtl {
 
 			//STL
 			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				if (this->mountain_proportion < 0.0 || this->mountain_proportion > 1.0) return false;
@@ -69,7 +69,7 @@ namespace dtl {
 				const Matrix_Var_ truncated_height{ static_cast<Matrix_Var_>((this->max_height - this->min_height) * (this->mountain_proportion)) };
 				const Matrix_Var_ pyramid_height{ static_cast<Matrix_Var_>(truncated_height / this->truncated_proportion) };
 
-				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
+				const ::dtl::utility::PerlinNoise<double> perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 
 				for (Index_Size row{ this->start_y }; row < end_y_; ++row) {
@@ -94,7 +94,7 @@ namespace dtl {
 
 			//Normal
 			template<typename Matrix_, typename ...Args_>
-			DTL_VERSIONING_CPP14_CONSTEXPR
+			//DTL_VERSIONING_CPP14_CONSTEXPR
 				typename DTL_TYPE_ENABLE_IF<!Matrix_::is_jagged::value, bool>::DTL_TYPE_EITYPE
 				drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				if (this->mountain_proportion < 0.0 || this->mountain_proportion > 1.0) return false;
@@ -108,7 +108,7 @@ namespace dtl {
 				const Matrix_Var_ truncated_height{ static_cast<Matrix_Var_>((this->max_height - this->min_height) * (this->mountain_proportion)) };
 				const Matrix_Var_ pyramid_height{ static_cast<Matrix_Var_>(truncated_height / this->truncated_proportion) };
 
-				const ::dtl::utility::PerlinNoise perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
+				const ::dtl::utility::PerlinNoise<double> perlin(static_cast<::dtl::type::uint_fast32>(random_engine_.get()));
 				const double frequency_x{ (end_x_ - this->start_x) / this->frequency };
 				const double frequency_y{ (end_y_ - this->start_y) / this->frequency };
 

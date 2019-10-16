@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Var_>
+		template<typename Derived_, typename Matrix_Var_, Matrix_Var_ matrix_value_ = Matrix_Var_{} >
 		class RectBaseWithValue : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Var_ draw_value{};
+			Matrix_Var_ draw_value{ matrix_value_ };
 
 
 		public:
