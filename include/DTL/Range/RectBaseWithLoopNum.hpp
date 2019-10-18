@@ -24,7 +24,7 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_>
+		template<typename Derived_, ::dtl::type::size default_loop_value_ = 0 >
 		class RectBaseWithLoopNum : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,7 +39,7 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Index_Size loop_num{};
+			Index_Size loop_num{ default_loop_value_ };
 
 
 		public:

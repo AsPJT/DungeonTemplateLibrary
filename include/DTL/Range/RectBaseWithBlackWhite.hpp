@@ -24,7 +24,8 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Var_>
+		template<typename Derived_, typename Matrix_Var_
+			, Matrix_Var_ default_black_value_ = Matrix_Var_{}, Matrix_Var_ default_white_value_ = Matrix_Var_{} >
 		class RectBaseWithBlackWhite : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,8 +40,8 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Var_ black_value{};
-			Matrix_Var_ white_value{};
+			Matrix_Var_ black_value{ default_black_value_ };
+			Matrix_Var_ white_value{ default_white_value_ };
 
 
 		public:

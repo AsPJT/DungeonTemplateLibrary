@@ -24,7 +24,8 @@ namespace dtl {
 	inline namespace range { //"dtl::range"名前空間に属する
 
 		//四角形クラス
-		template<typename Derived_, typename Matrix_Var_>
+		template<typename Derived_, typename Matrix_Var_
+			, Matrix_Var_ default_friend_value_ = Matrix_Var_{}, Matrix_Var_ default_foe_value_ = Matrix_Var_{}, Matrix_Var_ default_empty_value_ = Matrix_Var_{} >
 		class RectBaseWithBattle : public ::dtl::range::BasicRect<Derived_> {
 		private:
 
@@ -39,9 +40,9 @@ namespace dtl {
 
 			///// メンバ変数 (Member Variable) /////
 
-			Matrix_Var_ friend_value{};
-			Matrix_Var_ foe_value{};
-			Matrix_Var_ empty_value{};
+			Matrix_Var_ friend_value{ default_friend_value_ };
+			Matrix_Var_ foe_value{ default_foe_value_ };
+			Matrix_Var_ empty_value{ default_empty_value_ };
 
 
 		public:
