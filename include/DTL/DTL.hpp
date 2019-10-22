@@ -21,6 +21,10 @@
 	ai (@ai2playgame)
 	motty01 (@motty01)
 
+	[[Unity Supporters]]
+
+	sitRyo (@sitRyo)
+
 	[[Developers]]
 
 	Jin (@Jin3004)
