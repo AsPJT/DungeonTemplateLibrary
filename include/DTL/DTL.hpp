@@ -21,7 +21,7 @@
 	ai (@ai2playgame)
 	motty01 (@motty01)
 
-	[[Unity Supporters]]
+	[[Unity Supporter]]
 
 	sitRyo (@sitRyo)
 
