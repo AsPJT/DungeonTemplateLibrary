@@ -44,8 +44,19 @@ namespace dtl {
 	[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
 #######################################################################################*/
 			template<typename Matrix_, typename... Args>
-			constexpr Return_Var_ draw(Matrix_ & matrix_, Args&& ... args) const noexcept {
+			constexpr Return_Var_ draw(Matrix_& matrix_, Args&& ... args) const noexcept {
 				return static_cast<const Derived*>(this)->drawNormal(::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, DTL_TYPE_FORWARD<Args>(args)...));
+			}
+
+/*#######################################################################################
+	[概要] Matrixに描画する。
+	[戻り値] 戻り値の型は bool である。[ true : 描画に成功したことを示す / false : 描画に失敗したことを示す ]
+	[Summary] Draw on Matrix.
+	[Return value] The return type is bool. [ true: Drawing was successful. / false: Drawing failed. ]
+#######################################################################################*/
+			template<typename Matrix_, typename... Args>
+			constexpr Return_Var_ redraw(const Matrix_Var_& init_value_, Matrix_ & matrix_, Args&& ... args) const noexcept {
+				return static_cast<const Derived*>(this)->redrawNormal(init_value_, ::dtl::utility::makeWrapper<Matrix_Var_>(matrix_, DTL_TYPE_FORWARD<Args>(args)...));
 			}
 
 /*#######################################################################################

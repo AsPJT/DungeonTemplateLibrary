@@ -74,36 +74,6 @@ namespace dtl {
 
 			///// 基本処理 /////
 
-			template<typename Matrix_, typename ...Args_>
-				bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
-				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
-				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
-
-				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
-				const ::dtl::type::size mapDivCount{ this->division_min + static_cast<::dtl::type::size>(random_engine_.get(this->division_rand_max)) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
-
-				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
-				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
-				StartEnd dungeon_room{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
-				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
-				StartEnd dungeon_road{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
-
-				dungeon_division[0][0] = end_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
-				dungeon_division[0][1] = end_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
-				dungeon_division[0][2] = this->start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
-				dungeon_division[0][3] = this->start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
-
-				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
-				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
-
-				this->createDivision(random_engine_, dungeon_road, dungeon_division, mapDivCount);
-				this->createRoom(random_engine_, dungeon_room, dungeon_division, mapDivCount);
-				this->assignRoom(dungeon_room, matrix_, mapDivCount, args_...);
-				this->createRoad(random_engine_, dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, args_...);
-				return true;
-			}
-
 			void createDivision(Random_Engine_& random_engine_, StartEnd& dungeon_road, StartEnd& dungeon_division, const ::dtl::type::size mapDivCount) const noexcept {
 
 				//マップを区分けしていく処理(区域を分割する処理)
@@ -251,6 +221,46 @@ namespace dtl {
 						break;
 					}
 				}
+			}
+
+			template<typename Matrix_, typename ...Args_>
+			bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
+				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
+				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
+
+				//マップの区分け数 (部屋の個数) 0~nまでの部屋ID
+				const ::dtl::type::size mapDivCount{ this->division_min + static_cast<::dtl::type::size>(random_engine_.get(this->division_rand_max)) }; //マップの区分け数 (部屋の個数) 0~yまでの部屋ID
+
+				//マップの区域 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				StartEnd dungeon_division{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
+				//マップの部屋 [部屋ID][X終点 , Y終点 , X始点 , Y始点]
+				StartEnd dungeon_room{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
+				//マップの道 [部屋ID(前)][繋がる先の部屋ID(後) , (0.X座標 , 1.Y座標) , (前)側の通路の位置 , (後)側の通路の位置]
+				StartEnd dungeon_road{ ::dtl::type::makeVector<StartEndArray>(mapDivCount, StartEndArray()) };
+
+				dungeon_division[0][0] = end_y_ - 1; //マップの区分け初期サイズX終点 (マップの大きさX軸)
+				dungeon_division[0][1] = end_x_ - 1; //マップの区分け初期サイズY終点 (マップの大きさY軸)
+				dungeon_division[0][2] = this->start_x + 1; //マップの区分け初期サイズX始点 (マップの大きさX軸)
+				dungeon_division[0][3] = this->start_y + 1; //マップの区分け初期サイズY始点 (マップの大きさY軸)
+
+				dungeon_road[0][0] = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+				dungeon_road[0][1] = (DTL_TYPE_NUMERIC_LIMITS<::dtl::type::size>::DTL_TYPE_NUMERIC_LIMITS_MAX)();
+
+				this->createDivision(random_engine_, dungeon_road, dungeon_division, mapDivCount);
+				this->createRoom(random_engine_, dungeon_room, dungeon_division, mapDivCount);
+				this->assignRoom(dungeon_room, matrix_, mapDivCount, args_...);
+				this->createRoad(random_engine_, dungeon_road, dungeon_room, dungeon_division, matrix_, mapDivCount, args_...);
+				return true;
+			}
+
+			//再描画
+			template<typename Matrix_, typename ...Args_>
+			bool redrawNormal(const Matrix_Var_& init_value_, Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
+				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) }, end_y_{ this->calcEndY(matrix_.getY()) };
+				for (Index_Size row{ this->start_y }; row < end_y_; ++row)
+					for (Index_Size col{ this->start_x }; col < end_x_; ++col)
+						matrix_.set(col, row, init_value_, args_...);
+				return this->drawNormal(DTL_TYPE_FORWARD<Matrix_>(matrix_), DTL_TYPE_FORWARD<Random_Engine_>(random_engine_), DTL_TYPE_FORWARD<Args_>(args_)...);
 			}
 
 		public:
