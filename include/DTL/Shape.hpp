@@ -55,6 +55,7 @@
 #include <DTL/Shape/SimpleRogueLike.hpp>
 #include <DTL/Shape/SimpleTruncatedSquarePyramid.hpp> //No STD
 #include <DTL/Shape/SimpleVoronoiIsland.hpp>
+#include <DTL/Shape/StarLine.hpp>
 #include <DTL/Shape/WhiteNoise.hpp>
 
 #endif //INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_SHAPE_HPP
