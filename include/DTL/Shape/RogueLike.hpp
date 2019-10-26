@@ -115,9 +115,11 @@ namespace dtl {
 				case direction_west:dx = 1; break;
 				case direction_east:dx = -1; break;
 				}
+				if (this->start_x + x + dx < 0 || this->start_x + x + dx >= this->calcEndX(matrix_.getX())) return false;
+				if (this->start_y + y + dy < 0 || this->start_y + y + dy >= this->calcEndY(matrix_.getY())) return false;
 				//エラー
 				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.room_id && matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.way_id) return false;
-
+				
 				if (!is_way_) {
 					//通路を生成
 					if (!makeWay(matrix_, random_engine_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
