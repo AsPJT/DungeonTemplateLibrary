@@ -83,10 +83,10 @@ namespace dtl {
 				::std::array<::dtl::type::ssize, 4> dx{ { 1, 0, -1, 0 } };
 				::std::array<::dtl::type::ssize, 4> dy{ { 0, 1, 0, -1 } };
 
-				//乱数エンジンを構築
-				auto&& random_range_0to3{ random_engine_.makeUniformDistribution(0, 3) };
-				auto&& random_range_0to2{ random_engine_.makeUniformDistribution(0, 2) };
-				auto&& re{ random_engine_.getEngine() };
+				//乱数エンジンを構築 (Clang3.7以下で実行するために{}ではなく=で初期化する)
+				auto&& random_range_0to3 = random_engine_.makeUniformDistribution(0, 3);
+				auto&& random_range_0to2 = random_engine_.makeUniformDistribution(0, 2);
+				auto&& re = random_engine_.getEngine();
 
 				for (::dtl::type::size y{ 2 }; y < size_y - 2; y += 2)
 					for (::dtl::type::size x{ 2 }; x < size_x - 2; x += 2)
