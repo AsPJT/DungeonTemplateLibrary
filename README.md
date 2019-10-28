@@ -42,6 +42,8 @@
 
 ## Support Compiler 🔧
 
+### [Release](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+
 |Compiler|C++17|C++14|C++11|
 |:---|:---|:---|:---|
 |MSVC|14.0-passing|14.0-passing|14.0-passing|
@@ -49,6 +51,14 @@
 |Clang|5.0.0-passing|3.6.0-passing|3.4.0-passing|
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
+
+### Beta
+
+|Compiler|C++17|C++14|C++11|
+|:---|:---|:---|:---|
+|MSVC|14.20-passing|14.20-passing||
+|GCC||4.9.2-passing|4.9.2-passing|
+|Clang|8.0.0-passing|8.0.0-passing|8.0.0-passing|
 
 ---
 
