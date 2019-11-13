@@ -46,11 +46,11 @@ namespace dtl {
 			::dtl::type::uint_fast32 z{ static_cast<::dtl::type::uint_fast32>(521288629ul) };
 			::dtl::type::uint_fast32 w{};
 		public:
-			static constexpr ::dtl::type::uint_fast32 min() {
-				return ::std::numeric_limits<::dtl::type::uint_fast32>::min();
+			static constexpr ::dtl::type::uint_fast32 (min)() {
+				return (::std::numeric_limits<::dtl::type::uint_fast32>::min)();
 			}
-			static constexpr ::dtl::type::uint_fast32 max() {
-				return ::std::numeric_limits<::dtl::type::uint_fast32>::max();
+			static constexpr ::dtl::type::uint_fast32 (max)() {
+				return (::std::numeric_limits<::dtl::type::uint_fast32>::max)();
 			}
 			::dtl::type::uint_fast32 operator()() noexcept {
 				const ::dtl::type::uint_fast32 t{ static_cast<::dtl::type::uint_fast32>(x ^ (x << 11)) };
@@ -69,11 +69,11 @@ namespace dtl {
 		private:
 			::dtl::type::uint_fast8 w{};
 		public:
-			static constexpr ::dtl::type::uint_fast8 min() {
-				return ::std::numeric_limits<::dtl::type::uint_fast8>::min();
+			static constexpr ::dtl::type::uint_fast8 (min)() {
+				return (::std::numeric_limits<::dtl::type::uint_fast8>::min)();
 			}
-			static constexpr ::dtl::type::uint_fast8 max() {
-				return ::std::numeric_limits<::dtl::type::uint_fast8>::max();
+			static constexpr ::dtl::type::uint_fast8 (max)() {
+				return (::std::numeric_limits<::dtl::type::uint_fast8>::max)();
 			}
 			::dtl::type::uint_fast8 operator()() noexcept {
 				w ^= w >> 1;
@@ -93,7 +93,7 @@ namespace dtl {
 		public:
 			template<typename T_>
 			bool operator()(T_& t_) noexcept {
-				return (static_cast<double>(t_()) - static_cast<double>(t_.min())) / (static_cast<double>(t_.max()) - static_cast<double>(t_.min())) < probability;
+				return (static_cast<double>(t_()) - static_cast<double>((t_.min)())) / (static_cast<double>((t_.max)()) - static_cast<double>((t_.min)())) < probability;
 			}
 			SimpleProbabilityDistribution(const double s_) noexcept :probability(s_) {}
 		};
