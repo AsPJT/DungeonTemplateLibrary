@@ -24,4 +24,26 @@
 #define DTL_TYPE_THREAD_LOCAL thread_local
 #endif
 
+
+
+#ifndef DTL_TYPE_THREAD_LOCAL_RAND
+
+#if defined(__GNUC__) && defined(__GNUC_MINOR__)
+#if __GNUC__ == 4 && __GNUC_MINOR__ < 9
+#define DTL_TYPE_THREAD_LOCAL_RAND
+#endif
+#if defined(__GNUC_PATCHLEVEL__)
+#if __GNUC__ == 4 && __GNUC_MINOR__ == 9 && __GNUC_PATCHLEVEL__ < 2
+#define DTL_TYPE_THREAD_LOCAL_RAND
+#endif
+#endif
+#endif
+
+#endif
+
+#ifndef DTL_TYPE_THREAD_LOCAL_RAND
+#define DTL_TYPE_THREAD_LOCAL_RAND thread_local
+#endif
+
+
 #endif //Included Dungeon Template Library

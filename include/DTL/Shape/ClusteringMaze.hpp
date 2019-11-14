@@ -155,11 +155,11 @@ namespace dtl {
 			template<typename Matrix_, typename ...Args_>
 			//DTL_VERSIONING_CPP14_CONSTEXPR
 				bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
-				const Index_Size width{ (this->calcEndX(matrix_.getX()) - this->start_x) };
-				const Index_Size height{ (this->calcEndY(matrix_.getY()) - this->start_y) };
+				const Index_Size width_size{ (this->calcEndX(matrix_.getX()) - this->start_x) };
+				const Index_Size height_size{ (this->calcEndY(matrix_.getY()) - this->start_y) };
 
-				const Index_Size width3{ (width % 2 == 0) ? width - 1 : width };
-				const Index_Size height3{ (height % 2 == 0) ? height - 1 : height };
+				const Index_Size width3{ (width_size % 2 == 0) ? width_size - 1 : width_size };
+				const Index_Size height3{ (height_size % 2 == 0) ? height_size - 1 : height_size };
 
 				for (Index_Size i{}; i < width3 / 2; ++i)
 					for (Index_Size j{}; j < height3 / 2; ++j)

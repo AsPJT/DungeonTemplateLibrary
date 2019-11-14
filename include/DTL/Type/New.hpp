@@ -12,6 +12,16 @@
 
 #ifndef DTL_TYPE_NEW
 
+#if defined(__clang_major__) && defined(__clang_minor__)
+#if __clang_major__ == 3 && __clang_minor__ <= 4
+#define DTL_TYPE_NEW new
+#endif
+#endif
+
+#endif
+
+#ifndef DTL_TYPE_NEW
+
 #if defined(UE_BUILD_FINAL_RELEASE) //Platform UE4
 #define DTL_TYPE_NEW new
 #else //Platform Default

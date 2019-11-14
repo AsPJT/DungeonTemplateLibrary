@@ -282,10 +282,10 @@ namespace dtl {
 		};
 		template<typename T, typename T2, typename T3, typename T4>
 		struct RandClass {
-			static DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T, T2, T3, T4> random_engine;
+			static DTL_TYPE_THREAD_LOCAL_RAND ::dtl::random::Random<T, T2, T3, T4> random_engine;
 		};
 		template<typename T, typename T2, typename T3, typename T4>
-		DTL_TYPE_THREAD_LOCAL ::dtl::random::Random<T, T2, T3, T4> RandClass<T, T2, T3, T4>::random_engine;
+		DTL_TYPE_THREAD_LOCAL_RAND ::dtl::random::Random<T, T2, T3, T4> RandClass<T, T2, T3, T4>::random_engine;
 		using RandClassMT = RandClass<::std::mt19937, ::std::uint_fast32_t, ::std::uniform_int_distribution<>, ::std::bernoulli_distribution>;
 		using DefaultRandom = ::dtl::random::Random<::std::mt19937, ::std::uint_fast32_t, ::std::uniform_int_distribution<>, ::std::bernoulli_distribution>;
 
