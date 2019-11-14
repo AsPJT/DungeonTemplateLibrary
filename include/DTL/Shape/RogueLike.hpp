@@ -119,12 +119,12 @@ namespace dtl {
 				if (this->start_y + y + dy < 0 || this->start_y + y + dy >= this->calcEndY(matrix_.getY())) return false;
 				//エラー
 				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.room_id && matrix_.get(this->start_x + x + dx, this->start_y + y + dy) != this->rogueLikeList.way_id) return false;
-				
+
 				if (!is_way_) {
 					//通路を生成
 					if (!makeWay(matrix_, random_engine_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
-					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
-					else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
+					if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.entrance_id, args_...);
+					else matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.way_id, args_...);
 					return true;
 				}
 
@@ -132,13 +132,13 @@ namespace dtl {
 				if (random_engine_.probability()) {
 					//部屋を生成
 					if (!makeRoom(matrix_, random_engine_, size_x, size_y, room_rect_, branch_point, is_v_way_, x, y, dir_)) return false;
-					matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
+					matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.entrance_id, args_...);
 					return true;
 				}
 				//通路を生成
 				if (!makeWay(matrix_, random_engine_, size_x, size_y, branch_point, is_v_way_, x, y, dir_)) return false;
-				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(x, y, this->rogueLikeList.entrance_id, args_...);
-				else matrix_.set(x, y, this->rogueLikeList.way_id, args_...);
+				if (matrix_.get(this->start_x + x + dx, this->start_y + y + dy) == this->rogueLikeList.room_id) matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.entrance_id, args_...);
+				else matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.way_id, args_...);
 				return true;
 			}
 
@@ -262,7 +262,9 @@ namespace dtl {
 			template<typename Matrix_>
 			DTL_VERSIONING_CPP14_CONSTEXPR
 				bool placeOutputNumber(Matrix_& matrix_, const Index_Size size_x, const Index_Size size_y, const Range_& rect, const Matrix_Var_ tile_) const noexcept {
-				if (rect.x < 1 || rect.y < 1 || rect.x + rect.w >(::dtl::type::int_fast32)(size_x) - 1 || rect.y + rect.h >(::dtl::type::int_fast32)(size_y) - 1)
+				if (rect.x < 1 || rect.y < 1 ||
+					rect.x + rect.w >(::dtl::type::int_fast32)(size_x) - 1 ||
+					rect.y + rect.h >(::dtl::type::int_fast32)(size_y) - 1)
 					return false;
 				for (::dtl::type::int_fast32 y = rect.y; y < rect.y + rect.h; ++y)
 					for (::dtl::type::int_fast32 x = rect.x; x < rect.x + rect.w; ++x)
@@ -270,8 +272,8 @@ namespace dtl {
 				for (::dtl::type::int_fast32 y = rect.y - 1; y < rect.y + rect.h + 1; ++y)
 					for (::dtl::type::int_fast32 x = rect.x - 1; x < rect.x + rect.w + 1; ++x) {
 						if (x == rect.x - 1 || y == rect.y - 1 || x == rect.x + rect.w || y == rect.y + rect.h)
-							matrix_.set(x, y, this->rogueLikeList.inside_wall_id);
-						else matrix_.set(x, y, tile_);
+							matrix_.set(this->start_x + x, this->start_y + y, this->rogueLikeList.inside_wall_id);
+						else matrix_.set(this->start_x + x, this->start_y + y, tile_);
 					}
 				return true;
 			}
@@ -281,7 +283,7 @@ namespace dtl {
 
 			template<typename Matrix_, typename ...Args_>
 			//DTL_VERSIONING_CPP14_CONSTEXPR
-				bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
+			bool drawNormal(Matrix_&& matrix_, Random_Engine_&& random_engine_, Args_&& ... args_) const noexcept {
 				if (this->roomRange.w < 1 || this->roomRange.h < 1 || this->wayRange.w < 1 || this->wayRange.h < 1) return false;
 				const Index_Size end_x_{ this->calcEndX(matrix_.getX()) };
 				const Index_Size end_y_{ this->calcEndY(matrix_.getY()) };
