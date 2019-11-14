@@ -24,6 +24,8 @@
 
 [**>> Viewer Download [Android/.apk/(ARM/ARM64/x86/x64)] 📥**](https://play.google.com/store/apps/details?id=com.AndroidDTL)
 
+[**>> Roguelike🌏 Viewer Download [Windows/.exe/(x64)] 📥**](https://www.dropbox.com/s/qmm0ovlijifiygc/RoguelikeViewer%28x64%29.exe?dl=1)
+
 [**>> What is Image Viewer?**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Image-Viewer)
 
 ---
