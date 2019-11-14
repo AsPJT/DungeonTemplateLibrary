@@ -17,7 +17,7 @@
 
 /* バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20191114L)
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION (20191115L)
 #endif
 
 /* AsDungeon 世代 */
@@ -37,7 +37,7 @@
 
 /* 補助バージョン */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_MINOR
-#define DUNGEON_TEMPLATE_LIBRARY_MINOR (13)
+#define DUNGEON_TEMPLATE_LIBRARY_MINOR (14)
 #endif
 
 /* 微修正バージョン */
@@ -47,7 +47,7 @@
 
 /* バージョン名 */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME
-#define DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME "4.0.4.13.0 (https://github.com/Kasugaccho/DungeonTemplateLibrary)"
+#define DUNGEON_TEMPLATE_LIBRARY_VERSION_NAME "4.0.4.14.0 (https://github.com/Kasugaccho/DungeonTemplateLibrary)"
 #endif
 
 #endif //Included Dungeon Template Library
