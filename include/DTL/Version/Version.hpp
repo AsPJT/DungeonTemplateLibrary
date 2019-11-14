@@ -15,7 +15,7 @@
 #define DUNGEON_TEMPLATE_LIBRARY
 #endif
 
-/* バージョン */
+/* バージョン数値 */
 #ifndef DUNGEON_TEMPLATE_LIBRARY_VERSION
 #define DUNGEON_TEMPLATE_LIBRARY_VERSION (20191115L)
 #endif
