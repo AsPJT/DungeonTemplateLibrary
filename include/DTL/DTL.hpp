@@ -73,6 +73,10 @@
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FIND_HPP
 #include <DTL/Find.hpp>
 
+/* 文字ライブラリ (dtl::font) */
+//#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_FONT_HPP
+//#include <DTL/Font.hpp>
+
 /* 知能ライブラリ (dtl::intelligence) */
 //#define NOT_INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_INTELLIGENCE_HPP
 #include <DTL/Intelligence.hpp>

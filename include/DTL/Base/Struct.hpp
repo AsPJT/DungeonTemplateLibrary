@@ -44,6 +44,9 @@ namespace dtl {
 		using MatrixVec2 = ::dtl::base::Coordinate2Dimensional<::dtl::type::size>;
 
 		template<typename Int_>
+		using Vec2 = ::dtl::base::Coordinate2Dimensional<Int_>;
+
+		template<typename Int_>
 		struct Coordinate3Dimensional {
 			Int_ x{};
 			Int_ y{};

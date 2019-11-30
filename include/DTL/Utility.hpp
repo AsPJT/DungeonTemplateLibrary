@@ -17,6 +17,7 @@
 #define INCLUDED_DUNGEON_TEMPLATE_LIBRARY_DTL_UTILITY_HPP
 
 #include <DTL/Utility/Binarization.hpp>
+#include <DTL/Utility/Camera.hpp>
 #include <DTL/Utility/Copy.hpp>
 #include <DTL/Utility/Init.hpp>
 #include <DTL/Utility/PerlinNoise.hpp>
