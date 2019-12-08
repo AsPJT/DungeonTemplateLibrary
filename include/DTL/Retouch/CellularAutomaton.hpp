@@ -81,7 +81,7 @@ namespace dtl {
 				noexcept(noexcept(matrix_.getX()) && noexcept(matrix_.getY()) && noexcept(assign(matrix_, 0, 0, args_...))) {
 				const Index_Size end_y_ = this->calcEndY(matrix_.getY()) - 1;
 				for (Index_Size row{ this->start_y + 1 }; row < end_y_; ++row) {
-					const Index_Size end_x_ = this->calcENdX(matrix_.getX(row)) - 1;
+					const Index_Size end_x_ = this->calcEndX(matrix_.getX(row)) - 1;
 					for (Index_Size col{ this->start_x + 1 }; col < end_x_; ++col)
 						assign(matrix_, col, row, args_...);
 				}
