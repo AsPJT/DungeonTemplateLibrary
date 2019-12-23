@@ -131,6 +131,5 @@ Distributed under the Boost Software License, Version 1.0.(See accompanying file
 
 |E-mail:|wanotaitei@gmail.com|
 |:---|:---|
-|Twitter:|[@wanotaitei](https://twitter.com/wanotaitei)|
 |![svg](https://Kasugaccho.github.io/DungeonPicture/Picture/as_logo.svg)|Made by **As Project**.|
 |![gaccho](https://Kasugaccho.github.io/DungeonPicture/Picture/gaccho_icon.svg)|Made by Gaccho.|
