@@ -46,7 +46,7 @@
 
 ## Support Compiler 🔧
 
-### [Release](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases)
+### [Release](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) ([Release branch](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/release))
 
 |Compiler|C++17|C++14|C++11|
 |:---|:---|:---|:---|
@@ -56,7 +56,7 @@
 |Zapcc|unknown|1.0.1-passing|1.0.1-passing|
 |ICC|unknown|unknown|unknown|
 
-### Beta
+### Beta ([master branch](https://github.com/Kasugaccho/DungeonTemplateLibrary))
 
 |Compiler|C++17|C++14|C++11|
 |:---|:---|:---|:---|
