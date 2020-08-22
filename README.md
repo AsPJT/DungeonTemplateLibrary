@@ -1,6 +1,6 @@
 # DTL (Dungeon Template Library) [![BSL-1.0](https://img.shields.io/badge/license-BSL--1.0-blue.svg)](https://github.com/Kasugaccho/DungeonTemplateLibrary/blob/master/LICENSE_1_0.txt) [![CircleCI](https://circleci.com/gh/Kasugaccho/DungeonTemplateLibrary.svg?style=svg)](https://circleci.com/gh/Kasugaccho/DungeonTemplateLibrary)
 
-[![Logo-GIF](https://kasugaccho.github.io/DungeonPicture/Picture/Logo/logo_color800_2.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
+[![Logo-GIF](https://raw.githubusercontent.com/Kasugaccho/DungeonPicture/master/Picture/Logo/logo_color800_2.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
 ---
 
@@ -40,7 +40,7 @@
 
 [**>> Roadmap 🏛**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Roadmap)
 
-[![API reference](https://kasugaccho.github.io/DungeonPicture/Picture/UE4/psi480.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
+[![API reference](https://raw.githubusercontent.com/Kasugaccho/DungeonPicture/master/Picture/UE4/psi480.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/API-reference)
 
 ---
 
@@ -80,9 +80,9 @@
 
 |[**[[ Unity ]]**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unity)|
 |:---:|
-|[![Unity](https://kasugaccho.github.io/DungeonPicture/Picture/Unity/logo_unity_240.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unity)|
+|[![Unity](https://raw.githubusercontent.com/Kasugaccho/DungeonPicture/master/Picture/Unity/logo_unity_240.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unity)|
 |[**[[ Unreal Engine ]]**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unreal-Engine-4)|
-|[![UE4](https://kasugaccho.github.io/DungeonPicture/Picture/UE4/logo_unreal_240.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unreal-Engine-4)|
+|[![UE4](https://raw.githubusercontent.com/Kasugaccho/DungeonPicture/master/Picture/UE4/logo_unreal_240.gif)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unreal-Engine-4)|
 |[**>> Unreal Engine 4 Viewer Download [Windows/.exe/(x86/x64)] 📥**](https://drive.google.com/open?id=10eSTRS40n4jJrsOtM5_VOkwzVDfYIrc7)|
 
 ---
@@ -131,4 +131,4 @@ Distributed under the Boost Software License, Version 1.0.(See accompanying file
 
 |E-mail:|wanotaitei@gmail.com|
 |:---|:---|
-|![svg](https://Kasugaccho.github.io/DungeonPicture/Picture/as_logo.svg)|Made by **As Project**.|
+|![svg](https://raw.githubusercontent.com/Kasugaccho/DungeonPicture/master/Picture/as_logo.svg)|Made by **As Project**.|
