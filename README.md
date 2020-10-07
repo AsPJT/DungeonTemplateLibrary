@@ -129,3 +129,10 @@ Copyright (c) 2017-2019 Kasugaccho.
 Copyright (c) 2018-2019 As Project.
 
 Distributed under the Boost Software License, Version 1.0.(See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+---
+
+# Related Items 🎮
+
+[![AsLib](https://raw.githubusercontent.com/Kasugaccho/Kasugaccho/master/Picture/aslib.png)](https://github.com/Kasugaccho/AsLib)
+[![GenkaiSyuraku](https://raw.githubusercontent.com/Kasugaccho/Kasugaccho/master/Picture/genkai_syuraku.png)](https://github.com/Kasugaccho/GenkaiSyuraku)
