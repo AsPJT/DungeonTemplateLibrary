@@ -16,7 +16,7 @@
 
 [**>> Web Trial 🏷**](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Web-Trial)
 
-## Image Viewer Download 📥
+## Image Viewer Downloads📥
 
 [**>> Viewer Download [Windows/.exe/(x86)] 📥**](https://www.dropbox.com/s/g0a1zifwf2nprl4/DungeonTemplateLibraryViewer%28x86%29.exe?dl=1)
 
@@ -44,7 +44,7 @@
 
 ---
 
-## Support Compiler 🔧
+## Supported Compilers 🔧
 
 ### [Release](https://github.com/Kasugaccho/DungeonTemplateLibrary/releases) ([Release branch](https://github.com/Kasugaccho/DungeonTemplateLibrary/tree/release))
 
@@ -66,7 +66,7 @@
 
 ---
 
-## Support IDE ⚙
+## Supported IDE ⚙
 
 |Visual Studio 🆚|
 |:---:|
@@ -76,7 +76,7 @@
 
 ---
 
-## Support Game Engine 🎮
+## Supported Game Engines 🎮
 
 [![Unreal Engine](https://raw.githubusercontent.com/Kasugaccho/Kasugaccho/master/Picture/dungeon_template_library_unreal_engine.png)](https://github.com/Kasugaccho/DungeonTemplateLibrary/wiki/Unreal-Engine-4)
 
