@@ -133,6 +133,7 @@ Distributed under the Boost Software License, Version 1.0.(See accompanying file
 
 # Related Items 🎮
 
+[![Crafterra](https://raw.githubusercontent.com/AsPJT/AsPJT/master/Picture/crafterra.png)](https://github.com/AsPJT/Crafterra)
 [![AsLib](https://raw.githubusercontent.com/AsPJT/AsPJT/master/Picture/aslib.png)](https://github.com/AsPJT/AsLib)
 [![GenkaiSyuraku](https://raw.githubusercontent.com/AsPJT/AsPJT/master/Picture/genkai_syuraku.png)](https://github.com/AsPJT/GenkaiSyuraku)
 
