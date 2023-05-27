@@ -133,7 +133,7 @@ Distributed under the Boost Software License, Version 1.0.(See accompanying file
 
 # Related Items 🎮
 
-[![PAX_SAPIENTICA](https://raw.githubusercontent.com/Asukana/pax-picture/main/pax_title_2.png)](https://github.com/AsPJT/PAX_SAPIENTICA)
+[![PAX_SAPIENTICA](https://raw.githubusercontent.com/AsPJT/PAX_SAPIENTICA/main/Image/Poster/TitleLogoScreenshot.png)](https://github.com/AsPJT/PAX_SAPIENTICA)
 [![AsLib](https://raw.githubusercontent.com/AsPJT/AsPJT/master/Picture/aslib.png)](https://github.com/AsPJT/AsLib)
 [![GenkaiSyuraku](https://raw.githubusercontent.com/AsPJT/AsPJT/master/Picture/genkai_syuraku.png)](https://github.com/AsPJT/GenkaiSyuraku)
 
